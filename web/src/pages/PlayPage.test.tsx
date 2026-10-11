@@ -287,6 +287,19 @@ test('the result offers your costliest mistake again, as a practice game with th
   expect(location().pathname).toBe('/play');
 });
 
+test('a regular in costume plays as the character: its name, opening line and mechanics', async () => {
+  serveMoves();
+  // Iron Wall Ivo dressed as El Silbón for the Venezuelan legends keeps his id; the game keeps the costume.
+  savePlay({ initialFen: START, moves: [], playerColor: 'white', level: 4, result: null, botId: 'iron-wall-ivo', elo: 1655,
+    botName: 'El Silbón', costume: 'El Silbón', outfit: 'art/bots/seasonal/leyendas/08-6.webp' });
+  renderAt('/play');
+  expect(await screen.findByText('“Do, re, mi, fa, sol, la, si... did you hear that?”')).toBeInTheDocument();
+  expect(screen.getByText(/Fi-fi-fi/)).toBeInTheDocument();
+  expect(screen.getAllByText('El Silbón').length).toBeGreaterThan(0);
+  expect(screen.queryByText('Iron Wall Ivo')).not.toBeInTheDocument();
+  expect(document.body.dataset.ambience).toBe('night');
+});
+
 test('a bot with mechanics greets you with its line and sets the night board', async () => {
   serveMoves();
   savePlay({ initialFen: START, moves: [], playerColor: 'white', level: 4, result: null, botId: 'el-silbo-n', elo: 1550, botName: 'El Silbón' });

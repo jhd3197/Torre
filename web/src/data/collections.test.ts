@@ -1,4 +1,5 @@
-import { BOT_ROSTER } from './bots';
+import { BOT_ROSTER, inCostume } from './bots';
+import { mechanicsFor } from './botMechanics';
 import { botCollections, collectionOf, eventLadder, lockOf, moveOf, type BotCollection } from './collections';
 import { keepEventBot, loadEvents } from '../lib/events';
 
@@ -77,4 +78,16 @@ test('in Venezuelan legends the regulars go by their legend: El Silbón, La Sayo
   expect(leyendas.bots.map(bot => bot.name)).toContain('La Sayona');
   // Everywhere else, Ivo is still Ivo.
   expect(BOT_ROSTER.everyday.find(bot => bot.id === silbon.id)?.name).toBe('Iron Wall Ivo');
+  // The costume is a character of its own: its mechanics go by its id.
+  expect(silbon.costumeId).toBe('el-silbo-n');
+  expect(mechanicsFor(silbon.costumeId)?.ambience).toBe('night');
+});
+
+test('a game started in costume finds the character again from the regular and the name it kept', () => {
+  const ivo = BOT_ROSTER.everyday.find(bot => bot.name === 'Iron Wall Ivo')!;
+  const silbon = inCostume(ivo, 'El Silbón', 'art/bots/seasonal/leyendas/08-6.webp');
+  expect(silbon).toMatchObject({ id: 'iron-wall-ivo', name: 'El Silbón', regular: 'Iron Wall Ivo', costumeId: 'el-silbo-n',
+    avatar: 'art/bots/seasonal/leyendas/08-6.webp' });
+  expect(silbon.hello).toMatch(/Fi-fi-fi/);
+  expect(ivo.name).toBe('Iron Wall Ivo');
 });

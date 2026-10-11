@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { BoardWorkspace } from '../components/BoardWorkspace';
 import { Dialog } from '../components/Dialog';
 import { brandIcon, Mascot, Stars } from '../components/Reward';
-import { botById, legendBots, mergeEngineBots, type Bot } from '../data/bots';
+import { botById, inCostume, legendBots, mergeEngineBots, type Bot } from '../data/bots';
 import { useMasters } from '../hooks/useMasters';
 import { figureSrc } from '../lib/pieces';
 import { botMove, coachCheck, playMove, type MoveJudgement } from '../hooks/useChess';
@@ -96,7 +96,9 @@ export function PlayPage() {
     ? botById(game.botId) ?? engineBots.find(candidate => candidate.id === game.botId) ?? legends.find(candidate => candidate.id === game.botId)
     : undefined;
   // A bot kept from an event plays in its costume, after the event too.
-  const bot = found && game?.outfit ? Object.assign(Object.create(found) as Bot, { avatar: game.outfit }, game.costume ? { name: game.costume } : {}) : found;
+  // In a character's costume (El Silbón) it is that character: its name, opening line and mechanics.
+  const bot = found && game?.costume ? inCostume(found, game.costume, game.outfit)
+    : found && game?.outfit ? Object.assign(Object.create(found) as Bot, { avatar: game.outfit }) : found;
   const total = game?.moves.length ?? 0;
   const atLive = cursor === total;
   const turn: Color | null = game ? ((sideToMove(game.initialFen) === 'white') === (total % 2 === 0) ? 'white' : 'black') : null;
@@ -172,7 +174,7 @@ export function PlayPage() {
   }, [game, atLive, live, turn, engineError, update, toast]);
 
   // A custom bot's mechanics (data/botMechanics.ts): its sounds, its lines, the board's mood.
-  const mechanics = useBotMechanics({ botId: game?.botId, gameKey: location.key, initialFen: game?.initialFen ?? START_FEN,
+  const mechanics = useBotMechanics({ botId: bot?.costumeId ?? game?.botId, gameKey: location.key, initialFen: game?.initialFen ?? START_FEN,
     moves: game?.moves ?? NO_MOVES, you: game?.playerColor ?? 'white', live: atLive ? live : null, result });
 
   if (!game) return <Navigate to="/play/bots" replace />;

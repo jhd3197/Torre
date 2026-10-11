@@ -28,6 +28,8 @@ export interface Bot {
   outfit?: string;
   /** In an event where the outfit is a character of its own (El Silbón), the regular underneath. */
   regular?: string;
+  /** That character's id (the slug of its name, 'el-silbo-n'): its mechanics and voice go by it. */
+  costumeId?: string;
   locked?: string;
   engine?: boolean;
   /** The registry engine that plays the moves (engines.py id); Stockfish when absent. */
@@ -146,22 +148,37 @@ const byElo = (a: Bot, b: Bot) => a.elo - b.elo;
 const seasonGroup = (season: Season, now: number, bots: Bot[]): SeasonGroup =>
   ({ id: season.id, title: SEASON_TITLES[season.id], theme: season.theme, ...seasonRun(season, now), bots });
 
-/** A regular in an event's outfit: the outfit worn today while the event is on, else its first. */
 /** Costumes that are characters of their own: the name stays a name, the opening line follows the language. */
 const COSTUMES = new Map(SEASONS.flatMap(season => Object.entries(season.costumes ?? {}).map(([name, costume]) =>
   [`${season.id}/${name}`, translatable({ ...costume }, `botCostumes.${season.id}.${slug(name)}`, ['hello'])] as const)));
 
+/** A regular in an event's outfit: the outfit worn today while the event is on, else its first. */
 function dressed(bot: Bot, event: string, worn: ReturnType<typeof outfitsOn>) {
   const key = KEY_OF.get(bot.id)!;
   const today = worn.get(key);
-  const costume = COSTUMES.get(`${event}/${bot.name}`);
   const copy = Object.assign(Object.create(bot) as Bot, { avatar: today?.event === event ? today.avatar : outfitPath(event, key), outfit: event });
-  if (costume) {
-    Object.assign(copy, { regular: bot.name, name: costume.name });
-    // A getter, so the opening line follows the reader's language.
-    Object.defineProperty(copy, 'hello', { get: () => costume.hello, enumerable: true });
-  }
+  const costume = COSTUMES.get(`${event}/${bot.name}`);
+  return costume ? wear(copy, bot.name, costume) : copy;
+}
+
+/** A regular as the character it dresses up as: the character's name, id and opening line. */
+function wear(copy: Bot, regular: string, costume: { name: string; hello: string }) {
+  Object.assign(copy, { regular, name: costume.name, costumeId: slug(costume.name) });
+  // A getter, so the opening line follows the reader's language.
+  Object.defineProperty(copy, 'hello', { get: () => costume.hello, enumerable: true });
   return copy;
+}
+
+/**
+ * A regular in the costume a game was started in (the game keeps the character's name): its name,
+ * opening line and id, so the game page and the bot's mechanics know who is playing. When no event
+ * dresses the bot as `name`, only the name changes.
+ */
+export function inCostume(bot: Bot, name: string, avatar?: string): Bot {
+  const regular = bot.regular ?? bot.name;
+  const costume = [...COSTUMES].find(([key, c]) => key.endsWith(`/${regular}`) && c.name === name)?.[1];
+  const copy = Object.assign(Object.create(bot) as Bot, avatar ? { avatar } : {});
+  return costume ? wear(copy, regular, costume) : Object.assign(copy, { name });
 }
 
 /**
