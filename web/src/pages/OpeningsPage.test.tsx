@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { fakeServer, renderAt, START } from '../test/harness';
+import { fakeServer, renderAt, START, playMove } from '../test/harness';
 import { numbered, type OpeningAnswer, type OpeningDeck } from './OpeningsPage';
 
 const deck = (extra: Partial<OpeningDeck> = {}): OpeningDeck => ({
@@ -15,11 +15,7 @@ const answer = (extra: Partial<OpeningAnswer> = {}): OpeningAnswer => ({
   ...extra,
 });
 
-async function move(from: string, to: string) {
-  const piece = await screen.findByRole('button', { name: new RegExp(`on ${from}$`) }, { timeout: 3000 });
-  await act(async () => { fireEvent.click(piece); });
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: new RegExp(`${to}$`) })); });
-}
+const move = (from: string, to: string) => playMove(new RegExp(`on ${from}$`), new RegExp(`${to}$`));
 
 test('numbered lines', () => {
   expect(numbered(['e4', 'e5', 'Nf3'])).toBe('1. e4 e5 2. Nf3');

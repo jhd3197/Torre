@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { fakeServer, renderAt } from '../test/harness';
+import { fakeServer, renderAt, playMove } from '../test/harness';
 import type { BoardState } from '../types';
 import type { Endgame, EndgameCatalog, EndgameMove } from './EndgamesPage';
 
@@ -23,11 +23,7 @@ function board(pieces: Record<string, string>, turn: 'white' | 'black'): BoardSt
     legal: turn === 'white' ? ['h1h5', 'h5h4', 'e1e2'] : ['e5e6'], plans: {}, control: {} };
 }
 
-async function move(from: string, to: string) {
-  const piece = await screen.findByRole('button', { name: new RegExp(`on ${from}$`) }, { timeout: 3000 });
-  await act(async () => { fireEvent.click(piece); });
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: new RegExp(`${to}$`) })); });
-}
+const move = (from: string, to: string) => playMove(new RegExp(`on ${from}$`), new RegExp(`${to}$`));
 
 function serve(reply: Partial<EndgameMove>) {
   const server = fakeServer();

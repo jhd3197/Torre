@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
-import { boardAfter, fakeServer, renderAt, START } from '../test/harness';
+import { boardAfter, fakeServer, renderAt, START, playMove } from '../test/harness';
 import { setLessonSoundOn } from '../hooks/useNarration';
 import { moveLabel, narrationBeats } from './LessonsPage';
 import { enterStoryLesson, leaveStoryLesson } from '../lib/story';
@@ -49,11 +49,7 @@ const lesson = (extra: Partial<Lesson> = {}): Lesson => ({
   ...extra,
 });
 
-async function move(from: string, to: string) {
-  const piece = await screen.findByRole('button', { name: new RegExp(`on ${from}$`) });
-  await act(async () => { fireEvent.click(piece); });
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: new RegExp(`${to}$`) })); });
-}
+const move = (from: string, to: string) => playMove(new RegExp(`on ${from}$`), new RegExp(`${to}$`));
 
 describe('Lessons', () => {
   test('the list groups lessons and shows progress and suggestions', async () => {

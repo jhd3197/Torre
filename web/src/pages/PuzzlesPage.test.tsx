@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { boardAfter, fakeServer, renderAt, START } from '../test/harness';
+import { boardAfter, fakeServer, renderAt, START, playMove } from '../test/harness';
 import type { Puzzle, PuzzleAttempt, PuzzleCatalog, PuzzleTheme } from '../types';
 import voice from '../i18n/locales/en/voice.json';
 import { cleanMoment, piecesInWords } from './PuzzlesPage';
@@ -51,11 +51,7 @@ function serve(result: Partial<PuzzleAttempt> = {}) {
 /** Wait until the board shows a piece, so a click lands on the current position. */
 const shows = (name: string) => screen.findByRole('button', { name }, { timeout: 3000 });
 
-async function move(from: string, to: string) {
-  const piece = await screen.findByRole('button', { name: new RegExp(`on ${from}$`) }, { timeout: 3000 });
-  await act(async () => { fireEvent.click(piece); });
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: new RegExp(`${to}$`) })); });
-}
+const move = (from: string, to: string) => playMove(new RegExp(`on ${from}$`), new RegExp(`${to}$`));
 
 describe('Puzzles', () => {
   test('the overview shows the rating, ways to practise, themes by group and recent attempts', async () => {

@@ -1,5 +1,5 @@
 // Renders the real routes in memory against a scripted fake of studio.py.
-import { render } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { preloadPages, routes } from '../App';
 import { AppDataProvider } from '../state/AppData';
@@ -104,4 +104,17 @@ export function renderAt(path: string) {
     <AppDataProvider><PromotionProvider><RouterProvider router={router} /></PromotionProvider></AppDataProvider>,
   );
   return { ...view, router, location: () => router.state.location };
+}
+
+/** Play from -> to on the board by clicking. The board takes a piece only once it knows the legal moves
+ *  (api/position), which can land after the pieces are drawn on a slow machine: click until the piece is
+ *  selected, then its target. `piece` and `target` name the squares' buttons. */
+export async function playMove(piece: RegExp | string, target: RegExp | string) {
+  await screen.findByRole('button', { name: piece }, { timeout: 3000 });
+  await waitFor(() => {
+    const button = screen.getByRole('button', { name: piece });
+    if (button.getAttribute('aria-pressed') !== 'true') fireEvent.click(button);
+    expect(screen.getByRole('button', { name: piece })).toHaveAttribute('aria-pressed', 'true');
+  });
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name: target })); });
 }

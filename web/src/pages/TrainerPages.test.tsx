@@ -1,5 +1,5 @@
-import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { fakeServer, renderAt, START } from '../test/harness';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fakeServer, renderAt, START, playMove } from '../test/harness';
 import type { GameDetail } from '../types';
 
 const SLOW = { timeout: 10000 };
@@ -12,10 +12,7 @@ const WALK = {
   mistakes: [{ ply: 3, move_number: 2, class: 'mistake', played: 'd2d4', played_san: 'd4', fen: 'x', best: 'g1f3', best_san: 'Nf3' }],
 };
 
-async function move(from: string, to: string) {
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: from })); });
-  await act(async () => { fireEvent.click(screen.getByRole('button', { name: to })); });
-}
+const move = (from: string, to: string) => playMove(from, to);
 
 test('the walkthrough replays to an error and accepts a better move', async () => {
   const server = fakeServer();
