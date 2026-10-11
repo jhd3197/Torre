@@ -4,6 +4,8 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../hooks/useProfile';
+import { useHostedAccount } from '../hooks/useHostedAccount';
+import { usePhone } from '../hooks/usePhone';
 import { FlameIcon } from '../components/story/Streak';
 import { ALL_BOTS, botPicture } from '../data/bots';
 import { botCollections } from '../data/collections';
@@ -65,6 +67,9 @@ export function ProfilePage() {
   const { insights } = useInsights();
   const puzzles = usePuzzles();
   const awards = useAwards();
+  const account = useHostedAccount();
+  const phone = usePhone();
+  const { t: tn } = useTranslation('nav');
   useEffect(() => { document.body.dataset.page = 'profile'; }, []);
 
   const name = insights?.user?.trim();
@@ -124,6 +129,18 @@ export function ProfilePage() {
           ))}
         </div>
       </section>
+
+      {/* On a desk the rail's account menu signs out; a phone has no rail, so it is here. Plain
+          links: the sign-in gateway answers these, not the app's router. */}
+      {phone && account && (
+        <section className="profile-account" aria-label={t('account.label')}>
+          <p>{t('account.signedIn', { email: account.email })}</p>
+          <div className="profile-account-actions">
+            {account.admin && <a className="button" href="admin">{tn('rail.admin')}</a>}
+            <a className="button danger" href="logout">{tn('rail.signOut')}</a>
+          </div>
+        </section>
+      )}
     </section>
   );
 }

@@ -72,3 +72,13 @@ test('a review on a phone gives the tab bar\'s room to its own controls', async 
   await waitFor(() => expect(location().pathname).toBe('/games/301/1'));
   expect(screen.getByRole('button', { name: /^Go to move 1, e4/ })).toHaveAttribute('aria-current', 'step');
 });
+
+test('signed in on a phone (no rail, so no account menu), Profile offers Sign out', async () => {
+  phone();
+  const server = fakeServer();
+  server.on('auth/me', () => ({ name: 'Juan', email: 'juan@example.com', admin: false }));
+  renderAt('/profile');
+  expect(await screen.findByRole('link', { name: 'Sign out' })).toHaveAttribute('href', 'logout');
+  expect(screen.getByText('Signed in as juan@example.com')).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: 'Admin' })).toBeNull();
+});

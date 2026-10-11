@@ -1051,3 +1051,32 @@ $gutter: 14px;
     @include press(3px, $lobby-button-shade);
   }
 }
+
+// --- profile: the account, which the rail's menu holds on a desk ---
+.profile-account {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  p {
+    margin: 0;
+    color: $lobby-muted;
+    font-size: $fs-sm;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+}
+.profile-account-actions {
+  display: flex;
+  gap: 8px;
+  .button {
+    flex: 1;
+    min-height: 48px;
+    justify-content: center;
+    text-decoration: none;
+  }
+}

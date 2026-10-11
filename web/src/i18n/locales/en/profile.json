@@ -125,5 +125,9 @@
     "import": "Import games",
     "play": "Play a bot"
   },
-  "more": "Shortcuts"
+  "more": "Shortcuts",
+  "account": {
+    "label": "Your account",
+    "signedIn": "Signed in as {{email}}"
+  }
 }
