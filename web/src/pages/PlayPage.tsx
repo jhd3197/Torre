@@ -1,5 +1,5 @@
 // /play — your game against a bot. It is saved in this browser after every move.
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BoardWorkspace } from '../components/BoardWorkspace';
@@ -32,6 +32,11 @@ import { styleFor } from '../data/botQuirks';
 import { exportPlay } from '../lib/gameExport';
 import { playPgn } from '../lib/playPgn';
 import { PhoneAction } from '../components/workspace/PhoneParts';
+import { useShare } from '../hooks/useShare';
+import { ShareButton } from '../components/ShareButton';
+
+/** A finished game's id, when it was already sent to the server (reopened after it ended). */
+const savedGameId = (game: PlaySave | null) => (game?.rewarded && game.gameId ? game.gameId : null);
 
 /** How many of the moves were yours. */
 function yourMoveCount(game: PlaySave): number {
@@ -65,6 +70,8 @@ export function PlayPage() {
   const [improved, setImproved] = useState(false);
   const [kept, setKept] = useState<{ event: string; count: number; need: number; crest: boolean } | null>(null);
   const [gains, setGains] = useState<AwardGain[]>([]);
+  /** The finished game's id once the server has it (a game reopened after it was saved has it too). */
+  const [savedId, setSavedId] = useState<string | null>(() => savedGameId(game));
   const [exporting, setExporting] = useState(false);
   /** What the coach points at on the board while you play with it. */
   const [coachMarks, setCoachMarks] = useState<CoachMarks>({});
@@ -88,6 +95,7 @@ export function PlayPage() {
     setConfirmResign(false);
     setResultOpen(false);
     setGains([]);
+    setSavedId(savedGameId(saved));
     setBookNote(undefined);
     setHeld(null);
   }, [location.key]);
@@ -134,7 +142,7 @@ export function PlayPage() {
       resigned: !!game.resigned, botId: game.botId ?? 'sf18', ...(game.elo ? { elo: game.elo } : {}), ...(game.engineId ? { engineId: game.engineId } : {}),
       ...(game.modelId ? { modelId: game.modelId } : {}), ...(game.masterId ? { masterId: game.masterId } : {}),
       ...(game.coached ? { coached: true } : {}),
-    }).then(data => setGains(data.improved ?? []), () => { /* awards are a bonus; the game is saved locally */ });
+    }).then(data => { setGains(data.improved ?? []); setSavedId(gameId); }, () => { /* awards are a bonus; the game is saved locally */ });
   }, [result, game, update]);
 
   // The bot replies whenever it is its turn on the live position. Leaving the
@@ -187,6 +195,18 @@ export function PlayPage() {
     initialFen: game?.initialFen ?? START_FEN, moves: game?.moves ?? NO_MOVES, notes: game?.botNotes, you: game?.playerColor ?? 'white',
     live: atLive ? live : null, result });
 
+  const copyPgn = useCallback(async () => {
+    if (!game) return;
+    try {
+      await navigator.clipboard.writeText(playPgn(game, insights?.user || 'Player', bot?.name ?? game.botName ?? 'Stockfish 18'));
+      toast(t('game.pgnCopied'));
+    } catch {
+      toast(t('game.pgnCopyFailed'));
+    }
+  }, [game, insights, bot, toast, t]);
+  // On torre.sh a finished game shares as a public link; on your own computer, its PGN is copied.
+  const sharer = useShare(copyPgn);
+
   if (!game) return <Navigate to="/play/bots" replace />;
 
   async function move(uci: string, checked = false) {
@@ -228,16 +248,6 @@ export function PlayPage() {
       ...(game.nodes ? { nodes: game.nodes } : {}), ...(game.botName ? { botName: game.botName } : {}),
       ...(game.phaseElo ? { phaseElo: game.phaseElo } : {}) });
     navigate('/play', { state: { started: Date.now() } });
-  }
-
-  async function copyPgn() {
-    if (!game) return;
-    try {
-      await navigator.clipboard.writeText(playPgn(game, you, botName));
-      toast(t('game.pgnCopied'));
-    } catch {
-      toast(t('game.pgnCopyFailed'));
-    }
   }
 
   /** With the coach: take back your last move and the bot's reply, and try that moment again. */
@@ -403,6 +413,8 @@ export function PlayPage() {
         <ResultDialog open={resultOpen} onClose={() => setResultOpen(false)} game={game} result={result} bot={bot} botName={botName}
           termination={game.resigned ? null : live?.termination ?? null}
           improved={improved} kept={kept} gains={gains} onRematch={rematch} onRetry={retryFrom} onCopyPgn={copyPgn} onLobby={() => navigate('/play/bots')}
+          share={savedId ? <ShareButton sharer={sharer} request={() => ({ game: savedId, ply: null, title: t('games:game.youVs', { name: botName }),
+            text: t('games:game.youVs', { name: botName }) })}>{t('common:share.game')}</ShareButton> : undefined}
           reviewTo={explorePath({ fen: game.initialFen, moves: game.moves.map(m => m.uci), base: game.moves.length, from: '/play', flipped })} />
       )}
     </>
@@ -422,10 +434,12 @@ function OpponentCard({ bot }: { bot: Bot }) {
   );
 }
 
-function ResultDialog({ open, onClose, game, result, bot, botName, termination, improved, kept, gains, onRematch, onRetry, onCopyPgn, onLobby, reviewTo }: {
+function ResultDialog({ open, onClose, game, result, bot, botName, termination, improved, kept, gains, onRematch, onRetry, onCopyPgn, onLobby, reviewTo, share }: {
   open: boolean; onClose: () => void; game: PlaySave; result: string; bot?: Bot; botName: string; termination: string | null;
   improved: boolean; kept: { event: string; count: number; need: number; crest: boolean } | null; gains: AwardGain[]; onRetry: (fen: string) => void; onCopyPgn: () => void;
   onRematch: () => void; onLobby: () => void; reviewTo: string;
+  /** Sharing the game, once it is saved. */
+  share?: ReactNode;
 }) {
   const { t } = useTranslation('play');
   const outcome = outcomeFor(result, game.playerColor);
@@ -479,6 +493,7 @@ function ResultDialog({ open, onClose, game, result, bot, botName, termination, 
           <button type="button" className="button primary" onClick={onRematch}>{t('result.rematch')}</button>
           <Link className="button" to={reviewTo} onClick={onClose}>{t('result.review')}</Link>
           <button type="button" className="button" onClick={onCopyPgn}>{t('game.copyPgn')}</button>
+          {share}
           <button type="button" className="button" onClick={onLobby}>{t('result.anotherOpponent')}</button>
         </div>
       </div>

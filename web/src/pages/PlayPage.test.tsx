@@ -118,6 +118,19 @@ test('a won game awards three stars once and keeps the best per bot', async () =
   expect(loadPlay()?.rewarded).toBe(true);
 });
 
+test('a finished game offers a share once the server has saved it', async () => {
+  const server = serveMoves();
+  let save: (value: unknown) => void = () => {};
+  server.on('api/played', () => new Promise(resolve => { save = resolve; }));
+  savePlay({ initialFen: START, moves: [{ uci: 'e2e4', san: 'e4' }], playerColor: 'white', level: 4,
+    result: '1-0', resigned: true, botId: 'marcus-moss', elo: 1180 });
+  renderAt('/play');
+  expect(await screen.findByRole('heading', { name: 'You won!' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Share' })).not.toBeInTheDocument();
+  await act(async () => save({ recorded: true, improved: [] }));
+  expect(await screen.findByRole('button', { name: 'Share' })).toBeInTheDocument();
+});
+
 test('when you play Black, Stockfish moves first and the game is saved after its move', async () => {
   const server = serveMoves();
   server.on('api/engine', body => ({ best: body?.play ? 'e2e4' : null, lines: [] }));
