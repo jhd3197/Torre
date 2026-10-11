@@ -4,6 +4,7 @@ import { api } from '../lib/api';
 import type { BoardState, BookHit, EngineResult, Move } from '../types';
 import type { Phase, PhaseElo } from '../lib/storage';
 import type { AnalysisDepth } from '../lib/settings';
+import type { BotStyle } from '../data/botQuirks';
 
 const positionCache = new Map<string, BoardState>();
 const engineCache = new Map<string, EngineResult>();
@@ -116,10 +117,11 @@ export const botMove = (initialFen: string, moves: Move[], level: number, signal
   extra: BotMoveExtra = {}) =>
   api<BotReply>('api/engine', { initialFen, moves: moves.map(m => m.uci), play: true, level,
     ...(elo ? { elo } : {}), ...(engineId ? { engineId } : {}), ...(modelId ? { modelId } : {}), ...(masterId ? { masterId } : {}), ...(nodes ? { nodes } : {}),
-    ...(phaseElo ? { phaseElo } : {}), ...(extra.read ? { read: true } : {}) }, signal);
+    ...(phaseElo ? { phaseElo } : {}), ...(extra.read ? { read: true } : {}), ...(extra.style ? { style: extra.style } : {}) }, signal);
 
-/** What else a bot's move request asks for: `read`, the bot's view around its move (for its chatter). */
-export interface BotMoveExtra { read?: boolean }
+/** What else a bot's move request asks for: `read`, the bot's view around its move (for its chatter);
+ *  `style`, the character's quirk (data/botQuirks.ts). */
+export interface BotMoveExtra { read?: boolean; style?: BotStyle }
 /** `before`/`after`: with `read`, the bot's centipawns for the position it was left and after its move. */
 export interface BotReply { best: string | null; book?: BookHit; phase?: Phase; elo?: number; slip?: boolean; before?: number; after?: number }
 

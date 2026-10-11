@@ -28,6 +28,7 @@ import { useNarration } from '../hooks/useNarration';
 import { botChatter, playBlindfold, quietCoach } from '../lib/settings';
 import { useBotMechanics } from '../hooks/useBotMechanics';
 import { chatLine } from '../data/botChatter';
+import { styleFor } from '../data/botQuirks';
 import { exportPlay } from '../lib/gameExport';
 import { playPgn } from '../lib/playPgn';
 import { PhoneAction } from '../components/workspace/PhoneParts';
@@ -142,6 +143,8 @@ export function PlayPage() {
   // A character bot that talks asks for its read around each move, for its chatter.
   const chatterOn = botChatter.use();
   const talks = chatterOn && !!bot?.voice && !bot.coach;
+  // A character's quirk goes with each of its moves (data/botQuirks.ts).
+  const style = styleFor(bot);
   const pending = useRef<AbortController | null>(null);
   useEffect(() => () => pending.current?.abort(), []);
   useEffect(() => {
@@ -154,7 +157,7 @@ export function PlayPage() {
     (async () => {
       try {
         const reply = await botMove(game.initialFen, game.moves, game.level, controller.signal, game.elo, game.engineId, game.modelId,
-          game.masterId, game.nodes, game.phaseElo, { read: talks });
+          game.masterId, game.nodes, game.phaseElo, { read: talks, style });
         const { best, book } = reply;
         if (!best) return;
         if (game.masterId) setBookNote(book ?? null);
@@ -176,7 +179,7 @@ export function PlayPage() {
         if (!controller.signal.aborted) setBusy(false);
       }
     })();
-  }, [game, atLive, live, turn, engineError, update, toast, talks]);
+  }, [game, atLive, live, turn, engineError, update, toast, talks, style]);
 
   // A custom bot's mechanics (data/botMechanics.ts): its sounds, its lines, the board's mood.
   // Every character bot also talks (data/botChatter.ts); Rooky has the coach's own voice instead.

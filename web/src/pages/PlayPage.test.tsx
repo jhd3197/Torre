@@ -288,13 +288,15 @@ test('the result offers your costliest mistake again, as a practice game with th
 });
 
 test('a regular in costume plays as the character: its name, opening line and mechanics', async () => {
-  serveMoves();
+  const server = serveMoves();
   // Iron Wall Ivo dressed as El Silbón for the Venezuelan legends keeps his id; the game keeps the costume.
-  savePlay({ initialFen: START, moves: [], playerColor: 'white', level: 4, result: null, botId: 'iron-wall-ivo', elo: 1655,
+  savePlay({ initialFen: START, moves: [], playerColor: 'black', level: 4, result: null, botId: 'iron-wall-ivo', elo: 1655,
     botName: 'El Silbón', costume: 'El Silbón', outfit: 'art/bots/seasonal/leyendas/08-6.webp' });
   renderAt('/play');
   expect(await screen.findByText('“Do, re, mi, fa, sol, la, si... did you hear that?”')).toBeInTheDocument();
   expect(screen.getByText(/Fi-fi-fi/)).toBeInTheDocument();
+  // Under the costume Ivo still keeps his pawns home: his quirk goes with the move request.
+  await waitFor(() => expect(server.calls.find(c => c.path === 'api/engine')?.body?.style).toMatchObject({ quirk: 'fortress' }));
   expect(screen.getAllByText('El Silbón').length).toBeGreaterThan(0);
   expect(screen.queryByText('Iron Wall Ivo')).not.toBeInTheDocument();
   expect(document.body.dataset.ambience).toBe('night');
@@ -314,7 +316,9 @@ test('a character bot speaks up in its own voice when your move hands it the gam
     botId: 'granny-rose', elo: 2600, botName: 'Granny Rose', botNotes: [{ ply: 1, slip: false, before: 30, after: 20 }] });
   renderAt('/play');
   expect(await screen.findByText('“Look again at what you just left.”')).toBeInTheDocument();
+  // Granny Rose has no quirk of her own and a calm style: no style is sent.
   expect(server.calls.find(c => c.path === 'api/engine')?.body).toMatchObject({ play: true, read: true });
+  expect(server.calls.find(c => c.path === 'api/engine')?.body?.style).toBeUndefined();
   expect(loadPlay()?.botNotes?.at(-1)).toMatchObject({ ply: 3, before: 400, after: 380 });
 });
 
