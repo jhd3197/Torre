@@ -16,7 +16,7 @@ import { explorePath } from '../lib/routes';
 import { outcomeFor, recordStars, starCount, starGoals } from '../lib/stars';
 import { keepEventBot } from '../lib/events';
 import { eventTitle, liveEvent } from '../data/collections';
-import { LEVELS, loadPlay, PHASES, savePlay, type PlaySave } from '../lib/storage';
+import { clearPlay, LEVELS, loadPlay, PHASES, savePlay, type PlaySave } from '../lib/storage';
 import { useEngines, useGameData, useToast } from '../state/AppData';
 import type { BoardState, BookHit, Color } from '../types';
 import { CoachRook } from '../components/CoachRook';
@@ -322,8 +322,14 @@ export function PlayPage() {
               <Mascot pose="salute" size={40} className="resign-mascot" />
               <button type="button" className="button danger" id="confirm-resign" onClick={resign}>{t('game.confirmResign')}</button>
               <button type="button" className="button" onClick={() => setConfirmResign(false)}>{t('game.keepPlaying')}</button>
-            </> : (
-              <button type="button" className="button" id="resign" onClick={() => setConfirmResign(true)} disabled={!total}>
+            </> : yourMoveCount(game) === 0 ? (
+              // Before your first move there is nothing to resign: leave, and the game never counts.
+              <button type="button" className="button" id="leave-game" title={t('game.leaveNote')}
+                onClick={() => { clearPlay(); navigate('/play/bots'); }}>
+                {t('game.leave')}
+              </button>
+            ) : (
+              <button type="button" className="button" id="resign" onClick={() => setConfirmResign(true)}>
                 <img src={brandIcon('resign')} alt="" width="14" height="14" /> {t('game.resign')}
               </button>
             )}

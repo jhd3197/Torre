@@ -37,7 +37,9 @@
     "botPhases": "Apertura / medio juego / final: {{ratings}}",
     "copyPgn": "Copiar PGN",
     "pgnCopied": "PGN copiado. Pégalo en Lichess, en un estudio o en un mensaje.",
-    "pgnCopyFailed": "No se pudo copiar el PGN. Tu navegador bloqueó el portapapeles."
+    "pgnCopyFailed": "No se pudo copiar el PGN. Tu navegador bloqueó el portapapeles.",
+    "leave": "Salir de la partida",
+    "leaveNote": "Aún no has movido, así que esta partida no cuenta."
   },
   "result": {
     "won": "¡Tú ganaste!",

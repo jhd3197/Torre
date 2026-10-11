@@ -37,7 +37,9 @@
     "botPhases": "Opening / middlegame / endgame: {{ratings}}",
     "copyPgn": "Copy PGN",
     "pgnCopied": "PGN copied. Paste it into Lichess, a study or a message.",
-    "pgnCopyFailed": "Could not copy the PGN. Your browser blocked the clipboard."
+    "pgnCopyFailed": "Could not copy the PGN. Your browser blocked the clipboard.",
+    "leave": "Leave game",
+    "leaveNote": "You have not moved yet, so this game does not count."
   },
   "result": {
     "won": "You won!",
