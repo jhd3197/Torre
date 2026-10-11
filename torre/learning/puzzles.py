@@ -38,7 +38,7 @@ from torre import translations
 from torre import jsonio
 from torre import paths
 PUZZLES_DIR = paths.PUZZLES
-MINE_FILE = paths.REPO / 'data' / 'my-puzzles.json'  # point it at the studio's data folder
+MINE_FILE = paths.DATA / 'my-puzzles.json'  # point it at the studio's data folder
 LOCK = threading.Lock()
 START_RATING = 1500
 HISTORY_LIMIT = 2000

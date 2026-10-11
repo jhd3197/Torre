@@ -44,10 +44,9 @@ def main():
     files = {'app.json': ROOT / 'vela-app/app.json', 'icon.svg': ROOT / 'vela-app/icon.svg'}
     files.update(runtime_modules())
     files.update({f'torre/content/{f.relative_to(paths.CONTENT).as_posix()}': f for f in paths.CONTENT.rglob('*.json')})
-    ui = ROOT / 'studio' / 'ui'
-    if not (ui / 'index.html').is_file():
-        raise SystemExit('studio/ui is missing. Build the interface first: cd web && npm run build')
-    files.update({f'studio/ui/{f.relative_to(ui).as_posix()}': f for f in ui.rglob('*') if f.is_file()})
+    if not (paths.UI / 'index.html').is_file():
+        raise SystemExit('torre/ui is missing. Build the interface first: cd web && npm run build')
+    files.update({f'torre/ui/{f.relative_to(paths.UI).as_posix()}': f for f in paths.UI.rglob('*') if f.is_file()})
     chess_pkg = Path(chess.__file__).parent
     files.update({f'vendor/chess/{f.relative_to(chess_pkg).as_posix()}': f
                   for f in chess_pkg.rglob('*') if f.is_file() and '__pycache__' not in f.parts})

@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torre"
+dynamic = ["version"]
+description = "Learn chess step by step: lessons, puzzles, bots to play and an honest review of every game with Stockfish."
+readme = "README.md"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Juan Denis" }]
+keywords = ["chess", "learn chess", "chess puzzles", "chess lessons", "stockfish", "chess analysis", "pgn", "lichess"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Natural Language :: Spanish",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Games/Entertainment :: Board Games",
+    "Topic :: Education",
+]
+dependencies = [
+    "chess>=1.11,<2",
+    "fsrs>=6.3,<7",
+]
+
+[project.optional-dependencies]
+# The AI coach (it can also install this on its own, from the coach card).
+coach = ["prompture>=1.13"]
+
+[project.scripts]
+torre = "torre.cli:main"
+
+[project.urls]
+Homepage = "https://torre.sh"
+Source = "https://github.com/jhd3197/Torre"
+Issues = "https://github.com/jhd3197/Torre/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "torre.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["torre*"]
+
+# The app's data and the built interface (`npm --prefix web run build` writes torre/ui first).
+[tool.setuptools.package-data]
+torre = ["content/**/*", "ui/**/*"]

@@ -56,7 +56,7 @@ playwright-report/
 test-results/
 *.tsbuildinfo
 # Built from web/ by .\dev.ps1 (serve, build, check)
-/studio/ui/
+/torre/ui/
 /graphify-out
 
 # The art pipeline (prompts, source sheets, build_assets.py) stays local; only its output ships, on the art release

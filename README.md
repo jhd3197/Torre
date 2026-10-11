@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/logo.png" alt="Torre" width="128" height="128">
+  <img src="https://raw.githubusercontent.com/jhd3197/Torre/main/.github/logo.png" alt="Torre" width="128" height="128">
 </p>
 
 <h1 align="center">Torre</h1>
@@ -8,8 +8,22 @@
 
 Torre is a local Python web app for playing Stockfish, replaying games,
 exploring positions, and reviewing your chess history. Its interface is a React
-app (in `web/`), served ready-built by the Python server. Start it from this folder
-after setup:
+app (in `web/`), served ready-built by the Python server.
+
+## Install
+
+```bash
+pip install torre              # or: pip install "torre[coach]" for the AI coach
+torre serve --open-browser
+```
+
+Torre needs [Stockfish](https://stockfishchess.org/download/) for play and analysis: put it on
+your PATH or set `STOCKFISH_PATH`. Your games and progress live in `~/.torre` (set `TORRE_HOME` to
+move them). `torre doctor` checks everything.
+
+## Run from source
+
+Start it from this folder after setup:
 
 Double-click **start-studio.cmd** to start the server and open your browser, or run:
 
@@ -295,7 +309,7 @@ GitHub Pages alone cannot run its chess and Stockfish APIs.
 | folder | what is in it |
 |---|---|
 | `torre/` | the Python app, one package (see below); `torre/content/` holds its data: lessons, puzzle packs, catalogs and the Spanish text |
-| `web/` | the React interface (pages in `web/src/pages`, the board in `web/src/components`), built into `studio/ui/` |
+| `web/` | the React interface (pages in `web/src/pages`, the board in `web/src/components`), built into `torre/ui/` |
 | `tests/` | the Python tests: `.\dev.ps1 test`, or `.\dev.ps1 test tests.test_coach` for one file |
 | `vela-app/` | the Vela app manifest and icon |
 | `docs/` | reference: the game export format |

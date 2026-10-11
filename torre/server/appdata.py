@@ -19,7 +19,7 @@ from torre.learning import puzzles
 from torre.learning import story
 from torre import paths
 ROOT = paths.REPO
-DATA_DIR = ROOT / 'data'
+DATA_DIR = paths.DATA
 
 
 def use_data_dir(path):

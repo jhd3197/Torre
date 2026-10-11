@@ -29,8 +29,8 @@ import chess.engine
 from torre.server import jobs
 from torre import jsonio
 from torre import paths
-ROOT = paths.REPO
-DATA_DIR = Path(os.environ.get('CHESS_STUDIO_DATA', str(ROOT / 'data')))
+ROOT = paths.HOME  # engines/, engine/ and stockfish_dist/ live here
+DATA_DIR = paths.DATA
 
 STOCKFISH_MIN_ELO, STOCKFISH_MAX_ELO = 1320, 3190
 

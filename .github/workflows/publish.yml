@@ -1,0 +1,64 @@
+name: Publish to PyPI
+
+# Publishing a GitHub release tagged vX.Y.Z (matching torre/__init__.py's __version__) builds the
+# interface into the package and uploads the wheel and sdist to https://pypi.org/project/torre/.
+# It uses PyPI trusted publishing: no API token is stored anywhere. Set it up once on PyPI under
+# "Publishing" with: owner jhd3197, repository Torre, workflow publish.yml, environment pypi.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: The tag matches the package version
+        run: |
+          version=$(python -c "import re; print(re.search(r\"__version__ = '([^']+)'\", open('torre/__init__.py').read()).group(1))")
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "Tag $GITHUB_REF_NAME does not match __version__ $version"; exit 1; }
+      - name: Fetch the art (the images are not in git)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download art-2026-10-06 --repo "$GITHUB_REPOSITORY" --pattern art-built.zip --dir "$RUNNER_TEMP"
+          unzip -q "$RUNNER_TEMP/art-built.zip" -d web/public
+      - name: Build the interface into torre/ui
+        run: |
+          npm ci --prefix web
+          npm --prefix web run build
+      - name: Build the wheel and sdist
+        run: |
+          python -m pip install build
+          python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/torre/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

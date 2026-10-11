@@ -180,10 +180,10 @@ class CliTests(unittest.TestCase):
 
     def test_serve_reuses_server_entrypoint(self):
         from torre.server import studio
-        with patch.object(torre, 'ROOT', self.root), patch.object(studio, 'main') as start:
+        ui = self.root / 'ui'
+        with patch.object(torre.paths, 'UI', ui), patch.object(studio, 'main') as start:
             self.assertEqual(self.invoke('serve')[0], 1)
             start.assert_not_called()
-            ui = self.root / 'studio/ui'
             ui.mkdir(parents=True)
             (ui / 'index.html').write_text('test')
             self.assertEqual(self.invoke('serve', '--port', '1887', '--open-browser', '--proxied')[0], 0)

@@ -9,6 +9,7 @@ import os
 import chess
 import chess.pgn
 
+import torre
 from torre.analysis import analyze
 from torre.server import appdata
 from torre.analysis import board_view
@@ -326,9 +327,8 @@ def release_notes(text):
 @ROUTES.get('/api/about')
 def about(req):
     """Settings → About: the app's version, where its data lives, and what the latest release changed."""
-    app = jsonio.read_dict(appdata.ROOT / 'vela-app' / 'app.json')
-    notes = appdata.ROOT / 'RELEASE_NOTES.md'
+    notes = appdata.ROOT / 'RELEASE_NOTES.md'  # in a source checkout; an installed package has none
     return {
-        'name': app.get('name', 'Torre'), 'version': app.get('version'), 'dataDir': str(appdata.DATA_DIR),
+        'name': 'Torre', 'version': torre.__version__, 'dataDir': str(appdata.DATA_DIR),
         'release': release_notes(notes.read_text(encoding='utf-8')) if notes.exists() else None,
     }

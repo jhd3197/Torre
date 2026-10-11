@@ -7,7 +7,9 @@ import os
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+from torre import paths
+
+ROOT = paths.REPO
 
 
 def positive(value):
@@ -92,7 +94,7 @@ def parser():
 
 
 def run_serve(args):
-    if not (ROOT / 'studio/ui/index.html').is_file():
+    if not (paths.UI / 'index.html').is_file():
         raise ValueError('The web interface has not been built. Run .\\dev.ps1 build first '
                          '(or npm --prefix web run build).')
     from torre.server import studio
@@ -211,8 +213,9 @@ def run_doctor(args):
     add('Python', 'ok' if sys.version_info >= (3, 11) else 'fail', f'{sys.version.split()[0]} ({sys.executable})')
     for module in ('chess', 'fsrs', 'prompture'):
         found = importlib.util.find_spec(module) is not None
-        add(module, 'ok' if found else 'warn' if module == 'prompture' else 'fail',
-            'installed' if found else 'missing; install requirements.txt in this Python environment')
+        missing = ('optional, for the AI coach: pip install "torre[coach]"' if module == 'prompture'
+                   else 'missing; pip install torre (or requirements.txt in a source checkout)')
+        add(module, 'ok' if found else 'warn' if module == 'prompture' else 'fail', 'installed' if found else missing)
     if importlib.util.find_spec('chess') is not None:
         from torre.analysis import engines
         engine = engines.resolve_engine('stockfish')
@@ -227,7 +230,7 @@ def run_doctor(args):
     for name in ('games.jsonl', 'analysis.jsonl', 'settings.json'):
         add(name, 'ok' if (args.data_dir / name).is_file() else 'warn',
             'present' if (args.data_dir / name).is_file() else 'not created yet')
-    ui = ROOT / 'studio/ui/index.html'
+    ui = paths.UI / 'index.html'
     add('Web interface', 'ok' if ui.is_file() else 'warn',
         ui if ui.is_file() else 'not built; run .\\dev.ps1 build or npm --prefix web run build')
     code = 1 if any(check['status'] == 'fail' for check in checks) else 0
@@ -246,7 +249,7 @@ def main(argv=None):
         if hasattr(stream, 'reconfigure'):
             stream.reconfigure(errors='replace')
     args = parser().parse_args(argv)
-    args.data_dir = Path(getattr(args, 'data_dir', os.environ.get('CHESS_STUDIO_DATA') or ROOT / 'data')).expanduser().resolve()
+    args.data_dir = Path(getattr(args, 'data_dir', paths.DATA)).expanduser().resolve()
     try:
         if args.command != 'doctor' and args.data_dir.exists() and not args.data_dir.is_dir():
             raise ValueError(f'Data folder is not a directory: {args.data_dir}')
@@ -258,7 +261,7 @@ def main(argv=None):
         print('Interrupted.', file=sys.stderr)
         return 130
     except ModuleNotFoundError as exc:
-        print(f'torre: missing dependency {exc.name!r}. Install requirements.txt in this Python environment.', file=sys.stderr)
+        print(f'torre: missing dependency {exc.name!r}. Run pip install torre (or install requirements.txt in a source checkout).', file=sys.stderr)
         return 1
     except (OSError, ValueError, RuntimeError) as exc:
         print(f'torre: {exc}', file=sys.stderr)

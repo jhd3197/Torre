@@ -11,7 +11,7 @@
 #   .\dev.ps1 test-web       UI tests (vitest)
 #   .\dev.ps1 lint           lint the UI (ESLint: hooks rules, typescript-eslint)
 #   .\dev.ps1 format         format the stylesheets (Prettier on web/src/styles)
-#   .\dev.ps1 build          build the UI into studio/ui
+#   .\dev.ps1 build          build the UI into torre/ui
 #   .\dev.ps1 check          everything: Python tests, type-check, lint, UI tests, build
 #   .\dev.ps1 setup          create .venv, install Python + Node dependencies, build the UI
 #   .\dev.ps1 analyze <args> run torre/analysis/analyze.py (e.g. .\dev.ps1 analyze --limit 20)
@@ -19,8 +19,8 @@
 #   .\dev.ps1 masters [names] download the legends' games (torre/games/download_masters.py)
 #   .\dev.ps1 story <args>   build a game-story lesson (torre/tools/game_story.py find|moments|skeleton ...)
 #   .\dev.ps1 art fetch [built|sources]   download the art from its GitHub release: the cut images the
-#                            app shows (web/public/art, art-built.zip) and the source sheets (art/source,
-#                            art-sources.zip); both by default. Neither is in git.
+#                            app shows (web/public/art, art-built.zip) by default; "sources" (art/source)
+#                            only where the private art pipeline lives. Neither is in git.
 #   .\dev.ps1 art publish [built|sources] zip them and replace the zips on that release (both by default)
 #   .\dev.ps1 art [stages]   cut art/source into web/public/art (e.g. .\dev.ps1 art pieces grades);
 #                            needs rembg in the system Python: pip install "rembg[cpu]" opencv-python-headless
@@ -49,13 +49,13 @@ Set-Location $PSScriptRoot
 $Root = $PSScriptRoot
 $Web = Join-Path $Root "web"
 $OnWindows = $env:OS -eq "Windows_NT"
-$UiBuild = Join-Path $Root "studio/ui/index.html"
+$UiBuild = Join-Path $Root "torre/ui/index.html"
 $VenvPython = if ($OnWindows) { Join-Path $Root ".venv/Scripts/python.exe" } else { Join-Path $Root ".venv/bin/python" }
 $SystemPython = if ($OnWindows) { "python" } else { "python3" }
 $Python = if (Test-Path $VenvPython) { $VenvPython } else { $SystemPython }
 $Npm = if ($OnWindows) { "npm.cmd" } else { "npm" }
 $Repo = "jhd3197/Torre"  # the GitHub repository whose releases hold the art
-$ArtRelease = "art-sources-2026-10-06"  # GitHub release holding the art: art-sources.zip and art-built.zip
+$ArtRelease = "art-2026-10-06"  # GitHub release holding art-built.zip, the images the app shows
 # The two art zips: the cut images the app shows, and the sheets they are cut from. Each zip holds its
 # folder by name (art/..., source/...), so it expands into the folder's parent.
 $ArtZips = [ordered]@{
@@ -129,7 +129,7 @@ function Get-Art([string[]]$Which) {
 function Build-Ui([switch]$IfStale) {
     if ($IfStale -and -not (Test-UiStale)) { Write-Host "UI build is up to date." -ForegroundColor DarkGray; return }
     Ensure-WebPackages
-    Invoke-Step "build UI (web -> studio/ui)" { npm --prefix $Web run build }
+    Invoke-Step "build UI (web -> torre/ui)" { npm --prefix $Web run build }
 }
 
 # ---- validate: one line per check, details only when it fails --------------
@@ -350,8 +350,9 @@ switch ($Command) {
     }
     "art" {
         if ($Rest -and $Rest[0] -in @("fetch", "publish")) {
-            # Neither the cut images nor the source sheets are in git: both are zips on the art release.
-            $which = if ($Rest.Count -gt 1) { @($Rest[1]) } else { @($ArtZips.Keys) }
+            # The cut images are not in git: they are a zip on the art release. The source sheets stay
+            # private (the art pipeline is not in this repo), so only "built" is fetched unless asked.
+            $which = if ($Rest.Count -gt 1) { @($Rest[1]) } else { @("built") }
             foreach ($name in $which) { if (-not $ArtZips.Contains($name)) { throw "Unknown art zip '$name' (built or sources)" } }
             if ($Rest[0] -eq "fetch") {
                 Get-Art $which

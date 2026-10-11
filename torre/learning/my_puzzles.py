@@ -39,8 +39,8 @@ from torre.analysis import scoring
 from torre import jsonio
 from torre import paths
 ROOT = paths.REPO
-GAMES_FILE = ROOT / 'data' / 'games.jsonl'
-ANALYSIS_FILE = ROOT / 'data' / 'analysis.jsonl'
+GAMES_FILE = paths.DATA / 'games.jsonl'
+ANALYSIS_FILE = paths.DATA / 'analysis.jsonl'
 GAME_URL = {'computer': 'https://www.chess.com/game/computer/', 'live': 'https://www.chess.com/game/live/',
             'daily': 'https://www.chess.com/game/daily/'}
 SOURCE = 'Your own games (my_puzzles.py)'

@@ -20,7 +20,7 @@ import zipfile
 from pathlib import Path
 from torre import paths
 
-OUT = paths.REPO / 'games' / 'masters'
+OUT = paths.HOME / 'games' / 'masters'
 SOURCE = 'https://www.pgnmentor.com/players/{name}.zip'
 AGENT = 'chess-jd/1.0 (personal study app; picks game stories)'
 PAUSE = 1.5  # seconds between downloads, to be polite

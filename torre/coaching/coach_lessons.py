@@ -35,7 +35,7 @@ from torre import translations
 from torre import jsonio
 from torre import paths
 ROOT = paths.REPO
-LOCALES = ROOT / 'web' / 'src' / 'i18n' / 'locales'
+LOCALES = paths.LOCALES
 FILE = 'coach-lessons.json'
 PART = '|'
 LOCK = threading.Lock()

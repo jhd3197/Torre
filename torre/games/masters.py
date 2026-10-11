@@ -29,9 +29,9 @@ from torre.server import jobs
 from torre import paths
 log = logging.getLogger(__name__)
 
-ROOT = paths.REPO
+ROOT = paths.HOME
 PGN_DIR = ROOT / 'games' / 'masters'
-DATA_DIR = Path(os.environ.get('CHESS_STUDIO_DATA', str(ROOT / 'data')))
+DATA_DIR = paths.DATA
 BOOK_PLIES = 40          # the book covers each game's first 20 moves
 BOOK_VERSION = 1         # bump when the cache format changes
 UNRATED_ELO = 2500       # strength after the book for players from before ratings

@@ -1,0 +1,54 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install Stockfish and the Python requirements
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q stockfish
+          python -m pip install -r requirements.txt
+      - name: Python tests
+        env:
+          STOCKFISH_PATH: /usr/games/stockfish
+        run: python -m unittest discover -s tests -t .
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Fetch the art (the images are not in git)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download art-2026-10-06 --repo "$GITHUB_REPOSITORY" --pattern art-built.zip --dir "$RUNNER_TEMP"
+          unzip -q "$RUNNER_TEMP/art-built.zip" -d web/public
+      - run: npm ci --prefix web
+      - name: Type-check, lint and test the interface
+        run: |
+          npm --prefix web run typecheck
+          npm --prefix web run lint
+          npm --prefix web test
+      - name: Build the interface
+        run: npm --prefix web run build

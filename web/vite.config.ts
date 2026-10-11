@@ -1,25 +1,37 @@
 /// <reference types="vitest/config" />
 import { defineConfig, searchForWorkspaceRoot, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import { cpSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-// The Python server (studio.py) serves the built app from ../studio/ui.
+// The Python server (torre/server/studio.py) serves the built app from ../torre/ui.
 // Built asset paths are relative; studio.py adds a <base href> pointing at the
 // app root, so they also work under a proxy prefix such as Vela's /apps/chess/.
 const studio = process.env.STUDIO_URL ?? 'http://127.0.0.1:1886';
 
 // In development Vite serves every route at the root, so the app root is "/".
 // (In production studio.py writes a relative <base> for each page instead.)
+// The coach (Python) speaks lines from the same locale files the interface uses; an installed
+// package has no web/ folder, so the build ships a copy next to the app (paths.LOCALES).
+const shipLocales: Plugin = {
+  name: 'torre-ship-locales',
+  apply: 'build',
+  closeBundle() {
+    cpSync(resolve(__dirname, 'src/i18n/locales'), resolve(__dirname, '../torre/ui/locales'), { recursive: true });
+  },
+};
+
 const devBase: Plugin = {
-  name: 'chess-studio-dev-base',
+  name: 'torre-dev-base',
   apply: 'serve',
   transformIndexHtml: html => html.replace('<head>', '<head><base href="/">'),
 };
 
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? './' : '/',
-  plugins: [react(), devBase],
+  plugins: [react(), devBase, shipLocales],
   build: {
-    outDir: '../studio/ui',
+    outDir: '../torre/ui',
     emptyOutDir: true,
     rolldownOptions: {
       output: {

@@ -41,7 +41,7 @@ http_log = logging.getLogger('studio.http')
 PROXIED = False
 # Host names answered beyond IPs and local-only names (see hosts.py).
 ALLOWED_HOSTS = []
-UI_DIR = ROOT / 'studio' / 'ui'  # built by `npm run build` in web/
+UI_DIR = paths.UI  # built by `npm run build` in web/
 STATIC_TYPES = MEDIA_TYPES
 # Uploaded PGN collections can be large; everything else is small.
 BODY_LIMITS = {'/api/import/files': 30_000_000}
@@ -250,7 +250,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=1886)  # first World Championship, Steinitz–Zukertort
     parser.add_argument('--open-browser', action='store_true')
-    parser.add_argument('--data-dir', default=os.environ.get('CHESS_STUDIO_DATA', str(ROOT / 'data')),
+    parser.add_argument('--data-dir', default=str(paths.DATA),
                         help='folder holding games.jsonl and analysis.jsonl')
     parser.add_argument('--proxied', action='store_true',
                         help='served behind a same-origin proxy such as Vela')
