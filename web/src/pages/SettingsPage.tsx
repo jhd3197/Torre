@@ -22,6 +22,8 @@ import { DataSection } from './settings/DataSection';
 import { SidebarSection } from './settings/SidebarSection';
 import { AboutSection } from './settings/AboutSection';
 import { searchSettings, SETTINGS_SECTIONS, type SearchHit, type SectionId } from './settings/search';
+import { isPhoneSection, PhoneSettingsHome, PhoneSettingsSection } from './settings/PhoneSettings';
+import { usePhone } from '../hooks/usePhone';
 
 const isSection = (id: string | undefined): id is SectionId => SETTINGS_SECTIONS.includes(id as SectionId);
 /** Sections that were renamed or folded into another, so old links still land. */
@@ -50,6 +52,7 @@ export function SettingsPage() {
   const { section: param } = useParams();
   const { hash } = useLocation();
   const [query, setQuery] = useState('');
+  const phone = usePhone();
 
   useEffect(() => {
     document.body.dataset.page = 'settings';
@@ -74,6 +77,26 @@ export function SettingsPage() {
   if (!param && legacy) return <Navigate to={settingsPath(legacy)} replace />;
   if (param !== undefined && !isSection(param)) return <Navigate to={settingsPath(sectionFor(param) ?? undefined)} replace />;
   const section: SectionId = param ?? SETTINGS_SECTIONS[0];
+
+  // A phone opens on the list of sections, and each section is a page of its own.
+  if (phone) {
+    if (param && !isPhoneSection(section)) return <Navigate to={settingsPath()} replace />;
+    return (
+      <section id="settings" className="settings phone-settings" aria-label={t('label')}>
+        {param && isPhoneSection(section) ? <PhoneSettingsSection id={section}>{PANELS[section]()}</PhoneSettingsSection> : (
+          <PhoneSettingsHome
+            search={(
+              <label className="phone-search">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+                <input type="search" className="settings-search" value={query} aria-label={t('search.label')} placeholder={t('search.placeholder')}
+                  onChange={e => setQuery(e.target.value)} onKeyDown={e => { if (e.key === 'Escape') setQuery(''); }} />
+              </label>
+            )}
+            results={query.trim() ? <SearchResults query={query} onPick={() => setQuery('')} /> : undefined} />
+        )}
+      </section>
+    );
+  }
 
   return (
     <section id="settings" className="settings" aria-label={t('label')}>

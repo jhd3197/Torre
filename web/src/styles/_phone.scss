@@ -1080,3 +1080,229 @@ $gutter: 14px;
     text-decoration: none;
   }
 }
+
+// --- settings (Torre Mobile Settings): sections as a list, each section a page of its own ---
+#settings.phone-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  padding-top: 0;
+  color: $lobby-ink;
+}
+.phone-settings-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 -4px;
+  padding-top: 10px;
+  h1 {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-size: $fs-3xl;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+  // A section's header stays at the top while its rows scroll.
+  &.sub {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 0 (-$gutter);
+    padding: 10px 12px;
+    background: $paper;
+    border-bottom: 1.5px solid $lobby-line;
+    h1 {
+      font-size: $fs-2xl;
+    }
+  }
+}
+.phone-settings-tile {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  &.green {
+    background: $lobby-selected;
+    color: $forest;
+  }
+  &.amber {
+    background: rgba($wheat-100, 0.6);
+    color: $lobby-warm;
+  }
+  &.grey {
+    background: $lobby-track;
+    color: $sage-600;
+  }
+}
+.phone-settings-account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  color: $lobby-ink;
+  text-decoration: none;
+  @include press(3px, $lobby-line);
+  > span:nth-child(2) {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  strong {
+    font-size: $fs-lg;
+    font-weight: 900;
+  }
+  small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $lobby-muted;
+    font-size: $fs-sm;
+    font-weight: 700;
+  }
+  > svg {
+    color: $sage-400;
+  }
+}
+.phone-settings-avatar {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: $forest;
+  color: $paper;
+  font-size: $fs-lg;
+  font-weight: 900;
+}
+.phone-settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h2 {
+    margin: 0;
+    padding: 0 6px;
+    color: $sage-500;
+    font-size: $fs-xs;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+}
+.phone-settings-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  overflow: hidden;
+  li + li {
+    border-top: 1.5px solid $lobby-track;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 60px;
+    padding: 8px 14px;
+    color: $lobby-ink;
+    text-decoration: none;
+    &:active {
+      background: $lobby-selected;
+    }
+  }
+  strong {
+    flex: 1;
+    min-width: 0;
+    font-size: $fs-lg;
+    font-weight: 800;
+  }
+  small {
+    max-width: 42%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $lobby-muted;
+    font-size: $fs-md;
+    font-weight: 700;
+  }
+  a > svg {
+    flex: none;
+    color: $sage-400;
+  }
+}
+
+// A section's rows: one white card, every row thumb-tall, choices across the full width.
+#settings .phone-settings-section {
+  padding: 0 14px;
+  border-radius: 20px;
+  box-shadow: none;
+  .settings-row {
+    min-height: 64px;
+    padding: 14px 0;
+  }
+  > .settings-row:first-child,
+  > :first-child .settings-row:first-child {
+    border-top: 0;
+  }
+  .settings-row-text {
+    flex: 1 1 180px;
+    strong {
+      font-size: $fs-lg;
+      font-weight: 800;
+    }
+    small {
+      font-size: $fs-sm;
+    }
+  }
+  .settings-segments {
+    flex: 1 1 100%;
+    border-radius: 13px;
+    button {
+      flex: 1;
+      justify-content: center;
+      min-height: 40px;
+      font-size: $fs-md;
+    }
+  }
+  .settings-level {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+  .settings-switch input {
+    width: 52px;
+    height: 32px;
+    &::after {
+      width: 26px;
+      height: 26px;
+    }
+    &:checked::after {
+      transform: translateX(20px);
+    }
+  }
+}
+.phone-settings-saved {
+  margin: 0;
+  text-align: center;
+  color: $sage-400;
+  font-size: $fs-xs;
+  font-weight: 700;
+}
+#settings.phone-settings .settings-results {
+  border-radius: 20px;
+}

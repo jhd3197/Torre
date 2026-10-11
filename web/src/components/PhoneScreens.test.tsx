@@ -82,3 +82,16 @@ test('signed in on a phone (no rail, so no account menu), Profile offers Sign ou
   expect(screen.getByText('Signed in as juan@example.com')).toBeInTheDocument();
   expect(screen.queryByRole('link', { name: 'Admin' })).toBeNull();
 });
+
+test('Settings on a phone lists the sections, and each opens as a page of its own', async () => {
+  phone();
+  fakeServer();
+  const { location } = renderAt('/settings');
+  // The sidebar's section is left out: a phone has a tab bar.
+  expect(await screen.findByRole('link', { name: /Board & pieces/ })).toHaveAttribute('href', '/settings/display');
+  expect(screen.queryByRole('link', { name: /^Sidebar/ })).toBeNull();
+  fireEvent.click(screen.getByRole('link', { name: /^Sound/ }));
+  await waitFor(() => expect(location().pathname).toBe('/settings/sound'));
+  expect(await screen.findByRole('switch', { name: 'Mute everything' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
+});
