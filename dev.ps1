@@ -394,7 +394,7 @@ switch ($Command) {
         }
         foreach ($lang in $langs) {
             foreach ($gender in @("female", "male")) {
-                Invoke-Step "record the $lang $gender voice pack" { & $Python -m scripts.narrate --lang $lang --gender $gender }
+                Invoke-Step "record the $lang $gender voice pack" { & $Python -m torre narrate --lang $lang --gender $gender }
             }
         }
     }

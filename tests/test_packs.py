@@ -8,7 +8,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from scripts import narrate
+from torre.voice import narrate
 from torre.learning import packs
 class VoiceKeyTests(unittest.TestCase):
     def test_matches_the_app(self):

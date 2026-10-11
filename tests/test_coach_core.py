@@ -13,7 +13,7 @@ from torre.coaching import coach_ledger
 from torre.coaching import coach_lessons
 from torre.learning import lessons
 from torre.analysis import motifs
-from scripts import narrate
+from torre.voice import narrate
 from torre.learning import puzzles
 from torre.coaching import skills
 from tests.test_training import PGN, record

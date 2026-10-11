@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
 class VoiceLineTests(unittest.TestCase):
     def test_every_voice_json_line_is_recorded_in_both_languages(self):
-        from scripts import narrate
+        from torre.voice import narrate
         # voice.json is written natively per language; each language's file is recorded in full.
         self.assertIn('Another one bites the dust!', narrate.all_lines('en'))
         self.assertIn('¡Otro que muerde el polvo!', narrate.all_lines('es'))

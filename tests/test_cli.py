@@ -41,6 +41,14 @@ class CliTests(unittest.TestCase):
         result = self.invoke('import', self.pgn, '--username', 'Alice')
         self.assertEqual(result[0], 0, result)
 
+    def test_narrate_lists_the_lines_and_passes_its_options(self):
+        code, out, err = self.invoke('narrate', '--lang', 'es', '--list')
+        self.assertEqual(code, 0, err)
+        self.assertRegex(out, r'\n\d+ lines\.\n$')
+        with patch('torre.voice.narrate.run', return_value=0) as run:
+            self.assertEqual(self.invoke('narrate', '--gender', 'male', '--force', '--workers', '2')[0], 0)
+        run.assert_called_once_with('en', 'male', None, None, True, False, 2)
+
     def test_import_and_reimport_keep_one_record_with_correct_player(self):
         self.import_game()
         code, output, _ = self.invoke('import', self.pgn, '--username', 'ALICE')

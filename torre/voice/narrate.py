@@ -1,9 +1,12 @@
 """Record the coach's voice packs with a local Kokoro TTS server, loudness-normalized with ffmpeg.
 
-    python narrate.py --lang en                 # record what is missing for English (the female voice)
-    python narrate.py --lang en --gender male   # the same lines in the male voice
-    python narrate.py --lang es --force         # re-record everything for Spanish
-    python narrate.py --lang en --list          # print the lines without recording
+    torre narrate --lang en                 # record what is missing for English (the female voice)
+    torre narrate --lang en --gender male   # the same lines in the male voice
+    torre narrate --lang es --force         # re-record everything for Spanish
+    torre narrate --lang en --list          # print the lines without recording
+
+It records from a source checkout: the lines come from the lessons and from the interface's
+text in web/src/i18n/locales, and the packs land in dist/voice.
 
 A pack holds one mp3 per spoken sentence, named by a hash of the sentence (voice_key, the same
 64-bit FNV-1a as web/src/lib/voice.ts), plus manifest.json. The app looks a line up by hashing
@@ -25,27 +28,22 @@ sound equally loud. scripts/build_packs.py zips a pack for download.
 
 Start Kokoro first (docker run -d --gpus all -p 8880:8880 ghcr.io/remsky/kokoro-fastapi-gpu).
 """
-import argparse
 import json
 import os
 import re
 import shutil
 import subprocess
-import sys
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-from torre.coaching import coach_lessons  # noqa: E402
-from torre.learning import lessons  # noqa: E402
 from torre import paths
+from torre.coaching import coach_lessons
+from torre.learning import lessons
 
-OUT_DIR = ROOT / 'dist' / 'voice'
-LOCALES = ROOT / 'web' / 'src' / 'i18n' / 'locales'
+OUT_DIR = paths.REPO / 'dist' / 'voice'
+LOCALES = paths.REPO / 'web' / 'src' / 'i18n' / 'locales'
 DEFAULT_BASE_URL = 'http://127.0.0.1:8880/v1'
 # The coach's voices: the player picks a female or a male coach (Settings), each its own pack.
 VOICES = {'en': {'female': 'af_heart', 'male': 'am_michael'}, 'es': {'female': 'ef_dora', 'male': 'em_alex'}}
@@ -231,27 +229,21 @@ def normalize(audio):
     return result.stdout
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Record the coach voice pack with Kokoro.')
-    parser.add_argument('--lang', default='en', choices=sorted(VOICES))
-    parser.add_argument('--gender', default='female', choices=GENDERS, help='the female or the male coach voice')
-    parser.add_argument('--voice', help='Kokoro voice (default: VOICES for the language and gender)')
-    parser.add_argument('--base-url', default=os.environ.get('KOKORO_URL', DEFAULT_BASE_URL))
-    parser.add_argument('--force', action='store_true', help='re-record lines that already exist')
-    parser.add_argument('--list', action='store_true', help='print the lines and exit')
-    parser.add_argument('--workers', type=int, default=4)
-    args = parser.parse_args()
-
-    lines = all_lines(args.lang)
-    if args.list:
+def run(lang='en', gender='female', voice=None, base_url=None, force=False, list_only=False, workers=4):
+    """Record what is missing from one pack (`torre narrate`); 0 when every line is recorded."""
+    if not LOCALES.is_dir():
+        raise RuntimeError('torre narrate records from a source checkout of Torre: web/src/i18n/locales is missing.')
+    base_url = base_url or os.environ.get('KOKORO_URL', DEFAULT_BASE_URL)
+    lines = all_lines(lang)
+    if list_only:
         print('\n'.join(lines))
         print(f'\n{len(lines)} lines.')
         return 0
     if not shutil.which('ffmpeg'):
         print('ffmpeg is needed to normalize the audio: install it and make sure it is on PATH.')
         return 1
-    voice = args.voice or VOICES[args.lang][args.gender]
-    folder = OUT_DIR / pack_folder(args.lang, args.gender)
+    voice = voice or VOICES[lang][gender]
+    folder = OUT_DIR / pack_folder(lang, gender)
     folder.mkdir(parents=True, exist_ok=True)
     manifest_path = folder / 'manifest.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8')) if manifest_path.exists() else {}
@@ -263,18 +255,18 @@ def main():
     # Recordings left by an interrupted run are kept: same text, same voice, so no need to redo them.
     for key, text in wanted.items():
         path = folder / f'{key}.mp3'
-        if key not in known and path.exists() and not args.force:
+        if key not in known and path.exists() and not force:
             known[key] = {'text': text, 'seconds': round(path.stat().st_size * 8 / BITRATE, 2)}
     todo = [(key, text) for key, text in wanted.items()
-            if args.force or key not in known or not (folder / f'{key}.mp3').exists()]
-    print(f'{len(wanted)} lines for {args.lang}, {args.gender} ({voice}); recording {len(todo)}.')
+            if force or key not in known or not (folder / f'{key}.mp3').exists()]
+    print(f'{len(wanted)} lines for {lang}, {gender} ({voice}); recording {len(todo)}.')
 
     def record(item):
         key, text = item
         # Under load Kokoro now and then returns a cut-off mp3 that ffmpeg cannot read; asking again fixes it.
         for attempt in range(ATTEMPTS):
             try:
-                audio = normalize(speech(args.base_url, voice, text))
+                audio = normalize(speech(base_url, voice, text))
                 break
             except subprocess.CalledProcessError:
                 if attempt == ATTEMPTS - 1:
@@ -283,11 +275,11 @@ def main():
         return key, {'text': text, 'seconds': round(len(audio) * 8 / BITRATE, 2)}
 
     def save():
-        manifest_path.write_text(json.dumps({'lang': args.lang, 'gender': args.gender, 'voice': voice, 'lines': known}, ensure_ascii=False, indent=0),
+        manifest_path.write_text(json.dumps({'lang': lang, 'gender': gender, 'voice': voice, 'lines': known}, ensure_ascii=False, indent=0),
                                  encoding='utf-8')
 
     failures = []
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+    with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {pool.submit(record, item): item for item in todo}
         for count, future in enumerate(futures, start=1):
             key, text = futures[future]
@@ -311,7 +303,3 @@ def main():
     for text, error in failures[:20]:
         print(f'  FAILED {text[:60]!r}: {error}')
     return 1 if failures else 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())

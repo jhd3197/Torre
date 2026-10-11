@@ -29,7 +29,7 @@ def build(name):
     files = [folder / 'manifest.json'] + [folder / f'{key}.mp3' for key in manifest['lines']]
     missing = [f.name for f in files if not f.exists()]
     if missing:
-        raise SystemExit(f'{name}: {len(missing)} recordings are missing; run narrate.py first.')
+        raise SystemExit(f'{name}: {len(missing)} recordings are missing; run torre narrate first.')
     lang, gender = manifest.get('lang', name), manifest.get('gender', 'female')
     target = OUT / f'voice-{name}.zip'
     with zipfile.ZipFile(target, 'w', zipfile.ZIP_STORED) as archive:  # mp3 does not compress further

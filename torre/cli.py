@@ -73,6 +73,18 @@ def parser():
     coach.add_argument('--force', action='store_true', help='refresh cached advice; requires --ask')
     coach.set_defaults(handler=run_coach)
 
+    narrate = commands.add_parser('narrate', parents=[common], help="record the coach's voice packs with a local Kokoro server",
+                                  description="Record the coach's voice packs with Kokoro, loudness-normalized with ffmpeg, "
+                                              'into dist/voice (run from a source checkout).')
+    narrate.add_argument('--lang', default='en', choices=('en', 'es'))
+    narrate.add_argument('--gender', default='female', choices=('female', 'male'), help='the female or the male coach voice')
+    narrate.add_argument('--voice', help='Kokoro voice (default: the coach voice for the language and gender)')
+    narrate.add_argument('--base-url', help='Kokoro API (default: KOKORO_URL or http://127.0.0.1:8880/v1)')
+    narrate.add_argument('--force', action='store_true', help='re-record lines that already exist')
+    narrate.add_argument('--list', action='store_true', help='print the lines and exit')
+    narrate.add_argument('--workers', type=positive, default=4)
+    narrate.set_defaults(handler=run_narrate)
+
     doctor = commands.add_parser('doctor', parents=[common], help='check dependencies, engine and data paths')
     doctor.add_argument('--json', action='store_true', help='output machine-readable diagnostics')
     doctor.set_defaults(handler=run_doctor)
@@ -174,6 +186,11 @@ def run_report(args):
     return 0
 
 
+def run_narrate(args):
+    from torre.voice import narrate
+    return narrate.run(args.lang, args.gender, args.voice, args.base_url, args.force, args.list, args.workers)
+
+
 def run_coach(args):
     if (args.model or args.force) and not args.ask:
         raise ValueError('--model and --force require --ask.')
@@ -224,6 +241,10 @@ def run_doctor(args):
 
 
 def main(argv=None):
+    # A Windows console's code page cannot show every name or Spanish line; print what it can rather than fail.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(errors='replace')
     args = parser().parse_args(argv)
     args.data_dir = Path(getattr(args, 'data_dir', os.environ.get('CHESS_STUDIO_DATA') or ROOT / 'data')).expanduser().resolve()
     try:

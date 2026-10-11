@@ -156,6 +156,7 @@ run `python -m torre` from the project folder on Windows, macOS, or Linux.
 | `report [--output FILE]` | Write the existing mistakes report to `report.md` in the selected data folder, or to the specified file. |
 | `coach [--ask] [--lang en\|es] [--model MODEL] [--force]` | Print the local coaching brief as JSON. `--ask` uses the configured AI model and shared advice cache; `--model` and `--force` require `--ask`. |
 | `serve [--port 1886] [--open-browser] [--proxied] [--allow-host NAME]` | Start the same local web server. It answers only IP addresses and local names (`localhost`, `.local`, `.lan`); `--allow-host` adds a domain, such as a proxy's. Build the interface first with `.\dev.ps1 build` or `npm --prefix web run build`. |
+| `narrate [--lang en\|es] [--gender female\|male] [--force] [--list]` | Record the coach's voice packs into `dist/voice` with a local Kokoro server (`KOKORO_URL`), loudness-normalized with ffmpeg. Needs a source checkout; `.\dev.ps1 narrate` records both voices. |
 | `doctor [--json]` | Check Python, dependencies, Stockfish discovery, data paths, and the built interface. Engine discovery checks the binary's path, without launching it. Missing optional features are warnings. |
 
 Every command accepts `--data-dir PATH` before or after its name. The default is
