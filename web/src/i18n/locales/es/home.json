@@ -76,5 +76,50 @@
    "current": "{{title}}: estás aquí",
    "locked": "{{title}}: por delante"
   }
+ },
+ "phone": {
+  "hello": {
+   "morning": "Buenos días, {{name}}",
+   "afternoon": "Buenas tardes, {{name}}",
+   "evening": "Buenas noches, {{name}}"
+  },
+  "helloPlain": {
+   "morning": "Buenos días",
+   "afternoon": "Buenas tardes",
+   "evening": "Buenas noches"
+  },
+  "ready": {
+   "lesson": "¿Listo para la lección de hoy?",
+   "gauntlet": "¿Listo para el desafío?",
+   "boss": "¿Listo para el jefe?"
+  },
+  "continue": "Seguir partida",
+  "versus": "vs {{name}} · jugada {{move}}",
+  "yourTurn": "Te toca",
+  "theirTurn": "Le toca a {{name}}",
+  "recent": "Partidas recientes",
+  "seeAll": "Ver todas",
+  "result": {
+   "won": "G",
+   "lost": "P",
+   "drew": "T",
+   "unknown": "·"
+  },
+  "vs": "vs {{name}}",
+  "moves_one": "{{count}} jugada",
+  "moves_other": "{{count}} jugadas",
+  "accuracy": "Tu precisión",
+  "days_one": "{{count}} día",
+  "days_other": "{{count}} días",
+  "settings": "Ajustes",
+  "doors": {
+   "bot": "Un rival cerca de tu nivel",
+   "puzzles": "Táctica a tu nivel",
+   "arenaTitle": "Arena",
+   "arena": "Sube la escalera de bots",
+   "reviewTitle": "Revisar",
+   "review": "Mira dónde cambió tu última partida",
+   "noGames": "Tus partidas, jugada a jugada"
+  }
  }
 }

@@ -78,16 +78,18 @@ function HomeEntry() {
 const handle = (title: string, actions: RouteHandle['actions'] = []): RouteHandle => ({ title, actions });
 // Pages whose own hero or header already names them: no shared top bar.
 const bare = (title: string): RouteHandle => ({ title, topbar: false });
+// Board screens with a phone header of their own; a review also gives the tab bar's room to its controls.
+const phoneBoard = (base: RouteHandle, tabbar = true): RouteHandle => ({ ...base, phone: { topbar: false, tabbar } });
 
 export const routes: RouteObject[] = [{
   element: <Layout />,
   children: [
     { index: true, element: <HomeEntry />, handle: bare('Home') },
-    { path: 'play', element: <PlayPage />, handle: handle('Play', ['new-game']) },
+    { path: 'play', element: <PlayPage />, handle: phoneBoard(handle('Play', ['new-game'])) },
     { path: 'play/bots', element: <BotsHomePage />, handle: bare('Bots') },
     { path: 'play/bots/:id', element: <BotCollectionPage />, handle: bare('Bots') },
     { path: 'games', element: <GamesIndex />, handle: handle('Games', ['import']) },
-    { path: 'games/:id/:ply?', element: <GamePage />, handle: handle('Games', ['import']) },
+    { path: 'games/:id/:ply?', element: <GamePage />, handle: phoneBoard(handle('Games', ['import']), false) },
     { path: 'explore', element: <ExplorePage />, handle: handle('Explore') },
     { path: 'import', element: <ImportPage />, handle: handle('Import') },
     { path: 'train', element: <TrainPage />, handle: handle('Train') },

@@ -277,5 +277,9 @@
     "engine": "Engine",
     "summary": "Summary",
     "stepThrough": "Step through the game"
+  },
+  "phone": {
+    "back": "Back",
+    "movesEmpty": "Moves appear here. Tap one to look back."
   }
 }

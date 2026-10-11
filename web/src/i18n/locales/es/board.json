@@ -277,5 +277,9 @@
   "engine": "Motor",
   "summary": "Resumen",
   "stepThrough": "Recorrer la partida"
+ },
+ "phone": {
+  "back": "Atrás",
+  "movesEmpty": "Aquí aparecen las jugadas. Toca una para volver a verla."
  }
 }

@@ -403,5 +403,34 @@
       "returns": "Vuelve en {{when}}",
       "endedNote": "No le ganaste durante el evento."
     }
+  },
+  "phone": {
+    "review": "Revisar",
+    "new": "Nueva",
+    "takeBack": "Deshacer",
+    "explore": "Explorar",
+    "home": "Inicio",
+    "pickBot": "Elige un bot",
+    "you": "Tú · {{rating}}",
+    "search": "Buscar bots",
+    "collections": "Colecciones",
+    "all": "Todos",
+    "event": "Evento",
+    "left": "Quedan {{days}} d {{hours}} h",
+    "eventGoal_one": "Gánale a {{count}} para ganar el escudo.",
+    "eventGoal_other": "Gánales a {{count}} para ganar el escudo.",
+    "count_one": "{{count}} bot",
+    "count_other": "{{count}} bots",
+    "sort": {
+      "near": "Cerca de mí",
+      "easy": "Más fáciles"
+    },
+    "beaten": "Vencido",
+    "diff": {
+      "easy": "Fácil",
+      "fair": "Parejo",
+      "hard": "Difícil",
+      "boss": "Jefe"
+    }
   }
 }

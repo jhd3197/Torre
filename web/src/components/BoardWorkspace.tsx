@@ -9,6 +9,9 @@ import { EmptyVerdict, MoveVerdict } from './workspace/MoveVerdict';
 import { CursorRook } from './CursorRook';
 import { Segments } from './Segments';
 import { HeatLegend, Playback, PlanningToolbar, PlayerStrip, type PlayerInfo } from './workspace/Parts';
+import { MoveStrip, PhoneHead, type PhoneHeadProps } from './workspace/PhoneParts';
+import { NavIcon } from './NavIcon';
+import { usePhone } from '../hooks/usePhone';
 import { useEngine, usePosition } from '../hooks/useChess';
 import { usePlanning } from '../hooks/usePlanning';
 import { analysisDepth, analysisEngine, autoAnalysis as autoAnalysisSetting, bestArrow, evalBar as evalBarSetting, nextArrow, squareControl } from '../lib/settings';
@@ -79,6 +82,13 @@ export interface BoardWorkspaceProps {
   coachMarks?: { highlight?: string[]; arrow?: string | null; annotations?: LessonMark[] };
   /** Blindfold: the board shows the squares only. */
   hidePieces?: boolean;
+  /** On a phone, the bar above the board (back, title, flip). A page that gives one gets the phone
+   *  layout there: the board edge to edge, the moves in one row, the buttons at the bottom. */
+  phoneHead?: PhoneHeadProps;
+  /** On a phone, under the board: what the bot and the coach say. */
+  phoneSay?: ReactNode;
+  /** On a phone, at the bottom of a game: its buttons. */
+  phoneActions?: ReactNode;
 }
 
 /** SAN of the engine's best move, from the first line that starts with it. */
@@ -101,7 +111,8 @@ function materialOf(fen: string): number {
 export function BoardWorkspace(props: BoardWorkspaceProps) {
   const { mode, initialFen, moves, cursor, onGo, flipped, onFlip, players, movable, onMove, busy = false, busyText,
     headerActions, heading = true, context, panelTop, panelBottom, summary, showSummary, startTab, movesTop, boardFooter, judgments, bestMoves, resultText, onTryBest, tryLabel: tryLabelProp,
-    autoplay = false, onBoard, opening, thinkTimes, longThink, startClock, loading, you, coachMarks, hidePieces } = props;
+    autoplay = false, onBoard, opening, thinkTimes, longThink, startClock, loading, you, coachMarks, hidePieces, phoneHead, phoneSay, phoneActions } = props;
+  const phone = usePhone() && !!phoneHead;
   const { t } = useTranslation('board');
   const tryLabel = tryLabelProp ?? t('engine.tryMove');
   const { engineAvailable, engines } = useGameData();
@@ -220,7 +231,7 @@ export function BoardWorkspace(props: BoardWorkspaceProps) {
 
   const bottom: Color = flipped ? 'black' : 'white', top: Color = flipped ? 'white' : 'black';
   // A review counts the material on the board: the side ahead shows by how much, beside its name.
-  const material = mode === 'replay' && board ? materialOf(board.fen) : null;
+  const material = (mode === 'replay' || phone) && board ? materialOf(board.fen) : null;
   const lead = (color: Color) => material == null ? undefined : (color === 'white' ? material : -material) > 0 ? `+${Math.abs(material)}` : null;
   // In a reviewed game, the move just played gets its grade on the board and a verdict in the panel.
   const judged = mode === 'replay' && cursor > 0 ? judgments?.get(cursor) : undefined;
@@ -241,6 +252,84 @@ export function BoardWorkspace(props: BoardWorkspaceProps) {
       autoplay={playing} onAutoplay={autoplay ? () => { if (!playing && cursor >= moves.length) onGo(0); setPlaying(!playing); } : undefined} />
   );
 
+  const boardView = (
+    <ChessBoard board={previewing ?? board} flipped={flipped} planning={planning}
+      lastMove={previewing ? moves[cursor - 2]?.uci : shown.at(-1)?.uci} movable={previewing ? false : movable}
+      onMove={onMove} busy={busy} showHeat={heatOn} onHoverSquare={describeSquare} gradeMark={previewing ? null : gradeMark}
+      bestMove={previewing ? (preview === moves[cursor - 1]?.uci ? null : preview) : coachMarks?.arrow ?? bestShown}
+      highlight={previewing ? [] : coachMarks?.highlight} annotations={previewing ? [] : coachMarks?.annotations} hidePieces={hidePieces}
+      nextMove={previewing ? (preview === moves[cursor - 1]?.uci ? preview : null) : nextShown}
+      evalBar={analysisMode && showEvalBar ? <EvalBar board={board} line={autoAnalysis ? topLine : null} flipped={flipped} /> : undefined} />
+  );
+  const verdict = judged && !busy ? <MoveVerdict initialFen={initialFen} moves={moves} cursor={cursor} judged={judged}
+    bestUci={bestMoves?.[cursor - 1]} engineId={engineId} onPreview={setPreview} onGo={ply => { setPlaying(false); onGo(ply); }}
+    voice={{ on: voice.on, onToggle: voice.toggle }} you={you} />
+    : mode === 'replay' && !!judgments?.size && (cursor === 0
+      ? <EmptyVerdict title={t('verdict.startTitle')} hint={t('verdict.startHint')} />
+      : <EmptyVerdict title={t('verdict.pendingTitle')} hint={t('verdict.pendingHint')} pose="magnify" />);
+
+  if (phone) {
+    // A review opens on its summary or its moves; there is no engine tab on a phone.
+    const phoneTab = summary && activeTab === 'summary' ? 'summary' : 'moves';
+    const stepButton = (to: 'first' | 'previous' | 'next' | 'last', ply: number, off: boolean) => (
+      <button type="button" id={to} aria-label={t(`playback.${to}`)} disabled={busy || off} onClick={() => { setPlaying(false); step(ply); }}><NavIcon to={to} /></button>
+    );
+    return (
+      <section className="workspace phone-workspace" data-mode={mode} aria-label={t('workspace.label')}>
+        <PhoneHead {...phoneHead!} onFlip={onFlip} />
+        {context}
+        {loading ?? <>
+          {summary && (
+            <Segments className="bots-segments phone-tabs" role="group" aria-label={t('panel.label')}>
+              {(['summary', 'moves'] as const).map(name => (
+                <button key={name} type="button" id={`tab-${name}`} aria-pressed={phoneTab === name}
+                  className={phoneTab === name ? 'selected' : undefined} onClick={() => setTab(name)}>{t(`panel.${name}`)}</button>
+              ))}
+            </Segments>
+          )}
+          {phoneTab === 'summary' ? <>
+            <div className="phone-summary" id="panel-summary">{summary}</div>
+            {autoplay && moves.length > 0 && (
+              <div className="phone-dock">
+                <button type="button" className="button primary" id="step-through"
+                  onClick={() => { setTab('moves'); onGo(0); setPlaying(true); }}>{t('panel.stepThrough')}</button>
+              </div>
+            )}
+          </> : <>
+            <PlayerStrip position="top" color={top} info={players[top]} lead={lead(top)} />
+            <div className="board-column phone-board" data-bump={bump ?? undefined}>{boardView}</div>
+            <PlayerStrip position="bottom" color={bottom} info={players[bottom]} lead={lead(bottom)} />
+            {mode === 'replay' && <div className="phone-verdict">{verdict}</div>}
+            {phoneSay}
+            {mode === 'replay' && movesTop}
+            {boardFooter}
+            <div className="phone-moves">
+              {mode === 'play' && stepButton('previous', cursor - 1, cursor === 0)}
+              <MoveStrip initialFen={initialFen} moves={moves} cursor={cursor} onSelect={ply => { setPlaying(false); onGo(ply); }} judgments={judgments} />
+              {mode === 'play' && stepButton('next', cursor + 1, cursor === moves.length)}
+            </div>
+            <span className="sr-only" id="board-status" role="status">{status}</span>
+            {mode === 'replay' ? (
+              <div className="phone-dock phone-playback">
+                {stepButton('first', 0, cursor === 0)}
+                {stepButton('previous', cursor - 1, cursor === 0)}
+                {autoplay && (
+                  <button type="button" id="autoplay" className="phone-play" aria-label={playing ? t('playback.pause') : t('playback.autoplay')} disabled={!moves.length}
+                    onClick={() => { if (!playing && cursor >= moves.length) onGo(0); setPlaying(!playing); }}>
+                    <img src={`art/ui3d/${playing ? 'pause' : 'play'}.webp`} alt="" width="20" height="20" />
+                    <span>{moveProgress(initialFen, cursor, moves.length)}</span>
+                  </button>
+                )}
+                {stepButton('next', cursor + 1, cursor === moves.length)}
+                {stepButton('last', moves.length, cursor === moves.length)}
+              </div>
+            ) : phoneActions && <div className="phone-dock phone-actions">{phoneActions}</div>}
+          </>}
+        </>}
+      </section>
+    );
+  }
+
   return (
     <section className="workspace" aria-label={t('workspace.label')}>
       <div className="board-column" data-bump={bump ?? undefined}>
@@ -257,13 +346,7 @@ export function BoardWorkspace(props: BoardWorkspaceProps) {
         )}
         {context}
         <PlayerStrip position="top" color={top} info={players[top]} lead={lead(top)} />
-        <ChessBoard board={previewing ?? board} flipped={flipped} planning={planning}
-          lastMove={previewing ? moves[cursor - 2]?.uci : shown.at(-1)?.uci} movable={previewing ? false : movable}
-          onMove={onMove} busy={busy} showHeat={heatOn} onHoverSquare={describeSquare} gradeMark={previewing ? null : gradeMark}
-          bestMove={previewing ? (preview === moves[cursor - 1]?.uci ? null : preview) : coachMarks?.arrow ?? bestShown}
-          highlight={previewing ? [] : coachMarks?.highlight} annotations={previewing ? [] : coachMarks?.annotations} hidePieces={hidePieces}
-          nextMove={previewing ? (preview === moves[cursor - 1]?.uci ? preview : null) : nextShown}
-          evalBar={analysisMode && showEvalBar ? <EvalBar board={board} line={autoAnalysis ? topLine : null} flipped={flipped} /> : undefined} />
+        {boardView}
         <PlayerStrip position="bottom" color={bottom} info={players[bottom]} lead={lead(bottom)} />
         {analysisMode && (
           <div className="arrow-legend" aria-label={t('arrows.label')}>
@@ -303,12 +386,7 @@ export function BoardWorkspace(props: BoardWorkspaceProps) {
           )}
           <div className="panel-page panel-moves" id="panel-moves" hidden={!shownTab('moves')}>
             {/* A reviewed game keeps the verdict's place on every move, so the list below never jumps. */}
-            {judged && !busy ? <MoveVerdict initialFen={initialFen} moves={moves} cursor={cursor} judged={judged}
-              bestUci={bestMoves?.[cursor - 1]} engineId={engineId} onPreview={setPreview} onGo={ply => { setPlaying(false); onGo(ply); }}
-              voice={{ on: voice.on, onToggle: voice.toggle }} you={you} />
-              : mode === 'replay' && !!judgments?.size && (cursor === 0
-                ? <EmptyVerdict title={t('verdict.startTitle')} hint={t('verdict.startHint')} />
-                : <EmptyVerdict title={t('verdict.pendingTitle')} hint={t('verdict.pendingHint')} pose="magnify" />)}
+            {verdict}
             {movesTop}
             {mode !== 'replay' && <div className="moves-heading"><span>{t('moves.heading')}</span><span id="game-result">{board?.result || resultText || t('moves.inProgress')}</span></div>}
             <MoveList initialFen={initialFen} moves={moves} cursor={cursor} onSelect={ply => { setPlaying(false); onGo(ply); }} judgments={judgments} />

@@ -13,10 +13,25 @@ import { PageTitleContext, type PageTitle } from '../hooks/usePageTitle';
 import { TopbarSlotsContext, type TopbarSlots } from './TopbarSlot';
 import { useNavItems, type NavItem } from '../lib/nav';
 import { initials, useHostedAccount, type HostedAccount } from '../hooks/useHostedAccount';
+import { usePhone } from '../hooks/usePhone';
 
 /** `topbar: false` drops the shared top bar: the page's own hero or header is
- *  its title, so it owns the page's h1. */
-export interface RouteHandle { title: string; actions?: ('import' | 'new-game' | 'help')[]; topbar?: boolean }
+ *  its title, so it owns the page's h1. `phone` does the same on a phone only, where
+ *  a page with its own phone header can also give its whole height to itself (no tab bar). */
+export interface RouteHandle {
+  title: string;
+  actions?: ('import' | 'new-game' | 'help')[];
+  topbar?: boolean;
+  phone?: { topbar?: boolean; tabbar?: boolean };
+}
+
+/** The phone's tab bar: the four places a thumb goes most. The rest are a tap away from Home and Profile. */
+const TABS: NavItem[] = [
+  { to: '/', key: 'home', icon: 'art/nav/home.png', end: true },
+  { to: '/play/bots', key: 'play', icon: 'art/nav/play.png', match: '/play' },
+  { to: '/puzzles', key: 'puzzles', icon: 'art/nav/puzzles.png', match: '/puzzles' },
+  { to: '/profile', key: 'profile', icon: 'art/nav/awards.png', match: '/profile' },
+];
 
 
 // Anything a click on the rail should leave alone: links, controls, menus.
@@ -101,6 +116,7 @@ export function Layout() {
   const location = useLocation();
   const [helpOpen, setHelpOpen] = useState(false);
   const { narrow, collapsed, drawer, toggle, openDrawer, closeDrawer } = useRail();
+  const phone = usePhone();
   // The links and their order are the player's (Settings → Sidebar); see lib/nav.ts.
   const nav = useNavItems();
   const account = useHostedAccount();
@@ -140,10 +156,24 @@ export function Layout() {
   );
 
   const closeLabel = narrow ? t('rail.closeMenu') : t('rail.fold');
+  const showTopbar = handle?.topbar !== false && !(phone && handle?.phone?.topbar === false);
+  const showTabbar = phone && handle?.phone?.tabbar !== false;
+
+  const tabItem = (item: NavItem) => {
+    const active = item.match ? location.pathname.startsWith(item.match) : location.pathname === item.to;
+    return (
+      <NavLink key={item.key} to={item.to} end={item.end} viewTransition className={`tab-item${active ? ' active' : ''}`}
+        aria-current={active ? 'page' : undefined} style={{ '--icon': `url(${assetUrl(item.icon)})` } as CSSProperties}>
+        <span className="tab-icon" aria-hidden="true" />
+        <span>{t(`rail.${item.key}`)}</span>
+      </NavLink>
+    );
+  };
 
   return (
-    <div className="shell" data-rail={narrow ? 'drawer' : folded ? 'folded' : 'open'} data-drawer-open={drawer ? 'true' : undefined}>
-      <aside className="rail-shell" data-folded={folded ? 'true' : 'false'} onClick={onRailClick}>
+    <div className="shell" data-rail={phone ? 'tabs' : narrow ? 'drawer' : folded ? 'folded' : 'open'} data-drawer-open={drawer ? 'true' : undefined}
+      data-tabbar={showTabbar ? 'true' : undefined}>
+      {!phone && <aside className="rail-shell" data-folded={folded ? 'true' : 'false'} onClick={onRailClick}>
         <div className="rail-head">
           {folded ? (
             // Folded, the logo is the way back: it turns into the expand icon
@@ -185,10 +215,10 @@ export function Layout() {
         <div className="rail-foot">
           <WorkspaceMenu folded={folded} name={name} account={account} onImport={() => { if (narrow) closeDrawer(); navigate('/import'); }} />
         </div>
-      </aside>
-      {drawer && <button type="button" className="rail-backdrop" aria-label={t('rail.closeNavigation')} onClick={closeDrawer} />}
+      </aside>}
+      {drawer && !phone && <button type="button" className="rail-backdrop" aria-label={t('rail.closeNavigation')} onClick={closeDrawer} />}
       <main>
-        {narrow && (
+        {narrow && !phone && (
           <div className="rail-menubar">
             <button type="button" className="rail-burger" aria-label={t('rail.openMenu')} onClick={openDrawer}>
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
@@ -197,7 +227,7 @@ export function Layout() {
             <span>{t('brand')}</span>
           </div>
         )}
-        {handle?.topbar !== false && <header className="topbar">
+        {showTopbar && <header className="topbar">
           <h1 id="page-title">
             {pageArt && <img className="page-art" src={pageArt} alt="" width="40" height="40" />}
             {pageTitle ? (
@@ -222,6 +252,7 @@ export function Layout() {
           </TopbarSlotsContext.Provider>
         </PageTitleContext.Provider>
       </main>
+      {showTabbar && <nav className="tabbar" aria-label={t('rail.sections')}>{TABS.map(tabItem)}</nav>}
       <HelpDialog open={helpOpen} onClose={() => setHelpOpen(false)} />
       <div id="toast" role="status" className={toastMessage ? 'visible' : ''}>{toastMessage}</div>
       <TooltipLayer />

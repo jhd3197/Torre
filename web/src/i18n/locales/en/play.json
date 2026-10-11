@@ -403,5 +403,34 @@
       "returns": "Returns in {{when}}",
       "endedNote": "You did not beat this one during the event."
     }
+  },
+  "phone": {
+    "review": "Review",
+    "new": "New",
+    "takeBack": "Undo",
+    "explore": "Explore",
+    "home": "Home",
+    "pickBot": "Pick a bot",
+    "you": "You · {{rating}}",
+    "search": "Search bots",
+    "collections": "Collections",
+    "all": "All",
+    "event": "Event",
+    "left": "{{days}}d {{hours}}h left",
+    "eventGoal_one": "Beat {{count}} of them to earn the crest.",
+    "eventGoal_other": "Beat {{count}} of them to earn the crest.",
+    "count_one": "{{count}} bot",
+    "count_other": "{{count}} bots",
+    "sort": {
+      "near": "Near me",
+      "easy": "Easiest"
+    },
+    "beaten": "Beaten",
+    "diff": {
+      "easy": "Easy",
+      "fair": "Fair",
+      "hard": "Hard",
+      "boss": "Boss"
+    }
   }
 }

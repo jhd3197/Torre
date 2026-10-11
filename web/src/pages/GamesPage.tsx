@@ -22,6 +22,7 @@ import { api } from '../lib/api';
 import { explorePath, gamePath, mistakesPath } from '../lib/routes';
 import { useGameData, useToast } from '../state/AppData';
 import { lastVisited } from '../state/lastVisited';
+import { usePhone } from '../hooks/usePhone';
 import type { AnalyzedMove, Color, GameDetail } from '../types';
 
 const SCORING_VERSION = 3;
@@ -124,6 +125,7 @@ export function GamePage() {
   const toast = useToast();
   const { game, error } = useGame(id);
   const [flipped, setFlipped] = useState<boolean | null>(null);
+  const phone = usePhone();
 
   useEffect(() => { lastVisited.games = location.pathname; }, [location.pathname]);
   useEffect(() => setFlipped(null), [id]);
@@ -235,6 +237,25 @@ export function GamePage() {
     } catch { toast(t('game.pgnCopyFailed')); }
   }
 
+  const title = record?.user_color ? t('game.youVs', { name: oppName }) : t('game.versus', { white: whiteName, black: blackName });
+  const more = (
+    <MoreMenu label={t('game.more')}>
+      <Link role="menuitem" id="explore-position" to={explore()}>{t('game.explorePosition')}</Link>
+      {record && analysis && counts && counts.mistake + counts.blunder > 0 && (
+        <Link role="menuitem" id="learn-mistakes" to={mistakesPath(record.id)} title={t('trainer:entry.buttonTitle')}>{t('trainer:entry.button')}</Link>
+      )}
+      {record && phone && <button type="button" role="menuitem" onClick={() => void copyPgn()}>{t('game.copyPgn')}</button>}
+      {record && (
+        <a role="menuitem" id="export-pgn" download href={`api/games/${encodeURIComponent(String(record.id))}/pgn`}
+          title={analysis ? t('game.exportTitleAnalyzed') : t('game.exportTitlePlain')}>{t('game.exportPgn')}</a>
+      )}
+      {record && (
+        <a role="menuitem" download href={`api/games/${encodeURIComponent(String(record.id))}/export`}
+          title={t('game.exportTorreTitle')}>{t('game.exportTorre')}</a>
+      )}
+    </MoreMenu>
+  );
+
   return (
     <>
       {/* The top bar carries this page's controls: back to the games, flip, copy, and the rest under More. */}
@@ -243,26 +264,14 @@ export function GamePage() {
         <button className="icon-button" id="flip" type="button" title={t('board:workspace.flipTitle')} aria-label={t('board:workspace.flip')}
           onClick={() => setFlipped(!isFlipped)}>⇅</button>
         {record && <button className="button" id="copy-pgn" type="button" onClick={() => void copyPgn()}>{t('game.copyPgn')}</button>}
-        <MoreMenu label={t('game.more')}>
-          <Link role="menuitem" id="explore-position" to={explore()}>{t('game.explorePosition')}</Link>
-          {record && analysis && counts && counts.mistake + counts.blunder > 0 && (
-            <Link role="menuitem" id="learn-mistakes" to={mistakesPath(record.id)} title={t('trainer:entry.buttonTitle')}>{t('trainer:entry.button')}</Link>
-          )}
-          {record && (
-            <a role="menuitem" id="export-pgn" download href={`api/games/${encodeURIComponent(String(record.id))}/pgn`}
-              title={analysis ? t('game.exportTitleAnalyzed') : t('game.exportTitlePlain')}>{t('game.exportPgn')}</a>
-          )}
-          {record && (
-            <a role="menuitem" download href={`api/games/${encodeURIComponent(String(record.id))}/export`}
-              title={t('game.exportTorreTitle')}>{t('game.exportTorre')}</a>
-          )}
-        </MoreMenu>
+        {more}
       </TopbarSlot>
-      <header className="review-head">
-        <h1>{record?.user_color ? t('game.youVs', { name: oppName }) : t('game.versus', { white: whiteName, black: blackName })}</h1>
+      {!phone && <header className="review-head">
+        <h1>{title}</h1>
         {meta.length > 0 && <p id="session-subtitle">{meta.join(' · ')}</p>}
-      </header>
+      </header>}
       <BoardWorkspace mode="replay" initialFen={game.initialFen} moves={game.moves} cursor={cursor} onGo={go}
+        phoneHead={{ title, sub: meta.join(' · ') || undefined, back: '/games', tools: more }}
         loading={reviewing ? (
           <div className="review-loading" role="status" aria-label={t('game.reviewing')}>
             <Mascot pose="magnify" size={140} />

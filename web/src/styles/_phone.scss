@@ -1,0 +1,1053 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// Phones (Torre Mobile Home / Play / Bots / Review): the app as an app. A tab bar at the bottom
+// instead of the drawer, the board edge to edge, moves in one swipeable row, thumb-sized buttons.
+// Loaded last: these screens only exist at phone widths, so they settle anything older.
+
+$tabbar-h: 66px;
+$gutter: 14px;
+
+// --- shell ---
+.shell[data-rail="tabs"] {
+  --rail-offset: 0px;
+  --page-gutter: #{$gutter};
+  --page-top: 8px;
+  // The board fills the width, less a little air either side.
+  --board-size: calc(100vw - 16px);
+  main {
+    margin-left: 0;
+    max-width: none;
+    padding: 0 $gutter;
+  }
+  &[data-tabbar="true"] main {
+    padding-bottom: calc(#{$tabbar-h} + 16px + env(safe-area-inset-bottom));
+  }
+  &[data-tabbar="true"] #toast {
+    bottom: calc(#{$tabbar-h} + 18px + env(safe-area-inset-bottom));
+  }
+  .topbar {
+    height: auto;
+    min-height: 60px;
+    padding: 8px 0;
+    border-bottom: 0;
+  }
+}
+
+.tabbar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 6px 8px calc(8px + env(safe-area-inset-bottom));
+  background: $white;
+  border-top: 1.5px solid $lobby-line;
+}
+
+.tab-item {
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 14px;
+  color: $sage-500;
+  font-size: $fs-2xs;
+  font-weight: 800;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  @include focus-ring;
+  &.active {
+    color: $forest;
+    font-weight: 900;
+  }
+  &:active {
+    background: $lobby-tile;
+  }
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+// --- shared bits ---
+.phone-icon-button {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: $lobby-ink;
+  cursor: pointer;
+  @include focus-ring;
+  &:active {
+    background: $lobby-track;
+  }
+}
+
+.phone-pill {
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: $lobby-selected;
+  color: $forest;
+  font-size: $fs-sm;
+  font-weight: 900;
+}
+
+.phone-section-head {
+  display: flex;
+  align-items: baseline;
+  padding: 4px 4px 0;
+  h2 {
+    margin: 0;
+    font-size: $fs-xl;
+    font-weight: 900;
+  }
+  a {
+    margin-left: auto;
+    color: $brand-green;
+    font-size: $fs-sm;
+    font-weight: 900;
+    text-decoration: none;
+  }
+}
+
+// --- home ---
+.phone-home {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 6px;
+  color: $lobby-ink;
+}
+
+.phone-home-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 2px 0;
+  img {
+    border-radius: 10px;
+  }
+}
+.phone-home-brand {
+  font-size: $fs-xl;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+.phone-streak {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba($wheat-100, 0.55);
+  color: $orange-700;
+  font-size: $fs-sm;
+  font-weight: 900;
+  text-decoration: none;
+  &.cold {
+    background: $lobby-track;
+    color: $sage-600;
+  }
+}
+
+.phone-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 220px;
+  padding: 20px 18px 18px;
+  border-radius: 26px;
+  background: $lobby-green;
+  color: $white;
+  h1 {
+    position: relative;
+    z-index: 1;
+    max-width: 230px;
+    margin: 0;
+    font-size: $fs-4xl;
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+}
+.phone-hero-hello {
+  font-size: $fs-base;
+  font-weight: 800;
+  color: $sage-50;
+}
+.phone-hero-say {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - 120px);
+  margin: 0;
+  padding: 10px 13px;
+  border-radius: 16px 16px 16px 5px;
+  background: $white;
+  color: $lobby-ink;
+  font-size: $fs-sm;
+  line-height: 1.4;
+  font-weight: 700;
+  span {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+.phone-hero-go {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 14px 0 18px;
+  border-radius: 14px;
+  background: $white;
+  color: $forest;
+  font-size: $fs-base;
+  font-weight: 900;
+  text-decoration: none;
+  @include press(3px, rgba($black, 0.12));
+  @include focus-ring;
+}
+.phone-hero-rooky {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 112px;
+  height: 124px;
+  display: grid;
+  place-items: end center;
+  border-radius: 24px;
+  background: $white;
+  box-shadow: 0 6px 0 rgba($black, 0.08);
+  overflow: hidden;
+}
+
+.phone-resume {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 22px;
+  background: $forest;
+  color: $white;
+  text-decoration: none;
+  @include press(4px, $lobby-button-shade);
+  @include focus-ring;
+}
+.phone-resume-board {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: $board-forest-light;
+  .insight-board {
+    width: 64px;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}
+.phone-resume-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  small {
+    font-size: $fs-xs;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $moss-300;
+  }
+  strong {
+    font-size: $fs-xl;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  span {
+    font-size: $fs-sm;
+    font-weight: 700;
+    color: $moss-200;
+  }
+}
+
+.phone-doors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.phone-door {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 22px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  color: $lobby-ink;
+  text-decoration: none;
+  @include press(3px, $lobby-line);
+  @include focus-ring;
+  img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    margin-bottom: 2px;
+  }
+  strong {
+    font-size: $fs-lg;
+    font-weight: 900;
+  }
+  small {
+    font-size: $fs-sm;
+    line-height: 1.35;
+    font-weight: 700;
+    color: $lobby-muted;
+  }
+}
+
+.phone-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 20px;
+    background: $white;
+    border: 1.5px solid $lobby-line;
+    overflow: hidden;
+  }
+  li + li {
+    border-top: 1.5px solid $lobby-track;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 60px;
+    padding: 8px 14px;
+    color: $lobby-ink;
+    text-decoration: none;
+    &:active {
+      background: $lobby-tile;
+    }
+  }
+}
+.phone-result {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: $fs-sm;
+  font-weight: 900;
+  background: $lobby-track;
+  color: $sage-600;
+  &.won {
+    background: $lobby-pill;
+    color: $forest;
+  }
+  &.lost {
+    background: $sand-50;
+    color: $red-700;
+  }
+}
+.phone-recent-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  strong {
+    font-size: $fs-base;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  small {
+    font-size: $fs-xs;
+    font-weight: 700;
+    color: $lobby-muted;
+  }
+}
+.phone-recent-score {
+  font-family: $font-mono;
+  font-size: $fs-sm;
+  color: $lobby-muted;
+}
+
+// --- bot lobby ---
+.phone-lobby {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: $lobby-ink;
+}
+.phone-lobby-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 -4px;
+  padding-top: 10px;
+  h1 {
+    flex: 1;
+    margin: 0;
+    font-size: $fs-2xl;
+    font-weight: 900;
+  }
+}
+.phone-resume-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 14px;
+  background: $forest;
+  color: $white;
+  font-size: $fs-base;
+  font-weight: 900;
+  cursor: pointer;
+  @include press(3px, $lobby-button-shade);
+  span {
+    font-size: $fs-2xl;
+  }
+}
+.phone-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background: $white;
+  border: 1.5px solid $lobby-line-strong;
+  color: $sage-500;
+  &:focus-within {
+    border-color: $lobby-hover-line;
+  }
+  input {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    background: transparent;
+    color: $lobby-ink;
+    font-size: $fs-base;
+    font-weight: 700;
+  }
+}
+.phone-chips {
+  display: flex;
+  gap: 8px;
+  margin: 0 (-$gutter);
+  padding: 2px $gutter 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  button {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1.5px solid $lobby-line-strong;
+    background: $white;
+    color: $lobby-ink;
+    font-size: $fs-md;
+    font-weight: 800;
+    white-space: nowrap;
+    cursor: pointer;
+    &[aria-pressed="true"] {
+      border-color: $forest;
+      background: $forest;
+      color: $white;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $orange-400;
+    }
+    svg,
+    img {
+      width: 18px;
+      height: 13px;
+      border-radius: 2px;
+    }
+  }
+}
+.phone-event {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 0;
+  border-radius: 22px;
+  background: var(--event-ground);
+  color: $white;
+  text-align: left;
+  cursor: pointer;
+  @include focus-ring;
+  strong {
+    font-size: $fs-2xl;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  small {
+    font-size: $fs-sm;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+}
+.phone-event-top {
+  display: flex;
+  align-items: center;
+}
+.phone-event-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--event-accent);
+  color: $event-ink;
+  font-size: $fs-2xs;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.phone-event-left {
+  margin-left: auto;
+  font-family: $font-mono;
+  font-size: $fs-sm;
+  opacity: 0.9;
+}
+.phone-event-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: $fs-xs;
+  .meter {
+    flex: 1;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba($white, 0.18);
+    overflow: hidden;
+    i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--event-accent);
+    }
+  }
+}
+.phone-lobby-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 4px;
+  > span {
+    font-size: $fs-sm;
+    font-weight: 800;
+    color: $lobby-muted;
+  }
+  .phone-sort {
+    margin-left: auto;
+  }
+}
+.phone-bot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.phone-bot {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-radius: 22px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  overflow: hidden;
+  color: $lobby-ink;
+  text-align: left;
+  cursor: pointer;
+  @include press(3px, $lobby-line);
+  @include focus-ring;
+  &.locked img {
+    filter: grayscale(1) opacity(0.6);
+  }
+}
+.phone-bot-picture {
+  position: relative;
+  aspect-ratio: 1 / 0.9;
+  background: $lobby-tile;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+}
+.phone-bot-rating {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba($white, 0.92);
+  font-family: $font-mono;
+  font-size: $fs-xs;
+}
+.phone-bot-won {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: $forest;
+  color: $gold-300;
+  font-size: $fs-xs;
+}
+.phone-bot-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 12px 12px;
+  min-width: 0;
+  strong,
+  small {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  strong {
+    font-size: $fs-base;
+    font-weight: 900;
+    line-height: 1.15;
+  }
+  small {
+    font-size: $fs-xs;
+    font-weight: 700;
+    color: $lobby-muted;
+  }
+}
+.phone-diff {
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: $fs-2xs;
+  font-weight: 900;
+  &.easy {
+    background: $lobby-pill;
+    color: $green-700;
+  }
+  &.fair {
+    background: rgba($wheat-100, 0.6);
+    color: $orange-700;
+  }
+  &.hard {
+    background: $sand-50;
+    color: $red-700;
+  }
+  &.boss {
+    background: $event-chess;
+    color: $gold-300;
+  }
+}
+
+// The game setup slides up from the bottom, over the tab bar.
+.phone-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+}
+.phone-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba($sage-900, 0.45);
+}
+.phone-sheet-body {
+  position: relative;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 10px 18px calc(18px + env(safe-area-inset-bottom));
+  border-radius: 28px 28px 0 0;
+  background: $paper;
+  #bot-lobby & .bot-panel {
+    position: static;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  #bot-lobby & .bot-panel .bot-stage {
+    height: 170px;
+    aspect-ratio: auto;
+  }
+}
+@include motion-ok {
+  .phone-sheet-body {
+    animation: phone-sheet-in 0.22s ease-out;
+  }
+}
+@keyframes phone-sheet-in {
+  from {
+    transform: translateY(40%);
+  }
+  to {
+    transform: none;
+  }
+}
+.phone-sheet-grip {
+  display: block;
+  width: 44px;
+  height: 5px;
+  margin: 0 auto 10px;
+  border-radius: 999px;
+  background: $sand-300;
+}
+
+// --- board screens: play and review ---
+.shell main .workspace.phone-workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  width: auto;
+  max-width: none;
+  margin: 0 (-$gutter);
+  padding-bottom: 0;
+  color: $lobby-ink;
+  > * {
+    min-width: 0;
+  }
+  .player {
+    margin: 0;
+    padding: 4px $gutter;
+    border: 0;
+    background: transparent;
+  }
+  .coach-rook,
+  .bot-speech,
+  .legend-book-note,
+  .coach-hold,
+  .coach-note,
+  .play-coach {
+    margin: 0;
+  }
+}
+.phone-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 10px 4px;
+}
+.phone-head-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  h1 {
+    max-width: 100%;
+    margin: 0;
+    letter-spacing: 0;
+    font-size: $fs-lg;
+    font-weight: 900;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  span {
+    max-width: 100%;
+    font-size: $fs-xs;
+    font-weight: 700;
+    color: $lobby-muted;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.phone-head .more-menu {
+  flex: none;
+}
+.shell main .board-column.phone-board {
+  padding: 0 8px;
+  .board-wrap {
+    margin: 0;
+    padding-left: 0;
+  }
+  .board-wrap > svg {
+    left: 0;
+    width: 100%;
+  }
+}
+// A review keeps a slim lane for the evaluation bar beside the board.
+.shell main .phone-workspace[data-mode="replay"] .phone-board {
+  .board-wrap {
+    padding-left: 14px;
+  }
+  .board-wrap > svg {
+    left: 14px;
+    width: calc(100% - 14px);
+  }
+  .eval-track {
+    width: 10px;
+  }
+}
+.phone-say {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px $gutter 0;
+  .coach-rook {
+    gap: 8px;
+  }
+  .coach-rook img {
+    width: 48px;
+    height: 48px;
+  }
+}
+.phone-tabs {
+  display: flex;
+  margin: 2px $gutter 10px;
+  > button {
+    flex: 1;
+    min-height: 40px;
+  }
+}
+// A review fills the screen, so its controls rest on the bottom edge even when the page is short.
+.shell main .phone-workspace[data-mode="replay"] {
+  min-height: var(--app-vh, 100vh);
+}
+.phone-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 $gutter 16px;
+}
+.phone-verdict {
+  padding: 8px $gutter 0;
+  &:empty {
+    display: none;
+  }
+}
+.phone-workspace .eval-graph {
+  margin: 10px $gutter 0;
+}
+
+.phone-moves {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 8px;
+  > button {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    border: 1.5px solid $lobby-line-strong;
+    background: $white;
+    color: $lobby-ink;
+    cursor: pointer;
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}
+.move-strip {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 6px;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  li {
+    flex: none;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 38px;
+    padding: 0 9px;
+    border: 0;
+    border-radius: 10px;
+    background: $white;
+    color: $lobby-ink;
+    font-family: $font-mono;
+    font-size: $fs-sm;
+    cursor: pointer;
+    &[aria-current="step"] {
+      background: $forest;
+      color: $white;
+      .move-strip-number {
+        color: $moss-300;
+      }
+    }
+  }
+  &.empty {
+    font-size: $fs-sm;
+    font-weight: 700;
+    color: $sage-500;
+  }
+}
+.move-strip-number {
+  color: $sage-400;
+}
+
+.phone-dock {
+  margin-top: auto;
+  padding: 8px 12px 12px;
+  > .button {
+    width: 100%;
+    min-height: 52px;
+    font-size: $fs-lg;
+  }
+}
+// A review has no tab bar: its controls stay at the bottom of the screen.
+.phone-workspace[data-mode="replay"] .phone-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  background: $white;
+  border-top: 1.5px solid $lobby-line;
+}
+.phone-actions {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 8px;
+}
+.phone-action {
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 16px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  font-size: $fs-xs;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  @include press(3px, $lobby-line-strong);
+  @include focus-ring;
+  &.primary {
+    border-color: $lobby-button;
+    background: $lobby-button;
+    color: $white;
+    @include press(3px, $lobby-button-shade);
+  }
+  &.danger {
+    border-color: $red-600;
+    background: $red-600;
+    color: $white;
+    @include press(3px, $red-700);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+.phone-playback {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.2fr 1fr 1fr;
+  gap: 6px;
+  button {
+    min-height: 52px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 14px;
+    background: $lobby-track;
+    color: $lobby-ink;
+    cursor: pointer;
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+  .phone-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    background: $lobby-button;
+    color: $white;
+    font-size: $fs-xs;
+    font-weight: 900;
+    @include press(3px, $lobby-button-shade);
+  }
+}

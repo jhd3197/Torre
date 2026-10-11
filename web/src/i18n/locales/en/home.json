@@ -76,5 +76,50 @@
       "current": "{{title}}: you are here",
       "locked": "{{title}}: still ahead"
     }
+  },
+  "phone": {
+    "hello": {
+      "morning": "Good morning, {{name}}",
+      "afternoon": "Good afternoon, {{name}}",
+      "evening": "Good evening, {{name}}"
+    },
+    "helloPlain": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "ready": {
+      "lesson": "Ready for today’s lesson?",
+      "gauntlet": "Ready for the gauntlet?",
+      "boss": "Ready for the boss?"
+    },
+    "continue": "Continue game",
+    "versus": "vs {{name}} · move {{move}}",
+    "yourTurn": "Your turn",
+    "theirTurn": "{{name}} to move",
+    "recent": "Recent games",
+    "seeAll": "See all",
+    "result": {
+      "won": "W",
+      "lost": "L",
+      "drew": "D",
+      "unknown": "·"
+    },
+    "vs": "vs {{name}}",
+    "moves_one": "{{count}} move",
+    "moves_other": "{{count}} moves",
+    "accuracy": "Your accuracy",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "settings": "Settings",
+    "doors": {
+      "bot": "Pick a rival near your level",
+      "puzzles": "Tactics at your rating",
+      "arenaTitle": "Arena",
+      "arena": "Climb the bot ladder",
+      "reviewTitle": "Review",
+      "review": "See where your last game turned",
+      "noGames": "Your games, move by move"
+    }
   }
 }
