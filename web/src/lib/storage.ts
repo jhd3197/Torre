@@ -105,6 +105,8 @@ export function loadPlay(): PlaySave | null {
 }
 
 export const savePlay = (save: PlaySave) => write(() => localStorage, PLAY_SAVE_KEY, save);
+/** Forget the game in progress, as if it never started (leaving before your first move). */
+export const clearPlay = () => { try { localStorage.removeItem(PLAY_SAVE_KEY); } catch { /* storage unavailable */ } };
 
 /** A saved game that is still in progress. */
 export function resumablePlay(): PlaySave | null {

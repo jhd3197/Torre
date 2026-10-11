@@ -340,5 +340,18 @@
     "dialogText": "Rooky's written advice comes from an AI model. Pick where it runs; you can change it any time in Settings.",
     "later": "Not now",
     "done": "Done"
+  },
+  "phone": {
+    "home": "Home",
+    "back": "Settings",
+    "saved": "Changes save automatically",
+    "muted": "Muted",
+    "quiet": "Quiet",
+    "groups": {
+      "app": "App",
+      "coach": "Coach",
+      "engine": "Engine",
+      "more": "More"
+    }
   }
 }

@@ -43,6 +43,8 @@ PROXIED = False
 ALLOWED_HOSTS = []
 UI_DIR = paths.UI  # built by `npm run build` in web/
 STATIC_TYPES = MEDIA_TYPES
+# Images, fonts and sounds of the built interface: kept a day by the browser (Handler.send_static).
+CACHED_MEDIA = {'.png', '.webp', '.svg', '.ico', '.woff2', '.mp3', '.ogg', '.wav', '.m4a'}
 # Uploaded PGN collections can be large; everything else is small.
 BODY_LIMITS = {'/api/import/files': 30_000_000}
 BODY_LIMIT = 1_000_000
@@ -115,6 +117,37 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', cache)
         self.end_headers()
         self.wfile.write(data)
+
+    def send_static(self, path, target):
+        """A file of the built interface, cached by what it is. Vite puts a content hash in every
+        /assets/ name, so those never change. The art, fonts and sounds keep their names across
+        releases: they are kept a day, then shown while the browser checks for a newer copy. The
+        rest is checked every time. The checks are cheap: an unchanged file answers 304."""
+        stat = target.stat()
+        etag = f'"{stat.st_size:x}-{stat.st_mtime_ns:x}"'
+        if path.startswith('/assets/'):
+            cache = 'public, max-age=31536000, immutable'
+        elif target.suffix in CACHED_MEDIA:
+            cache = 'public, max-age=86400, stale-while-revalidate=604800'
+        else:
+            cache = 'no-cache'
+        if etag in (tag.strip() for tag in self.headers.get('If-None-Match', '').split(',')):
+            self.responded = True
+            self.send_response(304)
+            self.send_header('ETag', etag)
+            self.send_header('Cache-Control', cache)
+            self.end_headers()
+            return None
+        data = target.read_bytes()
+        self.responded = True
+        self.send_response(200)
+        self.send_header('Content-Type', STATIC_TYPES[target.suffix])
+        self.send_header('Content-Length', str(len(data)))
+        self.send_header('Cache-Control', cache)
+        self.send_header('ETag', etag)
+        self.end_headers()
+        self.wfile.write(data)
+        return None
 
     def reply(self, result):
         """Send what a route handler returned: a Response, a (body, status) pair, or a body."""
@@ -189,9 +222,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.reply(result)
             target = static_file(path)
             if target is not None:
-                # Vite puts a content hash in every /assets/ name, so they never change.
-                cache = 'public, max-age=31536000, immutable' if path.startswith('/assets/') else 'no-store'
-                return self.send(target.read_bytes(), content_type=STATIC_TYPES[target.suffix], cache=cache)
+                return self.send_static(path, target)
             if path.startswith(('/api/', '/assets/')) or Path(path).suffix:
                 return self.send({'error': 'Not found'}, 404)
             # Every other path is a page of the app (/games/123/11, /train, ...).

@@ -125,5 +125,9 @@
     "import": "Importar partidas",
     "play": "Jugar contra un bot"
   },
-  "more": "Accesos directos"
+  "more": "Accesos directos",
+  "account": {
+    "label": "Tu cuenta",
+    "signedIn": "Sesión iniciada como {{email}}"
+  }
 }

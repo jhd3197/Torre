@@ -12,6 +12,8 @@ import { useBotCollections } from '../hooks/useBotCollections';
 import { loadEvents } from '../lib/events';
 import { loadStars } from '../lib/stars';
 import { loadPlay } from '../lib/storage';
+import { usePhone } from '../hooks/usePhone';
+import { PhoneLobby } from '../components/bots/PhoneLobby';
 
 export const collectionPath = (id: string, bot?: string) => `/play/bots/${id}${bot ? `?bot=${encodeURIComponent(bot)}` : ''}`;
 /** Beaten: won a game against it (three stars). */
@@ -33,6 +35,7 @@ export function BotsHomePage() {
   const stars = loadStars();
   const progress = loadEvents();
   const hasSaved = !!loadPlay();
+  const phone = usePhone();
 
   useEffect(() => {
     document.body.dataset.page = 'bots';
@@ -62,6 +65,8 @@ export function BotsHomePage() {
   const results = q ? collections.flatMap(c => c.kind === 'season' ? [] : c.bots.filter(b => !c.abroad?.includes(b.id)).map(bot => ({ bot, collection: c })))
     .filter(({ bot }) => `${bot.name} ${bot.kind} ${bot.tags.join(' ')}`.toLowerCase().includes(q)).slice(0, 36) : [];
   const date = (time: number) => new Date(time - 1).toLocaleDateString(i18n.language, { month: 'long', day: 'numeric' });
+
+  if (phone) return <PhoneLobby collections={collections} rating={rating} hasSaved={hasSaved} />;
 
   function surprise() {
     const pool = people.filter(p => Math.abs(p.bot.elo - target) <= 200);

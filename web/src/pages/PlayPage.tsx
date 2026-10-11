@@ -16,7 +16,7 @@ import { explorePath } from '../lib/routes';
 import { outcomeFor, recordStars, starCount, starGoals } from '../lib/stars';
 import { keepEventBot } from '../lib/events';
 import { eventTitle, liveEvent } from '../data/collections';
-import { LEVELS, loadPlay, PHASES, savePlay, type PlaySave } from '../lib/storage';
+import { clearPlay, LEVELS, loadPlay, PHASES, savePlay, type PlaySave } from '../lib/storage';
 import { useEngines, useGameData, useToast } from '../state/AppData';
 import type { BoardState, BookHit, Color } from '../types';
 import { CoachRook } from '../components/CoachRook';
@@ -29,6 +29,7 @@ import { playBlindfold, quietCoach } from '../lib/settings';
 import { useBotMechanics } from '../hooks/useBotMechanics';
 import { exportPlay } from '../lib/gameExport';
 import { playPgn } from '../lib/playPgn';
+import { PhoneAction } from '../components/workspace/PhoneParts';
 
 /** How many of the moves were yours. */
 function yourMoveCount(game: PlaySave): number {
@@ -267,6 +268,53 @@ export function PlayPage() {
   // A blindfold game shows the pieces again once it is over.
   const blindfold = playBlindfold.use() && !result;
 
+  // What the bot and the coach have to say: in the panel on a desk, under the board on a phone.
+  const say = <>
+    {mechanics.line && <p className="bot-speech" role="status">“{mechanics.line}”</p>}
+    {game.masterId && bookNote !== undefined && !result && (
+      <p className={`legend-book-note${bookNote ? '' : ' out'}`} role="status">{bookNote
+        ? t('legend.fromGame', { name: botName, count: bookNote.count, total: bookNote.total, opponent: bookNote.game.opponent, year: bookNote.game.year ?? '?' })
+        : t('legend.outOfBook', { name: botName, elo: game.elo })}</p>
+    )}
+    {!result && !held && !game.coached && <CoachRook initialFen={game.initialFen} moves={game.moves} you={game.playerColor} botName={botName} board={live}
+      thinking={busy && turn !== game.playerColor} reviewing={!atLive} />}
+    {held && (
+      <div className="coach-hold" role="alert">
+        <Mascot pose="alarm" size={56} />
+        <div>
+          <strong>{t('coach.holdOn', { san: held.judged.line[0] ?? held.uci })}</strong>
+          <p>{whyItFails(tl, held.judged, botName)}</p>
+          <div className="coach-hold-actions">
+            <button type="button" className="button primary" onClick={() => setHeld(null)}>{t('coach.thinkAgain')}</button>
+            <button type="button" className="button" onClick={() => { const uci = held.uci; setHeld(null); void move(uci, true); }}>{t('coach.playAnyway')}</button>
+          </div>
+        </div>
+      </div>
+    )}
+    {game.coached && !held && !result && <PlayCoach initialFen={game.initialFen} moves={game.moves} yourTurn={yourTurn} botName={botName} onMarks={setCoachMarks} />}
+  </>;
+  const leave = () => { clearPlay(); navigate('/play/bots'); };
+  const botColor: Color = game.playerColor === 'white' ? 'black' : 'white';
+  const explorePosition = explorePath({ fen: game.initialFen, moves: game.moves.slice(0, cursor).map(m => m.uci), base: cursor, from: '/play', flipped });
+  // The phone's four buttons: the game's way forward first, a new opponent last.
+  const phoneActions = result ? <>
+    <PhoneAction icon="trophy" label={t('game.seeResult')} tone="primary" onClick={() => setResultOpen(true)} />
+    <PhoneAction icon="repeat" label={t('game.rematch')} onClick={rematch} />
+    <PhoneAction icon="search" label={t('phone.review')} to={explorePath({ fen: game.initialFen, moves: game.moves.map(m => m.uci), base: game.moves.length, from: '/play', flipped })} />
+    <PhoneAction icon="plus" label={t('phone.new')} onClick={() => navigate('/play/bots')} />
+  </> : confirmResign ? <>
+    <PhoneAction icon="back" label={t('game.keepPlaying')} onClick={() => setConfirmResign(false)} />
+    <PhoneAction icon="flag" label={t('game.confirmResign')} tone="danger" onClick={resign} />
+  </> : <>
+    {game.coached
+      ? <PhoneAction icon="undo" label={t('phone.takeBack')} disabled={busy || total < 1} onClick={takeBack} />
+      : <PhoneAction icon="search" label={t('phone.explore')} to={explorePosition} />}
+    {yourMoveCount(game) === 0
+      ? <PhoneAction icon="exit" label={t('game.leave')} onClick={leave} />
+      : <PhoneAction icon="flag" label={t('game.resign')} onClick={() => setConfirmResign(true)} />}
+    <PhoneAction icon="plus" label={t('phone.new')} tone="primary" onClick={() => navigate('/play/bots')} />
+  </>;
+
   return (
     <>
       <BoardWorkspace mode="play" initialFen={game.initialFen} moves={game.moves} cursor={cursor}
@@ -274,9 +322,14 @@ export function PlayPage() {
         players={{ white: info('white'), black: info('black') }} movable={result ? false : game.playerColor} onMove={move} busy={busy} hidePieces={blindfold}
         busyText={busy && game.coached && turn === game.playerColor ? t('coach.looking') : t('game.thinking', { name: botName })} onBoard={onBoard}
         coachMarks={held ? { annotations: [{ from: held.uci.slice(0, 2), to: held.uci.slice(2, 4) }] } : game.coached ? coachMarks : undefined} resultText={game.resigned ? t('game.resigned', { result: game.result }) : undefined}
+        phoneHead={{ title: botName, sub: info(botColor).detail, back: '/play/bots' }}
+        phoneSay={<div className="phone-say">{say}{(engineError || !engineAvailable) && (
+          <p className="coach-note" role="alert">{engineAvailable ? t('game.botCouldNotReply', { name: botName }) : t('game.installStockfish')}
+            <button type="button" className="text-button" onClick={() => setEngineError(false)}>{t('game.retry')}</button></p>
+        )}</div>}
+        phoneActions={phoneActions}
         headerActions={<>
-          <Link className="text-button" id="explore-position"
-            to={explorePath({ fen: game.initialFen, moves: game.moves.slice(0, cursor).map(m => m.uci), base: cursor, from: '/play', flipped })}>{t('game.explorePosition')}</Link>
+          <Link className="text-button" id="explore-position" to={explorePosition}>{t('game.explorePosition')}</Link>
           <button type="button" className="text-button" disabled={exporting || busy} title={t('game.exportTorreTitle')}
             onClick={async () => {
               setExporting(true);
@@ -289,28 +342,7 @@ export function PlayPage() {
         boardFooter={!atLive ? <button id="live-return" type="button" className="button" onClick={() => setCursor(total)}>{t('game.returnToLive')}</button> : undefined}
         panelTop={<>
           {bot && <OpponentCard bot={bot} />}
-          {mechanics.line && <p className="bot-speech" role="status">“{mechanics.line}”</p>}
-          {game.masterId && bookNote !== undefined && !result && (
-            <p className={`legend-book-note${bookNote ? '' : ' out'}`} role="status">{bookNote
-              ? t('legend.fromGame', { name: botName, count: bookNote.count, total: bookNote.total, opponent: bookNote.game.opponent, year: bookNote.game.year ?? '?' })
-              : t('legend.outOfBook', { name: botName, elo: game.elo })}</p>
-          )}
-          {!result && !held && !game.coached && <CoachRook initialFen={game.initialFen} moves={game.moves} you={game.playerColor} botName={botName} board={live}
-            thinking={busy && turn !== game.playerColor} reviewing={!atLive} />}
-          {held && (
-            <div className="coach-hold" role="alert">
-              <Mascot pose="alarm" size={56} />
-              <div>
-                <strong>{t('coach.holdOn', { san: held.judged.line[0] ?? held.uci })}</strong>
-                <p>{whyItFails(tl, held.judged, botName)}</p>
-                <div className="coach-hold-actions">
-                  <button type="button" className="button primary" onClick={() => setHeld(null)}>{t('coach.thinkAgain')}</button>
-                  <button type="button" className="button" onClick={() => { const uci = held.uci; setHeld(null); void move(uci, true); }}>{t('coach.playAnyway')}</button>
-                </div>
-              </div>
-            </div>
-          )}
-          {game.coached && !held && !result && <PlayCoach initialFen={game.initialFen} moves={game.moves} yourTurn={yourTurn} botName={botName} onMarks={setCoachMarks} />}
+          {say}
           <div className="play-actions">
             {game.coached && total >= 1 && !busy && (
               <button type="button" className="button" id="take-back" onClick={takeBack}>{t('coach.takeBack')}</button>
@@ -322,8 +354,14 @@ export function PlayPage() {
               <Mascot pose="salute" size={40} className="resign-mascot" />
               <button type="button" className="button danger" id="confirm-resign" onClick={resign}>{t('game.confirmResign')}</button>
               <button type="button" className="button" onClick={() => setConfirmResign(false)}>{t('game.keepPlaying')}</button>
-            </> : (
-              <button type="button" className="button" id="resign" onClick={() => setConfirmResign(true)} disabled={!total}>
+            </> : yourMoveCount(game) === 0 ? (
+              // Before your first move there is nothing to resign: leave, and the game never counts.
+              <button type="button" className="button" id="leave-game" title={t('game.leaveNote')}
+                onClick={leave}>
+                {t('game.leave')}
+              </button>
+            ) : (
+              <button type="button" className="button" id="resign" onClick={() => setConfirmResign(true)}>
                 <img src={brandIcon('resign')} alt="" width="14" height="14" /> {t('game.resign')}
               </button>
             )}

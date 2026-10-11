@@ -37,7 +37,9 @@
     "botPhases": "Opening / middlegame / endgame: {{ratings}}",
     "copyPgn": "Copy PGN",
     "pgnCopied": "PGN copied. Paste it into Lichess, a study or a message.",
-    "pgnCopyFailed": "Could not copy the PGN. Your browser blocked the clipboard."
+    "pgnCopyFailed": "Could not copy the PGN. Your browser blocked the clipboard.",
+    "leave": "Leave game",
+    "leaveNote": "You have not moved yet, so this game does not count."
   },
   "result": {
     "won": "You won!",
@@ -400,6 +402,35 @@
       "soonNote": "Come back when the event starts.",
       "returns": "Returns in {{when}}",
       "endedNote": "You did not beat this one during the event."
+    }
+  },
+  "phone": {
+    "review": "Review",
+    "new": "New",
+    "takeBack": "Undo",
+    "explore": "Explore",
+    "home": "Home",
+    "pickBot": "Pick a bot",
+    "you": "You · {{rating}}",
+    "search": "Search bots",
+    "collections": "Collections",
+    "all": "All",
+    "event": "Event",
+    "left": "{{days}}d {{hours}}h left",
+    "eventGoal_one": "Beat {{count}} of them to earn the crest.",
+    "eventGoal_other": "Beat {{count}} of them to earn the crest.",
+    "count_one": "{{count}} bot",
+    "count_other": "{{count}} bots",
+    "sort": {
+      "near": "Near me",
+      "easy": "Easiest"
+    },
+    "beaten": "Beaten",
+    "diff": {
+      "easy": "Easy",
+      "fair": "Fair",
+      "hard": "Hard",
+      "boss": "Boss"
     }
   }
 }

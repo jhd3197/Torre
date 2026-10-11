@@ -17,6 +17,16 @@ import { resumablePlay } from '../lib/storage';
 import type { LessonCatalog, PuzzleCatalog, TodayPlan } from '../types';
 import { FlameIcon } from '../components/story/Streak';
 import { streakWeek } from '../components/story/Sidebar';
+import { Mascot } from '../components/Reward';
+import { MiniBoard } from '../components/MiniBoard';
+import { usePosition } from '../hooks/useChess';
+import { useHostedAccount } from '../hooks/useHostedAccount';
+import { usePhone } from '../hooks/usePhone';
+import { PAGE_ART } from '../lib/art';
+import { gamePath } from '../lib/routes';
+import { sideToMove } from '../lib/format';
+import { useGameData } from '../state/AppData';
+import type { GameSummary } from '../types';
 
 export interface ContinueNode { chapter: StoryChapter; index: number; node: StoryNode }
 
@@ -243,12 +253,147 @@ const visitorOfTheDay = (date = new Date()) => HOME_ART[VISITORS[Math.floor(date
 
 const isNight = (date = new Date()) => date.getHours() >= 19 || date.getHours() < 6;
 
+const GEAR = (
+  <svg aria-hidden="true" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+  </svg>
+);
+const CHEVRON = <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>;
+
+const greeting = (date = new Date()) => date.getHours() < 5 ? 'evening' : date.getHours() < 12 ? 'morning' : date.getHours() < 18 ? 'afternoon' : 'evening';
+
+/** The phone's hero: Rooky with today's step, and one button to take it. */
+function PhoneHero({ catalog, name }: { catalog: CatalogState; name: string | null }) {
+  const { t } = useTranslation('home');
+  const hello = name ? t(`phone.hello.${greeting()}`, { name }) : t(`phone.helloPlain.${greeting()}`);
+  const current = catalog && catalog !== 'failed' ? continueNode(catalog) : null;
+  const kind = current ? nodeKind(current.node) : null;
+  const [title, say, to, button] = catalog === 'failed' ? [t('hero.failedTitle'), t('hero.failedText'), '/story', t('hero.openStory')]
+    : !catalog ? [t('hero.loading'), null, null, null]
+      : !current ? [t('hero.doneTitle'), t('hero.doneText'), '/story', t('hero.revisit')]
+        : [t(`phone.ready.${kind}`), <><strong>{nodeTitle(current, t)}</strong> {current.node.lesson?.summary ?? current.chapter.tagline}</>, nodePath(current), t(`hero.start.${kind}`)];
+  return (
+    <section className={`phone-hero${current ? ` unit-${current.chapter.category}` : ''}`} aria-label={t('hero.label')} aria-busy={!catalog}>
+      <span className="phone-hero-hello">{hello}</span>
+      <h1>{title}</h1>
+      {say && <p className="phone-hero-say"><span>{say}</span></p>}
+      {to && <Link className="phone-hero-go" to={to}>{button}{CHEVRON}</Link>}
+      <span className="phone-hero-rooky" aria-hidden="true"><Mascot pose={current ? 'wave' : catalog === 'failed' ? 'shrug' : 'trophy'} size={104} /></span>
+    </section>
+  );
+}
+
+/** The game you left, its position in a corner: one tap back to the board. */
+function PhoneResume() {
+  const { t } = useTranslation('home');
+  const saved = resumablePlay();
+  const { board } = usePosition(saved?.initialFen ?? '', saved?.moves ?? [], !!saved);
+  if (!saved) return null;
+  const bot = (saved.botId ? botById(saved.botId)?.name : undefined) ?? saved.botName ?? 'Stockfish';
+  const ply = saved.moves.length;
+  const whiteToMove = (ply % 2 === 0) === (sideToMove(saved.initialFen) === 'white');
+  const yourTurn = whiteToMove === (saved.playerColor === 'white');
+  return (
+    <Link className="phone-resume" to="/play">
+      <span className="phone-resume-board">{board && <MiniBoard fen={board.fen} />}</span>
+      <span className="phone-resume-text">
+        <small>{t('phone.continue')}</small>
+        <strong>{t('phone.versus', { name: bot, move: Math.floor(ply / 2) + 1 })}</strong>
+        <span>{yourTurn ? t('phone.yourTurn') : t('phone.theirTurn', { name: bot })}</span>
+      </span>
+      {CHEVRON}
+    </Link>
+  );
+}
+
+const resultOf = (game: GameSummary) => game.user_result === 1 ? 'won' : game.user_result === 0 ? 'lost' : game.user_result === 0.5 ? 'drew' : null;
+
+/** Your last few games, each opening its review. */
+function PhoneRecent({ games }: { games: GameSummary[] }) {
+  const { t, i18n } = useTranslation('home');
+  if (!games.length) return null;
+  const recent = [...games].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? '')).slice(0, 3);
+  // PGN dates ("2026.10.10") are calendar days: read them as local dates, not UTC midnight.
+  const day = (date?: string) => {
+    const [y, m, d] = (date ?? '').split(/[.-]/).map(Number);
+    return y && m && d ? new Date(y, m - 1, d).toLocaleDateString(i18n.language, { month: 'short', day: 'numeric' }) : null;
+  };
+  return (
+    <section className="phone-recent" aria-labelledby="phone-recent-title">
+      <div className="phone-section-head"><h2 id="phone-recent-title">{t('phone.recent')}</h2><Link to="/games">{t('phone.seeAll')}</Link></div>
+      <ul>{recent.map(game => {
+        const result = resultOf(game);
+        return (
+          <li key={game.id}><Link to={gamePath(String(game.id))}>
+            <span className={`phone-result ${result ?? 'unknown'}`}>{t(`phone.result.${result ?? 'unknown'}`)}</span>
+            <span className="phone-recent-text">
+              <strong>{t('phone.vs', { name: game.opponent ?? '?' })}</strong>
+              <small>{[day(game.date), game.plies ? t('phone.moves', { count: Math.ceil(game.plies / 2) }) : null].filter(Boolean).join(' · ')}</small>
+            </span>
+            {game.user_accuracy != null && <span className="phone-recent-score" title={t('phone.accuracy')}>{Math.round(game.user_accuracy)}%</span>}
+          </Link></li>
+        );
+      })}</ul>
+    </section>
+  );
+}
+
+/** Home on a phone: hello, today's step, the game you left, four doors, and your last games. */
+function PhoneHome({ catalog }: { catalog: CatalogState }) {
+  const { t } = useTranslation('home');
+  const profile = useProfile();
+  const account = useHostedAccount();
+  const { insights, games } = useGameData();
+  const [rating, setRating] = useState<number | null>(null);
+  useEffect(() => {
+    let live = true;
+    api<PuzzleCatalog>('api/puzzles').then(c => { if (live) setRating(c.rating); }, () => { /* the tile keeps its plain line */ });
+    return () => { live = false; };
+  }, []);
+  const name = account?.name || insights?.user || null;
+  const streak = profile?.streak?.count ?? 0;
+  const last = [...games].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))[0];
+  const doors = [
+    { to: '/play/bots', art: HOME_ART.bots, title: t('practice.bot.title'), text: t('phone.doors.bot') },
+    { to: '/puzzles', art: HOME_ART.puzzles, title: t('practice.puzzles.title'), text: rating != null ? t('practice.puzzles.rating', { rating }) : t('phone.doors.puzzles') },
+    { to: '/arena', art: PAGE_ART.Arena, title: t('phone.doors.arenaTitle'), text: t('phone.doors.arena') },
+    { to: last ? gamePath(String(last.id)) : '/games', art: PAGE_ART.Games, title: t('phone.doors.reviewTitle'), text: last ? t('phone.doors.review') : t('phone.doors.noGames') },
+  ];
+  return (
+    <section id="home" className="phone-home" aria-label={t('label')}>
+      <header className="phone-home-head">
+        <img src="art/logo/mark.png" alt="" width="34" height="34" />
+        <span className="phone-home-brand">TORRE</span>
+        <Link className={`phone-streak${streak ? '' : ' cold'}`} to="/profile" aria-label={t('today.streak', { count: streak })}>
+          <FlameIcon lit={streak > 0} size={15} />{t('phone.days', { count: streak })}
+        </Link>
+        <Link className="phone-icon-button" to="/settings" aria-label={t('phone.settings')}>{GEAR}</Link>
+      </header>
+      <PhoneHero catalog={catalog} name={name} />
+      <PhoneResume />
+      <nav className="phone-doors" aria-label={t('practice.label')}>
+        {doors.map(door => (
+          <Link key={door.title} className="phone-door" to={door.to} viewTransition>
+            <img src={door.art} alt="" width="46" height="46" />
+            <strong>{door.title}</strong>
+            <small>{door.text}</small>
+          </Link>
+        ))}
+      </nav>
+      <PhoneRecent games={games} />
+    </section>
+  );
+}
+
 export function HomePage() {
   const { t } = useTranslation('home');
   useEffect(() => { document.body.dataset.page = 'home'; }, []);
   const catalog = useLessonCatalog();
+  const phone = usePhone();
   const saved = resumablePlay();
   const savedBot = saved?.botId ? botById(saved.botId)?.name : undefined;
+  if (phone) return <PhoneHome catalog={catalog} />;
 
   return (
     <section id="home" className="home" aria-label={t('label')}>

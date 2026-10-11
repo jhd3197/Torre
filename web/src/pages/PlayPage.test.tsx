@@ -32,6 +32,18 @@ test('starting a game from the lobby saves it and opens /play', async () => {
   expect(loadPlay()?.botId).toBeUndefined();
 });
 
+test('before your first move you can leave the game, and it does not count', async () => {
+  const server = serveMoves();
+  savePlay({ initialFen: START, moves: [], playerColor: 'white', level: 4, result: null, botId: 'granny-rose', elo: 1200 });
+  const { location } = renderAt('/play');
+  const leave = await screen.findByRole('button', { name: 'Leave game' });
+  expect(screen.queryByRole('button', { name: /Resign/ })).not.toBeInTheDocument();
+  fireEvent.click(leave);
+  await waitFor(() => expect(location().pathname).toBe('/play/bots'));
+  expect(loadPlay()).toBeNull();
+  expect(server.calls.some(c => c.path === 'api/played')).toBe(false);
+});
+
 test('a character bot is playable and plays at its rating', async () => {
   const server = serveMoves();
   server.on('api/engine', () => ({ best: 'e2e4', lines: [] }));

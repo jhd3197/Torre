@@ -274,6 +274,10 @@ class ServerTests(unittest.TestCase):
         (studio.UI_DIR / "assets").mkdir(parents=True)
         (studio.UI_DIR / "index.html").write_text('<!doctype html><html><head><script src="./assets/app.js"></script></head></html>', encoding="utf-8")
         (studio.UI_DIR / "assets" / "app.js").write_text("console.log(1)", encoding="utf-8")
+        (studio.UI_DIR / "art").mkdir()
+        (studio.UI_DIR / "art" / "rook.webp").write_bytes(b"RIFF-webp")
+        (studio.UI_DIR / "locales").mkdir()
+        (studio.UI_DIR / "locales" / "en.json").write_text("{}", encoding="utf-8")
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), studio.Handler)
         cls.base = f"http://127.0.0.1:{cls.server.server_address[1]}"
         threading.Thread(target=cls.server.serve_forever, daemon=True).start()
@@ -346,6 +350,22 @@ class ServerTests(unittest.TestCase):
         for path in ("/assets/missing.js", "/api/nope", "/../studio.py", "/assets/../../studio.py", "/studio.py"):
             with self.subTest(path=path):
                 self.assertEqual(self.status_of(path), 404)
+
+    def test_static_files_are_cached_by_kind_and_revalidate_with_a_304(self):
+        from urllib.error import HTTPError
+        from urllib.request import Request, urlopen
+        for path, cache in [("/assets/app.js", "public, max-age=31536000, immutable"),
+                            ("/art/rook.webp", "public, max-age=86400, stale-while-revalidate=604800"),
+                            ("/locales/en.json", "no-cache")]:
+            with self.subTest(path=path):
+                headers, _ = self.get(path)
+                self.assertEqual(headers["Cache-Control"], cache)
+                with self.assertRaises(HTTPError) as unchanged:
+                    urlopen(Request(self.base + path, headers={"If-None-Match": headers["ETag"]}))
+                self.assertEqual(unchanged.exception.code, 304)
+        # A stale tag gets the file again.
+        with urlopen(Request(self.base + "/art/rook.webp", headers={"If-None-Match": '"old"'})) as response:
+            self.assertEqual(response.read(), b"RIFF-webp")
 
     def test_line_sans(self):
         result = self.post("/api/line", {"moves": ["e2e4", "e7e5", "g1f3"]})

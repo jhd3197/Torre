@@ -340,5 +340,18 @@
     "dialogText": "Los consejos escritos de Rooky vienen de un modelo de IA. Elige dónde se ejecuta; puedes cambiarlo cuando quieras en Ajustes.",
     "later": "Ahora no",
     "done": "Listo"
+  },
+  "phone": {
+    "home": "Inicio",
+    "back": "Ajustes",
+    "saved": "Los cambios se guardan solos",
+    "muted": "Silenciado",
+    "quiet": "Discreto",
+    "groups": {
+      "app": "App",
+      "coach": "Entrenador",
+      "engine": "Motor",
+      "more": "Más"
+    }
   }
 }
