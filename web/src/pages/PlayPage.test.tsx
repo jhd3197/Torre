@@ -1,6 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { loadPlay, savePlay } from '../lib/storage';
-import { engineEntry, fakeServer, renderAt, START, STOCKFISH } from '../test/harness';
+import { boardAfter, engineEntry, fakeServer, renderAt, START, STOCKFISH } from '../test/harness';
 
 // A collection lists its bots as cards; role queries across all of them are slow in jsdom.
 const botCard = (name: HTMLElement) => name.closest('button')!;
@@ -298,6 +298,24 @@ test('a regular in costume plays as the character: its name, opening line and me
   expect(screen.getAllByText('El Silbón').length).toBeGreaterThan(0);
   expect(screen.queryByText('Iron Wall Ivo')).not.toBeInTheDocument();
   expect(document.body.dataset.ambience).toBe('night');
+});
+
+test('a character bot speaks up in its own voice when your move hands it the game', async () => {
+  const server = serveMoves();
+  // Real move counters, so the page can tell whose move each board shows.
+  server.on('api/position', body => {
+    const moves = body?.moves as string[];
+    const board = boardAfter(moves);
+    return { ...board, fen: `${board.fen.split(' ')[0]} ${moves.length % 2 ? 'b' : 'w'} - - 0 ${Math.floor(moves.length / 2) + 1}` };
+  });
+  // Granny Rose read +0.20 after her first move, and +4.00 once you replied: a blunder.
+  server.on('api/engine', () => ({ best: 'g1f3', lines: [], slip: false, before: 400, after: 380 }));
+  savePlay({ initialFen: START, moves: [{ uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }], playerColor: 'black', level: 4, result: null,
+    botId: 'granny-rose', elo: 2600, botName: 'Granny Rose', botNotes: [{ ply: 1, slip: false, before: 30, after: 20 }] });
+  renderAt('/play');
+  expect(await screen.findByText('“Look again at what you just left.”')).toBeInTheDocument();
+  expect(server.calls.find(c => c.path === 'api/engine')?.body).toMatchObject({ play: true, read: true });
+  expect(loadPlay()?.botNotes?.at(-1)).toMatchObject({ ply: 3, before: 400, after: 380 });
 });
 
 test('a bot with mechanics greets you with its line and sets the night board', async () => {

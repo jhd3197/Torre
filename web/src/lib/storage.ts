@@ -58,7 +58,11 @@ export type Phase = typeof PHASES[number];
 export type PhaseElo = Record<Phase, number>;
 /** The ratings a phase can be set to (api_board.PHASE_ELO_RANGE). */
 export const PHASE_ELO_RANGE = [250, 3200] as const;
-export interface BotNote { ply: number; slip: boolean; phase?: Phase; elo?: number }
+export interface BotNote {
+  ply: number; slip: boolean; phase?: Phase; elo?: number;
+  /** The bot's read in its own centipawns: the position you left it, and after its move (botChatter.swingOf). */
+  before?: number; after?: number;
+}
 
 const validPhaseElo = (value: unknown): value is PhaseElo => !!value && typeof value === 'object'
   && PHASES.every(phase => Number.isInteger((value as Record<string, unknown>)[phase])

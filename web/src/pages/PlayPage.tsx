@@ -25,8 +25,9 @@ import { BotReport, DrawRule } from '../components/BotReport';
 import { whyItFails } from '../lib/whyItFails';
 import { useMoveTiming } from '../hooks/useMoveTiming';
 import { useNarration } from '../hooks/useNarration';
-import { playBlindfold, quietCoach } from '../lib/settings';
+import { botChatter, playBlindfold, quietCoach } from '../lib/settings';
 import { useBotMechanics } from '../hooks/useBotMechanics';
+import { chatLine } from '../data/botChatter';
 import { exportPlay } from '../lib/gameExport';
 import { playPgn } from '../lib/playPgn';
 import { PhoneAction } from '../components/workspace/PhoneParts';
@@ -138,6 +139,9 @@ export function PlayPage() {
   // The bot replies whenever it is its turn on the live position. Leaving the
   // page cancels the reply, so it can never land on a game started meanwhile.
   const thinking = useRef(false);
+  // A character bot that talks asks for its read around each move, for its chatter.
+  const chatterOn = botChatter.use();
+  const talks = chatterOn && !!bot?.voice && !bot.coach;
   const pending = useRef<AbortController | null>(null);
   useEffect(() => () => pending.current?.abort(), []);
   useEffect(() => {
@@ -150,13 +154,14 @@ export function PlayPage() {
     (async () => {
       try {
         const reply = await botMove(game.initialFen, game.moves, game.level, controller.signal, game.elo, game.engineId, game.modelId,
-          game.masterId, game.nodes, game.phaseElo);
+          game.masterId, game.nodes, game.phaseElo, { read: talks });
         const { best, book } = reply;
         if (!best) return;
         if (game.masterId) setBookNote(book ?? null);
         const played = await playMove(game.initialFen, game.moves, best, controller.signal);
         // The bot's own record of the move, for the after-game card: its phase, rating and any slip.
-        const note = { ply: game.moves.length + 1, slip: !!reply.slip, ...(reply.phase ? { phase: reply.phase } : {}), ...(reply.elo ? { elo: reply.elo } : {}) };
+        const note = { ply: game.moves.length + 1, slip: !!reply.slip, ...(reply.phase ? { phase: reply.phase } : {}), ...(reply.elo ? { elo: reply.elo } : {}),
+          ...(Number.isFinite(reply.before) && Number.isFinite(reply.after) ? { before: reply.before, after: reply.after } : {}) };
         const next = { ...game, moves: [...game.moves, { uci: best, san: played.san }], result: played.result,
           botNotes: [...(game.botNotes ?? []), note] };
         update(next);
@@ -171,11 +176,13 @@ export function PlayPage() {
         if (!controller.signal.aborted) setBusy(false);
       }
     })();
-  }, [game, atLive, live, turn, engineError, update, toast]);
+  }, [game, atLive, live, turn, engineError, update, toast, talks]);
 
   // A custom bot's mechanics (data/botMechanics.ts): its sounds, its lines, the board's mood.
-  const mechanics = useBotMechanics({ botId: bot?.costumeId ?? game?.botId, gameKey: location.key, initialFen: game?.initialFen ?? START_FEN,
-    moves: game?.moves ?? NO_MOVES, you: game?.playerColor ?? 'white', live: atLive ? live : null, result });
+  // Every character bot also talks (data/botChatter.ts); Rooky has the coach's own voice instead.
+  const mechanics = useBotMechanics({ botId: bot?.costumeId ?? game?.botId, bot: bot?.coach ? undefined : bot, gameKey: location.key,
+    initialFen: game?.initialFen ?? START_FEN, moves: game?.moves ?? NO_MOVES, notes: game?.botNotes, you: game?.playerColor ?? 'white',
+    live: atLive ? live : null, result });
 
   if (!game) return <Navigate to="/play/bots" replace />;
 
@@ -422,7 +429,9 @@ function ResultDialog({ open, onClose, game, result, bot, botName, termination, 
   const goals = starGoals(result, game.playerColor, yourMoveCount(game));
   const stars = starCount(goals);
   const title = outcome === 'win' ? t('result.won') : outcome === 'draw' ? t('result.draw') : game.resigned ? t('result.resigned') : t('result.botWon', { name: botName });
-  const quote = outcome === 'win' ? bot?.lose : outcome === 'loss' ? bot?.win : undefined;
+  // A draw has no line of its own: the bot says one in its voice (data/botChatter.ts).
+  const quote = outcome === 'win' ? bot?.lose : outcome === 'loss' ? bot?.win
+    : bot?.voice && !bot.coach ? chatLine(bot.voice, 'draw', game.moves.length) : undefined;
   const coach = outcome === 'win' ? { pose: 'dancing' as const, line: t('result.coachWin') }
     : outcome === 'draw' ? { pose: 'relieved' as const, line: t('result.coachDraw') }
     : game.resigned ? { pose: 'sad' as const, line: t('result.coachResigned') }

@@ -14,7 +14,7 @@ export const SEARCH_INDEX: Record<SectionId, readonly Entry[]> = {
   display: [['pieces.label', null], ['board.title', null], 'board.coordinates', 'board.lastMove', 'board.legalDots', 'board.animation',
     'board.drag', 'board.autoQueen'],
   sound: ['sound.mute', 'sound.master', 'sound.effects', 'sound.effectsVolume', 'sound.moveSound', 'sound.music', 'sound.musicVolume', 'sound.hidden'],
-  voice: ['voice.speaks', 'voice.coach', 'voice.speed', 'voice.volume', 'voice.dip', 'voice.captions', 'voice.rooky', 'voice.review', 'voice.quiet',
+  voice: ['voice.speaks', 'voice.coach', 'voice.speed', 'voice.volume', 'voice.dip', 'voice.captions', 'voice.rooky', 'voice.review', 'voice.quiet', 'voice.chatter',
     ['voice.heading', 'voice.note']],
   learning: ['learning.hard', 'learning.help', 'learning.autoNext', 'learning.ratings', 'learning.blindfold', 'learning.playBlindfold'],
   analysis: ['analysis.background', 'analysis.auto', 'analysis.depth', 'analysis.lines', 'analysis.evalBar', 'analysis.best', 'analysis.next', 'analysis.control'],

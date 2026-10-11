@@ -1,6 +1,7 @@
 // The bot roster. Character bots and Stockfish 18 (sf18) are always playable; engines
 // become playable when /api/engines reports them installed (see mergeEngineBots).
 import { BOT_FIGURES } from './botFigures';
+import { voiceFor, type Voice } from './botChatter';
 import { BOT_OUTFITS } from './botOutfits';
 import COLLECTIONS from './botCollections.json';
 import { CHARACTER_ROWS, DIASPORA_ROWS, SEASON_ROWS } from './characters';
@@ -28,7 +29,7 @@ export interface Bot {
   outfit?: string;
   /** In an event where the outfit is a character of its own (El Silbón), the regular underneath. */
   regular?: string;
-  /** That character's id (the slug of its name, 'el-silbo-n'): its mechanics and voice go by it. */
+  /** That character's id (the slug of its name, 'el-silbo-n'): its mechanics go by it. */
   costumeId?: string;
   locked?: string;
   engine?: boolean;
@@ -49,6 +50,8 @@ export interface Bot {
   portrait?: string;
   /** The coach (Rooky): plays near your rating and coaches you through the game. */
   coach?: boolean;
+  /** How a character bot talks during a game, when it has no line of its own (botChatter.ts). */
+  voice?: Voice;
   /** Lines: at the start, when it beats you, when you beat it. */
   hello?: string;
   win?: string;
@@ -110,6 +113,7 @@ type CharacterRow = (typeof CHARACTER_ROWS)[number];
 const character = ([avatar, name, elo, kind, desc, tags, style, hello, win, lose]: CharacterRow): Bot => translatable({
   id: slug(name), icon: '', name, elo, kind, desc, tags: [...tags], style, record: '–',
   avatar: WORN.get(avatar)?.avatar ?? (BOT_FIGURES.has(avatar) ? `art/bots/${avatar}.webp` : `art/avatars/${avatar}.webp`), hello, win, lose,
+  voice: voiceFor(tags, kind, style, elo),
   ...(WORN.has(avatar) ? { outfit: WORN.get(avatar)!.event } : {}),
 } as Bot, `bots.${slug(name).replace(/\./g, '_')}`, BOT_TEXT);
 /** Each character bot's avatar key, by bot id: where its outfits live. */

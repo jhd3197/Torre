@@ -196,7 +196,10 @@ def engine(req):
             strength = {'Skill Level': max(0, min(20, _number(payload, 'level', 4)))}
         with engine_service.player(engine_id, strength=strength) as pooled:
             best, slipped = engine_service.bot_choice(pooled, board, slip, limit=limit)
-        return {'best': best.uci(), 'lines': [], 'phase': phase, 'slip': slipped,
+            # A character bot talks during the game: "read" asks for its view around the move
+            # (Stockfish only, a shallow look; see move_reading).
+            reading = engine_service.move_reading(pooled, board, best) if payload.get('read') and engine_id == 'stockfish' else {}
+        return {'best': best.uci(), 'lines': [], 'phase': phase, 'slip': slipped, **reading,
                 **({'elo': _number({'elo': elo}, 'elo')} if elo is not None else {})}
     # Analysis with a model searches by time like any engine: the
     # model's go_override (one node) is for playing, not for lines.

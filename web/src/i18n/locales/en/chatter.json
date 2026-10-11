@@ -1,0 +1,42 @@
+{
+  "cocky": {
+    "botCheck": ["Check! Get used to it.", "Knock knock. It's me again.", "Run, little king, run."],
+    "botCapture": ["Mine now.", "Thanks for the snack.", "Too easy."],
+    "lostBig": ["Okay, that one stung.", "Lucky. Very lucky.", "I let you have that. Probably."],
+    "youBlunder": ["Oh, you really did that?", "I'll take it, thanks!", "That's going in my highlight reel."],
+    "youStrong": ["Hm. Not bad. For you.", "Okay, okay, you've got a move or two.", "Didn't see that one. Won't happen again."],
+    "draw": ["A draw? I'll call that a win on points.", "Fine. Next time I finish you.", "Half a point. You got lucky."]
+  },
+  "friendly": {
+    "botCheck": ["Check! Watch your king.", "Psst, your king is in check.", "Check! Sorry, had to."],
+    "botCapture": ["I'll take that, if you don't mind.", "Oops, there goes a piece.", "Got one!"],
+    "lostBig": ["Oh no, my poor piece!", "Ouch! Well played.", "You caught that one nicely."],
+    "youBlunder": ["Oh! Are you sure about that?", "I think you left something hanging...", "I'll take it, but gently."],
+    "youStrong": ["Ooh, nice move!", "Wow, I didn't see that coming.", "That was a good one!"],
+    "draw": ["A draw! That was fun.", "Nobody loses. I like that.", "Good game! Shake on it?"]
+  },
+  "nervous": {
+    "botCheck": ["Ch-check? Is that right? Check!", "Check... I think.", "Um. Check. Sorry."],
+    "botCapture": ["I took something! Was that allowed?", "Oh! I got a piece!", "Wait, I captured? Yay?"],
+    "lostBig": ["No no no no...", "Was that piece important? It was, wasn't it.", "Oh dear. Oh dear oh dear."],
+    "youBlunder": ["Is... is that a trap?", "That looks free. Too free?", "I'm scared to take it. Taking it."],
+    "youStrong": ["Oh no. Oh no, that's good.", "Please don't do that again.", "I knew I was going to lose that."],
+    "draw": ["A draw? Oh, thank goodness.", "Phew. I'll take it!", "I didn't lose! I didn't win, but I didn't lose!"]
+  },
+  "grumpy": {
+    "botCheck": ["Check. Move your king.", "Check. Obviously.", "Check. Keep up."],
+    "botCapture": ["Taken. Moving on.", "That one's gone.", "Should have guarded it."],
+    "lostBig": ["Hmph. Fine.", "Bah. I needed that.", "Don't get used to it."],
+    "youBlunder": ["Sloppy.", "And there it is.", "I've seen that mistake a thousand times."],
+    "youStrong": ["Hmph. Decent move.", "...Fine. That was good.", "Grr. Didn't like that."],
+    "draw": ["A draw. Hmph.", "Nobody wins. Typical.", "Half a point. Could be worse."]
+  },
+  "wise": {
+    "botCheck": ["Check. Mind your king's safety.", "Check. Your king has few friends nearby.", "Check. Note how it came about."],
+    "botCapture": ["A piece left unguarded is a piece given.", "Material counts, in the end.", "Count the defenders next time."],
+    "lostBig": ["Well found. I underestimated that.", "A fair price for a lesson.", "Good. You saw the weakness."],
+    "youBlunder": ["Look again at what you just left.", "Before each move, ask: what does it allow?", "A hurried move. Breathe."],
+    "youStrong": ["A fine move. You are learning.", "That is the move a strong player finds.", "Excellent. I had not expected that."],
+    "draw": ["A draw, fairly earned.", "Balance. There is wisdom in that.", "A draw is also a result. Well played."]
+  }
+}

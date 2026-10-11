@@ -112,10 +112,16 @@ export async function reviewPlies(initialFen: string, moves: Move[], from: numbe
  *  answers from their own games first; `book` says which game the move came from. */
 /** A bot's reply: the move, the phase it was played in and the rating it played at, and whether it
  *  was a deliberate random slip. `phaseElo` sets a rating per phase instead of `elo`. */
-export const botMove = (initialFen: string, moves: Move[], level: number, signal?: AbortSignal, elo?: number, engineId?: string, modelId?: string, masterId?: string, nodes?: number, phaseElo?: PhaseElo) =>
-  api<{ best: string | null; book?: BookHit; phase?: Phase; elo?: number; slip?: boolean }>('api/engine', { initialFen, moves: moves.map(m => m.uci), play: true, level,
+export const botMove = (initialFen: string, moves: Move[], level: number, signal?: AbortSignal, elo?: number, engineId?: string, modelId?: string, masterId?: string, nodes?: number, phaseElo?: PhaseElo,
+  extra: BotMoveExtra = {}) =>
+  api<BotReply>('api/engine', { initialFen, moves: moves.map(m => m.uci), play: true, level,
     ...(elo ? { elo } : {}), ...(engineId ? { engineId } : {}), ...(modelId ? { modelId } : {}), ...(masterId ? { masterId } : {}), ...(nodes ? { nodes } : {}),
-    ...(phaseElo ? { phaseElo } : {}) }, signal);
+    ...(phaseElo ? { phaseElo } : {}), ...(extra.read ? { read: true } : {}) }, signal);
+
+/** What else a bot's move request asks for: `read`, the bot's view around its move (for its chatter). */
+export interface BotMoveExtra { read?: boolean }
+/** `before`/`after`: with `read`, the bot's centipawns for the position it was left and after its move. */
+export interface BotReply { best: string | null; book?: BookHit; phase?: Phase; elo?: number; slip?: boolean; before?: number; after?: number }
 
 /** A move the coach talks about: the piece that plays it and the tactics it carries (motifs.py tags). */
 export interface CoachMove { uci: string; san: string; piece: string; motifs: string[] }

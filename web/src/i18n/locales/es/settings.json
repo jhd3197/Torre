@@ -161,6 +161,8 @@
     "reviewNote": "Al recorrer una partida revisada, el entrenador dice qué fue cada jugada.",
     "quiet": "Entrenador en silencio",
     "quietNote": "Mientras juegas, el entrenador guarda silencio y solo habla cuando se lo pides: sin comentarios tras capturas o jaques.",
+    "chatter": "Charla de los bots",
+    "chatterNote": "Los bots con personaje hablan durante la partida: una frase en su globo cuando dan jaque, capturan o detectan tu error.",
     "heading": "Paquetes de voz",
     "note": "Las voces grabadas del entrenador suenan naturales y funcionan sin conexión, en voz femenina o masculina. Sin el paquete de la voz elegida, el entrenador usa la otra voz grabada y luego la de tu navegador.",
     "size_one": "{{mb}} MB · {{count}} línea",

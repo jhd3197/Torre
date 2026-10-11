@@ -219,6 +219,36 @@ def bot_choice(engine, board, slip=0.0, rng=random, model=None, limit=None):
     return engine.play(board, limit or chess.engine.Limit(time=BOT_SECONDS), game=object()).move, False
 
 
+# The bot's read around its own move, for its chatter in the game: a shallow fixed-depth look, so
+# it costs a few milliseconds next to the move's own search and reads the same on any machine.
+READ_DEPTH = 9
+READ_CAP = 3000  # centipawns: past this a game is decided, and a mate counts as this much
+
+
+def move_reading(engine, board, move):
+    """How the bot sees the game around `move`, its reply on `board`, in the bot's centipawns:
+    `before`, the position its opponent left it, and `after`, once its move is played. The next
+    reply's `before` against this one's `after` tells how much the opponent's move changed: a
+    blunder hands the bot points, a strong move takes them away. Empty when the engine fails."""
+    me = board.turn
+
+    def read(position):
+        if position.is_checkmate():
+            return READ_CAP if position.turn != me else -READ_CAP
+        if position.is_game_over(claim_draw=True):
+            return 0
+        info = engine.analyse(position, chess.engine.Limit(depth=READ_DEPTH))
+        cp = info['score'].pov(me).score(mate_score=READ_CAP)
+        return max(-READ_CAP, min(READ_CAP, cp))
+
+    after = board.copy()
+    after.push(move)
+    try:
+        return {'before': read(board), 'after': read(after)}
+    except (chess.engine.EngineError, KeyError, AttributeError):
+        return {}
+
+
 def evaluate(board):
     """White-POV [cp, mate] for a position, for grading drill answers: a fixed-depth search
     from an empty hash, so the grade does not depend on what the engine searched before."""

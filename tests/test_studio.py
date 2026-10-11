@@ -154,6 +154,39 @@ class ChessStudioTests(unittest.TestCase):
         self.assertIn(bot_move(Engine(), board, bot_style(400)[1], rng=Always()), board.legal_moves)
 
 
+    def test_a_bot_reads_the_game_around_its_move_for_its_chatter(self):
+        board = position({'moves': ['e2e4', 'e7e5']})
+        seen = []
+
+        class Engine:
+            def analyse(self, board, limit):
+                seen.append(board.fen())
+                # +0.40 for White before Nf3; after it, Black to move sees -0.30 (White +0.30).
+                cp = 40 if board.turn == chess.WHITE else -30
+                return {'score': chess.engine.PovScore(chess.engine.Cp(cp), board.turn)}
+
+        reading = engine_service.move_reading(Engine(), board, chess.Move.from_uci('g1f3'))
+        self.assertEqual(reading, {'before': 40, 'after': 30})
+        self.assertEqual(len(seen), 2)
+
+    def test_a_reading_counts_mate_and_survives_a_failing_engine(self):
+        board = chess.Board('6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1')
+
+        class Engine:
+            def analyse(self, board, limit):
+                return {'score': chess.engine.PovScore(chess.engine.Mate(1), board.turn)}
+
+        reading = engine_service.move_reading(Engine(), board, chess.Move.from_uci('a1a8'))
+        self.assertEqual(reading['after'], engine_service.READ_CAP)  # mated: as much as a read can say
+        self.assertGreater(reading['before'], engine_service.READ_CAP - 10)  # mate in one, about to land
+
+        class Broken:
+            def analyse(self, board, limit):
+                raise chess.engine.EngineError('gone')
+
+        self.assertEqual(engine_service.move_reading(Broken(), chess.Board(), chess.Move.from_uci('e2e4')), {})
+
+
 class OpeningNameTests(unittest.TestCase):
     def test_every_code_gets_a_name_from_its_family(self):
         self.assertEqual(insights.eco_name('D02'), 'London System')

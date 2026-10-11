@@ -1,0 +1,42 @@
+{
+  "cocky": {
+    "botCheck": ["¡Jaque! Acostúmbrate.", "Toc, toc. Soy yo otra vez.", "Corre, reyecito, corre."],
+    "botCapture": ["Ahora es mío.", "Gracias por la merienda.", "Demasiado fácil."],
+    "lostBig": ["Vale, esa dolió.", "Suerte. Mucha suerte.", "Te la dejé. Probablemente."],
+    "youBlunder": ["¿En serio hiciste eso?", "¡Me lo llevo, gracias!", "Eso va a mi mejor jugada del día."],
+    "youStrong": ["Mm. Nada mal. Para ti.", "Vale, vale, algo sabes.", "No la vi venir. No volverá a pasar."],
+    "draw": ["¿Tablas? Lo cuento como victoria a los puntos.", "Bueno. La próxima te remato.", "Medio punto. Tuviste suerte."]
+  },
+  "friendly": {
+    "botCheck": ["¡Jaque! Cuida a tu rey.", "Psst, tu rey está en jaque.", "¡Jaque! Perdona, tenía que hacerlo."],
+    "botCapture": ["Me llevo esta, si no te importa.", "Uy, ahí va una pieza.", "¡Cayó una!"],
+    "lostBig": ["¡Ay, mi pobre pieza!", "¡Auch! Bien jugado.", "Esa la cazaste muy bien."],
+    "youBlunder": ["¡Oh! ¿Seguro?", "Creo que dejaste algo colgando...", "Me la llevo, pero con cariño."],
+    "youStrong": ["¡Uy, buena jugada!", "Vaya, no lo vi venir.", "¡Esa estuvo buena!"],
+    "draw": ["¡Tablas! Qué divertido.", "Nadie pierde. Me gusta.", "¡Buena partida! ¿Nos damos la mano?"]
+  },
+  "nervous": {
+    "botCheck": ["¿J-jaque? ¿Está bien así? ¡Jaque!", "Jaque... creo.", "Eh. Jaque. Perdón."],
+    "botCapture": ["¡Capturé algo! ¿Se podía?", "¡Oh! ¡Tengo una pieza!", "Espera, ¿capturé? ¿Bien?"],
+    "lostBig": ["No, no, no, no...", "¿Esa pieza era importante? Lo era, ¿verdad?", "Ay, madre. Ay, madre mía."],
+    "youBlunder": ["¿Eso... es una trampa?", "Parece gratis. ¿Demasiado gratis?", "Me da miedo tomarla. La tomo."],
+    "youStrong": ["Ay, no. Ay, no, qué buena.", "Por favor, no vuelvas a hacer eso.", "Sabía que iba a perder esa."],
+    "draw": ["¿Tablas? Ay, menos mal.", "Uf. ¡Me conformo!", "¡No perdí! No gané, ¡pero no perdí!"]
+  },
+  "grumpy": {
+    "botCheck": ["Jaque. Mueve el rey.", "Jaque. Obviamente.", "Jaque. Despierta."],
+    "botCapture": ["Capturada. Sigamos.", "Esa ya no está.", "Haberla defendido."],
+    "lostBig": ["Hmpf. Bueno.", "Bah. La necesitaba.", "No te acostumbres."],
+    "youBlunder": ["Descuidado.", "Y ahí está.", "He visto ese error mil veces."],
+    "youStrong": ["Hmpf. Jugada decente.", "...Vale. Esa fue buena.", "Grr. No me gustó."],
+    "draw": ["Tablas. Hmpf.", "Nadie gana. Lo de siempre.", "Medio punto. Podría ser peor."]
+  },
+  "wise": {
+    "botCheck": ["Jaque. Cuida la seguridad de tu rey.", "Jaque. Tu rey tiene pocos amigos cerca.", "Jaque. Fíjate en cómo llegó."],
+    "botCapture": ["Pieza sin defensa, pieza regalada.", "El material cuenta, al final.", "La próxima vez, cuenta los defensores."],
+    "lostBig": ["Bien visto. Lo subestimé.", "Un precio justo por una lección.", "Bien. Viste la debilidad."],
+    "youBlunder": ["Mira otra vez lo que acabas de dejar.", "Antes de cada jugada, pregúntate: ¿qué permite?", "Una jugada con prisa. Respira."],
+    "youStrong": ["Una gran jugada. Estás aprendiendo.", "Esa es la jugada que encuentra un jugador fuerte.", "Excelente. No me lo esperaba."],
+    "draw": ["Tablas, bien ganadas.", "Equilibrio. Hay sabiduría en eso.", "Las tablas también son un resultado. Bien jugado."]
+  }
+}
