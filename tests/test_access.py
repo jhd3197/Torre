@@ -52,6 +52,11 @@ class HostTests(unittest.TestCase):
         self.assertTrue(hosts.allowed('a.example.com:443', ['.example.com']))
         self.assertFalse(hosts.allowed('example.com.evil.test', ['.example.com']))
 
+    def test_a_star_answers_every_name(self):
+        self.assertTrue(hosts.allowed('chess.example.com', ['*']))
+        self.assertTrue(hosts.allowed('torre.panel.example.org:443', ['other.example', '*']))
+        self.assertFalse(hosts.allowed('', ['*']))
+
 
 class GateTests(unittest.TestCase):
     @classmethod
