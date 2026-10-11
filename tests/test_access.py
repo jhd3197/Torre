@@ -132,6 +132,12 @@ class GateTests(unittest.TestCase):
             self.assertEqual(self.status('POST', '/api/nothing-here', self.app_headers('POST'), b'{}'), 404)
             self.assertEqual(self.status('GET', '/api/nothing-here', self.app_headers('GET')), 404)
 
+    def test_the_app_behind_https_gets_through(self):
+        # A TLS proxy keeps the Host but the browser's Origin says https.
+        headers = {**self.app_headers('POST'), 'Origin': f'https://127.0.0.1:{self.port}'}
+        with mock.patch.object(studio, 'ROUTES', Routes()):
+            self.assertEqual(self.status('POST', '/api/nothing-here', headers, b'{}'), 404)
+
 
 class AdminTests(unittest.TestCase):
     def marked(self):

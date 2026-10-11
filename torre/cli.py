@@ -45,6 +45,8 @@ def parser():
     commands = top.add_subparsers(dest='command', required=True)
 
     serve = commands.add_parser('serve', parents=[common], help='start the local web app')
+    serve.add_argument('--host', default=argparse.SUPPRESS,
+                       help='address to listen on (default: TORRE_HOST or 127.0.0.1)')
     serve.add_argument('--port', type=port_number, default=1886)
     serve.add_argument('--open-browser', action='store_true')
     serve.add_argument('--proxied', action='store_true', help='serve behind a same-origin proxy such as Vela')
@@ -101,6 +103,8 @@ def run_serve(args):
                          '(or npm --prefix web run build).')
     from torre.server import studio
     argv = ['--data-dir', str(args.data_dir), '--port', str(args.port)]
+    if 'host' in args:
+        argv += ['--host', args.host]
     if args.open_browser:
         argv.append('--open-browser')
     if args.proxied:

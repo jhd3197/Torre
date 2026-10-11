@@ -170,7 +170,7 @@ class Handler(BaseHTTPRequestHandler):
             return None
         # Keep this loopback application inaccessible to cross-origin form submissions.
         origin = self.headers.get('Origin')
-        if not PROXIED and origin and origin != 'http://' + host:
+        if not PROXIED and origin and origin not in ('http://' + host, 'https://' + host):
             return 'Cross-origin requests are not allowed.', 403
         if self.headers.get('X-Chess-Studio') != '1':
             return 'Cross-origin requests are not allowed.', 403
@@ -248,6 +248,8 @@ class Handler(BaseHTTPRequestHandler):
 def main(argv=None):
     global PROXIED, ALLOWED_HOSTS
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--host', default=os.environ.get('TORRE_HOST', '127.0.0.1'),
+                        help='address to listen on (default: TORRE_HOST or 127.0.0.1; 0.0.0.0 in a container)')
     parser.add_argument('--port', type=int, default=1886)  # first World Championship, Steinitz–Zukertort
     parser.add_argument('--open-browser', action='store_true')
     parser.add_argument('--data-dir', default=str(paths.DATA),
@@ -264,8 +266,8 @@ def main(argv=None):
     ALLOWED_HOSTS = args.allow_host + hosts.from_env()
     masters.start_fill()  # a fresh install fetches the legends' games in the background
     api_games.auto_analyze()  # games imported but never analyzed (or analyzed by an older scoring) catch up now
-    server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
-    log.info('Torre is ready at http://127.0.0.1:%s (log: %s)', args.port, log_file)
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    log.info('Torre is ready at http://%s:%s (log: %s)', args.host, args.port, log_file)
     if args.open_browser:
         threading.Timer(.5, lambda: webbrowser.open(f'http://127.0.0.1:{args.port}')).start()
     try:
