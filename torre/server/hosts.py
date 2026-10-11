@@ -7,6 +7,8 @@ requests still carry the attacker's name in Host, so the studio only answers nam
 register publicly: IP addresses, single labels, localhost and private suffixes (.local, .lan,
 .home.arpa, .internal). Any other name, such as a proxy's domain, must be allowed with
 --allow-host or TORRE_ALLOWED_HOSTS (comma separated; ".example.com" allows its subdomains).
+"*" answers every name: for a server, where the rebinding page has nothing to gain over
+requesting the server's own address, and its proxy decides which domains reach it.
 """
 import ipaddress
 import os
@@ -40,6 +42,8 @@ def allowed(header, extra=()):
         return True
     for entry in extra:
         entry = entry.strip().lower().rstrip('.')
+        if entry == '*':
+            return True
         if entry and (host == entry or (entry.startswith('.') and host.endswith(entry))):
             return True
     return False
