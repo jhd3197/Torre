@@ -30,7 +30,6 @@ import subprocess
 import sys
 import threading
 import time
-from urllib.request import urlopen
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -41,6 +40,7 @@ from torre.analysis import game_stats
 from torre.learning import lessons
 from torre.learning import puzzles
 from torre import jsonio
+from torre import net
 CACHE_FILE = 'coach.json'
 ENV_MODEL = 'CHESS_COACH_MODEL'
 DRILL_KINDS = ('puzzles', 'lessons', 'openings', 'play')
@@ -196,7 +196,7 @@ _models_cache = {'at': None, 'models': []}
 def _ollama_tags():
     """The local Ollama's /api/tags models; [] when it is not running. Tests replace this."""
     try:
-        with urlopen(ollama_url() + '/api/tags', timeout=1.5) as response:
+        with net.urlopen(ollama_url() + '/api/tags', timeout=1.5) as response:
             return json.loads(response.read()).get('models') or []
     except (OSError, ValueError):
         return []

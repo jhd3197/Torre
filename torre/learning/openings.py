@@ -182,7 +182,7 @@ def add_line(state, color, text, now):
     moves = parse_line(text)
     if len(moves) < (1 if color == "white" else 2):
         raise ValueError("This line has no move of yours to practice.")
-    line_id = hashlib.sha1(f"{color}:{' '.join(moves)}".encode()).hexdigest()[:10]
+    line_id = hashlib.sha1(f"{color}:{' '.join(moves)}".encode(), usedforsecurity=False).hexdigest()[:10]
     existing = next((line for line in state["lines"] if line["id"] == line_id), None)
     if existing:
         return existing

@@ -1,0 +1,99 @@
+name: Publish to PyPI and GitHub Release
+
+# Every push to main (a merge from dev), once the tests pass: bump the version (a patch by default;
+# "feat:" in a commit makes it a minor, "BREAKING CHANGE" a major), tag it, build the interface
+# into the package, publish the wheel and sdist to PyPI, create the GitHub release with notes and
+# the wheel attached, and write the new version back to torre/__init__.py on main.
+# Needs the repository secret PYPI_TOKEN (a PyPI token scoped to the torre project).
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency: release
+
+jobs:
+  test:
+    if: github.actor != 'github-actions[bot]'
+    uses: ./.github/workflows/test.yml
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Skip a commit that is already released
+        id: released
+        run: |
+          git fetch --tags --prune
+          if git tag --points-at HEAD | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$'; then echo "yes=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Bump the version and push the tag
+        id: bump
+        if: steps.released.outputs.yes != 'true'
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: main
+          default_bump: patch
+          tag_prefix: v
+
+      - name: Set the version
+        if: steps.bump.outputs.new_version
+        run: sed -i "s/^__version__ = .*/__version__ = '${{ steps.bump.outputs.new_version }}'/" torre/__init__.py
+
+      - uses: actions/setup-node@v4
+        if: steps.bump.outputs.new_version
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - uses: actions/setup-python@v5
+        if: steps.bump.outputs.new_version
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the art and build the interface into torre/ui
+        if: steps.bump.outputs.new_version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download art-2026-10-06 --repo "$GITHUB_REPOSITORY" --pattern art-built.zip --dir "$RUNNER_TEMP"
+          unzip -q "$RUNNER_TEMP/art-built.zip" -d web/public
+          npm ci --prefix web
+          npm --prefix web run build
+
+      - name: Build the wheel and sdist
+        if: steps.bump.outputs.new_version
+        run: |
+          python -m pip install build twine
+          python -m build
+
+      - name: Publish to PyPI
+        if: steps.bump.outputs.new_version
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: python -m twine upload dist/* --non-interactive
+
+      - name: Create the GitHub release
+        if: steps.bump.outputs.new_version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.bump.outputs.new_version }}" dist/*.whl \
+            --title "v${{ steps.bump.outputs.new_version }}" --generate-notes --latest
+
+      - name: Write the version back to main
+        if: steps.bump.outputs.new_version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add torre/__init__.py
+          git commit -m "Release v${{ steps.bump.outputs.new_version }} [skip ci]" || exit 0
+          git push origin HEAD:main

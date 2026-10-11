@@ -32,6 +32,7 @@ from torre.analysis import analyze
 from torre.server import jobs
 from torre import jsonio
 from torre.games.chesscom_common import build_pgn, real_date
+from torre import net
 
 
 UA = {'User-Agent': 'Mozilla/5.0 (chess-jd personal analysis tool)'}
@@ -52,7 +53,7 @@ def open_url(url, accept='application/json', retries=4):
     for attempt in range(retries):
         try:
             request = urllib.request.Request(url, headers={**UA, 'Accept': accept})
-            return urllib.request.urlopen(request, timeout=60)
+            return net.urlopen(request, timeout=60)
         except urllib.error.HTTPError as exc:
             if exc.code == 404:
                 raise LookupError(url) from exc
@@ -239,7 +240,7 @@ def pgn_games(text, my_names):
                 gid, kind, url = f'li-{found.group(1)}', 'live', f'https://lichess.org/{found.group(1)}'
             else:
                 digest = hashlib.sha1('|'.join([headers.get('White', ''), headers.get('Black', ''), headers.get('Date', ''),
-                                                ' '.join(m.uci() for m in game.mainline_moves())]).encode()).hexdigest()
+                                                ' '.join(m.uci() for m in game.mainline_moves())]).encode(), usedforsecurity=False).hexdigest()
                 gid, kind, url = f'pgn-{digest[:12]}', 'pgn', None
             records.append(game_record(game, my_names, id=gid, type=kind, url=url, clocks=True))
         except ValueError as exc:

@@ -6,6 +6,14 @@
 
 <p align="center"><a href="https://torre.sh"><b>torre.sh</b></a>: learn chess step by step, play, replay and explore.</p>
 
+<p align="center">
+  <a href="https://pypi.org/project/torre/"><img src="https://img.shields.io/pypi/v/torre?color=2f5d50" alt="PyPI"></a>
+  <a href="https://pypi.org/project/torre/"><img src="https://img.shields.io/pypi/pyversions/torre?color=2f5d50" alt="Python"></a>
+  <a href="https://github.com/jhd3197/Torre/actions/workflows/test.yml"><img src="https://github.com/jhd3197/Torre/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-2f5d50" alt="License: GPL-3.0"></a>
+  <a href="https://buymeacoffee.com/jhd3197"><img src="https://img.shields.io/badge/buy%20the%20rook%20a%20coffee-c9a552?logo=buymeacoffee&logoColor=1d2d27" alt="Buy me a coffee"></a>
+</p>
+
 Torre is a local Python web app for playing Stockfish, replaying games,
 exploring positions, and reviewing your chess history. Its interface is a React
 app (in `web/`), served ready-built by the Python server.

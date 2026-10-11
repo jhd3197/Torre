@@ -388,7 +388,7 @@ def main():
     cache_path = CACHE_DIR / f'{args.lang}.json'
     cache = json.loads(cache_path.read_text(encoding='utf-8')) if cache_path.exists() else {}
     stamp = f'{glossary["version"]}:'
-    digest = lambda text: hashlib.sha1((stamp + text).encode('utf-8')).hexdigest()  # noqa: E731
+    digest = lambda text: hashlib.sha1((stamp + text).encode('utf-8'), usedforsecurity=False).hexdigest()  # noqa: E731
 
     # Hand-written translations win over the model's, every run (a pun or a song line is rewritten,
     # not translated): translations/overrides/<lang>.json maps the English text to the wording to use.

@@ -6,11 +6,11 @@ import csv
 import io
 import json
 from pathlib import Path
-from urllib.request import urlopen
 
 import chess
 import chess.pgn
 from torre import paths
+from torre import net
 
 REVISION = 'a6189a30dc273ccb21fc2536a9a2fefd5592a67a'
 SOURCE = 'https://github.com/lichess-org/chess-openings'
@@ -21,7 +21,7 @@ def main():
     positions = {}
     for volume in 'abcde':
         url = f'https://raw.githubusercontent.com/lichess-org/chess-openings/{REVISION}/{volume}.tsv'
-        with urlopen(url, timeout=30) as response:
+        with net.urlopen(url, timeout=30) as response:
             rows = csv.DictReader(io.StringIO(response.read().decode('utf-8')), delimiter='\t')
             for row in rows:
                 game = chess.pgn.read_game(io.StringIO(row['pgn']))

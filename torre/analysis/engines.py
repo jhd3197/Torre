@@ -29,6 +29,7 @@ import chess.engine
 from torre.server import jobs
 from torre import jsonio
 from torre import paths
+from torre import net
 ROOT = paths.HOME  # engines/, engine/ and stockfish_dist/ live here
 DATA_DIR = paths.DATA
 
@@ -263,7 +264,7 @@ def _fetch(url, expected, report, label):
     os.close(handle)
     try:
         request = urllib.request.Request(url, headers={'User-Agent': 'Torre-Engine-Lab'})
-        with urllib.request.urlopen(request, timeout=120) as response, open(temp_path, 'wb') as out:
+        with net.urlopen(request, timeout=120) as response, open(temp_path, 'wb') as out:
             total = int(response.headers.get('Content-Length') or expected.get('size') or 0)
             downloaded = 0
             while True:

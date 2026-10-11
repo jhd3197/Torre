@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in Torre does not work as it should.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what Torre did instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to see it
+      placeholder: |
+        1. Open Puzzles
+        2. ...
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where you run Torre
+      options:
+        - torre.sh
+        - pip install torre
+        - From the source code
+        - Vela
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Settings → About, or `torre --version` / `pip show torre`.
+  - type: textarea
+    id: doctor
+    attributes:
+      label: torre doctor
+      description: If you run Torre yourself, paste the output of `torre doctor`.
+      render: text

@@ -1,0 +1,85 @@
+name: Publish Dev Version to PyPI
+
+# Every push to dev, once the tests pass, publishes a pre-release such as 0.3.1.dev2 (the next
+# patch after the latest release, then a running number). `pip install torre` skips pre-releases;
+# `pip install --pre torre` gets the newest one. Only the wheel goes up, to spare PyPI's space.
+# Needs the repository secret PYPI_TOKEN (a PyPI token scoped to the torre project).
+
+on:
+  push:
+    branches: [dev]
+
+permissions:
+  contents: write
+
+concurrency: dev-release
+
+jobs:
+  test:
+    if: github.actor != 'github-actions[bot]'
+    uses: ./.github/workflows/test.yml
+
+  dev-pre-release:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Compute the next dev version
+        id: ver
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --prune
+          last_release="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1 || true)"
+          if [[ -z "${last_release}" ]]; then
+            base="0.3.1"
+          else
+            IFS=. read -r MA MI PA <<< "${last_release#v}"
+            base="${MA}.${MI}.$((PA+1))"
+          fi
+          last_dev="$(git tag -l "v${base}.dev*" | sort -V | tail -1 || true)"
+          n=1
+          if [[ -n "${last_dev}" ]]; then n=$(( ${last_dev##*.dev} + 1 )); fi
+          echo "new=${base}.dev${n}" >> "$GITHUB_OUTPUT"
+          echo "Dev version: ${base}.dev${n}"
+
+      - name: Tag it
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ steps.ver.outputs.new }}" -m "pre: ${{ steps.ver.outputs.new }}"
+          git push origin "v${{ steps.ver.outputs.new }}"
+
+      - name: Set the version
+        run: sed -i "s/^__version__ = .*/__version__ = '${{ steps.ver.outputs.new }}'/" torre/__init__.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the art and build the interface into torre/ui
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download art-2026-10-06 --repo "$GITHUB_REPOSITORY" --pattern art-built.zip --dir "$RUNNER_TEMP"
+          unzip -q "$RUNNER_TEMP/art-built.zip" -d web/public
+          npm ci --prefix web
+          npm --prefix web run build
+
+      - name: Build the wheel
+        run: |
+          python -m pip install build twine
+          python -m build --wheel
+
+      - name: Publish to PyPI (pre-release)
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: python -m twine upload dist/* --non-interactive

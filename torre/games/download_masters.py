@@ -19,6 +19,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 from torre import paths
+from torre import net
 
 OUT = paths.HOME / 'games' / 'masters'
 SOURCE = 'https://www.pgnmentor.com/players/{name}.zip'
@@ -37,7 +38,7 @@ CHAMPIONS = ['Philidor', 'DeLaBourdonnais', 'Anderssen', 'Morphy', 'Steinitz', '
 
 def fetch(name):
     request = urllib.request.Request(SOURCE.format(name=name), headers={'User-Agent': AGENT})
-    with urllib.request.urlopen(request, timeout=60) as response:
+    with net.urlopen(request, timeout=60) as response:
         data = response.read()
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         pgns = [n for n in archive.namelist() if n.lower().endswith('.pgn')]

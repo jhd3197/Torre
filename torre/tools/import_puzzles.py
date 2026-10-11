@@ -20,6 +20,7 @@ from pathlib import Path
 
 from torre.learning import puzzles
 from torre import paths
+from torre import net
 ROOT = paths.REPO
 URL = 'https://database.lichess.org/lichess_db_puzzle.csv.zst'
 CACHE = ROOT / 'data' / 'lichess_db_puzzle.csv.zst'
@@ -31,7 +32,7 @@ def download(path):
     path.parent.mkdir(parents=True, exist_ok=True)
     part = path.with_suffix('.part')
     print(f'Downloading {URL} ...')
-    with urllib.request.urlopen(URL) as response, part.open('wb') as out:
+    with net.urlopen(URL, timeout=600) as response, part.open('wb') as out:
         total = int(response.headers.get('Content-Length', 0))
         done = 0
         while chunk := response.read(1 << 20):

@@ -41,6 +41,7 @@ from pathlib import Path
 from torre import paths
 from torre.coaching import coach_lessons
 from torre.learning import lessons
+from torre import net
 
 OUT_DIR = paths.REPO / 'dist' / 'voice'
 LOCALES = paths.REPO / 'web' / 'src' / 'i18n' / 'locales'
@@ -208,7 +209,7 @@ def speech(base_url, voice, text):
         f'{base_url.rstrip("/")}/audio/speech',
         data=json.dumps({'model': 'kokoro', 'voice': voice, 'input': text, 'response_format': 'mp3'}).encode('utf-8'),
         headers={'Content-Type': 'application/json'})
-    with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+    with net.urlopen(request, timeout=TIMEOUT) as response:
         return response.read()
 
 

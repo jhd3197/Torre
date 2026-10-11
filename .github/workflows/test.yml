@@ -1,9 +1,10 @@
 name: Tests
 
+# Run on pull requests, and by dev.yml and release.yml before they publish.
 on:
-  push:
-    branches: [main]
   pull_request:
+  workflow_call:
+  workflow_dispatch:
 
 permissions:
   contents: read

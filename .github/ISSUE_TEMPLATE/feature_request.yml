@@ -1,0 +1,16 @@
+name: Idea
+description: A lesson, a bot, a feature or a change you would like in Torre.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you would like, and how it would help you learn or play.
+    validations:
+      required: true
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Examples, screenshots, a game or position (FEN or PGN).

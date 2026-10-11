@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import sys
 
+import torre
 from torre import paths
 
 ROOT = paths.REPO
@@ -40,6 +41,7 @@ def parser():
                         help='shared data folder (default: CHESS_STUDIO_DATA or project data/)')
     top = argparse.ArgumentParser(prog='torre', parents=[common],
                                   description='Import, analyze and review your chess with Torre.')
+    top.add_argument('--version', action='version', version=f'torre {torre.__version__}')
     commands = top.add_subparsers(dest='command', required=True)
 
     serve = commands.add_parser('serve', parents=[common], help='start the local web app')
