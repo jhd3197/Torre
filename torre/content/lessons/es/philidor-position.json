@@ -1,0 +1,54 @@
+{
+ "title": "Manteniendo el empate (Philidor)",
+ "summary": "¿Un peón abajo en un final de torre? Mantén al rey enemigo fuera con tu torre en la tercera fila, y luego échale jaque desde atrás.",
+ "steps": [
+  {
+   "id": "the-setup",
+   "title": "La posición de Philidor",
+   "text": "Las negras están un peón abajo, pero esto es un empate. El rey negro está frente al peón, y la torre negra protege la tercera fila desde el lado negro del tablero, la sexta fila del tablero. El rey blanco no puede avanzar a d6 o e6 sin recibir jaque, y sin la ayuda de su rey, el peón no puede avanzar de forma segura.",
+   "narration": "Bienvenido a la posición de empate más importante en los finales de torre, nombrada en honor al gran jugador francés Philidor. El rey negro bloquea el peón, y la torre negra vigila la sexta fila, así que el rey blanco no puede acercarse."
+  },
+  {
+   "id": "checks-from-behind",
+   "title": "Cuando el peón avanza",
+   "text": "El único intento de las blancas es empujar el peón a e6. Pero ahora el peón ya no protege al rey blanco de los jaques, así que la torre negra retrocede todo el camino y le echa jaque desde atrás. Mira paso a paso: el rey no tiene dónde esconderse, y los jaques son para siempre.",
+   "narration": "La única forma para que las blancas progresen es empujar el peón. [move] En el momento en que se mueve hacia arriba, la torre negra retrocede a la primera fila. [move] El rey avanza. [move] ¡Jaque desde atrás! [move] El rey avanza. [move] ¡Otro jaque! [move] De nuevo hacia arriba. [move] ¡Y otro jaque! [move] Con el peón delante de él, el rey blanco no tiene dónde esconderse."
+  },
+  {
+   "id": "stop-the-mate",
+   "title": "Está amenazado jaque mate",
+   "prompt": "Las blancas amenazan con llevar la torre a h8, jaque mate. Salva la partida.",
+   "hint": "Un jaque ahora le deja a las blancas sin tiempo para el mate.",
+   "success": "¡Jaque! El rey blanco tiene que alejarse del peón, y los jaques siguen llegando. Cualquier movimiento tranquilo habría permitido que la torre llegara a h8, jaque mate.",
+   "narration": "Ten cuidado, White amenaza jaque mate en la última fila. No tienes tiempo que perder: da jaque y mantén al rey ocupado."
+  },
+  {
+   "id": "from-behind",
+   "title": "Jaque desde atrás",
+   "prompt": "El mate está amenazado de nuevo. Solo un movimiento sostiene la posición.",
+   "hint": "Tu torre está lejos en la primera fila. ¿Qué jaque viene desde atrás del rey de White?",
+   "success": "Torre a f1, jaque desde atrás. El rey de White no puede escapar de los jaques sin dejar atrás su peón, así que el juego es tablas.",
+   "narration": "Mismo peligro, torre a h8 es mate. Esta vez solo un jaque sostiene: ve desde atrás del rey, desde lejos a lo largo del tablero."
+  },
+  {
+   "id": "where-does-the-rook-go",
+   "title": "¡Revísate!",
+   "question": "Negras para mover. El rey de White está en la quinta fila, listo para avanzar. ¿A dónde debe ir la torre de Black?",
+   "options": [
+    {
+     "text": "A b6, en la sexta fila",
+     "why": "Eso es la defensa de Philidor. La torre mantiene al rey de White fuera de la sexta fila, y si el peón avanza la torre vuelve a dar jaque desde atrás."
+    },
+    {
+     "text": "A b8, para proteger la última fila",
+     "why": "Una torre pasiva pierde aquí. White da jaque en h8 y la torre en b8 cae."
+    },
+    {
+     "text": "A d1, para vigilar la columna 'd'",
+     "why": "Demasiado lento. El rey de blancas sube a la sexta fila y la defensa se derrumba."
+    }
+   ],
+   "narration": "Pregunta final. El rey de blancas está a punto de avanzar. ¿Dónde debe estar la torre de negras? Recuerda a Philidor, y salvarás muchos finales con torres perdiendo un peón. ¡Buen trabajo!"
+  }
+ ]
+}

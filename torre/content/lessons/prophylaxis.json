@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "title": "Prophylaxis",
+  "summary": "Before you make your own plan, ask what your opponent wants. Learn to stop the enemy's best idea before it happens.",
+  "category": "strategy",
+  "level": "advanced",
+  "minutes": 7,
+  "unit": "Planning",
+  "order": 2,
+  "requires": ["passed-pawns"],
+  "practice": "quiet-move",
+  "steps": [
+    {
+      "id": "ask-the-question",
+      "kind": "explain",
+      "title": "What does my opponent want?",
+      "fen": "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+      "marks": [["c8", "g4"], ["c6", "a5"]],
+      "text": "Prophylaxis means preventing your opponent's ideas before they happen. Before choosing a move, ask: if it were my opponent's turn, what would they play? Here Black would like to pin White's knight with the bishop on g4, or chase White's strong bishop with the knight to a5. A player who sees this can take the sting out of those plans first, and only then carry on with their own.",
+      "narration": "Here's the habit that separates strong players from the rest. Before you play, ask yourself: what does my opponent want to do? If you can stop their best idea cheaply, their whole plan falls apart.",
+      "pose": "thinking"
+    },
+    {
+      "id": "stop-the-pin",
+      "kind": "choose",
+      "title": "Take away a square",
+      "fen": "r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2PP1N2/PP3PPP/RNBQ1RK1 w - - 2 7",
+      "question": "Black wants to play the bishop to g4 and pin your knight. Which quiet move stops that idea for good?",
+      "options": [
+        { "text": "The h-pawn to h3", "correct": true, "why": "The pawn on h3 covers g4, so the bishop can never settle there. It also gives your king a little breathing room." },
+        { "text": "The bishop to g5, pinning Black's knight", "why": "That is your own idea, but it does nothing about Black's plan: the bishop can still come to g4." },
+        { "text": "The d-pawn to d4", "why": "A natural central move, but g4 is still available for Black's bishop." }
+      ],
+      "narration": "Black's bishop is eyeing g4, where it would pin your knight to the queen. Which small, quiet move takes that square away forever?",
+      "pose": "detective"
+    },
+    {
+      "id": "stop-the-breakthrough",
+      "kind": "play",
+      "title": "See the breakthrough coming",
+      "fen": "6k1/8/8/8/ppp5/8/PPP5/6K1 w - - 0 1",
+      "prompt": "Black is threatening a pawn breakthrough on the queenside. Find the move that takes the sting out of it, then answer Black's pawn moves.",
+      "hint": "If Black pushes a pawn to b3, a passed pawn could appear. Your king must already be close enough to deal with it. Every tempo counts.",
+      "line": ["g1f2", "b4b3", "c2b3", "c4b3", "a2b3"],
+      "success": "With your king one step closer, the breakthrough fizzles out. If Black takes back on b3, that last black pawn is stuck in front of your b2 pawn, and your king walks over to win it.",
+      "narration": "Remember the breakthrough from the passed pawns lesson? Now Black is the one threatening it. Ask what Black wants, and bring your king toward the danger right away. One wasted move, and Black's pawn would queen.",
+      "pose": "rival"
+    },
+    {
+      "id": "into-the-square",
+      "kind": "play",
+      "title": "Their pawn first, then yours",
+      "fen": "8/8/6k1/8/1p4PP/5K2/8/8 w - - 0 1",
+      "prompt": "You have two connected passed pawns, but Black's b-pawn is running too. Make sure it never queens.",
+      "hint": "Imagine a square from Black's pawn to its queening square. Your king must step inside it now.",
+      "line": ["f3e4|f3e3|f3e2"],
+      "success": "Your king is now close enough to catch the b-pawn, and your two connected pawns on the kingside will win. Pushing your own pawns first would have let Black's pawn queen.",
+      "narration": "It's tempting to push your own pawns, but first ask what Black wants: to run with the b-pawn. Step your king toward it now. Once their only hope is gone, your pawns will win on their own time.",
+      "pose": "shield"
+    },
+    {
+      "id": "first-question",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What is the first question of prophylactic thinking?",
+      "options": [
+        { "text": "What does my opponent want to do?", "correct": true, "why": "Once you know the opponent's best idea, you can often stop it with one quiet move, and your own plan becomes much easier." },
+        { "text": "Which of my pieces can attack the king?", "why": "Attacking ideas matter, but prophylaxis starts by looking at the position from the other side of the board." },
+        { "text": "How can I win material right now?", "why": "Always worth checking, but it is a different question. Prophylaxis is about the opponent's plans." }
+      ],
+      "narration": "Final question. What's the very first thing a prophylactic thinker asks? You've got this. Brilliant work finishing the strategy unit!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "The Opera Game",
+  "summary": "Paris, 1858: Paul Morphy beats two noblemen in a box at the opera, with the most famous queen sacrifice in chess.",
+  "category": "history",
+  "unit": "Paul Morphy",
+  "order": 1,
+  "level": "beginner",
+  "minutes": 6,
+  "requires": ["the-evergreen-game"],
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "paris-1858",
+      "kind": "explain",
+      "title": "Paris, 1858",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Paul Morphy is twenty-one, from New Orleans, and beating everyone in Europe. One evening at the Paris opera, the Duke of Brunswick and Count Isouard invite him to their box, and challenge him mid-performance. Morphy plays the game of his life while the opera plays on. Seventeen moves. Press play.",
+      "narration": "Paris, 1858. At the opera, two noblemen challenge the twenty-one-year-old Paul Morphy during the performance. Seventeen moves later, chess history is made. Press play.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "reel",
+      "title": "Morphy – Duke Karl & Count Isouard, Paris 1858",
+      "text": "Morphy's two opponents consult on every move, and it doesn't help. This game is still the perfect lesson in fast development: every Morphy piece comes out with a threat.",
+      "narration": "Two opponents, consulting on every move. It does not help. Watch the perfect lesson in development.",
+      "pose": "playing",
+      "moves": ["e2e4", "e7e5", "g1f3", "d7d6", "d2d4", "c8g4", "d4e5", "g4f3", "d1f3", "d6e5", "f1c4", "g8f6", "f3b3", "d8e7", "b1c3", "c7c6", "c1g5", "b7b5", "c3b5", "c6b5", "c4b5", "b8d7", "e1c1", "a8d8", "d1d7", "d8d7", "h1d1", "e7e6", "b5d7", "f6d7", "b3b8", "d7b8", "d1d8"],
+      "notes": [
+        { "ply": 5, "text": "3.d4! Morphy opens the center immediately. Development is everything to him." },
+        { "ply": 11, "text": "6.Bc4: every piece comes out, and each one comes out with a threat." },
+        { "ply": 13, "text": "7.Qb3! Double attack on b7 and f7. The consultants are already under pressure." },
+        { "ply": 17, "text": "9.Bg5: the knight is pinned to the queen. The pressure never stops for a single move." },
+        { "ply": 19, "text": "10.Nxb5! Morphy sacrifices a knight to tear open the lines toward the king." },
+        { "ply": 23, "text": "12.O-O-O: the king is safe AND the rook lands on the open file. Two goals in one move." },
+        { "ply": 25, "text": "13.Rxd7! The rook sacrifice. Black's defenders get dragged off their squares one by one." },
+        { "ply": 29, "text": "15.Bxd7+ Nxd7, and now the back rank has almost no defenders left." },
+        { "ply": 31, "text": "16.Qb8+!! The queen sacrifice: the knight is forced to take…" },
+        { "ply": 33, "text": "17.Rd8# Checkmate! Perhaps the most famous finish in all of chess: played between acts at the opera." }
+      ]
+    },
+    {
+      "id": "the-finish",
+      "kind": "play",
+      "title": "Morphy's finish",
+      "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+      "prompt": "Black's king and rook are lined up on the back rank. Find Morphy's famous mate in two.",
+      "hint": "The queen can go where she can be taken: if taking her opens the d-file.",
+      "line": ["b3b8", "d7b8", "d1d8"],
+      "success": "Qb8+!! Nxb8 Rd8#: the Opera Game's immortal finish. You played it like Morphy.",
+      "narration": "Now you are at the opera. Mate in two: find Morphy's finish.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "choose",
+      "title": "The big lesson",
+      "question": "Players have studied the Opera Game for over 160 years. What is its big lesson?",
+      "options": [
+        { "text": "Develop every piece quickly and open lines toward the king", "correct": true, "why": "Exactly. Morphy's pieces all joined the attack while Black's rook and bishop never moved." },
+        { "text": "Keep the queen at home until the endgame", "why": "Morphy's queen led the attack, and even sacrificed herself to finish it." },
+        { "text": "Win material first, attack later", "why": "Morphy gave material away. Time and open lines were worth more to him than pieces." }
+      ],
+      "narration": "One question to finish: what is the lesson of this game?",
+      "pose": "thinking"
+    }
+  ]
+}

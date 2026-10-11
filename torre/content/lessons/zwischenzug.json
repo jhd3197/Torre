@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "The in-between move",
+  "summary": "Before you make the obvious recapture, look for a check or capture to play first. The German word for it is zwischenzug.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["hanging-pieces"],
+  "practice": "zwischenzug",
+  "steps": [
+    {
+      "id": "not-so-fast",
+      "kind": "explain",
+      "title": "Not so fast",
+      "fen": "1k4r1/1pp5/p1p1Q3/8/6p1/q2P4/2Pb1PP1/3KR3 w - - 0 31",
+      "marks": [["d2"], ["d1", "d2"], ["e6", "g8"]],
+      "text": "Black's bishop has just captured on d2, and taking back with the king looks automatic. But a recapture that is still there next move can wait. First ask: do I have a check or a capture that gains something, after which I can still take back? That extra move is an in-between move, or zwischenzug.",
+      "narration": "Black just took on d2, and your hand is already reaching for the recapture. Stop for a second. If the bishop isn't going anywhere, maybe you can grab something else first, with check, and take back afterwards.",
+      "pose": "alarm"
+    },
+    {
+      "id": "check-first",
+      "kind": "play",
+      "title": "Check first, recapture later",
+      "fen": "1k4r1/1pp5/p1p1Q3/8/6p1/q2P4/2Pb1PP1/3KR3 w - - 0 31",
+      "prompt": "Win material before you recapture the bishop.",
+      "hint": "Black's rook on g8 has no defender, and taking it is check.",
+      "line": ["e6g8", "b8a7", "d1d2"],
+      "success": "Qxg8+ wins the rook with check. Black must answer the check, and then Kxd2 still recaptures the bishop. You won a whole rook in between.",
+      "narration": "That rook on g8 is loose, and taking it gives check. Grab it first. Black has to deal with the check, and the bishop on d2 is still there for your king to take next move.",
+      "pose": "detective"
+    },
+    {
+      "id": "rook-first",
+      "kind": "play",
+      "title": "Take the rook, then the queen",
+      "fen": "2b1r1k1/ppp2pp1/7p/8/3q4/5N2/PPP2PPP/4R1K1 w - - 0 1",
+      "prompt": "Black's queen just captured yours on d4. Recapture, but not before winning more.",
+      "hint": "If the knight takes back at once, Black's rook takes yours on e1 with mate. Use the e-file first.",
+      "line": ["e1e8", "g8h7", "f3d4"],
+      "success": "Rxe8+! wins the rook with check, and only then Nxd4 takes the queen. The hasty Nxd4 would have lost to Rxe1, checkmate.",
+      "narration": "Black just took your queen, and the knight is ready to take back. But look at the two rooks facing each other on the e-file. If you recapture now, Black's rook takes yours with checkmate. So take the rook first, with check, and grab the queen next move.",
+      "pose": "detective"
+    },
+    {
+      "id": "zwischenzug-quiz",
+      "kind": "choose",
+      "title": "When to look",
+      "question": "When should you look for an in-between move?",
+      "options": [
+        {"text": "Whenever a recapture seems forced: ask if a check or capture can come first", "correct": true, "why": "Automatic recaptures are where zwischenzugs hide. If the piece you want to take back cannot run away, you may have a free move first."},
+        {"text": "Only when you are losing", "why": "In-between moves win material in any position. They are about forcing moves, not about the score."},
+        {"text": "Never: always recapture immediately", "why": "Recapturing is often right, but checking first can win a whole rook, as you just saw."}
+      ],
+      "narration": "Final question. When should you hunt for an in-between move? Think about the moment you feel a recapture is automatic. You're thinking like a strong player now!",
+      "pose": "trophy"
+    }
+  ]
+}

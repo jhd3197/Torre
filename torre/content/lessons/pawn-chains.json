@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Pawn chains",
+  "summary": "Pawns that protect each other in a diagonal line. Learn to attack the chain at its base and to play on the side it points to.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Pawn structure",
+  "order": 4,
+  "requires": ["passed-pawns"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "what-is-a-chain",
+      "kind": "explain",
+      "title": "Head and base",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "marks": [["d4", "e5"], ["e6", "d5"], ["d4"], ["e6"]],
+      "text": "In this French Defence position, White's pawns on d4 and e5 form a chain: d4 protects e5. Black has a chain too, with e6 protecting d5. The front pawn of a chain is its head and the back pawn is its base. The head is protected, but the base has no pawn behind it, so it is the chain's weak point.",
+      "narration": "Pawns that protect each other on a diagonal form a chain. The front pawn is the head and the back pawn is the base. Here's the key: the base has nothing protecting it, so that's where you attack.",
+      "pose": "present"
+    },
+    {
+      "id": "attack-the-base",
+      "kind": "explain",
+      "title": "Strike at the base",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "demo": ["c7c5", "c2c3", "b8c6", "g1f3", "d8b6"],
+      "marks": [["c5", "d4"]],
+      "text": "Step through the demo. Black hits the base of White's chain with the c-pawn, then piles more pieces onto d4: the knight from c6 and the queen from b6. If d4 ever falls, the pawn on e5 loses its support and the whole chain wobbles. White spends moves holding d4 with c3 and the knight.",
+      "narration": "Watch Black go after the base. The c-pawn strikes at d4. [move] White props it up. [move] The knight joins in. [move] White adds the knight. [move] And the queen piles on too. [move] If the base falls, the head on e5 is left hanging, so White has to spend real effort defending it.",
+      "pose": "point"
+    },
+    {
+      "id": "which-side",
+      "kind": "explain",
+      "title": "Play where your chain points",
+      "fen": "r1bq1rk1/ppp1npbp/3p1np1/3Pp3/2P1P3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 1 9",
+      "marks": [["e4", "d5"], ["d6", "e5"], ["c4", "c5"], ["f7", "f5"]],
+      "text": "In this King's Indian structure the chains are locked. White's chain e4-d5 points toward the queenside, where White has more space, so White attacks there with the c-pawn to hit Black's base on d6. Black's chain d6-e5 points toward the kingside, so Black plays the f-pawn forward to hit White's base on e4 and attacks the king. Each side plays on the wing its chain points to.",
+      "narration": "Here's a handy rule. A pawn chain points like an arrow, and you usually attack on the side it points to. White's chain points to the queenside, so White pushes the c-pawn. Black's points to the kingside, so Black pushes the f-pawn.",
+      "pose": "idea"
+    },
+    {
+      "id": "kings-attack-the-base",
+      "kind": "play",
+      "title": "The king attacks the base",
+      "fen": "8/8/2k1p3/3pP3/3P2K1/8/8/8 w - - 0 1",
+      "prompt": "Both kings will race to eat the other side's base. Pick the fastest route and win the race.",
+      "hint": "Black's base is on e6. Your king needs to reach it from the side, via f6.",
+      "line": ["g4g5", "c6b5", "g5f6", "b5c4", "f6e6"],
+      "success": "Your king took the base on e6 while Black's took d4. But now your e-pawn is free to run, with your king right beside it, and it will queen first.",
+      "narration": "In this ending, each king wants to eat the base of the enemy chain. Black's base is on e6, so take the shortest road there, going around through f6. Get there first and your e-pawn becomes unstoppable.",
+      "pose": "determined"
+    },
+    {
+      "id": "which-break",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "question": "Black wants to undermine White's chain d4-e5. Which pawn move hits its base?",
+      "options": [
+        { "text": "The c-pawn to c5, attacking d4", "correct": true, "why": "d4 is the base: no pawn protects it, and if it goes, e5 loses its support." },
+        { "text": "The f-pawn to f6, attacking e5", "why": "That hits the head, which is still protected by d4. It can be useful later, but the base is the classic target." },
+        { "text": "The h-pawn to h5", "why": "It does nothing to White's chain." }
+      ],
+      "narration": "Final question. Black wants to undermine White's chain. Which pawn move hits the base, the one link no pawn protects? Great work!",
+      "pose": "trophy"
+    }
+  ]
+}

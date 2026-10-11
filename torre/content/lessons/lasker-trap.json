@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "title": "The Lasker Trap",
+  "summary": "In the Albin Countergambit a black pawn marches to the first rank and becomes a knight, with check.",
+  "category": "openings",
+  "level": "advanced",
+  "minutes": 7,
+  "unit": "Opening traps",
+  "order": 6,
+  "orientation": "black",
+  "practice": "underpromotion",
+  "steps": [
+    {
+      "id": "albin",
+      "kind": "explain",
+      "title": "The Albin Countergambit",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Against the Queen's Gambit, Black can strike back at once with pawn to e5. After White takes, the pawn on d4 cramps White's position. The trap you are about to learn is named after world champion Emanuel Lasker.",
+      "demo": [
+        "d2d4",
+        "d7d5",
+        "c2c4",
+        "e7e5",
+        "d4e5",
+        "d5d4"
+      ],
+      "narration": "This is the Albin Countergambit. Pawn to d4. [move] Pawn to d5. [move] White offers the Queen's Gambit. [move] Black counterattacks with pawn to e5. [move] White takes. [move] And Black's pawn lands on d4, right in White's way. [move]",
+      "pose": "host"
+    },
+    {
+      "id": "white-errs",
+      "kind": "explain",
+      "title": "A careless capture",
+      "fen": "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/8/PP2PPPP/RNBQKBNR w KQkq - 0 4",
+      "text": "Pawn to e3 looks natural but gives Black a target. After bishop to b4 check and bishop to d2, Black's pawn takes on e3. White must take back with the f-pawn. Instead, bishop takes b4 grabs a piece and forgets about the pawn on e3.",
+      "demo": [
+        "e2e3",
+        "f8b4",
+        "c1d2",
+        "d4e3",
+        "d2b4"
+      ],
+      "narration": "White plays a natural-looking pawn to e3. [move] Bishop to b4, check. [move] White blocks with the bishop. [move] Now Black's d-pawn captures and heads toward White's king. [move] If White grabs the bishop instead of the pawn, [move] disaster follows.",
+      "pose": "warn"
+    },
+    {
+      "id": "the-pawn-runs",
+      "kind": "play",
+      "title": "The pawn runs",
+      "fen": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/4p3/PP3PPP/RN1QKBNR b KQkq - 0 6",
+      "prompt": "White just took your bishop. Push your pawn through.",
+      "hint": "Capture with check first. When the pawn reaches the last rank, think hard about which piece to make.",
+      "line": [
+        "e3f2",
+        "e1e2",
+        "f2g1n"
+      ],
+      "success": "Pawn takes f2 check drives the king to e2. Then pawn takes g1 and becomes a knight with check. A queen there would let White trade queens on d8 with check and keep everything.",
+      "narration": "Your pawn on e3 is two steps from the end of the board. Capture with check, then promote. But careful, a new queen is not the best choice here.",
+      "pose": "detective"
+    },
+    {
+      "id": "why-a-knight",
+      "kind": "explain",
+      "title": "Why not a queen?",
+      "fen": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2KpPP/RN1Q1BNR b kq - 1 7",
+      "marks": [
+        [
+          "d1",
+          "d8"
+        ]
+      ],
+      "text": "If the pawn becomes a queen, it does not give check. White then takes Black's queen on d8 with check, and after the king takes back, the rook removes the new queen. The material ends up level and Black's attack is over. The knight on g1 gives check, so White never gets that free move.",
+      "demo": [
+        "f2g1q",
+        "d1d8",
+        "e8d8",
+        "h1g1"
+      ],
+      "narration": "Why a knight? Say Black makes a queen on g1 instead. [move] It gives no check, so White trades queens on d8 with check. [move] The king takes back. [move] And the rook takes the new queen. [move] The knight comes with check, and checks come first.",
+      "pose": "idea"
+    },
+    {
+      "id": "skewer-the-queen",
+      "kind": "play",
+      "title": "Win the queen",
+      "fen": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2K1PP/RN1Q1BR1 b kq - 0 8",
+      "prompt": "The rook took your new knight. Now win White's queen.",
+      "hint": "White's king and queen sit on the same diagonal. Check the king along it.",
+      "line": [
+        "c8g4",
+        "e2f2",
+        "d8d1"
+      ],
+      "success": "Bishop to g4 check skewers the king and the queen behind it. When the king steps away, you take the queen. If White's king had gone to e1 instead, queen to h4 check would keep the attack going.",
+      "narration": "White's rook took your knight. But look at White's king and queen, standing on one diagonal. A single bishop check wins the queen.",
+      "pose": "excited"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/5N2/PP2PPPP/RNBQKB1R b KQkq - 1 4",
+      "prompt": "Most players never play pawn to e3. Knight to f3 is the main move. Develop, and go after the pawn on e5.",
+      "nudge": "Bring out a knight that helps win back your pawn.",
+      "hint": "Knight to c6 attacks e5. Then the other knight goes to e7, on its way to g6.",
+      "line": [
+        "b8c6",
+        "b1d2",
+        "g8e7|a7a5|g8h6|c8f5|d8e7"
+      ],
+      "success": "Knight to c6, then knight to e7 on its way to g6. Both knights aim at e5, and you will often win your pawn back. Pawn to a5 is also fine.",
+      "narration": "A careful player won't fall for the Lasker Trap. White just develops the knight to f3. Then your job is to win back the gambit pawn on e5.",
+      "pose": "thinking",
+      "branches": [
+        {
+          "line": [
+            "b8c6",
+            "g2g3",
+            "g8e7|a7a5"
+          ],
+          "success": "White plans to put the bishop on g2. Knight to e7 and then g6 goes after the pawn on e5 before White can guard it."
+        },
+        {
+          "line": [
+            "b8c6",
+            "a2a3",
+            "g8e7|a7a5|g7g6|c8f5|f8e7"
+          ],
+          "success": "White wants to push pawn to b4. Knight to e7 and then g6 still goes after the pawn on e5. Pawn to a5 or pawn to g6 are fine too."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2KpPP/RN1Q1BNR b kq - 1 7",
+      "orientation": "black",
+      "question": "Why is promoting to a knight stronger than promoting to a queen here?",
+      "options": [
+        {
+          "text": "The knight gives check, so White has no time to trade queens on d8",
+          "why": "Right. A queen on g1 gives no check, and White would take on d8 with check first.",
+          "correct": true
+        },
+        {
+          "text": "Knights are worth more than queens in the endgame",
+          "why": "A queen is worth about three knights. The point here is the check."
+        },
+        {
+          "text": "A queen on g1 would be stalemate",
+          "why": "There is no stalemate here. The problem is the queen trade with check on d8."
+        }
+      ],
+      "narration": "Last question. Why did we choose a knight over a queen? Think about what White could do first if the new piece didn't give check.",
+      "pose": "trophy"
+    }
+  ]
+}

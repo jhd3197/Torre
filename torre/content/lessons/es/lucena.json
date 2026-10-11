@@ -1,0 +1,48 @@
+{
+ "title": "Construyendo un puente (Lucena)",
+ "summary": "La técnica de victoria más importante en finales con torre: libera a tu rey de los jaques construyendo un puente con la torre.",
+ "steps": [
+  {
+   "id": "the-position",
+   "title": "La posición de Lucena",
+   "text": "El peón de las blancas está a un paso de coronar, y la torre en la columna 'c' mantiene al rey negro alejado. El problema es el rey propio de las blancas: bloquea al peón, y cuando avanza, la torre negra lo ataca por detrás. La solución es llevar la torre a la cuarta fila, donde luego puede bloquear esos jaques. Esto se llama construir un puente.",
+   "narration": "Esta es la famosa posición de Lucena. El peón de las blancas está a una casilla de convertirse en dama, pero el rey propio de las blancas está atascado delante de él, y la torre negra está lista para perseguirlo con jaques interminables. El truco es llevar nuestra torre a la cuarta fila: eso es lo que llamamos construir un puente."
+  },
+  {
+   "id": "cut-and-bridge",
+   "title": "Aleja al rey, luego construye",
+   "prompt": "Primero, da jaque al rey negro una columna más lejos. Luego, coloca tu torre en la cuarta fila.",
+   "hint": "Jaquea desde la columna 'd', luego levanta la torre a d4.",
+   "success": "Rd1+ empuja al rey hacia la columna 'e', y Rd4 construye el puente. La torre espera en la cuarta fila para los jaques que están por venir.",
+   "narration": "Construyámoslo. Primero, da jaque al rey negro desde la columna 'd' para que tenga que retroceder una columna más. Luego, levanta tu torre a d4: ahí está, el puente está construido y esperando."
+  },
+  {
+   "id": "walk-out",
+   "title": "Sal y bloquea",
+   "prompt": "Saca a tu rey hacia la torre, y cuando los jaques se agoten, bloquea con la torre.",
+   "hint": "Cada vez que estés en jaque, da un paso hacia tu torre manteniendo la posición junto al peón. Una vez que tu rey llegue a b5, la torre en d4 puede bloquear el siguiente jaque.",
+   "success": "Rb4. Los jaques terminaron y el peón se convierte en dama. ¡Has construido el puente!",
+   "narration": "Ahora el rey sale. Cada vez que la torre negra te da jaque, da un paso hacia tu propia torre y mantente hombro con hombro con tu peón. ¡Cuando los jaques se agoten, bloquea con la torre en b4, y el peón avanza para convertirse en una dama!"
+  },
+  {
+   "id": "which-rank",
+   "title": "¡Revísate!",
+   "question": "Con el peón en la séptima fila, ¿a qué fila se dirige la torre para el puente?",
+   "options": [
+    {
+     "text": "La cuarta fila",
+     "why": "Desde la cuarta fila, la torre puede bloquear un jaque en la columna b una vez que el rey ha recorrido la fila hasta b5."
+    },
+    {
+     "text": "La octava fila",
+     "why": "Tu propio rey y peón están en el camino allí, y no protege al rey mientras sale."
+    },
+    {
+     "text": "La primera fila",
+     "why": "Demasiado lejos: el rey tendría que recorrer la mayor parte del tablero antes de que la torre pudiera bloquear."
+    }
+   ],
+   "narration": "Pregunta final. Con tu peón en la séptima fila, ¿a qué fila se dirige la torre para el puente? ¡Acúrtalo bien, y dominarás la técnica más importante en todos los finales de torres! ¡Excelente trabajo!"
+  }
+ ]
+}

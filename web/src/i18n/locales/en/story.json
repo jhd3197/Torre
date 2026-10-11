@@ -1,0 +1,151 @@
+{
+  "page": {
+    "label": "Story",
+    "loading": "Loading your journey…",
+    "title": "Story",
+    "lead": "Learn chess step by step. Each chapter ends with a puzzle gauntlet and a boss to beat; win, and the next one opens.",
+    "library": "Just want to browse? <library>Open the lesson library</library>."
+  },
+  "chapter": {
+    "lockedLabel": "Chapter {{number}}, locked",
+    "kicker": "Chapter {{number}}",
+    "steps": "{{done}} / {{total}} steps",
+    "stars": "{{earned}} of {{available}} stars",
+    "locked": "Locked",
+    "beatBoss": "Beat {{boss}} to open this chapter.",
+    "finishPrevious": "Finish the chapter before to open this one.",
+    "boss": "Boss: {{name}}"
+  },
+  "node": {
+    "gauntlet": "Puzzle Gauntlet",
+    "boss": "Boss: {{name}}",
+    "minutes": "{{count}} min",
+    "puzzles_one": "{{count}} puzzle",
+    "puzzles_other": "{{count}} puzzles",
+    "rated": "{{elo}} rated",
+    "stars": "{{stars}} of 3 stars",
+    "start": "Start",
+    "locked": "{{title}} (locked)"
+  },
+  "focus": {
+    "lesson": "lesson",
+    "gauntlet": "{{chapter}} gauntlet",
+    "boss": "{{chapter}} boss",
+    "leave": "Leave {{label}}",
+    "progress": "{{label}} progress",
+    "xpTitle": "Level {{level}} · {{into}} of {{total}} XP to the next level",
+    "xp": "{{xp}} XP"
+  },
+  "exit": {
+    "title": "Wait, don’t go!",
+    "body": "You’ll lose this run’s momentum. The path will wait, but the coach would rather you finish.",
+    "streak": "Your {{days}}-day streak is still on the line today.",
+    "stay": "Keep learning",
+    "leave": "Leave"
+  },
+  "boss": {
+    "unavailable": "This chapter’s boss is not available yet. The gauntlet above still counts.",
+    "kicker": "{{chapter}} · Boss",
+    "meta": "{{elo}} rated · {{kind}}",
+    "quote": "“{{hello}}”",
+    "stars": "Best against {{name}}: {{stars}} of 3 stars",
+    "beaten": "{{name}} has already fallen to you, so the next chapter is open. Fight again to chase the remaining stars.",
+    "stakes": "Win, or at least survive twenty moves, to open the next chapter. Losing costs nothing, so retry as often as you like.",
+    "fightAgain": "Fight again",
+    "start": "Start the fight",
+    "note": "The game opens on the Play board. Your result is recorded the moment it ends, so come back here afterwards."
+  },
+  "gauntlet": {
+    "noFresh": "No fresh puzzles left in this chapter’s themes. Try again later.",
+    "cleared": "Gauntlet cleared",
+    "clearedBody": "Three puzzles down. {{chapter}}’s boss is waiting at the end of the path.",
+    "continue": "Continue",
+    "loading": "Loading puzzle {{number}} of {{total}}…",
+    "progress": "Puzzle {{number}} of {{total}}",
+    "nicelyDone": "Nicely done!",
+    "withHelp": "Solved, with help.",
+    "finish": "Finish the gauntlet",
+    "next": "Next puzzle",
+    "tryAgain": "Try again.",
+    "notTheMove": "<strong>✗ {{san}}</strong> is not the move here.",
+    "retry": "Retry",
+    "check": "Check",
+    "showHint": "Show a hint",
+    "showMove": "Show the move",
+    "clean": "First try, no hints. The boss should be worried.",
+    "helped": "Solved. The clean solve counts double in your head.",
+    "toMove": {
+      "white": "White to move.",
+      "black": "Black to move."
+    },
+    "findBest": "Find the best move.",
+    "hint": "<strong>Hint:</strong> the circled piece makes the move.",
+    "arrow": "The arrow shows the move: <strong>{{san}}</strong>. Play it on the board.",
+    "movesSoFar": "Moves so far"
+  },
+  "placement": {
+    "title": "Skip ahead?",
+    "body": "You already solve tactics like a {{rating}} player. The early chapters would be a warm-up. Start closer to your level instead.",
+    "accept": "Unlock up to Chapter {{through}}",
+    "decline": "Start from the beginning"
+  },
+  "sidebar": {
+    "lines": [
+      [
+        "Every expert was once a beginner.",
+        "Keep going!"
+      ],
+      [
+        "Small moves lead to big wins.",
+        "One lesson at a time."
+      ],
+      [
+        "The board rewards patience.",
+        "Take your time."
+      ],
+      [
+        "Mistakes are just lessons in disguise.",
+        "Try again!"
+      ],
+      [
+        "Strong players are built one game at a time.",
+        "You are on your way."
+      ],
+      [
+        "Look at every check and every capture.",
+        "Then breathe."
+      ],
+      [
+        "A plan beats a guess.",
+        "Think one move deeper."
+      ]
+    ],
+    "days": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "label": "Your progress",
+    "title": "Your progress",
+    "lessons": "{{done}} / {{total}} lessons",
+    "xpEarned": "XP earned",
+    "stars": "Stars",
+    "chapters": "Chapters",
+    "streak": "{{days}} day streak",
+    "startStreak": "Start a streak",
+    "doneToday": "Done for today. See you tomorrow!",
+    "meetGoal": "Meet today’s goal to keep it growing."
+  },
+  "streak": {
+    "chipTitle": "{{days}} day streak · {{xp}}/{{goal}} XP today",
+    "goalTitle": "Today's goal {{xp}}/{{goal}} XP",
+    "goalLabel": "Today’s goal: {{xp}} of {{goal}} XP",
+    "goal": "Today’s goal {{xp}}/{{goal}} XP",
+    "freezes_one": "1 streak freeze: a missed day will not break it.",
+    "freezes_other": "{{count}} streak freezes: each covers one missed day."
+  }
+}

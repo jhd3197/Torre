@@ -1,0 +1,32 @@
+{
+  "date": {
+    "undated": "Undated"
+  },
+  "result": {
+    "win": "Win",
+    "loss": "Loss",
+    "draw": "Draw",
+    "unknown": "Unknown"
+  },
+  "eval": {
+    "whiteMate": "White has mate in {{count}}",
+    "blackMate": "Black has mate in {{count}}",
+    "even": "Roughly even",
+    "whiteSlightly": "White is slightly better",
+    "whiteBetter": "White is better",
+    "blackSlightly": "Black is slightly better",
+    "blackBetter": "Black is better"
+  },
+  "relative": {
+    "moment": "in a moment",
+    "minutes_one": "in {{value}} min",
+    "minutes_other": "in {{value}} min",
+    "hours_one": "in {{value}} h",
+    "hours_other": "in {{value}} h",
+    "days_one": "in {{value}} days",
+    "days_other": "in {{value}} days"
+  },
+  "page": {
+    "loading": "Loading…"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "title": "Draws",
+  "summary": "Not every game has a winner. Learn the ways a game can end in a draw: repetition, the 50-move rule, too little material, and agreement.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 12,
+  "requires": ["stalemate"],
+  "steps": [
+    {
+      "id": "ways-to-draw",
+      "kind": "explain",
+      "title": "Half a point each",
+      "fen": "8/8/4k3/8/8/2BK4/8/8 w - - 0 1",
+      "marks": [["c3"]],
+      "text": "A draw means nobody wins. You already know stalemate. The other ways are: not enough pieces left to checkmate, the same position repeating three times, fifty moves each without a capture or pawn move, and both players agreeing. Here a king and bishop against a lone king can never give checkmate, so the game is drawn at once.",
+      "narration": "Not every game has a winner. A king and a single bishop can never checkmate a lone king, so this game is already a draw. Let's look at the other ways a game can be drawn.",
+      "pose": "shrug"
+    },
+    {
+      "id": "repetition",
+      "kind": "explain",
+      "title": "Threefold repetition",
+      "fen": "6k1/6p1/4pp2/7Q/8/8/1rq3PP/7K w - - 0 1",
+      "marks": [["h5", "e8"], ["c2", "c1"]],
+      "text": "If the same position appears three times with the same player to move, the game can be claimed as a draw. A player who is losing can use this: checking the king again and again so that it can never escape is called perpetual check. Here White is far behind, and Black threatens checkmate with the queen on c1.",
+      "narration": "If the exact same position comes up three times, it's a draw. The player who's losing loves this rule. Here White is way behind and about to be mated, but the queen can keep checking forever.",
+      "pose": "idea"
+    },
+    {
+      "id": "perpetual-check",
+      "kind": "play",
+      "title": "Save the game",
+      "fen": "6k1/6p1/4pp2/7Q/8/8/1rq3PP/7K w - - 0 1",
+      "prompt": "You're losing badly. Keep checking the king until the position repeats.",
+      "hint": "Check from e8. After the king hides on h7, check from h5, and repeat.",
+      "line": ["h5e8", "g8h7", "e8h5", "h7g8", "h5e8"],
+      "success": "Black's king can only shuffle between g8 and h7, and your queen keeps checking. The position repeats, and you escape with a draw.",
+      "narration": "Black has a queen and a rook more, and threatens mate. Don't give up! Check the king, then check it again, back and forth. It can never escape.",
+      "pose": "determined"
+    },
+    {
+      "id": "fifty-moves",
+      "kind": "explain",
+      "title": "The 50-move rule",
+      "fen": "8/8/3k4/2r5/8/4K3/5R2/8 w - - 80 120",
+      "text": "If both players make fifty moves each with no capture and no pawn move, either player can claim a draw. This stops a game from dragging on forever when nobody can make progress, like in this ending with a rook each.",
+      "narration": "There's also the fifty move rule. If fifty moves go by on each side without a capture or a pawn move, the game can be called a draw. Nobody has to shuffle pieces forever.",
+      "pose": "sleepy"
+    },
+    {
+      "id": "by-agreement",
+      "kind": "explain",
+      "title": "Shaking hands",
+      "fen": "4k3/pp3ppp/8/8/8/8/PP3PPP/4K3 w - - 0 1",
+      "text": "Finally, the players can simply agree to a draw. One offers, the other accepts. In an even position like this pawn ending, where neither side has an advantage, a draw by agreement is common between strong players.",
+      "narration": "And the simplest draw of all: you both agree. If the position is dead even, one player offers a draw, the other shakes hands, and that's that.",
+      "pose": "hug"
+    },
+    {
+      "id": "draws-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Which of these endings is an automatic draw because neither side can ever checkmate?",
+      "options": [
+        { "text": "King and knight against a lone king", "correct": true, "why": "A single knight with its king cannot force or even reach checkmate, so there is not enough material." },
+        { "text": "King and rook against a lone king", "why": "A rook and king can force checkmate. That ending is a win." },
+        { "text": "King and pawn against a lone king", "why": "The pawn might promote to a queen, so the game goes on." }
+      ],
+      "narration": "Last question, and you've finished the rules of the game! Which of these endings is a dead draw?",
+      "pose": "confetti"
+    }
+  ]
+}

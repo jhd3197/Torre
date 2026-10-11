@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "Back-rank mate",
+  "summary": "A castled king behind three unmoved pawns can be mated by a single rook. Learn to deliver it, and to avoid it.",
+  "category": "checkmates",
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "back-rank-mate",
+  "steps": [
+    {
+      "id": "trapped-king",
+      "kind": "explain",
+      "title": "A king with no air",
+      "fen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "marks": [["d1", "d8"], ["f7"], ["g7"], ["h7"]],
+      "text": "Black's king is shut in by its own pawns. A rook or queen that reaches the back rank gives check, and the king has nowhere to go: f7, g7 and h7 are taken by its own pawns.",
+      "narration": "See Black's king on g8? Those three pawns in front of it look like shelter, but they actually wall the king in. If a rook reaches the back rank with check, the king has nowhere to run: its own pawns are in the way.",
+      "pose": "alarm"
+    },
+    {
+      "id": "deliver-it",
+      "kind": "play",
+      "title": "Deliver it",
+      "fen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Use the open d-file.",
+      "line": ["d1d8"],
+      "success": "Rd8#. The pawns that shelter Black's king are what trap it.",
+      "narration": "Your move, and it's checkmate in one! Slide your rook all the way down the open d-file to d8. Black's own pawns do the trapping for you.",
+      "pose": "detective"
+    },
+    {
+      "id": "remove-the-guard",
+      "kind": "play",
+      "title": "Remove the guard",
+      "fen": "r5k1/5ppp/8/8/8/8/1Q3PPP/1R4K1 w - - 0 1",
+      "prompt": "Black's rook guards the back rank. Lure it away, then mate.",
+      "hint": "Sacrifice the queen on b8. The rook has to take, and your own rook follows.",
+      "line": ["b2b8", "a8b8", "b1b8"],
+      "success": "Qb8+ forces Rxb8, and Rxb8# follows. A queen sacrifice is cheap when it leads to mate.",
+      "narration": "This time Black's rook is guarding the back rank, so we lure it away. Sacrifice your queen on b8! The rook has to take it, and then your own rook lands on b8 with checkmate. Giving up the queen is a bargain when it ends the game.",
+      "pose": "shocked"
+    },
+    {
+      "id": "make-luft",
+      "kind": "explain",
+      "title": "Giving the king air",
+      "fen": "6k1/5pp1/7p/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "demo": ["d1d8", "g8h7"],
+      "marks": [["h7"]],
+      "text": "Here Black has played ...h6 at some point. Step through the demo: Rd8+ is no longer mate, because the king escapes to h7. The flight square is called luft (German for air). One quiet pawn move ahead of time removes the danger.",
+      "narration": "Now let's see the defense. Black has pushed the h-pawn, making a little escape square on h7. We call that luft, the German word for air. Rook to d8, check! [move] But it's not mate anymore, because the king simply slips out to h7. [move]",
+      "pose": "idea"
+    },
+    {
+      "id": "your-own-king",
+      "kind": "choose",
+      "title": "Your own king",
+      "question": "Your king is on g1 behind pawns on f2, g2 and h2, the heavy pieces are being traded and your opponent still has a rook. What is a sensible precaution when you have a free move?",
+      "options": [
+        { "text": "Play h3 (or g3) to give the king a flight square", "correct": true, "why": "One tempo now means a back-rank check later is just a check." },
+        { "text": "Move the king to h1", "why": "On h1 the king is just as trapped, and the move does nothing for it." },
+        { "text": "Advance f2-f4 to attack", "why": "It opens a diagonal toward your king and still leaves the back rank weak." }
+      ],
+      "narration": "Last one! Your king sits on g1 behind three pawns, and your opponent still has a rook on the board. What's the smart precaution when you have a spare move? Answer this, and you've mastered the back rank. Well done!",
+      "pose": "thumbs-up"
+    }
+  ]
+}

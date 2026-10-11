@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "title": "Fischer – Spassky, game six",
+  "summary": "Reykjavik, 1972: in the match of the century, Fischer surprises Spassky with 1.c4 and plays a perfect positional game.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 8,
+  "unit": "Bobby Fischer",
+  "order": 3,
+  "practice": "kingside-attack",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Reykjavik, 1972",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "In 1972 Bobby Fischer challenged the world champion Boris Spassky in Reykjavik, Iceland. During the Cold War the match drew attention far beyond chess. For game six Fischer, who almost always opened with his king's pawn, pushed the c-pawn instead. He won the game, and later the match, becoming world champion.",
+      "narration": "Reykjavik, 1972. Fischer against the world champion Boris Spassky. In game six Fischer opens with a move nobody expected.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Fischer – Spassky, World Championship, game 6, 1972",
+      "text": "A Queen's Gambit. Black ends up with two pawns side by side on c5 and d5, called hanging pawns. Fischer makes them move, then uses his extra pawns on the kingside to attack.",
+      "narration": "Black gets two hanging pawns in the center. Watch Fischer make them move, then attack on the other side.",
+      "pose": "playing",
+      "moves": [
+        "c2c4",
+        "e7e6",
+        "g1f3",
+        "d7d5",
+        "d2d4",
+        "g8f6",
+        "b1c3",
+        "f8e7",
+        "c1g5",
+        "e8g8",
+        "e2e3",
+        "h7h6",
+        "g5h4",
+        "b7b6",
+        "c4d5",
+        "f6d5",
+        "h4e7",
+        "d8e7",
+        "c3d5",
+        "e6d5",
+        "a1c1",
+        "c8e6",
+        "d1a4",
+        "c7c5",
+        "a4a3",
+        "f8c8",
+        "f1b5",
+        "a7a6",
+        "d4c5",
+        "b6c5",
+        "e1g1",
+        "a8a7",
+        "b5e2",
+        "b8d7",
+        "f3d4",
+        "e7f8",
+        "d4e6",
+        "f7e6",
+        "e3e4",
+        "d5d4",
+        "f2f4",
+        "f8e7",
+        "e4e5",
+        "c8b8",
+        "e2c4",
+        "g8h8",
+        "a3h3",
+        "d7f8",
+        "b2b3",
+        "a6a5",
+        "f4f5",
+        "e6f5",
+        "f1f5",
+        "f8h7",
+        "c1f1",
+        "e7d8",
+        "h3g3",
+        "a7e7",
+        "h2h4",
+        "b8b7",
+        "e5e6",
+        "b7c7",
+        "g3e5",
+        "d8e8",
+        "a2a4",
+        "e8d8",
+        "f1f2",
+        "d8e8",
+        "f2f3",
+        "e8d8",
+        "c4d3",
+        "d8e8",
+        "e5e4",
+        "h7f6",
+        "f5f6",
+        "g7f6",
+        "f3f6",
+        "h8g8",
+        "d3c4",
+        "g8h8",
+        "e4f4"
+      ],
+      "notes": [
+        {
+          "ply": 1,
+          "text": "1.c4: a surprise. Fischer almost always opened with 1.e4."
+        },
+        {
+          "ply": 30,
+          "text": "15...bxc5: Black has hanging pawns on c5 and d5. They control squares, but they can become targets."
+        },
+        {
+          "ply": 37,
+          "text": "19.Nxe6: Fischer trades his knight for Black's good bishop. After ...fxe6, Black's pawns are stiff."
+        },
+        {
+          "ply": 40,
+          "text": "20...d4, after 20.e4, Spassky pushes past. The center is now closed."
+        },
+        {
+          "ply": 43,
+          "text": "22.e5: the pawn fixes the e6 pawn and opens the diagonal for White's bishop."
+        },
+        {
+          "ply": 47,
+          "text": "24.Qh3: the queen swings across to attack e6 a second time and eye Black's king."
+        },
+        {
+          "ply": 51,
+          "text": "26.f5: the pawn break that opens the f-file toward Black's king."
+        },
+        {
+          "ply": 72,
+          "text": "36...Qe8: Spassky can only shuffle his queen back and forth. White builds up at leisure."
+        },
+        {
+          "ply": 81,
+          "text": "41.Qf4: Black's king has no shelter left. Spassky resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 41,
+          "prompt": "The center is closed. Where should White's pawns go now?",
+          "hint": "White has more pawns on the kingside. Push one.",
+          "why": "21.f4 starts the kingside pawns rolling: e5 and f5 come next. With the center closed, Black's queenside pawns are too slow to matter."
+        },
+        {
+          "ply": 61,
+          "prompt": "Your e-pawn can make a big step. Should it?",
+          "hint": "A passed pawn guarded by a bishop is a monster.",
+          "why": "31.e6! The pawn is protected by the bishop and cuts Black's position in two. Black's rooks lose the d7 and f7 squares."
+        },
+        {
+          "ply": 75,
+          "prompt": "Black's knight on f6 is the last defender of the king. Remove it!",
+          "hint": "A rook can take a knight when the king behind it falls apart.",
+          "why": "38.Rxf6! gives a rook for the knight. After ...gxf6 39.Rxf6 the queen and rook crash in on the bare king."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "The plan",
+      "question": "After 20...d4 the center was closed. What was Fischer's plan?",
+      "options": [
+        {
+          "text": "Push his kingside pawns, where he had more, and open lines at the king",
+          "why": "Yes. f4, e5 and f5 opened the f-file, and the rooks did the rest.",
+          "correct": true
+        },
+        {
+          "text": "Win the d4 pawn with all his pieces",
+          "why": "The d4 pawn was safe and did not matter. Fischer played on the other wing."
+        },
+        {
+          "text": "Trade all the pieces and agree a draw",
+          "why": "Fischer wanted to win, and the kingside majority gave him the way."
+        }
+      ],
+      "narration": "The center locked up. What was Fischer's plan?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Play where you have more",
+      "fen": "4q2k/2r1r3/4PR1p/p1p5/P1Bp1Q1P/1P6/6P1/6K1 b - - 4 41",
+      "text": "When the center locks, look at where you have more pawns and more space, and play there. Fischer's e- and f-pawns pushed forward, opened the f-file, and his rooks and queen poured in. Spassky's pieces were stuck defending, and he could only wait.",
+      "narration": "When the center is closed, play on the side where you have more pawns. Fischer did it perfectly.",
+      "pose": "idea"
+    }
+  ]
+}

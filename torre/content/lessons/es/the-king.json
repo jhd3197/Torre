@@ -1,0 +1,55 @@
+{
+ "title": "El rey",
+ "summary": "El rey se mueve una casilla a la vez y nunca debe quedar en jaque. Aprende sus movimientos y las reglas que lo protegen.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "one-square",
+   "title": "Un paso a la vez",
+   "text": "El rey se mueve una casilla en cualquier dirección: hacia adelante, hacia atrás, de lado o en diagonal. No es la pieza más fuerte, pero sí la más importante. Si tu rey está atrapado, pierdes la partida.",
+   "narration": "Este es el rey. Es lento, solo una casilla a la vez, pero puede ir en cualquier dirección. Protégelo a toda costa, porque si se atrapa, el juego se acabó."
+  },
+  {
+   "id": "kings-never-touch",
+   "title": "Nunca en jaque",
+   "text": "Un rey nunca puede moverse a una casilla que una pieza enemiga ataca. Eso se llama moverse al jaque, y no está permitido. Los reyes también atacan las casillas a su alrededor, así que los dos reyes nunca pueden estar uno al lado del otro: aquí ni uno de los reyes puede pisar c5, d5 o e5.",
+   "narration": "Dos reglas mantienen al rey con vida. Nunca puede pisar una casilla que está atacada, y los dos reyes no pueden tocarse. Esos tres cuadrados en medio están fuera de los límites para ambos."
+  },
+  {
+   "id": "king-grabs-a-pawn",
+   "title": "Un refrigerio seguro",
+   "prompt": "Tu rey puede llegar a dos peones negros. Captura el que puedes tomar.",
+   "hint": "El peón en d5 está justo al lado del rey negro.",
+   "success": "El rey toma f5. No pudiste tomar en d5, porque entonces tu rey estaría junto al rey negro.",
+   "narration": "Tu rey tiene hambre. Dos peones negros están a su alcance, pero uno de ellos está protegido por el rey negro. Los reyes no pueden tocarse, así que elige el otro."
+  },
+  {
+   "id": "capture-the-checker",
+   "title": "Responde al jaque.",
+   "prompt": "La torre negra te da jaque. Encuentra la mejor manera de salir.",
+   "hint": "¿Hay algo protegiendo la torre en e1?",
+   "success": "La torre estaba justo al lado de tu rey y no tenía protección, así que el rey la capturó. Un rey puede capturar a un atacante, siempre y cuando no esté defendido.",
+   "narration": "¡Jaque! La torre negra está justo al lado de tu rey. Podrías huir, pero mira más de cerca: ¿alguien protege esa torre? Si no, tu rey simplemente puede capturarla."
+  },
+  {
+   "id": "king-quiz",
+   "title": "Revisión rápida",
+   "question": "La torre negra está al lado de tu rey, y el alfil negro la protege. ¿Puede tu rey capturar la torre?",
+   "options": [
+    {
+     "text": "No, el rey se estaría moviendo hacia un jaque.",
+     "why": "Después de la captura, el alfil atacaría la nueva casilla del rey. Un rey nunca puede moverse hacia un jaque."
+    },
+    {
+     "text": "Sí, el rey puede capturar cualquier cosa que esté al lado de él.",
+     "why": "Solo piezas que no están defendidas. Capturar una pieza defendida pone a tu rey en jaque."
+    },
+    {
+     "text": "Sí, pero pierdes el juego después.",
+     "why": "El movimiento es simplemente ilegal, así que no puedes jugarlo en absoluto."
+    }
+   ],
+   "narration": "Una última pregunta. ¿Qué pasaría si esa torre al lado de tu rey estuviera protegida por un alfil? ¿El rey aún podría capturarla?"
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema": "torre.videos/1",
+  "videos": [
+    {
+      "id": "review-morphy-opera-1858",
+      "kind": "review",
+      "title": "The Opera Game: Morphy's Perfect Lesson in Development (1858) | Full Game Review",
+      "lesson": "morphy-opera-game",
+      "youtube": ""
+    },
+    {
+      "id": "review-anderssen-kieseritzky-1851",
+      "kind": "review",
+      "title": "The Immortal Game: Anderssen Gives Up Everything and Mates | Full Game Review",
+      "lesson": "the-immortal-game",
+      "youtube": ""
+    },
+    {
+      "id": "review-anderssen-dufresne-1852",
+      "kind": "review",
+      "title": "The Evergreen Game: Anderssen's Queen Sacrifice (1852) | Full Game Review",
+      "lesson": "the-evergreen-game",
+      "youtube": ""
+    },
+    {
+      "id": "review-byrne-fischer-1956",
+      "kind": "review",
+      "title": "The Game of the Century: 13-Year-Old Fischer's Queen Sacrifice | Full Game Review",
+      "lesson": "game-of-the-century",
+      "youtube": ""
+    },
+    {
+      "id": "review-kasparov-topalov-1999",
+      "kind": "review",
+      "title": "Kasparov's Immortal: The Rook Sacrifice and the King Hunt (1999) | Full Game Review",
+      "lesson": "kasparov-topalov-1999",
+      "youtube": ""
+    },
+    {
+      "id": "review-tal-smyslov-1959",
+      "kind": "review",
+      "title": "Tal's Queen Sacrifice vs Smyslov (1959) | Full Game Review",
+      "lesson": "mikhail-tal",
+      "youtube": ""
+    },
+    {
+      "id": "review-queens-gambit",
+      "kind": "review",
+      "title": "The Queen's Gambit Explained (+ Fischer's Masterpiece vs Spassky, 1972)",
+      "lesson": "fischer-spassky-1972",
+      "youtube": ""
+    },
+    {
+      "id": "gurgenidze-tal-1957-qxh3",
+      "kind": "short",
+      "title": "Tal puts his queen where a pawn can take it #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "spassky-tal-1965-qxd6",
+      "kind": "short",
+      "title": "Spassky forked Tal's queen. Tal didn't care. #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-botvinnik-1960-4-bxh7",
+      "kind": "short",
+      "title": "Tal's bishop sac against Botvinnik #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-botvinnik-1961-qxh8",
+      "kind": "short",
+      "title": "Tal gives his queen for a rook against Botvinnik #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-hecht-1962-exf6",
+      "kind": "short",
+      "title": "Black attacks Tal's queen. Tal ignores it. #chess #shorts",
+      "lesson": "tal-hecht-varna-1962",
+      "youtube": ""
+    },
+    {
+      "id": "tal-larsen-1965-nd5",
+      "kind": "short",
+      "title": "Stockfish says this knight sac is wrong. Tal won anyway. #chess #shorts",
+      "lesson": "tal-larsen-bled-1965",
+      "youtube": ""
+    },
+    {
+      "id": "tal-najdorf-1960-f5",
+      "kind": "short",
+      "title": "One pawn move, and Najdorf resigned #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-portisch-1965-rxe6",
+      "kind": "short",
+      "title": "Tal throws a rook at Portisch's king #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-smyslov-1959-qxf7",
+      "kind": "short",
+      "title": "Tal's queen walks into the rook's path. On purpose. #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    },
+    {
+      "id": "tal-spassky-1980-rg5",
+      "kind": "short",
+      "title": "Tal offers Spassky a free rook #chess #shorts",
+      "lesson": null,
+      "youtube": ""
+    }
+  ]
+}

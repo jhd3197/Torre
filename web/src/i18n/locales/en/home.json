@@ -1,0 +1,80 @@
+{
+  "label": "What to do right now",
+  "hero": {
+    "label": "Continue your journey",
+    "failedTitle": "The story map is unreachable.",
+    "failedText": "Your progress is safe. Try opening the map directly.",
+    "openStory": "Open Story",
+    "loading": "Finding your next step…",
+    "doneEyebrow": "Every chapter cleared",
+    "doneTitle": "Journey complete.",
+    "doneText": "Lessons, gauntlets, bosses: all of it. The board is yours now.",
+    "revisit": "Revisit the map",
+    "chapter": "Chapter {{number}} · {{title}} · {{kind}}",
+    "start": {
+      "lesson": "Start the lesson",
+      "gauntlet": "Start the gauntlet",
+      "boss": "Face the boss"
+    },
+    "gauntletTitle": "Puzzle Gauntlet",
+    "bossTitle": "Boss: {{name}}",
+    "kind": {
+      "lesson": "Lesson",
+      "gauntlet": "Puzzle gauntlet",
+      "boss": "Boss battle"
+    }
+  },
+  "practice": {
+    "puzzles": {
+      "title": "Puzzles",
+      "rating": "Rating {{rating}}",
+      "text": "Tactics against the clock of your own rating."
+    },
+    "review": {
+      "title": "Fix your mistakes",
+      "due_one": "{{count}} thing to fix today.",
+      "due_other": "{{count}} things to fix today.",
+      "caughtUp": "All caught up for today.",
+      "text": "Your mistakes, drilled until they stick."
+    },
+    "bot": {
+      "title": "Play a bot",
+      "text": "A character at your level is waiting."
+    },
+    "label": "Practice",
+    "heading": "Where to next?"
+  },
+  "today": {
+    "label": "Today",
+    "streak_one": "{{count}}-day streak",
+    "streak_other": "{{count}}-day streak",
+    "goalLabel": "Today’s XP goal",
+    "goalMet": "Goal met",
+    "progress": "{{xp}} of {{goal}} XP today",
+    "days": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    }
+  },
+  "resume": {
+    "oneMove": "<strong>Game in progress:</strong> you vs. {{bot}}, {{count}} move in",
+    "moves": "<strong>Game in progress:</strong> you vs. {{bot}}, {{count}} moves in",
+    "continue": "Continue"
+  },
+  "journey": {
+    "title": "Your journey",
+    "progress": "Chapter {{number}} of {{total}}",
+    "done": "Every chapter cleared",
+    "open": "Open the map",
+    "state": {
+      "done": "{{title}}: cleared",
+      "current": "{{title}}: you are here",
+      "locked": "{{title}}: still ahead"
+    }
+  }
+}

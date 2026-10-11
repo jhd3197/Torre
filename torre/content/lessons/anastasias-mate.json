@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "Anastasia's mate",
+  "summary": "A knight guards the escape squares while a rook or queen checks the king along the edge file.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 2,
+  "level": "intermediate",
+  "minutes": 5,
+  "practice": "anastasia-mate",
+  "steps": [
+    {
+      "id": "the-pattern",
+      "kind": "explain",
+      "title": "Knight on e7, rook on the h-file",
+      "fen": "5r2/pp2Nppk/8/8/8/3R4/PP3PPP/6K1 w - - 0 1",
+      "marks": [["e7", "g8"], ["e7", "g6"], ["g7"], ["h7"]],
+      "text": "Black's king sits on the h-file with its own pawn on g7 beside it. White's knight on e7 guards g8 and g6, the only squares the king could step to. If a rook or queen checks down the h-file, the king is trapped against the edge. This pattern is named after a novel, Anastasia und das Schachspiel, in which it appeared.",
+      "narration": "Here's the setup. The knight on e7 guards both squares next to the king, g8 and g6, and Black's own pawn sits on g7. All that's missing is a check down the h-file.",
+      "pose": "present"
+    },
+    {
+      "id": "rook-to-h3",
+      "kind": "play",
+      "title": "Down the h-file",
+      "fen": "5r2/pp2Nppk/8/8/8/3R4/PP3PPP/6K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Your rook can reach the h-file along the third rank.",
+      "line": ["d3h3"],
+      "success": "Rook to h3 is mate. The rook covers the whole h-file, the knight covers g8 and g6, and the pawn on g7 blocks the last square.",
+      "narration": "Swing your rook across to the h-file. The knight already guards the escape squares, so the check is mate.",
+      "pose": "detective"
+    },
+    {
+      "id": "open-the-file",
+      "kind": "play",
+      "title": "Open the file first",
+      "fen": "5r1k/pp2Nppp/8/7Q/8/3R4/PP3PPP/6K1 w - - 0 1",
+      "prompt": "Mate in two. The h-pawn is in the way, so remove it with a sacrifice.",
+      "hint": "Take on h7 with check. The king must take back, and then your rook swings over.",
+      "line": ["h5h7", "h8h7", "d3h3"],
+      "success": "Queen takes h7 check forces king takes h7, because the knight covers g8. The h-file is now open, and rook to h3 is Anastasia's mate.",
+      "narration": "The pawn on h7 is blocking the file. Smash it with your queen! The king has to take, since the knight guards g8. Now the file is open, and your rook swings to h3 for mate.",
+      "pose": "shocked"
+    },
+    {
+      "id": "job-of-the-knight",
+      "kind": "choose",
+      "title": "The knight's job",
+      "question": "In Anastasia's mate, what does the knight on e7 do?",
+      "options": [
+        { "text": "It guards g8 and g6, the king's escape squares", "correct": true, "why": "With those squares covered and the pawn on g7 in the way, the check on the h-file leaves the king nowhere to go." },
+        { "text": "It gives the check", "why": "The rook or queen gives the check down the h-file. The knight only guards squares." },
+        { "text": "It protects the rook", "why": "The rook on h3 is far from the king and does not need protection here." }
+      ],
+      "narration": "Last one. What is the knight actually doing in this mate? Spot its job, and you'll recognise this pattern whenever a knight lands on e7. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

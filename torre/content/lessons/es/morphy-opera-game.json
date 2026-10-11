@@ -1,0 +1,79 @@
+{
+ "title": "El Juego de la Ópera",
+ "summary": "París, 1858: Paul Morphy vence a dos nobles en un palco de la ópera, con el sacrificio de dama más famoso del ajedrez.",
+ "unit": "Paul Morphy",
+ "steps": [
+  {
+   "id": "paris-1858",
+   "title": "París, 1858",
+   "text": "Paul Morphy tiene veintiún años, es de Nueva Orleans y está venciendo a todos en Europa. Una noche en la ópera de París, el Duque de Brunswick y el Conde Isouard lo invitan a su palco y lo desafían a mitad de la función. Morphy juega el partido de su vida mientras la ópera continúa. Diecisiete movimientos. Dale a reproducir.",
+   "narration": "París, 1858. En la ópera, dos nobles desafían a Paul Morphy, de veintiún años, durante la función. Diecisiete movimientos después, se hace historia en el ajedrez. Dale a reproducir."
+  },
+  {
+   "id": "the-game",
+   "title": "Morphy – Duque Karl y Conde Isouard, París 1858",
+   "text": "Los dos oponentes de Morphy consultan cada movimiento y eso no los ayuda. Este partido sigue siendo la lección perfecta en desarrollo rápido: cada pieza de Morphy sale con una amenaza.",
+   "notes": [
+    {
+     "text": "3.d4!: Morphy abre el centro inmediatamente. El desarrollo es lo más importante para él."
+    },
+    {
+     "text": "6.Bc4: cada pieza sale, y cada una sale con una amenaza."
+    },
+    {
+     "text": "7.Qb3!: Ataque doble a b7 y f7. Los consultores ya están bajo presión."
+    },
+    {
+     "text": "9.Bg5: el caballo está clavado a la dama. La presión nunca cesa ni un solo movimiento."
+    },
+    {
+     "text": "1. 10.Nxb5!: Morphy sacrifica un caballo para abrir las líneas hacia el rey."
+    },
+    {
+     "text": "2. 12.O-O-O: el rey está seguro Y la torre cae en la columna abierta. ¡Dos objetivos en un movimiento!"
+    },
+    {
+     "text": "3. 13.Rxd7!: El sacrificio de la torre. Los defensores de las negras son arrastrados de sus casillas uno a uno."
+    },
+    {
+     "text": "4. 15.Bxd7+ Nxd7, y ahora la última fila tiene casi ningún defensor."
+    },
+    {
+     "text": "5. 16.Qb8+!! El sacrificio de la dama: el caballo está obligado a tomar…"
+    },
+    {
+     "text": "6. 17.Rd8# ¡Jaque mate! Quizás el final más famoso de todo el ajedrez: jugado entre actos en la ópera."
+    }
+   ],
+   "narration": "Dos oponentes, consultando cada movimiento. No ayuda. Observa la lección perfecta en desarrollo."
+  },
+  {
+   "id": "the-finish",
+   "title": "El final de Morphy",
+   "prompt": "El rey y la torre de las negras están alineados en la última fila. Encuentra el famoso mate en dos de Morphy.",
+   "hint": "La dama puede ir donde puede ser tomada: si tomarla abre la columna d.",
+   "success": "Qb8+!! Nxb8 Rd8#: el final inmortal del Juego de la Ópera. Lo jugaste como Morphy.",
+   "narration": "Ahora estás en la ópera. Mate en dos: encuentra el final de Morphy."
+  },
+  {
+   "id": "the-lesson",
+   "title": "La gran lección",
+   "question": "Los jugadores han estudiado el Juego de la Ópera por más de 160 años. ¿Cuál es su gran lección?",
+   "options": [
+    {
+     "text": "Desarrolla cada pieza rápidamente y abre líneas hacia el rey",
+     "why": "Exacto. Todas las piezas de Morphy se unieron al ataque mientras que la torre y el alfil de las negras nunca se movieron."
+    },
+    {
+     "text": "Mantén la dama en casa hasta el final del juego",
+     "why": "La dama de Morphy lideró el ataque e incluso se sacrificó para terminarlo."
+    },
+    {
+     "text": "Primero gana material, luego ataca",
+     "why": "Morphy regaló material. El tiempo y las líneas abiertas valían más que las piezas para él."
+    }
+   ],
+   "narration": "Una pregunta para terminar: ¿cuál es la lección de este juego?"
+  }
+ ]
+}

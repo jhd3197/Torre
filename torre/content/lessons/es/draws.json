@@ -1,0 +1,59 @@
+{
+ "title": "Empates",
+ "summary": "No todos los juegos tienen un ganador. Aprende las formas en que un juego puede terminar en empate: repetición, la regla de los 50 movimientos, poco material, y acuerdo.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "ways-to-draw",
+   "title": "Mitad de un punto para cada uno",
+   "text": "Un empate significa que nadie gana. Ya conoces el ahogado. Las otras formas son: no quedan suficientes piezas para dar jaque mate, la misma posición repitiéndose tres veces, cincuenta movimientos cada uno sin captura ni movimiento de peón, y ambos jugadores de acuerdo. Aquí, un rey y un alfil contra un rey solo nunca pueden dar jaque mate, por lo que el juego se declara empate de inmediato.",
+   "narration": "No todos los juegos tienen un ganador. Un rey y un solo alfil nunca pueden dar jaque mate a un rey solo, así que este juego ya es un empate. Veamos otras formas en que un juego puede ser declarado empate."
+  },
+  {
+   "id": "repetition",
+   "title": "Repetición threefold",
+   "text": "Si la misma posición aparece tres veces con el mismo jugador para mover, el juego puede ser declarado empate. Un jugador que está perdiendo puede usar esto: dando jaque al rey una y otra vez para que nunca pueda escapar se llama jaque perpetuo. Aquí, las blancas están muy por detrás, y las negras amenazan con jaque mate con la dama en c1.",
+   "narration": "Si la misma posición aparece tres veces, es un empate. Al jugador que está perdiendo le encanta esta regla. Aquí las blancas están muy atrás y a punto de ser mate, pero la dama puede seguir dando jaque para siempre."
+  },
+  {
+   "id": "perpetual-check",
+   "title": "Salva el juego",
+   "prompt": "Estás perdiendo mucho. Sigue dando jaque al rey hasta que la posición se repita.",
+   "hint": "Jaque desde e8. Después de que el rey se esconda en h7, jaque desde h5, y repite.",
+   "success": "El rey negro solo puede moverse entre g8 y h7, y tu dama sigue dando jaque. La posición se repite, y escapas con un empate.",
+   "narration": "Las negras tienen una dama y una torre más, y amenazan con jaque mate. ¡No te rindas! Da jaque al rey, luego vuelve a darle jaque, de un lado a otro. Nunca podrá escapar."
+  },
+  {
+   "id": "fifty-moves",
+   "title": "La regla de los 50 movimientos",
+   "text": "Si ambos jugadores realizan 50 movimientos cada uno sin capturas ni movimientos de peón, cualquiera puede declarar tablas. Esto evita que un juego se prolongue indefinidamente cuando nadie puede progresar, como en este final con las torres cada uno.",
+   "narration": "También existe la regla de los 50 movimientos. Si pasan 50 movimientos en cada lado sin una captura o un movimiento de peón, el juego puede declararse tablas. Nadie tiene que mover piezas para siempre."
+  },
+  {
+   "id": "by-agreement",
+   "title": "Apretón de manos",
+   "text": "Finalmente, los jugadores simplemente pueden acordar tablas. Uno ofrece, el otro acepta. En una posición pareja como este final de peones, donde ninguna de las partes tiene ventaja, un acuerdo de tablas es común entre jugadores fuertes.",
+   "narration": "Y la forma más sencilla de tablas: ambos están de acuerdo. Si la posición está completamente igualada, un jugador ofrece tablas, el otro estrecha la mano, y eso es todo."
+  },
+  {
+   "id": "draws-quiz",
+   "title": "Revisión rápida",
+   "question": "¿Cuál de estos finales es un empate automático porque ninguna de las partes puede dar jaque mate?",
+   "options": [
+    {
+     "text": "Rey y caballo contra un rey solo",
+     "why": "Un solo caballo con su rey no puede forzar ni siquiera llegar a dar jaque mate, por lo que no hay suficiente material."
+    },
+    {
+     "text": "Rey y torre contra un rey solo",
+     "why": "Una torre y un rey pueden forzar el jaque mate. Ese final es una victoria."
+    },
+    {
+     "text": "Rey y peón contra un rey solo",
+     "why": "El peón podría coronar a dama, así que el juego continúa."
+    }
+   ],
+   "narration": "Última pregunta, ¡y has terminado las reglas del juego! ¿Cuál de estos finales es un empate inevitable?"
+  }
+ ]
+}

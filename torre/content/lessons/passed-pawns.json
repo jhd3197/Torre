@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "title": "Passed pawns",
+  "summary": "A pawn with no enemy pawns in its way is a future queen. Learn to spot passed pawns, push them, and create your own.",
+  "category": "strategy",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Pawn structure",
+  "order": 1,
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "what-is-passed",
+      "kind": "explain",
+      "title": "A pawn with a clear road",
+      "fen": "6k1/pp3ppp/8/3P4/8/8/PP3PPP/6K1 w - - 0 1",
+      "marks": [["d5"], ["d5", "d8"]],
+      "text": "A pawn is passed when no enemy pawn stands in front of it on its own file or on the two files next to it. White's pawn on d5 has no black pawn on the c-, d- or e-file ahead of it, so no pawn can block it or capture it on the way to d8. Only pieces can stop it. The idea that pawns are the soul of chess goes back to Philidor, and a passed pawn is the clearest reason why.",
+      "narration": "Look at the white pawn on d5. There are no black pawns in front of it, and none on the files beside it either. That makes it a passed pawn, and only Black's pieces can stop it from becoming a queen.",
+      "pose": "present"
+    },
+    {
+      "id": "spot-it",
+      "kind": "choose",
+      "title": "Spot the passed pawn",
+      "fen": "6k1/1p3p2/p2p4/4P3/2P5/P7/7P/6K1 w - - 0 1",
+      "question": "Which white pawn is passed?",
+      "options": [
+        { "text": "The pawn on h2", "correct": true, "why": "Black has no pawns on the g- or h-files, so nothing can ever block or capture it. A pawn can be passed even on its starting square." },
+        { "text": "The pawn on e5", "why": "Black's pawn on d6 is on the next file and ahead of it, so it can capture on e5 or stand guard. Not passed." },
+        { "text": "The pawn on c4", "why": "Black's pawns on b7 and d6 are on the neighbouring files, ahead of it." },
+        { "text": "The pawn on a3", "why": "Black's a6 pawn blocks it, and the b7 pawn guards the square next to it." }
+      ],
+      "narration": "Your turn to look. Check each white pawn: are there black pawns in front of it, on its own file or the files next door? Only one pawn has a completely clear road.",
+      "pose": "magnify"
+    },
+    {
+      "id": "push-it",
+      "kind": "play",
+      "title": "Passed pawns must be pushed",
+      "fen": "5k2/8/8/1P6/8/8/8/6K1 w - - 0 1",
+      "prompt": "Black's king is racing to catch your pawn. Win the race.",
+      "hint": "Every move you spend elsewhere is a move for Black's king. Count the steps.",
+      "line": ["b5b6", "f8e7", "b6b7", "e7d7", "b7b8q"],
+      "success": "Push, push, queen. If White had spent even one move on the king, Black's king would reach c7 in time and the pawn would be lost.",
+      "narration": "Here's the famous rule: passed pawns must be pushed. Black's king is just close enough to catch the pawn if you waste a single move, so don't. March it straight up the board.",
+      "pose": "determined"
+    },
+    {
+      "id": "protected-and-connected",
+      "kind": "explain",
+      "title": "Protected and connected",
+      "fen": "6k1/p4ppp/8/3P4/2P5/8/5PPP/6K1 w - - 0 1",
+      "marks": [["c4", "d5"], ["d5"], ["c4"], ["a7"]],
+      "text": "White's pawns on c4 and d5 are both passed, and they stand side by side: connected passed pawns. They can guard each other as they advance, so the king never has to babysit them. The d5 pawn is also protected, because the c4 pawn defends it. Black's a7 pawn is passed too, but it stands alone, and a lone passer needs help from its pieces.",
+      "narration": "Two passed pawns side by side are called connected passed pawns, and they're a nightmare to stop because they protect each other as they march. The pawn on d5 is also protected by the one on c4, so Black can't simply win it.",
+      "pose": "pointer"
+    },
+    {
+      "id": "make-a-passer",
+      "kind": "play",
+      "title": "Make one from nothing",
+      "fen": "6k1/ppp5/8/PPP5/8/8/8/6K1 w - - 0 1",
+      "prompt": "Three pawns against three, and no passed pawn yet. Create one and queen it.",
+      "hint": "Give up a pawn in the middle so one of the others gets a free road.",
+      "line": ["b5b6", "c7b6", "a5a6", "b7a6", "c5c6", "g8f7", "c6c7", "f7e7", "c7c8q"],
+      "success": "This is a breakthrough. White gave away two pawns to clear a path for the third, and Black's king was too far away to catch it.",
+      "narration": "Here's a beautiful trick called a breakthrough. Throw a pawn forward in the middle, then another one, and suddenly a third pawn has a free road. Black's king is too far away to do anything about it.",
+      "pose": "idea"
+    },
+    {
+      "id": "why-push",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why is it usually right to push a passed pawn?",
+      "options": [
+        { "text": "The further it gets, the more of the opponent's force is tied down stopping it", "correct": true, "why": "A passed pawn near the end of the board needs constant guarding, so the opponent's pieces become passive while yours are free." },
+        { "text": "Pawns are safer on the far side of the board", "why": "Advanced pawns can be weak too. The reason is that the passer gets more dangerous with every step." },
+        { "text": "Pushing pawns is always better than moving pieces", "why": "Not at all. Ordinary pawn moves can create weaknesses. Passed pawns are special because nothing but pieces can stop them." }
+      ],
+      "narration": "Last question. Why do strong players love to push their passed pawns? Think about what the opponent has to do to stop one. Nice work today!",
+      "pose": "trophy"
+    }
+  ]
+}

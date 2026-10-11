@@ -1,0 +1,90 @@
+{
+ "title": "El desgaste de finales de Carlsen",
+ "summary": "Chennai, 2013: en el encuentro por el campeonato mundial, Carlsen presiona un final igual durante horas hasta que Anand cede.",
+ "unit": "Magnus Carlsen",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Chennai, 2013",
+   "text": "En 2013, Magnus Carlsen, con veintidós años, desafió al campeón mundial Viswanathan Anand en Chennai, en el país natal de Anand, India. Las primeras cuatro partidas terminaron en empate. En la partida cinco, Carlsen tomó un final tranquilo, casi igual, y siguió presionando. Ganó la partida y más tarde el encuentro, convirtiéndose en campeón mundial.",
+   "narration": "Chennai, 2013. Magnus Carlsen desafía al campeón mundial Viswanathan Anand. Partida cinco: un final igual, y Carlsen no lo dejará ir."
+  },
+  {
+   "id": "the-game",
+   "title": "Carlsen – Anand, Campeonato Mundial, partida 5, 2013",
+   "text": "Las damas desaparecen temprano y la posición está muy cerca de ser igual. La mayoría de los jugadores estarían de acuerdo en un empate. Carlsen sigue preguntando cosas pequeñas, y tarde en el juego Anand finalmente comete un error.",
+   "notes": [
+    {
+     "text": "15.Qxd8+: Las damas desaparecen temprano. A Carlsen le gusta jugar un final."
+    },
+    {
+     "text": "29.e4: la posición está casi en tablas, pero Carlsen sigue mejorando sus piezas."
+    },
+    {
+     "text": "40.Rxg5: Carlsen captura un peón; Anand responde en b3."
+    },
+    {
+     "text": "50...Rxg2: Anand recupera un peón. Parece un empate."
+    },
+    {
+     "text": "51...Ke6?: un movimiento natural, pero es el error. Mover la torre a e2 de inmediato fue la mejor defensa."
+    },
+    {
+     "text": "52.a4!: Carlsen deja que el peón e avance. Lo que importa es el peón pasado a."
+    },
+    {
+     "text": "58.h4: el peón a está a punto de coronar y la torre negra está atada. Anand renunció."
+    }
+   ],
+   "narration": "Un final igual y un Carlsen muy paciente. Observa el momento en que Anand comete un error y luego encuentra el plan ganador.",
+   "guesses": [
+    {
+     "prompt": "Encuentra un jaque que lleve al intercambio de los alfiles.",
+     "hint": "Tu alfil puede dar jaque desde g8 y, más tarde, atacar b3.",
+     "why": "47.Bg8+ empuja al rey hacia atrás y, pronto, Bxb3 intercambia los alfiles. En finales con torres es donde Carlsen aprieta mejor."
+    },
+    {
+     "prompt": "El rey negro acaba de tomar el peón e5. ¿Qué importa ahora?",
+     "hint": "Tu peón a está pasado y lejos del rey negro. ¡Corre!",
+     "why": "53.a5: el peón a está lejos del rey negro y cada paso que da es un nuevo problema para el negro."
+    },
+    {
+     "prompt": "El peón está en a5. El rey negro quiere huir al flanco de la dama. ¡No lo dejes!",
+     "hint": "Tu torre puede cortar al rey a lo largo de una fila.",
+     "why": "54.Rh7 corta al rey negro a lo largo de la séptima fila, así que no puede alcanzar el peón a a tiempo."
+    },
+    {
+     "prompt": "El rey está aislado. ¿Qué haces ahora?",
+     "hint": "Cada tiempo cuenta. ¡Empuja!",
+     "why": "55.a6: El peón avanza a a6 y luego a a7. La torre de las negras tendrá que quedarse delante de él."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "Paciencia en el final",
+   "question": "El final estuvo casi igualado durante mucho tiempo. ¿Qué hizo Carlsen?",
+   "options": [
+    {
+     "text": "Seguía haciendo pequeñas y seguras mejoras hasta que Anand cometió un error",
+     "why": "Sí. Carlsen no se arriesgó; simplemente siguió haciendo preguntas, y una respuesta incorrecta fue suficiente."
+    },
+    {
+     "text": "Ofreció un empate",
+     "why": "Siguió jugando durante casi sesenta movimientos. Ese es el punto entero del juego."
+    },
+    {
+     "text": "Sacrificó material para atacar al rey.",
+     "why": "No había ataque. La partida se ganó con un peón pasado en un final de torres."
+    }
+   ],
+   "narration": "La posición estuvo igualada durante horas. ¿Cuál era el secreto de Carlsen?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Peón pasado exterior",
+   "text": "En finales con torres, un peón pasado lejos del rey enemigo es una gran ventaja. Carlsen renunció a su peón de e para liberar el peón de a, cortó al rey negro con su torre y avanzó. Igualmente importante: siguió jugando una posición igual, porque los finales recompensan al jugador que sigue haciendo preguntas.",
+   "narration": "No aceptes tablas solo porque la posición es igual. Sigue presionando y, cuando se presente la oportunidad, avanza el peón pasado."
+  }
+ ]
+}

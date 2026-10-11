@@ -1,0 +1,1402 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+.lessons {
+  padding: 8px 0 40px;
+}
+.lessons-intro {
+  margin: 14px 0 6px;
+  font-size: $fs-md;
+  line-height: 1.7;
+  color: $sage-600;
+  max-width: 620px;
+}
+.lessons-empty {
+  margin: 18px 0;
+  font-size: $fs-md;
+  color: $sage-600;
+}
+.lesson-group {
+  margin-top: 26px;
+}
+.lesson-group > h2 {
+  margin: 0 0 12px;
+  font: 650 #{$fs-lg} $font-sans;
+  letter-spacing: -0.3px;
+}
+.lesson-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 16px;
+  border-radius: 16px;
+  transition: background 0.18s;
+}
+// No box: the art, title and progress line group the card; hover gives it a floor.
+.lesson-card:hover {
+  background: $sage-50;
+}
+.lesson-card h3 {
+  margin: 2px 0 0;
+  font: 800 #{$fs-xl}/ 1.25 $font-sans;
+  letter-spacing: -0.3px;
+}
+.lesson-card p {
+  font-size: $fs-md;
+  line-height: 1.6;
+  color: $sage-600;
+}
+.lesson-meta {
+  font: #{$fs-xs} $font-sans;
+  color: $moss-500;
+  font-weight: 650;
+}
+.lesson-card .lesson-first {
+  font-size: $fs-xs;
+  color: $wheat-600;
+}
+.lesson-progress {
+  display: block;
+  height: 4px;
+  margin-top: auto;
+  border-radius: 2px;
+  background: $sage-100;
+  overflow: hidden;
+}
+.lesson-progress i {
+  display: block;
+  height: 100%;
+  background: var(--green);
+}
+.lesson-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: $fs-sm;
+  font-weight: 750;
+  color: $green-700;
+}
+// The card's action: an arrow that steps forward when the card is hovered.
+.lesson-card:not(.completed) .lesson-status::after {
+  content: "→";
+  transition: transform 0.18s;
+}
+.lesson-card:hover .lesson-status::after {
+  transform: translateX(3px);
+}
+.lesson-card.completed .lesson-status {
+  color: $sage-600;
+  font-weight: 500;
+}
+.lesson-problems {
+  margin-top: 30px;
+  font-size: $fs-sm;
+  color: $wheat-600;
+}
+.lesson-problems summary {
+  cursor: pointer;
+}
+.lesson-problems li {
+  font: #{$fs-xs}/ 1.7 $font-mono;
+}
+
+/* The level path: units as colored banners, lessons as nodes winding down the page. */
+.unit-tactics {
+  --unit: #{$plum-600};
+  --unit-dark: #{$plum-700};
+}
+.unit-checkmates {
+  --unit: #{$red-500};
+  --unit-dark: #{$red-600};
+}
+.unit-endgames {
+  --unit: #{$blue-500};
+  --unit-dark: #{$blue-600};
+}
+.unit-history {
+  --unit: #{$brand-gold};
+  --unit-dark: #{$gold-500};
+}
+.unit-banner {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 20px;
+  border-radius: 14px;
+  background: var(--unit);
+  color: $white;
+  box-shadow: 0 3px 0 var(--unit-dark);
+}
+.unit-banner .unit-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  opacity: 0.85;
+}
+.unit-banner h2 {
+  margin: 0;
+  font: 800 #{$fs-xl} $font-sans;
+  letter-spacing: -0.3px;
+}
+@keyframes path-pulse {
+  from {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+@keyframes path-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -5px);
+  }
+}
+@keyframes path-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.lesson-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 0 20px;
+}
+.lesson-header .text-button {
+  font-size: $fs-xs;
+}
+.lesson-header h2 {
+  margin: 0;
+  font: 800 #{$fs-3xl} $font-sans;
+  letter-spacing: -0.6px;
+  color: $moss-900;
+}
+.lesson-steps {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.lesson-steps > * {
+  width: 22px;
+  height: 6px;
+  border-radius: 3px;
+  background: $sage-200;
+}
+.lesson-steps a.done {
+  background: $moss-400;
+}
+.lesson-steps a.current {
+  background: var(--green);
+}
+.lesson-steps a:hover {
+  background: $moss-500;
+}
+.lesson-count {
+  font: #{$fs-xs} $font-sans;
+  color: $moss-600;
+  font-weight: 650;
+}
+
+/* The step: board and the coach's panel side by side, centred as one block. */
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(300px, 440px);
+  justify-content: center;
+  gap: 32px;
+  align-items: start;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.lesson-layout.no-board {
+  grid-template-columns: minmax(0, 640px);
+}
+.lesson-board-column {
+  padding: 10px;
+  border-radius: 18px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px -18px rgba($moss-900, 0.33);
+}
+.lesson-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+}
+.lesson-panel h3 {
+  margin: 0;
+  font: 800 #{$fs-2xl} $font-sans;
+  letter-spacing: -0.4px;
+  color: $moss-900;
+}
+.lesson-text,
+.lesson-prompt {
+  margin: 0;
+  font-size: $fs-base;
+  line-height: 1.7;
+}
+.lesson-prompt strong {
+  font-family: $font-sans;
+}
+.lesson-hint {
+  margin: 0;
+  font-size: $fs-md;
+  line-height: 1.6;
+  color: $moss-700;
+  padding: 10px 12px;
+  background: $sage-100;
+  border-radius: 5px;
+}
+.lesson-verdict {
+  margin: 0;
+  font-size: $fs-md;
+  line-height: 1.6;
+  padding: 12px 14px;
+  border-radius: 5px;
+  border: 1px solid;
+}
+.lesson-verdict strong {
+  font-family: $font-sans;
+}
+.lesson-verdict.correct {
+  background: $sage-100;
+  border-color: $moss-200;
+}
+.lesson-verdict.missed {
+  background: $sand-100;
+  border-color: $sand-200;
+}
+.lesson-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.lesson-actions .text-button {
+  font-size: $fs-xs;
+}
+.lesson-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: #{$fs-sm} $font-mono;
+}
+.lesson-line li.reply {
+  color: $sage-600;
+}
+.lesson-demo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lesson-demo ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lesson-demo ol button {
+  border: 0;
+  background: none;
+  padding: 4px 6px;
+  border-radius: 3px;
+  font: #{$fs-xs} $font-mono;
+  color: $sage-500;
+}
+.lesson-demo ol button.played {
+  color: var(--ink);
+}
+.lesson-demo ol button[aria-current] {
+  background: $moss-200;
+  color: $moss-800;
+}
+.lesson-options {
+  display: grid;
+  gap: 8px;
+}
+.lesson-option {
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: $neutral-50;
+  font-size: $fs-md;
+  line-height: 1.5;
+}
+.lesson-option:hover:not(:disabled) {
+  border-color: $moss-400;
+}
+.lesson-option.correct {
+  background: $sage-100;
+  border-color: $green-400;
+}
+.lesson-option.wrong {
+  background: $sand-100;
+  border-color: $sand-200;
+  color: $peach-700;
+}
+.lesson-option:disabled {
+  opacity: 0.5;
+}
+.lesson-option.picked {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+.lesson-option.picked:disabled {
+  opacity: 1;
+}
+.lesson-arrow {
+  fill: none;
+  stroke: $green-600;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+.lesson-circle {
+  fill: none;
+  stroke: $green-600;
+  stroke-width: 7;
+  opacity: 0.75;
+}
+.insight-lesson .lesson-start {
+  margin-top: 14px;
+}
+
+/* Cinema mode: the transport bar and the coach's speech bubble. */
+.lesson-transport {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.transport-button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: $white;
+  transition: border-color 0.18s;
+}
+.transport-button:hover {
+  border-color: $moss-400;
+}
+.transport-button img {
+  display: block;
+  object-fit: contain;
+}
+.transport-button.speaking,
+.teacher-listen.speaking {
+  animation: listen-pulse 1.2s ease-in-out infinite;
+}
+@keyframes listen-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(63, 125, 79, 0.35);
+  }
+  60% {
+    box-shadow: 0 0 0 7px rgba(63, 125, 79, 0);
+  }
+}
+.lesson-teacher {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.lesson-teacher .mascot {
+  flex: none;
+  align-self: flex-end;
+  animation: coach-bob 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.teacher-bubble {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  margin: 0 0 8px;
+  padding: 14px 44px 14px 16px;
+  border-radius: 16px;
+  background: $sage-50;
+  border: 1px solid $sage-200;
+  font-size: $fs-base;
+  line-height: 1.6;
+  color: $sage-900;
+}
+.teacher-bubble:before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 36px;
+  width: 12px;
+  height: 12px;
+  background: $sage-50;
+  border-left: 1px solid $sage-200;
+  border-bottom: 1px solid $sage-200;
+  transform: translateY(-50%) rotate(45deg);
+}
+.teacher-listen {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: $white;
+}
+.teacher-listen:hover {
+  background: $sage-100;
+}
+.teacher-listen img {
+  display: block;
+  object-fit: contain;
+}
+.lesson-replay img {
+  display: block;
+  object-fit: contain;
+}
+@include reduced-motion {
+  .lesson-teacher .mascot {
+    animation: none;
+  }
+}
+
+/* Reel: the game-as-video transport bar and subtitles. */
+.reel-caption {
+  min-height: 44px;
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: $sage-900;
+  color: $sage-50;
+  font-size: $fs-md;
+  line-height: 1.55;
+  animation: reel-caption-in 0.3s ease-out;
+}
+.reel-caption.empty {
+  background: transparent;
+  animation: none;
+}
+@keyframes reel-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.reel-transport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: $neutral-50;
+}
+.reel-scrub {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.reel-speed {
+  flex: none;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: $white;
+  font: 600 #{$fs-xs} $font-mono;
+  color: $moss-700;
+  cursor: pointer;
+}
+.reel-speed:hover {
+  border-color: $moss-400;
+}
+.reel-ply {
+  flex: none;
+  font: #{$fs-xs} $font-mono;
+  letter-spacing: 0.6px;
+  color: $moss-600;
+}
+.reel-moves {
+  display: flex !important;
+  flex-wrap: wrap;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+}
+@include reduced-motion {
+  .reel-caption {
+    animation: none;
+  }
+}
+
+@include down(lg) {
+  .lesson-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@include down(md) {
+  .lesson-cards {
+    grid-template-columns: 1fr;
+  }
+  .lesson-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .lesson-steps {
+    margin-left: 0;
+    width: 100%;
+  }
+  .lesson-steps > * {
+    flex: 1;
+    width: auto;
+  }
+  .lesson-teacher {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lesson-teacher .mascot {
+    align-self: flex-start;
+  }
+  .teacher-bubble {
+    margin: 0;
+  }
+  .teacher-bubble:before {
+    left: 40px;
+    top: -7px;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
+/* A series inside a unit ("Paul Morphy"), heading its stretch of the path. */
+/* Guess the move: one dot per question, gold when found first try. */
+.guess-score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+.guess-score span:not(.guess-count) {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $sage-200;
+}
+.guess-score .hit {
+  background: $gold-300;
+}
+.guess-score .miss {
+  background: $sage-400;
+}
+.guess-score .now {
+  box-shadow: 0 0 0 2px $green-600;
+}
+.guess-count {
+  margin-left: 6px;
+  font-size: $fs-sm;
+  color: var(--muted, $sage-600);
+}
+.opening-library {
+  margin-top: 40px;
+}
+.opening-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+.opening-library-item {
+  border: 1px solid var(--line, $sage-200);
+  border-radius: 10px;
+  background: $neutral-50;
+  overflow: hidden;
+}
+.opening-library-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.opening-library-item summary::-webkit-details-marker {
+  display: none;
+}
+.opening-library-item summary span {
+  display: flex;
+  flex-direction: column;
+}
+.opening-library-item summary small {
+  font: #{$fs-xs} $font-mono;
+  color: $moss-600;
+}
+.opening-library-item img {
+  object-fit: contain;
+}
+.opening-library-item .opening-story {
+  padding: 12px 14px;
+}
+
+/* The verdict bar: a neutral footer while answering, a full-width banner once committed. */
+.verdict-bar {
+  grid-column: 1/-1;
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 20px;
+  margin-top: 10px;
+  padding: 14px 18px;
+  border-top: 2px solid var(--line);
+  border-radius: 12px;
+  background: $neutral-50;
+}
+.verdict-bar.verdict-correct {
+  background: $sage-100;
+  border-color: $green-400;
+}
+.verdict-bar.verdict-wrong {
+  background: $sand-100;
+  border-color: $clay-400;
+}
+/* A committed verdict slides up into place once, as the class lands. */
+.verdict-bar.verdict-correct,
+.verdict-bar.verdict-wrong {
+  animation: verdict-in 0.28s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes verdict-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@include reduced-motion {
+  .verdict-bar.verdict-correct,
+  .verdict-bar.verdict-wrong {
+    animation: none;
+  }
+}
+.verdict-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  margin-right: auto;
+}
+.verdict-title {
+  font: 750 #{$fs-base} $font-sans;
+  letter-spacing: -0.2px;
+}
+.verdict-correct .verdict-title {
+  color: $green-700;
+}
+.verdict-wrong .verdict-title {
+  color: $red-700;
+}
+.verdict-why {
+  font-size: $fs-md;
+  line-height: 1.55;
+  color: $sage-700;
+}
+.verdict-wrong .verdict-why {
+  color: $peach-700;
+}
+.verdict-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.verdict-actions .text-button {
+  font-size: $fs-xs;
+}
+.verdict-primary {
+  min-width: 150px;
+  padding: 12px 18px;
+  font-size: $fs-md;
+}
+/* Squishy buttons: a thick lower edge that flattens when pressed. */
+.squishy {
+  border-bottom-width: 4px;
+  transition:
+    transform 0.08s,
+    border-bottom-width 0.08s;
+}
+.button.primary.squishy {
+  border-bottom-color: var(--forest);
+}
+.squishy:active:not(:disabled) {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+}
+/* While a verdict is showing, board and options stop taking input. */
+.input-locked {
+  pointer-events: none;
+}
+
+/* One burst of paper on the completion screen; the overlay cleans itself up. */
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+}
+.confetti-piece {
+  position: absolute;
+  top: -16px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-fall linear both;
+}
+.confetti-piece.round {
+  border-radius: 50%;
+}
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -16px, 0) rotate(0);
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 105vh, 0) rotate(var(--spin));
+  }
+}
+@include reduced-motion {
+  .confetti {
+    display: none;
+  }
+}
+
+/* The verdict bar sits under the step, as wide as the board and panel together. */
+.lesson-layout > .verdict-bar {
+  width: 100%;
+}
+
+/* The lesson's get-ready screen. */
+.lesson-intro {
+  display: grid;
+  place-items: start center;
+  padding: 24px 0 40px;
+}
+.lesson-intro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(560px, 100%);
+  padding: 30px 32px 26px;
+  border-radius: 24px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -28px rgba($moss-900, 0.4);
+  text-align: center;
+}
+.lesson-intro-art {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba($black, 0.13));
+  animation: intro-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.lesson-intro-kicker {
+  margin-top: 10px;
+  font: 700 #{$fs-xs} $font-sans;
+  color: $moss-600;
+}
+.lesson-intro-card h2 {
+  margin: 4px 0 6px;
+  font: 800 #{$fs-5xl}/ 1.15 $font-sans;
+  letter-spacing: -1px;
+  color: $moss-900;
+}
+.lesson-intro-summary {
+  max-width: 440px;
+  font-size: $fs-base;
+  line-height: 1.6;
+  color: $sage-700;
+}
+.lesson-intro-meta {
+  margin-top: 6px;
+  font-size: $fs-sm;
+  color: $sage-500;
+}
+.lesson-intro-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.lesson-intro-steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: $sage-50;
+  font: 650 #{$fs-md} $font-sans;
+  color: $moss-800;
+}
+.lesson-intro-steps li.next {
+  background: $sage-100;
+  box-shadow: inset 0 0 0 2px $moss-400;
+}
+.lesson-intro-steps li.done {
+  color: $sage-500;
+}
+.lesson-intro-dot {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: $white;
+  border: 2px solid $sage-200;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $moss-600;
+}
+.lesson-intro-steps li.done .lesson-intro-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: $white;
+}
+.lesson-intro-sound {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: $sage-50;
+  border: 1px solid $sage-200;
+  text-align: left;
+}
+.lesson-intro-sound .mascot {
+  flex: none;
+}
+.lesson-intro-sound strong {
+  font: 800 #{$fs-md} $font-sans;
+  color: $sage-900;
+}
+.lesson-intro-sound p {
+  margin-top: 2px;
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $sage-600;
+}
+.lesson-intro-check {
+  flex: none;
+  margin-left: auto;
+  gap: 7px;
+  background: $white;
+  font-size: $fs-sm;
+}
+.lesson-intro-check.speaking {
+  animation: listen-pulse 1.2s ease-in-out infinite;
+}
+.lesson-intro-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+.lesson-intro-start {
+  width: 100%;
+  padding: 15px 18px;
+  font-size: $fs-base;
+  letter-spacing: 0.3px;
+}
+.lesson-intro-actions .text-button {
+  font-size: $fs-sm;
+}
+
+/* A lesson's YouTube video (VideoDialog) */
+#lesson-video-dialog {
+  max-width: 880px;
+  padding: 20px;
+}
+#lesson-video-dialog h2 {
+  font-size: $fs-xl;
+}
+.lesson-video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: 14px 0 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: $sage-900;
+}
+.lesson-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@keyframes intro-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@include reduced-motion {
+  .lesson-intro-art,
+  .lesson-intro-check.speaking {
+    animation: none;
+  }
+}
+@include down(md) {
+  .lesson-intro-card {
+    padding: 22px 18px;
+  }
+  .lesson-intro-sound {
+    flex-wrap: wrap;
+  }
+  .lesson-intro-check {
+    margin-left: 0;
+  }
+}
+/* Lessons have no evaluation bar, so the board drops the gutter kept for it. */
+.lesson-board-column .board-wrap {
+  padding-left: 0;
+}
+.lesson-board-column .board-wrap > svg {
+  left: 0;
+  width: 100%;
+}
+
+/* The lesson-complete screen: one celebration card, then what comes next. */
+.lesson-finished {
+  display: grid;
+  place-items: start center;
+  padding: 8px 0 40px;
+}
+.finished-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(560px, 100%);
+  padding: 20px 32px 26px;
+  border-radius: 24px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -28px rgba($moss-900, 0.4);
+  text-align: center;
+}
+.finished-hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 210px;
+  height: 180px;
+}
+.finished-hero .mascot {
+  position: relative;
+  animation: finished-bounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* Soft gold rays turning slowly behind the coach. */
+.finished-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba($gold-300, 0.25) 0 12deg,
+    transparent 12deg 30deg
+  );
+  -webkit-mask: radial-gradient(circle, $black 30%, transparent 70%);
+  mask: radial-gradient(circle, $black 30%, transparent 70%);
+  animation: finished-spin 18s linear infinite;
+}
+.finished-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  color: $gold-500;
+}
+.finished-card h2 {
+  margin: 2px 0 4px;
+  font: 800 #{$fs-6xl}/ 1.1 $font-sans;
+  letter-spacing: -1.2px;
+  color: $moss-900;
+}
+.finished-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: $fs-base;
+  color: $sage-700;
+}
+.finished-sub .teacher-listen {
+  position: static;
+  background: $sage-50;
+}
+.finished-card .stars {
+  margin: 2px 0 4px;
+}
+.finished-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+.finished-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 8px 12px;
+  border-radius: 16px;
+  background: $sage-50;
+  font-size: $fs-sm;
+  color: $sage-600;
+  animation: finished-rise 0.5s ease-out both;
+}
+.finished-stat:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.finished-stat:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.finished-stat img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.finished-stat b {
+  font: 800 #{$fs-3xl} $font-sans;
+  color: $sage-900;
+}
+.finished-stat.xp {
+  background: $sage-50;
+}
+.finished-stat.xp b {
+  color: $orange-600;
+}
+.finished-stat .flame {
+  color: $sage-300;
+}
+.finished-stat.streak.lit {
+  background: $sand-100;
+}
+.finished-stat.streak.lit .flame {
+  color: $orange-400;
+}
+.finished-stat.streak.lit b {
+  color: $orange-600;
+}
+.finished-next {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 18px;
+  background: $sage-50;
+  border: 1px solid $sage-200;
+  text-align: left;
+}
+.finished-next-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  color: $moss-600;
+}
+.finished-next-lesson {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.finished-next-lesson img {
+  flex: none;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 5px rgba($black, 0.13));
+}
+.finished-next-lesson strong {
+  display: block;
+  font: 800 #{$fs-xl} $font-sans;
+  color: $sage-900;
+}
+.finished-next-lesson span {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.finished-go {
+  width: 100%;
+  padding: 15px 18px;
+  font-size: $fs-base;
+}
+.lesson-finished > .finished-card > .finished-go {
+  margin-top: 18px;
+}
+.finished-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 20px;
+  margin-top: 14px;
+}
+.finished-links .text-button {
+  font-size: $fs-sm;
+}
+@keyframes finished-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes finished-bounce {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes finished-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@include reduced-motion {
+  .finished-glow,
+  .finished-hero .mascot,
+  .finished-stat {
+    animation: none;
+  }
+}
+@include down(md) {
+  .finished-card {
+    padding: 16px 18px 22px;
+  }
+  .finished-card h2 {
+    font-size: $fs-4xl;
+  }
+}
+
+/* A demo capture: the square the piece was taken on flashes red, then keeps a soft red ring. */
+.square.capture-flash {
+  box-shadow: inset 0 0 0 4px rgba($red-600, 0.8);
+}
+.square.capture-flash:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    circle,
+    rgba($red-500, 0.53) 0%,
+    rgba($red-500, 0.2) 55%,
+    transparent 75%
+  );
+  animation: capture-flash 0.9s ease-out both;
+  pointer-events: none;
+}
+@keyframes capture-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+}
+@include reduced-motion {
+  .square.capture-flash:before {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+/* A piece that tried an illegal move shakes "no" while the rule it broke is shown. */
+.square.illegal-shake img {
+  animation: illegal-shake 0.4s ease-in-out;
+}
+@keyframes illegal-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-8%);
+  }
+  40%,
+  80% {
+    transform: translateX(8%);
+  }
+}
+@include reduced-motion {
+  .square.illegal-shake img {
+    animation: none;
+  }
+}
+
+/* The lesson library: a plain catalog grouped by category (Story is the guided route). */
+.lessons-lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 4px;
+}
+.lessons-lead .lessons-intro {
+  margin: 0;
+}
+.lesson-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+.lesson-group-head h2 {
+  margin: 0;
+  font: 800 #{$fs-2xl} $font-sans;
+  letter-spacing: -0.4px;
+  color: $moss-900;
+}
+.lesson-group-head span {
+  font: 600 #{$fs-xs} $font-sans;
+  letter-spacing: 0.6px;
+  color: $sage-500;
+}
+.lesson-tile {
+  border-radius: 16px;
+}
+.lesson-tile .card-art {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 6px rgba($black, 0.13));
+}
+.lesson-tile p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.lesson-tile.completed .lesson-status {
+  color: $green-700;
+  font-weight: 700;
+}
+
+/* Hard mode replaces the hint ladder with a reminder of where to turn it off. */
+.lesson-hint.hard-mode {
+  color: $sage-500;
+  font-size: $fs-sm;
+}
+
+/* A category's placement check, offered beside its progress. */
+.lesson-group-head > .text-button {
+  margin-left: 12px;
+  font-size: $fs-sm;
+}
+
+/* A placement check's outcome on the finish screen: what you know, and what is worth taking. */
+.placement-result {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  margin-top: 12px;
+  font-size: $fs-md;
+}
+.placement-result p {
+  margin: 0;
+}
+.placement-result ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  font-weight: 650;
+}
+.placement-marked {
+  color: $green-700;
+  font-weight: 700;
+}
+
+/* Lesson exercises due again (spaced review in Train), and the note on the finish screen. */
+.lessons-review {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: $sage-50;
+  font-size: $fs-md;
+}
+.finished-review {
+  margin: 10px auto 0;
+  max-width: 46ch;
+  font-size: $fs-sm;
+  color: $sage-600;
+}

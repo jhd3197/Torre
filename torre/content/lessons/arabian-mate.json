@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "The Arabian mate",
+  "summary": "A rook and knight team up to trap a king in the corner. One of the oldest mating patterns there is.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 3,
+  "level": "intermediate",
+  "minutes": 5,
+  "practice": "arabian-mate",
+  "steps": [
+    {
+      "id": "the-pattern",
+      "kind": "explain",
+      "title": "Rook and knight in the corner",
+      "fen": "r6k/pR6/5N2/8/8/8/5PPP/6K1 w - - 0 1",
+      "marks": [["f6", "h7"], ["f6", "g8"], ["b7", "h7"]],
+      "text": "Black's king is in the corner. The knight on f6 guards h7 and g8. If the rook checks from h7, the knight protects it, so the king cannot take, and the rook itself covers g7. Every square is gone. The pattern is very old: it was already known in shatranj, the Arabic ancestor of chess.",
+      "narration": "Here's a classic pair. The knight on f6 guards h7 and g8, right next to the cornered king. Put the rook on h7 and the knight protects it. The king can't take, and there's nowhere left to run.",
+      "pose": "present"
+    },
+    {
+      "id": "rook-to-h7",
+      "kind": "play",
+      "title": "Close the corner",
+      "fen": "r6k/pR6/5N2/8/8/8/5PPP/6K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Which square next to the king does the knight protect?",
+      "line": ["b7h7"],
+      "success": "Rook to h7 is mate. The knight protects the rook and covers g8, and the rook covers g7.",
+      "narration": "Your move. Slide the rook along the seventh rank to the square the knight protects. That's the Arabian mate.",
+      "pose": "detective"
+    },
+    {
+      "id": "knight-first",
+      "kind": "play",
+      "title": "Bring the knight with check",
+      "fen": "r4bk1/pR6/8/8/4N3/8/5PPP/6K1 w - - 0 1",
+      "prompt": "Mate in two. The knight joins the attack with check first.",
+      "hint": "From f6 the knight checks g8 and also guards h7.",
+      "line": ["e4f6", "g8h8", "b7h7"],
+      "success": "Knight to f6 check leaves only h8, since Black's own bishop blocks f8 and your rook covers the seventh rank. Then rook to h7 is the Arabian mate.",
+      "narration": "First jump the knight to f6 with check. Black's own bishop is in the way on f8, so the king must slide into the corner. Then the rook lands on h7, and it's mate.",
+      "pose": "playing"
+    },
+    {
+      "id": "rook-on-seventh",
+      "kind": "choose",
+      "title": "Why the seventh rank?",
+      "question": "Why is a rook on the seventh rank so useful for this mate?",
+      "options": [
+        { "text": "It can slide straight to h7, and it keeps the king off the seventh rank meanwhile", "correct": true, "why": "From the seventh rank the rook reaches h7 in one move and guards g7 the whole time." },
+        { "text": "It protects the knight", "why": "The knight protects the rook in this mate, not the other way round." },
+        { "text": "Rooks are stronger on the seventh rank because they move further", "why": "A rook moves the same way everywhere. The seventh rank matters here because of the squares it covers next to the king." }
+      ],
+      "narration": "Last question. Why does the rook love the seventh rank in this pattern? Think about which squares it covers. Nail this, and the Arabian mate is yours. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

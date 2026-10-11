@@ -1,0 +1,21 @@
+{
+ "families": {
+  "milestones": "Hitos",
+  "tactics": "Tácticas",
+  "strategy": "Estrategia"
+ },
+ "tiers": {
+  "locked": "Bloqueado",
+  "unlocked": "Desbloqueado",
+  "bronze": "Bronce",
+  "silver": "Plata",
+  "gold": "Oro"
+ },
+ "loading": "Contando tus premios…",
+ "label": "Premios",
+ "earned_one": "{{count}} de {{total}} premios ganados",
+ "earned_other": "{{count}} de {{total}} premios ganados",
+ "intro": "Cada partida que juegas y cada problema que resuelven cuentan. Desbloquea un premio y sigue para ganar bronce, plata y oro.",
+ "maxed": "{{value}} {{unit}} · al máximo",
+ "toNext": "{{value}} / {{next}} {{unit}}"
+}

@@ -1,0 +1,69 @@
+{
+ "title": "La Trampa del Elefante",
+ "summary": "En la Defensa del Gambito de Dama, las blancas toman el peón d5, creyendo que el caballo negro está clavado. Un sigiloso jaque con alfil gana una pieza.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "the-setup",
+   "title": "Una clavada en f6",
+   "text": "En la Defensa del Gambito de Dama, el alfil blanco en g5 clava el caballo negro en f6 a la dama. El negro trae el otro caballo a d7, y después del cambio en d5, el peón allí es atacado por el caballo blanco en c3 y parece tener solo un defensor: el caballo clavado.",
+   "narration": "El alfil blanco clava el caballo negro a la dama. El negro trae el otro caballo a d7. [move] Las blancas cambian peones en d5. [move] El negro recupera. [move] Ahora ese peón parece un bocadillo gratis, ya que su único defensor es el caballo clavado."
+  },
+  {
+   "id": "take-back-anyway",
+   "title": "Recupera de todas formas",
+   "prompt": "Las blancas tomaron el peón en d5. Encuentra la mejor respuesta.",
+   "hint": "Una clavada a la dama no es absoluta. ¿Qué pasa si las blancas toman la dama?",
+   "success": "¡Caballo toma d5! Si las blancas toman la dama en d8, tienes un jaque que recupera todo, con intereses.",
+   "narration": "Las blancas solo tomaron tu peón, pensando que tu caballo no puede moverse. Mira más de cerca. Una clavada a la dama es solo una clavada si perder la dama realmente te cuesta."
+  },
+  {
+   "id": "the-greedy-bishop",
+   "title": "La dama cae",
+   "text": "Si las blancas toman la dama, el alfil negro da jaque en b4 antes de recapturar nada. Las blancas solo pueden bloquear con la dama en d2, donde está clavada, y el negro sale del cambio con una pieza adelante.",
+   "narration": "Si el blanco captura tu dama, no te preocupes. [move] Tu alfil da jaque primero, en b4. [move] La única respuesta de las blancas es poner la dama en el camino, y tú sales a un material de ventaja."
+  },
+  {
+   "id": "cash-in",
+   "title": "Aprovecha la oportunidad.",
+   "prompt": "Las blancas bloquearon el jaque con la dama. Recolecta tu material.",
+   "hint": "El alfil blanco en d8 está bloqueado, y la dama en d2 está clavada al rey.",
+   "success": "El rey captura d8, y la dama clavada de las blancas será intercambiada por tu alfil. En general, ganas un caballo por un peón. Funciona también capturar primero la dama en d2.",
+   "narration": "La dama blanca bloqueó el jaque, y ahora tanto el alfil como la dama de las blancas están descuidados. Toma lo que es tuyo."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Las blancas cambiaron en d5. Recaptura, y si las blancas no toman el peón, sigue desarrollando.",
+   "nudge": "Primero recaptura. Después piensa en la clavada de tu caballo.",
+   "hint": "Alfil a e7 rompe la clavada y te prepara para el enroque. Peón a c6 o peón a h6 también son buenos.",
+   "success": "Las blancas jugaron peón a e3 y dejaron d5 en paz. Esa es la defensa correcta, y hoy no hay trampa. Tu peón de d5 es sólido, así que solo desarrolla: alfil a e7, enroque y luego peón a c6.",
+   "narration": "Un buen jugador no tomará tu peón. Recaptura en d5, y si las blancas solo desarrollan, no busques trucos. Rompe la clavada y enroca.",
+   "branches": [
+    {
+     "success": "Las blancas desarrollaron el caballo a f3 en vez de tomar. Rompe la clavada con alfil a e7 o pregúntale al alfil con peón a h6, y luego enroca. Tu peón de d5 está seguro y tu posición es sana."
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Qué hizo que el caballo en f6 estuviera libre para recapturar en d5?",
+   "options": [
+    {
+     "text": "El jaque en b4 recupera la dama si las blancas la capturan.",
+     "why": "Bien. La clavada era solo una clavada a la dama, y el jaque del alfil recupera la dama con material extra."
+    },
+    {
+     "text": "El caballo en d7 protegía a la dama.",
+     "why": "El caballo en d7 no protege d8. La clave es el jaque del alfil en b4."
+    },
+    {
+     "text": "A las blancas no se les permite capturar la dama mientras un caballo está clavado.",
+     "why": "A las blancas se le permite. Simplemente pierde material."
+    }
+   ],
+   "narration": "Última pregunta. Tu caballo parecía clavado, pero lo moviste de todos modos. ¿Qué hizo que eso fuera seguro?"
+  }
+ ]
+}

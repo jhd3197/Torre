@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "title": "Steinitz, the first world champion",
+  "summary": "1886: in the first official world championship match, Steinitz blockades an isolated pawn and slowly squeezes Zukertort.",
+  "category": "history",
+  "unit": "Wilhelm Steinitz",
+  "order": 1,
+  "level": "intermediate",
+  "minutes": 7,
+  "orientation": "black",
+  "practice": "pin",
+  "steps": [
+    {
+      "id": "the-first-title-match",
+      "kind": "explain",
+      "title": "The first title match",
+      "text": "In 1886 Wilhelm Steinitz and Johannes Zukertort played a match in the United States that counts as the first official world championship. Steinitz won it and became the first world champion. He taught something new: before you attack, collect small advantages, like a weak pawn or a strong square. In this game he has Black. You play his side.",
+      "narration": "1886, the first official world championship match. Wilhelm Steinitz believed in small advantages: a weak pawn here, a strong square there. Watch them add up. You play Black, as Steinitz.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Zukertort – Steinitz, World Championship 1886",
+      "text": "Early on, White's d-pawn becomes isolated: it has no pawn neighbours to protect it. Steinitz parks a knight in front of it, trades pieces, and waits. Zukertort attacks on the kingside, and Steinitz is ready. The game stops at Steinitz's key moves.",
+      "narration": "White ends up with a lonely pawn on d4. Steinitz blocks it, presses it, and waits for his chance. Find his key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 13, "text": "7.exd4: White's d-pawn now stands alone, with no white pawns on the c- or e-files to protect it. That is an isolated pawn." },
+        { "ply": 22, "text": "11...Nbd5: a knight lands right in front of the isolated pawn. No white pawn can ever chase it from d5." },
+        { "ply": 35, "text": "18.bxc3: White's pawns on c3 and d4 now stand together, but both are targets." },
+        { "ply": 38, "text": "19...Nd5: the other knight takes over the blockade square." },
+        { "ply": 43, "text": "22.c4: White's c- and d-pawns stand side by side with no neighbours. Strong if they can advance, weak if they get attacked." },
+        { "ply": 49, "text": "25.Rh3: Zukertort swings a rook toward Black's king and starts an attack." },
+        { "ply": 60, "text": "30...f5: Steinitz gains space on the kingside and prepares a fine square for his bishop on e4." },
+        { "ply": 65, "text": "33.c5: White pushes a pawn to hit the queen. It looks strong, but there is a tactic." },
+        { "ply": 76, "text": "38...Qxe4: Black is up material, White's knight on d1 is tied up, and Zukertort resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 42,
+          "prompt": "White just took your knight on d5. Which piece should take back?",
+          "hint": "Taking with the pawn would give you an isolated pawn of your own. Keep the pressure on d4.",
+          "why": "21...Rxd5! The rook takes back and attacks d4 at once. Taking with the e-pawn would have blocked the d-file and left Black with a lonely pawn of his own."
+        },
+        {
+          "ply": 62,
+          "prompt": "Zukertort's rook has reached g6. Find a strong central square for your bishop.",
+          "hint": "Look for a square where the bishop attacks the white queen and is protected by a pawn.",
+          "why": "31...Be4! The bishop hits the queen on d3 and takes a fine central post, protected by the f5 pawn. White's attack runs out of steam."
+        },
+        {
+          "ply": 66,
+          "prompt": "33.c5 attacks your queen. Do not move her. Find something stronger.",
+          "hint": "If White's d-pawn captures on c5, what does your queen see down the d-file?",
+          "why": "33...Rxc5! The d4 pawn cannot take back: it is pinned, because after the pawn takes, the queen would capture the rook on d2. Steinitz wins the pawn he had been pressing all game."
+        },
+        {
+          "ply": 68,
+          "prompt": "White took on e6. Your rook can join the attack with check. How?",
+          "hint": "White's back rank has no defenders.",
+          "why": "34...Rc1+! The rook invades with check, and the knight has to block on d1, where it gets stuck."
+        }
+      ],
+      "moves": ["d2d4", "d7d5", "c2c4", "e7e6", "b1c3", "g8f6", "g1f3", "d5c4", "e2e3", "c7c5", "f1c4", "c5d4", "e3d4", "f8e7", "e1g1", "e8g8", "d1e2", "b8d7", "c4b3", "d7b6", "c1f4", "b6d5", "f4g3", "d8a5", "a1c1", "c8d7", "f3e5", "f8d8", "e2f3", "d7e8", "f1e1", "a8c8", "g3h4", "d5c3", "b2c3", "a5c7", "f3d3", "f6d5", "h4e7", "c7e7", "b3d5", "d8d5", "c3c4", "d5d8", "e1e3", "e7d6", "c1d1", "f7f6", "e3h3", "h7h6", "e5g4", "d6f4", "g4e3", "e8a4", "h3f3", "f4d6", "d1d2", "a4c6", "f3g3", "f6f5", "g3g6", "c6e4", "d3b3", "g8h7", "c4c5", "c8c5", "g6e6", "c5c1", "e3d1", "d6f4", "b3b2", "c1b1", "b2c3", "d8c8", "e6e4", "f4e4"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Small advantages add up",
+      "marks": [["d5"], ["d4"]],
+      "text": "Steinitz never rushed at the king in this game. He blocked the lonely d-pawn with a knight, traded pieces, and kept pressing until White's pawns cracked. That was his big idea: collect small advantages, and the winning tactics will show up by themselves.",
+      "narration": "No wild attack. Steinitz blocked the weak pawn, kept pressing, and the tactics came on their own. That is how the first world champion played.",
+      "pose": "idea",
+      "fen": "2rrb1k1/ppq1bppp/4p3/3nN3/3P3B/1BPQ4/P4PPP/2R1R1K1 w - - 3 20"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Against the isolated pawn",
+      "question": "White has an isolated pawn on d4. Where does Black want a piece?",
+      "options": [
+        {
+          "text": "On d5, right in front of the pawn",
+          "correct": true,
+          "why": "Yes. A piece on d5 stops the pawn from moving, and no white pawn can chase it away."
+        },
+        {
+          "text": "On d8, far behind its own pawns",
+          "why": "Too passive. From d8 the piece does nothing to stop the pawn or to use the square in front of it."
+        },
+        {
+          "text": "Anywhere, as long as it attacks the king",
+          "why": "Steinitz taught the opposite: work on the weaknesses first, and attack later."
+        }
+      ],
+      "narration": "One question: where do you want a piece against an isolated pawn?",
+      "pose": "thinking",
+      "fen": "2rrb1k1/ppq1bppp/4p3/3nN3/3P3B/1BPQ4/P4PPP/2R1R1K1 w - - 3 20"
+    }
+  ]
+}

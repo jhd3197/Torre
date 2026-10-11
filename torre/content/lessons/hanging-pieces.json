@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "title": "Hanging pieces",
+  "summary": "Loose pieces drop off. Learn to spot pieces nobody defends, and to count attackers and defenders before you capture.",
+  "category": "tactics",
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "hanging-piece",
+  "steps": [
+    {
+      "id": "loose-pieces",
+      "kind": "explain",
+      "title": "Loose pieces drop off",
+      "fen": "r4rk1/ppq2ppp/2n5/8/6b1/2N5/PPP2PPP/R1BQ1RK1 w - - 0 12",
+      "marks": [["g4"], ["c6"], ["b7", "c6"]],
+      "text": "A hanging piece is one that can be captured for free. Before every move, look at each enemy piece and ask: who defends it? The knight on c6 is guarded by the pawn on b7, but nothing guards the bishop on g4. Pieces with no defender are called loose, and loose pieces are the first to fall.",
+      "narration": "Here's a habit that wins more games than any fancy trick. Before you move, look at every enemy piece and ask who protects it. The knight on c6 has a pawn guarding it, but the bishop on g4 has nobody. A loose piece like that is just waiting to be picked up.",
+      "pose": "magnify"
+    },
+    {
+      "id": "take-the-loose-bishop",
+      "kind": "play",
+      "title": "Pick it up",
+      "fen": "r4rk1/ppq2ppp/2n5/8/6b1/2N5/PPP2PPP/R1BQ1RK1 w - - 0 12",
+      "prompt": "Black's bishop is attacking your queen, but it has no defender. Punish it.",
+      "hint": "Don't run away with the queen. Check what defends the bishop.",
+      "line": ["d1g4"],
+      "success": "Qxg4 wins a whole bishop. When an attacking piece is loose, capturing it is better than retreating from it.",
+      "narration": "Black's bishop is poking at your queen. Your first instinct might be to move the queen away, but look closer: nothing protects that bishop. So don't run from it. Take it!",
+      "pose": "detective"
+    },
+    {
+      "id": "count-them",
+      "kind": "explain",
+      "title": "Count attackers and defenders",
+      "fen": "6k1/pbq2ppp/1p6/3n4/8/2N4P/PP2BPP1/3Q2K1 w - - 0 1",
+      "marks": [["c3", "d5"], ["d1", "d5"], ["b7", "d5"]],
+      "text": "When a piece is defended, count. Black's knight on d5 is attacked twice (by the knight on c3 and the queen on d1) and defended once (by the bishop on b7). More attackers than defenders usually means you win something. The order matters too: capture with your cheapest piece first.",
+      "narration": "Now the knight on d5 is defended, so we count. Two of your pieces attack it, your knight and your queen, and only one black piece defends it, the bishop. Two against one means it should fall. Just remember to start the captures with your least valuable piece.",
+      "pose": "calculating"
+    },
+    {
+      "id": "cheapest-first",
+      "kind": "play",
+      "title": "Two against one",
+      "fen": "6k1/pbq2ppp/1p6/3n4/8/2N4P/PP2BPP1/3Q2K1 w - - 0 1",
+      "prompt": "Win the knight on d5. Start the trade with the right piece.",
+      "hint": "Capture with the piece you would mind losing least, then take back.",
+      "line": ["c3d5", "b7d5", "d1d5"],
+      "success": "Nxd5 Bxd5 Qxd5: knight for knight, then the queen takes the bishop for free. Two attackers beat one defender.",
+      "narration": "Two attackers, one defender. Start with the knight, because if Black recaptures, you only gave up a knight for a knight. Then your queen takes back, and you are a whole piece up.",
+      "pose": "playing"
+    },
+    {
+      "id": "wrong-order",
+      "kind": "choose",
+      "title": "Why the knight first?",
+      "fen": "6k1/pbq2ppp/1p6/3n4/8/2N4P/PP2BPP1/3Q2K1 w - - 0 1",
+      "question": "What goes wrong if White starts with the queen, Qxd5?",
+      "options": [
+        { "text": "The bishop takes the queen, and the knight's recapture only wins a bishop back", "correct": true, "why": "Qxd5 Bxd5 Nxd5 gives a queen for a knight and a bishop. Same captures, wrong order, and White loses heavily." },
+        { "text": "Nothing, the result is the same", "why": "The order changes everything. Your expensive piece should come last, after the defender is gone." },
+        { "text": "The queen gets checkmated", "why": "No mate here, just a terrible trade: the queen is lost for two minor pieces." }
+      ],
+      "narration": "Last question. What happens if you grab the knight with your queen first? Think about who recaptures, and what each side ends up losing.",
+      "pose": "thinking"
+    },
+    {
+      "id": "habit",
+      "kind": "choose",
+      "title": "The habit",
+      "question": "A black bishop attacks your queen. What should you check first?",
+      "options": [
+        { "text": "Whether the bishop is defended, because if not you can simply take it", "correct": true, "why": "An attacker that is loose is a gift. Always look for a capture before you retreat." },
+        { "text": "Where the queen can safely run to", "why": "Sometimes you must run, but first see if you can win the attacker outright." },
+        { "text": "Whether you can attack Black's queen back", "why": "A counterattack can work, but taking a free piece is simpler and stronger." }
+      ],
+      "narration": "One more. When a piece attacks your queen, what do you check before anything else? Get this habit and loose pieces will start falling into your lap. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

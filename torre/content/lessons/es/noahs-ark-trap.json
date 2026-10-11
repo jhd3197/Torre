@@ -1,0 +1,72 @@
+{
+ "title": "La Trampa del Arca de Noé",
+ "summary": "En la Apertura Española, los peones del flanco de dama de las negras encierran al alfil blanco en b3 y lo capturan.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "chasing-the-bishop",
+   "title": "Persiguiendo al alfil",
+   "text": "En la Apertura Española, a menudo las negras persiguen al alfil blanco con peón a a6 y peón a b5. El alfil se asienta en b3, donde apunta a f7, pero sus casillas de escape son cada vez menos. La trampa es tan antigua que lleva el nombre del Arca de Noé.",
+   "narration": "Aquí tienes la Apertura Española. Las negras patean al alfil con el peón a. [move] Retrocede a a4. [move] Peón a d6. [move] Peón a d4. [move] Luego, el peón b persigue al alfil de nuevo. [move] Y se asienta en b3. [move] Parece feliz allí, pero se está quedando sin salidas."
+  },
+  {
+   "id": "the-bait",
+   "title": "La dama recaptura",
+   "text": "Las negras intercambian en d4, y las blancas recapturan el último peón con la dama. Parece natural, pero ahora la dama está en d4, al alcance del peón c de las negras, y el alfil en b3 no tiene salida si un peón negro aterriza en c4.",
+   "narration": "Las negras intercambian caballos en d4. [move] Las blancas recuperan. [move] Las negras toman ese caballo con el peón. [move] Y las blancas toman el peón con la dama. [move] Esa dama está a punto de ser pateada, y el alfil detrás de ella está en peligro."
+  },
+  {
+   "id": "spring-it",
+   "title": "Atrapa al alfil",
+   "prompt": "La dama blanca tomó en d4. Atrapa al alfil en b3.",
+   "hint": "Un peón puede ahora patear a la dama y cerrar la puerta al alfil en el próximo movimiento.",
+   "success": "Peón a c5 persigue a la dama, luego peón a c4 encierra al alfil. Sus salidas en a4 y c4 están cubiertas por tus peones, y a2 y c2 sostienen los propios peones blancos. Lo mejor que los blancos pueden obtener a cambio es un peón o dos.",
+   "narration": "La dama blanca capturó atrás en d4. Ahora lánzala con un peón, y luego usa el mismo peón para cerrar la puerta a ese alfil."
+  },
+  {
+   "id": "if-queen-d5",
+   "title": "Si la dama va a d5",
+   "prompt": "Esta vez la dama salta a d5 y ataca tu torre en a8. Encuentra la respuesta.",
+   "hint": "Defiende con tiempo: desarrolla una pieza que ataque a la dama.",
+   "success": "El alfil a e6 golpea a la dama. Después de jaque con la dama a c6, el alfil a d7 la golpea de nuevo, y cuando ella se mueva empuja el peón a c4 y el alfil está atrapado de todos modos.",
+   "narration": "Dama astuta. Ella golpea tu torre en la esquina desde d5. Encuentra una jugada de desarrollo que la ataque de vuelta."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Recaptura en d4. Si las blancas no recapturan con la dama, encuentra la mejor respuesta.",
+   "nudge": "Primero recaptura. Después mira qué amenaza u ofrece la jugada blanca.",
+   "hint": "Si las blancas ofrecen un peón con c3, tómalo. Si el alfil salta a d5, salva tu torre. Si el peón a ataca b5, desarrolla una pieza que proteja la torre.",
+   "success": "Las blancas ofrecieron un peón con c3, y lo tomaste. Peón a d3 o caballo a f6 también están bien. A cambio las blancas se desarrollan rápido, así que saca tus piezas y enroca pronto.",
+   "narration": "Un jugador cuidadoso no recapturará con la dama. Recaptura en d4 y mira qué hacen las blancas. Después responde con calma, y no dejes tu torre colgando en la esquina.",
+   "branches": [
+    {
+     "success": "Las blancas atacaron tu peón de b5 con peón a a4. Alfil a b7 desarrolla y protege la torre de a8, así que el cambio en b5 no te cuesta nada. Torre a b8 también funciona."
+    },
+    {
+     "success": "El alfil saltó a d5 para atacar tu torre. Torre a b8 se aparta. Hoy no hay trampa, pero tu posición está bien: desarrolla y enroca."
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de que la dama captura en d4, ¿por qué el alfil en b3 está en peligro?",
+   "options": [
+    {
+     "text": "El negro puede echar a la dama con un peón a c5 y luego encerrar al alfil con un peón a c4",
+     "why": "Bien. Tus peones en b5 y c4 cubren sus salidas, y los propios peones blancos bloquean a2 y c2."
+    },
+    {
+     "text": "La dama negra puede atacarla en b6",
+     "why": "Eso es lento, y el alfil simplemente podría apartarse. Los peones hacen la trampa."
+    },
+    {
+     "text": "El alfil está clavado al rey blanco",
+     "why": "Nada lo clava. El problema es que no tiene una casilla segura a la que ir."
+    }
+   ],
+   "narration": "Última pregunta. Las blancas recuperaron con la dama. ¿Por qué el alfil en b3 está de repente en peligro?"
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "title": "El Ataque del Hígado Frito",
+ "summary": "En la Defensa de los Dos Caballos, una recaptura natural permite a las Blancas sacrificar un caballo en f7 y arrastrar al rey de las Negras a la posición abierta.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "knight-to-g5",
+   "title": "Caballo a g5",
+   "text": "Esta es la Defensa de los Dos Caballos. El caballo de las Blancas salta a g5, uniéndose al alfil contra f7. La mejor respuesta de las Negras es peón a d5, bloqueando la diagonal del alfil, y las Blancas toman el peón.",
+   "narration": "Aquí está la Defensa de los Dos Caballos. El caballo de las Blancas salta a g5 y se une al alfil contra f7. [move] Las Negras bloquean con un peón a d5. [move] Y las Blancas lo toman. [move]"
+  },
+  {
+   "id": "the-wrong-recapture",
+   "title": "El error natural",
+   "text": "Recaptar con el caballo en d5 parece obvio, pero abre el camino a un famoso sacrificio. El caballo de las Blancas toma f7, atacando la dama y la torre, y el rey de las Negras tiene que tomarlo y avanzar. Las Blancas también tienen una jugada fuerte más tranquila aquí, peón a d4, pero el sacrificio es el que todo el mundo recuerda.",
+   "narration": "Caballo toma d5 se siente natural. [move] Pero eso permite una idea salvaje. ¡Las Blancas lanzan el caballo a f7! [move] El rey de las Negras tiene que salir para tomarlo. [move] Ahora comienza la persecución."
+  },
+  {
+   "id": "chase-the-king",
+   "title": "Persigue al rey",
+   "prompt": "Estás un caballo abajo, pero el rey de las Negras está a la vista. Mantén la presión.",
+   "hint": "Da un jaque que también ataca al caballo en d5.",
+   "success": "Dama a f3 jaque obliga al rey a e6 para seguir protegiendo d5. Caballo a c3 añade un tercer atacante a ese caballo, que está clavado al rey por tu alfil.",
+   "narration": "Has sacrificado un caballo, así que cada movimiento debe doler. Pon jaque al rey y ataca al caballo en d5 al mismo tiempo, luego trae otra pieza para atacarlo."
+  },
+  {
+   "id": "punish-the-retreat",
+   "title": "Si el rey corre a casa",
+   "prompt": "El negro retrocedió a e8 en lugar de proteger d5. Ataca.",
+   "hint": "¿Qué pieza negra perdió su protector cuando el rey regresó?",
+   "success": "El alfil toma d5 recupera el caballo con el alfil ahora apuntando a f7 de nuevo. Tienes un peón de ventaja, el negro ya no puede enrocar, y tu ataque sigue adelante.",
+   "narration": "El negro intentó correr a casa en cambio. Pero el rey era el único guardián de ese caballo en el medio. Aprovecha la situación."
+  },
+  {
+   "id": "the-safe-way",
+   "title": "Cómo el negro se mantiene seguro",
+   "text": "El negro no tiene que recapturar en absoluto. El caballo va a a5 atacando al alfil en c4. Después, el alfil va a b5, jaque, el peón va a c6, y el peón toma c6, el peón toma c6. El negro pierde un peón, pero se desarrolla rápidamente y persigue las piezas de las blancas. Esta es la opción fiable para el negro.",
+   "narration": "Aquí tienes la forma segura para el negro. En lugar de tomar el peón, el caballo salta a a5 y ataca al alfil. [move] El alfil va a b5, jaque. [move] El peón va a c6 bloqueando. [move] Las blancas toman. [move] El negro recupera. [move] El negro pierde un peón, pero obtiene un desarrollo rápido y fácil."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Toma el peón en d5. Si las negras no recapturan con el caballo, encuentra la respuesta correcta.",
+   "nudge": "Primero captura. Después busca una jugada con ganancia de tiempo: un jaque o un ataque a una pieza.",
+   "hint": "Si el caballo salta a a5, el jaque en b5 salva tu alfil. Si salta a d4, avanza tu peón c para echarlo.",
+   "success": "Las negras jugaron el seguro caballo a a5. Da jaque en b5, captura en c6 y retira el alfil a e2. Te quedas con un peón de más. Las negras se desarrollan rápido a cambio, así que termina tu desarrollo y enroca.",
+   "narration": "No todos recapturan con el caballo. Los jugadores fuertes saltan a a5. Entonces necesitas jugadas sólidas, no sacrificios.",
+   "branches": [
+    {
+     "success": "Caballo a d4 es una defensa con truco. Peón a c3 echa al caballo de inmediato, antes de que cause problemas. Avanzar el peón a d6 también es bueno."
+    },
+    {
+     "success": "Las negras taparon el jaque con el alfil. Dama a e2 protege tu alfil de b5 y ataca el peón de e5. Mantén el peón de más y sigue desarrollando."
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de que las blancas tomen en d5, ¿qué movimiento mantiene al negro fuera de problemas?",
+   "options": [
+    {
+     "text": "El caballo toma d5",
+     "why": "Ese es el movimiento que permite el sacrificio del hígado frito en f7."
+    },
+    {
+     "text": "Caballo a a5",
+     "why": "Bien. Ataca al alfil y mantiene al rey seguro en casa. Las negras ceden un peón por un desarrollo rápido."
+    },
+    {
+     "text": "Alfil a c5",
+     "why": "Ignora la amenaza en f7. Las blancas simplemente toman f7 y horquillean dama y torre."
+    }
+   ],
+   "narration": "Última pregunta. Las blancas acaban de tomar en d5. ¿Qué jugada mantiene al rey negro seguro? Recuerda el salto del caballo que ataca al alfil."
+  }
+ ]
+}

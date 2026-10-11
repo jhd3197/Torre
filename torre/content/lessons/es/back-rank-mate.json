@@ -1,0 +1,54 @@
+{
+ "title": "Mate del pasillo",
+ "summary": "Un rey enrocado detrás de tres peones sin mover puede ser mateado por una sola torre. Aprende a ejecutarlo y a evitarlo.",
+ "steps": [
+  {
+   "id": "trapped-king",
+   "title": "Un rey sin espacio",
+   "text": "El rey negro está encerrado por sus propios peones. Una torre o dama que alcanza la última fila da jaque, y el rey no tiene a dónde ir: g7, f7 y h7 están ocupados por sus propios peones.",
+   "narration": "¿Ves el rey negro en g8? Esos tres peones delante de él parecen refugio, pero en realidad encierran al rey. Si una torre alcanza la última fila dando jaque, el rey no tiene a dónde escapar: sus propios peones lo bloquean."
+  },
+  {
+   "id": "deliver-it",
+   "title": "Ejecútalo",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "Usa la columna 'd' abierta.",
+   "success": "Rd8#. Los peones que protegen al rey negro son los que lo atrapan.",
+   "narration": "¡Es tu turno, y es jaque mate en un movimiento! Desliza tu torre hasta d8 por la columna 'd' abierta. Las propios peones de negro hacen la trampa por ti."
+  },
+  {
+   "id": "remove-the-guard",
+   "title": "Elimina la defensa",
+   "prompt": "La torre negra defiende la última fila. Atrae su atención y luego mate.",
+   "hint": "Sacrifica la dama en b8. La torre tiene que tomar, y tu propia torre la sigue.",
+   "success": "Qb8+ fuerza a Rxb8, y luego sigue Rxb8#. Sacrificar a la dama es barato cuando lleva al mate.",
+   "narration": "Esta vez, la torre de las negras está protegiendo la última fila, así que la atraemos. ¡Sacrifica tu dama en b8! La torre tiene que tomarla, y entonces tu propia torre aterriza en b8 con jaque mate. Regalar la dama es una ganga cuando termina el juego."
+  },
+  {
+   "id": "make-luft",
+   "title": "Darle aire al rey",
+   "text": "Aquí, las negras jugaron ...h6 en algún momento. Sigue los pasos del ejemplo: Rd8+ ya no es mate, porque el rey escapa a h7. El cuadro de escape se llama luft (alemán para aire). Un movimiento de peón tranquilo con anticipación elimina el peligro.",
+   "narration": "Ahora veamos la defensa. Las negras empujaron el peón de h, creando un pequeño cuadro de escape en h7. Lo llamamos luft, la palabra alemana para aire. Torre a d8, ¡jaque! [move] Pero ya no es mate, porque el rey simplemente se escapa a h7. [move]"
+  },
+  {
+   "id": "your-own-king",
+   "title": "Tu propio rey",
+   "question": "Tu rey está en g1 detrás de los peones en f2, g2 y h2, las piezas pesadas están siendo intercambiadas y tu oponente todavía tiene una torre. ¿Qué precaución sería sensata cuando tienes un movimiento libre?",
+   "options": [
+    {
+     "text": "Juega h3 (o g3) para darle al rey un cuadro de escape",
+     "why": "Un tiempo ahora significa que un jaque en la última fila más tarde es solo un jaque."
+    },
+    {
+     "text": "Mueve el rey a h1",
+     "why": "En h1, el rey está tan atrapado, y el movimiento no le sirve de nada."
+    },
+    {
+     "text": "Avanza f2-f4 para atacar",
+     "why": "Abre una diagonal hacia tu rey y aún deja la última fila vulnerable."
+    }
+   ],
+   "narration": "¡El último! Tu rey está en g1 detrás de tres peones, y tu oponente todavía tiene una torre en el tablero. ¿Cuál es la precaución inteligente cuando tienes un movimiento extra? Responde esto, y habrás dominado el mate del pasillo. ¡Bien hecho!"
+  }
+ ]
+}

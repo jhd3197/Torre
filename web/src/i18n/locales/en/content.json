@@ -1,0 +1,6210 @@
+{
+ "botCategories": {
+  "titles": {
+   "engines": "Engines",
+   "everyday": "Always here",
+   "legends": "Legends",
+   "more": "More bots",
+   "seasonal": "Seasonal",
+   "week": "Bots of the week",
+   "yours": "Your bots"
+  }
+ },
+ "botCollections": {
+  "albania": "Albania",
+  "arabia": "Arabia",
+  "argentina": "Argentina",
+  "armenia": "Armenia",
+  "brazil": "Brazil",
+  "canada": "Canada",
+  "chile": "Chile",
+  "china": "China",
+  "classroom": "Library & Classroom",
+  "colombia": "Colombia",
+  "el-salvador": "El Salvador",
+  "france": "France",
+  "game-day": "Game Day",
+  "garden": "Gardens & Pets",
+  "germany": "Germany",
+  "gym": "Gym & Wellness",
+  "hawaii": "Hawaiʻi",
+  "hungary": "Hungary",
+  "india": "India",
+  "italy": "Italy",
+  "japan": "Japan",
+  "kitchen-table": "Kitchen Table",
+  "korea": "Korea",
+  "level-up": "Level Up",
+  "main-street": "Main Street",
+  "makers": "Makers & Inventors",
+  "mexico": "Mexico",
+  "music": "Music & Words",
+  "netherlands": "The Netherlands",
+  "night-owls": "Night Owls",
+  "nine-to-five": "Nine to Five",
+  "nordic": "The Nordics",
+  "on-air": "On Air & On Camera",
+  "outdoors": "The Great Outdoors",
+  "panama": "Panama",
+  "park-bench": "The Park Bench",
+  "peru": "Peru",
+  "philippines": "The Philippines",
+  "russia": "Russia",
+  "schoolyard": "Schoolyard",
+  "science-lab": "Science Lab",
+  "sea-shore": "Sea & Shore",
+  "serbia": "Serbia",
+  "spain": "Spain",
+  "stage": "Stage & Spotlight",
+  "studio": "The Artists' Studio",
+  "sweden": "Sweden",
+  "turkey": "Türkiye",
+  "ukraine": "Ukraine",
+  "usa": "The United States",
+  "venezuela-1": "Venezuela",
+  "venezuela-2": "Venezuela, part two",
+  "white-coats": "Uniforms & White Coats"
+ },
+ "botCostumes": {
+  "leyendas": {
+   "esperanza-gil": {
+    "hello": "Out alone tonight? Then play with me."
+   },
+   "gambit-gloria": {
+    "hello": "Light a candle for me… then we play."
+   },
+   "granny-rose": {
+    "hello": "Sit, mijo. A story first… it ends in checkmate."
+   },
+   "iron-wall-ivo": {
+    "hello": "Fi-fi-fi… Sounds close? Then I’m far away."
+   },
+   "master-weiss": {
+    "hello": "Creak… creak… That’s my cart. Your move."
+   },
+   "old-tom": {
+    "hello": "They told me not to go out tonight. I came anyway."
+   },
+   "tempo-tarik": {
+    "hello": "Chop, chop. Every tree, every piece."
+   },
+   "zugzwang-zoya": {
+    "hello": "Aaay… I’m not crying. Your move."
+   }
+  }
+ },
+ "botMechanics": {
+  "el-silbo-n": {
+   "0": {
+    "say": "Do, re, mi, fa, sol, la, si... did you hear that?"
+   },
+   "1": {
+    "say": "The whistle sounds far away... so I must be close."
+   },
+   "2": {
+    "say": "One more bone for the sack."
+   },
+   "4": {
+    "say": "The plains are wide. I can wait."
+   },
+   "5": {
+    "say": "You heard me far away. I was right behind you."
+   },
+   "6": {
+    "say": "Dawn comes. I go back to the plains... for now."
+   }
+  }
+ },
+ "bots": {
+  "a-da-m-szabo": {
+   "desc": "Sits on a stack of Hungarian chess classics and treats every game as homework already done.",
+   "hello": "Szia. I’ve read about this.",
+   "kind": "chess-book collector · Hungary",
+   "lose": "Not in my books. Interesting.",
+   "tags": [
+    "theory",
+    "careful"
+   ],
+   "win": "Just like page 212."
+  },
+  "aaliyah-stone": {
+   "desc": "Argues every position to the bitter end. Never resigns.",
+   "hello": "Let’s hear your opening argument.",
+   "kind": "lawyer",
+   "lose": "I’ll appeal this one.",
+   "tags": [
+    "fighter",
+    "tenacious"
+   ],
+   "win": "Case closed."
+  },
+  "aarav-shell": {
+   "desc": "Terminal open, tactics loaded. Calculates fast and ships faster.",
+   "hello": "Namaste! Compiling an opening.",
+   "kind": "developer · India",
+   "lose": "Merge conflict. Good game.",
+   "tags": [
+    "tactics",
+    "fast"
+   ],
+   "win": "Build passed."
+  },
+  "abuela-rosa": {
+   "desc": "Stirs the pot with one hand and crushes you with the other. Nobody beats Abuela.",
+   "hello": "Eat first, then chess.",
+   "kind": "the grandma",
+   "lose": "¡Qué orgullo! Come here.",
+   "tags": [
+    "ruthless",
+    "wise"
+   ],
+   "win": "Abuela always knows."
+  },
+  "abuelo-ramo-n": {
+   "desc": "Taught the whole family to play. Still wins most Sundays.",
+   "hello": "Siéntate, mijo. Let’s play.",
+   "kind": "the grandpa",
+   "lose": "You’re getting good, mijo.",
+   "tags": [
+    "classical",
+    "endgames"
+   ],
+   "win": "Like I taught you."
+  },
+  "ada-archer": {
+   "desc": "Builds pawn structures like floor plans and never leaves a hole on d5.",
+   "hello": "Every structure has a weak point. Let’s find yours.",
+   "kind": "architect",
+   "lose": "A flaw in the foundation. Noted.",
+   "tags": [
+    "pawn structure",
+    "planner"
+   ],
+   "win": "Built to code."
+  },
+  "adaeze-okafor": {
+   "desc": "Invests in small advantages and collects the interest in the endgame.",
+   "hello": "Small gains add up.",
+   "kind": "entrepreneur",
+   "lose": "A loss is just tuition.",
+   "tags": [
+    "small edges",
+    "endgames"
+   ],
+   "win": "Return on investment."
+  },
+  "agatha-moon": {
+   "desc": "Has thrown the block’s Halloween party for fifty years and brews endgames that bubble slowly to mate.",
+   "hello": "Come in, dearie. The cauldron’s warm.",
+   "kind": "witch grandma · Halloween",
+   "lose": "Well brewed, little goblin.",
+   "tags": [
+    "endgames",
+    "patient"
+   ],
+   "win": "Hocus pocus. Checkmate."
+  },
+  "aiko-mori": {
+   "desc": "Surrounds territory and squeezes until you run out of moves.",
+   "hello": "Every square is territory.",
+   "kind": "go player",
+   "lose": "You held your ground. Admirable.",
+   "tags": [
+    "space",
+    "squeeze"
+   ],
+   "win": "The board is mine."
+  },
+  "aila-north": {
+   "desc": "Navigates by the stars and calculates by instinct.",
+   "hello": "Dress warm. It’s a long game.",
+   "kind": "arctic guide · Lapland",
+   "lose": "The storm caught me.",
+   "tags": [
+    "instinct",
+    "endurance"
+   ],
+   "win": "Northern lights tonight."
+  },
+  "albin-boll": {
+   "desc": "Keeps one foot on the ball and the other on the attack, so defense is mostly an afterthought.",
+   "hello": "Hej! Kick-off!",
+   "kind": "junior footballer · Sweden",
+   "lose": "Red card for me. Again!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "Mål! Mål! Mål!"
+  },
+  "alex-frost": {
+   "desc": "Says nothing, trades nothing, gives you nothing.",
+   "hello": "...",
+   "kind": "quiet type",
+   "lose": "Good game. Really.",
+   "tags": [
+    "tight",
+    "solid"
+   ],
+   "win": "Good game."
+  },
+  "alirio-mendoza": {
+   "desc": "Strums vallenato under his sombrero vueltiao and keeps the game’s tempo in his hands.",
+   "hello": "¡Ajá, parcero! Music and chess.",
+   "kind": "vallenato guitarist · Colombia",
+   "lose": "Broke a string. Bien jugado.",
+   "tags": [
+    "tempo",
+    "swing"
+   ],
+   "win": "¡Eso es vallenato puro!"
+  },
+  "alon-luz": {
+   "desc": "Develops her queen on move two and hopes for the best.",
+   "hello": "Let’s keep it friendly. Mostly.",
+   "kind": "casual",
+   "lose": "Next time my queen stays home. Maybe.",
+   "tags": [
+    "early queen",
+    "optimist"
+   ],
+   "win": "That queen did all the work!"
+  },
+  "ama-fields": {
+   "desc": "Defends everything, even the pieces nobody is attacking.",
+   "hello": "Everyone gets a protector.",
+   "kind": "gardener",
+   "lose": "I protected the wrong one.",
+   "tags": [
+    "over-defends",
+    "kind"
+   ],
+   "win": "Nobody got hurt. Lovely."
+  },
+  "amara-byte": {
+   "desc": "Writes clean code and clean moves. Her little robot cheers every capture.",
+   "hello": "Hello, world. Your move.",
+   "kind": "coder",
+   "lose": "Found a bug. Patching it.",
+   "tags": [
+    "logical",
+    "tidy"
+   ],
+   "win": "Build passed!"
+  },
+  "ame-lie-petit": {
+   "desc": "Loves underpromotion just for the style points.",
+   "hello": "Let’s make this one beautiful.",
+   "kind": "art student",
+   "lose": "Not pretty, but you earned it.",
+   "tags": [
+    "style points",
+    "quirky"
+   ],
+   "win": "Magnifique!"
+  },
+  "amira-haddad": {
+   "desc": "Quietly improves her worst piece every few moves until the position plays itself.",
+   "hello": "Let’s take our time.",
+   "kind": "positional",
+   "lose": "You out-improved me. Nicely done.",
+   "tags": [
+    "quiet moves",
+    "patient"
+   ],
+   "win": "Every piece found its place."
+  },
+  "ana-boquete": {
+   "desc": "Grows some of the best coffee in the world on the slopes of a volcano. Patient, precise, rich in the endgame.",
+   "hello": "Un cafecito first?",
+   "kind": "coffee grower · Boquete",
+   "lose": "Bitter cup. Well played.",
+   "tags": [
+    "patient",
+    "endgames"
+   ],
+   "win": "A perfect harvest."
+  },
+  "ana-petrovic": {
+   "desc": "Studies algorithms by day and runs them on the board by night, chin in hand, totally unbothered.",
+   "hello": "Ćao! Compiling my opening...",
+   "kind": "computer science student · Serbia",
+   "lose": "Huh. Found a bug in me.",
+   "tags": [
+    "calculating",
+    "solid"
+   ],
+   "win": "Bug-free. Hvala!"
+  },
+  "andre-banks": {
+   "desc": "Hedges every risk and keeps a spare tempo in reserve.",
+   "hello": "Let’s manage our risk.",
+   "kind": "banker",
+   "lose": "Market crash. Well played.",
+   "tags": [
+    "prophylaxis",
+    "careful"
+   ],
+   "win": "Solid returns."
+  },
+  "andrea-menji-var": {
+   "desc": "Roasts single-origin beans from Santa Ana and tastes every position before committing.",
+   "hello": "Good coffee, better chess. ¿Va?",
+   "kind": "coffee roaster · El Salvador",
+   "lose": "Too bitter. Bien jugado.",
+   "tags": [
+    "refined",
+    "balanced"
+   ],
+   "win": "Chivo, well roasted."
+  },
+  "andrii-shield": {
+   "desc": "Holds every line. Will not give up a square without a fight.",
+   "hello": "Hold the line.",
+   "kind": "defender · Ukraine",
+   "lose": "Respect. You broke through.",
+   "tags": [
+    "defence",
+    "resolve"
+   ],
+   "win": "The line held."
+  },
+  "ani": {
+   "desc": "Top of her class and the school team. Plays fast and expects to win.",
+   "hello": "Ready? I am.",
+   "kind": "school chess champion · Gyumri",
+   "lose": "Okay, you’re good.",
+   "tags": [
+    "confident",
+    "tactics"
+   ],
+   "win": "Checkmate. Next!"
+  },
+  "anjali-gulal": {
+   "desc": "Throws fistfuls of gulal at friends and paints the board with bold, colorful sacrifices.",
+   "hello": "Happy Holi! Pick a color.",
+   "kind": "gulal thrower · Holi",
+   "lose": "Covered in green. Well played!",
+   "tags": [
+    "sacrifices",
+    "bold"
+   ],
+   "win": "You’re all pink now!"
+  },
+  "antoine-cloche": {
+   "desc": "Keeps his combinations under a silver cloche until the perfect moment to reveal them.",
+   "hello": "Bienvenue! Table for two?",
+   "kind": "bistro chef · France",
+   "lose": "Ah, you sent it back. Bravo.",
+   "tags": [
+    "hidden tricks",
+    "tasty"
+   ],
+   "win": "Et voilà, le plat du jour!"
+  },
+  "anya-kultura": {
+   "desc": "Knows a century of chess history and plays like all of it.",
+   "hello": "History, languages, culture... and chess.",
+   "kind": "historian · Russia",
+   "lose": "You have written a new chapter.",
+   "tags": [
+    "classical",
+    "deep"
+   ],
+   "win": "History repeats."
+  },
+  "anyelo-rondo-n": {
+   "desc": "Sketches in Seoul cafés between classes and doodles bold ideas onto the board.",
+   "hello": "Annyeong, chamo!",
+   "kind": "art student · Ciudad Guayana → Seoul",
+   "lose": "Aigoo, pana. Otra.",
+   "tags": [
+    "sketchy",
+    "creative"
+   ],
+   "win": "¡Chévere! Daebak!"
+  },
+  "aram": {
+   "desc": "Chess is a school subject in Armenia, and Aram never misses class.",
+   "hello": "Barev! I just won a trophy!",
+   "kind": "school chess kid · Yerevan",
+   "lose": "I’ll practise more.",
+   "tags": [
+    "studious",
+    "eager"
+   ],
+   "win": "Another one for the shelf!"
+  },
+  "arben-plisi": {
+   "desc": "Stamps out a proud valle rhythm with his pieces and never steps back from a fight.",
+   "hello": "Mirëdita! Ready to dance?",
+   "kind": "folk dancer · Albania",
+   "lose": "Bravo, you kept the beat.",
+   "tags": [
+    "proud",
+    "rhythm"
+   ],
+   "win": "Shqiponja wins today!"
+  },
+  "arjun-loop": {
+   "desc": "Calculates everything twice and debugs your attack line by line.",
+   "hello": "Compiling...",
+   "kind": "programmer",
+   "lose": "Segfault. Nice find.",
+   "tags": [
+    "calculation",
+    "logic"
+   ],
+   "win": "Build succeeded."
+  },
+  "arlindo-brasa": {
+   "desc": "Slow-cooks every position over low heat and only carves it up when it’s perfectly done.",
+   "hello": "Pull up a chair. Churrasco’s on.",
+   "kind": "churrasco master · Brazil",
+   "lose": "Eita! You out-grilled me, chef.",
+   "tags": [
+    "slow burn",
+    "endgames"
+   ],
+   "win": "Ponto certo. Perfectly done."
+  },
+  "astrid-lind": {
+   "desc": "Hygge chess: cosy, minimal and quietly very precise.",
+   "hello": "Let’s make it hyggelig.",
+   "kind": "designer · Denmark",
+   "lose": "A beautiful game. Tak.",
+   "tags": [
+    "minimal",
+    "precise"
+   ],
+   "win": "Simple is best."
+  },
+  "ate-joy": {
+   "desc": "Belts out every move like a power ballad and hits the high note on the checkmate.",
+   "hello": "Mic check! Your move.",
+   "kind": "karaoke singer · Cebu",
+   "lose": "Off-key tonight.",
+   "tags": [
+    "showy",
+    "confident"
+   ],
+   "win": "Perfect score!"
+  },
+  "avery-northcott": {
+   "desc": "Stops mid-game to snap the mountains and usually forgets her queen is under attack.",
+   "hello": "Say cheese! Ready, eh?",
+   "kind": "nature photographer · Canada",
+   "lose": "Blurry one. Again?",
+   "tags": [
+    "distracted",
+    "beginner"
+   ],
+   "win": "Got the shot!"
+  },
+  "axel-respawn": {
+   "desc": "Loses a piece, respawns with an attack. Never gives up.",
+   "hello": "GLHF!",
+   "kind": "gamer",
+   "lose": "GG. Respawning...",
+   "tags": [
+    "comebacks",
+    "aggressive"
+   ],
+   "win": "GG EZ. Just kidding, GG."
+  },
+  "ba-cker-max": {
+   "desc": "Twists his pieces into pretzel shapes. Tangled, but tasty.",
+   "hello": "Fresh Brezn?",
+   "kind": "baker · Germany",
+   "lose": "Overbaked that one.",
+   "tags": [
+    "tangled",
+    "cheerful"
+   ],
+   "win": "Lecker!"
+  },
+  "baron-blunder": {
+   "desc": "Gives away a piece roughly every ten moves and never notices.",
+   "hello": "A fine day for a duel! Where did my bishop go?",
+   "kind": "comic",
+   "lose": "Blast! Another piece gone missing.",
+   "tags": [
+    "hangs pieces",
+    "forgiving"
+   ],
+   "win": "Victory! I have no idea how."
+  },
+  "bas": {
+   "desc": "Knows every canal and every open file. Steers calmly through tight positions.",
+   "hello": "Welkom aan boord.",
+   "kind": "canal boat captain · Amsterdam",
+   "lose": "Ran aground. Good game.",
+   "tags": [
+    "files",
+    "calm"
+   ],
+   "win": "Docked safely."
+  },
+  "bence-fu-rdo": {
+   "desc": "Plays from the warm pools of Budapest, so relaxed he forgets his king is in danger.",
+   "hello": "Szia. The water’s lovely.",
+   "kind": "thermal bath regular · Hungary",
+   "lose": "Too relaxed. Back to soaking.",
+   "tags": [
+    "relaxed",
+    "slow"
+   ],
+   "win": "Egészségedre! A warm win."
+  },
+  "benja-rojas": {
+   "desc": "Wears the number 10 to school and charges every piece forward like a penalty kick.",
+   "hello": "¡Chi chi chi! ¡Le le le!",
+   "kind": "little La Roja fan · Chile",
+   "lose": "¡Ya po, revancha!",
+   "tags": [
+    "all-attack",
+    "beginner"
+   ],
+   "win": "¡Gooool, po!"
+  },
+  "benji-click": {
+   "desc": "Takes pictures of the board instead of counting attackers.",
+   "hello": "Smile for the camera! Okay, your move.",
+   "kind": "kid photographer",
+   "lose": "That photo is going in the blooper album.",
+   "tags": [
+    "distracted",
+    "random"
+   ],
+   "win": "Got the winning shot!"
+  },
+  "benny-boo": {
+   "desc": "Knocks on every square hoping for candy and grabs any piece left out on the porch.",
+   "hello": "Trick or treat! Your move.",
+   "kind": "trick-or-treater · Halloween",
+   "lose": "Aw, only raisins this year.",
+   "tags": [
+    "greedy",
+    "beginner"
+   ],
+   "win": "Best haul ever! Candy for me!"
+  },
+  "benny-yawn": {
+   "desc": "Plays half asleep with a giant coffee. Wakes up only when he’s losing.",
+   "hello": "*yawn* One game, then bed.",
+   "kind": "sleepy student",
+   "lose": "Zzz… good game.",
+   "tags": [
+    "sleepy",
+    "sudden"
+   ],
+   "win": "Wait… I won?"
+  },
+  "besnik-qofte": {
+   "desc": "Keeps the grill smoking and the pressure on, skewering pieces lined up on the same file.",
+   "hello": "Mirëdita! Qofte’s almost ready.",
+   "kind": "qofte grill cook · Albania",
+   "lose": "Burnt my qofte. Bravo, shoku.",
+   "tags": [
+    "skewers",
+    "pressure"
+   ],
+   "win": "Skewered! Ju bëftë mirë."
+  },
+  "beto-ruinas": {
+   "desc": "Maps every pyramid in the Yucatán and digs through long positions looking for buried tactics.",
+   "hello": "¡Órale! Let’s dig in.",
+   "kind": "archaeologist · Mexico",
+   "lose": "Wrong map. ¡Bien jugado!",
+   "tags": [
+    "explorer",
+    "patient"
+   ],
+   "win": "Treasure found!"
+  },
+  "big-bruno": {
+   "desc": "Hammers away at one target until something breaks.",
+   "hello": "Measure twice, attack once.",
+   "kind": "carpenter",
+   "lose": "Need a bigger hammer.",
+   "tags": [
+    "one target",
+    "stubborn"
+   ],
+   "win": "Built that win plank by plank."
+  },
+  "big-moe": {
+   "desc": "Stacks heavy pieces on one file and lifts the whole position.",
+   "hello": "Let’s lift!",
+   "kind": "weightlifter",
+   "lose": "You out-lifted me, champ.",
+   "tags": [
+    "heavy pieces",
+    "pressure"
+   ],
+   "win": "Light weight!"
+  },
+  "big-tunde": {
+   "desc": "Runs the local club and knows every trap in the London System.",
+   "hello": "Welcome to the club!",
+   "kind": "club president",
+   "lose": "Come to club night. You’re good.",
+   "tags": [
+    "London System",
+    "club king"
+   ],
+   "win": "Club champion stays champion."
+  },
+  "bj-rn-bear": {
+   "desc": "Fells your position one patient chop at a time.",
+   "hello": "Coffee’s hot. Sit.",
+   "kind": "lumberjack · Norway",
+   "lose": "Hm. Strong axe you have.",
+   "tags": [
+    "patient",
+    "strong"
+   ],
+   "win": "Timber."
+  },
+  "bodhi-stone": {
+   "desc": "Breathes, centralises, and never panics in a bad position.",
+   "hello": "Breathe in. Breathe out. e4.",
+   "kind": "yoga teacher",
+   "lose": "Accept the loss. Learn the lesson.",
+   "tags": [
+    "calm",
+    "central"
+   ],
+   "win": "Balance restored."
+  },
+  "bohdan-hora": {
+   "desc": "Good people, brighter days and very long endgames.",
+   "hello": "Tea from the mountains?",
+   "kind": "mountaineer · Carpathians",
+   "lose": "Good people, good game.",
+   "tags": [
+    "endgames",
+    "warm"
+   ],
+   "win": "Brighter days!"
+  },
+  "brayan-ca-rdenas": {
+   "desc": "Paints murals in Comuna 13 and splashes the board with bright, bold moves.",
+   "hello": "Quiubo parce, check my canvas.",
+   "kind": "graffiti artist · Colombia",
+   "lose": "The paint ran. Otra.",
+   "tags": [
+    "colorful",
+    "bold"
+   ],
+   "win": "¡Obra maestra, parcero!"
+  },
+  "brayan-patinador": {
+   "desc": "Rolls to the Christmas patinata on wobbly skates and rushes pieces forward with no brakes at all.",
+   "hello": "¡Epa! Patinata after this game!",
+   "kind": "patinata kid · Navidad venezolana",
+   "lose": "Me caí. Again, pana!",
+   "tags": [
+    "fast",
+    "wild"
+   ],
+   "win": "¡Zuas! No brakes needed!"
+  },
+  "brooke-ramirez": {
+   "desc": "Plays between coffee refills and essay deadlines, sharp on caffeine and shaky after midnight.",
+   "hello": "Hey y’all, one game before class.",
+   "kind": "college freshman · USA",
+   "lose": "Okay, I need more coffee.",
+   "tags": [
+    "caffeinated",
+    "quick"
+   ],
+   "win": "Easy A. Back to my essay."
+  },
+  "bryan-guardado": {
+   "desc": "Skates the plazas of San Salvador and tries flashy board tricks that do not always land.",
+   "hello": "Dream, explore, play. ¿Va?",
+   "kind": "skater · El Salvador",
+   "lose": "Fell off the board. Ni modo.",
+   "tags": [
+    "tricky",
+    "risky"
+   ],
+   "win": "¡Chivo el truco!"
+  },
+  "bunty-pichkari": {
+   "desc": "Fires his pichkari at anything that moves and sprays checks with no plan at all.",
+   "hello": "Bura na mano, Holi hai!",
+   "kind": "pichkari kid · Holi",
+   "lose": "Soaked! One more round!",
+   "tags": [
+    "chaotic",
+    "checks"
+   ],
+   "win": "Rang barse! Gotcha!"
+  },
+  "burak-golcu": {
+   "desc": "Shoots from every angle and charges his queen up the field like a last-minute derby goal.",
+   "hello": "Hadi be! Kick-off!",
+   "kind": "street striker · Türkiye",
+   "lose": "Offside, surely. Rematch!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "GOOOL! Did you see that?"
+  },
+  "c-ayc-r-za": {
+   "desc": "Pours your tea, pours his rooks onto open files, and never lets either one go cold.",
+   "hello": "Çay? Sit, sit. Hadi oynayalım.",
+   "kind": "tea house owner · Türkiye",
+   "lose": "Afiyet olsun, you earned that one.",
+   "tags": [
+    "open files",
+    "hospitable"
+   ],
+   "win": "Another glass? On the house."
+  },
+  "cami-viajera": {
+   "desc": "Bariloche, El Chaltén, Ushuaia: she visits every corner of the board.",
+   "hello": "Next stop: your king.",
+   "kind": "travel photographer · Argentina",
+   "lose": "Missed the bus.",
+   "tags": [
+    "travels",
+    "curious"
+   ],
+   "win": "Postcard moment!"
+  },
+  "camila-bello": {
+   "desc": "Builds her case move by move; every argument is airtight.",
+   "hello": "Objection to your opening.",
+   "kind": "law student · Venezuela",
+   "lose": "Overruled. Well played.",
+   "tags": [
+    "airtight",
+    "logical"
+   ],
+   "win": "Sustained. Checkmate."
+  },
+  "camila-rio": {
+   "desc": "Takes the scenic route to every plan, but she gets there.",
+   "hello": "No rush. Enjoy the view.",
+   "kind": "traveller",
+   "lose": "Took a wrong turn.",
+   "tags": [
+    "slow plans",
+    "scenic"
+   ],
+   "win": "Worth the trip."
+  },
+  "captain-ana-luci-a": {
+   "desc": "Steers a steady course through any storm and always lands on time.",
+   "hello": "All aboard.",
+   "kind": "ferry captain",
+   "lose": "Rough crossing. Well played.",
+   "tags": [
+    "control",
+    "calm"
+   ],
+   "win": "Right on schedule."
+  },
+  "captain-omar": {
+   "desc": "Guides giant ships through the locks with centimetres to spare. Nothing gets past him.",
+   "hello": "Welcome to the canal.",
+   "kind": "canal pilot · Panama City",
+   "lose": "You steered well, captain.",
+   "tags": [
+    "precise",
+    "control"
+   ],
+   "win": "Through the locks."
+  },
+  "captain-skye": {
+   "desc": "Flies her bishops along the long diagonals and always files a flight plan.",
+   "hello": "This is your captain speaking.",
+   "kind": "pilot",
+   "lose": "Turbulence. Well flown.",
+   "tags": [
+    "long diagonals",
+    "planner"
+   ],
+   "win": "Smooth landing."
+  },
+  "carlos-bastidas": {
+   "desc": "Opened an arepera in Mexico City and stuffs his positions as full as a reina pepiada.",
+   "hello": "¡Épale, güey! Arepa first?",
+   "kind": "arepa chef · Puerto La Cruz → Mexico City",
+   "lose": "No manches, pana. Well played.",
+   "tags": [
+    "generous",
+    "solid"
+   ],
+   "win": "¡Órale, chévere!"
+  },
+  "carlos-bermu-dez": {
+   "desc": "Built three companies on the canal and plays chess like he negotiates: calm, then decisive.",
+   "hello": "¡Épale! Let’s do business.",
+   "kind": "business owner · Caracas → Panama City",
+   "lose": "Good deal for you, pana.",
+   "tags": [
+    "negotiator",
+    "decisive"
+   ],
+   "win": "Deal closed, chamo."
+  },
+  "carmen-ortega": {
+   "desc": "Serves up little pieces all game long, some of them on purpose.",
+   "hello": "¡Hola! Tapas while we play?",
+   "kind": "tapas waitress · Spain",
+   "lose": "Ay, I served you my queen.",
+   "tags": [
+    "generous",
+    "busy"
+   ],
+   "win": "¡Oído cocina! I win."
+  },
+  "carolina-blanco": {
+   "desc": "Grew up on the waves of Isla Margarita. Rides every attack and wipes out cheerfully.",
+   "hello": "Aloha, chamo! Catch this wave.",
+   "kind": "surf instructor · Margarita → Oʻahu",
+   "lose": "Wiped out! Again!",
+   "tags": [
+    "attacking",
+    "carefree"
+   ],
+   "win": "¡Qué chévere!"
+  },
+  "catalina-valde-s": {
+   "desc": "Shoots the Valparaíso hills at golden hour and frames every combination before playing it.",
+   "hello": "Smile, po. This goes in the album.",
+   "kind": "photographer · Chile",
+   "lose": "Out of focus today. Bien jugado.",
+   "tags": [
+    "vision",
+    "framing"
+   ],
+   "win": "Perfect shot. Clic."
+  },
+  "charlie-scout": {
+   "desc": "Earning his chess badge. Needs just one more win!",
+   "hello": "Scout’s honour: I will try my best.",
+   "kind": "scout",
+   "lose": "No badge today. I’ll practise!",
+   "tags": [
+    "eager",
+    "brand new"
+   ],
+   "win": "Badge earned!"
+  },
+  "chef-e-tienne": {
+   "desc": "Piles on fries, curds and gravy, and plays messy, generous chess with way too many pieces in the middle.",
+   "hello": "Poutine’s ready! Let’s play, eh!",
+   "kind": "poutine chef · Canada",
+   "lose": "Soggy fries. Bien joué!",
+   "tags": [
+    "messy",
+    "tricky"
+   ],
+   "win": "Extra gravy for the winner!"
+  },
+  "chef-liu-bao": {
+   "desc": "Tosses noodles over a roaring wok and throws pieces into the fire just as fast.",
+   "hello": "Hot wok, hot moves!",
+   "kind": "wok chef · China",
+   "lose": "Too much fire. Well played.",
+   "tags": [
+    "sacrifices",
+    "fast"
+   ],
+   "win": "Served hot!"
+  },
+  "chef-marco": {
+   "desc": "Slow-cooks a kingside attack. The sauce is ready around move 25.",
+   "hello": "Today’s special: kingside attack.",
+   "kind": "chef",
+   "lose": "Burnt the sauce.",
+   "tags": [
+    "slow-cooked attack",
+    "tasty"
+   ],
+   "win": "Bellissimo!"
+  },
+  "chef-marti-n": {
+   "desc": "Fresh ideas, sharp cuts, served fast. Squeezes every advantage like a lime.",
+   "hello": "Bienvenido a mi cevichería.",
+   "kind": "ceviche chef · Lima",
+   "lose": "Too much ají for me.",
+   "tags": [
+    "sharp",
+    "fresh"
+   ],
+   "win": "¡Al punto!"
+  },
+  "chen-hao": {
+   "desc": "Studies algorithms all day and searches every line like a breadth-first search.",
+   "hello": "Running my opening script.",
+   "kind": "computer science student · China",
+   "lose": "Found a bug. Mine.",
+   "tags": [
+    "calculating",
+    "solid"
+   ],
+   "win": "Algorithm complete."
+  },
+  "chepe-rami-rez": {
+   "desc": "Has flipped pupusas on one comal for thirty years and flips losing games just as neatly.",
+   "hello": "Revueltas or cheese? Then chess.",
+   "kind": "pupusero · El Salvador",
+   "lose": "You burned my pupusa. Respect.",
+   "tags": [
+    "patient",
+    "seasoned"
+   ],
+   "win": "¡Bien chivo! Ahí está."
+  },
+  "chiara": {
+   "desc": "Every piece perfectly placed. Ugly positions are simply not her style.",
+   "hello": "Let’s make it beautiful.",
+   "kind": "fashion designer · Milan",
+   "lose": "Not my season.",
+   "tags": [
+    "stylish",
+    "harmony"
+   ],
+   "win": "Perfetto."
+  },
+  "chico": {
+   "desc": "Swings at every pitch and runs every base like it’s a home run.",
+   "hello": "¡Play ball!",
+   "kind": "baseball kid · Colón",
+   "lose": "Strike three. Again!",
+   "tags": [
+    "swings big",
+    "happy"
+   ],
+   "win": "Home run!"
+  },
+  "chintu-phuljhadi": {
+   "desc": "Waves sparklers in the courtyard and plays fizzy, flashy moves that burn out fast.",
+   "hello": "Happy Diwali! Watch my phuljhadi!",
+   "kind": "sparkler kid · Diwali",
+   "lose": "Fizzled out. One more, bhaiya?",
+   "tags": [
+    "flashy",
+    "hasty"
+   ],
+   "win": "Sparkle, sparkle, I won!"
+  },
+  "chloe-martin": {
+   "desc": "Navigates calm waters well; storms make her seasick.",
+   "hello": "Smooth sailing, I hope.",
+   "kind": "sailor",
+   "lose": "Rough seas today.",
+   "tags": [
+    "calm positions",
+    "solid"
+   ],
+   "win": "Safe in harbour."
+  },
+  "chloe-tremblay": {
+   "desc": "Sips a double-double between moves and plays warm, friendly chess that sometimes spills over.",
+   "hello": "Double-double ready. Let’s go, eh!",
+   "kind": "coffee lover · Canada",
+   "lose": "Good game! Refill time.",
+   "tags": [
+    "cozy",
+    "friendly"
+   ],
+   "win": "Oh! Sorry, that’s mate."
+  },
+  "choi-daeho": {
+   "desc": "Simmers tteokguk all morning and builds his position layer by layer until it is ready to serve.",
+   "hello": "Eat tteokguk, turn a year older!",
+   "kind": "tteokguk cook · Seollal",
+   "lose": "Overcooked my tteok. Jal haesseo.",
+   "tags": [
+    "solid",
+    "building"
+   ],
+   "win": "One more bowl, one more win."
+  },
+  "clara-quill": {
+   "desc": "Knows the classic games by heart and quotes them mid-move.",
+   "hello": "As Capablanca once said...",
+   "kind": "librarian",
+   "lose": "That deserves a place in the books.",
+   "tags": [
+    "classics",
+    "theory"
+   ],
+   "win": "Straight out of the classics."
+  },
+  "coach-rooky": {
+   "desc": "Plays at about your rating and talks you through the game: a hint when you ask, what your opponent threatens, and a word before a mistake. You can take moves back.",
+   "hello": "Let us play one together. I will speak up when something matters.",
+   "kind": "your coach · plays at your level",
+   "lose": "You beat your coach! That is the whole idea.",
+   "tags": [
+    "coach",
+    "hints",
+    "take-backs"
+   ],
+   "win": "Good game. Want to look at the moment it turned?"
+  },
+  "coach-valeria": {
+   "desc": "High tempo, high pressure, no rest days for your king.",
+   "hello": "Warm up done. Let’s go!",
+   "kind": "athlete",
+   "lose": "Good workout. You earned it.",
+   "tags": [
+    "pressure",
+    "energetic"
+   ],
+   "win": "That’s how we train!"
+  },
+  "coach-walt": {
+   "desc": "Times every move and never wastes a tempo. Thirty years of laps.",
+   "hello": "Clock’s running.",
+   "kind": "swim coach",
+   "lose": "Good swim. Hit the showers.",
+   "tags": [
+    "tempo",
+    "disciplined"
+   ],
+   "win": "That’s a record pace."
+  },
+  "coco-reyes": {
+   "desc": "Collects pieces like seashells and keeps every one she finds.",
+   "hello": "Look what I found!",
+   "kind": "beachcomber",
+   "lose": "The tide got me.",
+   "tags": [
+    "collector",
+    "curious"
+   ],
+   "win": "Best shell ever!"
+  },
+  "commander-rhea-starr": {
+   "desc": "Trained for years to stay calm in the tightest spots. Lands every plan on target.",
+   "hello": "Systems check. Ready.",
+   "kind": "astronaut",
+   "lose": "Houston, we have a problem.",
+   "tags": [
+    "composure",
+    "planning"
+   ],
+   "win": "Mission accomplished."
+  },
+  "constable-macleod": {
+   "desc": "Always gets his man, and always gets your king, by the book and with perfect manners.",
+   "hello": "Good day. Let’s keep it fair, eh?",
+   "kind": "mountie · Canada",
+   "lose": "Well played. I’ll file a report.",
+   "tags": [
+    "disciplined",
+    "solid"
+   ],
+   "win": "Case closed. Sorry, eh."
+  },
+  "cooper-orbit": {
+   "desc": "Runs every line through a launch checklist and only lifts off when every variation reads green.",
+   "hello": "T-minus ten. All systems go.",
+   "kind": "astronaut · USA",
+   "lose": "Mission aborted. Great flight, y’all.",
+   "tags": [
+    "precise",
+    "calculated"
+   ],
+   "win": "Houston, we have checkmate."
+  },
+  "dadi-savitri": {
+   "desc": "Lights every diya in the house before dusk and lights up your weaknesses one by one, just as calmly.",
+   "hello": "Shubh Deepavali, beta. Sit.",
+   "kind": "diya-lighting grandmother · Diwali",
+   "lose": "Bahut accha. You played with light.",
+   "tags": [
+    "calm",
+    "precise"
+   ],
+   "win": "Light always finds the way."
+  },
+  "daisy-park": {
+   "desc": "Tends to one plan at a time and waters it every move.",
+   "hello": "Let’s grow something nice.",
+   "kind": "plant parent",
+   "lose": "This plan needed more sunlight.",
+   "tags": [
+    "one plan",
+    "calm"
+   ],
+   "win": "It bloomed!"
+  },
+  "dale-fisher": {
+   "desc": "Baits you with a hanging pawn and reels you in.",
+   "hello": "Fish are biting today.",
+   "kind": "fisherman",
+   "lose": "The big one got away.",
+   "tags": [
+    "bait",
+    "patient"
+   ],
+   "win": "Hook, line and checkmate."
+  },
+  "dame-estela": {
+   "desc": "Plays every game like opening night: grand sacrifices, big finales.",
+   "hello": "To play or not to play.",
+   "kind": "stage actress",
+   "lose": "A standing ovation for you.",
+   "tags": [
+    "dramatic",
+    "sacrifices"
+   ],
+   "win": "Bravo! Curtain!"
+  },
+  "dani-sprint": {
+   "desc": "Races her pawns up the board. Fastest player in the park.",
+   "hello": "On your marks!",
+   "kind": "runner",
+   "lose": "You out-ran me.",
+   "tags": [
+    "pawn races",
+    "fast"
+   ],
+   "win": "Personal best!"
+  },
+  "daniel-contreras": {
+   "desc": "Coaches kids’ basketball in Belgrade, where everyone is tall. Plays the board like a fast break.",
+   "hello": "Ajde, chamo! Fast break.",
+   "kind": "basketball coach · Barquisimeto → Belgrade",
+   "lose": "Timeout. Rematch?",
+   "tags": [
+    "counterattack",
+    "energetic"
+   ],
+   "win": "Swish, pana!"
+  },
+  "daniela-rojas": {
+   "desc": "Brought salsa to Yerevan and now her classes are always full. Her pieces never stop moving.",
+   "hello": "¡Vamos a bailar, chamo!",
+   "kind": "salsa teacher · Maracay → Yerevan",
+   "lose": "You led the dance, pana.",
+   "tags": [
+    "rhythm",
+    "lively"
+   ],
+   "win": "¡Y una vuelta más!"
+  },
+  "daniela-roraima": {
+   "desc": "Climbs tepuis for fun. Loves long, flat-topped plans that take forever.",
+   "hello": "Big climb ahead.",
+   "kind": "trekker · Venezuela",
+   "lose": "The tepui was too tall today.",
+   "tags": [
+    "long plans",
+    "stamina"
+   ],
+   "win": "Summit of Roraima!"
+  },
+  "daniela-zapata": {
+   "desc": "Hiked to Ciudad Perdida with her camera and explores every side line on the board.",
+   "hello": "¡Quiubo! Where are we going?",
+   "kind": "backpacker · Colombia",
+   "lose": "Got lost on the trail. Again.",
+   "tags": [
+    "curious",
+    "explorer"
+   ],
+   "win": "Victory photo, parce."
+  },
+  "danny-quick": {
+   "desc": "Plays bullet in his head. Every game. Even this one.",
+   "hello": "Let’s go, let’s go, let’s go.",
+   "kind": "teen",
+   "lose": "Too fast. Again. Faster.",
+   "tags": [
+    "rushed",
+    "fast"
+   ],
+   "win": "Speed wins!"
+  },
+  "darnell-brooks": {
+   "desc": "Plays textbook moves and expects you to do the same.",
+   "hello": "Centre, develop, castle. Let’s see it.",
+   "kind": "youth coach",
+   "lose": "Great fundamentals. Proud of you.",
+   "tags": [
+    "textbook",
+    "principled"
+   ],
+   "win": "Fundamentals win games."
+  },
+  "davi-mata": {
+   "desc": "Spots threats through the board like a toucan through binoculars and never walks into a trap.",
+   "hello": "Olha! Keep your eyes open.",
+   "kind": "jungle guide · Brazil",
+   "lose": "You hid that move well. Respeito.",
+   "tags": [
+    "watchful",
+    "solid"
+   ],
+   "win": "Spotted that one a mile away."
+  },
+  "davit": {
+   "desc": "Debugs every line before he plays it. Builds startups by day, crushes blitz by night.",
+   "hello": "Compiling…",
+   "kind": "coder · Yerevan",
+   "lose": "Found a bug in my plan.",
+   "tags": [
+    "calculation",
+    "fast"
+   ],
+   "win": "All tests pass."
+  },
+  "deda-rade": {
+   "desc": "Has sat on the same rakija barrel for forty years and seen every trap you could possibly set.",
+   "hello": "Živeli! Sit, sit, sine.",
+   "kind": "village grandpa · Serbia",
+   "lose": "Ha! Bravo, sine. A toast to you!",
+   "tags": [
+    "wise",
+    "endgames"
+   ],
+   "win": "Rakija for me, lesson for you."
+  },
+  "defne-gezgin": {
+   "desc": "Reads the guidebook mid-game, gets lost in the middlegame and loves every wrong turn.",
+   "hello": "Merhaba! Is this the way to e4?",
+   "kind": "first-time tourist · Türkiye",
+   "lose": "Lost again. Worth the trip!",
+   "tags": [
+    "curious",
+    "wanderer"
+   ],
+   "win": "Wait, I won? Harika!"
+  },
+  "dervis-selim": {
+   "desc": "Turns the board slowly in his mind until every piece finds its calm and quiet place.",
+   "hello": "Breathe. The board will turn.",
+   "kind": "whirling dervish · Türkiye",
+   "lose": "Beautiful. Your heart played well.",
+   "tags": [
+    "serene",
+    "deep"
+   ],
+   "win": "All things return to the center."
+  },
+  "desire-e-linares": {
+   "desc": "Teaches Spanish in Istanbul over Turkish coffee and reads the board like the grounds in a cup.",
+   "hello": "Merhaba, chamo! Kahve?",
+   "kind": "Spanish teacher · Maturín → Istanbul",
+   "lose": "Tamam, pana. Good game.",
+   "tags": [
+    "intuitive",
+    "chatty"
+   ],
+   "win": "¡Chévere! Çok güzel."
+  },
+  "diego-olas": {
+   "desc": "Paddles out early every morning and attacks every wave of the middlegame.",
+   "hello": "¡Vamos al agua!",
+   "kind": "surfer · Lima",
+   "lose": "The sea won today.",
+   "tags": [
+    "waves",
+    "attacks"
+   ],
+   "win": "Tubazo, causa!"
+  },
+  "diego-santos": {
+   "desc": "Plays e4 every game and is still figuring out what comes after.",
+   "hello": "e4, obviously.",
+   "kind": "student",
+   "lose": "Maybe I should learn move two.",
+   "tags": [
+    "e4",
+    "learning"
+   ],
+   "win": "e4 never lets me down."
+  },
+  "diego": {
+   "desc": "Plays between bites of cereal. Fast, careless, secretly good.",
+   "hello": "One game, then homework.",
+   "kind": "teen brother",
+   "lose": "Rematch after dinner.",
+   "tags": [
+    "blitz",
+    "careless"
+   ],
+   "win": "Too easy."
+  },
+  "diya-sharma": {
+   "desc": "Good ideas everywhere, and she plays most of them.",
+   "hello": "Good ideas everywhere!",
+   "kind": "designer · India",
+   "lose": "Next idea.",
+   "tags": [
+    "ideas",
+    "creative"
+   ],
+   "win": "That idea worked."
+  },
+  "dj-rook": {
+   "desc": "Drops the bass with a rook lift every single game.",
+   "hello": "Turn it up!",
+   "kind": "DJ",
+   "lose": "You scratched my record.",
+   "tags": [
+    "rook lifts",
+    "loud"
+   ],
+   "win": "Drop the rook!"
+  },
+  "dmitri-taiga": {
+   "desc": "Survives anything. Defends lost positions for fifty moves.",
+   "hello": "The taiga teaches patience.",
+   "kind": "taiga ranger · Russia",
+   "lose": "The bear caught me.",
+   "tags": [
+    "survivor",
+    "defence"
+   ],
+   "win": "Survived again."
+  },
+  "do-ra-fekete": {
+   "desc": "Feints, lunges, and pins your pieces with the precision of a sabre touch.",
+   "hello": "En garde! Hajrá!",
+   "kind": "Olympic fencer · Hungary",
+   "lose": "Clean hit. Well fenced.",
+   "tags": [
+    "pins",
+    "precise"
+   ],
+   "win": "Touché. Point to me."
+  },
+  "don-a-celia": {
+   "desc": "Has fed the neighbourhood for forty years. Her sancocho and her endgames are famous.",
+   "hello": "Siéntate, mi amor. Come primero.",
+   "kind": "fonda owner · Chorrera",
+   "lose": "¡Qué bárbaro! Well done, mijo.",
+   "tags": [
+    "wise",
+    "endgames"
+   ],
+   "win": "Sancocho and checkmate."
+  },
+  "don-a-remedios": {
+   "desc": "Dresses as an elegant Catrina every year and plays with timeless poise, remembering every line she has seen.",
+   "hello": "Bienvenido. The ofrenda is ready.",
+   "kind": "Catrina grande dame · Día de Muertos",
+   "lose": "Bien jugado. The ancestors smile.",
+   "tags": [
+    "classical",
+    "precise"
+   ],
+   "win": "Elegance never dies, mijo."
+  },
+  "don-alonso-mancha": {
+   "desc": "Has read every chivalry book in print and charges his knights at the windmills of your defense.",
+   "hello": "En guardia, noble rival!",
+   "kind": "wandering knight · Spain",
+   "lose": "Alas, a windmill after all.",
+   "tags": [
+    "knights",
+    "romantic"
+   ],
+   "win": "Another giant falls. ¡Olé!"
+  },
+  "don-andre-s": {
+   "desc": "Dresses for a wedding, plays like a diplomat: elegant, patient, never rushed.",
+   "hello": "¡Epa! Shall we begin, chamo?",
+   "kind": "liqui liqui gentleman · Venezuela",
+   "lose": "Bien jugado. Truly.",
+   "tags": [
+    "elegant",
+    "patient"
+   ],
+   "win": "Elegance wins, pana."
+  },
+  "don-aurelio-huaso": {
+   "desc": "Has ridden forty rodeos in the medialuna and pins your pieces to the wall like a champion huaso.",
+   "hello": "Buenas, patroncito. ¡A la rienda!",
+   "kind": "rodeo huaso · Fiestas Patrias",
+   "lose": "Buena atajada. ¡Viva Chile!",
+   "tags": [
+    "pins",
+    "endgames"
+   ],
+   "win": "Full points, compadre!"
+  },
+  "don-eleazar-pesebre": {
+   "desc": "Builds the family pesebre figure by figure each year and places his pieces with the same devoted care.",
+   "hello": "Feliz Navidad, mijo. Sit.",
+   "kind": "pesebre builder · Navidad venezolana",
+   "lose": "Qué bonito jugaste. Felicidades.",
+   "tags": [
+    "positional",
+    "patient"
+   ],
+   "win": "Every piece in its pesebre."
+  },
+  "don-facundo": {
+   "desc": "Rides the open files like the pampas. Tough, patient, unbeatable in the endgame.",
+   "hello": "The pampas are wide. So is this board.",
+   "kind": "gaucho · Argentina",
+   "lose": "Good ride, partner.",
+   "tags": [
+    "open files",
+    "endgames"
+   ],
+   "win": "Like taming a colt."
+  },
+  "don-hilario": {
+   "desc": "Measures twice, moves once. Every piece fits like a suit made to measure.",
+   "hello": "Let me take your measurements.",
+   "kind": "tailor",
+   "lose": "Ah, a loose thread.",
+   "tags": [
+    "precise",
+    "careful"
+   ],
+   "win": "A perfect fit."
+  },
+  "don-ramiro-vargas": {
+   "desc": "Has led serenatas for forty years and plays chess the same way: grand, in tune, and never off tempo.",
+   "hello": "¡Buenas noches! Una serenata de ajedrez.",
+   "kind": "mariachi · Mexico",
+   "lose": "¡Bravo! You sang better tonight.",
+   "tags": [
+    "classical",
+    "endgames"
+   ],
+   "win": "¡Ay, ay, ay! That’s the last verse."
+  },
+  "don-refugio-pan": {
+   "desc": "Bakes pan de muerto before dawn and kneads slow, solid positions until they rise into an attack.",
+   "hello": "Pan de muerto, fresh. ¿Jugamos?",
+   "kind": "pan de muerto baker · Día de Muertos",
+   "lose": "The dough didn’t rise. ¡Bravo!",
+   "tags": [
+    "solid",
+    "positional"
+   ],
+   "win": "Bien horneado, como siempre."
+  },
+  "don-salvatore": {
+   "desc": "Grows his position like an olive tree: slowly, and it lasts a hundred years.",
+   "hello": "Piano, piano.",
+   "kind": "olive farmer · Puglia",
+   "lose": "You have good roots.",
+   "tags": [
+    "slow build",
+    "solid"
+   ],
+   "win": "A good harvest."
+  },
+  "don-teodoro": {
+   "desc": "Forty years on the same park bench. Knows every trap in the book and a few that aren’t.",
+   "hello": "Another challenger. Sit.",
+   "kind": "park chess player · Arequipa",
+   "lose": "Bien, joven. Very well.",
+   "tags": [
+    "traps",
+    "experience"
+   ],
+   "win": "Ah, the old trap."
+  },
+  "don-vicente": {
+   "desc": "Plays gaita at Christmas and gambits all year round.",
+   "hello": "Ready for some gaita?",
+   "kind": "gaitero · Venezuela",
+   "lose": "The party’s over. Bien jugado.",
+   "tags": [
+    "gambits",
+    "festive"
+   ],
+   "win": "¡Parranda!"
+  },
+  "doyun-lim": {
+   "desc": "Headphones on, cap low, he calculates lines at a hundred APM and never tilts.",
+   "hello": "GG in advance. Let’s go.",
+   "kind": "pro gamer · Korea",
+   "lose": "Nerfed. GG, well played.",
+   "tags": [
+    "tactical",
+    "fast"
+   ],
+   "win": "GG. Ez clap, jk jk."
+  },
+  "dr-ananya-rao": {
+   "desc": "Calm, kind and clinically accurate.",
+   "hello": "Breathe easy and play.",
+   "kind": "doctor · India",
+   "lose": "Excellent health. And chess.",
+   "tags": [
+    "accurate",
+    "kind"
+   ],
+   "win": "All clear."
+  },
+  "dr-fiona-grey": {
+   "desc": "Calm under pressure. Takes your attack’s pulse and waits for it to fade.",
+   "hello": "Let’s check your vitals.",
+   "kind": "physician",
+   "lose": "Healthy attack. Well done.",
+   "tags": [
+    "defence",
+    "calm"
+   ],
+   "win": "Prognosis: checkmate."
+  },
+  "dr-lena-stern": {
+   "desc": "Twelve-hour shifts taught her to decide fast and stay calm under pressure.",
+   "hello": "Triage first. Then chess.",
+   "kind": "ER doctor",
+   "lose": "Good call, doctor.",
+   "tags": [
+    "decisive",
+    "calm"
+   ],
+   "win": "Stable and winning."
+  },
+  "dr-malik-osei": {
+   "desc": "Precise incisions: one exact move, then another.",
+   "hello": "Scalpel.",
+   "kind": "surgeon",
+   "lose": "Complication. Well played.",
+   "tags": [
+    "precise",
+    "clinical"
+   ],
+   "win": "The operation was a success."
+  },
+  "dr-noor-rahman": {
+   "desc": "Diagnoses the weakness in your position, then treats it with precision.",
+   "hello": "Gentle hands, sharp moves.",
+   "kind": "vet",
+   "lose": "You’re healthier than I thought.",
+   "tags": [
+    "precise",
+    "calm"
+   ],
+   "win": "All better now."
+  },
+  "dr-olga-petrova": {
+   "desc": "Takes a thorough history of your position before the diagnosis.",
+   "hello": "Please, sit.",
+   "kind": "doctor · Russia",
+   "lose": "You are in good health.",
+   "tags": [
+    "thorough",
+    "precise"
+   ],
+   "win": "Diagnosis confirmed."
+  },
+  "dr-yuki-sato": {
+   "desc": "Tests every hypothesis about your position until one proves fatal.",
+   "hello": "Let us begin the trial.",
+   "kind": "researcher",
+   "lose": "Unexpected result. Fascinating.",
+   "tags": [
+    "deep calculation",
+    "precise"
+   ],
+   "win": "Results are conclusive."
+  },
+  "dra-andrei-na-salas": {
+   "desc": "The favourite paediatrician on Madeira. Gentle, thorough and always one move ahead.",
+   "hello": "Olá, mi amor. Let’s play.",
+   "kind": "paediatrician · Barquisimeto → Funchal",
+   "lose": "Muy bien, pana. Muy bien.",
+   "tags": [
+    "careful",
+    "thorough"
+   ],
+   "win": "Clean bill of health."
+  },
+  "dra-ine-s-fuego": {
+   "desc": "Calm until the pressure builds, then the whole board erupts.",
+   "hello": "Feel that rumble?",
+   "kind": "volcanologist",
+   "lose": "Dormant today. Well played.",
+   "tags": [
+    "explosive",
+    "patient"
+   ],
+   "win": "Eruption!"
+  },
+  "drita-valle": {
+   "desc": "Twirls her skirt and her knights in circles, dizzying you and sometimes herself.",
+   "hello": "Mirëdita! Let’s spin.",
+   "kind": "festival dancer · Albania",
+   "lose": "Oops, I got dizzy. Again!",
+   "tags": [
+    "twirly",
+    "knights"
+   ],
+   "win": "Round and round, checkmate!"
+  },
+  "dus-an-zakon": {
+   "desc": "Argues every position like a court case and always has a precedent ready for your opening.",
+   "hello": "Court is in session. Ajde.",
+   "kind": "lawyer · Serbia",
+   "lose": "I’ll appeal. Bravo.",
+   "tags": [
+    "precise",
+    "positional"
+   ],
+   "win": "The verdict is in my favor."
+  },
+  "dusty-calhoun": {
+   "desc": "Lassos loose pieces from across the board and drags your king into the corral.",
+   "hello": "Howdy, partner. Saddle up.",
+   "kind": "rodeo cowboy · USA",
+   "lose": "Well, I’ll be. Tip of the hat to ya.",
+   "tags": [
+    "tactical",
+    "lasso"
+   ],
+   "win": "Yeehaw! Roped and branded."
+  },
+  "ebba-mys": {
+   "desc": "Never rushes her fika or her moves, and somehow the cozy lantern light always ends in a clean win.",
+   "hello": "Fika first, then chess.",
+   "kind": "cabin dweller · Sweden",
+   "lose": "Lovely game. More fika?",
+   "tags": [
+    "cozy",
+    "positional"
+   ],
+   "win": "So mysigt. Thank you!"
+  },
+  "el-peo-n-verde": {
+   "desc": "Flexes, leaps off the top rope, and throws every piece at your king like a flying plancha.",
+   "hello": "¡A la lucha! ¡Órale!",
+   "kind": "luchador · Mexico",
+   "lose": "You took my mask! ¡Bravo!",
+   "tags": [
+    "gambits",
+    "showman"
+   ],
+   "win": "¡Uno, dos, tres! Pinned!"
+  },
+  "el-silbo-n": {
+   "desc": "Wanders the Venezuelan plains at night with a sack of bones. When his whistle sounds close he is far away; when it sounds far, he is already beside you.",
+   "hello": "Do, re, mi... Shall we play under the moon?",
+   "kind": "llanero legend · Halloween",
+   "lose": "The rooster crows. Back to the plains I go.",
+   "tags": [
+    "stalker",
+    "patient"
+   ],
+   "win": "You heard me far away. I was right behind you."
+  },
+  "eli-sprout": {
+   "desc": "Moves whichever piece he touched first. That is the rule, right?",
+   "hello": "I touched it so I have to move it!",
+   "kind": "little brother",
+   "lose": "Okay. Again. Please?",
+   "tags": [
+    "touch-move",
+    "brand new"
+   ],
+   "win": "I WON! I am telling everyone!"
+  },
+  "elif-kapadokya": {
+   "desc": "Sips coffee on her rugs at sunrise and floats her plans up quietly like the morning balloons.",
+   "hello": "Kahve first, then chess. Hadi.",
+   "kind": "Cappadocia innkeeper · Türkiye",
+   "lose": "Lovely. The cat says rematch.",
+   "tags": [
+    "cozy",
+    "strategic"
+   ],
+   "win": "Up, up and checkmate."
+  },
+  "elijah-trail": {
+   "desc": "Leaves the beaten path by move three and is happiest in unknown territory.",
+   "hello": "Let’s go somewhere new.",
+   "kind": "explorer",
+   "lose": "Got lost out there. Great trip though.",
+   "tags": [
+    "offbeat openings",
+    "adventurous"
+   ],
+   "win": "What a journey!"
+  },
+  "elin-ljus": {
+   "desc": "Walks in the Lucia procession with a crown of candles and moves so carefully nothing ever tips over.",
+   "hello": "Sankta Lucia, light the night.",
+   "kind": "Lucia procession girl · Lucia & Jul",
+   "lose": "A candle blew out. Fint spelat.",
+   "tags": [
+    "careful",
+    "steady"
+   ],
+   "win": "Light in the darkest month."
+  },
+  "ellie-notes": {
+   "desc": "Writes down every move and tells a story with the game.",
+   "hello": "Once upon a time, a pawn moved to e4...",
+   "kind": "writer",
+   "lose": "Not the ending I planned.",
+   "tags": [
+    "narrative",
+    "steady"
+   ],
+   "win": "And she lived happily ever after."
+  },
+  "emma-kunst": {
+   "desc": "Kunst, Kultur, Ideen. Plays avant-garde openings on purpose.",
+   "hello": "Hallo! Let’s be experimental.",
+   "kind": "art student · Berlin",
+   "lose": "Interesting. Very interesting.",
+   "tags": [
+    "avant-garde",
+    "offbeat"
+   ],
+   "win": "Kunst!"
+  },
+  "emre-kalpak": {
+   "desc": "Plants his flag on a strong square, digs in his boots and defends it like a hilltop.",
+   "hello": "Hadi, take your positions.",
+   "kind": "history reenactor · Türkiye",
+   "lose": "You broke the line. Respect, kardeşim.",
+   "tags": [
+    "defensive",
+    "stubborn"
+   ],
+   "win": "The hill is mine. Tebrikler."
+  },
+  "ender-sifontes": {
+   "desc": "Packs the bars of San Telmo with gaita on his cuatro and keeps a steady rhythm through long endgames.",
+   "hello": "¡Épale, che! Let’s play.",
+   "kind": "cuatro player · Maracaibo → Buenos Aires",
+   "lose": "Bien jugado, pana. Re bien.",
+   "tags": [
+    "rhythm",
+    "endgames"
+   ],
+   "win": "¡Chévere, boludo!"
+  },
+  "enfermera-jeni": {
+   "desc": "Café, paciencia, resultados: coffee, patience, results.",
+   "hello": "Coffee, patience, results.",
+   "kind": "nurse · Venezuela",
+   "lose": "More patience next time.",
+   "tags": [
+    "patient",
+    "careful"
+   ],
+   "win": "Results."
+  },
+  "era-kuqezi": {
+   "desc": "Chants for every check, paints her face red and black and attacks like it’s a stoppage-time goal.",
+   "hello": "Kuq e zi! Let’s go!",
+   "kind": "superfan · Albania",
+   "lose": "Next match is ours, I swear!",
+   "tags": [
+    "loud",
+    "all-in"
+   ],
+   "win": "Shqipëri! Shqipëri!"
+  },
+  "erik-sko-ld": {
+   "desc": "Raises his shield before every move and charges in with the sword the moment he sees an opening.",
+   "hello": "Hej! Shields up!",
+   "kind": "young knight · Sweden",
+   "lose": "My shield cracked. Well fought.",
+   "tags": [
+    "brave",
+    "attacking"
+   ],
+   "win": "For the crown! Skål!"
+  },
+  "ernesto-majano": {
+   "desc": "Rides the waves at El Tunco and waits for the right moment to drop into an attack.",
+   "hello": "¡Qué onda! Good swell today.",
+   "kind": "surfer · El Salvador",
+   "lose": "Wiped out. Ni modo.",
+   "tags": [
+    "timing",
+    "laid back"
+   ],
+   "win": "Chivo wave, bro."
+  },
+  "esperanza-gil": {
+   "desc": "Dramatic, romantic chess full of twists and sacrifices.",
+   "hello": "Every game needs a twist.",
+   "kind": "storyteller",
+   "lose": "A tragic ending. Bravo.",
+   "tags": [
+    "dramatic",
+    "sacrifices"
+   ],
+   "win": "What a finale!"
+  },
+  "eszter-kova-cs": {
+   "desc": "Brings a warm bowl to the table and plays cozy, comfortable chess with extra paprika.",
+   "hello": "Szia! Eat first, then chess.",
+   "kind": "village cook · Hungary",
+   "lose": "More soup for the winner.",
+   "tags": [
+    "cozy",
+    "solid"
+   ],
+   "win": "Jó étvágyat, and checkmate!"
+  },
+  "faisal-cool": {
+   "desc": "Fast moves, cool head, big flourishes.",
+   "hello": "Yalla, let’s go.",
+   "kind": "car enthusiast · UAE",
+   "lose": "Next time, habibi.",
+   "tags": [
+    "flashy",
+    "fast"
+   ],
+   "win": "Too smooth."
+  },
+  "farmor-sigrid": {
+   "desc": "Has raised the village midsommarstång for fifty summers and builds positions just as tall and steady.",
+   "hello": "Glad midsommar. The pole is up.",
+   "kind": "maypole raiser · Midsommar",
+   "lose": "Bra spelat! Have some cake.",
+   "tags": [
+    "structure",
+    "endgames"
+   ],
+   "win": "Standing tall, like the maypole."
+  },
+  "felix-margin": {
+   "desc": "Annotates every move with “?!”, including his own.",
+   "hello": "Let me get my notebook.",
+   "kind": "note-taker",
+   "lose": "Writing this one down as a lesson.",
+   "tags": [
+    "self-critical",
+    "careful"
+   ],
+   "win": "That deserves a “!!”"
+  },
+  "fenna": {
+   "desc": "Low, fast and smooth. Glides past you on the long straight.",
+   "hello": "On the ice!",
+   "kind": "speed skater · Heerenveen",
+   "lose": "Caught an edge.",
+   "tags": [
+    "speed",
+    "technique"
+   ],
+   "win": "Gold!"
+  },
+  "fern-bloom": {
+   "desc": "Grows her position slowly, then everything blossoms on the queenside.",
+   "hello": "Fresh flowers, fresh game.",
+   "kind": "florist",
+   "lose": "Wilted a little there.",
+   "tags": [
+    "queenside",
+    "slow build"
+   ],
+   "win": "In full bloom!"
+  },
+  "fernanda-mun-oz": {
+   "desc": "Shares her coffee with her dog Tronador and calculates about as fast as he fetches.",
+   "hello": "Un cafecito first, po?",
+   "kind": "mountain café owner · Chile",
+   "lose": "Tronador is disappointed. Me too.",
+   "tags": [
+    "cozy",
+    "dog walks"
+   ],
+   "win": "Tronador, we won!"
+  },
+  "fernanda-ri-os": {
+   "desc": "Codes next to her cactus in Guadalajara and plays tidy, well-tested chess with no wasted moves.",
+   "hello": "¿Qué onda? Compiling...",
+   "kind": "software engineer · Mexico",
+   "lose": "Bug found. ¡Qué buena!",
+   "tags": [
+    "precise",
+    "solid"
+   ],
+   "win": "Deployed. ¡Chido!"
+  },
+  "finn-o-hara": {
+   "desc": "Ties every piece together with neat knots. Hard to untangle.",
+   "hello": "Ahoy! Ready to sail?",
+   "kind": "sailor",
+   "lose": "Lost the wind there.",
+   "tags": [
+    "coordinated",
+    "steady"
+   ],
+   "win": "Smooth sailing."
+  },
+  "finn-stream": {
+   "desc": "Narrates every move to an imaginary chat. Chat says sac the rook.",
+   "hello": "Hey chat, we’re live!",
+   "kind": "streamer",
+   "lose": "Chat, don’t clip that.",
+   "tags": [
+    "sacrifices",
+    "chatty"
+   ],
+   "win": "Chat, we did it! Clip that!"
+  },
+  "florencia-ruiz": {
+   "desc": "Folds her pieces into tight little packets and avoids open positions.",
+   "hello": "Empanadas after the game?",
+   "kind": "empanada chef · Argentina",
+   "lose": "Burnt the batch. Good game.",
+   "tags": [
+    "closed",
+    "cosy"
+   ],
+   "win": "¡Riquísimo!"
+  },
+  "francesca-di-nardo": {
+   "desc": "Came home to her grandparents’ Rome and opened the pizzeria everyone queues for.",
+   "hello": "¡Épale! Una pizza?",
+   "kind": "pizzeria owner · Caracas → Rome",
+   "lose": "Bravo, pana. Bravo.",
+   "tags": [
+    "warm",
+    "confident"
+   ],
+   "win": "¡Perfetto, chamo!"
+  },
+  "freya-nilsson": {
+   "desc": "Grips a small advantage and never lets go.",
+   "hello": "Chalk up.",
+   "kind": "climber",
+   "lose": "Lost my grip.",
+   "tags": [
+    "grip",
+    "technical"
+   ],
+   "win": "Topped out."
+  },
+  "fumiko-tanzaku": {
+   "desc": "Writes one haiku per blossom season and plays seventeen-syllable endgames where no move is wasted.",
+   "hello": "Hana no shita. Let us begin.",
+   "kind": "haiku poet · Hanami",
+   "lose": "A fine game, like spring wind.",
+   "tags": [
+    "endgames",
+    "economy"
+   ],
+   "win": "Petals fall. So does your king."
+  },
+  "gabriela-sua-rez": {
+   "desc": "Teaches Spanish in Lviv and never gives up a lost position. Resilient to the last pawn.",
+   "hello": "Hola! Let’s learn something today.",
+   "kind": "Spanish teacher · Mérida → Lviv",
+   "lose": "The next lesson is mine, pana.",
+   "tags": [
+    "resilient",
+    "fighter"
+   ],
+   "win": "¡Lo logramos!"
+  },
+  "gambit-gloria": {
+   "desc": "Sacrifices a pawn in the first six moves, every single game, on principle.",
+   "hello": "Peace and gambits!",
+   "kind": "aggressive",
+   "lose": "Fine. The gambit was unsound. This time.",
+   "tags": [
+    "gambits",
+    "initiative"
+   ],
+   "win": "The gambit always works."
+  },
+  "giulia": {
+   "desc": "Zips through traffic and through your defence. Brakes are optional.",
+   "hello": "Andiamo!",
+   "kind": "Vespa rider · Florence",
+   "lose": "Ran out of fuel.",
+   "tags": [
+    "fast",
+    "daring"
+   ],
+   "win": "Vroom! Arrivederci!"
+  },
+  "gopal-dhol": {
+   "desc": "Beats the dhol through the gully and drives his attack forward with a relentless, booming rhythm.",
+   "hello": "Dhol baje! Let’s play, yaar!",
+   "kind": "dhol drummer · Holi",
+   "lose": "Drum’s out of tune. Wah, yaar!",
+   "tags": [
+    "attacking",
+    "relentless"
+   ],
+   "win": "Dhin dhin! Holi hai!"
+  },
+  "gord-birchwood": {
+   "desc": "Has felled a thousand pines and chops down kingside defenses with the same calm, heavy swing.",
+   "hello": "Grab a coffee, bud. Long game.",
+   "kind": "lumberjack · Canada",
+   "lose": "Well, beauty. You earned that one.",
+   "tags": [
+    "powerful",
+    "endgames"
+   ],
+   "win": "Timber! Good effort, eh."
+  },
+  "goro-yozakura": {
+   "desc": "Loves yozakura under paper lanterns and lights up the board with late, glowing combinations.",
+   "hello": "Kanpai! The lanterns are on.",
+   "kind": "night hanami fan · Hanami",
+   "lose": "Lantern’s out. Otsukaresama!",
+   "tags": [
+    "combinations",
+    "night owl"
+   ],
+   "win": "Lit up like yozakura!"
+  },
+  "grace-han": {
+   "desc": "Keeps the books balanced. The material count is always on her mind.",
+   "hello": "Let’s keep the books balanced.",
+   "kind": "accountant",
+   "lose": "I miscounted somewhere.",
+   "tags": [
+    "material",
+    "careful"
+   ],
+   "win": "The numbers add up."
+  },
+  "grandmaster-levon": {
+   "desc": "Played in five Olympiads and coaches the national team. A lesson in every move.",
+   "hello": "Let’s see what you have learned.",
+   "kind": "chess master · Yerevan",
+   "lose": "Excellent. Armenia would be proud.",
+   "tags": [
+    "master",
+    "universal"
+   ],
+   "win": "A good lesson for you."
+  },
+  "grandpa-walt": {
+   "desc": "Won the club championship nine times. Drinks his coffee black and his endgames dry.",
+   "hello": "Pull up a chair, kiddo.",
+   "kind": "retired champion",
+   "lose": "Well I’ll be. Good game, kiddo.",
+   "tags": [
+    "endgames",
+    "wise"
+   ],
+   "win": "Nine titles for a reason."
+  },
+  "granny-rose": {
+   "desc": "Taught half the town to play. Plays like a sweet, merciless machine.",
+   "hello": "Cookie before we start, dear?",
+   "kind": "legend",
+   "lose": "Oh my! You beat Granny!",
+   "tags": [
+    "legend",
+    "endgames"
+   ],
+   "win": "There, there. Have another cookie."
+  },
+  "greta-wiesn": {
+   "desc": "Says prost to every capture, especially her own.",
+   "hello": "Prost!",
+   "kind": "Oktoberfest host · Germany",
+   "lose": "One more round?",
+   "tags": [
+    "loves trades",
+    "jolly"
+   ],
+   "win": "Ein Prosit!"
+  },
+  "gunnar-a-lg": {
+   "desc": "Has tracked moose through Lapland for decades and stalks your king with the same silent patience.",
+   "hello": "Hej hej. The forest is quiet.",
+   "kind": "wilderness guide · Sweden",
+   "lose": "Well tracked, friend. Tack.",
+   "tags": [
+    "patient",
+    "endgames"
+   ],
+   "win": "The moose always finds a way."
+  },
+  "gus-wrench": {
+   "desc": "If it isn’t broken he will still tinker with it. Shuffles pieces a lot.",
+   "hello": "Let’s pop the hood on this opening.",
+   "kind": "mechanic",
+   "lose": "Something rattled loose there.",
+   "tags": [
+    "shuffles",
+    "tinkerer"
+   ],
+   "win": "Running smooth."
+  },
+  "gustavo-lin": {
+   "desc": "Grew up in his family’s shop in Valencia; now runs a tech startup in Shanghai. Sharp, quick and always building.",
+   "hello": "Nǐ hǎo, chamo. Let’s play.",
+   "kind": "tech founder · Valencia → Shanghai",
+   "lose": "Good game. Back to the code.",
+   "tags": [
+    "calculation",
+    "ambitious"
+   ],
+   "win": "Shipped it, pana."
+  },
+  "haeun-shin": {
+   "desc": "Sips bubble tea between moves and hangs pieces as cheerfully as her bear keychain.",
+   "hello": "Hi hi! Want a sip of boba?",
+   "kind": "boba café regular · Korea",
+   "lose": "Aigoo, my poor pieces.",
+   "tags": [
+    "cheerful",
+    "beginner"
+   ],
+   "win": "Wait, I won? Daebak!"
+  },
+  "halmeoni-boksun": {
+   "desc": "Receives every family bow at Seollal and rewards only flawless play, calm as falling snow.",
+   "hello": "Sebae first, then chess, aga.",
+   "kind": "sebae grandmother · Seollal",
+   "lose": "Aigo, well played! Have sebaetdon.",
+   "tags": [
+    "calm",
+    "precise"
+   ],
+   "win": "Bok mani badeura, little one."
+  },
+  "halyna-varenyk": {
+   "desc": "Feeds you pawns like varenyky. Have another!",
+   "hello": "Eat, eat!",
+   "kind": "cook · Ukraine",
+   "lose": "More varenyky for you!",
+   "tags": [
+    "generous",
+    "beginner"
+   ],
+   "win": "Smachnoho!"
+  },
+  "hana-ink": {
+   "desc": "Sketches plans three moves deep, erases, sketches again.",
+   "hello": "Let me sketch this out.",
+   "kind": "illustrator",
+   "lose": "Back to the drawing board.",
+   "tags": [
+    "planning",
+    "creative"
+   ],
+   "win": "Final draft."
+  },
+  "hana-kick": {
+   "desc": "Disciplined, precise, and her counterattacks land like a front kick.",
+   "hello": "Bow, then begin.",
+   "kind": "martial artist",
+   "lose": "Good form. Again.",
+   "tags": [
+    "counterattack",
+    "precise"
+   ],
+   "win": "Clean strike."
+  },
+  "hank-ridgeway": {
+   "desc": "Forty years on the trails taught him the long way is usually the right way, especially in endgames.",
+   "hello": "Lace up, friend. Long trail ahead.",
+   "kind": "park ranger · USA",
+   "lose": "You found a shortcut. Well earned.",
+   "tags": [
+    "endgames",
+    "grinder"
+   ],
+   "win": "Summit reached. Nice hike, y’all."
+  },
+  "hanna-schmidt": {
+   "desc": "Polite, punctual and very fond of the Italian Game.",
+   "hello": "Guten Tag!",
+   "kind": "student · Germany",
+   "lose": "Schade. Good game.",
+   "tags": [
+    "Italian Game",
+    "polite"
+   ],
+   "win": "Wunderbar!"
+  },
+  "harjit-singh": {
+   "desc": "Builds his position like a bridge, then marches across.",
+   "hello": "Foundations first.",
+   "kind": "engineer",
+   "lose": "You found the stress point.",
+   "tags": [
+    "construction",
+    "strategic"
+   ],
+   "win": "The bridge held."
+  },
+  "haruto-dev": {
+   "desc": "Plays like he is speedrunning, but with frame-perfect precision.",
+   "hello": "Yoroshiku!",
+   "kind": "game developer · Japan",
+   "lose": "Continue?",
+   "tags": [
+    "precise",
+    "fast"
+   ],
+   "win": "Clear!"
+  },
+  "hattie-hollow": {
+   "desc": "Carves jack-o’-lanterns all October and scoops holes in your pawn structure just as neatly.",
+   "hello": "Grab a pumpkin, let’s carve.",
+   "kind": "pumpkin carver · Halloween",
+   "lose": "My pumpkin caved in. Nice.",
+   "tags": [
+    "structure",
+    "creative"
+   ],
+   "win": "Lit up like a jack-o’-lantern!"
+  },
+  "hazel-snap": {
+   "desc": "Loves pins: freezes your pieces in place and frames the shot.",
+   "hello": "Hold still...",
+   "kind": "photographer",
+   "lose": "You moved out of the frame.",
+   "tags": [
+    "pins",
+    "patient"
+   ],
+   "win": "Got it framed perfectly."
+  },
+  "henk": {
+   "desc": "Turns slowly but never stops. Grinds positions like grain.",
+   "hello": "The wind is good today.",
+   "kind": "windmill keeper · Kinderdijk",
+   "lose": "The wind changed. Well done.",
+   "tags": [
+    "grinder",
+    "endgames"
+   ],
+   "win": "Ground to flour."
+  },
+  "henrik-glo-gg": {
+   "desc": "Ladles hot glögg at the julmarknad and warms up slowly before a spicy middlegame.",
+   "hello": "Glögg? Warm hands, sharp moves.",
+   "kind": "julmarknad glögg seller · Lucia & Jul",
+   "lose": "Too much cinnamon. Well played.",
+   "tags": [
+    "warm",
+    "middlegame"
+   ],
+   "win": "Skål! Spiced just right."
+  },
+  "hernando-giraldo": {
+   "desc": "Has grown and brewed coffee in the Eje Cafetero for decades and never rushes a pour.",
+   "hello": "Un tintico first, mijo?",
+   "kind": "coffee grower · Colombia",
+   "lose": "Usted juega fino. Respect.",
+   "tags": [
+    "patient",
+    "deep"
+   ],
+   "win": "Bien tostado, parcero."
+  },
+  "hina-boba": {
+   "desc": "Sips boba, pushes pawns, giggles at checks.",
+   "hello": "Boba break first?",
+   "kind": "student · Japan",
+   "lose": "Mou! Again!",
+   "tags": [
+    "casual",
+    "beginner"
+   ],
+   "win": "Yatta!"
+  },
+  "hiro-comet": {
+   "desc": "Looks far ahead, past the next move, out to where the plan really lands.",
+   "hello": "Clear skies tonight.",
+   "kind": "astronomer",
+   "lose": "A cloud got in the way.",
+   "tags": [
+    "long range",
+    "calculation"
+   ],
+   "win": "Right on course, like a comet."
+  },
+  "huda-afkar": {
+   "desc": "Bigger ideas: thinks two plans ahead of you.",
+   "hello": "Bigger ideas today.",
+   "kind": "student · Jordan",
+   "lose": "Your idea was bigger.",
+   "tags": [
+    "big ideas",
+    "planner"
+   ],
+   "win": "Idea complete."
+  },
+  "hugo-lag": {
+   "desc": "Premoves everything. Occasionally straight into checkmate.",
+   "hello": "My connection is fine, I promise.",
+   "kind": "online player",
+   "lose": "Lag. Definitely lag.",
+   "tags": [
+    "premoves",
+    "fast"
+   ],
+   "win": "GG, no lag that time."
+  },
+  "iara-onda": {
+   "desc": "Waits patiently for the right wave, then rides one big attack all the way to the beach.",
+   "hello": "Bora pegar onda! Let’s play.",
+   "kind": "surfer · Brazil",
+   "lose": "Wiped out. Paddling back out!",
+   "tags": [
+    "waves",
+    "counterattack"
+   ],
+   "win": "Rode that one all the way in!"
+  },
+  "ilir-bjeshka": {
+   "desc": "Climbs the Albanian Alps on weekends and treats every game as a long, steady ascent.",
+   "hello": "Mirëdita! Long climb ahead.",
+   "kind": "mountain trekker · Albania",
+   "lose": "You took the faster trail. Bravo.",
+   "tags": [
+    "steady",
+    "climber"
+   ],
+   "win": "Peak reached. What a view, mik."
+  },
+  "imani-ross": {
+   "desc": "Her knights dance: hop, hop, fork.",
+   "hello": "Ready to dance?",
+   "kind": "dancer",
+   "lose": "You stepped on my toes.",
+   "tags": [
+    "knights",
+    "forks"
+   ],
+   "win": "Hop, hop, fork!"
+  },
+  "indigo": {
+   "desc": "Permanent damage: once your structure is broken, it stays broken.",
+   "hello": "This won’t hurt. Much.",
+   "kind": "tattoo artist",
+   "lose": "You’ve got thick skin.",
+   "tags": [
+    "structure damage",
+    "bold"
+   ],
+   "win": "That one’s permanent."
+  },
+  "ine-s-laurent": {
+   "desc": "Sits on a stack of classics and quotes the old masters while quietly squeezing you.",
+   "hello": "Bonjour. Page one, shall we?",
+   "kind": "Sorbonne bookworm · France",
+   "lose": "A new chapter. Merci.",
+   "tags": [
+    "classical",
+    "squeeze"
+   ],
+   "win": "Fin. As foretold."
+  },
+  "ingeniero-bautista": {
+   "desc": "Builds wild contraptions on the board. They look strange, and they always work.",
+   "hello": "Behold my latest invention!",
+   "kind": "inventor",
+   "lose": "Back to the drawing board!",
+   "tags": [
+    "original",
+    "creative"
+   ],
+   "win": "Eureka!"
+  },
+  "ingrid-lund": {
+   "desc": "Fast downhill: attacks straight down the open file.",
+   "hello": "Fresh snow. Let’s go.",
+   "kind": "skier",
+   "lose": "Caught an edge.",
+   "tags": [
+    "open files",
+    "rooks"
+   ],
+   "win": "Straight down the fall line."
+  },
+  "inti": {
+   "desc": "Plays with his baby alpaca on his lap. Both of them are very fluffy and very brave.",
+   "hello": "¡Allinllachu! Let’s play.",
+   "kind": "alpaca kid · Cusco",
+   "lose": "Good game, amigo.",
+   "tags": [
+    "brave",
+    "playful"
+   ],
+   "win": "My alpaca says we won!"
+  },
+  "iris-bell": {
+   "desc": "Punishes broken rules: undeveloped pieces, early queens, unsafe kings.",
+   "hello": "Let’s see if you did your homework.",
+   "kind": "teacher",
+   "lose": "Top marks today.",
+   "tags": [
+    "principles",
+    "strict"
+   ],
+   "win": "Rules exist for a reason."
+  },
+  "iron-wall-ivo": {
+   "desc": "Refuses to push a pawn past the fourth rank. You will have to break him down.",
+   "hello": "Hard hats on.",
+   "kind": "defensive",
+   "lose": "You found the weak brick.",
+   "tags": [
+    "fortress",
+    "patient"
+   ],
+   "win": "The wall held."
+  },
+  "isabella-montilla": {
+   "desc": "Paints Andean colours in a Montmartre studio and composes her attacks like a canvas.",
+   "hello": "Bonjour, chamo! On joue?",
+   "kind": "painter · Mérida → Paris",
+   "lose": "Bien joué, pana. Touché.",
+   "tags": [
+    "creative",
+    "composed"
+   ],
+   "win": "Voilà, ¡qué chévere!"
+  },
+  "ishita-rangoli": {
+   "desc": "Draws rangoli at the doorstep and builds pawn chains as symmetric and colorful as her patterns.",
+   "hello": "Careful, don’t step on my rangoli!",
+   "kind": "rangoli artist · Diwali",
+   "lose": "Smudged my rangoli. Well played.",
+   "tags": [
+    "symmetry",
+    "structure"
+   ],
+   "win": "Every color in its place."
+  },
+  "itamae-kenta": {
+   "desc": "Twenty years perfecting one cut. Twenty years perfecting one opening.",
+   "hello": "Omakase today.",
+   "kind": "sushi chef · Japan",
+   "lose": "Your cut was cleaner.",
+   "tags": [
+    "one opening",
+    "precise"
+   ],
+   "win": "Umai!"
+  },
+  "itzel-catrina": {
+   "desc": "Lights a candle for every captured piece and plays calm, haunting chess that rarely forgets a mistake.",
+   "hello": "Light a candle. Let’s begin.",
+   "kind": "Día de Muertos catrina · Mexico",
+   "lose": "Bien jugado. They’ll remember you.",
+   "tags": [
+    "mysterious",
+    "positional"
+   ],
+   "win": "Your pieces rest in peace."
+  },
+  "ivy-lens": {
+   "desc": "Zooms in on one weak square and won’t stop looking at it.",
+   "hello": "Let me find the right angle.",
+   "kind": "photographer",
+   "lose": "Lost focus. Nice shot.",
+   "tags": [
+    "outposts",
+    "focused"
+   ],
+   "win": "Perfectly in focus."
+  },
+  "jack-timber": {
+   "desc": "Climbs slowly and steadily. Patient in long manoeuvring games.",
+   "hello": "Long trail ahead. Pace yourself.",
+   "kind": "hiker",
+   "lose": "Twisted an ankle on that one.",
+   "tags": [
+    "manoeuvring",
+    "endurance"
+   ],
+   "win": "Made it to camp."
+  },
+  "jaddah-latifa": {
+   "desc": "Hosts the whole family’s Eid gathering and plays with the same unhurried grace she pours gahwa.",
+   "hello": "Eid Mubarak, habibi. Sit, sit.",
+   "kind": "Eid majlis host · Eid al-Fitr",
+   "lose": "Mashallah! You honored my majlis.",
+   "tags": [
+    "patient",
+    "precise"
+   ],
+   "win": "Kul ’am wa enta bkheir."
+  },
+  "jamal-ka-ak": {
+   "desc": "Presses maamoul in carved wooden molds and stamps the same tidy shape on every middlegame.",
+   "hello": "Eid Mubarak! Try a maamoul.",
+   "kind": "maamoul maker · Eid al-Fitr",
+   "lose": "Mashallah, sweeter than my maamoul.",
+   "tags": [
+    "structured",
+    "solid"
+   ],
+   "win": "Stamped and sealed, habibi."
+  },
+  "jana-wald": {
+   "desc": "Explores every line, especially the long ones.",
+   "hello": "Explore more!",
+   "kind": "hiker · Black Forest",
+   "lose": "Lost in the forest.",
+   "tags": [
+    "explorer",
+    "thorough"
+   ],
+   "win": "Gipfel!"
+  },
+  "jaque-ginga": {
+   "desc": "Sways and feints like a capoeira ginga, then lands a sudden kick of a fork when you blink.",
+   "hello": "Ginga! Ready to roda?",
+   "kind": "capoeira student · Brazil",
+   "lose": "Axé! You got me fair and square.",
+   "tags": [
+    "tricky",
+    "feints"
+   ],
+   "win": "Meia-lua! Didn’t see it coming?"
+  },
+  "jaspal-gill": {
+   "desc": "Captures the moment your pieces line up for a skewer.",
+   "hello": "Sat sri akal! Smile.",
+   "kind": "photographer · India",
+   "lose": "Out of focus.",
+   "tags": [
+    "skewers",
+    "sharp eye"
+   ],
+   "win": "Captured!"
+  },
+  "javi-montero": {
+   "desc": "Waves the red cape at your queen and steps aside at the very last second.",
+   "hello": "¡Olé! Come and charge.",
+   "kind": "young matador · Spain",
+   "lose": "You dodged the cape. Bravo.",
+   "tags": [
+    "daring",
+    "baits"
+   ],
+   "win": "¡Olé, olé y olé!"
+  },
+  "javiera-cueca": {
+   "desc": "Dances cueca with a waving pañuelo and circles the enemy king in graceful, teasing loops.",
+   "hello": "¡Aro, aro! Shall we dance?",
+   "kind": "cueca dancer · Fiestas Patrias",
+   "lose": "Lost the step. ¡Bien bailado!",
+   "tags": [
+    "maneuvers",
+    "graceful"
+   ],
+   "win": "¡Aro! The cueca is mine!"
+  },
+  "javiera-fuentes": {
+   "desc": "Twirls her skirt between moves and never lets a piece stand still for long.",
+   "hello": "¡Hola po! Ready to twirl?",
+   "kind": "cueca dancer · Chile",
+   "lose": "Ay, me pisaste el pie. Again!",
+   "tags": [
+    "lively",
+    "spins"
+   ],
+   "win": "¡Qué bacán, gané!"
+  },
+  "jaylen-beats": {
+   "desc": "Repeats the same opening every game like a favourite loop.",
+   "hello": "Same beat, new game.",
+   "kind": "producer",
+   "lose": "Gotta remix this one.",
+   "tags": [
+    "one opening",
+    "loops"
+   ],
+   "win": "That loop slaps."
+  },
+  "jelena-kolo": {
+   "desc": "Dances the kolo at every wedding and spins her pieces in circles until something good happens.",
+   "hello": "Ajde, join the kolo!",
+   "kind": "kolo dancer · Serbia",
+   "lose": "You out-danced me. Bravo!",
+   "tags": [
+    "lively",
+    "tricky"
+   ],
+   "win": "Hop! One more spin!"
+  },
+  "jesse-field": {
+   "desc": "Brings a backpack full of opening tricks, all of them two moves long.",
+   "hello": "I learned a trick on the bus today.",
+   "kind": "new student",
+   "lose": "You knew the trick. Hmm.",
+   "tags": [
+    "traps",
+    "beginner"
+   ],
+   "win": "The trick worked!"
+  },
+  "jhoan-escalona": {
+   "desc": "Star pitcher of his league in Osaka, and throws his pieces like fastballs down the middle.",
+   "hello": "Konnichiwa, chamo! Play ball!",
+   "kind": "little pitcher · Barquisimeto → Osaka",
+   "lose": "Gomen, pana. Otra vez!",
+   "tags": [
+    "fastball",
+    "beginner"
+   ],
+   "win": "¡Ponche! Yatta!"
+  },
+  "jhonder-rangel": {
+   "desc": "Shoots weddings in San Salvador now and still frames every attack like a Caracas sunset.",
+   "hello": "¡Épale, chamo! Smile, qué chivo.",
+   "kind": "photographer · Caracas → San Salvador",
+   "lose": "Blurry one. Good game, pana.",
+   "tags": [
+    "vision",
+    "framing"
+   ],
+   "win": "¡Chévere! Perfect shot."
+  },
+  "jiwoo-seo": {
+   "desc": "Has read every opening book twice and plays like she already knows how the chapter ends.",
+   "hello": "Annyeong. I brought my notes.",
+   "kind": "literature student · Korea",
+   "lose": "A plot twist. I like it.",
+   "tags": [
+    "theory",
+    "patient"
+   ],
+   "win": "Exactly as the book said."
+  },
+  "joaqui-n-riquelme": {
+   "desc": "Dances the cueca with a handkerchief and circles your king the same way, step by step.",
+   "hello": "¡Ya po! Shall we dance, compadre?",
+   "kind": "huaso · Chile",
+   "lose": "Bien jugado, compadre. Otro pie.",
+   "tags": [
+    "courtship",
+    "rhythm"
+   ],
+   "win": "¡Viva Chile, po!"
+  },
+  "joey-pinstripe": {
+   "desc": "Reads your openings like a fastball, waits for the pitch he wants and swings hard.",
+   "hello": "Batter up! Let’s play ball.",
+   "kind": "ballplayer · USA",
+   "lose": "Struck me out. Good arm, buddy.",
+   "tags": [
+    "patient",
+    "power"
+   ],
+   "win": "Outta the park! See ya."
+  },
+  "johan-ceden-o": {
+   "desc": "Runs the busiest arepa truck in Miraflores and stuffs his positions just as full.",
+   "hello": "¡Épale, causa! Arepa first?",
+   "kind": "arepa food-truck owner · Valencia → Lima",
+   "lose": "Bien jugado, pana.",
+   "tags": [
+    "generous",
+    "active"
+   ],
+   "win": "¡Reina pepiada, chamo!"
+  },
+  "jonas-weber": {
+   "desc": "Every piece fits, every plan works.",
+   "hello": "Precision, please.",
+   "kind": "engineer · Germany",
+   "lose": "A rare defect. Gut gemacht.",
+   "tags": [
+    "engineering",
+    "precise"
+   ],
+   "win": "Funktioniert."
+  },
+  "jordan-lee": {
+   "desc": "Plays solid lunch-break chess: fast, simple, safe.",
+   "hello": "Got thirty minutes. Let’s play.",
+   "kind": "office worker",
+   "lose": "Long lunch. Worth it.",
+   "tags": [
+    "simple",
+    "safe"
+   ],
+   "win": "Back to work with a win."
+  },
+  "joris": {
+   "desc": "Carries heavy pieces with a smile and sets them down exactly where they belong.",
+   "hello": "Kaas first, then chess.",
+   "kind": "cheese carrier · Alkmaar",
+   "lose": "Dropped the cheese.",
+   "tags": [
+    "strong",
+    "steady"
+   ],
+   "win": "Gouda game!"
+  },
+  "joy-adeyemi": {
+   "desc": "Chats nonstop and drops tactics mid-sentence.",
+   "hello": "Welcome back to the show!",
+   "kind": "radio host",
+   "lose": "Great game, folks, great game.",
+   "tags": [
+    "chatty",
+    "tactics"
+   ],
+   "win": "And that’s the news: I won!"
+  },
+  "juan-denis": {
+   "desc": "Learned to code in La Guaira and now builds apps in Miami. Takes on complications like a tricky bug: calmly, one line at a time.",
+   "hello": "Worse traffic than this at rush hour.",
+   "kind": "guaireño coder · La Guaira → Miami",
+   "lose": "Tranca. You win.",
+   "tags": [
+    "complications",
+    "calm"
+   ],
+   "win": "Llegué, pana."
+  },
+  "juanse-ospina": {
+   "desc": "Keeps one foot on the ball and the other on the attack. Defense can wait.",
+   "hello": "Parcero, I’m the next James!",
+   "kind": "little striker · Colombia",
+   "lose": "Uy, own goal. Again!",
+   "tags": [
+    "all-attack",
+    "beginner"
+   ],
+   "win": "¡Golazo!"
+  },
+  "julien-moreau": {
+   "desc": "Splashes color all over the board and calls the blunders impressionism.",
+   "hello": "Bonjour! A blank canvas, voilà.",
+   "kind": "Montmartre painter · France",
+   "lose": "Hmm, too much red paint.",
+   "tags": [
+    "creative",
+    "messy"
+   ],
+   "win": "Voilà, a masterpiece!"
+  },
+  "juliette-chic": {
+   "desc": "Picks moves the way she picks handbags: whatever looks fabulous this season.",
+   "hello": "Bonjour, darling. Très chic board.",
+   "kind": "fashion shopper · France",
+   "lose": "Ugh. So last season.",
+   "tags": [
+    "stylish",
+    "trendy"
+   ],
+   "win": "Magnifique, non?"
+  },
+  "jun-jun": {
+   "desc": "Drives to the basket every move. Never passes, never stops smiling.",
+   "hello": "Game na! Let’s go!",
+   "kind": "street basketball kid · Manila",
+   "lose": "Blocked! Rematch!",
+   "tags": [
+    "drives",
+    "fearless"
+   ],
+   "win": "Swish!"
+  },
+  "juninho-confete": {
+   "desc": "Throws confetti at every move and plays bright, bouncy attacks that rarely land.",
+   "hello": "É carnaval! Bora jogar!",
+   "kind": "confetti kid · Carnaval",
+   "lose": "Out of confete. De novo!",
+   "tags": [
+    "playful",
+    "reckless"
+   ],
+   "win": "Confete everywhere!"
+  },
+  "juninho-craque": {
+   "desc": "Dribbles every piece forward like he’s chasing a goal, and celebrates each capture with a little dance.",
+   "hello": "Bora jogar! I’m the number 10.",
+   "kind": "little camisa 10 · Brazil",
+   "lose": "Ah, that one went wide. Again!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "Golaço! Did you see that?"
+  },
+  "junior-vinotinto": {
+   "desc": "Wears the vinotinto with pride and runs at your king like a striker.",
+   "hello": "¡Vamos Vinotinto!",
+   "kind": "football fan · Venezuela",
+   "lose": "We get them next match.",
+   "tags": [
+    "direct",
+    "energetic"
+   ],
+   "win": "¡GOLAZO!"
+  },
+  "kai-keys": {
+   "desc": "Plays in tempo: every move gains time or it isn’t played.",
+   "hello": "One, two, three, four...",
+   "kind": "musician",
+   "lose": "Lost the rhythm.",
+   "tags": [
+    "tempo",
+    "rhythm"
+   ],
+   "win": "Right on the beat."
+  },
+  "kai-mahina": {
+   "desc": "Rides every attack like a wave and wipes out with a smile.",
+   "hello": "Paddle out, let’s go!",
+   "kind": "surfer",
+   "lose": "Wiped out. Again!",
+   "tags": [
+    "waves",
+    "fearless"
+   ],
+   "win": "Rode that one all the way!"
+  },
+  "kaito-build": {
+   "desc": "AI, design, product, build, repeat. His preparation is relentless.",
+   "hello": "Build. Repeat.",
+   "kind": "product engineer · Japan",
+   "lose": "Iteration needed. Good game.",
+   "tags": [
+    "preparation",
+    "relentless"
+   ],
+   "win": "Shipped."
+  },
+  "kalea-reef": {
+   "desc": "Dives deep into every line and surfaces with the truth.",
+   "hello": "Let’s dive in.",
+   "kind": "marine biologist · Hawaiʻi",
+   "lose": "Ran out of air.",
+   "tags": [
+    "deep calculation",
+    "curious"
+   ],
+   "win": "Found the treasure!"
+  },
+  "kalle-ko-ttbulle": {
+   "desc": "Rolls a perfect köttbulle every time and serves up hearty, simple chess with plenty of lingonberry.",
+   "hello": "Hungry? Smaklig måltid!",
+   "kind": "meatball chef · Sweden",
+   "lose": "Burnt the sauce. Well played.",
+   "tags": [
+    "hearty",
+    "simple"
+   ],
+   "win": "Served hot! Tack!"
+  },
+  "katya-zima": {
+   "desc": "Cold outside, warm inside. Plays solid winter chess.",
+   "hello": "Cold out. Chess in.",
+   "kind": "barista · Russia",
+   "lose": "Brr. Well played.",
+   "tags": [
+    "solid",
+    "cosy"
+   ],
+   "win": "Warm win."
+  },
+  "kavya-rang": {
+   "desc": "Plays Holi chess: colourful, joyful and all over the board.",
+   "hello": "Let’s add some colour!",
+   "kind": "painter · India",
+   "lose": "Messy, but fun!",
+   "tags": [
+    "colourful",
+    "joyful"
+   ],
+   "win": "Rang barse!"
+  },
+  "keisha-bright": {
+   "desc": "Explains her threats out loud, then executes them anyway.",
+   "hello": "I’ll tell you my plan. It won’t help.",
+   "kind": "teacher",
+   "lose": "Class dismissed. You passed.",
+   "tags": [
+    "transparent",
+    "sharp"
+   ],
+   "win": "Told you!"
+  },
+  "kenia-portillo": {
+   "desc": "Makes heart hands at every opponent and gives away pieces just as generously.",
+   "hello": "¡Hola! Let’s be friends!",
+   "kind": "schoolgirl · El Salvador",
+   "lose": "Bueno, I still love chess.",
+   "tags": [
+    "sweet",
+    "beginner"
+   ],
+   "win": "¡Ay, qué chivo!"
+  },
+  "kenji-byte": {
+   "desc": "Built his own chess engine and kind of plays like it.",
+   "hello": "Initialising...",
+   "kind": "engine tinkerer",
+   "lose": "Interesting. Logging that position.",
+   "tags": [
+    "engine-like",
+    "accurate"
+   ],
+   "win": "Evaluation: +∞."
+  },
+  "kenji-mori": {
+   "desc": "Mixes quiet moves until the position reacts all at once.",
+   "hello": "Careful, this one bubbles.",
+   "kind": "chemist",
+   "lose": "The formula was off.",
+   "tags": [
+    "reactions",
+    "precise"
+   ],
+   "win": "Perfect reaction."
+  },
+  "keoni-uke": {
+   "desc": "Strums a happy tune and plays every move with aloha.",
+   "hello": "Aloha!",
+   "kind": "ukulele player · Hawaiʻi",
+   "lose": "Mahalo for the game!",
+   "tags": [
+    "easygoing",
+    "fun"
+   ],
+   "win": "Shoots, I won!"
+  },
+  "kevin-alvarado": {
+   "desc": "Waves the flag at every Selecta match and plays every game like the final minute.",
+   "hello": "¡Vamos La Selecta! Ready?",
+   "kind": "La Selecta fan · El Salvador",
+   "lose": "Ni modo. Next match!",
+   "tags": [
+    "passion",
+    "hopeful"
+   ],
+   "win": "¡Chivo, ganamos!"
+  },
+  "kevin-selva": {
+   "desc": "Moves as slowly as the sloths he rescues, and somehow still gets there first.",
+   "hello": "Easy, no rush.",
+   "kind": "sloth rescuer · Bocas del Toro",
+   "lose": "Too slow today.",
+   "tags": [
+    "slow",
+    "steady"
+   ],
+   "win": "Slow and sure."
+  },
+  "khalid-qahwa": {
+   "desc": "Pours the coffee three times and plays deep, generous chess.",
+   "hello": "Ahlan wa sahlan. Coffee?",
+   "kind": "host · Saudi Arabia",
+   "lose": "Mabrouk, you earned it.",
+   "tags": [
+    "hospitable",
+    "deep"
+   ],
+   "win": "Good game, my friend."
+  },
+  "kimo-poke": {
+   "desc": "Fresh, simple, perfectly balanced. Like a good poke bowl.",
+   "hello": "Hungry? Poke after.",
+   "kind": "chef · Hawaiʻi",
+   "lose": "Good grind, brah.",
+   "tags": [
+    "balanced",
+    "simple"
+   ],
+   "win": "Ono!"
+  },
+  "klodi-espresso": {
+   "desc": "Nurses one espresso for three hours by the water and plays just as slowly and smugly.",
+   "hello": "Një kafe? Then we play.",
+   "kind": "seaside coffee regular · Albania",
+   "lose": "Huh. Okay, you buy the next kafe.",
+   "tags": [
+    "slow",
+    "cool"
+   ],
+   "win": "Cool and easy. Gëzuar."
+  },
+  "knight-owl": {
+   "desc": "Lives for forks. Will manoeuvre a knight for six moves to reach one.",
+   "hello": "Best games happen after midnight.",
+   "kind": "tactical",
+   "lose": "Time for this owl to sleep.",
+   "tags": [
+    "forks",
+    "slow build"
+   ],
+   "win": "Hoo hoo! Fork!"
+  },
+  "koa-nalu": {
+   "desc": "Waits for the perfect wave, then rides an attack all the way in.",
+   "hello": "Surf’s up.",
+   "kind": "surfer · Hawaiʻi",
+   "lose": "Wiped out, brah.",
+   "tags": [
+    "patient attacks",
+    "timing"
+   ],
+   "win": "Big wave!"
+  },
+  "kofi-kingsley": {
+   "desc": "Learned the rules last month and already loves forks.",
+   "hello": "I’m going to fork you. Probably.",
+   "kind": "little learner",
+   "lose": "You forked me first. Not fair!",
+   "tags": [
+    "forks",
+    "new player"
+   ],
+   "win": "Fork! Did you see the fork?"
+  },
+  "kofi-watch": {
+   "desc": "Patrols every square. Nothing slips past him on his shift.",
+   "hello": "All quiet on my watch.",
+   "kind": "security guard",
+   "lose": "You slipped past me.",
+   "tags": [
+    "defence",
+    "alert"
+   ],
+   "win": "Case closed."
+  },
+  "kota-dango": {
+   "desc": "Eats hanami dango under the blossoms and grabs every piece in sight, one sweet bite at a time.",
+   "hello": "Dango and chess! Ikuzo!",
+   "kind": "dango kid · Hanami",
+   "lose": "Mou ikkai! Another dango?",
+   "tags": [
+    "greedy",
+    "beginner"
+   ],
+   "win": "Yatta! Dango time!"
+  },
+  "kuya-rolly": {
+   "desc": "Grew up watching the masters in the park. Plays fast, talks faster and almost never loses.",
+   "hello": "Small bet? Just kidding. Play.",
+   "kind": "park chess hustler · Rizal Park",
+   "lose": "Galing! You got me.",
+   "tags": [
+    "hustler",
+    "tactics"
+   ],
+   "win": "Ayos! Too fast for you."
+  },
+  "kwame-jr": {
+   "desc": "Just learned how the knight moves and uses it every single turn.",
+   "hello": "Horsey goes L-shape!",
+   "kind": "schoolkid",
+   "lose": "Horsey needs a nap.",
+   "tags": [
+    "knight lover",
+    "brand new"
+   ],
+   "win": "Horsey wins!"
+  },
+  "laci-ba-csi": {
+   "desc": "Has stirred the same cauldron for fifty years and lets every endgame simmer until it falls apart.",
+   "hello": "Szia, fiam. Pull up a log.",
+   "kind": "goulash master · Hungary",
+   "lose": "Ha! You stirred better today.",
+   "tags": [
+    "endgames",
+    "slow cook"
+   ],
+   "win": "Gulyás is ready. Mate."
+  },
+  "lale-y-ld-z": {
+   "desc": "Dressed in embroidered red and gold, she builds positions as delicate and patient as a tulip garden.",
+   "hello": "Hoş geldin! A tulip for luck?",
+   "kind": "henna-night bride · Türkiye",
+   "lose": "Lovely game. Keep the tulip.",
+   "tags": [
+    "graceful",
+    "patient"
+   ],
+   "win": "Maşallah, what a finish!"
+  },
+  "layla-amari": {
+   "desc": "Fights for every square, especially the ones nobody else wants.",
+   "hello": "Every square matters.",
+   "kind": "activist",
+   "lose": "The fight continues.",
+   "tags": [
+    "tenacious",
+    "space"
+   ],
+   "win": "We won that fight."
+  },
+  "leela": {
+   "desc": "Neural net that plays like a very strong human. Long plans, quiet sacrifices.",
+   "kind": "engine · policy net",
+   "tags": [
+    "human-like",
+    "positional"
+   ]
+  },
+  "leif-trail": {
+   "desc": "Walks past volcanoes and blunders with the same calm.",
+   "hello": "The trail is long.",
+   "kind": "hiker · Iceland",
+   "lose": "Fell into a crevasse.",
+   "tags": [
+    "calm",
+    "unpredictable"
+   ],
+   "win": "Over the glacier!"
+  },
+  "leilani-kai": {
+   "desc": "Graceful knight hops, hula style.",
+   "hello": "Aloha kakahiaka!",
+   "kind": "hula dancer · Hawaiʻi",
+   "lose": "Mahalo nui.",
+   "tags": [
+    "knights",
+    "graceful"
+   ],
+   "win": "Like a hula!"
+  },
+  "leke-shpata": {
+   "desc": "Guards the castle at Krujë by day and his king by night, with shield up and sword ready.",
+   "hello": "Mirëdita. The gates are closed.",
+   "kind": "castle guard reenactor · Albania",
+   "lose": "You breached Krujë. Rare honor.",
+   "tags": [
+    "fortress",
+    "ruthless"
+   ],
+   "win": "The eagle holds the walls."
+  },
+  "lena-ridge": {
+   "desc": "Climbs the board with her pawns, one rank at a time.",
+   "hello": "One step at a time.",
+   "kind": "hiker",
+   "lose": "The mountain wins today.",
+   "tags": [
+    "pawn storms",
+    "steady"
+   ],
+   "win": "Summit reached!"
+  },
+  "leo-wander": {
+   "desc": "Takes his king for a walk in the middlegame. It usually works out?",
+   "hello": "Not all who wander are lost.",
+   "kind": "wanderer",
+   "lose": "Okay, that walk was a mistake.",
+   "tags": [
+    "king walks",
+    "wild"
+   ],
+   "win": "The king’s journey was worth it."
+  },
+  "leonardo-arismendi": {
+   "desc": "Writes backend code in Berlin and debugs every variation before he presses the clock.",
+   "hello": "Hallo, chamo! Bereit?",
+   "kind": "software developer · Valencia → Berlin",
+   "lose": "Danke, pana. Gut gespielt.",
+   "tags": [
+    "precise",
+    "methodical"
+   ],
+   "win": "Kompiliert. ¡Chévere!"
+  },
+  "lev-matryoshka": {
+   "desc": "Plans inside plans inside plans.",
+   "hello": "Open the first doll...",
+   "kind": "programmer · Russia",
+   "lose": "You found the last doll.",
+   "tags": [
+    "layered plans",
+    "deep"
+   ],
+   "win": "The smallest doll: checkmate."
+  },
+  "liam-portage": {
+   "desc": "Treks through the Rockies all summer and takes the long scenic route to every checkmate.",
+   "hello": "Long trail today, eh?",
+   "kind": "backcountry hiker · Canada",
+   "lose": "Took a wrong fork. Nice one.",
+   "tags": [
+    "patient",
+    "steady"
+   ],
+   "win": "Made camp. Beauty!"
+  },
+  "libby-torres": {
+   "desc": "Holds her torch high and her center steady, welcoming every trade that keeps her position free.",
+   "hello": "Welcome aboard! Let’s play.",
+   "kind": "harbor tour guide · USA",
+   "lose": "Well played. Torch passed to you.",
+   "tags": [
+    "central",
+    "steady"
+   ],
+   "win": "Liberty and checkmate for all."
+  },
+  "lili-puppets": {
+   "desc": "Pulls strings from behind the board. Her knights do the talking.",
+   "hello": "The show begins!",
+   "kind": "puppeteer",
+   "lose": "Tangled strings!",
+   "tags": [
+    "knights",
+    "sneaky"
+   ],
+   "win": "And the puppets bow."
+  },
+  "lili-te-rke-p": {
+   "desc": "Reads the board like her Budapest map: upside down, but always cheerful about it.",
+   "hello": "Szia! Which way is the king?",
+   "kind": "lost backpacker · Hungary",
+   "lose": "Lost again. Worth the trip!",
+   "tags": [
+    "wandering",
+    "beginner"
+   ],
+   "win": "Found it! Köszönöm!"
+  },
+  "lin-meihua": {
+   "desc": "Pours tea with perfect calm and plays the same way: graceful, patient, precise.",
+   "hello": "Please, have some tea first.",
+   "kind": "tea house hostess · China",
+   "lose": "Hǎo qí. Another cup?",
+   "tags": [
+    "patient",
+    "precise"
+   ],
+   "win": "Gracefully done."
+  },
+  "linnea-berg": {
+   "desc": "Draws quietly in the corner and surprises you with a sharp tactic.",
+   "hello": "Moi!",
+   "kind": "illustrator · Finland",
+   "lose": "Kiitos, good game.",
+   "tags": [
+    "quiet",
+    "surprises"
+   ],
+   "win": "Hyvä!"
+  },
+  "lola-nena": {
+   "desc": "Has run the corner store for forty years. Counts every pawn like change.",
+   "hello": "Kain ka muna. Eat first.",
+   "kind": "sari-sari store owner · Iloilo",
+   "lose": "Ay, you’re clever, apo.",
+   "tags": [
+    "counting",
+    "thrifty"
+   ],
+   "win": "Exact change."
+  },
+  "lotte": {
+   "desc": "Plants her pawns in neat rows and waits for the spring breakthrough.",
+   "hello": "Fresh tulips today!",
+   "kind": "flower seller · Lisse",
+   "lose": "Frost got my tulips.",
+   "tags": [
+    "pawn structure",
+    "patient"
+   ],
+   "win": "In full bloom."
+  },
+  "lou-dubois": {
+   "desc": "Stops to snap a photo of every pretty position, even the ones she’s losing.",
+   "hello": "Cheese! Er, fromage!",
+   "kind": "tourist photographer · France",
+   "lose": "Blurry shot. One more?",
+   "tags": [
+    "curious",
+    "scenic"
+   ],
+   "win": "Voilà, a postcard win!"
+  },
+  "luana-costa": {
+   "desc": "Studies openings between lectures and plays like she already ran your moves through her laptop.",
+   "hello": "Oi! I prepped for this. Bora?",
+   "kind": "comp-sci student · Brazil",
+   "lose": "Bug in my prep. Noted!",
+   "tags": [
+    "prepared",
+    "sharp"
+   ],
+   "win": "Ran the numbers. Checkmate."
+  },
+  "luca": {
+   "desc": "Glides his pieces down narrow canals you didn’t know were open.",
+   "hello": "Benvenuti a bordo!",
+   "kind": "gondolier · Venice",
+   "lose": "Bumped the canal wall.",
+   "tags": [
+    "smooth",
+    "files"
+   ],
+   "win": "Che serenata!"
+  },
+  "lucas": {
+   "desc": "Moves the piece closest to his teddy bear. Every time.",
+   "hello": "Can Teddy play too?",
+   "kind": "little cousin",
+   "lose": "Teddy says good game.",
+   "tags": [
+    "random",
+    "sleepy"
+   ],
+   "win": "Teddy won!"
+  },
+  "lucho-pino": {
+   "desc": "Fills empanadas de pino at the fonda and packs every square with pressure before sealing the edge.",
+   "hello": "¡Empanada de pino, calentita!",
+   "kind": "fonda empanada maker · Fiestas Patrias",
+   "lose": "Burned my empanada. ¡Bravo!",
+   "tags": [
+    "pressure",
+    "solid"
+   ],
+   "win": "Sealed tight, compadre!"
+  },
+  "luci-a-disen-o": {
+   "desc": "Designs beautiful positions; function sometimes follows.",
+   "hello": "Design is how it works.",
+   "kind": "designer · Argentina",
+   "lose": "Back to the drawing board, che.",
+   "tags": [
+    "aesthetic",
+    "creative"
+   ],
+   "win": "Beautiful and effective."
+  },
+  "luci-a-marinera": {
+   "desc": "Courts your king with elegant moves, handkerchief in hand.",
+   "hello": "Shall we dance?",
+   "kind": "marinera dancer · Trujillo",
+   "lose": "You led beautifully.",
+   "tags": [
+    "elegant",
+    "flirty"
+   ],
+   "win": "And the dance ends."
+  },
+  "luci-a-mendes": {
+   "desc": "Hypothesis: your king is weak. Experiment: find out.",
+   "hello": "Let’s test a theory.",
+   "kind": "scientist",
+   "lose": "Back to the lab.",
+   "tags": [
+    "king hunts",
+    "methodical"
+   ],
+   "win": "Hypothesis confirmed."
+  },
+  "luis-fermi-n": {
+   "desc": "From one great port to another. Runs the cranes at Europe’s busiest harbour and moves heavy pieces with ease.",
+   "hello": "Hallo, chamo! Ready?",
+   "kind": "port engineer · Puerto Cabello → Rotterdam",
+   "lose": "Bien jugado, pana. Goed gespeeld.",
+   "tags": [
+    "heavy pieces",
+    "organised"
+   ],
+   "win": "Cargo delivered."
+  },
+  "luisito-jonro-n": {
+   "desc": "Swings for the fences on every move. Home run or strikeout.",
+   "hello": "Play ball!",
+   "kind": "little pelotero · Venezuela",
+   "lose": "Strike three. Again!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "¡Jonrón!"
+  },
+  "luka-lopta": {
+   "desc": "Plays chess like a corner kick: everything goes straight into the box and he hopes for a header.",
+   "hello": "Ajde, kick-off!",
+   "kind": "young footballer · Serbia",
+   "lose": "Offside, surely. Again!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "Gooool!"
+  },
+  "lukas-tor": {
+   "desc": "Efficient pressing, relentless counters, very little fuss.",
+   "hello": "Anpfiff!",
+   "kind": "football fan · Germany",
+   "lose": "Abpfiff. Good match.",
+   "tags": [
+    "pressing",
+    "efficient"
+   ],
+   "win": "Tor!"
+  },
+  "luna-mochi": {
+   "desc": "Toys with your pieces like a cat with a ball of yarn.",
+   "hello": "Mochi wants to play too.",
+   "kind": "cat lover",
+   "lose": "Mochi knocked my king over. Good game.",
+   "tags": [
+    "playful",
+    "tricky"
+   ],
+   "win": "Mochi purrs in approval."
+  },
+  "luna-spin": {
+   "desc": "Keeps the moves flowing like a late-night playlist. Never a silent second.",
+   "hello": "You’re live on the night show!",
+   "kind": "radio DJ",
+   "lose": "Static on the line.",
+   "tags": [
+    "rhythm",
+    "flowing"
+   ],
+   "win": "That’s a hit!"
+  },
+  "lupita-zapateado": {
+   "desc": "Swirls her skirt and taps out moves in rhythm, which is lovely until she taps her queen away.",
+   "hello": "¡Órale! Let’s dance!",
+   "kind": "folklórico dancer · Mexico",
+   "lose": "Lost my step. ¡Otra!",
+   "tags": [
+    "lively",
+    "flashy"
+   ],
+   "win": "¡Ajúa! What a twirl!"
+  },
+  "lusine": {
+   "desc": "Rolls the board thin and flat until there’s nowhere left for your pieces.",
+   "hello": "Fresh from the oven.",
+   "kind": "lavash baker · Ashtarak",
+   "lose": "Burnt this one. Bravo.",
+   "tags": [
+    "squeeze",
+    "space"
+   ],
+   "win": "Thin and perfect."
+  },
+  "luz-herrera": {
+   "desc": "Looks closely at every square, like a leaf under her magnifying glass.",
+   "hello": "Let’s look closer.",
+   "kind": "botanist",
+   "lose": "This one needs more sun.",
+   "tags": [
+    "observant",
+    "patient"
+   ],
+   "win": "Growing nicely."
+  },
+  "luz-marina": {
+   "desc": "Paints the board yellow, blue and red; her pieces go wherever the colour looks good.",
+   "hello": "Let’s colour this board.",
+   "kind": "painter · Venezuela",
+   "lose": "A sketch, not a masterpiece.",
+   "tags": [
+    "colourful",
+    "chaotic"
+   ],
+   "win": "¡Qué bello!"
+  },
+  "madame-noche": {
+   "desc": "Her café opens at midnight, and the best players in town come to lose to her.",
+   "hello": "Welcome, night owl. Sit.",
+   "kind": "night-café owner",
+   "lose": "Ah, a true night owl.",
+   "tags": [
+    "mysterious",
+    "masterful"
+   ],
+   "win": "The night always wins."
+  },
+  "maddie-gagnon": {
+   "desc": "Plays chess like a power play: fast skating, hard checks, and a slapshot at your king.",
+   "hello": "Drop the puck, eh!",
+   "kind": "hockey player · Canada",
+   "lose": "Good game. Handshake line!",
+   "tags": [
+    "aggressive",
+    "fast"
+   ],
+   "win": "Top shelf! Celly time!"
+  },
+  "maestro-fe-lix": {
+   "desc": "Directs every piece to its mark. Nothing on his stage is by accident.",
+   "hello": "From the top.",
+   "kind": "theatre director",
+   "lose": "Bravo. You stole the show.",
+   "tags": [
+    "planning",
+    "precise"
+   ],
+   "win": "That’s a wrap."
+  },
+  "maeve-quinn": {
+   "desc": "Plays cosy, cautious chess and hates time pressure.",
+   "hello": "Tea’s ready, let’s play.",
+   "kind": "homebody",
+   "lose": "Too cold out there for me.",
+   "tags": [
+    "cautious",
+    "cosy"
+   ],
+   "win": "Nice and cosy win."
+  },
+  "maja-blomqvist": {
+   "desc": "Picks flowers for her crown between moves and forgets which pieces she left hanging.",
+   "hello": "Glad midsommar! Let’s play!",
+   "kind": "midsommar girl · Sweden",
+   "lose": "Oops. Have a daisy anyway.",
+   "tags": [
+    "dreamy",
+    "cheerful"
+   ],
+   "win": "A flower for my crown!"
+  },
+  "makoa-ahi": {
+   "desc": "Patient as the ocean. Waits hours for a single tactic.",
+   "hello": "Fish are biting.",
+   "kind": "fisherman · Hawaiʻi",
+   "lose": "Got away, brah.",
+   "tags": [
+    "patient",
+    "tactics"
+   ],
+   "win": "Big ahi!"
+  },
+  "malia-lei": {
+   "desc": "Dances circles around your queen.",
+   "hello": "Let’s dance!",
+   "kind": "dancer · Hawaiʻi",
+   "lose": "Next song!",
+   "tags": [
+    "queen chases",
+    "playful"
+   ],
+   "win": "Hooray!"
+  },
+  "mama-juana": {
+   "desc": "Knows four thousand kinds of potato and just as many endgames.",
+   "hello": "Sit, wawa. Let’s play.",
+   "kind": "potato farmer · Puno",
+   "lose": "You play well, wawa.",
+   "tags": [
+    "endgames",
+    "wise"
+   ],
+   "win": "Good harvest."
+  },
+  "mang-ben": {
+   "desc": "Knows every shortcut through the traffic. Picks up pawns along the route.",
+   "hello": "Sakay na! Hop on.",
+   "kind": "jeepney driver · Manila",
+   "lose": "Traffic got me.",
+   "tags": [
+    "shortcuts",
+    "practical"
+   ],
+   "win": "Last stop: checkmate."
+  },
+  "manon-leclerc": {
+   "desc": "Rushes out every morning for fresh bread and rushes her pieces out just as fast.",
+   "hello": "Salut! Quick game before breakfast?",
+   "kind": "baguette runner · France",
+   "lose": "Zut, my bread is cold now.",
+   "tags": [
+    "hasty",
+    "friendly"
+   ],
+   "win": "Oh là là, I won!"
+  },
+  "manuela-restrepo": {
+   "desc": "Studies in Medellín, carries her laptop everywhere and checks every line twice.",
+   "hello": "Hola parce, I brought notes.",
+   "kind": "engineering student · Colombia",
+   "lose": "Bug in my code. Bien jugado.",
+   "tags": [
+    "studious",
+    "careful"
+   ],
+   "win": "Calculado, parcero."
+  },
+  "marco-calcio": {
+   "desc": "Dribbles past your defenders and celebrates every capture like a goal.",
+   "hello": "Forza! Kick-off!",
+   "kind": "footballer · Naples",
+   "lose": "Red card for me.",
+   "tags": [
+    "dribbling",
+    "celebrates"
+   ],
+   "win": "GOOOL!"
+  },
+  "marcus-moss": {
+   "desc": "Castles early, trades when unsure, rarely blunders twice in a row.",
+   "hello": "Solid first, fancy later.",
+   "kind": "steady",
+   "lose": "Well played. That was clean.",
+   "tags": [
+    "castles early",
+    "solid"
+   ],
+   "win": "Slow and steady, as promised."
+  },
+  "margot-easel": {
+   "desc": "Paints with her bishops: long diagonal strokes across the whole board.",
+   "hello": "A blank canvas. Let’s begin.",
+   "kind": "painter",
+   "lose": "Back to the sketchbook.",
+   "tags": [
+    "bishop pair",
+    "artistic"
+   ],
+   "win": "A masterpiece!"
+  },
+  "maria-ngel-di-az": {
+   "desc": "Teaches salsa and joropo after work. Her pieces dance all over the board.",
+   "hello": "¡Vamos a bailar! Your move.",
+   "kind": "salsa teacher · Valencia → Bengaluru",
+   "lose": "You led that dance, pana.",
+   "tags": [
+    "lively",
+    "active pieces"
+   ],
+   "win": "And spin! Checkmate."
+  },
+  "mariam-nasser": {
+   "desc": "Fuelled by iced qahwa and the positional squeeze.",
+   "hello": "Iced qahwa ready.",
+   "kind": "student · Saudi Arabia",
+   "lose": "Melted. Good game.",
+   "tags": [
+    "squeeze",
+    "focused"
+   ],
+   "win": "Delicious win."
+  },
+  "mariela-flores": {
+   "desc": "Takes a bite of arepa between every move and plays with a full heart.",
+   "hello": "Want an arepa? No? More for me.",
+   "kind": "arepa lover · Venezuela",
+   "lose": "Ay, you got me. Another arepa.",
+   "tags": [
+    "heart first",
+    "snacks"
+   ],
+   "win": "¡Así es, mi amor!"
+  },
+  "marina-costa": {
+   "desc": "Spots danger fast and rescues pieces before they drown.",
+   "hello": "Eyes on the water.",
+   "kind": "lifeguard",
+   "lose": "Couldn’t reach that one.",
+   "tags": [
+    "rescues",
+    "alert"
+   ],
+   "win": "Saved it!"
+  },
+  "marisol-atlas": {
+   "desc": "Charts unusual routes for her knights. Every journey ends on an outpost.",
+   "hello": "I have a map for this.",
+   "kind": "explorer",
+   "lose": "Lost the trail there.",
+   "tags": [
+    "knight routes",
+    "outposts"
+   ],
+   "win": "X marks the spot!"
+  },
+  "marti-n-sur": {
+   "desc": "Treks Patagonia in any weather and plays in any position.",
+   "hello": "Windy down south today.",
+   "kind": "trekker · Argentina",
+   "lose": "The wind won.",
+   "tags": [
+    "adaptable",
+    "tough"
+   ],
+   "win": "Fitz Roy summit!"
+  },
+  "maryelis-guzma-n": {
+   "desc": "Spots eagles in the forests near Vancouver and keeps her binoculars on your queen.",
+   "hello": "Hi, eh! ¡Épale, pana!",
+   "kind": "birdwatcher · Ciudad Guayana → Vancouver",
+   "lose": "Sorry, chamo. Good game, eh.",
+   "tags": [
+    "observant",
+    "outdoorsy"
+   ],
+   "win": "Chévere! Sorry, I won!"
+  },
+  "master-huang-jun": {
+   "desc": "Trains at dawn and turns every attack you make back on you with soft, sudden blocks.",
+   "hello": "Bow first. Then we play.",
+   "kind": "kung fu teacher · China",
+   "lose": "A worthy student.",
+   "tags": [
+    "counterattack",
+    "defensive"
+   ],
+   "win": "Balance wins."
+  },
+  "master-weiss": {
+   "desc": "A retired master coach. There is a lesson in every loss against him.",
+   "hello": "Show me what you have learned.",
+   "kind": "chess coach",
+   "lose": "Excellent. You are ready for more.",
+   "tags": [
+    "all-round",
+    "master"
+   ],
+   "win": "Review this game tonight."
+  },
+  "mateo-cruz": {
+   "desc": "Learns from every loss and tells you exactly what he learned.",
+   "hello": "Teach me something today.",
+   "kind": "student",
+   "lose": "Lesson learned. Thank you.",
+   "tags": [
+    "learner",
+    "steady"
+   ],
+   "win": "I learned that from you last time!"
+  },
+  "mateo-pedal": {
+   "desc": "Long rides, steady rhythm. Grinds you down over the long climb.",
+   "hello": "Long ride today?",
+   "kind": "cyclist",
+   "lose": "Flat tyre. Good game.",
+   "tags": [
+    "endurance",
+    "steady"
+   ],
+   "win": "Over the top of the hill!"
+  },
+  "mati-as-contreras": {
+   "desc": "Climbs Torres del Paine for fun and treats every pawn push like one more switchback.",
+   "hello": "Mochila lista. Let’s go, po.",
+   "kind": "trekker · Chile",
+   "lose": "The mountain wins today, po.",
+   "tags": [
+    "steady climb",
+    "stamina"
+   ],
+   "win": "¡Cumbre! Summit, po!"
+  },
+  "matteo": {
+   "desc": "Picks three plans like three scoops and tries to eat them all at once.",
+   "hello": "Ciao! Gelato after?",
+   "kind": "gelato kid · Rome",
+   "lose": "My gelato melted.",
+   "tags": [
+    "greedy",
+    "happy"
+   ],
+   "win": "Che bello!"
+  },
+  "max-bukovel": {
+   "desc": "Carves down the board in big swooping attacks.",
+   "hello": "Fresh powder!",
+   "kind": "snowboarder · Ukraine",
+   "lose": "Wiped out!",
+   "tags": [
+    "swooping attacks",
+    "fun"
+   ],
+   "win": "Sick run!"
+  },
+  "maya-focus": {
+   "desc": "Goes silent, puts her headphones on, and out-calculates you.",
+   "hello": "Headphones on. Let’s focus.",
+   "kind": "designer",
+   "lose": "Lost focus for one move.",
+   "tags": [
+    "focused",
+    "tactical"
+   ],
+   "win": "In the zone."
+  },
+  "meera-iyer": {
+   "desc": "Design, build, ship: plans her pawn structure like a building.",
+   "hello": "Let’s design something.",
+   "kind": "architect · India",
+   "lose": "Needs a redesign.",
+   "tags": [
+    "structure",
+    "planner"
+   ],
+   "win": "Built and shipped."
+  },
+  "mei-lin": {
+   "desc": "Sees the board as a picture and plays the move that looks most beautiful.",
+   "hello": "Let’s paint something together.",
+   "kind": "painter",
+   "lose": "Beautiful, but wrong. Your move was better.",
+   "tags": [
+    "beautiful moves",
+    "sacrifices"
+   ],
+   "win": "Now that is a picture."
+  },
+  "memo-pastor": {
+   "desc": "Sprinkles cilantro on every taco and a little chaos on every position, with a squeeze of lime.",
+   "hello": "¿Con todo? ¡Órale!",
+   "kind": "taquero · Mexico",
+   "lose": "Too much salsa. ¡Bien jugado!",
+   "tags": [
+    "spicy",
+    "tricky"
+   ],
+   "win": "¡Provecho! That one was spicy."
+  },
+  "mestre-tia-o": {
+   "desc": "Leads two hundred drummers in the bateria and keeps every piece of his army marching in time.",
+   "hello": "Segura o ritmo! Your move.",
+   "kind": "bateria master · Carnaval",
+   "lose": "Paradinha... you got me. Valeu.",
+   "tags": [
+    "coordinated",
+    "attacking"
+   ],
+   "win": "The bateria never misses!"
+  },
+  "mi-a-canela": {
+   "desc": "Mía plays, Canela barks at the queen. Both love to attack.",
+   "hello": "Canela, sit! Okay, your move.",
+   "kind": "the youngest",
+   "lose": "Canela ate my rook.",
+   "tags": [
+    "playful",
+    "attacks"
+   ],
+   "win": "¡Ganamos, Canela!"
+  },
+  "mila-the-mimic": {
+   "desc": "Answers your move with the mirror of it for as long as the board allows.",
+   "hello": "Whatever you do, I do.",
+   "kind": "copycat",
+   "lose": "You did something I can’t copy.",
+   "tags": [
+    "symmetrical",
+    "odd"
+   ],
+   "win": "Copied all the way to victory."
+  },
+  "milagros-tovar": {
+   "desc": "Teaches comparative law in Budapest and argues every move like a closing statement.",
+   "hello": "Szia, chamo. Order on the board.",
+   "kind": "law professor · Caracas → Budapest",
+   "lose": "Köszönöm. Objection sustained.",
+   "tags": [
+    "rigorous",
+    "deep"
+   ],
+   "win": "Case closed, pana."
+  },
+  "milica-planina": {
+   "desc": "Climbs Kopaonik on weekends and grinds through long games one careful step at a time.",
+   "hello": "Ajde, long climb ahead!",
+   "kind": "mountain hiker · Serbia",
+   "lose": "Lost the trail. Bravo!",
+   "tags": [
+    "patient",
+    "grinder"
+   ],
+   "win": "Summit reached!"
+  },
+  "milo-brew": {
+   "desc": "Pours a perfect opening, then the middlegame gets a little foamy.",
+   "hello": "One opening, extra hot.",
+   "kind": "barista",
+   "lose": "Spilled that one. Refill?",
+   "tags": [
+    "good openings",
+    "messy middlegames"
+   ],
+   "win": "Order up: one win."
+  },
+  "milos-barjak": {
+   "desc": "Carries the flag at every parade and marches his pawns forward with the same proud, steady stride.",
+   "hello": "Ajde, let’s march!",
+   "kind": "flag bearer · Serbia",
+   "lose": "Bravo. I salute you.",
+   "tags": [
+    "proud",
+    "pawn storms"
+   ],
+   "win": "Živeli! The flag stays up."
+  },
+  "mina-cho": {
+   "desc": "Copies grandmaster openings from videos, move for move.",
+   "hello": "I watched a video on this.",
+   "kind": "video learner",
+   "lose": "The video didn’t cover that move.",
+   "tags": [
+    "copycat openings",
+    "studious"
+   ],
+   "win": "Just like the video!"
+  },
+  "minjun-kang": {
+   "desc": "Bows politely, then attacks the kingside with the same snap as his front kick.",
+   "hello": "Bow first. Then we fight. Hwaiting!",
+   "kind": "taekwondo black belt · Korea",
+   "lose": "You blocked it. Respect.",
+   "tags": [
+    "attacking",
+    "disciplined"
+   ],
+   "win": "Kiai! Clean point."
+  },
+  "minjun-yut": {
+   "desc": "Throws yut sticks with a yell and moves pieces wherever the throw feels lucky.",
+   "hello": "Saehae bok! Let’s throw!",
+   "kind": "yutnori kid · Seollal",
+   "lose": "Only a do. One more!",
+   "tags": [
+    "lucky",
+    "random"
+   ],
+   "win": "Yut! Mo! I win!"
+  },
+  "mio-ink": {
+   "desc": "Inks bold lines across the board, then fills in the details.",
+   "hello": "Ready to draw.",
+   "kind": "illustrator · Japan",
+   "lose": "Smudged it.",
+   "tags": [
+    "bold",
+    "creative"
+   ],
+   "win": "Inked!"
+  },
+  "misha-lyzhi": {
+   "desc": "Races downhill toward your king with no brakes.",
+   "hello": "Poekhali!",
+   "kind": "skier · Russia",
+   "lose": "Crashed at the bottom.",
+   "tags": [
+    "fast attacks",
+    "no brakes"
+   ],
+   "win": "Gold medal!"
+  },
+  "mo-clay": {
+   "desc": "Shapes the position slowly with both hands until it holds its form.",
+   "hello": "Let’s make something.",
+   "kind": "potter",
+   "lose": "Cracked in the oven.",
+   "tags": [
+    "shaping",
+    "calm"
+   ],
+   "win": "Out of the kiln."
+  },
+  "molly-finch": {
+   "desc": "Brave but forgetful: attacks with gusto, forgets her hanging pieces.",
+   "hello": "Charge!",
+   "kind": "student",
+   "lose": "I forgot my rook. Again.",
+   "tags": [
+    "brave",
+    "hangs pieces"
+   ],
+   "win": "Charging works!"
+  },
+  "momoka-haru": {
+   "desc": "Arrives at dawn to save the best picnic spot and defends her territory with a tidy blue tarp of pawns.",
+   "hello": "This spot is taken! Sit, sit.",
+   "kind": "picnic spot guardian · Hanami",
+   "lose": "You took my spot. Omedetō!",
+   "tags": [
+    "defensive",
+    "territory"
+   ],
+   "win": "Best spot in the park. Mine!"
+  },
+  "mormor-birgitta": {
+   "desc": "Has baked saffron lussekatter every Lucia for seventy years and rolls out endgames with flawless technique.",
+   "hello": "God jul, lilla vän. Sit down.",
+   "kind": "lussekatt baker · Lucia & Jul",
+   "lose": "Oj! Fint spelat, dear.",
+   "tags": [
+    "endgames",
+    "technique"
+   ],
+   "win": "Just like Mormor’s recipe."
+  },
+  "mortimer-crowe": {
+   "desc": "Runs the scariest haunted house on the block and springs traps from behind every quiet move.",
+   "hello": "Welcome... to the haunted house.",
+   "kind": "haunted house host · Halloween",
+   "lose": "You escaped the house. Spooky.",
+   "tags": [
+    "traps",
+    "tricky"
+   ],
+   "win": "Boo! Didn’t see that coming."
+  },
+  "nadia-okoro": {
+   "desc": "Studies the board like a reef: patient, careful, always taking notes.",
+   "hello": "Let’s see what lives here.",
+   "kind": "marine biologist",
+   "lose": "Noted. Next dive.",
+   "tags": [
+    "patient",
+    "observant"
+   ],
+   "win": "Fascinating result."
+  },
+  "nalani-sun": {
+   "desc": "Sunny, relaxed, and surprisingly hard to beat on a good day.",
+   "hello": "Beautiful day!",
+   "kind": "beach artist · Hawaiʻi",
+   "lose": "Clouds today.",
+   "tags": [
+    "sunny",
+    "relaxed"
+   ],
+   "win": "Sunshine win!"
+  },
+  "nanaji-hariprasad": {
+   "desc": "Grinds thandai spices on stone every Holi and grinds down your position with the same cool patience.",
+   "hello": "Thandai first. Cool head, beta.",
+   "kind": "thandai grandpa · Holi",
+   "lose": "Wah! Holi ki shubhkamnayein!",
+   "tags": [
+    "grinding",
+    "endgames"
+   ],
+   "win": "Slow and cool, like thandai."
+  },
+  "narek": {
+   "desc": "Plays slow, deep melodies on the duduk and on the board. Moving, and hard to stop.",
+   "hello": "Listen first.",
+   "kind": "duduk player · Yerevan",
+   "lose": "A beautiful song from you.",
+   "tags": [
+    "deep",
+    "calm"
+   ],
+   "win": "The melody ends."
+  },
+  "ndue-c-iftelia": {
+   "desc": "Plays old two-string ballads and old two-bishop endgames with the same happy patience.",
+   "hello": "Mirëdita, mik. Sit and listen.",
+   "kind": "çifteli player · Albania",
+   "lose": "Ha! You earned a song, mik.",
+   "tags": [
+    "bishops",
+    "endgames"
+   ],
+   "win": "A new verse for my ballad."
+  },
+  "ned-nutmeg": {
+   "desc": "Chases your queen around the board with his pawns.",
+   "hello": "Where is your queen going to hide?",
+   "kind": "kid",
+   "lose": "Your queen is too fast.",
+   "tags": [
+    "queen hunter",
+    "beginner"
+   ],
+   "win": "Caught her!"
+  },
+  "nell-dough": {
+   "desc": "Starts working while everyone sleeps. By morning, her position has risen.",
+   "hello": "The ovens are warm.",
+   "kind": "night-shift baker",
+   "lose": "The dough didn’t rise.",
+   "tags": [
+    "slow build",
+    "warm"
+   ],
+   "win": "Fresh out of the oven."
+  },
+  "nia-sugar": {
+   "desc": "Takes every pawn offered, like free cookies.",
+   "hello": "Fresh from the oven!",
+   "kind": "baker",
+   "lose": "Burnt the cookies. Good game.",
+   "tags": [
+    "greedy",
+    "sweet"
+   ],
+   "win": "Sweet victory."
+  },
+  "nico-diez": {
+   "desc": "Wears the 10 and tries a nutmeg on every move.",
+   "hello": "¡Vamos!",
+   "kind": "football fan · Argentina",
+   "lose": "Bah. Revancha.",
+   "tags": [
+    "dribbles",
+    "flair"
+   ],
+   "win": "¡Golazo, che!"
+  },
+  "nidia": {
+   "desc": "Layers her pieces like the cloth of a mola, colour on colour, until the pattern appears.",
+   "hello": "Every layer matters.",
+   "kind": "mola artist · Guna Yala",
+   "lose": "A beautiful pattern from you.",
+   "tags": [
+    "layers",
+    "patient"
+   ],
+   "win": "The mola is finished."
+  },
+  "nils-kod": {
+   "desc": "Ships apps from Stockholm and plays clean, tested chess with zero unnecessary lines.",
+   "hello": "Hej. Running the opening build.",
+   "kind": "app developer · Sweden",
+   "lose": "Unexpected error. Nice one.",
+   "tags": [
+    "efficient",
+    "solid"
+   ],
+   "win": "Merged to main. Tack!"
+  },
+  "noah-script": {
+   "desc": "Plays by checklist: checks, captures, threats. Usually remembers all three.",
+   "hello": "Running checks, captures, threats...",
+   "kind": "student coder",
+   "lose": "Found a bug in my code.",
+   "tags": [
+    "checklist",
+    "methodical"
+   ],
+   "win": "All tests passed."
+  },
+  "noor": {
+   "desc": "Stacks small advantages like stroopwafels until the tower is too tall to stop.",
+   "hello": "Warm stroopwafel?",
+   "kind": "stroopwafel baker · Gouda",
+   "lose": "Too much syrup. Well played.",
+   "tags": [
+    "accumulates",
+    "sweet"
+   ],
+   "win": "Sweet win."
+  },
+  "noura-henna": {
+   "desc": "Draws henna the night before Eid and weaves her pieces into delicate, connected nets.",
+   "hello": "Hold still, the henna’s drying.",
+   "kind": "henna artist · Eid al-Fitr",
+   "lose": "My henna smudged. Mabrook!",
+   "tags": [
+    "patterns",
+    "connected"
+   ],
+   "win": "Mashallah, a perfect pattern."
+  },
+  "nu-ria-puig": {
+   "desc": "Sketches pawn towers like the Sagrada Família: ambitious, ornate, and never quite finished.",
+   "hello": "Bon dia! Let me sketch this.",
+   "kind": "architecture student · Spain",
+   "lose": "Still under construction, vale.",
+   "tags": [
+    "structures",
+    "creative"
+   ],
+   "win": "Built it brick by brick."
+  },
+  "nurse-jamie": {
+   "desc": "Patches up weaknesses as soon as they appear. Very hard to wound.",
+   "hello": "Let’s keep everyone healthy.",
+   "kind": "nurse",
+   "lose": "That one needs stitches.",
+   "tags": [
+    "solid",
+    "careful"
+   ],
+   "win": "Clean bill of health."
+  },
+  "nurse-rica": {
+   "desc": "Calm under pressure and always checks for threats first. Patients and pieces are in good hands.",
+   "hello": "Don’t worry, I’ve got this.",
+   "kind": "nurse · Quezon City",
+   "lose": "You’re in good shape. Well played.",
+   "tags": [
+    "careful",
+    "defence"
+   ],
+   "win": "Healthy result."
+  },
+  "o-scar-bricen-o": {
+   "desc": "Thirty years around oil rigs taught him pressure. He applies it slowly and never lets go.",
+   "hello": "¡Épale! Hot outside, cool at the board.",
+   "kind": "petroleum engineer · Maturín → Dubai",
+   "lose": "Muy bien, pana. Muy bien.",
+   "tags": [
+    "squeeze",
+    "deep"
+   ],
+   "win": "Pressure always finds a way, chamo."
+  },
+  "oksana-vinok": {
+   "desc": "Sings while she plays and weaves her pieces together like a vinok.",
+   "hello": "Let’s sing and play!",
+   "kind": "folk singer · Ukraine",
+   "lose": "A sad song, but beautiful.",
+   "tags": [
+    "harmonious",
+    "creative"
+   ],
+   "win": "Like a song!"
+  },
+  "olaf-glass": {
+   "desc": "Works fast while the position is hot, and shapes it before it cools.",
+   "hello": "Strike while it’s hot!",
+   "kind": "glassblower",
+   "lose": "It cooled too fast.",
+   "tags": [
+    "initiative",
+    "bold"
+   ],
+   "win": "Beautiful glass."
+  },
+  "old-ishmael": {
+   "desc": "Fifty years watching the sea. Sees your plan coming from miles away.",
+   "hello": "The light is on. Sit down.",
+   "kind": "lighthouse keeper",
+   "lose": "A fine captain, you are.",
+   "tags": [
+    "foresight",
+    "endgames"
+   ],
+   "win": "I saw it from the tower."
+  },
+  "old-tom": {
+   "desc": "Forty years of park chess. Knows every trick you will try.",
+   "hello": "Sit down, sit down. Fiver a game?",
+   "kind": "park hustler",
+   "lose": "Heh. Haven’t lost in a while.",
+   "tags": [
+    "blitz tricks",
+    "experience"
+   ],
+   "win": "Keep your money. Learn from it."
+  },
+  "ole-laks": {
+   "desc": "Never lets a free salmon, or a free pawn, get away.",
+   "hello": "The salmon are running.",
+   "kind": "fisherman · Norway",
+   "lose": "It slipped off the hook.",
+   "tags": [
+    "greedy",
+    "patient"
+   ],
+   "win": "Big catch!"
+  },
+  "olena-knyha": {
+   "desc": "History, design, tech, and old-school chess precision.",
+   "hello": "Let’s study together.",
+   "kind": "professor · Ukraine",
+   "lose": "An excellent lesson. Dyakuyu.",
+   "tags": [
+    "precision",
+    "studious"
+   ],
+   "win": "Chapter closed."
+  },
+  "olive-hayes": {
+   "desc": "Grows her pawns into a long chain, then forgets about her king.",
+   "hello": "Up early, ready to play.",
+   "kind": "farmer",
+   "lose": "Forgot about the king again, didn’t I?",
+   "tags": [
+    "pawn chains",
+    "loose king"
+   ],
+   "win": "A good harvest today."
+  },
+  "ollie-peak": {
+   "desc": "Explores every corner of the board, especially the edges.",
+   "hello": "What’s over on the a-file?",
+   "kind": "scout",
+   "lose": "Should have stayed in the middle.",
+   "tags": [
+    "rim knights",
+    "curious"
+   ],
+   "win": "Exploring pays off!"
+  },
+  "oriana-castillo": {
+   "desc": "Runs on iced coffee in the Maracaibo heat and plays blitz on the bus home with a proud maracucho accent.",
+   "hello": "¡Épale, pana! Quick game?",
+   "kind": "marketing assistant · Maracaibo",
+   "lose": "Ay chamo, that hurt. Good game.",
+   "tags": [
+    "blitz",
+    "caffeinated"
+   ],
+   "win": "Chévere, that’s a win, baby!"
+  },
+  "oscar-penn": {
+   "desc": "Solves puzzles all day and sees combinations that aren’t quite there.",
+   "hello": "There’s a puzzle here somewhere.",
+   "kind": "puzzle fan",
+   "lose": "That combination had a hole.",
+   "tags": [
+    "combinations",
+    "optimistic"
+   ],
+   "win": "Puzzle solved!"
+  },
+  "oskar-svensson": {
+   "desc": "Assembles positions like flat-pack furniture: step by step, no pieces left over.",
+   "hello": "Step one: develop.",
+   "kind": "engineer · Sweden",
+   "lose": "One screw missing.",
+   "tags": [
+    "methodical",
+    "tidy"
+   ],
+   "win": "All pieces accounted for."
+  },
+  "owen-shutter": {
+   "desc": "Replays his favourite blunders in slow motion.",
+   "hello": "Lights, camera, e4.",
+   "kind": "film student",
+   "lose": "Cut! Take two?",
+   "tags": [
+    "blunders",
+    "cinematic"
+   ],
+   "win": "And that’s a wrap!"
+  },
+  "pablito-gol": {
+   "desc": "Wears the number 10 and runs every piece straight at goal, defense optional.",
+   "hello": "¡Vamos, equipo! Kick off!",
+   "kind": "little striker · Spain",
+   "lose": "Offside! Rematch!",
+   "tags": [
+    "all-in",
+    "beginner"
+   ],
+   "win": "¡Goooool!"
+  },
+  "paco-molina": {
+   "desc": "Plucks quiet little moves for an hour, then strums a mating attack nobody saw coming.",
+   "hello": "Let me tune up. Vale, ready.",
+   "kind": "flamenco guitarist · Spain",
+   "lose": "Qué arte. You win this one.",
+   "tags": [
+    "patient",
+    "sudden"
+   ],
+   "win": "That chord was mate."
+  },
+  "paloma-sol": {
+   "desc": "Packs light: trades pieces early and travels into the endgame.",
+   "hello": "Travel light, play right.",
+   "kind": "traveller",
+   "lose": "Missed my connection.",
+   "tags": [
+    "simplifies",
+    "endgames"
+   ],
+   "win": "Arrived on time."
+  },
+  "paolo": {
+   "desc": "Casts a wide net across the board and waits for something to bite.",
+   "hello": "Good water today.",
+   "kind": "banca fisherman · Palawan",
+   "lose": "The fish got away.",
+   "tags": [
+    "patient",
+    "baits"
+   ],
+   "win": "Big catch!"
+  },
+  "papa-andre-s": {
+   "desc": "Plays one-handed, baby in the other arm. Surprisingly calm.",
+   "hello": "Shh, the baby’s asleep. Your move.",
+   "kind": "new dad",
+   "lose": "Good game. Diaper time.",
+   "tags": [
+    "calm",
+    "practical"
+   ],
+   "win": "Dad wins!"
+  },
+  "papa-ge-rard": {
+   "desc": "Has played the same café table for forty years and knows every trap by its vintage.",
+   "hello": "Santé! Sit, sit, mon ami.",
+   "kind": "café philosopher · France",
+   "lose": "Ha! You’ve aged well. Bravo.",
+   "tags": [
+    "wise",
+    "endgames"
+   ],
+   "win": "A fine vintage, that win."
+  },
+  "paquito-calaca": {
+   "desc": "Decorates sugar skulls with way too much icing and covers the board in bright, messy attacks.",
+   "hello": "¡Mira mi calaverita! Let’s play.",
+   "kind": "sugar skull kid · Día de Muertos",
+   "lose": "Ay, my calaverita melted.",
+   "tags": [
+    "colorful",
+    "reckless"
+   ],
+   "win": "¡Qué padre! I won!"
+  },
+  "patricio-araya": {
+   "desc": "Has run the family asado for thirty years and knows exactly when a position is done.",
+   "hello": "Pasa, po. The grill is hot.",
+   "kind": "asado master · Chile",
+   "lose": "You burned me. Respect, po.",
+   "tags": [
+    "slow cook",
+    "precise"
+   ],
+   "win": "Al punto, like a good lomo."
+  },
+  "paz-calma": {
+   "desc": "Strong core, steady centre. Never makes a jerky move.",
+   "hello": "Breathe in. Your move.",
+   "kind": "pilates teacher",
+   "lose": "Breathe out. Well played.",
+   "tags": [
+    "balanced",
+    "calm"
+   ],
+   "win": "Beautiful control."
+  },
+  "pepe-payaso": {
+   "desc": "Juggles three plans at once and drops at least two.",
+   "hello": "Honk honk! Let’s play!",
+   "kind": "clown",
+   "lose": "Oops! The pie hit me.",
+   "tags": [
+    "chaotic",
+    "funny"
+   ],
+   "win": "Ta-da!"
+  },
+  "pepito-serenata": {
+   "desc": "Only knows three chords and two openings, and he plays both with his whole heart.",
+   "hello": "¡Hola! I learned a new song!",
+   "kind": "little guitarist · Mexico",
+   "lose": "Wrong chord. ¿Otra vez?",
+   "tags": [
+    "beginner",
+    "heart first"
+   ],
+   "win": "¡Órale! I won!"
+  },
+  "per-olof-sill": {
+   "desc": "Leads every snapsvisa at the long table and strikes in tempo with the last line of the song.",
+   "hello": "Helan går! Your move.",
+   "kind": "snapsvisa singer · Midsommar",
+   "lose": "Lost the verse. Skål to you!",
+   "tags": [
+    "tempo",
+    "sharp"
+   ],
+   "win": "Sjung hopp faderallan lej!"
+  },
+  "petit-napole-on": {
+   "desc": "Crosses his arms, plans grand campaigns across the board, and adores his cannons, er, rooks.",
+   "hello": "En avant! The campaign begins.",
+   "kind": "little emperor · France",
+   "lose": "My Waterloo. Bien joué.",
+   "tags": [
+    "strategic",
+    "ambitious"
+   ],
+   "win": "Vive l’empereur!"
+  },
+  "peyton-spirit": {
+   "desc": "Cheers her pawns down the board with a high kick and a pom-pom wave for every single push.",
+   "hello": "Gimme a C! Gimme an H-E-S-S!",
+   "kind": "cheer captain · USA",
+   "lose": "Great game! Two, four, six, eight!",
+   "tags": [
+    "spirited",
+    "pawn storms"
+   ],
+   "win": "Go team! Woo!"
+  },
+  "pip-pawnworth": {
+   "desc": "Pushes every pawn two squares because it feels faster.",
+   "hello": "Is it my turn? Is it my turn yet?",
+   "kind": "eager beginner",
+   "lose": "Okay, okay, I see it now. Rematch!",
+   "tags": [
+    "pawn pusher",
+    "eager"
+   ],
+   "win": "Wait, I won? Can we play again?"
+  },
+  "pip-volta": {
+   "desc": "Every move is an experiment, and most of them fizz over.",
+   "hello": "Goggles on! Let’s experiment.",
+   "kind": "kid scientist",
+   "lose": "Kaboom. Back to the lab.",
+   "tags": [
+    "experiments",
+    "messy"
+   ],
+   "win": "It worked! It actually worked!"
+  },
+  "pixel": {
+   "desc": "Speedruns the opening and plays the middlegame like a boss fight.",
+   "hello": "Player two has entered the game.",
+   "kind": "gamer",
+   "lose": "Game over. Insert coin?",
+   "tags": [
+    "fast",
+    "aggressive"
+   ],
+   "win": "Level cleared!"
+  },
+  "poppy-lane": {
+   "desc": "Loves castling so much she has tried to do it twice.",
+   "hello": "My king lives in a castle!",
+   "kind": "kid",
+   "lose": "You knocked my castle down!",
+   "tags": [
+    "castles",
+    "brand new"
+   ],
+   "win": "The castle held!"
+  },
+  "prakash-mithai": {
+   "desc": "Runs the busiest mithai shop in the bazaar and trades pieces as sweetly as he packs ladoos.",
+   "hello": "Have a ladoo first, then we play.",
+   "kind": "sweet shop owner · Diwali",
+   "lose": "Shabash! Take a barfi for that.",
+   "tags": [
+    "trades",
+    "practical"
+   ],
+   "win": "Sweet victory, beta!"
+  },
+  "priya-pages": {
+   "desc": "Studies your last move for a long time and usually finds the right answer.",
+   "hello": "Let me think about that...",
+   "kind": "student",
+   "lose": "I needed more study time.",
+   "tags": [
+    "careful",
+    "thoughtful"
+   ],
+   "win": "The answer was there all along."
+  },
+  "priya-solder": {
+   "desc": "Connects her pieces like a circuit. Cut one wire and the rest still work.",
+   "hello": "Powering up.",
+   "kind": "electronics tinkerer",
+   "lose": "Short circuit. Nice one.",
+   "tags": [
+    "connected",
+    "tactics"
+   ],
+   "win": "Circuit closed!"
+  },
+  "profe-ana": {
+   "desc": "Ideas, plan, discipline, freedom: she teaches all four in one game.",
+   "hello": "Ideas first, then a plan.",
+   "kind": "teacher · Venezuela",
+   "lose": "¡Libertad! You played freely.",
+   "tags": [
+    "plans",
+    "discipline"
+   ],
+   "win": "Discipline pays."
+  },
+  "professor-albrecht": {
+   "desc": "Sees the whole board as one beautiful equation, and solves it.",
+   "hello": "Everything is relative. Your move.",
+   "kind": "physicist",
+   "lose": "Fascinating. You found a new law.",
+   "tags": [
+    "deep",
+    "endgames"
+   ],
+   "win": "Elegant. Simply elegant."
+  },
+  "professor-fizz": {
+   "desc": "Experiments with odd sidelines just to see what reacts.",
+   "hello": "Let’s mix something volatile.",
+   "kind": "chemist",
+   "lose": "Kaboom. Back to the notes.",
+   "tags": [
+    "experiments",
+    "sharp"
+   ],
+   "win": "A successful reaction!"
+  },
+  "professor-idris": {
+   "desc": "Lectures you with every move. The lecture is, unfortunately, correct.",
+   "hello": "Today’s lecture: weak squares.",
+   "kind": "professor",
+   "lose": "You have taught the professor something.",
+   "tags": [
+    "positional",
+    "deep"
+   ],
+   "win": "Class dismissed."
+  },
+  "professore-enzo": {
+   "desc": "An espresso, a newspaper and a crushing endgame. Every morning since 1974.",
+   "hello": "Un caffè? Then chess.",
+   "kind": "café chess player · Turin",
+   "lose": "Bravissimo. A real player.",
+   "tags": [
+    "endgames",
+    "classical"
+   ],
+   "win": "Elementare."
+  },
+  "rafa-a-vila": {
+   "desc": "Guides you up El Ávila and, on the way, through a long manoeuvring game.",
+   "hello": "The Ávila is beautiful today.",
+   "kind": "mountain guide · Venezuela",
+   "lose": "Lost the trail. Good game.",
+   "tags": [
+    "manoeuvring",
+    "steady"
+   ],
+   "win": "Top of the mountain."
+  },
+  "rafael-lima": {
+   "desc": "Counter-attacks like a striker: waits back, then sprints.",
+   "hello": "Kick-off!",
+   "kind": "football fan",
+   "lose": "Full time. Good match.",
+   "tags": [
+    "counter-attack",
+    "fast"
+   ],
+   "win": "GOOOAL!"
+  },
+  "rainha-dandara": {
+   "desc": "Carries the samba school flag down the Sambódromo and spins through positions with flawless grace.",
+   "hello": "Boa noite, Sambódromo!",
+   "kind": "porta-bandeira · Carnaval",
+   "lose": "Que beleza! Nota dez for you.",
+   "tags": [
+    "elegant",
+    "precise"
+   ],
+   "win": "Nota dez, meu bem!"
+  },
+  "ramiro-chaco-n": {
+   "desc": "Grows plantains just across the border and plays as slowly and surely as his harvest.",
+   "hello": "Siéntese, mijo. A tintico?",
+   "kind": "plantain farmer · San Cristóbal → Cúcuta",
+   "lose": "Usted juega chévere, pana.",
+   "tags": [
+    "patient",
+    "rooted"
+   ],
+   "win": "Así es la cosa, parcero."
+  },
+  "random": {
+   "desc": "Picks a legal move at random. Useful for testing a new opening line safely.",
+   "kind": "engine · warm-up",
+   "tags": [
+    "warm-up",
+    "harmless"
+   ]
+  },
+  "ranger-raj": {
+   "desc": "Patrols the centre and fines any piece that wanders off.",
+   "hello": "Stay on the marked trails.",
+   "kind": "park ranger",
+   "lose": "You slipped past my patrol.",
+   "tags": [
+    "centre control",
+    "firm"
+   ],
+   "win": "Order restored in the park."
+  },
+  "rania-lens": {
+   "desc": "Chases golden-hour light and loose pieces.",
+   "hello": "Golden hour!",
+   "kind": "photographer · Egypt",
+   "lose": "Missed the light.",
+   "tags": [
+    "opportunist",
+    "curious"
+   ],
+   "win": "Got the shot!"
+  },
+  "ravi-grand": {
+   "desc": "Makes your pieces disappear. Look closely at his last move.",
+   "hello": "Pick a piece, any piece.",
+   "kind": "magician",
+   "lose": "You saw through it!",
+   "tags": [
+    "tricks",
+    "tactics"
+   ],
+   "win": "And for my final trick…"
+  },
+  "ray-mendoza": {
+   "desc": "Knows every shortcut in the city at 3 a.m. Gets your king home the fast way.",
+   "hello": "Where to, friend?",
+   "kind": "taxi driver",
+   "lose": "Took the wrong exit.",
+   "tags": [
+    "shortcuts",
+    "practical"
+   ],
+   "win": "We’ve arrived."
+  },
+  "remy-static": {
+   "desc": "Bullet habits: moves first, thinks later.",
+   "hello": "Quick one before bed?",
+   "kind": "night streamer",
+   "lose": "Okay, maybe think first.",
+   "tags": [
+    "impulsive",
+    "quick"
+   ],
+   "win": "Easy. Next."
+  },
+  "ren-ono": {
+   "desc": "Wanders Tokyo with a camera and wanders the board the same way.",
+   "hello": "Say cheese!",
+   "kind": "street photographer · Japan",
+   "lose": "Blurry. Again!",
+   "tags": [
+    "wanders",
+    "curious"
+   ],
+   "win": "Perfect shot!"
+  },
+  "rescue-rory": {
+   "desc": "Spends the whole game guarding his king and rescuing pieces in danger.",
+   "hello": "Safety first. Always.",
+   "kind": "lifeguard",
+   "lose": "Couldn’t save that one.",
+   "tags": [
+    "defensive",
+    "king safety"
+   ],
+   "win": "Everyone made it home safe."
+  },
+  "rico-cool": {
+   "desc": "Too cool to calculate. Plays on vibes.",
+   "hello": "No stress, just chess.",
+   "kind": "chill",
+   "lose": "Vibes were off today.",
+   "tags": [
+    "vibes",
+    "casual"
+   ],
+   "win": "Vibes were right."
+  },
+  "rina-flash": {
+   "desc": "Snaps fast moves and checks them later. Sometimes too late.",
+   "hello": "Quick! Before the light changes.",
+   "kind": "photographer",
+   "lose": "Overexposed that one.",
+   "tags": [
+    "fast",
+    "risky"
+   ],
+   "win": "Perfect shot."
+  },
+  "rocco-laughs": {
+   "desc": "Tells a joke every move, and the punchline is usually a fork.",
+   "hello": "Did you hear the one about the bishop?",
+   "kind": "comedian",
+   "lose": "Tough crowd tonight.",
+   "tags": [
+    "forks",
+    "chatty"
+   ],
+   "win": "And that’s the punchline!"
+  },
+  "roci-o-punch": {
+   "desc": "Jabs at your weak pawns and finishes with a combination.",
+   "hello": "Gloves up.",
+   "kind": "boxer",
+   "lose": "You win this round.",
+   "tags": [
+    "combinations",
+    "aggressive"
+   ],
+   "win": "Knockout!"
+  },
+  "roci-o-vargas": {
+   "desc": "Stamps out sharp tactics to a fierce rhythm and finishes every combination with a flourish.",
+   "hello": "¡Vamos! Keep up with the compás.",
+   "kind": "flamenco dancer · Spain",
+   "lose": "Ay, you broke my rhythm.",
+   "tags": [
+    "rhythmic",
+    "tactics"
+   ],
+   "win": "¡Olé, con arte!"
+  },
+  "rodrigo-quintanilla": {
+   "desc": "Leads hikes up Cerro Verde and Santa Ana and always knows the safe path to the top.",
+   "hello": "Bienvenido. Watch your step.",
+   "kind": "volcano guide · El Salvador",
+   "lose": "You found a better path. Bien.",
+   "tags": [
+    "route finding",
+    "solid"
+   ],
+   "win": "Summit. ¡Qué chivo!"
+  },
+  "rohan-chai": {
+   "desc": "Every game is better with chai, and every attack with a tea break.",
+   "hello": "Chai first, bhai.",
+   "kind": "chai lover · India",
+   "lose": "Chai is ready anyway.",
+   "tags": [
+    "relaxed",
+    "tea breaks"
+   ],
+   "win": "Ek aur chai!"
+  },
+  "rosa-elena-pinto": {
+   "desc": "Opened a café on the Albanian Riviera and serves tequeños to tourists. Plays sunny, open chess.",
+   "hello": "Mirëdita, mi amor! A tequeño?",
+   "kind": "beach café owner · Puerto La Cruz → Sarandë",
+   "lose": "Bien jugado, pana. Faleminderit.",
+   "tags": [
+    "open games",
+    "sunny"
+   ],
+   "win": "¡Qué sabroso!"
+  },
+  "rosa-gears": {
+   "desc": "Every tiny gear in its place. Her endgames tick like clockwork.",
+   "hello": "Tick, tock. Begin.",
+   "kind": "watchmaker",
+   "lose": "You out-timed me.",
+   "tags": [
+    "endgames",
+    "meticulous"
+   ],
+   "win": "Like clockwork."
+  },
+  "rosa-ngela-vielma": {
+   "desc": "Arrived in Stockholm with one backpack and a paper map, and now guides tours of the city. Still gets lost in middlegames.",
+   "hello": "Hej, pana! Which way?",
+   "kind": "backpacker · Mérida → Stockholm",
+   "lose": "Lost again, chamo. Bra spelat.",
+   "tags": [
+    "explorer",
+    "curious"
+   ],
+   "win": "¡Chévere! Tack så mycket!"
+  },
+  "rosa-pe-rez": {
+   "desc": "Stuffs her position like a reina pepiada: everything goes in the centre.",
+   "hello": "Hungry? I’ll feed you a pawn.",
+   "kind": "cook · Venezuela",
+   "lose": "Next time I cook better.",
+   "tags": [
+    "centre",
+    "generous"
+   ],
+   "win": "¡Bien resuelto!"
+  },
+  "rosa-quispe": {
+   "desc": "Weaves her pieces into patterns that look simple until you are caught in them.",
+   "hello": "Every thread counts.",
+   "kind": "weaver · Pisac",
+   "lose": "A knot I didn’t see.",
+   "tags": [
+    "patterns",
+    "patient"
+   ],
+   "win": "The pattern is complete."
+  },
+  "rosie-reed": {
+   "desc": "Has read three opening books and remembers about half of each.",
+   "hello": "Chapter one: the opening.",
+   "kind": "bookworm",
+   "lose": "That wasn’t in any chapter.",
+   "tags": [
+    "openings",
+    "theory"
+   ],
+   "win": "Just like the book said."
+  },
+  "rube-n-casco": {
+   "desc": "Sprays bold ideas across the board. Messy, colourful and hard to ignore.",
+   "hello": "Let’s paint something.",
+   "kind": "street artist · Casco Viejo",
+   "lose": "Paint ran dry.",
+   "tags": [
+    "bold",
+    "creative"
+   ],
+   "win": "Masterpiece!"
+  },
+  "ruby-tune": {
+   "desc": "Hums while she thinks. The humming stops right before a tactic.",
+   "hello": "La la la... your move.",
+   "kind": "music student",
+   "lose": "Missed a note.",
+   "tags": [
+    "tactics",
+    "musical"
+   ],
+   "win": "And... the big finish!"
+  },
+  "sage-rivers": {
+   "desc": "Plays the moves that sound nice, not always the ones that work.",
+   "hello": "A game is a poem in sixty-four squares.",
+   "kind": "poet",
+   "lose": "A tragic stanza.",
+   "tags": [
+    "romantic",
+    "creative"
+   ],
+   "win": "And so the verse ends."
+  },
+  "saif-eidiya": {
+   "desc": "Collects eidiya from every uncle and spends his pieces just as fast as his coins.",
+   "hello": "Eid Mubarak! Got any eidiya?",
+   "kind": "eidiya collector · Eid al-Fitr",
+   "lose": "Mabrook to you! Again?",
+   "tags": [
+    "generous",
+    "beginner"
+   ],
+   "win": "Yalla! Best Eid ever!"
+  },
+  "sakura-ito": {
+   "desc": "Each move as deliberate as a tea ceremony. Not a gesture wasted.",
+   "hello": "Tea first. Then chess.",
+   "kind": "tea master · Japan",
+   "lose": "A rare and beautiful game.",
+   "tags": [
+    "deliberate",
+    "calm"
+   ],
+   "win": "Ichigo ichie."
+  },
+  "salim-muscat": {
+   "desc": "Easy-going and careful; never makes the same mistake twice.",
+   "hello": "Marhaba!",
+   "kind": "engineer · Oman",
+   "lose": "Lesson noted.",
+   "tags": [
+    "careful",
+    "learns"
+   ],
+   "win": "Shukran for the game."
+  },
+  "sam-biscuit": {
+   "desc": "Sam plays, Biscuit supervises. Neither of them likes long endgames.",
+   "hello": "Biscuit says good luck!",
+   "kind": "dog walker",
+   "lose": "Biscuit is proud of you anyway.",
+   "tags": [
+    "short games",
+    "distracted"
+   ],
+   "win": "Biscuit, we did it!"
+  },
+  "sammy-stripes": {
+   "desc": "Points at your king on move one and waves a flag at every capture, win or lose.",
+   "hello": "I want YOU to play me!",
+   "kind": "parade kid · USA",
+   "lose": "Aw shucks. Rematch, y’all?",
+   "tags": [
+    "loud",
+    "beginner"
+   ],
+   "win": "Hooray! Fireworks tonight!"
+  },
+  "sangwoo-baek": {
+   "desc": "Mixes every piece into the center like a good bibimbap and trusts it all to taste right.",
+   "hello": "Jal meokgesseumnida! Let’s eat.",
+   "kind": "bibimbap cook · Korea",
+   "lose": "Too much gochujang. My fault.",
+   "tags": [
+    "central",
+    "hearty"
+   ],
+   "win": "Well mixed, well won!"
+  },
+  "sasha-balalaika": {
+   "desc": "Three strings, three moves of plan. Plays for fun.",
+   "hello": "A song before we play!",
+   "kind": "musician · Russia",
+   "lose": "A sad song now.",
+   "tags": [
+    "playful",
+    "loose"
+   ],
+   "win": "Ha! A happy tune!"
+  },
+  "sasha-print": {
+   "desc": "Prints her pieces layer by layer. Slow start, solid finish.",
+   "hello": "Printing… almost ready.",
+   "kind": "3D-printing hobbyist",
+   "lose": "Failed print. Again.",
+   "tags": [
+    "layers",
+    "solid"
+   ],
+   "win": "Print complete!"
+  },
+  "selene-silk": {
+   "desc": "Balances on a knife edge and somehow never falls.",
+   "hello": "Watch this.",
+   "kind": "acrobat",
+   "lose": "Missed the bar.",
+   "tags": [
+    "sharp",
+    "daring"
+   ],
+   "win": "And she sticks the landing!"
+  },
+  "sem": {
+   "desc": "Pedals his pieces everywhere, ringing the bell at every check.",
+   "hello": "Ring ring! Let’s go!",
+   "kind": "bike kid · Utrecht",
+   "lose": "Fell off my bike.",
+   "tags": [
+    "busy",
+    "cheerful"
+   ],
+   "win": "Hoera!"
+  },
+  "seo-yeon-yoon": {
+   "desc": "Opens her fan, then her position, one graceful fold at a time until you run out of squares.",
+   "hello": "Annyeonghaseyo. Shall we dance?",
+   "kind": "hanbok fan dancer · Korea",
+   "lose": "Beautiful steps. Truly.",
+   "tags": [
+    "graceful",
+    "positional"
+   ],
+   "win": "The fan closes. Gamsahamnida."
+  },
+  "seoyeon-yeon": {
+   "desc": "Flies her kite over the frozen river and keeps her long-range pieces soaring on open diagonals.",
+   "hello": "Saehae bok! Watch my kite fly.",
+   "kind": "kite flyer · Seollal",
+   "lose": "My kite string snapped. Nice.",
+   "tags": [
+    "bishops",
+    "airy"
+   ],
+   "win": "Up, up, over your king!"
+  },
+  "sepp-huber": {
+   "desc": "Built like the Alps: slow to move, impossible to push over.",
+   "hello": "Servus!",
+   "kind": "alpine farmer · Bavaria",
+   "lose": "Respekt.",
+   "tags": [
+    "solid",
+    "stubborn"
+   ],
+   "win": "Passt scho."
+  },
+  "sf11": {
+   "desc": "The pre-neural version. Materialistic, brutal in tactics, beatable positionally.",
+   "kind": "engine · 2019 build",
+   "tags": [
+    "classical eval",
+    "tactical"
+   ]
+  },
+  "sf18": {
+   "desc": "Current release with a level cap. Clean strength test, no personality, no commentary.",
+   "kind": "engine · handicapped",
+   "tags": [
+    "reference",
+    "no chat"
+   ]
+  },
+  "signora-lucia": {
+   "desc": "Rolls out long, patient plans by hand. No shortcuts in her kitchen.",
+   "hello": "Mangia, then we play.",
+   "kind": "pasta maker · Bologna",
+   "lose": "Brava, bambina, brava.",
+   "tags": [
+    "patient",
+    "technique"
+   ],
+   "win": "Al dente!"
+  },
+  "simo-n-cuatro": {
+   "desc": "Plays to a joropo rhythm: quick, quick, then a sudden flourish.",
+   "hello": "Let me tune my cuatro.",
+   "kind": "cuatro player · Venezuela",
+   "lose": "You played the better song.",
+   "tags": [
+    "rhythm",
+    "flourish"
+   ],
+   "win": "¡Qué sabroso!"
+  },
+  "simone-vale": {
+   "desc": "Makes decisions fast and never second-guesses a good trade.",
+   "hello": "I have ten minutes. Make them count.",
+   "kind": "executive",
+   "lose": "I respect a good negotiator.",
+   "tags": [
+    "trades",
+    "decisive"
+   ],
+   "win": "Deal closed."
+  },
+  "sixten-groda": {
+   "desc": "Hops like a little frog around the maypole and leaps his pieces all over the board.",
+   "hello": "Små grodorna! Let’s hop!",
+   "kind": "frog dancer · Midsommar",
+   "lose": "Plopp. Back in the pond!",
+   "tags": [
+    "jumpy",
+    "beginner"
+   ],
+   "win": "Kou ack ack ack! I won!"
+  },
+  "sofi-mate": {
+   "desc": "Shares her mate, shares nothing on the board. Slow and sweet.",
+   "hello": "¿Un matecito?",
+   "kind": "mate drinker · Argentina",
+   "lose": "Che, bien jugado.",
+   "tags": [
+    "slow",
+    "sociable"
+   ],
+   "win": "Another round of mate to celebrate."
+  },
+  "sofia-reyes": {
+   "desc": "Prepares your favourite opening before the game. Spooky.",
+   "hello": "I looked at your games...",
+   "kind": "analyst",
+   "lose": "You surprised me. I like that.",
+   "tags": [
+    "preparation",
+    "theory"
+   ],
+   "win": "Preparation pays."
+  },
+  "solveig-fjord": {
+   "desc": "Cross-country stamina: she will happily play eighty moves.",
+   "hello": "Lovely weather for chess.",
+   "kind": "skier · Norway",
+   "lose": "You were faster on the downhill.",
+   "tags": [
+    "stamina",
+    "endgames"
+   ],
+   "win": "Skål!"
+  },
+  "sonya-bilyk": {
+   "desc": "Ideas, build, better tomorrows: optimistic and endlessly resourceful.",
+   "hello": "Let’s build something.",
+   "kind": "founder · Ukraine",
+   "lose": "Learn, build, retry.",
+   "tags": [
+    "resourceful",
+    "optimistic"
+   ],
+   "win": "Better tomorrow!"
+  },
+  "sophie-leblanc": {
+   "desc": "Has read every opening book in the library and shushes your attack with quiet, tidy defense.",
+   "hello": "Shh. Quiet game, eh?",
+   "kind": "librarian · Canada",
+   "lose": "Well played. Late fee waived.",
+   "tags": [
+    "bookish",
+    "defensive"
+   ],
+   "win": "Checked out. Due back never."
+  },
+  "sora-tanaka": {
+   "desc": "Counts every exchange. If the numbers say trade, he trades.",
+   "hello": "Running the numbers.",
+   "kind": "data analyst",
+   "lose": "Outlier. Interesting.",
+   "tags": [
+    "counting",
+    "trades"
+   ],
+   "win": "The model was right."
+  },
+  "stefan-tamburas": {
+   "desc": "Strums the tamburica between moves and keeps a happy rhythm even when his position is falling apart.",
+   "hello": "Ajde, a little music first!",
+   "kind": "tamburica player · Serbia",
+   "lose": "Wrong note. Bravo, brate.",
+   "tags": [
+    "cheerful",
+    "rhythmic"
+   ],
+   "win": "That’s the chorus, brate!"
+  },
+  "stella-shade": {
+   "desc": "Plays coolly, never shows emotion, never shows her plan.",
+   "hello": "Shall we?",
+   "kind": "jet-setter",
+   "lose": "Hm. Impressive.",
+   "tags": [
+    "poker face",
+    "tricky"
+   ],
+   "win": "Naturally."
+  },
+  "su-wenqing": {
+   "desc": "Forty years of brushstrokes taught her that every stroke counts. Never a wasted move.",
+   "hello": "The ink is ready. Begin.",
+   "kind": "calligraphy master · China",
+   "lose": "A beautiful line. Thank you.",
+   "tags": [
+    "endgames",
+    "precise"
+   ],
+   "win": "The last stroke is mine."
+  },
+  "sunny-park": {
+   "desc": "Every position is great, even the lost ones.",
+   "hello": "Today feels like a winning day!",
+   "kind": "optimist",
+   "lose": "Still a great day. Well played!",
+   "tags": [
+    "optimist",
+    "brand new"
+   ],
+   "win": "Told you! Winning day!"
+  },
+  "taeyang-oh": {
+   "desc": "Climbs toward your king one slow, steady step at a time, poles first, never in a hurry.",
+   "hello": "Long climb ahead. Hwaiting!",
+   "kind": "weekend hiker · Korea",
+   "lose": "I’ll pack better next time.",
+   "tags": [
+    "steady",
+    "grinder"
+   ],
+   "win": "Summit reached! Yaho!"
+  },
+  "tante-mies": {
+   "desc": "Has played at the same chess café for sixty years. Coffee, cake and a quiet sacrifice.",
+   "hello": "Koffie? Sit, sit.",
+   "kind": "chess café regular · The Hague",
+   "lose": "Ach, wonderful game, dear.",
+   "tags": [
+    "sacrifices",
+    "experience"
+   ],
+   "win": "Gezellig, and checkmate."
+  },
+  "taras-sokil": {
+   "desc": "Wears his vyshyvanka with pride and fights for every square.",
+   "hello": "Dobryi den!",
+   "kind": "student · Ukraine",
+   "lose": "Good fight. Again tomorrow.",
+   "tags": [
+    "fighter",
+    "proud"
+   ],
+   "win": "Slava!"
+  },
+  "tariq-rimal": {
+   "desc": "Crosses Wadi Rum on foot, and the board the same way: steadily.",
+   "hello": "Long walk ahead.",
+   "kind": "desert trekker · Jordan",
+   "lose": "The dunes shifted.",
+   "tags": [
+    "steady",
+    "endurance"
+   ],
+   "win": "Reached the oasis!"
+  },
+  "tasha-wells": {
+   "desc": "Likes closed positions and symmetrical pawns. Very happy with a draw.",
+   "hello": "Let’s keep things tidy.",
+   "kind": "artist",
+   "lose": "You found the crack.",
+   "tags": [
+    "closed positions",
+    "drawish"
+   ],
+   "win": "Neat and tidy."
+  },
+  "tatev": {
+   "desc": "Knots her pieces into intricate patterns. Every corner of the board is part of the design.",
+   "hello": "One knot at a time.",
+   "kind": "carpet weaver · Goris",
+   "lose": "You found the loose thread.",
+   "tags": [
+    "intricate",
+    "whole board"
+   ],
+   "win": "The carpet is finished."
+  },
+  "tempo-tarik": {
+   "desc": "Moves in under two seconds and punishes every slow developing move you make.",
+   "hello": "Third espresso. Let’s play.",
+   "kind": "fast",
+   "lose": "Okay, you were faster.",
+   "tags": [
+    "fast",
+    "development"
+   ],
+   "win": "Too slow!"
+  },
+  "thai-s-frevo": {
+   "desc": "Dances frevo through Olinda with a tiny umbrella and balances wild tactics on one foot.",
+   "hello": "Olinda is calling! Let’s frevo!",
+   "kind": "frevo dancer · Carnaval",
+   "lose": "I dropped my umbrella. Valeu!",
+   "tags": [
+    "tactics",
+    "balance"
+   ],
+   "win": "Frevo till sunrise, querido!"
+  },
+  "thai-s-mendonc-a": {
+   "desc": "Keeps her pieces moving to a samba beat and loves a flashy sacrifice right before the big finish.",
+   "hello": "Bora, let’s samba!",
+   "kind": "samba dancer · Brazil",
+   "lose": "Ai, you stepped on my toes. Nice!",
+   "tags": [
+    "flashy",
+    "rhythm"
+   ],
+   "win": "Carnaval came early, querido!"
+  },
+  "the-archivist": {
+   "desc": "Twenty moves of theory in every main line, then plays like a strong club player.",
+   "hello": "I have catalogued this opening.",
+   "kind": "bookish",
+   "lose": "A new entry for the archive.",
+   "tags": [
+    "deep theory",
+    "no surprises"
+   ],
+   "win": "Filed under: wins."
+  },
+  "theo-bones": {
+   "desc": "Digs up old openings nobody plays anymore and dusts them off.",
+   "hello": "Found a fossil opening!",
+   "kind": "paleontologist",
+   "lose": "Extinct, like the dinosaurs.",
+   "tags": [
+    "old lines",
+    "curious"
+   ],
+   "win": "Dug it up!"
+  },
+  "ti-a-carmen": {
+   "desc": "Feeds you tequeños and then takes all your pieces. With love.",
+   "hello": "¿Un tequeñito? Then we play.",
+   "kind": "the fun aunt",
+   "lose": "Ay, you beat your tía!",
+   "tags": [
+    "generous",
+    "tricky"
+   ],
+   "win": "¡Eso es, mi amor!"
+  },
+  "ti-a-nelly-hallaca": {
+   "desc": "Ties two hundred hallacas every December and wraps up loose positions just as tightly.",
+   "hello": "Ven, help me tie the hallacas.",
+   "kind": "hallaca maker · Navidad venezolana",
+   "lose": "My hallaca came open. ¡Bravo!",
+   "tags": [
+    "technical",
+    "tidy"
+   ],
+   "win": "Bien amarradita, like a hallaca."
+  },
+  "tiago-swell": {
+   "desc": "Rides the momentum: once he is attacking, he never lets the wave break.",
+   "hello": "Waves are good today.",
+   "kind": "surfer",
+   "lose": "Wiped out. Paddle back out!",
+   "tags": [
+    "momentum",
+    "relaxed"
+   ],
+   "win": "Rode that one all the way in."
+  },
+  "tilda-jordgubbe": {
+   "desc": "Picks the reddest strawberries for the tårta and collects loose pawns just as carefully.",
+   "hello": "Glad midsommar! Jordgubbar?",
+   "kind": "strawberry picker · Midsommar",
+   "lose": "Squashed my strawberry. Fint!",
+   "tags": [
+    "collector",
+    "careful"
+   ],
+   "win": "Sweetest berry of summer!"
+  },
+  "tina-sprocket": {
+   "desc": "Builds plans out of spare parts. Some of them even work.",
+   "hello": "Meet my robot! Let’s play.",
+   "kind": "robotics kid",
+   "lose": "A screw came loose.",
+   "tags": [
+    "inventive",
+    "wobbly"
+   ],
+   "win": "Beep boop, I win!"
+  },
+  "tita-marites": {
+   "desc": "Waits for every advantage to ripen, then harvests it all at once.",
+   "hello": "Sweetest mangoes here.",
+   "kind": "mango farmer · Guimaras",
+   "lose": "Picked too early.",
+   "tags": [
+    "timing",
+    "patient"
+   ],
+   "win": "Ripe and ready."
+  },
+  "toby-bright": {
+   "desc": "Does not mind losing pieces as long as the game is fun.",
+   "hello": "Let’s just have fun, yeah?",
+   "kind": "chill kid",
+   "lose": "Still fun. Good game!",
+   "tags": [
+    "carefree",
+    "brand new"
+   ],
+   "win": "Ha! That was fun."
+  },
+  "toby-hops": {
+   "desc": "Bounces his pieces around without stopping. Lots of energy, little plan.",
+   "hello": "Ready, set, jump!",
+   "kind": "jump-rope kid",
+   "lose": "Tripped on the rope.",
+   "tags": [
+    "energetic",
+    "restless"
+   ],
+   "win": "Woohoo!"
+  },
+  "toma-s-hotus": {
+   "desc": "Sits with the moai every evening and plays as calmly as a statue that has seen it all.",
+   "hello": "¡Iorana! Take your time, po.",
+   "kind": "Rapa Nui guide · Chile",
+   "lose": "Māuru-uru. Well played.",
+   "tags": [
+    "calm",
+    "long view"
+   ],
+   "win": "The moai saw that coming."
+  },
+  "toma-s-salgado": {
+   "desc": "Haggles over every pawn and always gets a fair price.",
+   "hello": "¡Pescado fresco! Your move.",
+   "kind": "fish-market seller",
+   "lose": "You drive a hard bargain.",
+   "tags": [
+    "trades",
+    "shrewd"
+   ],
+   "win": "Sold, at my price!"
+  },
+  "tomasito-trompo": {
+   "desc": "Spins his trompo at the fonda and lets pieces whirl around until something falls.",
+   "hello": "¡Viva Chile! Let’s play, po!",
+   "kind": "trompo kid · Fiestas Patrias",
+   "lose": "My trompo fell. ¡Otra!",
+   "tags": [
+    "spinning",
+    "chaotic"
+   ],
+   "win": "¡Bacán! I won, po!"
+  },
+  "tomi-ideas": {
+   "desc": "Pivots plans mid-game and somehow lands on a good one.",
+   "hello": "Got a good idea for this.",
+   "kind": "startup founder · Argentina",
+   "lose": "Pivoting.",
+   "tags": [
+    "pivots",
+    "resourceful"
+   ],
+   "win": "Shipped it."
+  },
+  "tommy-tactics": {
+   "desc": "Sets one-move traps and waits. Sometimes you walk right in.",
+   "hello": "Nothing to see here. Totally normal moves.",
+   "kind": "trickster",
+   "lose": "You saw it coming, didn’t you?",
+   "tags": [
+    "cheap traps",
+    "hopeful"
+   ],
+   "win": "Gotcha!"
+  },
+  "toni-socarrat": {
+   "desc": "Never stirs the pan and never rushes the endgame. The good part is at the bottom.",
+   "hello": "¡Buenas! The rice needs time.",
+   "kind": "paella chef · Spain",
+   "lose": "Burnt the rice. Bien jugado.",
+   "tags": [
+    "endgames",
+    "patient"
+   ],
+   "win": "Perfect socarrat. ¡Olé!"
+  },
+  "tonico-viola-o": {
+   "desc": "Plays slow and smooth like a bossa nova chord, never hurrying, always finding the right note.",
+   "hello": "Tranquilo. Let the game breathe.",
+   "kind": "bossa nova guitarist · Brazil",
+   "lose": "Beautiful melody. You win this one.",
+   "tags": [
+    "smooth",
+    "patient"
+   ],
+   "win": "Saudade for your king, meu amigo."
+  },
+  "tove-backlund": {
+   "desc": "Races down the slopes of Åre and plays fast, downhill chess that only brakes for checkmate.",
+   "hello": "Hej! Poles ready, let’s go!",
+   "kind": "ski racer · Sweden",
+   "lose": "Wiped out. Bra spelat!",
+   "tags": [
+    "speedy",
+    "aggressive"
+   ],
+   "win": "First down the mountain!"
+  },
+  "uncle-ray": {
+   "desc": "Old school: the Ruy Lopez, the Queen’s Gambit, and a long think before every capture.",
+   "hello": "In my day we played the Ruy Lopez.",
+   "kind": "retired teacher",
+   "lose": "You’ve been studying. Good.",
+   "tags": [
+    "classical",
+    "solid"
+   ],
+   "win": "Still got it."
+  },
+  "usta-hakan": {
+   "desc": "Shaves material off your position slice by slice and keeps the fire roaring the whole game.",
+   "hello": "Hadi, one döner, one game!",
+   "kind": "döner chef · Türkiye",
+   "lose": "Ah, you burned me. Again, abi?",
+   "tags": [
+    "slicing",
+    "pressure"
+   ],
+   "win": "Sliced thin. Afiyet olsun!"
+  },
+  "v2023_06": {
+   "desc": "Four moves of theory, then pure improvisation. Leaves pieces where they land.",
+   "kind": "snapshot · Jun 2023",
+   "source": "214 of your games",
+   "tags": [
+    "hangs pieces",
+    "no plan"
+   ]
+  },
+  "v2024_02": {
+   "desc": "Takes every trade on offer and simplifies straight out of good positions.",
+   "kind": "snapshot · Feb 2024",
+   "source": "389 of your games",
+   "tags": [
+    "trades early",
+    "passive"
+   ]
+  },
+  "v2025_01": {
+   "desc": "Sacrifices on h7 without counting defenders. Sharp, fast, occasionally brilliant.",
+   "kind": "snapshot · Jan 2025",
+   "source": "512 of your games",
+   "tags": [
+    "loves h7 sacs",
+    "weak endings"
+   ]
+  },
+  "v2026_09": {
+   "desc": "Your current habits mirrored back. Solid until the clock drops under a minute.",
+   "kind": "snapshot · Sep 2026",
+   "source": "727 of your games",
+   "tags": [
+    "clock trouble",
+    "drifts"
+   ]
+  },
+  "valen": {
+   "desc": "Plays like she studies: organised, caffeinated, a little stressed.",
+   "hello": "I have ten minutes. Go.",
+   "kind": "big sister",
+   "lose": "Okay, I’ll review that.",
+   "tags": [
+    "organised",
+    "solid"
+   ],
+   "win": "Studied for this."
+  },
+  "valentina-ochoa": {
+   "desc": "Designs warm houses in a cold city, and builds positions the same way: brick by brick.",
+   "hello": "God dag, chama. Shall we build?",
+   "kind": "architect · Caracas → Oslo",
+   "lose": "Back to the drawing board.",
+   "tags": [
+    "structure",
+    "patient"
+   ],
+   "win": "Solid foundations, pana."
+  },
+  "valeria-andes": {
+   "desc": "Picks the safest route up the mountain and never rushes the summit.",
+   "hello": "Pack light, think deep.",
+   "kind": "mountain guide · Huaraz",
+   "lose": "The mountain wins today.",
+   "tags": [
+    "safe",
+    "endurance"
+   ],
+   "win": "Summit reached."
+  },
+  "valeria-code": {
+   "desc": "Writes clean code and cleaner endgames. The capybara sticker is her lucky charm.",
+   "hello": "The capybara believes in me.",
+   "kind": "developer · Venezuela",
+   "lose": "Chévere game. Bug noted.",
+   "tags": [
+    "clean technique",
+    "endgames"
+   ],
+   "win": "Deployed to production."
+  },
+  "varpet-hovik": {
+   "desc": "Carves positions that stand for centuries. Every move cut with care.",
+   "hello": "Stone does not hurry.",
+   "kind": "stone carver · Garni",
+   "lose": "A master’s cut. Well done.",
+   "tags": [
+    "solid",
+    "deliberate"
+   ],
+   "win": "Carved in stone."
+  },
+  "vic-ash": {
+   "desc": "Plays sharp lines at 2 a.m. and somehow doesn’t blunder.",
+   "hello": "Can’t sleep. Chess?",
+   "kind": "night owl",
+   "lose": "Still awake. Rematch.",
+   "tags": [
+    "sharp",
+    "calculating"
+   ],
+   "win": "Now I can sleep."
+  },
+  "vika-volk": {
+   "desc": "Hunts like a wolf: circles, waits, then strikes.",
+   "hello": "The wolf is patient.",
+   "kind": "artist · Russia",
+   "lose": "The prey escaped.",
+   "tags": [
+    "hunter",
+    "patient"
+   ],
+   "win": "Awoo."
+  },
+  "vikram-shanti": {
+   "desc": "Mind, discipline, peace. Never hurries, never errs.",
+   "hello": "Breathe. Begin.",
+   "kind": "meditation teacher · India",
+   "lose": "Your mind was clearer today.",
+   "tags": [
+    "discipline",
+    "calm"
+   ],
+   "win": "Peace."
+  },
+  "vilgot-tomte": {
+   "desc": "Dresses as a little tomte and sneaks pieces around the board hoping nobody notices.",
+   "hello": "God jul! I’m a tomte today.",
+   "kind": "little tomte · Lucia & Jul",
+   "lose": "You caught the tomte. Tack!",
+   "tags": [
+    "sneaky",
+    "beginner"
+   ],
+   "win": "The tomte got you! Ho ho!"
+  },
+  "wei-longfei": {
+   "desc": "Spreads his attack like a dragon fan: one flick and the whole flank opens.",
+   "hello": "Nǐ hǎo! Shall we begin?",
+   "kind": "dragon fan performer · China",
+   "lose": "Hǎo qí! Good game.",
+   "tags": [
+    "attacking",
+    "showy"
+   ],
+   "win": "The dragon wins today."
+  },
+  "willow-hart": {
+   "desc": "Plants pawns and waits to see what grows.",
+   "hello": "Patience is a gardener’s best tool.",
+   "kind": "gardener",
+   "lose": "Some seasons are like that.",
+   "tags": [
+    "pawn chains",
+    "gentle"
+   ],
+   "win": "Everything grew just right."
+  },
+  "xiao-yu": {
+   "desc": "Collects panda everything and cheers every capture, even yours.",
+   "hello": "Hi hi! Panda power!",
+   "kind": "panda fan · China",
+   "lose": "Aww. Again? Please?",
+   "tags": [
+    "cheerful",
+    "brand new"
+   ],
+   "win": "Panda wins! Yay!"
+  },
+  "ximena-cempasu-chil": {
+   "desc": "Lays marigold petal paths to the altar and guides her pieces down open files the same way.",
+   "hello": "Follow the cempasúchil, amigo.",
+   "kind": "marigold path keeper · Día de Muertos",
+   "lose": "You found the path first. Bravo.",
+   "tags": [
+    "open files",
+    "flowing"
+   ],
+   "win": "The petals led me home."
+  },
+  "xiomara-rivas": {
+   "desc": "Dances the xuc in a blue and white skirt and spins her pieces into tidy, graceful patterns.",
+   "hello": "¡Hola! A dance first?",
+   "kind": "folk dancer · El Salvador",
+   "lose": "Tangled in my skirt. Otra.",
+   "tags": [
+    "graceful",
+    "tidy"
+   ],
+   "win": "¡Qué chivo, gané!"
+  },
+  "yami-pollera": {
+   "desc": "Twirls through the centre in her pollera, every step practised for years.",
+   "hello": "¡Que viva el folclor!",
+   "kind": "pollera dancer · Las Tablas",
+   "lose": "You danced better tonight.",
+   "tags": [
+    "graceful",
+    "practised"
+   ],
+   "win": "Like a festival!"
+  },
+  "yasmin-dhahab": {
+   "desc": "Every move polished like gold. Rarely, if ever, a flaw.",
+   "hello": "Marhaba, shall we?",
+   "kind": "jeweller · Morocco",
+   "lose": "You found a flaw. Impressive.",
+   "tags": [
+    "polished",
+    "flawless"
+   ],
+   "win": "Pure gold."
+  },
+  "yeferson-lugo": {
+   "desc": "Top scorer of his youth team in São Paulo, and chases every attack like a through ball.",
+   "hello": "Fala, chamo! Bora jogar!",
+   "kind": "youth footballer · Valencia → São Paulo",
+   "lose": "Puxa... revancha!",
+   "tags": [
+    "all-attack",
+    "beginner"
+   ],
+   "win": "Golaço, pana!"
+  },
+  "yelitza-carrasquel": {
+   "desc": "Runs a busy arepera in Lavapiés and serves up tactics as hot as her arepas.",
+   "hello": "¡Épale, tío! Una arepita?",
+   "kind": "arepera owner · Puerto La Cruz → Madrid",
+   "lose": "Vaya, pana. Well played.",
+   "tags": [
+    "warm",
+    "tactical"
+   ],
+   "win": "¡Chévere, olé!"
+  },
+  "yhonny-ma-rquez": {
+   "desc": "Swapped Maracaibo heat for Moscow snow. Plays warm, sharp gambits to keep his hands busy.",
+   "hello": "Brrr, chamo. Let’s heat this board up.",
+   "kind": "engineering student · Maracaibo → Moscow",
+   "lose": "Too cold to think. Rematch, pana.",
+   "tags": [
+    "gambits",
+    "warm-blooded"
+   ],
+   "win": "¡Calor caribeño!"
+  },
+  "yolanda-palacios": {
+   "desc": "Sells fruit from a basket in Cartagena and knows every piece’s value to the last peso.",
+   "hello": "¡Mango, banano y ajedrez, mi amor!",
+   "kind": "fruit vendor · Colombia",
+   "lose": "You haggled well. Bien jugado.",
+   "tags": [
+    "sharp trades",
+    "street smart"
+   ],
+   "win": "Cuentas claras, parcero."
+  },
+  "yolimar-cafe": {
+   "desc": "Strong guayoyo, strong centre. Wakes up around move twelve and starts attacking.",
+   "hello": "Un cafecito first.",
+   "kind": "coffee lover · Venezuela",
+   "lose": "Need another cafecito.",
+   "tags": [
+    "late attacks",
+    "centre"
+   ],
+   "win": "Strong coffee, strong win."
+  },
+  "yui-neko": {
+   "desc": "Plays dramatic sacrifices straight out of her favourite manga.",
+   "hello": "This is my final form!",
+   "kind": "manga reader · Japan",
+   "lose": "To be continued...",
+   "tags": [
+    "dramatic",
+    "sacrifices"
+   ],
+   "win": "Victory, just like chapter twelve!"
+  },
+  "yuleisy-pe-rez": {
+   "desc": "Coaches the best youth baseball team in Manila. Calls every play like a pitch count.",
+   "hello": "¡Play ball, chamo!",
+   "kind": "baseball coach · Maracaibo → Manila",
+   "lose": "Strike three on me, pana.",
+   "tags": [
+    "strategy",
+    "team player"
+   ],
+   "win": "¡Jonrón!"
+  },
+  "yuliana-caicedo": {
+   "desc": "Swirls a skirt in yellow, blue and red and moves her pieces with the same flair.",
+   "hello": "¡Hola, parce! Shall we dance?",
+   "kind": "cumbia dancer · Colombia",
+   "lose": "Ay, I lost the step. Otra.",
+   "tags": [
+    "flair",
+    "flowing"
+   ],
+   "win": "¡Qué chimba, gané!"
+  },
+  "yuna-ryu": {
+   "desc": "Every move is a stage moment: flashy, confident, and followed by a wink whether it works or not.",
+   "hello": "Saranghae, fans! Watch this.",
+   "kind": "k-pop trainee · Korea",
+   "lose": "Cut! Let’s do another take.",
+   "tags": [
+    "flashy",
+    "tricky"
+   ],
+   "win": "Finger heart for the win!"
+  },
+  "yusmary-colmenares": {
+   "desc": "Runs the night shift at a Santiago hospital and checks every piece like vital signs.",
+   "hello": "¡Épale! Todo bien, po?",
+   "kind": "nurse · Barquisimeto → Santiago",
+   "lose": "Bien jugado, po. Pana.",
+   "tags": [
+    "careful",
+    "calm"
+   ],
+   "win": "Vitals stable, chamo."
+  },
+  "yusmary-furruco": {
+   "desc": "Keeps the gaita rhythm on her furruco and plays steady chess that never skips a beat.",
+   "hello": "¡Ahí viene la gaita! Let’s go.",
+   "kind": "gaita drummer · Navidad venezolana",
+   "lose": "Lost the beat. Bien jugado.",
+   "tags": [
+    "rhythm",
+    "steady"
+   ],
+   "win": "¡Sabrosura! Gaita and checkmate."
+  },
+  "zara-twirl": {
+   "desc": "Spins her pieces gracefully around the centre. Light on her feet.",
+   "hello": "Places, everyone!",
+   "kind": "ballerina",
+   "lose": "I lost my balance.",
+   "tags": [
+    "graceful",
+    "mobile"
+   ],
+   "win": "A perfect pirouette."
+  },
+  "zeke-kickflip": {
+   "desc": "Flips the balance with wild pawn sacrifices. Lands about half of them.",
+   "hello": "Watch this trick.",
+   "kind": "skater",
+   "lose": "Bailed. Again!",
+   "tags": [
+    "pawn sacs",
+    "reckless"
+   ],
+   "win": "Landed it!"
+  },
+  "zhou-lan": {
+   "desc": "Hikes the Great Wall with a camera and wanders the board looking for the perfect shot.",
+   "hello": "Smile! Your move.",
+   "kind": "travel photographer · China",
+   "lose": "Blurry. Rematch?",
+   "tags": [
+    "curious",
+    "wandering"
+   ],
+   "win": "Got the shot!"
+  },
+  "zolta-n-husza-r": {
+   "desc": "Leads cavalry charges across the board with sabre drawn and moustache perfectly waxed.",
+   "hello": "Szia! Mount up, friend.",
+   "kind": "hussar captain · Hungary",
+   "lose": "A worthy foe. Le a kalappal!",
+   "tags": [
+    "cavalry",
+    "attacking"
+   ],
+   "win": "Huzzah! The charge holds."
+  },
+  "zso-fi-koboz": {
+   "desc": "Strums old folk tunes and plays dreamy, flowing moves with her eyes half closed.",
+   "hello": "Szia! A song for the opening?",
+   "kind": "folk musician · Hungary",
+   "lose": "You played the better tune.",
+   "tags": [
+    "flowing",
+    "dreamy"
+   ],
+   "win": "Hej, what a melody!"
+  },
+  "zugzwang-zoya": {
+   "desc": "Trades into the ending at the first chance and squeezes from there.",
+   "hello": "Let’s skip to the good part: the endgame.",
+   "kind": "technical",
+   "lose": "You escaped the squeeze. Rare.",
+   "tags": [
+    "endgames",
+    "squeeze"
+   ],
+   "win": "Any move you make is worse. Zugzwang."
+  },
+  "zuri-bello": {
+   "desc": "Brings everything to the kingside and laughs when it works.",
+   "hello": "Your king looks lonely over there.",
+   "kind": "cheerful attacker",
+   "lose": "You defended that well. Rude!",
+   "tags": [
+    "kingside attack",
+    "fun"
+   ],
+   "win": "Ha! Told you it would work!"
+  }
+ },
+ "botSeasons": {
+  "carnaval": "Carnaval",
+  "chess-day": "World Chess Day",
+  "christmas": "Christmas",
+  "cruz-de-mayo": "Cruz de Mayo",
+  "dia-de-la-juventud": "Día de la Juventud",
+  "dia-de-muertos": "Día de Muertos",
+  "dia-del-maestro": "Día del Maestro",
+  "diablos-de-yare": "Diablos de Yare",
+  "diwali": "Diwali",
+  "eid-al-fitr": "Eid al-Fitr",
+  "fiestas-patrias": "Fiestas Patrias",
+  "halloween": "Halloween",
+  "hanami": "Hanami",
+  "holi": "Holi",
+  "independencia": "5 de Julio",
+  "leyendas": "Venezuelan legends",
+  "lucia-jul": "Lucia & Jul",
+  "lunar-new-year": "Lunar New Year",
+  "midsommar": "Midsommar",
+  "navidad-venezolana": "Navidad venezolana",
+  "new-year": "New Year's Eve",
+  "semana-santa": "Semana Santa",
+  "seollal": "Seollal",
+  "spring": "Spring",
+  "st-patricks": "St. Patrick's Day",
+  "summer": "Summer",
+  "thanksgiving": "Thanksgiving",
+  "valentines": "Valentine's Day"
+ },
+ "openings": {
+  "bird": {
+   "idea": "White grabs e5 with the f-pawn, like a Dutch Defense with an extra move. The king is a little looser, so watch the e1–h4 diagonal.",
+   "name": "Bird's Opening",
+   "origin": "Named after Henry Bird, an English master who kept playing it in the 19th century when almost nobody else did."
+  },
+  "caro-kann": {
+   "game": {
+    "label": "Tal – Smyslov, 1959"
+   },
+   "idea": "Like the French, Black prepares …d5, but with the c-pawn, so the light-squared bishop can still come out. Solid and hard to crack.",
+   "name": "Caro-Kann Defense",
+   "origin": "Named after Horatio Caro and Marcus Kann, who analysed it together in the 1880s."
+  },
+  "colle": {
+   "idea": "A quiet setup with the bishop on d3 and the knight on d2, aiming for the e3–e4 break that opens lines toward the black king.",
+   "name": "Colle System",
+   "origin": "Named after Edgar Colle, a Belgian master of the 1920s who built his repertoire around it."
+  },
+  "dutch": {
+   "idea": "Black fights for e4 with the f-pawn and often attacks on the kingside, at the price of a slightly looser king.",
+   "name": "Dutch Defense",
+   "origin": "Named after the Dutch player Elias Stein, who recommended it in a book at the end of the 18th century."
+  },
+  "english": {
+   "idea": "White controls d5 from the side and keeps flexible: the game can turn into a reversed Sicilian or transpose into a 1.d4 opening.",
+   "name": "English Opening",
+   "origin": "Named after the English champion Howard Staunton, who played it in his famous 1843 match against Saint-Amant."
+  },
+  "french": {
+   "idea": "Black prepares …d5 to challenge e4. The position is solid but the light-squared bishop is often stuck behind the e6 pawn.",
+   "name": "French Defense",
+   "origin": "Named after a correspondence match between London and Paris in the 1830s, where the Paris team used it."
+  },
+  "italian": {
+   "idea": "The bishop aims at f7, the weakest square next to the black king. Develop fast, castle, and prepare d4.",
+   "name": "Italian Game",
+   "origin": "Named after the Italian masters of the 16th and 17th centuries, like Gioachino Greco, who analysed it. Its quiet main line is called the Giuoco Piano, \"the quiet game\"."
+  },
+  "kings-gambit": {
+   "game": {
+    "label": "The Immortal Game, London 1851"
+   },
+   "idea": "White offers the f-pawn to tear open the f-file and the center, accepting risk to the king for a fast attack.",
+   "name": "King's Gambit",
+   "origin": "The favourite of the romantic era of the 19th century, when sacrifices and attack ruled the board."
+  },
+  "kings-indian": {
+   "idea": "Black lets White build a big center, then attacks it, often with …e5 and a pawn storm on the kingside.",
+   "name": "King's Indian Defense",
+   "origin": "The \"Indian\" defences take their name from the 19th-century Indian player Moheschunder Bannerjee, who played fianchetto setups like this one. It became a top-level weapon in the mid-20th century."
+  },
+  "kings-knight": {
+   "idea": "White develops and attacks the e5 pawn in one move. The Italian, the Ruy Lopez, the Scotch and the Philidor all begin from this position.",
+   "name": "King's Knight Opening",
+   "origin": "Named for the knight that develops with tempo against e5. Most of the classic open games start here."
+  },
+  "kings-pawn": {
+   "idea": "One move opens lines for the queen and the light-squared bishop and grabs the center. Expect open, tactical games.",
+   "name": "King's Pawn Game",
+   "origin": "Named for the pawn in front of the king, the most popular first move in chess history."
+  },
+  "london": {
+   "idea": "A system more than a line: d4, Bf4, e3, Nf3, c3 and Bd3 against almost anything. The bishop comes out before e3 locks it in.",
+   "name": "London System",
+   "origin": "Named after the London tournament of 1922, where several masters used the setup."
+  },
+  "philidor": {
+   "game": {
+    "label": "Morphy’s Opera Game, Paris 1858"
+   },
+   "idea": "Black holds e5 with a pawn instead of a piece: solid, a little cramped, with the bishop on e7 and the c-pawn ready to support d5 later.",
+   "name": "Philidor Defense",
+   "origin": "Named after François-André Danican Philidor, the strongest player of the 18th century and also a celebrated opera composer."
+  },
+  "pirc": {
+   "idea": "Black lets White take the center, fianchettoes the bishop on g7, and strikes at the center later.",
+   "name": "Pirc Defense",
+   "origin": "Named after Vasja Pirc, a Slovenian grandmaster of the 20th century. Its close cousin, 1…g6, is called the Modern Defense."
+  },
+  "queens-gambit": {
+   "idea": "White offers the c-pawn to pull Black’s d-pawn away from the center. It is not a real gambit: White can almost always win the pawn back.",
+   "name": "Queen's Gambit",
+   "origin": "One of the oldest openings on record, analysed since the early days of modern chess."
+  },
+  "queens-pawn": {
+   "idea": "The d4 pawn is protected by the queen from the start, so White claims the center without giving a target. Games tend to be slower and more strategic than after 1.e4.",
+   "name": "Queen's Pawn Game",
+   "origin": "Named for the pawn in front of the queen. Every opening that starts 1.d4 grows from it."
+  },
+  "ruy-lopez": {
+   "idea": "The bishop attacks the knight that defends e5. The pressure lasts for many moves, which is why it has been a favourite of world champions for over a century.",
+   "name": "Ruy Lopez",
+   "origin": "Named after Ruy López de Segura, a Spanish priest who wrote about it in a chess book in 1561. Also called the Spanish Game."
+  },
+  "scandinavian": {
+   "idea": "Black challenges e4 at once. After 2.exd5 Qxd5 the queen comes out early, so Black must be ready to move it again.",
+   "name": "Scandinavian Defense",
+   "origin": "Named after Scandinavian players who analysed it in the 19th century. Often cited as the opening of the oldest recorded chess game, from Valencia in 1475."
+  },
+  "scotch": {
+   "idea": "White opens the center at once instead of building slowly. The pieces get free play, and Black must react accurately.",
+   "name": "Scotch Game",
+   "origin": "Named after a correspondence match between Edinburgh and London in 1824, where the Edinburgh team played it."
+  },
+  "sicilian": {
+   "idea": "Black fights for d4 from the side, creating an unbalanced game. It is the most popular reply to 1.e4 at master level, and the sharpest.",
+   "name": "Sicilian Defense",
+   "origin": "Described by Italian authors as early as the late 1500s, and named after players from Sicily."
+  },
+  "slav": {
+   "idea": "Black defends d5 with the c-pawn instead of the e-pawn, so the light-squared bishop can still come out to f5 or g4.",
+   "name": "Slav Defense",
+   "origin": "Named after the many Slavic masters who developed it in the early 20th century."
+  },
+  "trompowsky": {
+   "idea": "The bishop goes straight to g5 to pin or trade off the f6 knight before Black settles into a familiar setup.",
+   "name": "Trompowsky Attack",
+   "origin": "Named after the Brazilian master Octávio Trompowsky, who played it in the middle of the 20th century."
+  },
+  "uncommon": {
+   "idea": "They avoid theory, but usually give the opponent the center for free. Answer them with simple development: take the center, bring out the pieces, castle.",
+   "name": "Uncommon Openings",
+   "origin": "A catch-all for first moves outside the main openings. Some have colorful names of their own, but none is common at master level."
+  },
+  "vienna": {
+   "idea": "White develops the queen’s knight first, keeping the option of f4 later, like a King’s Gambit with better preparation.",
+   "name": "Vienna Game",
+   "origin": "Named after the Vienna players who developed it in the middle of the 19th century."
+  }
+ },
+ "story": {
+  "first-moves": {
+   "tagline": "Meet the pieces, learn the rules, and see how a game is won.",
+   "title": "First Moves"
+  },
+  "opening-ideas": {
+   "tagline": "Centre, develop, castle, and dodge the traps waiting for those who don’t.",
+   "title": "Opening Ideas"
+  },
+  "the-immortals": {
+   "tagline": "Walk the games that made chess what it is, then make your own.",
+   "title": "The Immortals"
+  },
+  "the-last-twenty-moves": {
+   "tagline": "Simplify, squeeze, convert. Endgames are where games are decided.",
+   "title": "The Last Twenty Moves"
+  },
+  "the-mating-net": {
+   "tagline": "Every king can be cornered. Learn the patterns that end games.",
+   "title": "The Mating Net"
+  },
+  "the-quiet-board": {
+   "tagline": "Win without fireworks: squares, structures and slow plans.",
+   "title": "The Quiet Board"
+  },
+  "tricks-of-the-trade": {
+   "tagline": "Forks, pins and skewers: the shortcuts to winning material.",
+   "title": "Tricks of the Trade"
+  }
+ }
+}

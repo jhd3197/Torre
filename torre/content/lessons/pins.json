@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "title": "Pins",
+  "summary": "A pinned piece cannot move without exposing something behind it. Learn to pin, and to win the pinned piece.",
+  "category": "tactics",
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "pin",
+  "requires": ["knight-fork"],
+  "steps": [
+    {
+      "id": "what-is-a-pin",
+      "kind": "explain",
+      "title": "What a pin is",
+      "fen": "r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 4",
+      "marks": [["b5", "e8"], ["c6"]],
+      "text": "White's bishop on b5 attacks the knight on c6, and Black's king stands behind it on the same diagonal. If the knight moved, the king would be in check, so it may not move at all. That is an absolute pin. When the piece behind is not the king (a queen or a rook, say), moving is legal but costly: a relative pin.",
+      "narration": "Look at White's bishop on b5. It stares down the diagonal at the knight on c6, and right behind that knight sits Black's king. If the knight moves, the king is in check, so the knight can't move at all. That piece is pinned!",
+      "pose": "idea"
+    },
+    {
+      "id": "pin-the-queen",
+      "kind": "play",
+      "title": "Pin and win",
+      "fen": "6k1/6pp/4q3/8/8/1P6/5PPP/5BK1 w - - 0 1",
+      "prompt": "Black's queen and king share a diagonal. Pin the queen and win it.",
+      "hint": "Put the bishop on that diagonal, on a square your pawn protects.",
+      "line": ["f1c4", "e6c4", "b3c4"],
+      "success": "Bc4 pins the queen to the king. She can only take the bishop, and the b-pawn takes her back: a queen for a bishop.",
+      "narration": "Black's queen and king are sitting on the very same diagonal. Can you pin that queen and win her? Slide your bishop to c4. Don't worry, your pawn on b3 keeps it safe, and if the queen takes, the pawn takes her right back.",
+      "pose": "detective"
+    },
+    {
+      "id": "absolute-or-relative",
+      "kind": "choose",
+      "title": "Absolute or relative",
+      "question": "A white bishop on g5 attacks Black's knight on f6, and Black's queen stands behind it on d8. What kind of pin is this?",
+      "options": [
+        { "text": "A relative pin", "correct": true, "why": "The knight may legally move, but then the bishop takes the queen. Moving is allowed, just expensive." },
+        { "text": "An absolute pin", "why": "Only a pin against the king is absolute. Here the piece behind is the queen." },
+        { "text": "It is not a pin", "why": "It is: a more valuable piece stands behind the attacked knight on the same line." }
+      ],
+      "narration": "One last check. A bishop on g5 attacks a knight on f6, and Black's queen stands behind it on d8. Is that an absolute pin, a relative pin, or no pin at all? Nail this and the pin is yours!",
+      "pose": "trophy"
+    }
+  ]
+}

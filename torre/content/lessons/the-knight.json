@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "title": "The knight",
+  "summary": "The knight jumps in an L-shape and is the only piece that can leap over others. Learn its move and why it hates the corner.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 4,
+  "steps": [
+    {
+      "id": "the-l-jump",
+      "kind": "explain",
+      "title": "The L-shaped jump",
+      "fen": "4k3/8/8/8/3N4/8/8/4K3 w - - 0 1",
+      "marks": [["b3"], ["b5"], ["c2"], ["c6"], ["e2"], ["e6"], ["f3"], ["f5"]],
+      "text": "The knight moves in an L: two squares in one direction, then one square to the side. From d4 it can land on any of the eight circled squares. Notice that it always lands on a square of the opposite color to the one it started on.",
+      "narration": "The knight is the odd one out. It moves in an L shape: two squares one way, then one square to the side. From the middle of the board it has eight places to land.",
+      "pose": "puzzle"
+    },
+    {
+      "id": "jumping-over",
+      "kind": "explain",
+      "title": "Jumping over pieces",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": [["g1", "f3"]],
+      "demo": ["g1f3"],
+      "text": "The knight is the only piece that can jump. Pieces in between do not block it; only the landing square matters. That is why a knight can move on the very first turn, hopping right over its own pawns.",
+      "narration": "Here's the knight's superpower: it can jump. At the very start of the game, it hops right over the pawns. [move] Nothing in between can block it.",
+      "pose": "excited"
+    },
+    {
+      "id": "knight-in-the-corner",
+      "kind": "explain",
+      "title": "Knights hate corners",
+      "fen": "4k3/8/8/8/8/8/8/N3K3 w - - 0 1",
+      "marks": [["b3"], ["c2"]],
+      "text": "A knight in the corner reaches only two squares, compared with eight in the center. Players say a knight on the rim is dim. Keep your knights near the middle of the board, where they control the most squares.",
+      "narration": "Poor knight. Stuck in the corner, it can only reach two squares. Remember this one: a knight on the rim is dim. Bring your knights toward the center.",
+      "pose": "sad"
+    },
+    {
+      "id": "hop-and-capture",
+      "kind": "play",
+      "title": "Catch the intruder",
+      "fen": "6k1/5ppp/8/8/8/8/PPPr1PPP/1N4K1 w - - 0 1",
+      "prompt": "Black's rook has invaded your second rank. Capture it with the knight.",
+      "hint": "Count two squares one way and one square to the side from b1.",
+      "line": ["b1d2"],
+      "success": "Knight to d2 takes the rook. Black's rook was attacking your pawns, and now it's gone.",
+      "narration": "A black rook has crashed into your camp on d2. Your knight on b1 is close by. Can you see the L-shaped jump that captures it?",
+      "pose": "detective"
+    },
+    {
+      "id": "safe-knight-capture",
+      "kind": "play",
+      "title": "Which capture is free?",
+      "fen": "6k1/6pp/5p2/2b5/4N3/8/5PPP/6K1 w - - 0 1",
+      "prompt": "Your knight can capture the bishop on c5 or the pawn on f6. Take the free one.",
+      "hint": "Which of the two is protected by a pawn?",
+      "line": ["e4c5"],
+      "success": "The bishop had no defender, so you won a piece. On f6 your knight would have been taken by the g7 pawn.",
+      "narration": "Your knight can capture two things. The pawn on f6 gives check, but look who protects it. The bishop on c5, on the other hand, is all alone.",
+      "pose": "magnify"
+    },
+    {
+      "id": "knight-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Which of these is true about the knight?",
+      "options": [
+        { "text": "It can jump over other pieces", "correct": true, "why": "The knight is the only piece that jumps. Only its landing square has to be free of your own pieces." },
+        { "text": "It is strongest in the corner", "why": "In the corner it reaches only two squares. In the center it reaches eight." },
+        { "text": "It moves in a straight line", "why": "That is the rook. The knight moves in an L: two squares, then one to the side." }
+      ],
+      "narration": "Final question about the knight. Which of these statements is true?",
+      "pose": "thinking"
+    }
+  ]
+}

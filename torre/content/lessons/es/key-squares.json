@@ -1,0 +1,62 @@
+{
+ "title": "Cuadrados clave",
+ "summary": "Cada peón tiene algunos cuadrados clave. Coloca tu rey en uno de ellos y el peón se corona, sin importar quién tenga el turno.",
+ "steps": [
+  {
+   "id": "what-are-key-squares",
+   "title": "Dos filas adelante",
+   "text": "Para un peón en su propio lado del tablero, los cuadrados clave son los tres cuadrados a dos filas delante de él. Para el peón en e4, son d6, e6 y f6. Si el rey de las Blancas llega a alguno de ellos, el peón se corona, sin importar quién tenga el turno. Eso convierte un cálculo difícil en una simple carrera: ¿puede mi rey llegar allí?",
+   "narration": "Cada peón tiene algunos cuadrados mágicos llamados cuadrados clave. Para un peón todavía en su propio lado del tablero, son los tres cuadrados a dos filas delante de él. Lleva a tu rey a uno de ellos, y el peón se coronará, sin importar quién tenga el turno."
+  },
+  {
+   "id": "far-behind",
+   "title": "El peón puede esperar",
+   "prompt": "El peón en f2 tiene cuadrados clave en e4, f4 y g4. Alcanza uno.",
+   "hint": "Uno de ellos está a solo un paso de tu rey.",
+   "success": "El rey en e4 está sobre un cuadrado clave, así que el juego está ganado, incluso si el peón aún no se ha movido. Un movimiento de peón aquí permitiría que el rey de las Negras se llevara los cuadrados clave.",
+   "narration": "El peón todavía está en casa, pero eso no importa. Sus cuadrados clave son e4, f4 y g4. Tu rey está a un paso de uno de ellos. Tómalo, y la victoria ya está asegurada."
+  },
+  {
+   "id": "beat-the-king-there",
+   "title": "Derrota al rey allí",
+   "prompt": "Los cuadrados clave del peón en c3 son b5, c5 y d5. Llégalo allí primero.",
+   "hint": "¿Qué casilla clave puede alcanzar tu rey ahora mismo?",
+   "success": "El rey a b5 cae en una casilla clave antes de que el rey negro pueda cubrirla. Desde allí, tu rey guía al peón hasta el final.",
+   "narration": "Aquí el rey negro está cerca, así que tienes que ser rápido. Las casillas clave del peón de c3 son b5, c5 y d5. ¡Agarra una ahora mismo!"
+  },
+  {
+   "id": "further-up",
+   "title": "Más adelante en el tablero",
+   "text": "Una vez que el peón cruza a la mitad del tablero enemigo, obtiene más casillas clave: las tres casillas una fila adelante y las tres casillas dos filas adelante. Para el peón en e5, esas son d6, e6, f6, d7, e7 y f7. Cuanto más lejos ha avanzado el peón, más fácil es ganar.",
+   "narration": "Cuando el peón cruza el medio del tablero, gana más casillas clave: las tres justo delante de él y las tres delante de esas. Para un peón en e5, eso son seis casillas en total."
+  },
+  {
+   "id": "six-squares",
+   "title": "Seis casillas para elegir",
+   "prompt": "Coloca a tu rey en una casilla clave del peón de e5.",
+   "hint": "Tu rey toca dos casillas clave, pero una de ellas está al lado del rey negro.",
+   "success": "Rey a d6. Desde allí, tu rey escolta al peón: dondequiera que vaya el rey negro, el peón avanza con tu rey a su lado.",
+   "narration": "Tu rey puede alcanzar las casillas clave de inmediato, pero una de ellas está fuera de los límites porque el rey negro la está protegiendo. Elige la segura."
+  },
+  {
+   "id": "name-them",
+   "title": "¡Revísate!",
+   "question": "¿Cuáles son las casillas clave de un peón blanco en d3?",
+   "options": [
+    {
+     "text": "c5, d5 y e5",
+     "why": "El peón está en la mitad del tablero de blancas, así que sus cuadrados clave son los tres cuadrados dos casillas adelante."
+    },
+    {
+     "text": "c4, d4 y e4",
+     "why": "Esos están solo una casilla adelante. Desde allí, el rey negro aún puede tomar la oposición y mantener el empate."
+    },
+    {
+     "text": "d8 solamente",
+     "why": "Ahí es donde el peón se corona. Los cuadrados clave son donde tu rey debe estar para forzarlo."
+    }
+   ],
+   "narration": "¡Último! ¿Cuáles son los cuadrados clave de un peón blanco en d3? Conoce estos, y los finales de rey y peón se convierten en carreras sencillas. ¡Buen trabajo!"
+  }
+ ]
+}

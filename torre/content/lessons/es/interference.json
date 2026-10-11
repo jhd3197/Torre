@@ -1,0 +1,48 @@
+{
+ "title": "Interferencia",
+ "summary": "Deja caer una pieza sobre la línea entre un defensor y lo que defiende. Con la línea cortada, la defensa deja de funcionar.",
+ "steps": [
+  {
+   "id": "cut-the-line",
+   "title": "Corta la línea",
+   "text": "La torre de negras en a8 impide que el peón promocione al custodiar e8 a lo largo de la última fila. Torres, alfiles y damas defienden desde la distancia, y una línea larga puede ser cortada. Coloca una pieza en una casilla entre el defensor y lo que defiende, y la defensa se apaga. Eso es interferencia.",
+   "narration": "La torre de negras está custodiando e8 desde muy lejos, en a8. Los defensores de largo alcance tienen una debilidad: cualquier cosa colocada entre ellos los bloquea. Encuentra la casilla entre la torre y e8, y el peón está libre."
+  },
+  {
+   "id": "block-the-rook",
+   "title": "Bloquea al guardián",
+   "prompt": "Corta la torre de negras de e8 y crea una nueva dama.",
+   "hint": "Tu torre puede aterrizar en la octava fila entre a8 y e8. El peón cubre esa casilla.",
+   "success": "Rd8! corta la torre de e8. Rxd8 exd8=Dama es desesperado para negras, y después Kf6 puedes tomar la torre en a8 o coronar el peón.",
+   "narration": "Deja caer tu torre en d8. Bloquea la línea de la torre negra a e8, y si la torre negra la toma, tu peón la recupera y se convierte en dama. Negras no pueden mantener ambas."
+  },
+  {
+   "id": "block-the-diagonal",
+   "title": "Bloquea la diagonal",
+   "prompt": "Quieres dar mate en g7, pero la dama de negras lo protege desde b2. Soluciona eso con un movimiento.",
+   "hint": "Coloca una pieza protegida en la larga diagonal, en una casilla que también cubra g7.",
+   "success": "¡Be5! corta la dama de g7 y apoya el mate Qg7 al mismo tiempo. Si la dama captura al alfil, tu torre la toma.",
+   "narration": "Tu dama quiere g7, pero la dama negra la cubre desde b2, y nada de tus piezas la respalda. Coloca tu alfil en e5, justo en su camino. Ahora el alfil apoya g7, y si la dama negra lo captura, tu torre la toma."
+  },
+  {
+   "id": "interference-quiz",
+   "title": "¿Qué piezas pueden ser cortadas?",
+   "question": "¿Contra qué tipo de defensor funciona la interferencia?",
+   "options": [
+    {
+     "text": "Piezas de largo alcance (torres, alfiles, damas) que defienden a lo largo de una línea.",
+     "why": "Solo una línea puede ser bloqueada. Los caballos, los reyes y los peones defienden casillas justo al lado de ellos o saltando, así que nada puede interponerse."
+    },
+    {
+     "text": "Caballos",
+     "why": "Un caballo salta, así que no puedes colocar nada entre él y la casilla que defiende."
+    },
+    {
+     "text": "Peones",
+     "why": "Un peón defiende las casillas diagonalmente frente a él, sin espacio para bloquear."
+    }
+   ],
+   "narration": "Pregunta final. ¿Contra qué tipo de defensor funciona la interferencia? Piensa en qué piezas defienden a lo largo de una línea. Hoy has aprendido una idea avanzada. ¡Buen trabajo!"
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "The square of the pawn",
+  "summary": "Can the king catch a runaway pawn? Draw an imaginary square and you know the answer without counting a single move.",
+  "category": "endgames",
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "draw-the-square",
+      "kind": "explain",
+      "title": "Draw the square",
+      "fen": "8/8/8/8/P7/8/8/k6K w - - 0 1",
+      "marks": [["a4", "a8"], ["a8", "e8"], ["e8", "e4"], ["e4", "a4"]],
+      "text": "Picture a square with one side running from the pawn to its promotion square. For the pawn on a4 that is a4 to a8, so the square reaches across to the e-file. If the defending king can step inside this square, it catches the pawn. If it cannot, the pawn queens.",
+      "narration": "Here's a trick that saves you a lot of counting. Draw a line from the pawn to the square where it promotes, then build a square on that line. If the enemy king can step inside the square, it catches the pawn. If not, the pawn becomes a queen.",
+      "pose": "pointer"
+    },
+    {
+      "id": "outside-the-square",
+      "kind": "play",
+      "title": "Run!",
+      "fen": "8/8/8/5k2/P7/8/8/7K w - - 0 1",
+      "prompt": "Black's king is just outside the square. Make sure it never gets in.",
+      "hint": "Every pawn step makes the square smaller. Do not give the king a free move.",
+      "line": ["a4a5", "f5e4", "a5a6", "e4d5", "a6a7"],
+      "success": "The pawn runs and the square shrinks faster than the king can walk. Any king move would have let Black step into the square on e5 and catch the pawn.",
+      "narration": "Black's king is one step outside the square, so don't waste a single move. Push the pawn, and keep pushing. Each step shrinks the square, and the king never gets inside.",
+      "pose": "excited"
+    },
+    {
+      "id": "catch-it",
+      "kind": "play",
+      "title": "Catch the pawn",
+      "fen": "8/8/8/8/6P1/1k6/8/K7 b - - 0 1",
+      "prompt": "You are Black. Step into the square of the g-pawn and stay in it.",
+      "hint": "The square of the g4 pawn runs from the c-file to the g-file, and from the fourth rank up. Which king move lands inside it?",
+      "line": ["b3c4", "g4g5", "c4d5", "g5g6", "d5e6"],
+      "success": "Each time the pawn moves, the square gets smaller, and each time your king steps into it again. Your king now guards the squares in front of the pawn, so it can never queen safely.",
+      "narration": "Now you are the defender. Your king has exactly one way into the square of the g-pawn. Find it, and then follow the pawn: every time it steps forward, the square shrinks, and you step inside again.",
+      "pose": "detective"
+    },
+    {
+      "id": "double-step",
+      "kind": "choose",
+      "title": "Watch the first move",
+      "fen": "8/8/8/8/7k/8/1P6/7K w - - 0 1",
+      "question": "White to move. Which move wins?",
+      "options": [
+        { "text": "Pawn to b4, two squares at once", "correct": true, "why": "A pawn on its starting square can jump two squares, so draw its square from b3, not b2. After b4 the square only reaches the f-file and Black's king cannot get in." },
+        { "text": "Pawn to b3", "why": "Too slow. The square of a pawn on b3 reaches the g-file, and Black's king steps in with king to g4." },
+        { "text": "King to g2, to keep the black king busy", "why": "White's king cannot stop anything from there, and Black's king walks toward the pawn and catches it." }
+      ],
+      "narration": "Last one, with a twist. A pawn on its starting square can jump two squares at once, so its square is smaller than it looks. White to move: which move wins? Get this right and runaway pawns will never fool you again.",
+      "pose": "trophy"
+    }
+  ]
+}

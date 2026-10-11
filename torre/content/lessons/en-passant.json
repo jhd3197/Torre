@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "En passant",
+  "summary": "A special pawn capture: when an enemy pawn rushes two squares past yours, you may take it as if it had moved only one. Learn when it's allowed.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 10,
+  "requires": ["the-pawn"],
+  "steps": [
+    {
+      "id": "the-rule",
+      "kind": "explain",
+      "title": "Taking in passing",
+      "fen": "4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1",
+      "marks": [["d7", "d5"], ["e5", "d6"]],
+      "demo": ["d7d5", "e5d6"],
+      "text": "Black's pawn rushes two squares, from d7 to d5, landing right beside White's pawn on e5. White may capture it as if it had moved only one square: the white pawn moves diagonally to d6, and the black pawn on d5 is removed. This is called en passant, French for 'in passing'.",
+      "narration": "Here's the strangest rule in chess. Black's pawn tries to sneak past with a double step. [move] But White's pawn can catch it in passing, moving to the square it skipped over and removing it. [move]",
+      "pose": "shocked"
+    },
+    {
+      "id": "right-away-only",
+      "kind": "explain",
+      "title": "Now or never",
+      "fen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1",
+      "marks": [["e5", "d6"]],
+      "text": "Three things must be true. Your pawn is on its fifth rank, the enemy pawn just moved two squares to land right next to it, and you capture on the very next move. If you wait even one turn, the chance is gone for good.",
+      "narration": "En passant has a time limit. You can only do it immediately, on the very next move. Wait one turn, and the chance disappears forever.",
+      "pose": "alarm"
+    },
+    {
+      "id": "en-passant-fork",
+      "kind": "play",
+      "title": "Capture in passing",
+      "fen": "6k1/2r1n1pp/8/3pP3/8/5N2/5PPP/1R4K1 w - d6 0 1",
+      "prompt": "Black just played pawn d7 to d5. Capture it en passant, then win material.",
+      "hint": "Your pawn goes to d6, the square the black pawn skipped. From there it attacks c7 and e7.",
+      "line": ["e5d6", "c7a7", "d6e7"],
+      "success": "Taking en passant put your pawn on d6, attacking the rook and the knight at once. Black saved the rook, and the pawn took the knight.",
+      "narration": "Black's pawn just rushed to d5, right beside yours. Capture it en passant. Your pawn lands on d6, and look what it attacks from there!",
+      "pose": "detective"
+    },
+    {
+      "id": "black-takes-en-passant",
+      "kind": "play",
+      "title": "Now as Black",
+      "fen": "4r1k1/5ppp/8/8/3pP3/8/3R1NPP/6K1 b - e3 0 1",
+      "prompt": "White just pushed the e-pawn two squares. Take it en passant and attack two pieces.",
+      "hint": "Your d-pawn captures diagonally onto e3, the square White's pawn skipped.",
+      "line": ["d4e3"],
+      "success": "Pawn takes on e3 en passant. Now it attacks both the rook on d2 and the knight on f2, and White can only save one.",
+      "narration": "You're Black now. White's pawn just jumped from e2 to e4, right past your pawn on d4. Capture it in passing, and your pawn will attack two white pieces at once.",
+      "pose": "excited"
+    },
+    {
+      "id": "en-passant-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Black's pawn moved two squares to land beside your pawn, but you made a different move instead. Can you capture it en passant on your next turn?",
+      "options": [
+        { "text": "No, en passant is only allowed right away", "correct": true, "why": "The capture must be made on the very next move. After that the chance is gone." },
+        { "text": "Yes, any time the pawns stay side by side", "why": "Only immediately after the double step. Waiting a turn loses the right." },
+        { "text": "Yes, but only if it gives check", "why": "Check has nothing to do with it. The timing is what matters." }
+      ],
+      "narration": "Last question. You missed the chance to capture in passing. Can you still do it a move later?",
+      "pose": "thinking"
+    }
+  ]
+}

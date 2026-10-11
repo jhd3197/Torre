@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "title": "London traps",
+  "summary": "One trap to steer clear of (the ...c4 trick against b2) and one to set: the bishop sacrifice on h7.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "London System",
+  "order": 4,
+  "requires": ["london-vs-c5-qb6"],
+  "practice": "sacrifice",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "autopilot",
+      "kind": "explain",
+      "title": "The danger of autopilot",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "demo": ["d2d4", "d7d5", "c1f4", "g8f6", "e2e3", "c7c5", "g1f3", "d8b6", "f1d3", "c5c4", "d3e2", "b6b2"],
+      "marks": [["d3"], ["b2"]],
+      "text": "Because the London is always the same setup, it is tempting to play the moves without looking. Here White plays bishop to d3 while the queen on b6 is already staring at b2. Black answers ...c4!, hitting the bishop. The bishop has to move, and then the queen takes b2, eyeing your rook on a1 too. Step through it.",
+      "narration": "The London's biggest danger is playing on autopilot. Pawn to d4. [move] Black answers d5. [move] Bishop to f4. [move] Knight to f6. [move] Pawn to e3. [move] Black pushes c5. [move] Knight to f3. [move] And Black's queen comes to b6. [move] White puts the bishop on d3 like always. [move] One pawn push kicks it. [move] The bishop has to move. [move] And b2 falls. [move]",
+      "pose": "alarm"
+    },
+    {
+      "id": "limit-the-damage",
+      "kind": "play",
+      "title": "Limit the damage",
+      "fen": "rnb1kb1r/pp2pppp/5n2/3p4/2pP1B2/4PN2/PqP1BPPP/RN1QK2R w KQkq - 0 7",
+      "prompt": "You fell for it and b2 is gone. Black's queen now eyes your rook on a1. Save it with a useful move.",
+      "hint": "Your queen on d1 would guard a1 along the first rank if one piece got out of the way.",
+      "line": ["b1d2"],
+      "success": "Knight to d2 develops and clears the first rank, so your queen now protects the rook. You are a pawn down, but nothing more is falling. Next time, guard b2 with the queen before the bishop goes to d3.",
+      "narration": "Say it happened to you. The pawn is gone and the rook on a1 is in danger. Don't lose more. Find a move that develops and protects the rook.",
+      "pose": "sheepish"
+    },
+    {
+      "id": "greek-gift-setup",
+      "kind": "explain",
+      "title": "A trap for Black: the bishop on h7",
+      "fen": "r1b2rk1/pp1n1ppp/1qn1p3/2ppP3/3P4/2PB1N2/PP1N1PPP/R2Q1RK1 w - - 0 12",
+      "marks": [["d3", "h7"], ["f3", "g5"], ["e5"], ["h7"]],
+      "text": "Now the good news. Your pawn on e5 has chased Black's knight away from f6, the usual defender of h7. Black's queen sits on b6 and cannot reach g5 or h5. When the bishop on d3, a knight that can jump to g5 and a queen that can come forward all line up like this, the bishop sacrifice on h7 is often deadly. It is called the Greek gift.",
+      "narration": "Now the fun part. Black's knight has been pushed off f6, so nothing guards h7 except the king. Your bishop, your knight and your queen are all ready. That is the setup for a famous sacrifice called the Greek gift.",
+      "pose": "idea"
+    },
+    {
+      "id": "greek-gift",
+      "kind": "play",
+      "title": "The Greek gift",
+      "fen": "r1b2rk1/pp1n1ppp/1qn1p3/2ppP3/3P4/2PB1N2/PP1N1PPP/R2Q1RK1 w - - 0 12",
+      "prompt": "Sacrifice the bishop on h7, then bring in the knight and the queen.",
+      "hint": "Take on h7 with check, jump to g5 with check, and when the king goes to g6, bring the queen to the g-file.",
+      "line": ["d3h7", "g8h7", "f3g5", "h7g6", "d1g4"],
+      "success": "Queen to g4 lines up with the king on g6, and any knight move would now give a discovered check. Black's king is in serious trouble and usually has to give material back. If the king had gone back to g8 instead, queen to h5 would have led to mate.",
+      "narration": "Here we go. Bishop takes on h7 with check, knight to g5 with check, and when the king steps up to g6, bring your queen onto the g-file behind the knight.",
+      "pose": "detective"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What made the bishop sacrifice on h7 work here?",
+      "options": [
+        { "text": "No knight on f6 to guard h7, and White's knight and queen could join fast", "correct": true, "why": "Exactly. Without the f6 knight, h7 has only the king to protect it, and the knight check on g5 plus the queen finish the job." },
+        { "text": "It always works once Black has castled", "why": "It needs the right conditions. With a knight on f6, or a black piece covering g5, it usually just loses a bishop." },
+        { "text": "Black's queen was trapped on b6", "why": "The queen was free; it was simply too far away to help the king." }
+      ],
+      "narration": "Final question. What made the Greek gift work in this position? Remember the ingredients and you'll spot it in your own games. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

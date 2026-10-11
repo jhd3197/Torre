@@ -1,0 +1,217 @@
+{
+  "_text": {
+    "gameTitle": "Your game vs {{opponent}}",
+    "gameTitlePlain": "Your game",
+    "gameSummary": "The moments that decided your game, replayed so you find the better move.",
+    "moveTitle": "Move {{move}}",
+    "findTitle": "Find the better move",
+    "whyTitle": "What went wrong?",
+    "sessionSummary": "Your own slip, a quick lesson and puzzles picked for you.",
+    "placementTitle": "What do you already know? {{category}}",
+    "placementIntro": "Here is one position from each of {{count}} {{category}} lessons you have not taken. Solve one on the first try, without a hint, and you can mark that lesson as known and skip it.",
+    "placementSummary": "A quick check that lets you skip the lessons you already know."
+  },
+  "_domains": {
+    "count": [
+      2,
+      20
+    ],
+    "move": [
+      1,
+      80
+    ],
+    "percent": [
+      0,
+      100
+    ]
+  },
+  "skills": {
+    "hanging-piece": {
+      "name": "hanging pieces",
+      "title": "Hanging pieces",
+      "option": "A piece was left hanging",
+      "idea": "Before every move, check what your opponent can take for free.",
+      "missed": "There was a free piece to take here.",
+      "allowed": "This move left a piece with no defender."
+    },
+    "defence": {
+      "name": "defending",
+      "title": "Defence",
+      "option": "There was a threat to stop",
+      "idea": "When you are attacked, find the one move that holds everything together.",
+      "missed": "There was a threat to deal with first.",
+      "allowed": "This move ignored your opponent's threat."
+    },
+    "fork": {
+      "name": "forks",
+      "title": "Forks",
+      "option": "A fork",
+      "idea": "A fork is one piece attacking two targets at once.",
+      "missed": "You had a fork here.",
+      "allowed": "This move let your opponent fork your pieces."
+    },
+    "pin": {
+      "name": "pins",
+      "title": "Pins",
+      "option": "A pin",
+      "idea": "A pinned piece cannot move without exposing something bigger behind it.",
+      "missed": "You could have pinned a piece here.",
+      "allowed": "This move walked into a pin."
+    },
+    "skewer": {
+      "name": "skewers",
+      "title": "Skewers",
+      "option": "A skewer",
+      "idea": "A skewer attacks a big piece and wins the one behind it.",
+      "missed": "There was a skewer here.",
+      "allowed": "This move lined your pieces up for a skewer."
+    },
+    "discovered-attack": {
+      "name": "discovered attacks",
+      "title": "Discovered attacks",
+      "option": "A discovered attack",
+      "idea": "Move one piece out of the way and the piece behind it attacks.",
+      "missed": "A discovered attack was waiting here.",
+      "allowed": "This move let your opponent unleash a discovered attack."
+    },
+    "deflection": {
+      "name": "deflection",
+      "title": "Deflection",
+      "option": "A defender was overloaded",
+      "idea": "Pull a defender away and what it guarded falls.",
+      "missed": "You could have pulled a defender away here.",
+      "allowed": "This move left a defender with too many jobs."
+    },
+    "sacrifice": {
+      "name": "sacrifices",
+      "title": "Sacrifices",
+      "option": "A sacrifice",
+      "idea": "Sometimes giving material away wins something much bigger.",
+      "missed": "A sacrifice would have broken through here.",
+      "allowed": "This move let your opponent break through with a sacrifice."
+    },
+    "mate-in-one": {
+      "name": "mate in one",
+      "title": "Mate in one",
+      "option": "Checkmate in one move",
+      "idea": "Always look at every check. One of them might be mate.",
+      "missed": "You had checkmate in one move here.",
+      "allowed": "This move allowed checkmate in one."
+    },
+    "mating-attack": {
+      "name": "mating attacks",
+      "title": "Mating attacks",
+      "option": "A forced checkmate",
+      "idea": "Checks and threats, one after another, until the king has nowhere to go.",
+      "missed": "You had a forced checkmate here.",
+      "allowed": "This move let your opponent force checkmate."
+    },
+    "back-rank": {
+      "name": "the back rank",
+      "title": "Back-rank mates",
+      "option": "A back-rank mate",
+      "idea": "A king stuck behind its own pawns can be mated on the back rank.",
+      "missed": "Their back rank was weak here.",
+      "allowed": "This move left your back rank open to mate."
+    },
+    "promotion": {
+      "name": "promotion",
+      "title": "Promotion",
+      "option": "A pawn could promote",
+      "idea": "A pawn that reaches the last rank becomes a queen. Push it, or stop it.",
+      "missed": "You could have pushed a pawn through to promote here.",
+      "allowed": "This move let your opponent's pawn run through."
+    },
+    "pawn-endgame": {
+      "name": "pawn endgames",
+      "title": "Pawn endgames",
+      "option": "A pawn endgame idea",
+      "idea": "In pawn endgames every tempo counts, so count before you move.",
+      "missed": "There was a winning pawn move here.",
+      "allowed": "This move threw away the pawn endgame."
+    },
+    "piece-endgame": {
+      "name": "endgames with pieces",
+      "title": "Piece endgames",
+      "option": "An endgame technique",
+      "idea": "In the endgame, activate your king and your pieces before anything else.",
+      "missed": "There was a cleaner way to win the endgame here.",
+      "allowed": "This move made the endgame harder."
+    }
+  },
+  "briefing": {
+    "hello": [
+      "Hi, it's Rooky!",
+      "Welcome back! Rooky here.",
+      "Good to see you! It's Rooky."
+    ],
+    "games": {
+      "1": "You played one game since last time.",
+      "other": "You played {{count}} games since last time."
+    },
+    "noGames": "Play or import a few games, and I'll find what we should work on.",
+    "focus": "Right now, we're working on {{skill}}.",
+    "missedWeek": {
+      "1": "You missed one of these in your games this week.",
+      "other": "You missed {{count}} of these in your games this week."
+    },
+    "cleanWeek": "No slips with it in your games this week. Nice!",
+    "progress": "Since we started, {{percent}} percent of your answers were clean.",
+    "almost": "You're close to mastering it.",
+    "graduated": "You mastered {{skill}}! Time for something new.",
+    "added": "New focus: {{skill}}.",
+    "session": [
+      "Your session is ready. Let's go!",
+      "I built today's session for you. Ready?",
+      "Today's session is waiting for you."
+    ],
+    "sessionDone": [
+      "You finished today's session. Great work!",
+      "Session done for today. See you tomorrow!"
+    ]
+  },
+  "recap": {
+    "focus": "That ties in with what we're working on: {{skill}}.",
+    "lesson": "I made you a lesson from this game. Want to see it?",
+    "clean": "No big slips to fix in this game. Nice!"
+  },
+  "lesson": {
+    "gameIntro": [
+      "Let's look at the moments that decided this game.",
+      "Let's go back to the key moments of this game."
+    ],
+    "onMove": "On move {{move}}, you played",
+    "reply": "Now your opponent can play",
+    "best": "The best move was",
+    "find": [
+      "Find the better move.",
+      "Now find the move you missed."
+    ],
+    "whatWentWrong": "What went wrong here?",
+    "gameOutro": [
+      "Those are the moments to remember from this game.",
+      "Remember these, and the next game will go better."
+    ],
+    "sessionIntro": "Today's session: {{skill}}.",
+    "yourMoment": [
+      "Here's a moment from one of your games.",
+      "First, a moment from your own games."
+    ],
+    "practice": [
+      "Now it's your turn. Find the best move.",
+      "Your turn. Find the strongest move.",
+      "Find the winning idea."
+    ],
+    "review": "This one tripped you up before. Try it again.",
+    "solved": [
+      "That's it!",
+      "Well found!",
+      "Exactly!",
+      "That's the move!"
+    ],
+    "sessionOutro": [
+      "That's today's session. Great work!",
+      "Session done. Every one of these makes you stronger."
+    ]
+  }
+}

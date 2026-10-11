@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "title": "King and rook mate",
+  "summary": "A rook can mate a lone king too, with your king's help: fence the king in, push it to the edge, and face it with your king.",
+  "category": "checkmates",
+  "unit": "Basic mates",
+  "order": 2,
+  "level": "beginner",
+  "minutes": 6,
+  "requires": ["queen-mate"],
+  "practice": "mate-in-2",
+  "steps": [
+    {
+      "id": "the-fence",
+      "kind": "explain",
+      "title": "The rook builds a fence",
+      "fen": "8/8/3k4/8/7R/8/8/4K3 w - - 0 1",
+      "marks": [["h4", "a4"], ["d6"]],
+      "text": "The rook on the fourth rank is a fence Black's king cannot cross. A rook covers fewer squares than a queen, so your king has to do more of the work. The goal is the same: push the king to the edge of the board and mate it there.",
+      "narration": "With a rook instead of a queen, the idea is the same but a little slower. The rook is a fence across the board, and your king is the shepherd that pushes Black's king back toward the edge.",
+      "pose": "present"
+    },
+    {
+      "id": "face-to-face",
+      "kind": "play",
+      "title": "Face to face",
+      "fen": "4k3/8/4K3/8/8/8/8/R7 w - - 0 1",
+      "prompt": "The kings face each other. Checkmate in one move.",
+      "hint": "Your king already guards d7, e7 and f7. Check along the back rank.",
+      "line": ["a1a8"],
+      "success": "Rook to a8 is mate. The rook covers the whole eighth rank and your king covers the seventh.",
+      "narration": "Look at the two kings, standing face to face with one square between them. That's called the opposition. Your king guards the seventh rank, so a rook check on the back rank is checkmate.",
+      "pose": "detective"
+    },
+    {
+      "id": "take-the-opposition",
+      "kind": "play",
+      "title": "Step into the opposition",
+      "fen": "5k2/8/8/5K2/8/8/6R1/8 w - - 0 1",
+      "prompt": "Mate in two. Move your king first.",
+      "hint": "The rook already keeps the king off the g-file. Put your king where Black's king will have to face it.",
+      "line": ["f5e6", "f8e8", "g2g8"],
+      "success": "King to e6 leaves Black only e8, right in front of your king. Then rook to g8 is mate.",
+      "narration": "The rook on the g-file already blocks one side. Walk your king to e6. Black's king has one square left, e8, which puts it face to face with your king, and the rook does the rest.",
+      "pose": "playing"
+    },
+    {
+      "id": "waiting-move",
+      "kind": "play",
+      "title": "The waiting move",
+      "fen": "4k3/8/5K2/8/5R2/8/8/8 w - - 0 1",
+      "prompt": "Mate in two. Use the rook to take away squares so the king must walk into the opposition.",
+      "hint": "Cover the d-file. Then the king's only move is toward your king.",
+      "line": ["f4d4", "e8f8", "d4d8"],
+      "success": "Rook to d4 takes d7 and d8 away. The only move left is king to f8, facing your king, and rook to d8 is mate.",
+      "narration": "Sometimes you don't check at all. Slide the rook to the d-file and simply wait. Black's king is forced to step to f8, straight into the opposition, and the rook drops to the back rank for mate.",
+      "pose": "thinking"
+    },
+    {
+      "id": "when-to-check",
+      "kind": "choose",
+      "title": "When does the check work?",
+      "question": "Black's king is on the back rank and your rook can check along it. When is that check checkmate?",
+      "options": [
+        { "text": "When your king stands directly in front of Black's king, one square apart", "correct": true, "why": "Then your king guards all three squares in front of Black's king, and the rook covers the rank it stands on." },
+        { "text": "Whenever Black's king is on the edge", "why": "If your king is not helping, Black's king just steps forward off the edge." },
+        { "text": "When your rook is right next to Black's king", "why": "A rook next to the king can simply be captured unless something protects it." }
+      ],
+      "narration": "Here's the key idea in one question. When does a rook check on the back rank turn into checkmate? Get this, and you can mate with a single rook. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,687 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* /profile — name, level and streak up top, then rating tiles, white panels for the record,
+   openings, recent games and opponents, the awards grid, event crests and the doorway cards.
+   Panels follow the bot lobby's look (Torre Profile design). */
+
+$panel-radius: 22px;
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-bottom: 56px;
+  color: $lobby-ink;
+  animation: arrive 0.35s ease-out both;
+}
+
+.profile-page h2 {
+  margin: 0;
+  font: 900 #{$fs-2xl}/ 1.2 $font-sans;
+  letter-spacing: -0.2px;
+}
+
+// ---- Header: avatar, name, archive size, and the level card ----
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.profile-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: 28px;
+  background: $lobby-button;
+  color: $lime;
+  font: 900 #{$fs-6xl} $font-sans;
+  box-shadow: 0 4px 0 $lobby-button-shade;
+}
+.profile-who {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1 1 260px;
+}
+.profile-who h1 {
+  margin: 0;
+  font: 900 #{$fs-8xl}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.profile-who p {
+  margin: 0;
+  font-size: $fs-base;
+  color: $sage-600;
+}
+
+.profile-level-card {
+  flex: 0 1 360px;
+  min-width: 260px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+.profile-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.profile-level {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $lobby-green;
+  color: $white;
+  font: 900 #{$fs-lg} $font-sans;
+  box-shadow: 0 3px 0 $moss-800;
+}
+.profile-progress-row strong {
+  font: 900 #{$fs-xl} $font-sans;
+}
+.profile-xp {
+  margin-left: auto;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $moss-700;
+}
+.profile-xp-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: $lobby-track;
+  overflow: hidden;
+}
+.profile-xp-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: $lobby-green;
+  transition: width 0.4s ease;
+}
+.profile-level-card > p {
+  margin: 8px 0 0;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.profile-streak {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1.5px solid $lobby-track;
+}
+.profile-streak strong {
+  font: 900 #{$fs-base} $font-sans;
+}
+.profile-streak span {
+  grid-column: 2;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+
+.flame {
+  color: $sage-300;
+}
+.flame.lit {
+  color: $orange-500;
+}
+
+// ---- Rating tiles ----
+.profile-ratings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.profile-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+  color: $lobby-ink;
+  text-decoration: none;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
+  @include focus-ring;
+
+  &:hover {
+    border-color: $lobby-selected-line;
+    box-shadow: 0 3px 0 $lobby-selected-line;
+  }
+}
+.profile-rating-label {
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+.profile-rating strong {
+  font: 500 #{$fs-6xl}/ 1.05 $font-mono;
+  letter-spacing: -0.03em;
+}
+.profile-rating small {
+  font: 800 #{$fs-xs} $font-sans;
+  color: $lobby-muted;
+
+  &.trend-up {
+    color: $moss-800;
+  }
+  &.trend-down {
+    color: $red-700;
+  }
+}
+
+// ---- Panels ----
+.profile-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.profile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px 20px;
+  border-radius: $panel-radius;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+.profile-panel-head,
+.profile-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.profile-panel-head a,
+.profile-section-head a {
+  margin-left: auto;
+  font: 900 #{$fs-sm} $font-sans;
+  color: $brand-green;
+  text-decoration: none;
+
+  &:hover {
+    color: $lobby-ink;
+  }
+}
+.profile-section-head span {
+  font-size: $fs-md;
+  color: $sage-600;
+}
+
+.profile-row-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.profile-row-text strong {
+  font: 900 #{$fs-md} $font-sans;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-row-text small {
+  font-size: $fs-xs;
+  color: $sage-500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-num {
+  font-family: $font-mono;
+  font-variant-numeric: tabular-nums;
+}
+span.profile-num {
+  font-size: $fs-sm;
+  text-align: right;
+}
+.profile-note {
+  margin: 0;
+  font-size: $fs-xs;
+  color: $lobby-muted;
+}
+
+// Win / draw / loss colours, shared by the record, the form strip and the opponent bars.
+.profile-page .is-win {
+  --wdl: #{$lobby-green};
+}
+.profile-page .is-draw {
+  --wdl: #{$sand-300};
+}
+.profile-page .is-loss {
+  --wdl: #{$red-600};
+}
+
+// ---- Record ----
+.profile-record-bar {
+  display: flex;
+  gap: 2px;
+  height: 16px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: $lobby-track;
+}
+.profile-record-bar span {
+  flex-basis: 0;
+  background: var(--wdl);
+}
+.profile-record-cells {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.profile-record-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: $paper;
+}
+.profile-record-cell span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 800 #{$fs-xs} $font-sans;
+  color: $lobby-muted;
+
+  &::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--wdl);
+  }
+}
+.profile-record-cell strong {
+  font: 500 #{$fs-4xl}/ 1.1 $font-mono;
+}
+.profile-record-cell small {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $sage-500;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.profile-form > span {
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+.profile-form ol {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-form li {
+  display: grid;
+  place-items: center;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--wdl);
+  color: $white;
+  font: 900 #{$fs-2xs} $font-sans;
+}
+.profile-form li.is-draw {
+  color: $lobby-ink;
+}
+
+// ---- Openings ----
+.profile-openings {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-openings li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 90px 44px;
+  gap: 10px;
+  align-items: center;
+}
+.profile-side {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1.5px solid $stone;
+  background: $white;
+
+  &.is-black {
+    background: $neutral-900;
+  }
+}
+.profile-meter {
+  height: 8px;
+  border-radius: 999px;
+  background: $lobby-track;
+  overflow: hidden;
+}
+.profile-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+
+  &.is-good {
+    background: $lobby-green;
+  }
+  &.is-even {
+    background: $lobby-hover-line;
+  }
+  &.is-low {
+    background: $lobby-star;
+  }
+}
+
+// ---- Awards ----
+.profile-milestones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.profile-milestones h2 {
+  font-size: $fs-3xl;
+}
+.profile-award-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-award {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: $white;
+  border: 1.5px solid $lobby-line-strong;
+}
+.profile-award img {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+.profile-award .profile-row-text strong {
+  font-size: $fs-base;
+}
+.profile-award.is-locked {
+  background: transparent;
+  border-style: dashed;
+
+  img {
+    filter: grayscale(1);
+    opacity: 0.55;
+  }
+}
+
+// ---- Recent games and opponents ----
+.profile-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-rows li {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1.5px solid $lobby-track;
+}
+.profile-game {
+  grid-template-columns: 34px minmax(0, 1fr) auto auto;
+}
+.profile-opponent {
+  grid-template-columns: 34px minmax(0, 1fr) 110px 48px;
+}
+.profile-face {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: $lobby-tile;
+  color: $lobby-ink;
+  font: 900 #{$fs-md} $font-sans;
+  object-fit: cover;
+  object-position: 50% 8%;
+}
+.profile-result {
+  padding: 3px 9px;
+  border-radius: 8px;
+  font: 900 #{$fs-xs} $font-sans;
+
+  &.is-win {
+    background: $moss-200;
+    color: $moss-800;
+  }
+  &.is-draw {
+    background: $lobby-track;
+    color: $sage-600;
+  }
+  &.is-loss {
+    background: $sand-50;
+    color: $red-700;
+  }
+}
+.profile-game .button {
+  min-height: 30px;
+  padding: 5px 12px;
+  font-size: $fs-xs;
+}
+.profile-wdl {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: $lobby-track;
+}
+.profile-wdl i {
+  background: var(--wdl);
+}
+
+// ---- No games yet ----
+.profile-empty p {
+  margin: 0;
+  font-size: $fs-md;
+  color: $sage-600;
+}
+.profile-empty-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+// ---- Doorway cards ----
+.profile-more {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 4px 20px;
+}
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  color: var(--ink);
+  min-width: 0;
+  text-decoration: none;
+  transition: background 0.18s;
+}
+.profile-card:hover {
+  background: $sage-50;
+}
+.profile-card img {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+.profile-card:hover img {
+  transform: translateY(-3px) rotate(-4deg);
+}
+.profile-card h3 {
+  margin: 0;
+  font: 800 #{$fs-lg}/ 1.2 $font-sans;
+}
+.profile-card p {
+  margin: 2px 0 0;
+  font-size: $fs-sm;
+  line-height: 1.45;
+  color: $sage-600;
+}
+
+// ---- Event crests: the event's deep colour, one of its costumed bots, the year ----
+.profile-crests h2 {
+  margin: 0 0 12px;
+}
+.profile-crest-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.profile-crest {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 999px;
+  background: $event-party;
+  color: $white;
+  text-decoration: none;
+}
+@each $name, $ground in (spooky: $event-spooky, marigold: $event-marigold, lantern: $event-lantern, winter: $event-winter,
+  party: $event-party, fiesta: $event-fiesta, lucky: $event-lucky, love: $event-love, clover: $event-clover,
+  spring: $event-spring, summer: $event-summer, chess: $event-chess)
+{
+  .profile-crest[data-theme="#{$name}"] {
+    background: $ground;
+  }
+}
+.profile-crest img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $white;
+  object-fit: cover;
+  object-position: 50% 8%;
+}
+.profile-crest span {
+  display: flex;
+  flex-direction: column;
+}
+.profile-crest strong {
+  font-size: $fs-md;
+}
+.profile-crest small {
+  font-size: $fs-xs;
+  opacity: 0.75;
+}
+
+// ---- Phones ----
+@include down(md) {
+  .profile-page {
+    gap: 22px;
+  }
+  .profile-hero {
+    gap: 14px;
+  }
+  .profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    font-size: $fs-3xl;
+  }
+  .profile-who {
+    flex-basis: 0;
+  }
+  .profile-who h1 {
+    font-size: $fs-5xl;
+  }
+  .profile-level-card {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .profile-ratings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .profile-rating {
+    padding: 12px 14px;
+  }
+  .profile-rating strong {
+    font-size: $fs-4xl;
+  }
+  .profile-panel {
+    padding: 14px 14px;
+  }
+  .profile-form ol {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+  .profile-openings li {
+    grid-template-columns: 26px minmax(0, 1fr) 56px 40px;
+    gap: 8px;
+  }
+  .profile-opponent {
+    grid-template-columns: 34px minmax(0, 1fr) 56px 40px;
+    gap: 8px;
+  }
+  .profile-game {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .profile-game .button {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+  .profile-award-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+  }
+}
+
+@include reduced-motion {
+  .profile-page {
+    animation: none;
+  }
+  .profile-xp-bar i,
+  .profile-rating,
+  .profile-card,
+  .profile-card img {
+    transition: none;
+  }
+}

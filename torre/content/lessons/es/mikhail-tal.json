@@ -1,0 +1,88 @@
+{
+ "title": "Mikhail Tal, el Mago de Riga",
+ "summary": "Yugoslavia, 1959: el joven Tal de 22 años sacrifica su dama contra un ex campeón del mundo, y gana el premio a la mejor partida.",
+ "unit": "Mikhail Tal",
+ "steps": [
+  {
+   "id": "the-magician",
+   "title": "El mago de Riga",
+   "text": "Mikhail Tal jugó ajedrez como un mago: las piezas desaparecían de su tablero y reaparecían en tus pesadillas. En 1959, a los veintidós años, se enfrentó a Vasily Smyslov, un ex campeón del mundo famoso por su defensa impenetrable, en el Torneo de Candidatos, con un encuentro por el campeonato del mundo en juego. Tal ganó esta partida con un sacrificio de dama, obtuvo el premio a la mejor partida y, un año después, se convirtió en el campeón del mundo más joven de la historia. ¡Pon en marcha el reproductor!",
+   "narration": "Mikhail Tal, el Mago de Riga. En 1959 se enfrentó a Smyslov, un ex campeón del mundo, con un partido por el título en juego. Lo que hace en esta partida ganó el premio a la mejor partida. ¡Pon en marcha el reproductor!"
+  },
+  {
+   "id": "the-game",
+   "title": "Tal – Smyslov, Candidatos 1959",
+   "text": "Smyslov responde a 1.e4 con la sólida Defensa Caro-Kann. Tal responde la única forma que él conoce: líneas abiertas, piezas hacia adelante y un sacrificio de dama que el mundo del ajedrez todavía comenta.",
+   "notes": [
+    {
+     "text": "5.d4! Tal abre el centro de inmediato: contra Smyslov, maniobrar silenciosamente sería jugar su partida."
+    },
+    {
+     "text": "9.O-O-O: Tal enroca largo. Los reyes se miran fijamente a través de un tablero abierto."
+    },
+    {
+     "text": "10.Nd6! El caballo se planta en la posición de las negras, y no se puede ahuyentar."
+    },
+    {
+     "text": "13.Nf5! El caballo apunta a h6 y e7. Las nubes de tormenta se acumulan sobre el rey negro."
+    },
+    {
+     "text": "14. Qh4! La dama se desliza hacia el flanco de rey. Algo se está gestando: Smyslov lo puede sentir."
+    },
+    {
+     "text": "15. Qg5! Cada pieza blanca apunta ahora al rey. El caballo negro salta a h5 para bloquear."
+    },
+    {
+     "text": "16. Nh6+! Un jaque impactante: tomar el caballo abriría el archivo g."
+    },
+    {
+     "text": "17. Qxh5! Tal toma el caballo. Smyslov captura el peón a2 con jaque, contraatacando…"
+    },
+    {
+     "text": "19. Qxf7!! LA JUGADA. Tal sacrifica su dama en el acto: el rayo que hizo famosa a este juego."
+    },
+    {
+     "text": "20. Kd2! El rey avanza con calma. Las negras deben tomar la dama, y caer en lo que Tal preparó."
+    },
+    {
+     "text": "21. Nxf7+! Jaque, y ahora la dama negra en a1 está perdida. Esta era la idea de Tal desde el principio."
+    },
+    {
+     "text": "22. Rxa1: La dama es recapturada. Cuando el humo se disipa, Tal ha ganado material con una posición aplastante."
+    },
+    {
+     "text": "26. Bd4! y Smyslov renunció. Los jueces le dieron a Tal el premio a la mejor jugada del torneo."
+    }
+   ],
+   "narration": "Smyslov elige la sólida Defensa Caro-Kann. Tal responde de la única manera que conoce: líneas abiertas, piezas hacia adelante, y luego el rayo."
+  },
+  {
+   "id": "the-sacrifice",
+   "title": "Juega el rayo",
+   "prompt": "El caballo negro acaba de atacar tu dama, y su dama está a punto de capturar en a2 con jaque. Cada defensor salvaría a la dama. Tal hizo lo contrario: encuentra tu jugada, luego sigue la combinación.",
+   "hint": "La dama no huye. Todavía tiene un último trabajo por hacer en f7.",
+   "success": "Qxf7!! Qa1+ Kd2! Rxf7 Nxf7+: la dama regresa con interés. Lo viste como Tal lo vio.",
+   "narration": "Aquí está el momento. Tu dama está atacada y la respuesta de Tal hizo que este juego fuera inmortal. Encuéntrala."
+  },
+  {
+   "id": "his-style",
+   "title": "El estilo de Tal",
+   "question": "¿Qué hacía a Mikhail Tal tan aterrador para jugar, incluso para campeones del mundo?",
+   "options": [
+    {
+     "text": "Sus sacrificios arrastraban a los oponentes a complicaciones que solo él podía navegar.",
+     "why": "Exacto. Tal dijo que había dos tipos de sacrificios: los correctos y los suyos. Las complicaciones hicieron el resto."
+    },
+    {
+     "text": "Exprimía pequeñas ventajas en el final durante ochenta movimientos.",
+     "why": "Eso era el territorio de Smyslov y Karpov. A Tal quería lo contrario: caos, lo antes posible."
+    },
+    {
+     "text": "Nunca se arriesgaba y esperaba errores.",
+     "why": "Tal se arriesgaba casi en cada partida: ese era todo el punto. Los errores de sus oponentes venían de la presión."
+    }
+   ],
+   "narration": "Última pregunta: ¿qué hacía exactamente a Tal tan aterrador?"
+  }
+ ]
+}

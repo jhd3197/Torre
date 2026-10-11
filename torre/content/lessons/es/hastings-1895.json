@@ -1,0 +1,102 @@
+{
+ "title": "Hastings 1895",
+ "summary": "Un joven estadounidense en su primer gran torneo, Harry Nelson Pillsbury, gana uno de los eventos más fuertes jamás celebrados. Aquí, le gana a Tarrasch.",
+ "unit": "Grandes Torneos",
+ "steps": [
+  {
+   "id": "hastings",
+   "title": "Hastings, 1895",
+   "text": "En 1895, la ciudad costera inglesa de Hastings acogió un torneo con casi todos los grandes jugadores de la época: entre ellos, el campeón mundial Emanuel Lasker, el ex campeón Wilhelm Steinitz, Siegbert Tarrasch y Mikhail Chigorin. El ganador fue un estadounidense de 22 años que pocos conocían, Harry Nelson Pillsbury, en su primer gran torneo internacional. Este es su juego contra Tarrasch, uno de los favoritos.",
+   "narration": "Hastings, 1895. Casi todos los grandes jugadores del mundo están allí, y el ganador es un joven estadounidense que casi nadie conocía: Harry Nelson Pillsbury. Aquí juega contra Siegbert Tarrasch."
+  },
+  {
+   "id": "the-game",
+   "title": "Pillsbury – Tarrasch, Hastings 1895",
+   "text": "Este juego es una carrera. Tarrasch empuja sus peones en el flanco de dama y gana material allí. Pillsbury coloca un caballo en e5, empuja su peón de f y apunta todo al rey negro. El juego termina en los movimientos clave de Pillsbury.",
+   "notes": [
+    {
+     "text": "11...c4: Tarrasch gana espacio en el flanco de dama. Su plan es empujar los peones en ese flanco."
+    },
+    {
+     "text": "13.Ne5: un caballo llega al centro."
+    },
+    {
+     "text": "14.f4: el peón de f apoya al caballo. El plan de Pillsbury es lo opuesto al de Tarrasch: atacar al rey."
+    },
+    {
+     "text": "21.f5: más espacio en el flanco de rey, y las piezas de las negras se ven apretadas."
+    },
+    {
+     "text": "27...b4: Los peones del flanco de dama de Tarrasch están avanzando. La carrera ha comenzado."
+    },
+    {
+     "text": "31...c3: Los peones de negro están cerca de romper la defensa."
+    },
+    {
+     "text": "35.g4: Los peones de Pillsbury finalmente avanzan contra el rey negro."
+    },
+    {
+     "text": "38...Bxb3: Tarrasch rompe en el flanco de dama y gana material."
+    },
+    {
+     "text": "40.gxf6: Se abre la columna g hacia el rey negro."
+    },
+    {
+     "text": "45.Kh1: Un movimiento tranquilo del rey. El rey deja la columna g para que una torre la pueda usar."
+    },
+    {
+     "text": "52.Qxh7#: Jaque mate, con el peón c de negro a solo un paso de coronación."
+    }
+   ],
+   "narration": "Tarrasch ataca en el flanco de dama, Pillsbury en el flanco de rey. ¿Quién llega primero? Encuentra los movimientos clave de Pillsbury.",
+   "guesses": [
+    {
+     "prompt": "El ...f6 de negro ahuyenta a tu caballo de e5. ¿A dónde debería ir para quedarse cerca del rey negro?",
+     "hint": "Dirígete hacia el flanco de rey, cerca de f6 y h6.",
+     "why": "20.Ng4!: El caballo se mantiene cerca del rey negro y observa f6 y h6. Pillsbury mantiene sus piezas en el lado donde está atacando."
+    },
+    {
+     "prompt": "Tarrasch ha ganado material en el flanco de dama. Pillsbury necesita un ataque en el flanco de rey. Encuentra el movimiento del caballo.",
+     "hint": "Tu caballo puede saltar a una casilla al lado del rey negro y cubrir g8.",
+     "why": "42.Nh6! El caballo cubre g8, así que Rg8 sería ahora mate. Tarrasch tuvo que bloquear con 42...Rg7, y después de que las torres se movieron, su rey quedó expuesto."
+    },
+    {
+     "prompt": "El rey negro ha salido a h6. Saca tu última pieza a la caza.",
+     "hint": "La columna g está abierta, y tu torre en f1 puede usarla.",
+     "why": "46.Rg1! La torre toma la columna g, y el rey tiene aún menos casillas. Tarrasch tomó el peón f5, pero los jaques que siguen le ganan su dama."
+    },
+    {
+     "prompt": "Has ganado la dama a cambio de una torre, pero el peón c negro está cerca de coronar. Encuentra el jaque que lo decide.",
+     "hint": "Jaque desde d6, y mira qué más ataca la dama allí.",
+     "why": "50.Qd6+! El rey va a h5, la dama toma el caballo en d7, y el mate en h7 llega antes de que el peón c pueda coronar."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "El rey es el objetivo.",
+   "text": "Tarrasch ganó peones. Pillsbury ganó el rey. Y el joven estadounidense ganó todo el torneo, por delante del campeón del mundo.",
+   "narration": "Tarrasch ganó peones. Pillsbury ganó el rey. Y el joven estadounidense ganó todo el torneo, por delante del campeón del mundo."
+  },
+  {
+   "id": "quiz",
+   "title": "La carrera.",
+   "question": "Pillsbury y Tarrasch atacaron en los flancos opuestos. ¿Por qué ganó el ataque de Pillsbury?",
+   "options": [
+    {
+     "text": "Estaba dirigido al rey, así que decidió el juego aunque Tarrasch ganó material.",
+     "why": "Correcto. Un mate termina el juego, y un peón extra no."
+    },
+    {
+     "text": "Los ataques por el flanco de la dama nunca funcionan.",
+     "why": "A menudo sí funcionan. Los peones de Tarrasch sí lograron abrirse paso. Solo fueron un poco lentos."
+    },
+    {
+     "text": "Pillsbury siempre estuvo por delante en material durante todo el juego.",
+     "why": "Pillsbury estuvo por detrás en material por mucho tiempo. Su ataque valió más."
+    }
+   ],
+   "narration": "Una pregunta sobre la carrera: ¿por qué Pillsbury la ganó?"
+  }
+ ]
+}

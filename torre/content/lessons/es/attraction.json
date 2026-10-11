@@ -1,0 +1,48 @@
+{
+ "title": "Atracción",
+ "summary": "Arrastra una pieza enemiga, usualmente el rey, a una casilla donde entre en una horquilla o un mate.",
+ "steps": [
+  {
+   "id": "pull-it-in",
+   "title": "Atrae hacia ti",
+   "text": "La desviación aleja una pieza de una casilla; la atracción la lleva a una. Aquí, un caballo en f7 atacaría tanto h8 como d8. El rey de las negras está en g8, no en h8, así que la horquilla aún no funciona. Un sacrificio de torre en h8 puede arrastrar al rey a la casilla que el caballo quiere atacar.",
+   "narration": "Desde f7, tu caballo golpearía h8 y d8 al mismo tiempo. La dama ya está en d8. El rey aún no está en h8, pero un sacrificio de torre puede atraerlo allí. Eso es atracción: arrastra la pieza a la casilla que quieres."
+  },
+  {
+   "id": "attract-the-king",
+   "title": "Sacrifica, luego haz una horquilla",
+   "prompt": "Atrae al rey a h8, luego haz una horquilla rey y dama.",
+   "hint": "Cede la torre con jaque en la esquina.",
+   "success": "¡Rh8+! Kxh8 es forzado, y Nf7+ horquilla al rey y a la dama. Después de que el rey se mueve, Nxd8 te deja un caballo de ventaja.",
+   "narration": "Lanza tu torre a la esquina con jaque. El rey debe tomarla, y ahora está justo donde tu caballo quiere que esté. Salta a f7 con jaque, y la dama caerá a continuación."
+  },
+  {
+   "id": "smothered",
+   "title": "Atrae la torre",
+   "prompt": "Mate en dos: atrae la torre de las negras a g8, luego deja que el caballo termine.",
+   "hint": "Ofrece la dama en g8. El rey no puede tomarla, porque el caballo defiende g8.",
+   "success": "Qg8+! La torre debe capturar, y ahora bloquea la última casilla del rey. Nf7 es un mate de la coz: el rey está enterrado por sus propias piezas.",
+   "narration": "El rey no puede tomar en g8 porque tu caballo lo defiende, así que un jaque de dama allí fuerza a la torre a capturar. Ahora la torre está sentada en la última casilla de escape del rey. Salta el caballo a f7 y es jaque mate."
+  },
+  {
+   "id": "attraction-or-deflection",
+   "title": "¿Cuál es cuál?",
+   "question": "Sacrificas en h8 para que el rey tome y se coloque en h8, donde un jaque de caballo lo horquilla. ¿Qué táctica es esa?",
+   "options": [
+    {
+     "text": "Atracción: arrastraste al rey a una casilla mala",
+     "why": "La clave está en dónde termina el rey. La atracción saca una pieza a una casilla; la desviación la aleja de una."
+    },
+    {
+     "text": "Desviación",
+     "why": "La desviación se trata de lo que deja atrás la pieza. Aquí lo importante es la casilla a la que se ve obligado el rey."
+    },
+    {
+     "text": "Un pincho",
+     "why": "Un pincho ataca a dos piezas en una línea. El sacrificio aquí prepara una horquilla de caballo en cambio."
+    }
+   ],
+   "narration": "Pregunta final. Sacrificaste para que el rey se moviera a h8, justo a una horquilla. ¿Es una atracción o una desviación? ¡Aciértalo y tendrás ambas ideas claras! ¡Genial!"
+  }
+ ]
+}

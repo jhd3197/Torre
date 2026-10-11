@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "title": "The isolated queen's pawn",
+  "summary": "A d-pawn with no neighbours is both a target and a weapon. Learn when to blockade it and when to use the space it gives.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Pawn structure",
+  "order": 2,
+  "requires": ["passed-pawns"],
+  "steps": [
+    {
+      "id": "the-isolani",
+      "kind": "explain",
+      "title": "A pawn with no friends",
+      "fen": "r1bq1rk1/pp2bppp/2n1pn2/8/3P4/2NB1N2/PP3PPP/R1BQ1RK1 w - - 0 1",
+      "marks": [["d4"], ["c2"], ["e2"]],
+      "text": "White's d-pawn has no pawns on the c- or e-files beside it. A pawn like this is called isolated, and this one on d4 is so common it has its own name: the isolated queen's pawn, or isolani. No other pawn can ever defend it, so pieces must do the job. This structure appears in many openings, from the Queen's Gambit to the Caro-Kann.",
+      "narration": "Meet the isolani, an isolated queen's pawn. White's d-pawn has no pawn neighbours at all, so no pawn can ever protect it. That makes it a weakness, but as we'll see, it's also a source of energy.",
+      "pose": "present"
+    },
+    {
+      "id": "the-weakness",
+      "kind": "explain",
+      "title": "The weakness: the square in front",
+      "fen": "r1bq1rk1/pp2bppp/2n1p3/3n4/3P4/2NB1N2/PP3PPP/R1BQ1RK1 w - - 0 1",
+      "marks": [["d5"], ["d4"], ["c6", "d4"]],
+      "text": "The square in front of an isolated pawn can never be attacked by a white pawn. Black's knight has jumped to d5 and sits there safely, blocking the pawn so it cannot advance. Blocking a pawn like this is called a blockade. From behind it, Black's pieces can line up against d4, which White must keep defending with pieces.",
+      "narration": "Here's the downside. The square in front of the isolated pawn is a perfect home for a black knight, because no white pawn can ever chase it away. The knight blocks the pawn, and Black's other pieces can gang up on it.",
+      "pose": "alarm"
+    },
+    {
+      "id": "the-strength",
+      "kind": "explain",
+      "title": "The strength: space and open lines",
+      "fen": "r1bq1rk1/pp2bppp/2n1pn2/8/3P4/2NB1N2/PP3PPP/R1BQ1RK1 w - - 0 1",
+      "marks": [["f3", "e5"], ["d4", "d5"], ["d3", "h7"], ["e5"]],
+      "text": "Now look from White's side. The pawn controls e5 and c5, so a white knight can settle on e5, where it is hard to dislodge. The half-open c- and e-files are ready for White's rooks, and the bishop on d3 aims at Black's king. White also keeps the idea of pushing the pawn to d5 to break the blockade and open the position. With many pieces on the board, the isolani usually gives active play.",
+      "narration": "Now flip the coin. The isolated pawn gives White space, an outpost for a knight on e5, open files for the rooks, and the chance to push d4 to d5 at the right moment. In the middlegame the isolani is often a weapon.",
+      "pose": "point"
+    },
+    {
+      "id": "tarrasch-break",
+      "kind": "play",
+      "title": "The isolani strikes",
+      "fen": "r1bq1rk1/pp3ppp/2n2n2/2bp4/8/2N1BNP1/PP2PPBP/R2Q1RK1 b - - 0 10",
+      "prompt": "This time Black has the isolated pawn. Use it to win material.",
+      "hint": "An isolated pawn that moves forward attacks two squares at once. Which white pieces sit on those squares?",
+      "line": ["d5d4", "c3a4", "d4e3"],
+      "success": "Pushing the isolani to d4 attacked the knight on c3 and the bishop on e3 together. The knight ran, and the pawn took the bishop.",
+      "narration": "Here Black is the one with the isolated pawn, and White has just put a bishop on e3. Push the pawn forward and look at the two white pieces it hits. This is what an active isolani does when the opponent gets careless.",
+      "pose": "detective"
+    },
+    {
+      "id": "blockade-square",
+      "kind": "choose",
+      "title": "Where does the blockader go?",
+      "fen": "r1bq1rk1/pp2bppp/2n1pn2/8/3P4/2NB1N2/PP3PPP/R1BQ1RK1 b - - 0 1",
+      "question": "Black wants to fight White's isolated pawn. Which square is the best home for a black knight?",
+      "options": [
+        { "text": "d5, right in front of the pawn", "correct": true, "why": "No white pawn can ever attack d5, and a knight there blocks the isolani and controls important squares." },
+        { "text": "e4, deep in White's half", "why": "White can kick it with f2-f3 or trade it off, and it does nothing to stop the d-pawn." },
+        { "text": "b4, hitting the bishop", "why": "It can be chased with a2-a3 and does not block the pawn. Annoying, but not a lasting home." }
+      ],
+      "narration": "Let's check the main idea. If you're fighting against an isolated pawn, where should your knight live? Think about which square no pawn can ever attack.",
+      "pose": "thinking"
+    },
+    {
+      "id": "when-is-it-weak",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "When does an isolated queen's pawn usually become a real weakness?",
+      "options": [
+        { "text": "After many pieces are traded, especially in the endgame", "correct": true, "why": "With fewer pieces there is less attacking play to make up for it, and the lonely pawn becomes an easy target." },
+        { "text": "Right after the opening, when all the pieces are still on", "why": "That is when the isolani is at its strongest: space, open files and attacking chances." },
+        { "text": "Never, because it is in the centre", "why": "Being central helps, but a pawn that no pawn can defend can still be won when pieces run out." }
+      ],
+      "narration": "Final question. When does the isolani turn from a weapon into a weakness? Think about what happens as the pieces come off the board. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

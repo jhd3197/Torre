@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Castling",
+  "summary": "Castling moves the king and a rook in one turn, tucking the king away and bringing the rook into play. Learn how and when you may castle.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Rules of the game",
+  "order": 9,
+  "requires": ["the-king", "the-rook"],
+  "steps": [
+    {
+      "id": "two-pieces-one-move",
+      "kind": "explain",
+      "title": "Two pieces, one move",
+      "fen": "r3k2r/pppq1ppp/2npbn2/2b1p3/2B1P3/2NPBN2/PPPQ1PPP/R3K2R w KQkq - 0 1",
+      "marks": [["e1", "g1"], ["h1", "f1"]],
+      "demo": ["e1g1", "e8c8"],
+      "text": "Castling is the only move where two pieces move at once. The king steps two squares toward a rook, and that rook jumps to the square on the king's other side. White castles kingside (the short side), then Black castles queenside (the long side).",
+      "narration": "Castling is a special move. The king slides two squares toward a rook, and the rook hops over to the other side of him. Watch White castle on the short side. [move] Now Black castles on the long side. [move] In one move, the king gets safe and the rook gets into the game.",
+      "pose": "present"
+    },
+    {
+      "id": "the-rules",
+      "kind": "explain",
+      "title": "When you may castle",
+      "fen": "r3k2r/8/8/8/2b5/8/8/R3K2R w KQkq - 0 1",
+      "marks": [["c4", "f1"]],
+      "text": "You may castle only if: the king and that rook have never moved, the squares between them are empty, the king is not in check, and the king does not pass through or land on an attacked square. Here Black's bishop attacks f1, so White cannot castle kingside. Queenside castling is still allowed.",
+      "narration": "There are a few rules. The king and rook must not have moved yet, the path must be clear, and the king can't be in check, cross an attacked square, or land on one. That bishop watching f1 stops White from castling short.",
+      "pose": "notes"
+    },
+    {
+      "id": "castle-short-mate",
+      "kind": "play",
+      "title": "Castle with a bang",
+      "fen": "8/8/8/1B6/4p1p1/5k2/7P/2B1K2R w K - 0 1",
+      "prompt": "Castling can even give checkmate. Castle kingside to finish the game.",
+      "hint": "Move your king two squares to the right. The rook lands on f1, facing Black's king.",
+      "line": ["e1g1"],
+      "success": "Castling kingside put the rook on f1 with check, and your king on g1 covers g2 and f2. Black's king has nowhere to go: checkmate.",
+      "narration": "Black's king has wandered all the way into your half. Watch what castling does here. The rook lands on f1 giving check, and your king guards the escape squares. Castle short!",
+      "pose": "excited"
+    },
+    {
+      "id": "castle-long-mate",
+      "kind": "play",
+      "title": "Now the long side",
+      "fen": "8/8/7B/8/2p1p1B1/3k4/1P6/R3K3 w Q - 0 1",
+      "prompt": "Checkmate by castling queenside.",
+      "hint": "Move your king two squares to the left. The rook jumps to d1.",
+      "line": ["e1c1"],
+      "success": "Queenside castling put the rook on d1 with check, and your king on c1 covers c2. Moving the rook to d1 on its own would not be mate, because Black's king could escape to c2.",
+      "narration": "Same idea on the long side. Castle queenside: your king goes to c1 and the rook lands on d1, right in front of Black's king.",
+      "pose": "detective"
+    },
+    {
+      "id": "castling-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Which of these means you can never castle again in this game?",
+      "options": [
+        { "text": "Your king has already moved, even if it went back to its square", "correct": true, "why": "Once the king has moved, castling is gone for good, on both sides." },
+        { "text": "Your king is in check right now", "why": "That only stops you this turn. Once the check is over, you may still castle later." },
+        { "text": "An enemy bishop is attacking your rook", "why": "The rook may be attacked. Only the king's own path must be safe." }
+      ],
+      "narration": "Last question. Some things only stop castling for a moment, but one of these takes it away forever. Which one?",
+      "pose": "thinking"
+    }
+  ]
+}

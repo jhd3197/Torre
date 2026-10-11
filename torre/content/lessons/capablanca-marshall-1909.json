@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "title": "Capablanca's rooks on the seventh",
+  "summary": "New York, 1909: the young José Raúl Capablanca trades queens and beats Frank Marshall with a rook on the seventh rank.",
+  "category": "history",
+  "unit": "José Raúl Capablanca",
+  "order": 1,
+  "level": "intermediate",
+  "minutes": 6,
+  "orientation": "white",
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "new-york-1909",
+      "kind": "explain",
+      "title": "New York, 1909",
+      "text": "José Raúl Capablanca, from Cuba, learned chess as a small child and became famous for making it look easy. In 1909 he played a match against Frank Marshall, one of the strongest players in America, and won it by a wide margin. This game shows his style: no wild attack, just better pieces, a well-timed queen trade and a rook on the seventh rank.",
+      "narration": "New York, 1909. A young Cuban named Capablanca plays Frank Marshall. Watch how simple he makes it look.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Capablanca – Marshall, New York 1909",
+      "text": "Marshall chooses a sharp line against the Spanish opening. Capablanca keeps calm, and when Marshall's queen goes after a bishop, Capablanca takes one back and plants a rook on the seventh rank. The game stops at Capablanca's key moves.",
+      "narration": "Marshall wants a fight. Capablanca wants a good endgame, and he gets one. Find his key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 6, "text": "3...f5: a sharp gambit line. Marshall wants a wild game." },
+        { "ply": 36, "text": "18...Qe2: Marshall's queen dives into White's camp to go after the bishop on d2." },
+        { "ply": 38, "text": "19...Qxd2: the bishop falls, but Capablanca has a reply ready." },
+        { "ply": 43, "text": "22.Qxh6: Capablanca happily trades queens. In the endgame his rook on e7 and pawn on f6 will rule." },
+        { "ply": 51, "text": "26.Rxa7: another pawn falls. The rook on the seventh rank is eating its way along." },
+        { "ply": 59, "text": "30.f5: the f-pawns roll forward, and Black's rook and bishop are kept busy." },
+        { "ply": 63, "text": "32.Rxc5: White is three pawns up. Marshall resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 39,
+          "prompt": "Marshall's queen just took your bishop on d2. Take a piece back, and put your rook on a great square while you do it.",
+          "hint": "A black bishop stands on the e-file in front of your rook.",
+          "why": "20.Rxe7! Material is level again, and the rook now sits on the seventh rank, attacking Black's pawns."
+        },
+        {
+          "ply": 41,
+          "prompt": "Your rook is on the seventh. Push a pawn to make it even stronger.",
+          "hint": "One of your pawns can advance and attack g7.",
+          "why": "21.f6! The pawn hits g7, and with the rook on e7 and the queen on h5, Black's king is in real danger. Marshall offered a queen trade with 21...Qh6 to get out of it."
+        },
+        {
+          "ply": 45,
+          "prompt": "The queens are off. Bring your other rook into the game.",
+          "hint": "Your first rook is on the e-file. The second can join it.",
+          "why": "23.Rfe1! Both rooks now work together on the e-file, and Black cannot keep them off his second rank."
+        },
+        {
+          "ply": 47,
+          "prompt": "Marshall's bishop took the a4 pawn. Start collecting pawns.",
+          "hint": "Your rook on e7 can slide sideways along the seventh rank.",
+          "why": "24.Rxb7! The rook takes a pawn and stays on the seventh rank, ready to take more."
+        }
+      ],
+      "moves": ["e2e4", "e7e5", "g1f3", "b8c6", "f1b5", "f7f5", "b1c3", "g8f6", "d1e2", "c6d4", "f3d4", "e5d4", "e4f5", "f8e7", "c3e4", "e8g8", "e4f6", "e7f6", "e1g1", "d7d5", "b5d3", "c7c5", "e2h5", "d8c7", "c2c4", "d5c4", "d3c4", "g8h8", "d2d3", "c7e5", "g2g4", "c8d7", "a2a4", "f6e7", "c1d2", "e5e2", "a1e1", "e2d2", "e1e7", "d7e8", "f5f6", "d2h6", "h5h6", "g7h6", "f1e1", "e8a4", "e7b7", "a8e8", "e1e8", "f8e8", "b7a7", "a4d1", "h2h3", "h6h5", "g4g5", "h5h4", "f2f4", "d1h5", "f4f5", "e8f8", "a7c7", "f8b8", "c7c5"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Rooks love the seventh rank",
+      "marks": [["e7"], ["f6"], ["b7"], ["a7"]],
+      "text": "Capablanca took the queen trade because his pieces were better for the endgame. A rook on the seventh rank attacks pawns that are still on their starting squares, and it keeps the enemy king stuck on the back rank. The pawn on f6 made the cage even tighter.",
+      "narration": "A rook on the seventh rank attacks pawns that cannot run, and it traps the king on the back rank. Capablanca traded queens to get exactly that.",
+      "pose": "idea",
+      "fen": "r3br1k/pp2R2p/5P1p/2p5/P1Bp2P1/3P4/1P3P1P/5RK1 w - - 0 23"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "The queen trade",
+      "question": "Why did Capablanca welcome the queen trade on move 22?",
+      "options": [
+        {
+          "text": "His rook on the seventh and the pawn on f6 made the endgame easy to win",
+          "correct": true,
+          "why": "Right. With queens off, nothing could stop the rook from eating pawns."
+        },
+        {
+          "text": "He was behind in material and wanted a draw",
+          "why": "Material was level, and the endgame was winning for White."
+        },
+        {
+          "text": "Queens should always be traded early",
+          "why": "That is no rule. Capablanca traded because this particular endgame favoured him."
+        }
+      ],
+      "narration": "One question: why was Capablanca happy to trade queens?",
+      "pose": "thinking",
+      "fen": "r3br1k/pp2R1pp/5P1q/2p4Q/P1Bp2P1/3P4/1P3P1P/5RK1 w - - 1 22"
+    }
+  ]
+}

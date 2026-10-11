@@ -1,0 +1,48 @@
+{
+ "title": "La jugada intermedia",
+ "summary": "Antes de hacer la recaptura obvia, busca un jaque o una captura para jugar primero. La palabra alemana para esto es zwischenzug.",
+ "steps": [
+  {
+   "id": "not-so-fast",
+   "title": "Espera un momento",
+   "text": "El alfil negro acaba de capturar en d2, y devolver la captura con el rey parece automático. Pero una recaptura que aún esté disponible en el siguiente movimiento puede esperar. Primero pregúntate: ¿tengo un jaque o una captura que gane algo, después de lo cual aún puedo devolver la captura? Ese movimiento extra es una jugada intermedia, o zwischenzug.",
+   "narration": "El negro acaba de capturar en d2, y tu mano ya se extiende para devolver la captura. Detente un segundo. Si el alfil no va a ninguna parte, quizás puedas agarrar otra cosa primero, con jaque, y devolver la captura después."
+  },
+  {
+   "id": "check-first",
+   "title": "Primero jaque, luego recaptura",
+   "prompt": "Gana material antes de recapturar el alfil.",
+   "hint": "La torre negra en g8 no tiene defensor, y tomarla da jaque.",
+   "success": "Qxg8+ gana la torre con jaque. El negro debe responder al jaque, y luego Kxd2 aún recaptura el alfil. Ganaste una torre entera en medio.",
+   "narration": "Esa torre en g8 está suelta, y tomarla da jaque. Agrárrala primero. El negro tiene que lidiar con el jaque, y el alfil en d2 sigue ahí para que tu rey lo tome en el próximo movimiento."
+  },
+  {
+   "id": "rook-first",
+   "title": "Toma la torre, luego la dama",
+   "prompt": "La dama negra acaba de capturar la tuya en d4. Recaptura, pero no antes de ganar más.",
+   "hint": "Si el caballo recaptura de inmediato, la torre negra captura la tuya en e1 con mate. Usa primero la columna 'e'.",
+   "success": "Rxe8+! gana la torre con jaque, y solo entonces Nxd4 captura la dama. El apresurado Nxd4 habría perdido a Rxe1, jaque mate.",
+   "narration": "Negro acaba de capturar tu dama, y el caballo está listo para recapturar. Pero mira las dos torres enfrentándose en la columna 'e'. Si recapturas ahora, la torre negra captura la tuya con jaque mate. Así que captura primero la torre, con jaque, y agarra la dama en la siguiente jugada."
+  },
+  {
+   "id": "zwischenzug-quiz",
+   "title": "Cuándo buscar",
+   "question": "¿Cuándo deberías buscar una jugada intermedia?",
+   "options": [
+    {
+     "text": "Siempre que una recaptura parezca forzada: pregunta si un jaque o captura puede venir primero.",
+     "why": "Las recapturas automáticas es donde se esconden las jugadas intermedias. Si la pieza que quieres recapturar no puede escapar, es posible que tengas una jugada libre primero."
+    },
+    {
+     "text": "Solo cuando estás perdiendo",
+     "why": "Las jugadas intermedias ganan material en cualquier posición. Se trata de forzar movimientos, no de la puntuación."
+    },
+    {
+     "text": "Nunca: siempre recaptura inmediatamente",
+     "why": "Recapturar a menudo es lo correcto, pero chequear primero puede ganar una torre entera, como acabas de ver."
+    }
+   ],
+   "narration": "Pregunta final. ¿Cuándo debes buscar una jugada intermedia? Piensa en el momento en que sientes que una recaptura es automática. ¡Estás pensando como un jugador fuerte ahora!"
+  }
+ ]
+}

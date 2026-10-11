@@ -1,0 +1,55 @@
+{
+ "title": "Peones doblados y retrasados",
+ "summary": "Dos peones en la misma columna, y un peón que ha quedado atrás de sus compañeros. Aprende por qué estos son débiles y cómo atacarlos.",
+ "unit": "Estructura de peones",
+ "steps": [
+  {
+   "id": "doubled",
+   "title": "Peones doblados",
+   "text": "El alfil blanco capturó el caballo en c6 y el negro recapturó con el peón de b, así que el negro ahora tiene dos peones en el archivo c: peones doblados. No pueden protegerse mutuamente, el de atrás está atrapado detrás del de delante, y juntos valen menos que dos peones sanos. Los peones doblados no siempre son malos: aquí el negro obtuvo el par de alfiles y un archivo b semiabierto a cambio. Pero en un final, la debilidad suele manifestarse.",
+   "narration": "Mira los dos peones negros apilados en el archivo c. Esos son peones doblados. No pueden defenderse mutuamente y el de atrás está atrapado detrás del de delante. El negro obtuvo los dos alfiles a cambio, pero en un final, los peones doblados generalmente te cuestan."
+  },
+  {
+   "id": "doubled-ending",
+   "title": "Dos peones sanos vencen a dos doblados",
+   "prompt": "Los peones son iguales, pero los de negro están doblados. Encuentra el único plan ganador.",
+   "hint": "Usa tu peón de h para congelar a ambos peones g de negro antes de que puedan organizarse.",
+   "success": "Con el peón en h5, el par doblado de negro está congelado: ninguno de los peones g puede avanzar, y el rey blanco está libre para atacarlos. Cualquier movimiento más lento permite que negro se prepare y contenga.",
+   "narration": "Los peones son iguales, dos cada uno, pero los de negro están doblados. Empuja tu peón de h hacia adelante para cerrarlos. Una vez que están congelados, el par de negro vale menos que tus dos sanos."
+  },
+  {
+   "id": "backward",
+   "title": "El peón retrasado",
+   "text": "El peón negro en d6 está retrasado. Su vecino en e5 ha avanzado y no hay peón de c, por lo que ningún peón puede defenderlo. Tampoco puede avanzar de forma segura a d5, porque el caballo blanco y el peón de e4 controlan ese casillero. También se sienta en un archivo semiabierto, justo delante de la torre blanca. El casillero d5 en frente de él es un agujero que las piezas blancas pueden utilizar.",
+   "narration": "Ahora conoce este peón retrasado en d6. Sus vecinos lo han dejado atrás, así que ningún peón puede protegerlo, y no puede avanzar porque las blancas controlan d5. Está atascado en una columna abierta, justo en la mira de la torre."
+  },
+  {
+   "id": "hit-the-backward-pawn",
+   "title": "Apílalo",
+   "prompt": "Agrega un atacante al peón retrasado y gánatelo.",
+   "hint": "La torre ya ataca d6. ¿Qué salto de caballo lo ataca una segunda vez, y a7 también?",
+   "success": "El caballo en b5 golpeó d6 y a7 a la vez. El peón en d6 solo tenía un defensor contra dos atacantes, así que cayó.",
+   "narration": "La torre ya está mirando fijamente al peón retrasado. Lleva al caballo para que el peón sea atacado dos veces, y como ningún peón puede ir en su rescate, cae."
+  },
+  {
+   "id": "why-weak",
+   "title": "¡Revísate!",
+   "question": "¿Qué hace que un peón retrasado sea un buen objetivo?",
+   "options": [
+    {
+     "text": "Ningún peón puede defenderlo, y la casilla delante de él es un puesto seguro para las piezas enemigas",
+     "why": "Así que el defensor debe atar piezas a él, mientras que el atacante obtiene una casilla excelente para ocupar."
+    },
+    {
+     "text": "Está lejos de su propio rey",
+     "why": "La distancia del rey no tiene nada que ver con eso. El problema es la estructura de peones a su alrededor."
+    },
+    {
+     "text": "Puede ser capturado al paso",
+     "why": "El al paso solo es posible inmediatamente después de un avance de dos casillas de un peón. No es lo que hace que un peón esté retrasado."
+    }
+   ],
+   "narration": "¿Última pregunta? ¿Por qué a los jugadores fuertes les encanta atacar los peones retrasados? Piensa en quién puede defenderlo, y quién puede usar la casilla delante. ¡Bien hecho!"
+  }
+ ]
+}

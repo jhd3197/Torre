@@ -1,0 +1,129 @@
+{
+  "label": "Tu perfil",
+  "title": "Tu perfil",
+  "level": "Nivel {{level}}",
+  "levelUnknown": "Nivel desconocido",
+  "progress": "Tu progreso",
+  "xp": "{{xp}} XP",
+  "progressLabel": "Progresa al siguiente nivel",
+  "toNext": "{{xp}} de {{goal}} XP para el nivel {{level}}",
+  "loading": "Cargando tu perfil...",
+  "streak": {
+    "days_one": "racha de {{count}} días",
+    "days_other": "racha de {{count}} días",
+    "goalMet": "Hoy has alcanzado tu meta. ¡Nos vemos mañana!",
+    "progress": "{{xp}} de {{goal}} XP hacia tu meta de hoy."
+  },
+  "cards": {
+    "games": {
+      "title": "Archivo de partidas",
+      "text": "Cada partida que jugaste o importaste, reproducida movimiento por movimiento."
+    },
+    "insights": {
+      "title": "Conocimientos",
+      "text": "Forma, aperturas y errores recurrentes en tu archivo."
+    },
+    "awards": {
+      "title": "Premios",
+      "text": "Trofeos y insignias obtenidas en el camino."
+    },
+    "lessons": {
+      "title": "Biblioteca de lecciones",
+      "text": "Explora todas las lecciones libremente, fuera de la ruta principal."
+    },
+    "train": {
+      "title": "Entrena y repasa",
+      "text": "Ejercicios de repetición espaciada creados a partir de tus errores."
+    },
+    "settings": {
+      "title": "Ajustes",
+      "text": "Tablero, piezas, sonidos y preferencias del motor."
+    }
+  },
+  "crests": {
+    "title": "Emblemas de eventos"
+  },
+  "archive_one": "{{value}} partida en tu archivo",
+  "archive_other": "{{value}} partidas en tu archivo",
+  "archiveEmpty": "Aún no hay partidas en tu archivo",
+  "ratings": {
+    "label": "Tus números",
+    "play": {
+      "title": "Rating de juego",
+      "month": "{{change}} en 30 días",
+      "last": "De tu partida del {{date}}"
+    },
+    "puzzles": {
+      "title": "Rating de puzzles",
+      "trend": "{{change}} en {{count}} puzzles puntuados",
+      "count_one": "{{value}} puzzle puntuado",
+      "count_other": "{{value}} puzzles puntuados"
+    },
+    "accuracy": {
+      "title": "Precisión",
+      "games_one": "En {{value}} partida analizada",
+      "games_other": "En {{value}} partidas analizadas"
+    },
+    "awards": {
+      "title": "Premios",
+      "next": "Siguiente: {{title}}",
+      "done": "Todos los premios en oro"
+    }
+  },
+  "record": {
+    "title": "Historial",
+    "all": "Todas las estadísticas",
+    "win": "Victorias",
+    "draw": "Tablas",
+    "loss": "Derrotas",
+    "last_one": "Última partida",
+    "last_other": "Últimas {{count}} partidas",
+    "short": {
+      "win": "V",
+      "draw": "T",
+      "loss": "D"
+    },
+    "tip": "{{result}} contra {{opponent}}, {{date}}"
+  },
+  "openings": {
+    "title": "Tus aperturas",
+    "all": "Todas las aperturas",
+    "games_one": "{{value}} partida",
+    "games_other": "{{value}} partidas",
+    "white": "Con blancas",
+    "black": "Con negras",
+    "score": "Puntuación {{score}}%",
+    "note": "El cuadro muestra tu color; la barra, tu puntuación."
+  },
+  "awards": {
+    "title": "Premios",
+    "earned": "{{earned}} de {{total}} obtenidos",
+    "all": "Todos los premios"
+  },
+  "games": {
+    "title": "Partidas recientes",
+    "all": "Todas las partidas",
+    "vs": "contra {{opponent}}",
+    "moves_one": "{{count}} jugada",
+    "moves_other": "{{count}} jugadas",
+    "replay": "Repetir",
+    "replayLabel": "Repetir la partida contra {{opponent}}",
+    "result": {
+      "win": "Victoria",
+      "draw": "Tablas",
+      "loss": "Derrota"
+    }
+  },
+  "opponents": {
+    "title": "Más jugados",
+    "record_one": "{{value}} partida · {{record}}",
+    "record_other": "{{value}} partidas · {{record}}"
+  },
+  "empty": {
+    "title": "Aún no hay partidas",
+    "text": "Importa tus partidas o juega contra un bot. Aquí aparecerán tu historial, aperturas y rivales.",
+    "import": "Importar partidas",
+    "play": "Jugar contra un bot"
+  },
+  "more": "Accesos directos"
+}

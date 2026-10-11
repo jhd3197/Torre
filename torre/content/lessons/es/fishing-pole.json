@@ -1,0 +1,64 @@
+{
+ "title": "El Cañonazo",
+ "summary": "En la Apertura Española, el caballo negro se queda como cebo en g4. Si las blancas lo toman, se abre la columna h y la dama da mate en h2.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "cast-the-line",
+   "title": "Lanza el anzuelo",
+   "text": "Las blancas ya enrocaron en la Apertura Española. El caballo negro salta a g4, lo cual no es un buen movimiento de desarrollo, y cuando las blancas lo espantan con peón a h3, las negras lo dejan allí y empujan el peón a h5. El caballo es el cebo, el peón h es la línea.",
+   "narration": "Esta trampa se llama El Cañonazo. El caballo negro salta a g4 como cebo. [move] Las blancas lo atacan. [move] Pero las negras no huyen. Las negras empujan el peón h en su lugar. [move]"
+  },
+  {
+   "id": "open-the-h-file",
+   "title": "Abre la columna",
+   "prompt": "Las blancas mordieron el anzuelo. Captura de nuevo.",
+   "hint": "Tu peón h puede capturar, y la casilla que deja se convierte en un camino para tu torre.",
+   "success": "Peón captura g4 abre la columna h para tu torre en h8 y ataca al caballo en f3. El rey de las blancas de repente tiene una torre apuntando hacia él.",
+   "narration": "Las blancas mordieron el anzuelo y tomaron tu caballo. Ahora, recaptura con el peón h. Mira lo que eso abre para tu torre."
+  },
+  {
+   "id": "reel-it-in",
+   "title": "Enrolla el hilo",
+   "prompt": "El caballo de las blancas huyó a e1. Saca a la dama y da mate.",
+   "hint": "Tu dama puede alcanzar la columna h abierta en un movimiento. Luego, un peón puede cortar el camino al rey.",
+   "success": "La dama va a h4 y alinea con la torre en la columna h. Después de peón a f3, peón a g3 corta el camino al rey, y la dama a h2 es mate. El caballo a h2 en lugar de e1 tampoco ayuda: la dama a h4 aún gana.",
+   "narration": "El caballo de las blancas ha corrido a e1. Ahora la columna h es tuya. Trae la dama y termina el trabajo."
+  },
+  {
+   "id": "if-white-says-no",
+   "title": "Si las blancas no muerden",
+   "text": "La Caña de Pescar solo funciona si las blancas muerden. Un jugador cuidadoso simplemente desarrolla, por ejemplo, con peón a c3, y el caballo de las negras se queda atascado en g4, habiendo perdido tiempo. Los motores valoran a las blancas claramente mejores. Usa la trampa para divertirte en partidas rápidas, pero ten en cuenta que es un gambito.",
+   "narration": "Aquí está la parte honesta. Si las blancas ignoran la carnada y simplemente desarrollan, digamos con peón a c3, [move] el caballo de las negras se queda fuera de juego y las blancas están claramente mejores. Es un truco divertido, no una gran apertura."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Las blancas rechazaron la carnada y golpearon en el centro con peón a d4. No te quedes esperando a que tomen el caballo. Encuentra una respuesta sólida.",
+   "nudge": "Tu peón de e5 está atacado. Primero ocúpate del centro.",
+   "hint": "Captura en d4 con tu peón e, o sostén el centro con peón a d6.",
+   "success": "Peón toma d4 abre el centro antes de que las blancas puedan aprovecharlo, y peón a d6 lo sostiene igual de bien. Las blancas siguen un poco mejor, así que trae de vuelta tu caballo de g4 y enroca pronto.",
+   "narration": "Esto es lo que debes hacer cuando las blancas no muerden. Las blancas ignoran tu caballo y golpean el centro con un peón. Responde tú también en el centro, y deja de esperar al pez."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué tomar el caballo en g4 sale mal para las blancas?",
+   "options": [
+    {
+     "text": "Abre la columna h, y las torres y la dama de las negras atacan al rey por ella.",
+     "why": "Bien. La recaptura con peón elimina el escudo de h de las blancas y abre una autopista a h2."
+    },
+    {
+     "text": "El caballo estaba protegido, así que las blancas pierden material de inmediato.",
+     "why": "Las blancas ganan el caballo al principio. El problema es el ataque que sigue, no el cambio."
+    },
+    {
+     "text": "Esto le permite a las negras enrocar en el flanco de la dama.",
+     "why": "El enroque no tiene nada que ver. El peligro es la columna h abierta."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué capturar ese caballo es una mala idea para las Blancas? Piensa en qué columna se abre."
+  }
+ ]
+}

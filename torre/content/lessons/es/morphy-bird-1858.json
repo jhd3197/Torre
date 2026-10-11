@@ -1,0 +1,97 @@
+{
+ "title": "El sacrificio de torre de Morphy contra Bird",
+ "summary": "Londres, 1858: Henry Bird enroca largo, y Morphy sacrifica una torre para que su dama pueda quedar al lado del rey blanco.",
+ "unit": "Paul Morphy",
+ "steps": [
+  {
+   "id": "london-1858",
+   "title": "Londres, 1858",
+   "text": "Antes de París, Morphy pasó el verano de 1858 en Londres, jugando contra los mejores de Inglaterra. Henry Bird era un fuerte maestro inglés que amaba las aperturas inusuales; una apertura que comienza empujando el peón de f dos casillas todavía se llama Apertura Bird. Aquí Bird tiene las blancas, y Morphy responde a 1.e4 con un agresivo ...f5 temprano. Tú juegas con negras, como Morphy.",
+   "narration": "Londres, 1858. Morphy se enfrenta a Henry Bird, un maestro inglés que amaba las sorpresas. Esta vez la sorpresa viene de Morphy. Tú juegas con negras."
+  },
+  {
+   "id": "the-game",
+   "title": "Bird – Morphy, Londres 1858",
+   "text": "La partida se vuelve aguda desde temprano. Bird enroca en el flanco de dama, y su rey parece seguro detrás de sus peones. Morphy sacrifica una torre para colocar su dama al lado de este. La partida se detiene en los movimientos clave de Morphy.",
+   "notes": [
+    {
+     "text": "3...f5: Morphy ataca el centro de inmediato. Es arriesgado, y hace que la partida sea aguda desde el principio."
+    },
+    {
+     "text": "12...Qxh5: después de una breve escaramuza en el flanco de rey, Morphy tiene un peón de ventaja."
+    },
+    {
+     "text": "15...bxc6: recuperar de esta manera abre la columna 'b' para una torre negra."
+    },
+    {
+     "text": "16...Rb8: la torre toma la columna abierta y apunta a b2."
+    },
+    {
+     "text": "1. \"17.O-O-O: Bird enroca en el flanco de dama. Su rey está detrás de tres peones en a2, b2 y c2.\""
+    },
+    {
+     "text": "2. \"17...Rxf2!? Morphy sacrifica una torre en f2 para alejar el alfil de e3. Los motores modernos prefieren un movimiento más tranquilo aquí, pero observa lo que deja de proteger el alfil.\""
+    },
+    {
+     "text": "3. \"1. '18.Bxf2: Bird toma la torre. Morphy está un peón de torre abajo, pero no por mucho tiempo.'\""
+    },
+    {
+     "text": "4. \"2. '20...Qa1+: La dama da jaque desde la esquina, y el rey blanco tiene que moverse.'\""
+    },
+    {
+     "text": "3. '23...Rxb4+: La columna b está abierta, y la torre se une al ataque con jaque.'"
+    },
+    {
+     "text": "4. '26...Bf5+: La última pieza negra se une al ataque con jaque.'"
+    },
+    {
+     "text": "5. '29...Qb1+: La dama tomará la torre en h1 a continuación. Bird se rindió.'"
+    }
+   ],
+   "narration": "'Bird enroca en el flanco de dama y su rey parece seguro. Observa cómo Morphy lo alcanza de todos modos, y encuentra sus movimientos clave.'",
+   "guesses": [
+    {
+     "prompt": "'El alfil de Bird tomó tu torre en f2. Ahora encuentra la jugada de la dama que explica el sacrificio.'",
+     "hint": "'El alfil ha salido de e3. ¿Qué casilla justo al lado del rey blanco está ahora sin defender?'",
+     "why": "9. '18...Qa3!! La dama aterriza al lado del rey blanco. Si el peón de b toma la dama, el alfil recupera en a3 y es jaque mate. Bird tuvo que jugar 19.c3, y la dama tomó en a2 en su lugar.'"
+    },
+    {
+     "prompt": "'El rey blanco ha corrido a b2. Añade otra pieza para abrir la columna b.'",
+     "hint": "'Tu alfil en d6 puede capturar un peón situado en la columna b.'",
+     "why": "12. '22...Bxb4! Si el peón de c recupera, la columna b se abre y la torre en b8 se une al ataque con jaque.'"
+    },
+    {
+     "prompt": "Las damas todavía están en juego, y el rey blanco está al descubierto. Encuentra la jugada de peón que permita que tu última pieza ataque en jaque.",
+     "hint": "Tu alfil quiere dar jaque desde f5, pero tu propio peón en e4 bloquea esa diagonal.",
+     "why": "25...e3! El peón se aparta, así que el alfil puede dar jaque desde f5 por la diagonal larga. Bird tomó el peón, y 26...Bf5+ siguió."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "¿Qué deja atrás el defensor?",
+   "text": "El sacrificio de torre de Morphy tenía una sola tarea: alejar al alfil de e3 para que la dama pudiera aterrizar en a3. Antes de sacrificar, pregunta qué deja de guardar la pieza que captura. Aquí, un solo alfil mantenía unido al rey blanco.",
+   "narration": "El sacrificio de la torre alejó al alfil de e3, y eso permitió que la dama aterrizara en a3. Siempre pregunta qué deja de guardar un defensor cuando captura."
+  },
+  {
+   "id": "quiz",
+   "title": "El punto del sacrificio",
+   "question": "¿Cuál era el punto de 17...Rxf2 de Morphy?",
+   "options": [
+    {
+     "text": "Para alejar al alfil de e3 para que la dama negra pudiera llegar a a3",
+     "why": "Exacto. Una vez que el alfil tomó en f2, a3 quedó desprotegido y la dama saltó al lado del rey."
+    },
+    {
+     "text": "Para ganar el peón de f2 gratis",
+     "why": "No fue gratis: Bird tomó la torre. El peón no era el punto."
+    },
+    {
+     "text": "Para cambiar las torres y dirigirse a un final",
+     "why": "No se cambiaron torres. Morphy sacrificó su torre para atacar al rey"
+    }
+   ],
+   "narration": "¿Última pregunta: para qué fue realmente el sacrificio de la torre?"
+  }
+ ]
+}

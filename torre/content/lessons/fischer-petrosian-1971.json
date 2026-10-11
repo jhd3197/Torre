@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "title": "Fischer trades his best piece",
+  "summary": "Buenos Aires, 1971: Fischer swaps a beautiful knight for a bishop because the endgame that follows is easier to win.",
+  "category": "history",
+  "level": "advanced",
+  "minutes": 7,
+  "unit": "Bobby Fischer",
+  "order": 2,
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Buenos Aires, 1971",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "In 1971 Fischer tore through the Candidates matches, beating Mark Taimanov and Bent Larsen without losing a game. In the final he met Tigran Petrosian, a former world champion who was almost impossible to beat. This is game seven of that final. Fischer won the match and the right to play Spassky for the title.",
+      "narration": "Buenos Aires, 1971. Fischer against the former world champion Tigran Petrosian, with a world championship match as the prize.",
+      "pose": "present"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Fischer – Petrosian, Candidates final, Buenos Aires 1971",
+      "text": "The queens come off early. Black is left with two isolated pawns on a6 and d5, and Fischer starts pressing on them. Watch how simple every move looks.",
+      "narration": "The queens are traded early. Watch Fischer press on Black's weak pawns with simple moves.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "c7c5",
+        "g1f3",
+        "e7e6",
+        "d2d4",
+        "c5d4",
+        "f3d4",
+        "a7a6",
+        "f1d3",
+        "b8c6",
+        "d4c6",
+        "b7c6",
+        "e1g1",
+        "d7d5",
+        "c2c4",
+        "g8f6",
+        "c4d5",
+        "c6d5",
+        "e4d5",
+        "e6d5",
+        "b1c3",
+        "f8e7",
+        "d1a4",
+        "d8d7",
+        "f1e1",
+        "d7a4",
+        "c3a4",
+        "c8e6",
+        "c1e3",
+        "e8g8",
+        "e3c5",
+        "f8e8",
+        "c5e7",
+        "e8e7",
+        "b2b4",
+        "g8f8",
+        "a4c5",
+        "e6c8",
+        "f2f3",
+        "e7a7",
+        "e1e5",
+        "c8d7",
+        "c5d7",
+        "a7d7",
+        "a1c1",
+        "d7d6",
+        "c1c7",
+        "f6d7",
+        "e5e2",
+        "g7g6",
+        "g1f2",
+        "h7h5",
+        "f3f4",
+        "h5h4",
+        "f2f3",
+        "f7f5",
+        "f3e3",
+        "d5d4",
+        "e3d2",
+        "d7b6",
+        "e2e7",
+        "b6d5",
+        "e7f7",
+        "f8e8",
+        "c7b7",
+        "d5b4",
+        "d3c4"
+      ],
+      "notes": [
+        {
+          "ply": 26,
+          "text": "13...Qxa4: the queens come off. Black has isolated pawns on a6 and d5: no pawn next to them can protect them."
+        },
+        {
+          "ply": 33,
+          "text": "17.Bxe7: Fischer trades the dark bishops. His remaining bishop will be better than Black's."
+        },
+        {
+          "ply": 37,
+          "text": "19.Nc5: the knight lands on a great square, hitting a6 and the bishop."
+        },
+        {
+          "ply": 43,
+          "text": "22.Nxd7+!: Fischer trades his beautiful knight for Black's bishop. His bishop against Black's knight, with pawns on both wings, is an endgame a bishop loves."
+        },
+        {
+          "ply": 48,
+          "text": "24...Rd6, after 24.Rc7, a white rook stands on the seventh rank."
+        },
+        {
+          "ply": 52,
+          "text": "26.Kf2: in the endgame the king joins the fight."
+        },
+        {
+          "ply": 58,
+          "text": "29...d4+: Petrosian pushes his pawn, but now it is far from home and cut off."
+        },
+        {
+          "ply": 61,
+          "text": "31.Ree7: both white rooks are on the seventh rank, right next to the black king."
+        },
+        {
+          "ply": 67,
+          "text": "34.Bc4: the bishop joins, and Black's king is trapped on the back rank. Petrosian resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 45,
+          "prompt": "Fischer just traded his knight for the bishop. The rook on a1 is doing nothing. Give it a job.",
+          "hint": "There is an open file in the middle of the board, leading to the seventh rank.",
+          "why": "23.Rc1 takes the open c-file. Next the rook goes to c7, on the seventh rank, where it ties Black's pieces down."
+        },
+        {
+          "ply": 59,
+          "prompt": "Black's passed pawn on d4 gives check. Where should the king go?",
+          "hint": "In an endgame, the best piece to stop a passed pawn is the king, standing right in front of it.",
+          "why": "30.Kd2! The king steps in front of the d-pawn and stops it for good. Now White's rooks are free to attack."
+        },
+        {
+          "ply": 63,
+          "prompt": "Two rooks on the seventh. Drive the king back with check.",
+          "hint": "The rook on e7 can step sideways with check.",
+          "why": "32.Rf7+ pushes the king to e8 and keeps it on the back rank, where the rooks can build a net."
+        },
+        {
+          "ply": 65,
+          "prompt": "The king is on e8. Keep the rooks working together on the seventh rank.",
+          "hint": "One rook moves to a square where it also eyes Black's pawns and the b-file.",
+          "why": "33.Rb7 keeps both rooks on the seventh, boxing the king in. If Black grabs the b4 pawn, the bishop joins the hunt."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Knight for bishop",
+      "question": "Why did Fischer give his strong knight for Black's bishop on move 22?",
+      "options": [
+        {
+          "text": "A bishop is usually better than a knight in an open endgame with pawns on both sides",
+          "why": "Right. The bishop can reach both wings quickly; the knight is slow.",
+          "correct": true
+        },
+        {
+          "text": "Knights are worth less than bishops in every position",
+          "why": "Not every position: in closed positions a knight can be better. Here the board was open."
+        },
+        {
+          "text": "He wanted to avoid a draw by repetition",
+          "why": "There was no repetition. He chose the endgame he knew was easier to win."
+        }
+      ],
+      "narration": "Why trade the beautiful knight?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Trade into the right endgame",
+      "fen": "r3k3/1R3R2/p2r2p1/5p2/1nBp1P1p/8/P2K2PP/8 b - - 1 34",
+      "text": "Fischer did not keep his best-looking piece. He asked which endgame would be easiest to win and traded into it: bishop against knight, rooks on the seventh, king in the center. Good endgame players trade pieces on purpose, not just to simplify.",
+      "narration": "Do not keep a piece because it looks nice. Trade into the endgame you can win.",
+      "pose": "idea"
+    }
+  ]
+}

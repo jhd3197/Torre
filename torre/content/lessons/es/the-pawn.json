@@ -1,0 +1,55 @@
+{
+ "title": "El peón",
+ "summary": "Los peones avanzan en línea recta pero capturan en diagonal, y pueden dar dos pasos en su primer movimiento. Aprende sus peculiaridades y una horquilla de peón.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "forward-only",
+   "title": "Adelante, nunca atrás",
+   "text": "Un peón avanza en línea recta un espacio, y nunca puede retroceder. En su primer movimiento, puede dar dos pasos en lugar de uno, así que este peón puede ir a e3 o e4.",
+   "narration": "Los peones son los pequeños soldados de las ajedrez. Solo marchan hacia adelante, un espacio a la vez. Pero en su primer movimiento, un peón puede dar un doble paso. [move]"
+  },
+  {
+   "id": "diagonal-captures",
+   "title": "Capturando lateralmente",
+   "text": "Los peones capturan de manera diferente a como se mueven: un espacio en diagonal hacia adelante. El peón en e4 está bloqueado por el peón en e5, porque un peón no puede capturar en línea recta. Pero puede capturar el peón en d5.",
+   "narration": "Aquí está la parte difícil. Los peones avanzan en línea recta, pero capturan en diagonal. Este peón está atrapado detrás del peón en e5, pero aún puede capturar al que está en d5."
+  },
+  {
+   "id": "pawn-takes-knight",
+   "title": "Elige la mejor captura",
+   "prompt": "Tu peón de e puede capturar dos cosas. Toma la de más valor.",
+   "hint": "Un caballo vale aproximadamente tres peones.",
+   "success": "Peón captura caballo. Cambiar tu humilde peón por un caballo entero es un gran trato.",
+   "narration": "Tu peón en e4 puede capturar un peón o un caballo. Ambos están en diagonal, ambas son posibles. ¿Cuál preferirías tener?"
+  },
+  {
+   "id": "pawn-fork",
+   "title": "La horquilla de doble paso",
+   "prompt": "Negro tiene un caballo extra. Usa el doble paso de tu peón para atacar a ambos caballos a la vez.",
+   "hint": "¿Qué casilla ataca tanto c5 como e5? Tu peón de d puede llegar allí en un movimiento.",
+   "success": "Peón a d4 atacó a ambos caballos. Negro sacrificó uno con un jaque, y tú lo tomaste. Recuperaste el caballo que te faltaba.",
+   "narration": "Negro tiene un caballo más, pero mira esos dos caballos uno al lado del otro. Si tu peón de d salta dos casillas, ¡los ataca a ambos! ¡Negro solo puede salvar uno!"
+  },
+  {
+   "id": "pawn-quiz",
+   "title": "Revisión rápida",
+   "question": "Un peón blanco está en e4 y un peón negro está directamente delante de él en e5. ¿Qué puede hacer el peón blanco?",
+   "options": [
+    {
+     "text": "Nada en línea recta: está bloqueado",
+     "why": "Los peones solo capturan en diagonal, así que una pieza directamente delante los detiene. Aún puede capturar en d5 o f5 si hay algo ahí."
+    },
+    {
+     "text": "Captura el peón en e5",
+     "why": "Los peones nunca capturan en línea recta. Ese movimiento no está permitido."
+    },
+    {
+     "text": "Sáltalo para llegar a e6",
+     "why": "Solo el caballo puede saltar. Un peón que tiene algo delante no puede avanzar."
+    }
+   ],
+   "narration": "Último detalle. Dos peones están cara a cara. ¿Puede alguno de ellos avanzar?"
+  }
+ ]
+}

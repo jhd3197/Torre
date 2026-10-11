@@ -1,0 +1,69 @@
+{
+ "title": "Prophylaxis",
+ "summary": "Antes de hacer tu propio plan, pregúntate qué quiere tu oponente. Aprende a detener la mejor idea del enemigo antes de que suceda.",
+ "unit": "Planificación",
+ "steps": [
+  {
+   "id": "ask-the-question",
+   "title": "¿Qué quiere mi oponente?",
+   "text": "La profilaxis significa prevenir las ideas de tu oponente antes de que sucedan. Antes de elegir una jugada, pregúntate: si fuera el turno de mi oponente, ¿qué jugarían? Aquí, las negras querrían clavar el caballo de blancas con el alfil en g4, o perseguir al fuerte alfil de blancas con el caballo a a5. Un jugador que ve esto puede eliminar la fuerza de esos planes primero, y solo entonces continuar con los suyos.",
+   "narration": "Aquí está el hábito que separa a los jugadores fuertes del resto. Antes de jugar, pregúntate: ¿qué quiere hacer mi oponente? Si puedes detener su mejor idea barata, todo su plan se derrumba."
+  },
+  {
+   "id": "stop-the-pin",
+   "title": "Quítale un casillero",
+   "question": "Las negras quieren jugar alfil a g4 y clavar tu caballo. ¿Qué jugada tranquila detiene esa idea de forma definitiva?",
+   "options": [
+    {
+     "text": "El peón de h a h3",
+     "why": "El peón en h3 cubre g4, así que el alfil nunca podrá asentarse allí. También le da a tu rey un poco de espacio para respirar."
+    },
+    {
+     "text": "El alfil a g5, clavando el caballo de negras",
+     "why": "Esa es tu propia idea, pero no hace nada contra el plan de negras: el alfil aún puede llegar a g4."
+    },
+    {
+     "text": "El peón de d a d4",
+     "why": "Un movimiento central natural, pero g4 aún está disponible para el alfil de las negras."
+    }
+   ],
+   "narration": "El alfil de las negras está observando g4, donde fijaría tu caballo a la dama. ¿Qué movimiento pequeño y silencioso elimina ese casillero para siempre?"
+  },
+  {
+   "id": "stop-the-breakthrough",
+   "title": "Mira cómo se avecina el avance.",
+   "prompt": "Las negras amenazan un avance de peón en el flanco de dama. Encuentra el movimiento que elimina la amenaza, y luego responde a los movimientos de peón de las negras.",
+   "hint": "Si las negras empujan un peón a b3, podría aparecer un peón pasado. Tu rey debe estar ya lo suficientemente cerca para lidiar con él. Cada tiempo es crucial.",
+   "success": "Con tu rey un paso más cerca, el avance se desinfla. Si las negras recuperan en b3, ese último peón negro queda atrapado frente a tu peón b2, y tu rey se acerca a capturarlo.",
+   "narration": "¿Recuerdas el avance de los peones pasados de esa lección? Ahora son las negras las que lo amenazan. Pregúntate lo que quiere las negras, y mueve a tu rey hacia el peligro de inmediato. Un movimiento desperdiciado, y el peón de las negras se coronará."
+  },
+  {
+   "id": "into-the-square",
+   "title": "Primero su peón, luego el tuyo.",
+   "prompt": "Tienes dos peones pasados conectados, pero el peón de las negras también avanza. Asegúrate de que nunca se corone.",
+   "hint": "Imagina un casillero desde el peón de las negras hasta su casilla de coronación. Tu rey debe entrar en él ahora.",
+   "success": "Ahora tu rey está lo suficientemente cerca para atrapar el peón de b, y tus dos peones conectados en el flanco de rey ganarán. Empujar tus propios peones primero habría permitido que el peón de las negras se coronara.",
+   "narration": "Es tentador empujar tus propios peones, pero primero pregunta lo que quiere las negras: correr con el peón de b. Mueve a tu rey hacia él ahora. Una vez que se va su única esperanza, tus peones ganarán a su debido tiempo."
+  },
+  {
+   "id": "first-question",
+   "title": "¡Revísate!",
+   "question": "¿Cuál es la primera pregunta del pensamiento profiláctico?",
+   "options": [
+    {
+     "text": "¿Qué quiere hacer mi oponente?",
+     "why": "Una vez que sabes la mejor idea de tu oponente, a menudo puedes detenerla con un movimiento tranquilo, y tu propio plan se vuelve mucho más fácil."
+    },
+    {
+     "text": "¿Qué piezas mías pueden atacar al rey?",
+     "why": "Las ideas de ataque importan, pero la profilaxis comienza mirando la posición desde el otro lado del tablero."
+    },
+    {
+     "text": "¿Cómo puedo ganar material ahora mismo?",
+     "why": "Siempre vale la pena verificarlo, pero es una pregunta diferente. La profilaxis se trata de los planes del oponente."
+    }
+   ],
+   "narration": "Pregunta final. ¿Cuál es la primera cosa que pregunta un pensador profiláctico? ¡Tú puedes con esto! ¡Excelente trabajo al terminar la unidad de estrategia!"
+  }
+ ]
+}

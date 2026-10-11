@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "title": "Lasker's two bishops",
+  "summary": "Amsterdam, 1889: the young Emanuel Lasker sacrifices both bishops to strip the black king bare.",
+  "category": "history",
+  "unit": "Emanuel Lasker",
+  "order": 1,
+  "level": "intermediate",
+  "minutes": 6,
+  "orientation": "white",
+  "practice": "sacrifice",
+  "steps": [
+    {
+      "id": "amsterdam-1889",
+      "kind": "explain",
+      "title": "Amsterdam, 1889",
+      "text": "Emanuel Lasker was world champion for twenty-seven years, from 1894 to 1921, longer than anyone else. Years before that, in Amsterdam in 1889, the young Lasker played this game against Johann Bauer. He opens with 1.f4, Bird's Opening, aims both bishops at the black king, and then gives them both away.",
+      "narration": "Amsterdam, 1889. A young Emanuel Lasker, the future world champion, points both bishops at the black king. Then he gives them both away.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Lasker – Bauer, Amsterdam 1889",
+      "text": "Lasker sets up quietly, with one bishop on the long diagonal and the other aiming at h7. Then a knight move starts a chain of sacrifices. The game stops at Lasker's key moves.",
+      "narration": "A quiet start, two bishops aimed at the king, and then the fireworks. Find Lasker's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 7, "text": "4.Bb2: the bishop takes the long diagonal toward g7." },
+        { "ply": 9, "text": "5.Bd3: the other bishop aims at h7. Both now point at Black's castled king." },
+        { "ply": 23, "text": "12.Bxe5: the bishop is back on the long diagonal, right in front of g7." },
+        { "ply": 31, "text": "16.Qxh5+: the queen takes the knight back with check. One bishop is gone, and the king is exposed." },
+        { "ply": 35, "text": "18.Qg4+: the queen keeps checking so the king cannot run, while a rook gets ready to join." },
+        { "ply": 37, "text": "19.Rf3: the rook heads for the h-file. Mate on h3 is threatened." },
+        { "ply": 38, "text": "19...e5: Bauer opens a path so his queen can block on h6. It will cost him the queen." },
+        { "ply": 43, "text": "22.Qd7: a double attack. The queen hits both black bishops, and one of them must fall." },
+        { "ply": 45, "text": "23.Qxb7: White is now ahead in material, and the black king is still bare." },
+        { "ply": 75, "text": "38.Qxd3: the passed pawn falls, and Bauer resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 27,
+          "prompt": "Lasker's bishops point at the black king. First he offers a knight. Where?",
+          "hint": "Attack the knight on f6, the king's main defender.",
+          "why": "14.Nh5! The knight attacks f6. Bauer took it, and the pawn on h7 lost its defender."
+        },
+        {
+          "ply": 29,
+          "prompt": "Bauer took the knight. Now give up the first bishop.",
+          "hint": "Your bishop on d3 sees the pawn in front of the king.",
+          "why": "15.Bxh7+! The king must take, and 16.Qxh5+ wins the knight back with check."
+        },
+        {
+          "ply": 33,
+          "prompt": "Now the second bishop.",
+          "hint": "The bishop on e5 aims at the other pawn in front of the king.",
+          "why": "17.Bxg7!! Both bishops are gone, and the black king has no pawns around it. Bauer took, and the queen and rook came hunting."
+        },
+        {
+          "ply": 39,
+          "prompt": "The rook is ready. Give the check that wins the queen.",
+          "hint": "The h-file leads straight to the black king.",
+          "why": "20.Rh3+ forces 20...Qh6, and 21.Rxh6+ takes the queen. Two bishops have turned into a queen for a rook, and a bishop will follow."
+        }
+      ],
+      "moves": ["f2f4", "d7d5", "e2e3", "g8f6", "b2b3", "e7e6", "c1b2", "f8e7", "f1d3", "b7b6", "g1f3", "c8b7", "b1c3", "b8d7", "e1g1", "e8g8", "c3e2", "c7c5", "e2g3", "d8c7", "f3e5", "d7e5", "b2e5", "c7c6", "d1e2", "a7a6", "g3h5", "f6h5", "d3h7", "g8h7", "e2h5", "h7g8", "e5g7", "g8g7", "h5g4", "g7h7", "f1f3", "e6e5", "f3h3", "c6h6", "h3h6", "h7h6", "g4d7", "e7f6", "d7b7", "h6g7", "a1f1", "a8b8", "b7d7", "f8d8", "d7g4", "g7f8", "f4e5", "f6g7", "e5e6", "b8b7", "g4g6", "f7f6", "f1f6", "g7f6", "g6f6", "f8e8", "f6h8", "e8e7", "h8g7", "e7e6", "g7b7", "d8d6", "b7a6", "d5d4", "e3d4", "c5d4", "h2h4", "d4d3", "a6d3"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Two bishops for a bare king",
+      "marks": [["g7"], ["h5", "g4"], ["f1", "f3"]],
+      "text": "After both sacrifices the black king stands on g7 with no pawns around it, and White's queen and rook are close by. That is what makes a sacrifice like this work: once the shield is gone, your queen and a rook must be able to reach the king quickly. This double bishop sacrifice has been repeated in many games since, and it is still linked to Lasker's name.",
+      "narration": "Two bishops gone, and the black king stands alone. The sacrifice works because White's queen and rook can reach the king right away.",
+      "pose": "idea",
+      "fen": "r4r2/1b2bpk1/ppq1p3/2pp3Q/5P2/1P2P3/P1PP2PP/R4RK1 w - - 0 18"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "When it works",
+      "question": "When does a double bishop sacrifice like Lasker's work?",
+      "options": [
+        {
+          "text": "When your queen and a rook can reach the king quickly once its pawns are gone",
+          "correct": true,
+          "why": "Right. The sacrifice only clears the way. The queen and rook have to finish the job."
+        },
+        {
+          "text": "Whenever both bishops aim at the castled king",
+          "why": "Aiming is not enough. Without a queen and rook ready to follow up, you are simply two pieces down."
+        },
+        {
+          "text": "Only when the opponent has already lost his queen",
+          "why": "Bauer still had his queen. Lasker won it later, as a result of the attack."
+        }
+      ],
+      "narration": "Last question: when does a sacrifice like this work?",
+      "pose": "thinking",
+      "fen": "r4r2/1b2bpk1/ppq1p3/2pp3Q/5P2/1P2P3/P1PP2PP/R4RK1 w - - 0 18"
+    }
+  ]
+}

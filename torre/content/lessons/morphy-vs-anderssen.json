@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "title": "Morphy against Anderssen",
+  "summary": "Paris, 1858: Morphy meets Adolf Anderssen, the hero of the Immortal Game, and takes his king apart in nineteen moves.",
+  "category": "history",
+  "unit": "Paul Morphy",
+  "order": 3,
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["morphy-paulsen-1857"],
+  "orientation": "white",
+  "practice": "exposed-king",
+  "steps": [
+    {
+      "id": "paris-1858",
+      "kind": "explain",
+      "title": "Paris, 1858",
+      "text": "In 1858 Morphy crossed the Atlantic to find the strongest opponents in Europe. In Paris he played a match against Adolf Anderssen of Germany, the winner of the great London tournament of 1851 and the hero of the Immortal Game. Morphy won the match clearly. In this game he opens with the King's Gambit, Anderssen's own kind of chess.",
+      "narration": "Paris, 1858. Morphy faces Adolf Anderssen, the best attacking player in Europe. And he beats him at his own game: the King's Gambit.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Morphy – Anderssen, Paris 1858",
+      "text": "Anderssen grabs a pawn and pushes his kingside pawns forward, while Morphy brings out every piece. Then the sacrifices begin. The game stops at Morphy's key moves: find them.",
+      "narration": "Anderssen grabs a pawn. Morphy grabs time. Watch how quickly an unsafe king falls apart, and find Morphy's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 3, "text": "2.f4: the King's Gambit. White offers a pawn to open the f-file and develop quickly, the favourite opening of the age." },
+        { "ply": 6, "text": "3...g5: Anderssen holds on to the extra pawn by pushing his kingside pawns." },
+        { "ply": 13, "text": "7.Qb3: the queen and the bishop on c4 both aim at f7, the weak point next to Black's king." },
+        { "ply": 21, "text": "11.Bxf4: White has a pawn back, every white piece is out, and the black king is stuck on d8." },
+        { "ply": 23, "text": "12.Bxg8: another black piece disappears before it ever moved." },
+        { "ply": 31, "text": "16.Qxb7: the queen walks into Black's camp and eyes the rook on a8." },
+        { "ply": 35, "text": "18.cxd4: Anderssen won a pawn back with check, but his king is still out in the open." }
+      ],
+      "guesses": [
+        {
+          "ply": 17,
+          "prompt": "Every white piece is ready. Find the sacrifice that rips open Black's kingside.",
+          "hint": "The black queen on e7 guards two things: the pawn on g5 and the square f7. Make her choose.",
+          "why": "9.Nxg5! If the queen takes, she leaves e7, where she was guarding f7. White's queen and bishop are both aiming at f7."
+        },
+        {
+          "ply": 19,
+          "prompt": "The black queen has left e7. Cash in.",
+          "hint": "Your queen and bishop both aim at the same pawn next to the black king.",
+          "why": "10.Bxf7+! The king has to step to d8 and can never castle. Next Morphy takes back on f4 and hits the queen."
+        },
+        {
+          "ply": 33,
+          "prompt": "Your queen has reached b7. Find the capture that opens the black king for good.",
+          "hint": "The pawn on d6 is the last shield in front of the king, and your bishop on f4 can reach it.",
+          "why": "17.Bxd6! The bishop removes the pawn in front of the king and hits the queen on e7. Black cannot cover everything at once."
+        },
+        {
+          "ply": 37,
+          "prompt": "Black has just taken your bishop. Find the move that ends the game.",
+          "hint": "Your rook on f1 has an open file all the way up to the seventh rank.",
+          "why": "19.Rf7+! The rook checks along the seventh rank. When the king moves, the white queen takes the rook on a8. Anderssen resigned."
+        }
+      ],
+      "moves": ["e2e4", "e7e5", "f2f4", "e5f4", "g1f3", "g7g5", "f1c4", "f8g7", "e1g1", "d7d6", "c2c3", "b8c6", "d1b3", "d8e7", "d2d4", "a7a6", "f3g5", "e7g5", "c4f7", "e8d8", "c1f4", "g5e7", "f7g8", "c8g4", "b1d2", "d8d7", "g8d5", "c6d8", "d5b7", "d8b7", "b3b7", "a6a5", "f4d6", "g7d4", "c3d4", "e7d6", "f1f7"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Develop first, then open lines",
+      "marks": [["a8"], ["h8"], ["d7"]],
+      "text": "Look at the final position: both black rooks are still on their starting squares, and the black king never found shelter. Morphy gave up a knight and a bishop to open lines, and it worked because his pieces were out and Anderssen's were not. Open the position when you are ahead in development, not before.",
+      "narration": "Both black rooks never moved, and the black king never found a home. Morphy opened lines because his pieces were ready and Anderssen's were not.",
+      "pose": "idea",
+      "fen": "r6r/1Qpk1R1p/3q4/p7/3PP1b1/8/PP1N2PP/R5K1 b - - 1 19"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Why it worked",
+      "question": "Why did Morphy's sacrifices work against Anderssen?",
+      "options": [
+        {
+          "text": "His pieces were out and Black's king was stuck in the center, so open lines helped only White",
+          "correct": true,
+          "why": "Right. Opening lines is good for the side whose pieces can use them."
+        },
+        {
+          "text": "Anderssen did not know the King's Gambit",
+          "why": "Anderssen played the King's Gambit himself and knew it well. The trouble was his position, not his knowledge."
+        },
+        {
+          "text": "Morphy had more material the whole game",
+          "why": "No. Morphy gave material away to open lines, and won it back with interest."
+        }
+      ],
+      "narration": "Quick question: why did the sacrifices work?",
+      "pose": "thinking",
+      "fen": "r6r/1Qpk1R1p/3q4/p7/3PP1b1/8/PP1N2PP/R5K1 b - - 1 19"
+    }
+  ]
+}

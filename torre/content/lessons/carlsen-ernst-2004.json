@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "title": "Thirteen-year-old Carlsen attacks",
+  "summary": "Wijk aan Zee, 2004: a thirteen-year-old Magnus Carlsen sacrifices a knight, a bishop and a rook and mates.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Magnus Carlsen",
+  "order": 1,
+  "practice": "sacrifice",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Wijk aan Zee, 2004",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Magnus Carlsen, from Norway, later became world champion and the highest-rated player in history. In January 2004 he was thirteen and playing in the third group of the big tournament at Wijk aan Zee in the Netherlands. Against the Dutch player Sipke Ernst he played an attack that made people notice him.",
+      "narration": "Wijk aan Zee, 2004. Magnus Carlsen is thirteen years old. Watch what he does to his opponent's king.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Carlsen – Ernst, Wijk aan Zee 2004",
+      "text": "A Caro-Kann. Carlsen pushes his h-pawn all the way to h5 and castles long. Then the sacrifices begin: a knight, a bishop and a rook, one after another.",
+      "narration": "Carlsen grabs space with his h-pawn and castles long. Then he starts giving pieces away. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "c7c6",
+        "d2d4",
+        "d7d5",
+        "b1c3",
+        "d5e4",
+        "c3e4",
+        "c8f5",
+        "e4g3",
+        "f5g6",
+        "h2h4",
+        "h7h6",
+        "g1f3",
+        "b8d7",
+        "h4h5",
+        "g6h7",
+        "f1d3",
+        "h7d3",
+        "d1d3",
+        "e7e6",
+        "c1f4",
+        "g8f6",
+        "e1c1",
+        "f8e7",
+        "g3e4",
+        "d8a5",
+        "c1b1",
+        "e8g8",
+        "e4f6",
+        "d7f6",
+        "f3e5",
+        "a8d8",
+        "d3e2",
+        "c6c5",
+        "e5g6",
+        "f7g6",
+        "e2e6",
+        "g8h8",
+        "h5g6",
+        "f6g8",
+        "f4h6",
+        "g7h6",
+        "h1h6",
+        "g8h6",
+        "e6e7",
+        "h6f7",
+        "g6f7",
+        "h8g7",
+        "d1d3",
+        "d8d6",
+        "d3g3",
+        "d6g6",
+        "e7e5",
+        "g7f7",
+        "e5f5",
+        "g6f6",
+        "f5d7"
+      ],
+      "notes": [
+        {
+          "ply": 15,
+          "text": "8.h5: the h-pawn grabs space on the kingside and cramps Black."
+        },
+        {
+          "ply": 23,
+          "text": "12.O-O-O: White castles long. Black will castle short."
+        },
+        {
+          "ply": 31,
+          "text": "16.Ne5: the knight takes a strong central square."
+        },
+        {
+          "ply": 37,
+          "text": "19.Qxe6+: the queen takes back with check. Black's king runs to h8."
+        },
+        {
+          "ply": 45,
+          "text": "23.Qxe7, after the rook sacrifice, the queen picks up the bishop. Black's king is bare."
+        },
+        {
+          "ply": 47,
+          "text": "24.gxf7: the pawn on f7 shields White's attack and threatens to promote."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 35,
+          "prompt": "Carlsen sacrifices a knight. Where?",
+          "hint": "A knight on g6 attacks e7 and f8. If the f7 pawn takes it, something opens.",
+          "why": "18.Ng6! fxg6 19.Qxe6+: taking opens the diagonal to Black's king, and the h5 pawn also hits g6."
+        },
+        {
+          "ply": 39,
+          "prompt": "Black's king ran to h8. Capture with the pawn.",
+          "hint": "Your h-pawn can take on g6.",
+          "why": "20.hxg6 puts a pawn on g6, right next to the black king, and opens the h-file for the rook on h1."
+        },
+        {
+          "ply": 41,
+          "prompt": "Rip open the king's shelter. Sacrifice a bishop.",
+          "hint": "The h6 pawn is the last pawn shield.",
+          "why": "21.Bxh6! gxh6 22.Rxh6+: the bishop removes a shield pawn, and the rook follows with check."
+        },
+        {
+          "ply": 43,
+          "prompt": "Follow up: the h-file is open.",
+          "hint": "The rook can check on h6.",
+          "why": "22.Rxh6+ Nxh6 23.Qxe7: the rook goes too, but the queen picks up the bishop and Black's king has no cover left."
+        },
+        {
+          "ply": 57,
+          "prompt": "Finish it. Mate in one.",
+          "hint": "The queen can check along the seventh rank. Which squares does the rook on g3 cover?",
+          "why": "29.Qd7#: the queen checks along the seventh rank, covers e8 and e6, and the rook on g3 guards the g-file."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Opening the king",
+      "question": "Why did Carlsen give a knight, a bishop and a rook?",
+      "options": [
+        {
+          "text": "Each sacrifice removed a pawn or piece that shielded Black's king",
+          "why": "Yes. After the sacrifices, the black king stood in the open with White's queen and pawns next to it.",
+          "correct": true
+        },
+        {
+          "text": "He wanted to trade down into an endgame",
+          "why": "Nothing about this game was an endgame. It ended in checkmate."
+        },
+        {
+          "text": "He had calculated that Black would blunder",
+          "why": "The sacrifices worked against the best defence too; Black was simply too exposed."
+        }
+      ],
+      "narration": "Three pieces given away. What did they buy?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Remove the shield",
+      "fen": "5r2/pp1Q1k2/5r2/q1p5/3P4/6R1/PPP2PP1/1K6 b - - 3 29",
+      "text": "A castled king is safe because of the pawns in front of it. Carlsen gave a knight, a bishop and a rook to remove those pawns one by one, and then his queen and pawns did the rest. When the enemy king loses its shield, count attackers, not material.",
+      "narration": "A king is only as safe as the pawns in front of it. Carlsen removed them one sacrifice at a time.",
+      "pose": "idea"
+    }
+  ]
+}

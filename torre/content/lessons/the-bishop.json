@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "The bishop",
+  "summary": "Bishops slide along diagonals and stay on one color all game. Learn how they move and how to win a loose piece.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 4,
+  "unit": "Rules of the game",
+  "order": 2,
+  "steps": [
+    {
+      "id": "diagonals",
+      "kind": "explain",
+      "title": "Diagonal lines",
+      "fen": "4k3/8/8/8/3B4/8/8/4K3 w - - 0 1",
+      "marks": [["d4", "a7"], ["d4", "h8"], ["d4", "a1"], ["d4", "g1"]],
+      "text": "The bishop moves diagonally, as many squares as it likes, in any of four directions. Like the rook, it cannot jump: a piece in its path stops it, and an enemy piece can be captured. From the center of the board a bishop reaches thirteen squares.",
+      "narration": "This is the bishop. It slides along diagonals, corner to corner, as far as it likes. It can't jump over anything, but it can capture an enemy piece standing in its way.",
+      "pose": "present"
+    },
+    {
+      "id": "light-and-dark",
+      "kind": "explain",
+      "title": "One color forever",
+      "fen": "4k3/8/8/8/8/8/8/2B1KB2 w - - 0 1",
+      "marks": [["c1"], ["f1"]],
+      "text": "A bishop moving diagonally always lands on a square of the same color. The bishop that starts on c1 lives on dark squares for the whole game, and the one on f1 lives on light squares. That is why each side gets one of each: together they cover the whole board.",
+      "narration": "Here's a neat fact. A bishop never changes color. The one starting on c1 stays on dark squares forever, and the one on f1 stays on light squares. That's why you get one of each.",
+      "pose": "idea"
+    },
+    {
+      "id": "win-the-rook",
+      "kind": "play",
+      "title": "Take the rook",
+      "fen": "r5k1/5ppp/8/8/4B3/8/5PPP/6K1 w - - 0 1",
+      "prompt": "Black left a rook in the corner on your bishop's diagonal. Capture it.",
+      "hint": "Follow the long light-square diagonal from e4 toward the top-left corner.",
+      "line": ["e4a8"],
+      "success": "The diagonal from e4 to a8 was open, so the bishop took a whole rook.",
+      "narration": "Look at the long diagonal running from your bishop all the way to the corner. Black's rook is sitting at the end of it with no protection. Go get it!",
+      "pose": "detective"
+    },
+    {
+      "id": "safe-target",
+      "kind": "play",
+      "title": "Pick the right target",
+      "fen": "6k1/5ppp/n7/8/8/3B4/5PPP/6K1 w - - 0 1",
+      "prompt": "Your bishop attacks the pawn on h7 and the knight on a6. Take the one that is safe.",
+      "hint": "Which of the two can Black's king take back?",
+      "line": ["d3a6"],
+      "success": "The knight on a6 was undefended, so you won it for free. Taking on h7 would give check, but the king simply takes your bishop.",
+      "narration": "Your bishop is eyeing two black targets. The pawn on h7 looks tempting because it would be check, but the king is standing right next to it. Take the target nobody can defend.",
+      "pose": "magnify"
+    },
+    {
+      "id": "bishop-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "fen": "4k3/8/8/8/8/8/8/2B1K3 w - - 0 1",
+      "marks": [["c1"], ["e4"]],
+      "question": "White's bishop is on c1, a dark square. Can it ever reach e4, a light square?",
+      "options": [
+        { "text": "No, never", "correct": true, "why": "A bishop moves only diagonally, so it never changes the color of its square. This one will stay on dark squares all game." },
+        { "text": "Yes, in two moves", "why": "Every diagonal step keeps the bishop on a dark square, no matter how many moves it makes." },
+        { "text": "Yes, but only by capturing", "why": "A capture is just a normal diagonal move. It still lands on the same color." }
+      ],
+      "narration": "Quick question. The bishop on c1 lives on dark squares. Could it ever get to e4, which is a light square? Remember what we said about colors.",
+      "pose": "thinking"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+ "title": "Sobre carga",
+ "summary": "Un defensor, dos tareas. Haz que haga una de ellas, y la otra tarea queda inconclusa.",
+ "steps": [
+  {
+   "id": "two-jobs",
+   "title": "Dos tareas, una pieza",
+   "text": "La torre de negras en d8 está haciendo dos trabajos: protege a la dama en d4 y vigila la última fila para evitar que tu torre aterrice en e8. Una pieza con dos trabajos está sobrecargada: si realiza una de ellas, abandona la otra. Busca defensores que estén siendo llamados a estar en dos lugares a la vez.",
+   "narration": "Mira la torre de negras en d8. Está protegiendo a la dama, y también está manteniendo a tu torre fuera de e8. Eso son dos trabajos para una pieza. Haz que haga uno, y el otro queda completamente abierto."
+  },
+  {
+   "id": "overload-the-rook",
+   "title": "Hazlo elegir",
+   "prompt": "Haz que la torre en d8 elija entre sus dos trabajos.",
+   "hint": "Ofrece un cambio de damas. Si la torre recupera, ¿qué sucede en e8?",
+   "success": "¡Qxd4! Si Rxd4, Re8 es mate porque la torre dejó la última fila. Si negras no recupera, simplemente has ganado una dama.",
+   "narration": "Captura la dama de negras con la tuya. Si la torre recupera, ha dejado la última fila, y tu torre cae sobre e8 con jaque mate. Si no recupera, vas arriba en una dama. De cualquier manera, negras pierde."
+  },
+  {
+   "id": "overload-again",
+   "title": "Vigilar al caballo y la fila",
+   "prompt": "La torre de negras en e8 vigila tanto al caballo en e5 como la última fila. Explotalo.",
+   "hint": "Toma al caballo. Si la torre recaptura, tu otra torre va hacia la octava fila.",
+   "success": "¡Rxe5! Rxe5 Rd8+ Re8 Rxe8 es mate. La torre no podía defender tanto al caballo como la última fila, así que lo mejor para las negras es dejar escapar el caballo.",
+   "narration": "Esa torre en e8 está muy estirada. Toma el caballo. Si la torre recaptura, no puede también proteger la última fila, y tu otra torre da jaque en d8 y mate en e8."
+  },
+  {
+   "id": "overload-quiz",
+   "title": "Encuentra la sobrecarga",
+   "question": "¿Qué pieza está sobrecargada?",
+   "options": [
+    {
+     "text": "Un caballo que es el único defensor de una torre y un alfil que tú atacas",
+     "why": "Solo puede recapturar una vez. Toma una pieza, ella recaptura, y la otra queda colgada."
+    },
+    {
+     "text": "Una dama que es atacada por un peón",
+     "why": "Eso es solo una amenaza a la dama. La sobrecarga se trata de que un defensor proteja dos cosas a la vez."
+    },
+    {
+     "text": "Una torre defendida por ambos de sus propios caballos",
+     "why": "Esa torre tiene mucha ayuda. La sobrecarga es cuando una pieza tiene demasiados trabajos, no demasiados ayudantes."
+    }
+   ],
+   "narration": "Última. ¿Qué pieza de estas está sobrecargada? Busca la que está siendo pedida para hacer dos trabajos a la vez. ¡Excelente trabajo hoy!"
+  }
+ ]
+}

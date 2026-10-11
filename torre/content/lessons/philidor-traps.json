@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "title": "Philidor traps",
+  "summary": "White's early tricks aim at f7 and at a careless ...Bg4. Learn the safe answers before they cost you a game.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Philidor Defense",
+  "order": 2,
+  "requires": ["philidor-setup"],
+  "practice": "defensive-move",
+  "orientation": "black",
+  "steps": [
+    {
+      "id": "target-f7",
+      "kind": "explain",
+      "title": "The weak spot: f7",
+      "fen": "rnbqkb1r/ppp2ppp/3p1n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 2 4",
+      "demo": ["f3g5"],
+      "marks": [["c4", "f7"], ["g5", "f7"], ["f7"]],
+      "text": "At the start f7 is guarded only by your king, and the Philidor is a little slow to castle. That makes f7 White's favourite target: the bishop on c4 aims at it, and the knight can jump to g5 to hit it a second time. Here Black played ...Nf6 before ...Be7, so nothing covers g5.",
+      "narration": "Your weakest square early on is f7, next to your king. White's bishop on c4 aims at it, and now the knight jumps to g5 to attack it twice. [move]",
+      "pose": "alarm"
+    },
+    {
+      "id": "answer-ng5",
+      "kind": "play",
+      "title": "Block the bishop",
+      "fen": "rnbqkb1r/ppp2ppp/3p1n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq - 3 4",
+      "prompt": "Bishop and knight both hit f7. Find the only good defence, then kick the knight.",
+      "hint": "A pawn can step into the bishop's path and attack it at the same time.",
+      "line": ["d6d5", "e4d5", "h7h6"],
+      "success": "...d5 cuts the bishop off from f7. After White takes, ...h6 chases the knight away and Black gets quick development for the pawn. Slow defences like ...Be6 or ...Qe7 lose material here.",
+      "narration": "Two white pieces are hitting f7. Don't try to guard it with a piece. Push a pawn into the bishop's path instead, and then chase the knight.",
+      "pose": "detective"
+    },
+    {
+      "id": "bg4-trap",
+      "kind": "explain",
+      "title": "The early ...Bg4 pin",
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+      "demo": ["d4e5", "d6e5", "d1d8", "e8d8", "f3e5"],
+      "marks": [["e5", "f7"], ["e5", "g4"]],
+      "text": "Pinning the knight with ...Bg4 looks active, but it is risky this early. White takes on e5, and if Black takes back with the d-pawn, the queens come off with check and the knight takes e5. Now it attacks f7 and the bishop on g4 at the same time, and Black has lost a pawn and the right to castle.",
+      "narration": "Here's a classic trap. The bishop pins the knight, and White takes on e5. [move] If you take back with the pawn, [move] the queens come off with check. [move] The king takes back. [move] And the knight lands on e5, attacking two things at once. [move]",
+      "pose": "rival"
+    },
+    {
+      "id": "avoid-the-trap",
+      "kind": "play",
+      "title": "Don't take back",
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+      "prompt": "White took on e5. Taking back with the pawn loses material. Play a safe developing move instead.",
+      "hint": "Bring a knight out, toward the pawn on e5.",
+      "line": ["b8c6|b8d7"],
+      "success": "A knight move develops and puts more pressure on e5, and the d-file stays closed for White's queen. White is a little better after the early ...Bg4, but you are still in the game.",
+      "narration": "Same position, your move. Don't take on e5 with the pawn. Develop a knight instead, and keep the d-file closed.",
+      "pose": "shield"
+    },
+    {
+      "id": "qd5-trap",
+      "kind": "explain",
+      "title": "One more trick: queen to d5",
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "demo": ["d2d4", "b8d7", "f1c4", "f8e7", "d4e5", "d6e5", "d1d5"],
+      "marks": [["d5", "f7"], ["c4", "f7"]],
+      "text": "Another common trick. With the knight on d7 and the bishop on e7, Black takes back on e5 with the pawn, and White's queen jumps to d5. Together with the bishop on c4 it threatens mate on f7, and Black has to give up a piece to stop it. In that move order, ...c6 instead of ...Be7, or taking on d4, keeps you safe.",
+      "narration": "One more to remember. Pawn to d4. [move] The knight goes to d7. [move] Bishop to c4. [move] Bishop to e7. [move] White trades on e5. [move] Black takes back with the pawn. [move] And White's queen jumps to d5! [move] Together with the bishop it threatens mate on f7. Black has to give up a piece to stop it.",
+      "pose": "nervous"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "White's bishop is on c4 and the knight jumps to g5, both hitting f7, while your bishop is still on f8. What is the best answer?",
+      "options": [
+        { "text": "Push the d-pawn to d5, blocking the bishop", "correct": true, "why": "Right. ...d5 cuts the bishop off from f7 and attacks it, and ...h6 can chase the knight next." },
+        { "text": "Bishop to e6", "why": "The knight takes on e6, and after ...fxe6 the bishop takes on e6 as well: a pawn is gone and your king is wide open." },
+        { "text": "Queen to e7", "why": "The bishop takes on f7 with check anyway, winning a pawn and chasing your king." }
+      ],
+      "narration": "Final question. Bishop and knight are both hitting f7. What's your best answer? Remember this one and these tricks won't catch you. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

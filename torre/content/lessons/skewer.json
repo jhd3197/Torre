@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "Skewers",
+  "summary": "Attack a valuable piece so that when it steps aside, the piece behind it falls. A pin turned inside out.",
+  "category": "tactics",
+  "level": "beginner",
+  "minutes": 5,
+  "requires": ["pins"],
+  "practice": "skewer",
+  "steps": [
+    {
+      "id": "what-is-a-skewer",
+      "kind": "explain",
+      "title": "What a skewer is",
+      "fen": "r7/8/8/3k4/8/8/8/5BK1 w - - 0 1",
+      "marks": [["g2", "a8"], ["d5"], ["a8"]],
+      "demo": ["f1g2", "d5c5", "g2a8"],
+      "text": "A skewer attacks two pieces on the same line, with the more valuable one in front. Here the bishop checks the king from g2, and the rook stands behind it on a8. The king has to step out of the line, and the bishop takes the rook. In a pin the bigger piece hides behind; in a skewer it stands in front and is forced to move.",
+      "narration": "A skewer is a pin turned inside out. The valuable piece is in front, and something juicy is behind it on the same line. Check the king from g2. [move] The king has to get out of the way. [move] And the bishop slides all the way down to take the rook. [move]",
+      "pose": "pointer"
+    },
+    {
+      "id": "rook-skewer",
+      "kind": "play",
+      "title": "Skewer along the rank",
+      "fen": "8/5ppp/8/2k3q1/8/8/5PPP/R5K1 w - - 0 1",
+      "prompt": "Black's king and queen stand on the same rank. Skewer them.",
+      "hint": "Give a check on the fifth rank from the side, where nothing can take your rook.",
+      "line": ["a1a5", "c5d4", "a5g5"],
+      "success": "Ra5+ forces the king off the fifth rank, and the rook takes the queen on g5. A rook for nothing would be good; a queen is even better.",
+      "narration": "Look at Black's king and queen, side by side on the fifth rank. Put your rook on that rank with check. The king must step away, and your rook sweeps across to grab the queen.",
+      "pose": "detective"
+    },
+    {
+      "id": "bishop-skewer",
+      "kind": "play",
+      "title": "Skewer on the diagonal",
+      "fen": "8/p4qpp/8/3k4/8/8/5PPP/3B2K1 w - - 0 1",
+      "prompt": "Find a bishop check that wins Black's queen.",
+      "hint": "The king on d5 and the queen on f7 share a diagonal. Check from the other end of it.",
+      "line": ["d1b3", "d5e4", "b3f7"],
+      "success": "Bb3+ checks the king, the king leaves the diagonal, and Bxf7 wins the queen.",
+      "narration": "This time the line is a diagonal. Black's king on d5 and queen on f7 are lined up. Find the square where your bishop checks the king from the far side, and the queen behind it will drop.",
+      "pose": "magnify"
+    },
+    {
+      "id": "skewer-or-pin",
+      "kind": "choose",
+      "title": "Skewer or pin?",
+      "question": "A white rook attacks Black's queen, and Black's rook stands behind the queen on the same file. What is this?",
+      "options": [
+        { "text": "A skewer: the valuable queen in front must move, and the rook behind falls", "correct": true, "why": "The more valuable piece is in front, so it is a skewer. When the queen steps aside, the rook behind is exposed." },
+        { "text": "A pin: the queen cannot move", "why": "In a pin the more valuable piece is behind. Here the queen is in front and free to move, which is exactly what loses the rook." },
+        { "text": "A fork", "why": "A fork attacks two pieces in different directions. Two pieces on one line is a pin or a skewer." }
+      ],
+      "narration": "Final question. Your rook attacks a queen, and a rook hides behind her on the same line. Pin, skewer or fork? Get it right and skewers are yours. Great work!",
+      "pose": "trophy"
+    }
+  ]
+}

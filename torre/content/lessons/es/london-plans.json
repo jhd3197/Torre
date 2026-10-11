@@ -1,0 +1,55 @@
+{
+ "title": "Planes de Londres",
+ "summary": "Tu configuración está lista. Ahora, ¿qué haces? El caballo salta a e5 con f4, y la ruptura de e4 que abre el centro.",
+ "unit": "Defensa Londres",
+ "steps": [
+  {
+   "id": "plan-one",
+   "title": "Plan uno: caballo a e5, peón a f4",
+   "text": "El plan de Londres más popular es saltar el caballo a e5 y apoyarlo con el peón a f4. El caballo en e5 es difícil de ahuyentar, observa f7, d7 y c6, y el peón en f4 significa que si las negras lo toman, un peón puede recapturar. Más tarde, la dama, la torre a lo largo del renglón f y el alfil en d3 pueden unirse a un ataque al rey.",
+   "narration": "Aquí tienes el plan número uno. Las negras juegan un movimiento tranquilo. [move] El caballo salta a e5. [move] Las negras desarrollan. [move] Y el peón de f avanza para apoyarlo. [move] Desde e5 el caballo es una bestia, y tus otras piezas pueden alinearse detrás de él contra el rey."
+  },
+  {
+   "id": "grab-e5",
+   "title": "Agarra el casillero primero",
+   "prompt": "La torre de las negras en e8 se está preparando para avanzar el peón de e. Actúa primero con uno de tus planes.",
+   "hint": "¿Qué casillero quiere disputar Black? Coloca una pieza en él.",
+   "success": "El caballo a e5 se sienta en el casillero exacto que Black quería para el peón. Ahora ...e5 está fuera de juego, y tu caballo está en el corazón de la posición de Black. Empujar el peón a e4 también es bueno; ese es el segundo plan, que viene a continuación.",
+   "narration": "Las negras acababan de colocar una torre en e8 para preparar el avance del peón de e. Llégalas a ello. ¿Qué pieza puede aterrizar en ese casillero ahora?"
+  },
+  {
+   "id": "knight-eats-c6",
+   "title": "El caballo encuentra c6",
+   "prompt": "La última jugada de Black dejó al caballo en c6 sin un peón para protegerlo. Gana material.",
+   "hint": "Toma el peón en c6, y recuerda a qué mira tu alfil en g3.",
+   "success": "Nxc6 ataca a la dama, así que el negro no tiene tiempo para recuperar tu caballo, y el alfil en g3 ahora también ataca a d6. Te mantienes una pieza arriba.",
+   "narration": "El negro empujó el peón de b, y ahora el caballo en c6 ha perdido su protector. Tu caballo en e5 está justo al lado. Tómalo y vigila el alfil del negro."
+  },
+  {
+   "id": "plan-two",
+   "title": "Plan dos: el avance e4",
+   "text": "El segundo plan es empujar el peón de e a e4, respaldado por el caballo en d2 y el alfil en d3. Desafía el peón d5 del negro y abre el centro mientras el negro todavía se está organizando. Aquí, después de los cambios en e4, tu alfil llega a e4 y se alinea contra el caballo en c6 y la torre en a8 detrás de él.",
+   "narration": "El plan dos es el avance e4. Tu caballo y alfil ya lo apoyan, así que puedes abrir el centro cuando el negro sea un poco lento. Peón a e4. [move] Negro toma. [move] Caballo toma atrás. [move] Caballos desaparecen. [move] Y mira dónde termina tu alfil. [move]"
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué f4 suele seguir al caballo a e5?",
+   "options": [
+    {
+     "text": "Soporta al caballo, así que si el negro lo toma, un peón lo recaptura.",
+     "why": "Bien. Con f4 en su lugar, intercambiar en e5 le cuesta al negro algo, y el file de f puede abrirse más tarde para tu torre."
+    },
+    {
+     "text": "Libera al alfil en f1",
+     "why": "El peón de f no bloquea a ese alfil; se desarrolla desde f1 a d3."
+    },
+    {
+     "text": "Impide que el negro enroque",
+     "why": "Aún puede enrocar las negras. El peón en f4 está más o menos conteniendo e5 y atacando."
+    }
+   ],
+   "narration": "Pregunta final. ¿Por qué los jugadores de la Defensa London empujan el peón de f después de que el caballo llega a e5? Si aciertas con esto, ¡ya tienes tu plan! ¡Buen trabajo!"
+  }
+ ]
+}

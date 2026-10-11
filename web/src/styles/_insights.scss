@@ -1,0 +1,849 @@
+@use "tokens" as *;
+@use "mixins" as *;
+.insights {
+  padding-bottom: 45px;
+}
+.insights-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.insights-toolbar nav {
+  display: flex;
+  gap: 24px;
+}
+.insights-toolbar nav a {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 9px 0 15px;
+  font-size: $fs-sm;
+  color: $sage-500;
+}
+.insights-toolbar nav a.active {
+  color: var(--ink);
+  border-bottom-color: var(--green);
+  font-weight: 600;
+}
+#insights-coverage {
+  font: #{$fs-2xs} $font-mono;
+  color: $sage-600;
+}
+.insights h2 {
+  font: 600 #{$fs-xl}/ 1.4 $font-sans;
+  letter-spacing: -0.5px;
+  margin-bottom: 17px;
+}
+.insights h3 {
+  font: 600 #{$fs-sm}/ 1.4 $font-sans;
+}
+.insight-muted,
+.insights-empty,
+#insights-status {
+  color: $sage-600;
+  font-size: $fs-sm;
+}
+.insights-empty {
+  padding: 25px 0;
+}
+.insights-waiting {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 60px 0;
+  font-size: $fs-md;
+  .mascot {
+    animation: bob 1.6s ease-in-out infinite;
+  }
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@include reduced-motion {
+  .insights-waiting .mascot {
+    animation: none;
+  }
+}
+.insight-metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: $neutral-50;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.insight-metrics > div {
+  padding: 20px 16px;
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+.insight-metrics > div:last-child {
+  border: 0;
+}
+.insight-metrics span {
+  font-size: $fs-xs;
+  color: $sage-600;
+  display: block;
+}
+.insight-metrics strong {
+  font: 650 #{$fs-4xl}/ 1.3 $font-sans;
+  letter-spacing: -1px;
+  display: block;
+  margin: 7px 0;
+}
+.insight-metrics small {
+  font-size: $fs-2xs;
+  color: $sage-500;
+  line-height: 1.6;
+  display: block;
+}
+.insight-section {
+  margin-top: 27px;
+}
+.insight-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.chart-legend {
+  font-size: $fs-2xs;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $sage-500;
+}
+.chart-legend i {
+  width: 15px;
+  height: 2px;
+  background: var(--green);
+  margin-left: 10px;
+}
+.chart-legend i.gold {
+  background: $gold-400;
+}
+.insight-chart {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: $neutral-50;
+  padding: 20px;
+}
+.insight-chart svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.insight-chart svg line {
+  stroke: $sage-200;
+  stroke-width: 1;
+}
+.insight-chart text {
+  font: #{$fs-2xs} $font-mono;
+  fill: $sage-500;
+}
+.insight-chart path {
+  fill: none;
+  stroke-width: 2;
+}
+.chart-cpl {
+  stroke: $gold-400;
+}
+.chart-accuracy {
+  stroke: var(--green);
+}
+.insight-chart .chart-cursor {
+  stroke: $green-500;
+  stroke-dasharray: 3 3;
+}
+// Pointer movement selects the nearest game immediately; no easing on data feedback.
+.chart-interaction {
+  position: relative;
+  padding-top: 64px;
+  border-radius: 4px;
+  &:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+  svg { cursor: crosshair; touch-action: pan-y; }
+}
+.chart-help { position: absolute; top: 0; margin: 0; font-size: $fs-2xs; color: $sage-500; }
+.chart-tooltip {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: $neutral-50;
+  box-shadow: 0 2px 8px rgba($neutral-950, .05);
+  font-size: $fs-2xs;
+  box-sizing: border-box;
+  width: 260px;
+  max-width: 100%;
+  white-space: normal;
+  strong { display: block; color: var(--ink); margin-bottom: 3px; }
+  span + span { margin-left: 12px; }
+  i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; }
+  i.gold { background: $gold-400; }
+}
+.chart-interaction:has(.chart-tooltip) .chart-help { visibility: hidden; }
+.chart-point { fill: $neutral-50; stroke-width: 2.5; }
+#insight-chart-detail {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: $fs-xs;
+  color: $sage-500;
+  gap: 15px;
+}
+#insight-chart-detail strong {
+  color: var(--ink);
+}
+#insight-chart-detail small {
+  display: block;
+  font-size: $fs-xs;
+  margin-top: 4px;
+}
+.insight-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.phase-row {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.phase-row strong {
+  font-size: $fs-sm;
+  text-transform: capitalize;
+  font-weight: 550;
+}
+.phase-row span {
+  font-size: $fs-2xs;
+  color: $moss-500;
+  display: block;
+  margin-top: 5px;
+}
+.phase-row b {
+  font: 500 #{$fs-xl} $font-mono;
+  text-align: right;
+}
+.phase-row b small {
+  display: block;
+  font-size: $fs-2xs;
+  margin-top: 5px;
+  color: $moss-500;
+}
+.phase-track {
+  height: 4px;
+  border-radius: 3px;
+  background: $sage-100;
+  grid-column: 1/-1;
+  overflow: hidden;
+}
+.phase-track i {
+  display: block;
+  height: 100%;
+  background: $moss-500;
+}
+.insight-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: $neutral-50;
+}
+.insights table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: $fs-xs;
+  text-align: left;
+  white-space: nowrap;
+}
+.insights th {
+  font-size: $fs-2xs;
+  color: $moss-500;
+  font-weight: 500;
+  padding: 12px 16px;
+  background: $sage-100;
+}
+.insights td {
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+}
+.insights td:not(:first-child) {
+  font-family: $font-mono;
+  font-size: $fs-xs;
+}
+.insight-opening {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: $neutral-50;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.insight-opening summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  cursor: pointer;
+  padding: 16px 20px;
+}
+.insight-opening summary::-webkit-details-marker {
+  display: none;
+}
+.eco-tag {
+  font: #{$fs-xs} $font-mono;
+  color: $moss-600;
+  background: $sage-100;
+  border-radius: 3px;
+  padding: 5px 7px;
+}
+.opening-name {
+  font-size: $fs-md;
+  font-weight: 550;
+  flex: 1;
+}
+.opening-name small,
+.opening-rate small {
+  display: block;
+  font-size: $fs-2xs;
+  font-weight: 400;
+  color: $moss-500;
+  margin-top: 4px;
+}
+.opening-rate {
+  font: 500 #{$fs-md} $font-mono;
+  text-align: right;
+}
+.opening-wdl {
+  display: flex;
+  width: 95px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.opening-wdl i:nth-child(1) {
+  background: $moss-500;
+}
+.opening-wdl i:nth-child(2) {
+  background: $sage-200;
+}
+.opening-wdl i:nth-child(3) {
+  background: $clay-400;
+}
+.opening-chevron {
+  color: $sage-400;
+}
+.insight-opening[open] .opening-chevron {
+  transform: rotate(180deg);
+}
+.insight-opening-body {
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 30px;
+}
+.insight-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.insight-board > span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: var(--light-square);
+}
+.insight-board > span.dark {
+  background: var(--dark-square);
+}
+.insight-board img {
+  width: 86%;
+  height: 86%;
+}
+.insight-opening-body .text-button {
+  margin-top: 10px;
+}
+.opening-notation {
+  font: #{$fs-sm} $font-mono;
+  color: $moss-600;
+  margin-bottom: 9px;
+}
+.insight-recent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: $fs-xs;
+  gap: 15px;
+}
+.insight-recent small {
+  display: block;
+  color: $sage-500;
+  font-size: $fs-2xs;
+  margin-top: 4px;
+}
+.insights .text-button {
+  font-size: $fs-xs;
+  color: $moss-700;
+  white-space: nowrap;
+}
+.insight-position-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.insight-position {
+  background: $neutral-50;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 13px;
+}
+.insight-position h3 {
+  margin: 14px 0 5px;
+}
+.insight-position p {
+  font-size: $fs-xs;
+  color: $moss-500;
+  margin-bottom: 9px;
+}
+.insight-lessons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.insight-lesson {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: $neutral-50;
+  padding: 24px;
+}
+.lesson-tag {
+  font: #{$fs-2xs} $font-sans;
+  color: $moss-500;
+  font-weight: 650;
+}
+.insight-lesson h2 {
+  font-size: $fs-2xl;
+  margin: 10px 0 12px;
+}
+.insight-lesson p {
+  font-size: $fs-sm;
+  line-height: 1.85;
+  color: $moss-600;
+}
+.insight-lesson .lesson-evidence {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  color: $moss-700;
+  font-size: $fs-xs;
+}
+.lesson-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+.lesson-links a {
+  font-size: $fs-xs;
+  color: $moss-700;
+  line-height: 1.7;
+}
+.lesson-links a:hover {
+  text-decoration: underline;
+}
+.lesson-position {
+  max-width: 190px;
+  margin: 20px 0;
+}
+.lesson-position .text-button {
+  margin-top: 8px;
+}
+.insight-blunders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.insight-blunder {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 16px;
+  background: $neutral-50;
+  min-width: 0;
+}
+.insight-blunder h2 {
+  font-size: $fs-lg;
+  margin: 0 0 10px;
+}
+.insight-blunder h2 span {
+  font: #{$fs-xs} $font-mono;
+  color: $peach-500;
+  display: block;
+  margin-top: 6px;
+}
+.insight-blunder p {
+  font-size: $fs-xs;
+  color: $moss-500;
+  margin-bottom: 8px;
+}
+.insight-blunder small {
+  font-size: $fs-2xs;
+  color: $sage-500;
+}
+.blunder-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 12px;
+}
+.insight-columns > div {
+  min-width: 0;
+}
+.insight-table-wrap {
+  max-width: 100%;
+}
+@include down(xl) {
+  .insight-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .insight-metrics > div:nth-child(-n + 3) {
+    border-bottom: 1px solid var(--line);
+  }
+  .insight-metrics > div:nth-child(3) {
+    border-right: 0;
+  }
+  .insight-blunder {
+    grid-template-columns: 120px 1fr;
+    gap: 15px;
+  }
+  .insight-position-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@include down(md) {
+  .rail nav {
+    gap: 3px;
+  }
+  .rail nav a {
+    padding: 8px 9px;
+  }
+  .rail {
+    gap: 9px;
+  }
+  .insights-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+  .insights-toolbar nav {
+    gap: 23px;
+  }
+  .insights-toolbar nav a {
+    font-size: $fs-xs;
+    padding-bottom: 10px;
+  }
+  #insights-coverage {
+    font-size: $fs-2xs;
+    padding: 11px 0;
+  }
+  .insight-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .insight-metrics > div {
+    padding: 15px;
+    border-bottom: 1px solid var(--line);
+  }
+  .insight-metrics > div:nth-child(3) {
+    border-right: 1px solid var(--line);
+  }
+  .insight-metrics > div:nth-child(even) {
+    border-right: 0;
+  }
+  .insight-metrics > div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  .insight-metrics strong {
+    font-size: $fs-3xl;
+  }
+  .insight-metrics small {
+    font-size: $fs-2xs;
+  }
+  .insight-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+  .chart-legend {
+    margin-bottom: 15px;
+    font-size: $fs-2xs;
+  }
+  .chart-legend i:first-child {
+    margin-left: 0;
+  }
+  .insight-chart {
+    padding: 12px;
+  }
+  .insight-chart text {
+    font-size: $fs-md;
+  }
+  .insight-chart svg {
+    min-height: 120px;
+  }
+  #insight-chart-detail {
+    font-size: $fs-xs;
+  }
+  #insight-chart-detail small {
+    font-size: $fs-2xs;
+    line-height: 1.6;
+  }
+  .insight-columns,
+  .insight-lessons,
+  .insight-blunders {
+    grid-template-columns: 1fr;
+  }
+  .insight-columns {
+    gap: 0;
+  }
+  .insight-opening summary {
+    gap: 10px;
+    padding: 13px;
+  }
+  .opening-name {
+    font-size: $fs-xs;
+  }
+  .opening-rate {
+    font-size: $fs-sm;
+  }
+  .opening-wdl {
+    display: none;
+  }
+  .insight-opening-body {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 18px;
+  }
+  .insight-opening-body > div:first-child {
+    max-width: 180px;
+  }
+  .insight-position-grid {
+    gap: 10px;
+  }
+  .insight-position {
+    padding: 9px;
+  }
+  .insight-position h3 {
+    font-size: $fs-xs;
+  }
+  .insight-position p {
+    font-size: $fs-2xs;
+  }
+  .insights .text-button {
+    font-size: $fs-2xs;
+  }
+  .insight-blunder {
+    grid-template-columns: 125px 1fr;
+    padding: 12px;
+    gap: 15px;
+  }
+  .insight-lesson {
+    padding: 20px;
+  }
+  .insights h2 {
+    font-size: $fs-xl;
+  }
+}
+/* An opening's story (data/openings.ts): under its stats in Insights, and in the Lessons opening library. */
+.opening-story {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+  background: $neutral-50;
+}
+.opening-story h3 {
+  margin: 0 0 8px;
+  font: 600 #{$fs-md}/ 1.4 $font-sans;
+}
+.opening-story-moves {
+  margin-left: 6px;
+  font: #{$fs-xs} $font-mono;
+  color: $moss-600;
+}
+.opening-story p {
+  margin: 0 0 6px;
+  font-size: $fs-sm;
+  line-height: 1.7;
+  color: $sage-700;
+}
+.opening-story strong {
+  color: var(--ink);
+}
+.opening-story-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+.opening-story-art {
+  flex: none;
+  object-fit: contain;
+}
+
+// The coach's model picker: a Prompture model string, suggested from the local Ollama models.
+.coach-model {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+  label {
+    display: grid;
+    gap: 5px;
+    font-size: $fs-sm;
+    font-weight: 600;
+  }
+  input {
+    min-width: 240px;
+    background: $neutral-50;
+    border: 1px solid $sage-200;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: $fs-md;
+    color: var(--ink);
+  }
+  small {
+    flex-basis: 100%;
+    color: $sage-600;
+    font-size: $fs-sm;
+  }
+}
+
+// Blind spots (motifs.py): each tactic as a count, a bar, and links to practice it and to an example.
+.motif-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.motif-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: $fs-md;
+  span {
+    color: $sage-600;
+    font-size: $fs-sm;
+    font-variant-numeric: tabular-nums;
+  }
+}
+.motif-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 4px;
+}
+.blind-spots h3 {
+  margin: 4px 0 10px;
+  font-size: $fs-md;
+}
+.motif-trend {
+  margin: 4px 0 0;
+  font-size: $fs-sm;
+  &.better {
+    color: $green-700;
+  }
+  &.worse {
+    color: $peach-700;
+  }
+}
+
+/* Your moves: every analyzed move by grade, one bar for the mix, then a tile per grade. */
+$quality: (brilliant: $mist-600, great: $blue-600, best: $green-600, good: $sage-300, book: $wheat-700,
+  inaccuracy: $gold-400, mistake: $orange-500, blunder: $red-600);
+.quality-bar {
+  display: flex;
+  height: 12px;
+  margin: 4px 0 16px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: $neutral-100;
+}
+.quality-bar i {
+  display: block;
+  min-width: 2px;
+}
+.quality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+.quality-tile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon label" "count count" "share share";
+  align-items: center;
+  gap: 4px 8px;
+  padding: 12px 14px;
+  border: 1px solid $neutral-100;
+  border-radius: 12px;
+  background: $white;
+}
+.quality-tile > :is(img, .quality-dot) {
+  grid-area: icon;
+}
+.quality-tile span {
+  grid-area: label;
+  font: 600 #{$fs-sm} $font-sans;
+  color: $sage-700;
+}
+.quality-tile strong {
+  grid-area: count;
+  font: 800 #{$fs-3xl}/ 1.1 $font-sans;
+  color: $neutral-950;
+}
+.quality-tile small {
+  grid-area: share;
+  font: 600 #{$fs-xs} $font-mono;
+  color: $sage-600;
+}
+.quality-dot {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  border-radius: 50%;
+}
+@each $name, $color in $quality {
+  .quality-bar .q-#{$name},
+  .quality-tile.q-#{$name} .quality-dot {
+    background: $color;
+  }
+  .quality-tile.q-#{$name} strong {
+    color: $color;
+  }
+}
+.quality-tile.q-good strong {
+  color: $sage-700;
+}

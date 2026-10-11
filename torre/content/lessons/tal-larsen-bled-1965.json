@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "title": "Tal's knight on d5",
+  "summary": "Bled, 1965: in the last game of a Candidates match, Tal throws a knight into the center and storms Larsen's king.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Mikhail Tal",
+  "order": 3,
+  "practice": "kingside-attack",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Bled, 1965",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Tal lost his world title back to Botvinnik in 1961 and wanted it again. In 1965 he played the Danish star Bent Larsen in a Candidates semifinal at Bled, in Yugoslavia. This is the tenth and last game of their match. Tal won it, and the match with it. Press play.",
+      "narration": "Bled, 1965. The last game of a Candidates match between Mikhail Tal and Bent Larsen. Tal needs to attack, and he will.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Tal – Larsen, Candidates semifinal, Bled 1965",
+      "text": "A Sicilian with the kings on opposite sides: White castles long, Black short. In such games both players push pawns at the other king, and speed is everything.",
+      "narration": "Opposite castling. Both sides race to the other king, and Tal is very fast.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "c7c5",
+        "g1f3",
+        "b8c6",
+        "d2d4",
+        "c5d4",
+        "f3d4",
+        "e7e6",
+        "b1c3",
+        "d7d6",
+        "c1e3",
+        "g8f6",
+        "f2f4",
+        "f8e7",
+        "d1f3",
+        "e8g8",
+        "e1c1",
+        "d8c7",
+        "d4b5",
+        "c7b8",
+        "g2g4",
+        "a7a6",
+        "b5d4",
+        "c6d4",
+        "e3d4",
+        "b7b5",
+        "g4g5",
+        "f6d7",
+        "f1d3",
+        "b5b4",
+        "c3d5",
+        "e6d5",
+        "e4d5",
+        "f7f5",
+        "d1e1",
+        "f8f7",
+        "h2h4",
+        "c8b7",
+        "d3f5",
+        "f7f5",
+        "e1e7",
+        "d7e5",
+        "f3e4",
+        "b8f8",
+        "f4e5",
+        "f5f4",
+        "e4e3",
+        "f4f3",
+        "e3e2",
+        "f8e7",
+        "e2f3",
+        "d6e5",
+        "h1e1",
+        "a8d8",
+        "e1e5",
+        "e7d6",
+        "f3f4",
+        "d8f8",
+        "f4e4",
+        "b4b3",
+        "a2b3",
+        "f8f1",
+        "c1d2",
+        "d6b4",
+        "c2c3",
+        "b4d6",
+        "d4c5",
+        "d6c5",
+        "e5e8",
+        "f1f8",
+        "e4e6",
+        "g8h8",
+        "e6f7"
+      ],
+      "notes": [
+        {
+          "ply": 17,
+          "text": "9.O-O-O: the kings castle on opposite sides. Now the pawns can storm without exposing their own king."
+        },
+        {
+          "ply": 27,
+          "text": "14.g5: the pawn chases away the knight that defends Black's king."
+        },
+        {
+          "ply": 31,
+          "text": "16.Nd5!?: Tal puts the knight where a pawn can take it. Not the safest move, but it opens the e-file."
+        },
+        {
+          "ply": 33,
+          "text": "17.exd5: the knight is gone, but now the e-file points straight at the bishop on e7."
+        },
+        {
+          "ply": 39,
+          "text": "20.Bxf5: Tal gives the bishop for a pawn to clear the e-file..."
+        },
+        {
+          "ply": 51,
+          "text": "26.Qxf3, after a long rook chase, Tal wins the rook. He is now clearly ahead."
+        },
+        {
+          "ply": 73,
+          "text": "37.Qf7: the rook on f8 is attacked twice and the back rank is breaking. Larsen resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 37,
+          "prompt": "Tal brings one more pawn into the attack. Which one?",
+          "hint": "The pawn on g5 is a spearhead. It needs a friend.",
+          "why": "19.h4 supports the g5 pawn so it can keep pushing, toward g6. Black's kingside stays frozen."
+        },
+        {
+          "ply": 41,
+          "prompt": "Black took the bishop on f5. Now the e-file pays off.",
+          "hint": "Which black piece on the e-file has no defender?",
+          "why": "21.Rxe7 takes the bishop. The piece comes back, and the rook lands on the seventh rank next to Black's king."
+        },
+        {
+          "ply": 63,
+          "prompt": "The rook on f1 gives check. Block it, or move the king?",
+          "hint": "Blocking with the queen loses her. The king can step forward safely.",
+          "why": "32.Kd2! The king walks out of check toward the middle. Black has no good checks left, and White's queen and rook are still aimed at his king."
+        },
+        {
+          "ply": 71,
+          "prompt": "Finish the attack. Start with a check.",
+          "hint": "The queen can check from e6, then go for the rook on f8.",
+          "why": "36.Qe6+ Kh8 37.Qf7: the rook on f8 is attacked by queen and rook and only Black's queen guards it. The back rank cannot hold."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Opposite castling",
+      "question": "The kings castled on opposite sides. What does that usually mean?",
+      "options": [
+        {
+          "text": "Both sides storm the other king with pawns, and speed decides",
+          "why": "Yes. Pushing pawns at the enemy king does not weaken your own king when it lives on the other side.",
+          "correct": true
+        },
+        {
+          "text": "The game will be slow and quiet",
+          "why": "Opposite castling is the opposite of quiet. Every tempo counts."
+        },
+        {
+          "text": "Neither side should push pawns",
+          "why": "Pawn storms are exactly the plan. Tal pushed g4, g5 and h4."
+        }
+      ],
+      "narration": "The kings castled on opposite sides. What does that mean for the plan?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Open lines toward the king",
+      "fen": "4Rr1k/1b3Qpp/p7/2qP2P1/7P/1PP5/1P1K4/8 b - - 5 37",
+      "text": "Tal gave a knight on d5 to open the e-file, and later a bishop to open it all the way to e7. Each piece he gave bought an open line straight at Larsen's king. When the kings are on opposite sides, open files toward the enemy king are worth more than a piece sitting quietly at home.",
+      "narration": "Each piece Tal gave away bought an open line to the king. That trade is often worth it.",
+      "pose": "idea"
+    }
+  ]
+}

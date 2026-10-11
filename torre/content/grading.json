@@ -1,0 +1,13 @@
+{
+  "about": "Move grading shared by scoring.py / engines.py and web/src/lib (grades.ts, commentary.ts, nodeStrength.ts). Lichess's win% and accuracy constants, the judgment thresholds, and the node-budget ratings.",
+  "winCeilingCp": 1000,
+  "winChancesK": 0.00368208,
+  "accuracy": { "scale": 103.1668100711649, "decay": 0.04354415386753951, "offset": 3.166924740191411, "bonus": 1 },
+  "judgments": [[0.3, "blunder"], [0.2, "mistake"], [0.1, "inaccuracy"]],
+  "mateLossCp": { "inaccuracy": 999, "mistake": 700 },
+  "nodeElo": [
+    [50, 1200], [100, 1350], [200, 1500], [400, 1650], [800, 1800], [1600, 1950],
+    [3200, 2100], [6400, 2250], [12800, 2400], [25600, 2550], [51200, 2700],
+    [102400, 2850], [204800, 3000], [409600, 3150]
+  ]
+}

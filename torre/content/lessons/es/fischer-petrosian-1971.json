@@ -1,0 +1,96 @@
+{
+ "title": "Fischer intercambia su mejor pieza",
+ "summary": "Buenos Aires, 1971: Fischer cambia un hermoso caballo por un alfil porque el final de partida que sigue es más fácil de ganar.",
+ "unit": "Bobby Fischer",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Buenos Aires, 1971",
+   "text": "En 1971, Fischer arrasó en los torneos de clasificación, venciendo a Mark Taimanov y Bent Larsen sin perder una partida. En la final se enfrentó a Tigran Petrosian, un ex campeón mundial a quien era casi imposible vencer. Este es el séptimo juego de esa final. Fischer ganó el encuentro y el derecho a jugar contra Spassky por el título.",
+   "narration": "Buenos Aires, 1971. Fischer contra el ex campeón mundial Tigran Petrosian, con un encuentro por el campeonato mundial como premio."
+  },
+  {
+   "id": "the-game",
+   "title": "Fischer – Petrosian, final de candidatos, Buenos Aires 1971",
+   "text": "Las damas desaparecen temprano. A las negras les quedan dos peones aislados en a6 y d5, y Fischer comienza a presionarlos. Observa lo simple que parece cada jugada.",
+   "notes": [
+    {
+     "text": "13...Qxa4: las damas desaparecen. Las negras tienen peones aislados en a6 y d5: ningún peón vecino puede protegerlos."
+    },
+    {
+     "text": "17.Bxe7: Fischer intercambia los alfiles oscuros. Su alfil restante será mejor que el del negro."
+    },
+    {
+     "text": "19.Nc5: El caballo llega a una casilla excelente, ataca a6 y al alfil."
+    },
+    {
+     "text": "22.Nxd7+!: Fischer intercambia su hermoso caballo por el alfil del negro. Su alfil contra el caballo del negro, con peones en ambos flancos, es un final de partida que un alfil adora."
+    },
+    {
+     "text": "24...Rd6, después de 24.Rc7, una torre blanca se encuentra en la séptima fila."
+    },
+    {
+     "text": "26.Kf2: en el final, el rey se une a la lucha."
+    },
+    {
+     "text": "29...d4+: Petrosian avanza su peón, pero ahora está lejos de casa y aislado."
+    },
+    {
+     "text": "31.Ree7: ambas torres blancas están en la séptima fila, justo al lado del rey negro."
+    },
+    {
+     "text": "34.Bc4: el alfil se une, y el rey negro está atrapado en la última fila. Petrosian renunció."
+    }
+   ],
+   "narration": "Las damas se intercambiaron temprano. Observa cómo Fischer presiona sobre los débiles peones negros con movimientos sencillos.",
+   "guesses": [
+    {
+     "prompt": "Fischer acaba de cambiar su caballo por el alfil. La torre en a1 no está haciendo nada. Dale un trabajo.",
+     "hint": "Hay una columna abierta en el medio del tablero, que lleva a la séptima fila.",
+     "why": "23.Rc1 toma la columna c abierta. Después, la torre va a c7, en la séptima fila, donde ata las piezas negras."
+    },
+    {
+     "prompt": "El peón pasado negro en d4 da jaque. ¿Adónde debe ir el rey?",
+     "hint": "En un final, la mejor pieza para detener un peón pasado es el rey, parado justo delante de él.",
+     "why": "30.Kd2!: el rey se pone delante del peón de d y lo detiene para siempre. Ahora las torres blancas están libres para atacar."
+    },
+    {
+     "prompt": "Dos torres en la séptima. Haz retroceder al rey con jaque.",
+     "hint": "La torre en e7 puede moverse lateralmente con jaque.",
+     "why": "32.Rf7+ empuja al rey a e8 y lo mantiene en la última fila, donde las torres pueden construir una red."
+    },
+    {
+     "prompt": "El rey está en e8. Mantén a las torres trabajando juntas en la séptima fila.",
+     "hint": "Una torre se mueve a una casilla donde también vigila los peones de Negro y la columna b.",
+     "why": "33.Rb7 mantiene a ambas torres en la séptima, encerrando al rey. Si Negro captura el peón b4, el alfil se une a la cacería."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "Caballo por alfil.",
+   "question": "¿Por qué Fischer entregó su fuerte caballo por el alfil de Negro en el movimiento 22?",
+   "options": [
+    {
+     "text": "Un alfil suele ser mejor que un caballo en un final abierto con peones en ambos lados.",
+     "why": "Correcto. El alfil puede alcanzar ambos flancos rápidamente; el caballo es lento."
+    },
+    {
+     "text": "Los caballos valen menos que los alfiles en cada posición.",
+     "why": "No en cada posición: en posiciones cerradas un caballo puede ser mejor. Aquí el tablero estaba abierto."
+    },
+    {
+     "text": "Él quería evitar un empate por repetición.",
+     "why": "No hubo repetición. Él eligió el final de partida que sabía que era más fácil de ganar."
+    }
+   ],
+   "narration": "¿Por qué cambiar el hermoso caballo?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Cambia a un final de partida favorable.",
+   "text": "Fischer no conservó su pieza más bonita. Preguntó qué final de partida sería el más fácil de ganar y cambió a ese: alfil contra caballo, torres en la séptima fila, rey en el centro. Los buenos jugadores de finales de partida cambian piezas a propósito, no solo para simplificar.",
+   "narration": "No conserves una pieza porque se vea bonita. Cambia a un final de partida que puedas ganar."
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+  "loading": "Loading engines…",
+  "analysis": {
+    "title": "Analysis engine",
+    "note": "Scores and best-move arrows in Games and Explore come from this engine."
+  },
+  "sections": {
+    "installed": "Installed",
+    "available": "Available",
+    "custom": "Custom"
+  },
+  "notes": {
+    "installed": "ready to analyze and play",
+    "available": "download and install",
+    "custom": "added by you"
+  },
+  "types": {
+    "nnue": "NNUE",
+    "neural": "Neural",
+    "custom": "Custom"
+  },
+  "card": {
+    "strength": "CCRL rating around {{rating}}",
+    "source": "Source code",
+    "play": "Play",
+    "install": "Install",
+    "downloading": "Downloading… {{percent}}%",
+    "phases": {
+      "download": "Downloading…",
+      "extract": "Extracting…",
+      "probe": "Checking the engine…",
+      "done": "Installed"
+    },
+    "uninstall": "Uninstall",
+    "confirmUninstall": "Uninstall it?",
+    "remove": "Remove",
+    "confirmRemove": "Remove it?",
+    "cancel": "Cancel",
+    "addByPath": "Add by path",
+    "addByPathTitle": "No download for this platform; add the binary below as a custom engine"
+  },
+  "form": {
+    "note": "Point Torre at a UCI engine binary already on this machine. It is checked before it is added.",
+    "name": "Engine name",
+    "path": "Path to the binary",
+    "add": "Add engine",
+    "adding": "Checking…"
+  },
+  "detail": {
+    "ccrl": "CCRL rating",
+    "version": "Version",
+    "unknownVersion": "not recorded",
+    "needs": "Needs",
+    "downloadSize": "Download",
+    "megabytes": "{{size}} MB",
+    "license": "License",
+    "capabilities": "Capabilities",
+    "limitStrength": "Elo limiting",
+    "skillLevel": "Skill levels",
+    "multipv": "MultiPV",
+    "yes": "Yes",
+    "no": "No",
+    "models": "Models",
+    "modelInstalled": "installed",
+    "needsLc0": "Install {{engine}} first",
+    "ratingTarget": "plays like ~{{rating}}"
+  },
+  "empty": {
+    "installed": "No engine is installed. Stockfish usually comes with the app."
+  }
+}

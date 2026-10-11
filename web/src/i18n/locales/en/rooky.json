@@ -1,0 +1,83 @@
+{
+  "speaker": {
+    "listen": "Hear Rooky",
+    "stop": "Stop",
+    "tap": "Tap to hear Rooky"
+  },
+  "home": {
+    "label": "Rooky's plan for you",
+    "loading": "Rooky is looking at your games…",
+    "failed": "Rooky could not load your plan.",
+    "retry": "Try again"
+  },
+  "asks": {
+    "label": "Ask Rooky about",
+    "briefing": "Today's plan",
+    "focus": "What should I work on?",
+    "strengths": "What am I doing well?",
+    "week": "Plan my week"
+  },
+  "session": {
+    "title": "Today's session",
+    "meta": "{{steps}} steps · about {{minutes}} min",
+    "start": "Start the session",
+    "resume": "Resume ({{step}}/{{steps}})",
+    "again": "Play it again",
+    "done": "Done for today",
+    "mix": "Your own slip, a quick lesson, and puzzles picked for you.",
+    "none": "Play or import a few games and Rooky will build your first session.",
+    "progress": "Step {{step}} of {{steps}}"
+  },
+  "focus": {
+    "title": "What we're working on",
+    "intro": "Picked from your games and practice. A skill stays until you master it.",
+    "masteryLabel": "Mastery of {{skill}}",
+    "fresh": "Since we started: {{ok}} of {{count}} clean",
+    "freshNone": "No practice on it yet since it became a focus",
+    "goal": "Master it: {{count}} answers, {{pct}}% clean",
+    "goalLabel": "Progress toward mastering {{skill}}",
+    "evidence": "Where it cost you",
+    "move": "vs {{opponent}}, move {{move}}",
+    "moveNoName": "Move {{move}}",
+    "practice": "Practise this",
+    "pin": "Keep this",
+    "unpin": "Unpin",
+    "skip": "Not now",
+    "pinned": "Pinned",
+    "trend": {
+      "better": "Getting better",
+      "worse": "Slipping",
+      "steady": "Steady",
+      "new": "New"
+    },
+    "toward": "Toward mastery"
+  },
+  "games": {
+    "title": "Lessons from your games",
+    "intro": "Rooky turns the slips in your newest games into short lessons.",
+    "moments_one": "One key moment",
+    "moments_other": "{{count}} key moments",
+    "open": "Open the lesson",
+    "review": "See the game",
+    "done": "Done",
+    "result": {
+      "win": "Won",
+      "loss": "Lost",
+      "draw": "Draw"
+    },
+    "empty": "No lessons yet: Rooky needs analyzed games with a slip to learn from."
+  },
+  "graduated": {
+    "title": "Mastered",
+    "news": "You mastered {{skill}}!"
+  },
+  "skills": {
+    "title": "All your skills",
+    "note": "Built from your games, puzzles, lessons, drills and endgames. Newer results count more."
+  },
+  "recap": {
+    "lesson": "Learn from this game",
+    "lessonDone": "Replay the lesson",
+    "coach": "Your Coach plan"
+  }
+}

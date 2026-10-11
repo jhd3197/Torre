@@ -1,0 +1,122 @@
+{
+ "fork": {
+  "title": "Horquilla",
+  "description": "Ataca dos piezas a la vez",
+  "unit": "horquillas"
+ },
+ "pin": {
+  "title": "Clavada",
+  "description": "Clava una pieza a su rey",
+  "unit": "clavadas"
+ },
+ "skewer": {
+  "title": "Pincho",
+  "description": "Golpea una pieza grande y gana la que está detrás",
+  "unit": "pinchos"
+ },
+ "checkmate": {
+  "title": "Jaque mate",
+  "description": "Da jaque mate",
+  "unit": "jaques mate"
+ },
+ "promotion": {
+  "title": "Coronación",
+  "description": "Corona un peón",
+  "unit": "coronaciones"
+ },
+ "deflection": {
+  "title": "Desviación",
+  "description": "Resuelve problemas de desviación y atracción",
+  "unit": "problemas"
+ },
+ "discovery": {
+  "title": "Descubierta",
+  "description": "Mueve una pieza para dejar al descubierto un jaque o un ataque de la dama",
+  "unit": "descubiertas"
+ },
+ "brilliant": {
+  "title": "Brillante",
+  "description": "Juega una jugada brillante (!!) en una partida analizada",
+  "unit": "jugadas brillantes"
+ },
+ "sacrifice": {
+  "title": "Sacrificio",
+  "description": "Entrega una pieza, aguanta el golpe y gana",
+  "unit": "sacrificios"
+ },
+ "castle": {
+  "title": "Enrocar",
+  "description": "Pon a tu rey a salvo",
+  "unit": "partidas con enroque"
+ },
+ "passed-pawn": {
+  "title": "Peón Pasado",
+  "description": "Avanza un peón pasado hasta la sexta fila",
+  "unit": "peones pasados"
+ },
+ "zugzwang": {
+  "title": "Zugzwang",
+  "description": "Gana dejando a tu rival solo con movimientos de rey y peón",
+  "unit": "aprietes"
+ },
+ "back-rank": {
+  "title": "Última Fila",
+  "description": "Da mate a un rey atrapado en su última fila",
+  "unit": "mates del pasillo"
+ },
+ "outpost": {
+  "title": "Puesto avanzado",
+  "description": "Coloca un caballo donde ningún peón pueda sacarlo",
+  "unit": "puestos avanzados"
+ },
+ "endgame": {
+  "title": "Final",
+  "description": "Gana una partida que llegó al final",
+  "unit": "finales ganados"
+ },
+ "swindle": {
+  "title": "Estafa",
+  "description": "Gana después de ir una torre menos",
+  "unit": "estafas"
+ },
+ "blitz": {
+  "title": "Blitz",
+  "description": "Gana en 25 jugadas o menos",
+  "unit": "victorias rápidas"
+ },
+ "scholar": {
+  "title": "Erudito",
+  "description": "Juega partidas",
+  "unit": "partidas"
+ },
+ "precision": {
+  "title": "Precisión",
+  "description": "Gana sin perder una pieza",
+  "unit": "victorias limpias"
+ },
+ "summit": {
+  "title": "Cumbre",
+  "description": "Alcanza una clasificación",
+  "unit": "clasificación"
+ },
+ "patience": {
+  "title": "Paciencia",
+  "description": "Gana una partida de 50 jugadas o más",
+  "unit": "Victorias largas"
+ },
+ "good-sport": {
+  "title": "Buen deportista",
+  "description": "Juega una partida hasta el final sin rendirte",
+  "unit": "partidas terminadas"
+ },
+ "tactician": {
+  "title": "Táctico",
+  "description": "Resuelve problemas a la primera",
+  "unit": "problemas resueltos"
+ },
+ "legend": {
+  "title": "Leyenda",
+  "description": "Gana partidas",
+  "unit": "victorias"
+ }
+}

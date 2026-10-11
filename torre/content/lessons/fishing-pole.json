@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "title": "The Fishing Pole",
+  "summary": "In the Ruy Lopez Black dangles a knight on g4 as bait. If White takes it, the h-file opens and the queen mates on h2.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 4,
+  "orientation": "black",
+  "practice": "kingside-attack",
+  "steps": [
+    {
+      "id": "cast-the-line",
+      "kind": "explain",
+      "title": "Cast the line",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4",
+      "text": "White has castled in the Ruy Lopez. Black's knight jumps to g4, which is not a good developing move, and when White kicks it with pawn to h3, Black leaves it there and pushes pawn to h5. The knight is the bait, the h-pawn is the line.",
+      "demo": [
+        "f6g4",
+        "h2h3",
+        "h7h5"
+      ],
+      "narration": "This trap is called the Fishing Pole. Black's knight hops to g4 as bait. [move] White attacks it. [move] But Black doesn't run away. Black pushes the h-pawn instead. [move]",
+      "pose": "present"
+    },
+    {
+      "id": "open-the-h-file",
+      "kind": "play",
+      "title": "Open the file",
+      "fen": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1P1/5N2/PPPP1PP1/RNBQ1RK1 b kq - 0 6",
+      "prompt": "White took the bait. Recapture.",
+      "hint": "Your h-pawn can capture, and the square it leaves becomes a road for your rook.",
+      "line": [
+        "h5g4"
+      ],
+      "success": "Pawn takes g4 opens the h-file for your rook on h8 and attacks the knight on f3. White's king suddenly has a rook aiming at it.",
+      "narration": "White swallowed the bait and took your knight. Now take back with the h-pawn. Look what that opens up for your rook.",
+      "pose": "excited"
+    },
+    {
+      "id": "reel-it-in",
+      "kind": "play",
+      "title": "Reel it in",
+      "fen": "r1bqkb1r/pppp1pp1/2n5/1B2p3/4P1p1/8/PPPP1PP1/RNBQNRK1 b kq - 1 7",
+      "prompt": "White's knight ran away to e1. Bring in the queen and mate.",
+      "hint": "Your queen can reach the open h-file in one move. Then a pawn can cut off the king.",
+      "line": [
+        "d8h4",
+        "f2f3",
+        "g4g3",
+        "b5c6",
+        "h4h2"
+      ],
+      "success": "Queen to h4 lines up with the rook on the h-file. After pawn to f3, pawn to g3 cuts off the king, and queen to h2 is mate. Knight to h2 instead of e1 doesn't help either: queen to h4 still wins.",
+      "narration": "White's knight has run to e1. Now the h-file is yours. Bring the queen over and finish the job.",
+      "pose": "detective"
+    },
+    {
+      "id": "if-white-says-no",
+      "kind": "explain",
+      "title": "If White does not bite",
+      "fen": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 w kq - 0 6",
+      "text": "The Fishing Pole only works if White grabs. A careful player just develops, for example with pawn to c3, and Black's knight is stuck on g4 having wasted time. Engines rate White clearly better. Use the trap for fun in quick games, but know it is a gamble.",
+      "demo": [
+        "c2c3"
+      ],
+      "narration": "Here's the honest part. If White ignores the bait and just develops, say with pawn to c3, [move] Black's knight is left offside and White is clearly better. It's a fun trick, not a great opening.",
+      "pose": "nervous"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/3PP1n1/5N1P/PPP2PP1/RNBQ1RK1 b kq - 0 6",
+      "prompt": "White refused the bait and struck in the center with pawn to d4. Don't sit and wait for White to take the knight. Find a sound reply.",
+      "nudge": "Your pawn on e5 is attacked. Deal with the center first.",
+      "hint": "Take on d4 with your e-pawn, or hold the center with pawn to d6.",
+      "line": [
+        "e5d4|d7d6"
+      ],
+      "success": "Pawn takes d4 opens the center before White can use it, and pawn to d6 holds it just as well. White is still a little better, so bring your knight on g4 back into play and castle soon.",
+      "narration": "Here's what to do when White doesn't bite. White ignores your knight and hits the center with a pawn. Answer in the center too, and stop waiting for a fish.",
+      "pose": "thinking"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 w kq - 0 6",
+      "orientation": "black",
+      "question": "Why does taking the knight on g4 backfire for White?",
+      "options": [
+        {
+          "text": "It opens the h-file, and Black's rook and queen attack the king down it",
+          "why": "Right. The pawn recapture removes White's h-pawn shield and opens a highway to h2.",
+          "correct": true
+        },
+        {
+          "text": "The knight was protected, so White loses material straight away",
+          "why": "White wins the knight at first. The problem is the attack that follows, not the trade."
+        },
+        {
+          "text": "It lets Black castle queenside",
+          "why": "Castling has nothing to do with it. The danger is the open h-file."
+        }
+      ],
+      "narration": "Last question. Why is grabbing that knight such a bad idea for White? Think about which file opens up.",
+      "pose": "trophy"
+    }
+  ]
+}

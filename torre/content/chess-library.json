@@ -1,0 +1,1249 @@
+{
+  "schema": "torre.chess-library/1",
+  "title": "Chess reading library",
+  "updated_on": "2026-10-07",
+  "scope": "25 curated titles from the existing local library. This is a starter selection, not a complete list of chess PDFs on Internet Archive.",
+  "selection_note": "Reading levels and recommendations are editorial judgments based on sampled contents and lessons. Historical references are marked separately from the suggested learning path.",
+  "verification_note": "All 25 local PDFs were opened and sampled visually. Edition notes use title pages and front matter. This is not a page-by-page completeness review. Ten Archive item pages listed PDFs; fifteen online checks were inconclusive. Download URLs come from the existing download records, not a fresh download test.",
+  "page_numbers": "One-based PDF page numbers for the linked local files, not printed page numbers. Paths are relative to the project root.",
+  "notation_guide": "English descriptive notation names squares relative to the player, such as K-B3. Modern algebraic notation uses fixed squares, such as Nf3. Converting old game scores requires the full position and side to move.",
+  "counts": {
+    "books": 25,
+    "local_pdfs_available": 25,
+    "archive_pdf_listings_confirmed": 10,
+    "archive_checks_inconclusive": 15,
+    "shelves": {
+      "Foundations": 4,
+      "Endgames and calculation": 3,
+      "Annotated games": 7,
+      "Positional play": 3,
+      "Opening ideas and history": 5,
+      "Chess stories and history": 3
+    }
+  },
+  "reading_paths": [
+    {
+      "id": "start-here",
+      "title": "Build an understanding of the game",
+      "books": [
+        "capablanca-fundamentals",
+        "lasker-common-sense",
+        "edward-lasker-strategy",
+        "sergeant-morphy",
+        "znosko-middle-game"
+      ],
+      "method": "Read one short lesson, reproduce its position on a board, and look for the idea in one of your own games."
+    },
+    {
+      "id": "find-a-plan",
+      "title": "Know what to do after the opening",
+      "books": [
+        "edward-lasker-strategy",
+        "znosko-middle-game",
+        "mason-principles",
+        "nimzowitsch-system",
+        "lasker-manual"
+      ],
+      "method": "Describe the position, choose two candidate plans, and explain the opponent's strongest response."
+    },
+    {
+      "id": "endgame-confidence",
+      "title": "Finish the game with a plan",
+      "books": [
+        "capablanca-fundamentals",
+        "mason-art",
+        "kling-horwitz-endings"
+      ],
+      "method": "Begin with basic mates, then opposition and pawn endings. Verify study solutions before memorizing them."
+    },
+    {
+      "id": "learn-through-games",
+      "title": "See ideas in complete games",
+      "books": [
+        "sergeant-morphy",
+        "capablanca-career",
+        "lasker-petersburg-1909",
+        "hastings-1895",
+        "alekhine-new-york-1924"
+      ],
+      "method": "Choose one game, predict critical moves, and compare your reason with the annotation."
+    }
+  ],
+  "topic_recommendations": [
+    {
+      "topic": "development",
+      "books": [
+        "lasker-common-sense",
+        "edward-lasker-strategy",
+        "sergeant-morphy"
+      ]
+    },
+    {
+      "topic": "planning",
+      "books": [
+        "znosko-middle-game",
+        "mason-principles"
+      ]
+    },
+    {
+      "topic": "endgame",
+      "books": [
+        "capablanca-fundamentals",
+        "mason-art",
+        "kling-horwitz-endings"
+      ]
+    },
+    {
+      "topic": "piece_activity",
+      "books": [
+        "nimzowitsch-system",
+        "edward-lasker-strategy"
+      ]
+    },
+    {
+      "topic": "king_safety",
+      "books": [
+        "sergeant-morphy",
+        "lasker-common-sense"
+      ]
+    },
+    {
+      "topic": "calculation",
+      "books": [
+        "healey-problems",
+        "kling-horwitz-endings",
+        "alekhine-new-york-1924"
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": "capablanca-fundamentals",
+      "title": "Chess Fundamentals",
+      "author": "José Raúl Capablanca",
+      "shelf": "Foundations",
+      "priority": "start_here",
+      "suggested_level": "Beginner to intermediate",
+      "topics": [
+        "basic mates",
+        "pawn endings",
+        "piece activity",
+        "opening principles"
+      ],
+      "why_read": "A compact way to connect simple endings to the rest of the game. Start here if you know the rules but struggle to explain why a move helps.",
+      "edition": {
+        "year": null,
+        "description": "Harcourt, Brace scan; copyright 1921; printing date not established",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The filename gives the work's 1921 date, not a verified date for this printing."
+      },
+      "start_here": {
+        "section": "Some Simple Mates",
+        "pdf_page": 19,
+        "exercise": "Play the rook-and-king mate against a defending king. Explain which squares each move removes before moving."
+      },
+      "reading_note": "Uses descriptive notation. Treat opening analysis as historical and check concrete lines on a board.",
+      "pdf": {
+        "local_path": "books/José Raúl Capablanca - Chess Fundamentals (1921).pdf",
+        "pages": 266,
+        "searchable_text": true,
+        "scan_note": "Clear text and diagram in the sampled lesson; yellowed pages.",
+        "download_url": "https://archive.org/download/chess-fundamentals/chess%20fundamentals.pdf"
+      },
+      "archive_url": "https://archive.org/details/chess-fundamentals",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        19
+      ]
+    },
+    {
+      "id": "lasker-common-sense",
+      "title": "Common Sense in Chess",
+      "author": "Emanuel Lasker",
+      "shelf": "Foundations",
+      "priority": "start_here",
+      "suggested_level": "Beginner with the rules learned to intermediate",
+      "topics": [
+        "development",
+        "initiative",
+        "practical decisions",
+        "general principles"
+      ],
+      "why_read": "Short lectures make a useful companion to game reviews: the emphasis is on the purpose behind development and practical decisions.",
+      "edition": {
+        "year": 1896,
+        "description": "1896 English edition, Bellairs & Co.",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local title page confirms 1896. This is a different scan from the 1910 Archive copy that reports missing pages 15-18."
+      },
+      "start_here": {
+        "section": "Lecture No. 1",
+        "pdf_page": 7,
+        "exercise": "After each opening example, name the development gain or loss and the concrete reply that makes it matter."
+      },
+      "reading_note": "The prose is old-fashioned and the principles need positional exceptions. Uses descriptive notation.",
+      "pdf": {
+        "local_path": "books/Emanuel Lasker - Common Sense in Chess (1896).pdf",
+        "pages": 144,
+        "searchable_text": true,
+        "scan_note": "The sampled pages are readable but faint; enlargement helps.",
+        "download_url": "https://archive.org/download/kpbc.umk.pl.Magazyn_392_POWER_004_07_264926/Magazyn_392_POWER_004_07.pdf"
+      },
+      "archive_url": "https://archive.org/details/kpbc.umk.pl.Magazyn_392_POWER_004_07_264926",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        3,
+        7
+      ]
+    },
+    {
+      "id": "edward-lasker-strategy",
+      "title": "Chess Strategy",
+      "author": "Edward Lasker",
+      "shelf": "Foundations",
+      "priority": "start_here",
+      "suggested_level": "Beginner to intermediate",
+      "topics": [
+        "development",
+        "center",
+        "pawn structure",
+        "calculation",
+        "endgames"
+      ],
+      "why_read": "Connects opening development to pawn structure and later plans. Useful when a player knows opening moves but loses direction once those moves run out.",
+      "edition": {
+        "year": null,
+        "description": "Second revised edition, translated by J. du Mont; later reprint",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The copyright/history page lists reprints through 1931. Archive labels the item 1917; the filename's 1915 date is the first-publication date."
+      },
+      "start_here": {
+        "section": "Contents: General Principles and The Opening",
+        "pdf_page": 11,
+        "exercise": "Choose one example from The Opening and describe how the pawn structure changes the best squares for the pieces."
+      },
+      "reading_note": "Descriptive notation and historical opening analysis; prioritize the explanations over memorizing variations.",
+      "pdf": {
+        "local_path": "books/Edward Lasker - Chess Strategy (1915).pdf",
+        "pages": 308,
+        "searchable_text": true,
+        "scan_note": "Readable contents and title pages; the text layer sometimes misreads chess notation.",
+        "download_url": "https://archive.org/download/chessstrategy00lask_0/chessstrategy00lask_0.pdf"
+      },
+      "archive_url": "https://archive.org/details/chessstrategy00lask_0",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        11
+      ]
+    },
+    {
+      "id": "mason-principles",
+      "title": "The Principles of Chess in Theory and Practice",
+      "author": "James Mason",
+      "shelf": "Foundations",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate",
+      "topics": [
+        "planning",
+        "attack and defense",
+        "time",
+        "piece coordination"
+      ],
+      "why_read": "Useful for moving from isolated rules to coordinated plans. Its discussion of planning is a good prompt for explaining what several pieces are trying to achieve together.",
+      "edition": {
+        "year": 1894,
+        "description": "1894 London edition, Horace Cox",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Year confirmed on the local title page."
+      },
+      "start_here": {
+        "section": "General Principles: Plan",
+        "pdf_page": 134,
+        "exercise": "Before reading a continuation, write a plan and the opponent's strongest objection to it."
+      },
+      "reading_note": "Victorian prose and descriptive notation make this a slower read than the first three foundation books.",
+      "pdf": {
+        "local_path": "books/James Mason - The Principles of Chess in Theory and Practice (1894).pdf",
+        "pages": 304,
+        "searchable_text": true,
+        "scan_note": "The sampled text is clear but densely set.",
+        "download_url": "https://archive.org/download/principlesofches00masoiala/principlesofches00masoiala.pdf"
+      },
+      "archive_url": "https://archive.org/details/principlesofches00masoiala",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        5,
+        134
+      ]
+    },
+    {
+      "id": "mason-art",
+      "title": "The Art of Chess",
+      "author": "James Mason",
+      "shelf": "Endgames and calculation",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate",
+      "topics": [
+        "opposition",
+        "pawn endings",
+        "middlegames",
+        "piece coordination"
+      ],
+      "why_read": "Starts from endings and builds toward more complex positions. The opposition section is a useful focused assignment for a player who misjudges king-and-pawn endings.",
+      "edition": {
+        "year": 1913,
+        "description": "Fourth edition, revised and enlarged; revisions by Leopold Hoffer",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local preface and Archive record identify the 1913 revision; the filename's 1895 date is not this edition."
+      },
+      "start_here": {
+        "section": "Book I: Endings - Notes on the Opposition",
+        "pdf_page": 21,
+        "exercise": "Set up the opposition diagrams and change the side to move. Explain why that changes the result or the route."
+      },
+      "reading_note": "Uses descriptive notation; confirm specific old endgame analyses before turning them into exercises.",
+      "pdf": {
+        "local_path": "books/James Mason - The Art of Chess (1895).pdf",
+        "pages": 518,
+        "searchable_text": true,
+        "scan_note": "Readable text and opposition diagrams in the sample.",
+        "download_url": "https://archive.org/download/artofchess00maso/artofchess00maso.pdf"
+      },
+      "archive_url": "https://archive.org/details/artofchess00maso",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        5,
+        21
+      ]
+    },
+    {
+      "id": "capablanca-career",
+      "title": "My Chess Career",
+      "author": "José Raúl Capablanca",
+      "shelf": "Annotated games",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate",
+      "topics": [
+        "annotated games",
+        "conversion",
+        "planning",
+        "Capablanca"
+      ],
+      "why_read": "Pairs a player's own account of improvement with selected games. Useful for studying how an advantage becomes a concrete plan.",
+      "edition": {
+        "year": 1966,
+        "description": "Dover edition with introduction and afterword by Irving Chernev",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local copyright page identifies the 1966 edition with new material, not the 1920 original named in the filename."
+      },
+      "start_here": {
+        "section": "Contents: The Match with Marshall",
+        "pdf_page": 9,
+        "exercise": "Choose one Marshall-match game. Pause at each exchange and predict which side benefits from the remaining pieces."
+      },
+      "reading_note": "The PDF page number differs substantially from the printed page number. Uses descriptive notation.",
+      "pdf": {
+        "local_path": "books/José Raúl Capablanca - My Chess Career (1920).pdf",
+        "pages": 106,
+        "searchable_text": true,
+        "scan_note": "Readable sample, but two printed pages share each PDF page; zoom is needed.",
+        "download_url": "https://archive.org/download/15748865AJoseRaulMyChessCareer/15748865-a-Jose-Raul-My-Chess-Career_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/15748865AJoseRaulMyChessCareer",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        1,
+        9
+      ]
+    },
+    {
+      "id": "sergeant-morphy",
+      "title": "Morphy's Games of Chess",
+      "author": "Philip W. Sergeant",
+      "shelf": "Annotated games",
+      "priority": "start_here",
+      "suggested_level": "Improving beginner to intermediate",
+      "topics": [
+        "development",
+        "initiative",
+        "king safety",
+        "attack",
+        "Morphy"
+      ],
+      "why_read": "A rewarding place to see why a lead in development matters. Use selected games to connect open lines, active pieces and an exposed king.",
+      "edition": {
+        "year": 1916,
+        "description": "1916 edition, G. Bell and Sons",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Title and year confirmed on the local title page; this is Sergeant's collection, not the separate Lowenthal volume."
+      },
+      "start_here": {
+        "section": "Part I, Section I: American Chess Congress Games",
+        "pdf_page": 59,
+        "exercise": "In one game, mark the moment when development becomes a concrete threat. Check the defender's alternatives before praising a sacrifice."
+      },
+      "reading_note": "Some sections contain odds, consultation or blindfold games. Keep those contexts distinct from ordinary tournament games.",
+      "pdf": {
+        "local_path": "books/Philip W. Sergeant - Morphy's Games of Chess (1916).pdf",
+        "pages": 376,
+        "searchable_text": true,
+        "scan_note": "Readable sample with digitization footers; the PDF is relatively large.",
+        "download_url": "https://archive.org/download/MorphysGamesOfChessPhilipSergeant/Morphy%27s%20games%20of%20chess%20-%20Philip%20Sergeant.pdf"
+      },
+      "archive_url": "https://archive.org/details/MorphysGamesOfChessPhilipSergeant",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        13,
+        59
+      ]
+    },
+    {
+      "id": "znosko-middle-game",
+      "title": "The Middle Game in Chess",
+      "author": "Eugene Znosko-Borovsky",
+      "shelf": "Positional play",
+      "priority": "start_here",
+      "suggested_level": "Intermediate",
+      "topics": [
+        "planning",
+        "position evaluation",
+        "space",
+        "time",
+        "defense"
+      ],
+      "why_read": "Addresses the common question of what to do after the opening. Its framework connects a position's advantages and weaknesses to a plan.",
+      "edition": {
+        "year": 1930,
+        "description": "1930 reprint, G. Bell and Sons",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The title and publication-history pages identify 1930; the work was first published in 1922."
+      },
+      "start_here": {
+        "section": "Construction and Execution of the Plan",
+        "pdf_page": 96,
+        "exercise": "Describe one position in terms of material, time and space, then choose a plan and an opponent reply that could challenge it."
+      },
+      "reading_note": "A planning framework is a guide, not a substitute for calculation. Uses descriptive notation.",
+      "pdf": {
+        "local_path": "books/Eugene Znosko-Borovsky - The Middle Game in Chess (1922).pdf",
+        "pages": 248,
+        "searchable_text": true,
+        "scan_note": "Clear sampled lesson text on yellowed pages.",
+        "download_url": "https://archive.org/download/middlegameinches00znos/middlegameinches00znos.pdf"
+      },
+      "archive_url": "https://archive.org/details/middlegameinches00znos",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        96
+      ]
+    },
+    {
+      "id": "lasker-manual",
+      "title": "Lasker's Manual of Chess",
+      "author": "Emanuel Lasker",
+      "shelf": "Positional play",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "combinations",
+        "positional play",
+        "evaluation",
+        "chess aesthetics"
+      ],
+      "why_read": "A broad reference for relating combinations to positional judgment. Best approached by selected sections rather than as the first book a beginner reads.",
+      "edition": {
+        "year": null,
+        "description": "English edition with a 1947 McKay copyright notice and Reinfeld appreciation",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The scan contains later editorial material; its printing date is not established by the filename's 1925 date."
+      },
+      "start_here": {
+        "section": "Contents: The Combination and Position Play",
+        "pdf_page": 19,
+        "exercise": "Choose one combination and identify the positional feature that makes it possible before calculating the line."
+      },
+      "reading_note": "Dense prose and descriptive notation. Do not treat this scan as the original German edition.",
+      "pdf": {
+        "local_path": "books/Emanuel Lasker - Lasker's Manual of Chess (1925).pdf",
+        "pages": 385,
+        "searchable_text": true,
+        "scan_note": "Readable, compact black-and-white sample; diagrams require normal PDF zoom.",
+        "download_url": "https://archive.org/download/lasker-s-manual-of-chess/-_Lasker_s_Manual_of_Chess_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/lasker-s-manual-of-chess",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        1,
+        19
+      ]
+    },
+    {
+      "id": "nimzowitsch-system",
+      "title": "My System",
+      "author": "Aron Nimzowitsch",
+      "shelf": "Positional play",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "open files",
+        "passed pawns",
+        "blockade",
+        "pawn chains",
+        "prophylaxis"
+      ],
+      "why_read": "Gives a vocabulary for explaining positional moves: files, pawn chains, blockade and restraint. Useful for turning a quiet move into an understandable plan.",
+      "edition": {
+        "year": null,
+        "description": "21st Century Edition, edited by Lou Hays, introduction by Yasser Seirawan",
+        "language": "English",
+        "notation": "Algebraic",
+        "note": "The local file is a modern English adaptation in algebraic notation, not the 1925 original. Exact edition year was not found in the inspected front matter."
+      },
+      "start_here": {
+        "section": "Chapter 2: On Open Files",
+        "pdf_page": 23,
+        "exercise": "Find the intended entry square before moving a rook to an open file. Ask what would prevent the rook from reaching it."
+      },
+      "reading_note": "Treat its concepts as questions to test in a position, not rules that override tactics.",
+      "pdf": {
+        "local_path": "books/Aaron Nimzowitsch - My System (Mein System) (1925).pdf",
+        "pages": 270,
+        "searchable_text": true,
+        "scan_note": "Small page images within large margins; enlargement is needed and the text layer contains errors.",
+        "download_url": "https://archive.org/download/nimzowitsch-my-system/nimzowitsch%20-%20my%20system_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/nimzowitsch-my-system",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        1,
+        23
+      ]
+    },
+    {
+      "id": "kling-horwitz-endings",
+      "title": "Chess Studies; or, Endings of Games",
+      "author": "Kling & Horwitz",
+      "shelf": "Endgames and calculation",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "pawn endings",
+        "endgame studies",
+        "precise calculation",
+        "defensive resources"
+      ],
+      "why_read": "A collection of compact ending positions that rewards precise calculation. Useful for practicing the difference between a plausible move and the only move that holds or wins.",
+      "edition": {
+        "year": 1851,
+        "description": "1851 edition, edited by Henry C. Mott",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Title page confirms the edition; front matter includes an errata notice."
+      },
+      "start_here": {
+        "section": "King and Pawns Against King and Pawns: Study No. I",
+        "pdf_page": 14,
+        "exercise": "Solve the first position on a board, then test the losing alternatives and explain why they fail."
+      },
+      "reading_note": "Check errata and verify old study solutions before using them as graded puzzles.",
+      "pdf": {
+        "local_path": "books/Kling & Horwitz - Chess Studies; or, Endings of Games (1851).pdf",
+        "pages": 260,
+        "searchable_text": true,
+        "scan_note": "Readable sample diagram with small descriptive move text.",
+        "download_url": "https://archive.org/download/bub_gb_5ZACAAAAQAAJ/bub_gb_5ZACAAAAQAAJ.pdf"
+      },
+      "archive_url": "https://archive.org/details/bub_gb_5ZACAAAAQAAJ",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        4,
+        14
+      ]
+    },
+    {
+      "id": "healey-problems",
+      "title": "A Collection of Two Hundred Chess Problems",
+      "author": "Francis Healey",
+      "shelf": "Endgames and calculation",
+      "priority": "deeper_study",
+      "suggested_level": "Advanced puzzle enthusiast",
+      "topics": [
+        "mating nets",
+        "composed problems",
+        "quiet moves",
+        "calculation"
+      ],
+      "why_read": "Useful for exploring surprising quiet moves and carefully arranged mating ideas. This is a problem-composition collection, so it complements practical tactics rather than replacing them.",
+      "edition": {
+        "year": 1866,
+        "description": "1866 London edition, Longmans, Green and Co.",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local title page says 1866, correcting the filename and older manifest's 1862 label."
+      },
+      "start_here": {
+        "section": "Frontispiece problem: The Charm",
+        "pdf_page": 10,
+        "exercise": "Try the frontispiece's mate-in-five challenge without moving pieces, then verify every defense on a board."
+      },
+      "reading_note": "Composed problems can differ sharply from practical game positions. Solutions and piece placements need manual verification.",
+      "pdf": {
+        "local_path": "books/Francis Healey - A Collection of Two Hundred Chess Problems (1862).pdf",
+        "pages": 293,
+        "searchable_text": false,
+        "scan_note": "Readable images and diagram; the book body has no useful searchable text layer.",
+        "download_url": "https://archive.org/download/acollectiontwoh01healgoog/acollectiontwoh01healgoog.pdf"
+      },
+      "archive_url": "https://archive.org/details/acollectiontwoh01healgoog",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "lasker-petersburg-1909",
+      "title": "The International Chess Congress, St. Petersburg 1909",
+      "author": "Emanuel Lasker",
+      "shelf": "Annotated games",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "annotated games",
+        "candidate moves",
+        "defense",
+        "tournament play"
+      ],
+      "why_read": "A strong fit for studying how an annotator explains both merit and weakness in a move. Use one game at a time and compare your reasoning with the notes.",
+      "edition": {
+        "year": 1910,
+        "description": "1910 English edition; tournament held in 1909",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The copyright and dated preface distinguish the 1910 book from the event year used in the filename."
+      },
+      "start_here": {
+        "section": "Preface: how to use the annotations",
+        "pdf_page": 9,
+        "exercise": "Choose a tournament game, hide the notes and write your own explanation of a critical move before comparing."
+      },
+      "reading_note": "Uses descriptive notation. Historical annotations should be checked before being treated as engine conclusions.",
+      "pdf": {
+        "local_path": "books/Emanuel Lasker - The International Chess Congress, St. Petersburg 1909 (1909).pdf",
+        "pages": 216,
+        "searchable_text": true,
+        "scan_note": "Clear sampled text on tinted pages.",
+        "download_url": "https://archive.org/download/internationalche00lask/internationalche00lask.pdf"
+      },
+      "archive_url": "https://archive.org/details/internationalche00lask",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "hastings-1895",
+      "title": "The Hastings Chess Tournament 1895",
+      "author": "Horace F. Cheshire (ed.)",
+      "shelf": "Annotated games",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "annotated games",
+        "contrasting styles",
+        "tournament history",
+        "attack and defense"
+      ],
+      "why_read": "Annotations by several masters make this useful for comparing explanations of similar decisions. Pair two games with different plans instead of trying to read the tournament straight through.",
+      "edition": {
+        "year": 1896,
+        "description": "1896 edition edited by Horace F. Cheshire",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Publication year confirmed on the title page; 1895 is the tournament year."
+      },
+      "start_here": {
+        "section": "Preface and guide to the tournament account",
+        "pdf_page": 11,
+        "exercise": "Compare two annotators: identify where each uses a concrete variation and where each gives a general positional judgment."
+      },
+      "reading_note": "Dense descriptive notation. Pick a few games with a clear learning theme.",
+      "pdf": {
+        "local_path": "books/Horace F. Cheshire (ed.) - The Hastings Chess Tournament 1895 (1896).pdf",
+        "pages": 440,
+        "searchable_text": true,
+        "scan_note": "Readable sampled pages; some text extraction is incomplete.",
+        "download_url": "https://archive.org/download/cu31924029919820/cu31924029919820.pdf"
+      },
+      "archive_url": "https://archive.org/details/cu31924029919820",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        11
+      ]
+    },
+    {
+      "id": "staunton-london-1851",
+      "title": "The Chess Tournament (London 1851)",
+      "author": "Howard Staunton",
+      "shelf": "Annotated games",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate with an interest in history",
+      "topics": [
+        "romantic-era games",
+        "gambits",
+        "tournament history",
+        "annotation"
+      ],
+      "why_read": "A window into nineteenth-century tournament play and the explanations used at the time. Best paired with modern analysis to understand which attacking ideas endure.",
+      "edition": {
+        "year": 1873,
+        "description": "1873 Bell and Daldy printing of the London 1851 tournament book",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local title page says 1873; the filename's 1852 date does not describe this printing."
+      },
+      "start_here": {
+        "section": "Contents: games by pairing",
+        "pdf_page": 9,
+        "exercise": "Choose an Anderssen game, locate the defender's critical decision and test an alternative with a board or engine."
+      },
+      "reading_note": "Historical opening theory and commentary; descriptive notation.",
+      "pdf": {
+        "local_path": "books/Howard Staunton - The Chess Tournament (London 1851) (1852).pdf",
+        "pages": 475,
+        "searchable_text": false,
+        "scan_note": "Readable page images; the book body has no useful searchable text layer.",
+        "download_url": "https://archive.org/download/chesstournament00staugoog/chesstournament00staugoog.pdf"
+      },
+      "archive_url": "https://archive.org/details/chesstournament00staugoog",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "steinitz-instructor",
+      "title": "The Modern Chess Instructor",
+      "author": "Wilhelm Steinitz",
+      "shelf": "Opening ideas and history",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "positional principles",
+        "king activity",
+        "defense",
+        "opening reasoning"
+      ],
+      "why_read": "Useful for examining the reasoning behind positional principles and comparing them with concrete play. Read the principles as arguments to test, then study an illustrative game.",
+      "edition": {
+        "year": 1889,
+        "description": "1889, Part I, G. P. Putnam's Sons",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local title page explicitly identifies Part I; this entry does not claim to contain every volume."
+      },
+      "start_here": {
+        "section": "The Modern School and the Principles of Play: continuation",
+        "pdf_page": 39,
+        "exercise": "Select one claim about king activity or defense and find the conditions under which it would or would not apply."
+      },
+      "reading_note": "The opening variations are historical. Do not present the author's general claims as universal rules.",
+      "pdf": {
+        "local_path": "books/Wilhelm Steinitz - The Modern Chess Instructor (1889).pdf",
+        "pages": 250,
+        "searchable_text": true,
+        "scan_note": "Readable but tightly set text; some headings are poorly recognized by text search.",
+        "download_url": "https://archive.org/download/in.ernet.dli.2015.37809/2015.37809.Modern-Chess-Instructor--Pt-1_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/in.ernet.dli.2015.37809",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        8,
+        39
+      ]
+    },
+    {
+      "id": "philidor-analyse",
+      "title": "Analyse du jeu des échecs",
+      "author": "François-André Danican Philidor",
+      "shelf": "Opening ideas and history",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate or advanced; French reader",
+      "topics": [
+        "pawn play",
+        "history of chess ideas",
+        "annotated variations"
+      ],
+      "why_read": "A historical source for studying how pawn play became central to explanations of chess. Useful for comparing early strategic language with modern explanations.",
+      "edition": {
+        "year": 1777,
+        "description": "1777 enlarged French edition, London",
+        "language": "French",
+        "notation": "Historical French descriptive",
+        "note": "The actual scan is French despite the English title in the local filename."
+      },
+      "start_here": {
+        "section": "Préface",
+        "pdf_page": 11,
+        "exercise": "Choose a pawn-related explanation and translate its idea into a modern, position-specific teaching sentence."
+      },
+      "reading_note": "A historical reference with language and notation barriers, not the first practical workbook for a beginner.",
+      "pdf": {
+        "local_path": "books/François-André Danican Philidor - Analysis of the Game of Chess (1777).pdf",
+        "pages": 339,
+        "searchable_text": false,
+        "scan_note": "Readable historical typography in sampled pages; no useful searchable body text.",
+        "download_url": "https://archive.org/download/analysisgameche01philgoog/analysisgameche01philgoog.pdf"
+      },
+      "archive_url": "https://archive.org/details/analysisgameche01philgoog",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        7,
+        11
+      ]
+    },
+    {
+      "id": "staunton-handbook",
+      "title": "The Chess-Player's Handbook",
+      "author": "Howard Staunton",
+      "shelf": "Opening ideas and history",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate; historical reference",
+      "topics": [
+        "opening names",
+        "classical openings",
+        "endings",
+        "historical rules"
+      ],
+      "why_read": "A broad historical reference for opening names, old terminology and how chess instruction was organized. Useful when explaining where an opening idea or name came from.",
+      "edition": {
+        "year": 1847,
+        "description": "1847 edition, Henry G. Bohn",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Title page inspected; use PDF page numbers because the scan contains irregular introductory pagination."
+      },
+      "start_here": {
+        "section": "Contents: opening families and introductory lessons",
+        "pdf_page": 18,
+        "exercise": "Select one named opening and compare its historical explanation with the position recognized by the app's opening book."
+      },
+      "reading_note": "Historical rules, terminology and opening analysis need current context. Uses descriptive notation.",
+      "pdf": {
+        "local_path": "books/Howard Staunton - The Chess-Player's Handbook (1847).pdf",
+        "pages": 719,
+        "searchable_text": true,
+        "scan_note": "Readable but unevenly scanned and yellowed; text recognition is noisy.",
+        "download_url": "https://archive.org/download/10431962bsb/10431962bsb_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/10431962bsb",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        13,
+        18
+      ]
+    },
+    {
+      "id": "staunton-praxis",
+      "title": "Chess Praxis",
+      "author": "Howard Staunton",
+      "shelf": "Opening ideas and history",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "opening comparisons",
+        "Morphy",
+        "annotated games",
+        "historical rules"
+      ],
+      "why_read": "A supplement that shows how opening judgments changed as more games were played. Useful for teaching that opening theory is revisable rather than a fixed list of commands.",
+      "edition": {
+        "year": 1860,
+        "description": "1860 edition, Henry G. Bohn",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "Title and year confirmed on the first PDF page."
+      },
+      "start_here": {
+        "section": "Contents: Openings and Illustrations",
+        "pdf_page": 11,
+        "exercise": "Compare one opening assessment with a later game and explain the concrete change in judgment."
+      },
+      "reading_note": "This is Staunton's Chess Praxis, not Nimzowitsch's book of the same English name.",
+      "pdf": {
+        "local_path": "books/Howard Staunton - Chess Praxis (1860).pdf",
+        "pages": 636,
+        "searchable_text": true,
+        "scan_note": "The sampled images are readable; the text layer has substantial recognition errors.",
+        "download_url": "https://archive.org/download/dli.ministry.01283/20915.136.D.97_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/dli.ministry.01283",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        1,
+        11
+      ]
+    },
+    {
+      "id": "staunton-companion",
+      "title": "The Chess-Player's Companion",
+      "author": "Howard Staunton",
+      "shelf": "Opening ideas and history",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "odds games",
+        "compensation",
+        "attack",
+        "chess problems"
+      ],
+      "why_read": "Explores games with material odds alongside other games and problems. Useful for discussing initiative and compensation when the starting conditions are made explicit.",
+      "edition": {
+        "year": 1849,
+        "description": "1849 edition, Henry G. Bohn",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The title page date is printed in Roman numerals."
+      },
+      "start_here": {
+        "section": "Contents: games played at odds",
+        "pdf_page": 8,
+        "exercise": "Choose an odds game, record its actual starting position and explain how the handicap changes the opening priorities."
+      },
+      "reading_note": "Do not import an odds game as if it began from the normal starting position. Uses descriptive notation.",
+      "pdf": {
+        "local_path": "books/Howard Staunton - The Chess-Player's Companion (1849).pdf",
+        "pages": 530,
+        "searchable_text": true,
+        "scan_note": "Readable sample with rough text recognition in headings.",
+        "download_url": "https://archive.org/download/in.ernet.dli.2015.221308/2015.221308.The-Chess_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/in.ernet.dli.2015.221308",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "edge-morphy",
+      "title": "The Exploits and Triumphs in Europe of Paul Morphy",
+      "author": "Frederick Milnes Edge",
+      "shelf": "Chess stories and history",
+      "priority": "historical_reference",
+      "suggested_level": "Any playing level; comfortable with older prose",
+      "topics": [
+        "Morphy",
+        "biography",
+        "chess culture",
+        "nineteenth-century chess"
+      ],
+      "why_read": "Adds people and context to the games. A useful companion to the Morphy game collection when the goal is to make chess history engaging.",
+      "edition": {
+        "year": 1859,
+        "description": "1859 New York edition, D. Appleton and Company",
+        "language": "English",
+        "notation": "Mostly prose; historical notation in game material",
+        "note": "Year confirmed by the local copyright page; the title page identifies the author as Morphy's late secretary."
+      },
+      "start_here": {
+        "section": "Preface",
+        "pdf_page": 13,
+        "exercise": "Pair one episode with a game from Sergeant's collection and distinguish the documented moves from the narrator's interpretation."
+      },
+      "reading_note": "A contemporary narrative has a viewpoint; cross-check anecdotes before using them as factual coach commentary.",
+      "pdf": {
+        "local_path": "books/Frederick Milnes Edge - The Exploits and Triumphs in Europe of Paul Morphy (1859).pdf",
+        "pages": 237,
+        "searchable_text": true,
+        "scan_note": "Readable text with heavy stamps and marks on the title page.",
+        "download_url": "https://archive.org/download/exploitsandtriu00edgegoog/exploitsandtriu00edgegoog_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/exploitsandtriu00edgegoog",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        13
+      ]
+    },
+    {
+      "id": "bird-reminiscences",
+      "title": "Chess History and Reminiscences",
+      "author": "Henry Edward Bird",
+      "shelf": "Chess stories and history",
+      "priority": "historical_reference",
+      "suggested_level": "Any playing level; history enthusiast",
+      "topics": [
+        "chess culture",
+        "players",
+        "history",
+        "reminiscences"
+      ],
+      "why_read": "Useful for the social side of chess: personalities, habits and the culture around the game. Best used for contextual reading rather than playing-strength instruction.",
+      "edition": {
+        "year": null,
+        "description": "Dean & Son scan; associated with the 1893 work",
+        "language": "English",
+        "notation": "Mostly prose; historical notation in game material",
+        "note": "The sampled title page has a handwritten date; a printed publication year was not established."
+      },
+      "start_here": {
+        "section": "Contents: player habits and historical themes",
+        "pdf_page": 11,
+        "exercise": "Choose an anecdote and identify what is personal recollection, what is a claim of fact and what would need another source."
+      },
+      "reading_note": "Old theories about chess origins should not be repeated as settled modern history.",
+      "pdf": {
+        "local_path": "books/Henry Edward Bird - Chess History and Reminiscences (1893).pdf",
+        "pages": 170,
+        "searchable_text": true,
+        "scan_note": "Clear sampled text; occasional handwritten marks.",
+        "download_url": "https://archive.org/download/chess-history-reminiscences/Chess2.pdf"
+      },
+      "archive_url": "https://archive.org/details/chess-history-reminiscences",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        7,
+        11
+      ]
+    },
+    {
+      "id": "murray-history",
+      "title": "A History of Chess",
+      "author": "H. J. R. Murray",
+      "shelf": "Chess stories and history",
+      "priority": "historical_reference",
+      "suggested_level": "Advanced research reader; any playing strength",
+      "topics": [
+        "chess origins",
+        "variants",
+        "historical sources",
+        "cultural history"
+      ],
+      "why_read": "A substantial reference for the history and varieties of chess. Useful for researching a specific question about origins or older games rather than improving tactics.",
+      "edition": {
+        "year": 1962,
+        "description": "1962 Oxford reprint from corrected sheets of the 1913 edition",
+        "language": "English",
+        "notation": "Mixed historical systems; primarily scholarly prose",
+        "note": "The local publication-history page identifies the 1962 printing, correcting the filename's use of the original 1913 date."
+      },
+      "start_here": {
+        "section": "Contents: Chess in Asia and the European game",
+        "pdf_page": 13,
+        "exercise": "Select one historical question from the contents and compare the author's evidence with later scholarship."
+      },
+      "reading_note": "Historical scholarship has developed since the original work. Not a beginner's chess course.",
+      "pdf": {
+        "local_path": "books/H. J. R. Murray - A History of Chess (1913).pdf",
+        "pages": 944,
+        "searchable_text": true,
+        "scan_note": "Readable sampled pages with some library stamps; a large reference volume.",
+        "download_url": "https://archive.org/download/historyofchess0000hjrm/historyofchess0000hjrm.pdf"
+      },
+      "archive_url": "https://archive.org/details/historyofchess0000hjrm",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        7,
+        13
+      ]
+    },
+    {
+      "id": "steinitz-new-york-1889",
+      "title": "The Book of the Sixth American Chess Congress (New York 1889)",
+      "author": "Wilhelm Steinitz",
+      "shelf": "Annotated games",
+      "priority": "historical_reference",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "annotated games",
+        "positional judgment",
+        "defense",
+        "tournament history"
+      ],
+      "why_read": "A large collection for comparing Steinitz's annotations across different players and structures. Choose games around one recurring decision, such as an exchange or a defensive plan.",
+      "edition": {
+        "year": 1891,
+        "description": "1891 edition, edited by Wilhelm Steinitz; New York 1889 tournament",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local title page distinguishes publication year from event year."
+      },
+      "start_here": {
+        "section": "Contents: special-prize games and player sections",
+        "pdf_page": 14,
+        "exercise": "Compare two positions with similar pawn structures and explain why the annotated plans differ."
+      },
+      "reading_note": "Descriptive notation and dense variations. Keep the author's assessment separate from a current engine check.",
+      "pdf": {
+        "local_path": "books/Wilhelm Steinitz - The Book of the Sixth American Chess Congress (New York 1889) (1891).pdf",
+        "pages": 547,
+        "searchable_text": true,
+        "scan_note": "Readable sampled contents with small, dense type.",
+        "download_url": "https://archive.org/download/booksixthameric00steigoog/booksixthameric00steigoog_text.pdf"
+      },
+      "archive_url": "https://archive.org/details/booksixthameric00steigoog",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Listed on the checked item page",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        14
+      ]
+    },
+    {
+      "id": "alekhine-new-york-1924",
+      "title": "The Book of the New York International Chess Tournament 1924",
+      "author": "Alexander Alekhine",
+      "shelf": "Annotated games",
+      "priority": "deeper_study",
+      "suggested_level": "Intermediate to advanced",
+      "topics": [
+        "annotated games",
+        "candidate moves",
+        "tournament play",
+        "opening-to-middlegame plans"
+      ],
+      "why_read": "A useful source for studying how a strong annotator connects variations to decisions. The opening index lets a reader choose games related to structures in their own play.",
+      "edition": {
+        "year": 1925,
+        "description": "1925 edition, annotations by Alexander Alekhine, edited by Hermann Helms",
+        "language": "English",
+        "notation": "English descriptive",
+        "note": "The local copyright page confirms 1925; the tournament was played in 1924."
+      },
+      "start_here": {
+        "section": "Contents and Index of Openings",
+        "pdf_page": 291,
+        "exercise": "Pick a familiar opening from the index. Pause at the first major decision and compare your candidate moves with the annotation."
+      },
+      "reading_note": "Descriptive notation and substantial analysis; a board is helpful, and historic evaluations need checking.",
+      "pdf": {
+        "local_path": "books/Alexander Alekhine - The Book of the New York International Chess Tournament 1924 (1925).pdf",
+        "pages": 302,
+        "searchable_text": true,
+        "scan_note": "Readable scan; contents and opening index are near the end, not the front.",
+        "download_url": "https://archive.org/download/bwb_S0-CIH-671/bwb_S0-CIH-671.pdf"
+      },
+      "archive_url": "https://archive.org/details/bwb_S0-CIH-671",
+      "access": {
+        "local_pdf": "Available; opened and sampled",
+        "archive_pdf": "Could not confirm current online availability",
+        "checked_on": "2026-10-07"
+      },
+      "reviewed_pdf_pages": [
+        9,
+        291
+      ]
+    }
+  ]
+}

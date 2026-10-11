@@ -1,0 +1,55 @@
+{
+ "title": "La torre en el séptimo",
+ "summary": "Una torre en la segunda fila del oponente ataca peones desde el lado y atrapa al rey. Aprende a llegar ahí, y qué pueden hacer dos torres allí.",
+ "unit": "Juego de piezas",
+ "steps": [
+  {
+   "id": "why-the-seventh",
+   "title": "La fila favorita de la torre",
+   "text": "Para las blancas, el séptimo rango es la segunda fila de las negras, donde comienzan los peones negros. Una torre allí ataca los peones desde el lado, donde no pueden defenderse mutuamente, y mantiene al rey negro encerrado en la última fila. La torre negra ha sido forzada a a8 para guardar el peón a, un trabajo triste para una torre.",
+   "narration": "El séptimo rango es donde tu torre hace su mejor trabajo. Desde allí ataca los peones del oponente desde el lado, y mantiene al rey enemigo encerrado en la última fila. Observa cómo la torre negra ha sido reducida a un guardia de peones."
+  },
+  {
+   "id": "get-there",
+   "title": "Invade",
+   "prompt": "Usa la columna abierta para poner tu torre en el séptimo rango.",
+   "hint": "Avanza directamente por la columna abierta d.",
+   "success": "La torre en d7 golpea b7 y f7 a la vez, y las torres negras en a8 y el rey en h8 están demasiado lejos para defender ambas. Un peón cae, y la torre se mantiene activa.",
+   "narration": "La columna d está abierta y conduce directamente al campamento negro. Conduce tu torre al séptimo rango, y ataca dos peones a la vez."
+  },
+  {
+   "id": "two-rooks",
+   "title": "Dos torres en el séptimo",
+   "text": "Una torre en el séptimo es fuerte. Dos torres allí son a menudo decisivas: se protegen mutuamente a lo largo de la fila, comen los peones frente al rey, y pueden construir una red de mate. Aquí el rey negro tiene sólo sus peones g y h como cobertura, y su propia torre bloquea la casilla de escape f8.",
+   "narration": "Ahora hay dos torres blancas en la séptima fila. Juntas se protegen entre sí y recorren la fila, y el rey negro, atrapado por su propia torre, está en serios problemas."
+  },
+  {
+   "id": "pigs-on-the-seventh",
+   "title": "Recorrer la fila",
+   "prompt": "¡Jaque mate al negro con tus dos torres!",
+   "hint": "Empieza capturando en g7 con jaque. La otra torre protege a la primera.",
+   "success": "Cada captura vino con jaque y fue protegida por la otra torre a lo largo de la fila. El rey, acorralado por su propia torre en f8, fue mate en g8.",
+   "narration": "Dos torres en la séptima fila les encanta trabajar juntas. Captura los peones frente al rey con jaque, uno tras otro, y protege a cada torre con su compañera. El mate llega rápido."
+  },
+  {
+   "id": "why-seventh",
+   "title": "¡Revísate!",
+   "question": "¿Por qué una torre en la séptima fila es tan fuerte?",
+   "options": [
+    {
+     "text": "Ataca los peones del oponente desde el lateral y atrapa al rey en la última fila.",
+     "why": "Los peones no pueden protegerse mutuamente lateralmente, y el rey no puede avanzar para ayudar, así que las piezas del defensor quedan atadas."
+    },
+    {
+     "text": "Las torres ganan poder extra cuando se acercan a casillas de coronación.",
+     "why": "Una torre no cambia con la ubicación. La séptima es fuerte por lo que ataca ahí."
+    },
+    {
+     "text": "La torre del oponente no puede llegar a la séptima fila",
+     "why": "Puede, y a menudo lo intenta, desafiar la tuya. La torre es fuerte ahí debido a los peones y el rey que inmoviliza."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué hace que la séptima fila sea tan especial para una torre? Piensa en los peones y el rey. ¡Bien jugado!"
+  }
+ ]
+}

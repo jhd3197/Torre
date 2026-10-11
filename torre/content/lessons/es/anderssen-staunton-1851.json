@@ -1,0 +1,99 @@
+{
+ "title": "Anderssen en Londres 1851",
+ "summary": "El primer torneo internacional: Adolf Anderssen vence a Howard Staunton, el organizador, con una tormenta de peones contra su rey.",
+ "unit": "La Era Romántica",
+ "steps": [
+  {
+   "id": "london-1851",
+   "title": "Londres, 1851",
+   "text": "En 1851, mientras la Gran Exposición llenaba Londres de visitantes, la ciudad también fue sede del primer torneo internacional de ajedrez. Howard Staunton, el jugador líder de Inglaterra, lo organizó. Adolf Anderssen, un profesor de matemáticas de Breslau, ganó el torneo, y en el camino derrotó a Staunton. Aquí está uno de sus juegos: Staunton responde a 1.e4 con la Defensa Siciliana.",
+   "narration": "Londres, 1851, el primer torneo internacional de ajedrez. Un profesor de Breslau llamado Adolf Anderssen vence al organizador, Howard Staunton. Mira cómo avanzan sus peones."
+  },
+  {
+   "id": "the-game",
+   "title": "Anderssen – Staunton, Londres 1851",
+   "text": "Anderssen apunta con su dama y alfil al rey negro, luego empuja sus peones del flanco de rey uno por uno. Staunton busca juego en el flanco de dama. El juego se detiene en los movimientos clave de Anderssen.",
+   "notes": [
+    {
+     "text": "9.Qh5: La dama va directamente al flanco de rey, junto con el alfil en d3. Ambos apuntan a h7."
+    },
+    {
+     "text": "10.e5: El peón gana espacio y mantiene al caballo negro lejos de f6, su mejor casilla defensiva."
+    },
+    {
+     "text": "12.f4: El peón de f respalda a e5 y se prepara para avanzar."
+    },
+    {
+     "text": "16.g4: Ahora el peón de g se une. Los peones blancos vienen por el rey."
+    },
+    {
+     "text": "18.Rf3: Un movimiento de torre. La torre asciende a la tercera fila para poder balancearse hacia el rey."
+    },
+    {
+     "text": "20...Qxa2: Staunton captura un peón en el flanco de dama, lejos de su propio rey."
+    },
+    {
+     "text": "22...Rxd3: Staunton sacrifica una torre por el peligroso alfil para frenar el ataque."
+    },
+    {
+     "text": "26.h7+: Ahora un peón blanco está justo al lado del rey negro."
+    },
+    {
+     "text": "29.f5: El último peón se une a la tormenta."
+    },
+    {
+     "text": "33.Rg3: Los jaques han terminado y nada puede detener el mate. Staunton renunció."
+    }
+   ],
+   "narration": "Anderssen apunta todo al rey negro y luego sus peones empiezan a avanzar. Staunton va en la dirección opuesta. Encuentra las jugadas clave de Anderssen.",
+   "guesses": [
+    {
+     "prompt": "La dama de Staunton fue a cazar peones en a2. Trae otra pieza al ataque.",
+     "hint": "Tu torre en f3 puede deslizarse lateralmente a una columna que apunta al rey.",
+     "why": "21.Rh3!: La torre se une a la dama en la columna h, así que h7 está atacada dos veces. Staunton tuvo que debilitar su rey con 21...h6."
+    },
+    {
+     "prompt": "El caballo negro ha retrocedido a e7. Abre la posición del rey negro.",
+     "hint": "Uno de tus peones puede capturar al lado del rey.",
+     "why": "25.gxh6!: Si el negro recupera, la columna g se abre hacia el rey. Staunton intentó 25...g6 en cambio, pero el peón simplemente avanzó a h7 con jaque."
+    },
+    {
+     "prompt": "Encuentra el jaque que acerca a tu dama directamente al rey negro.",
+     "hint": "Tu dama en g5 puede ir a una casilla protegida por tu peón en e5.",
+     "why": "28.Qf6+! El peón en e5 protege a la dama, y las negras deben bloquear con el caballo en g7. Ese caballo ahora está clavado al rey en h8."
+    },
+    {
+     "prompt": "El caballo negro en g7 está clavado. Añade un atacante más.",
+     "hint": "Tu alfil en e3 puede atacar g7 también.",
+     "why": "30.Bh6! Ahora g7 está atacado por la dama y el alfil y defendido solo por el rey. Staunton tiene pocos jaques a su disposición, y luego nada."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "Peones como arietes.",
+   "text": "Anderssen ganó con una tormenta de peones: los peones en e-, f-, g- y h- avanzaron todos hacia el rey negro, con las piezas justo detrás. Cuando tus piezas apuntan al rey enemigo, los peones pueden ser arietes que derriban su protección. La dama de Staunton ganó peones en el otro flanco, pero un peón en a2 no hace nada para defender h7.",
+   "narration": "Cuatro peones avanzaron hacia el rey negro con las piezas justo detrás de ellos. Y los peones que Staunton capturó en el flanco de dama no hicieron nada para defender a su rey."
+  },
+  {
+   "id": "quiz",
+   "title": "Demasiado lento.",
+   "question": "¿Por qué la jugada 20...Qxa2 de Staunton fue demasiado lenta?",
+   "options": [
+    {
+     "text": "Su dama se alejó demasiado de su rey justo cuando el ataque de las blancas estaba llegando.",
+     "why": "Correcto. El peón extra era real, pero la dama no pudo regresar a tiempo para defender."
+    },
+    {
+     "text": "Tomar peones siempre es incorrecto.",
+     "why": "A menudo, un peón gratis vale la pena tomar. Aquí, simplemente costó demasiado tiempo."
+    },
+    {
+     "text": "La dama quedó atrapada en a2.",
+     "why": "La dama nunca estuvo atrapada. El problema era qué tan lejos estaba de su propio rey."
+    }
+   ],
+   "narration": "Una pregunta: ¿qué había de malo en capturar el peón en a2?"
+  }
+ ]
+}

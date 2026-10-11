@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "title": "The Game of the Century",
+  "summary": "New York, 1956: thirteen-year-old Bobby Fischer gives up his queen and wins with a windmill of discovered checks.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 8,
+  "unit": "Bobby Fischer",
+  "order": 1,
+  "practice": "discovered-attack",
+  "orientation": "black",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "New York, 1956",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Bobby Fischer was thirteen when he sat down against Donald Byrne, one of the strongest players in the United States, at a tournament in New York. Fischer had Black. What he did in this game was so far beyond his age that chess writers soon called it the Game of the Century. You play Fischer's side.",
+      "narration": "New York, 1956. Bobby Fischer is thirteen years old. He has Black against Donald Byrne, and he is about to play the Game of the Century. You are Fischer.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "D. Byrne – Fischer, New York 1956",
+      "text": "Byrne brings his queen out early and grabs space. Fischer answers with fast development and a string of knight jumps, then makes one of the most famous queen offers ever.",
+      "narration": "Byrne's queen comes out early. Fischer's knights start jumping. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "g1f3",
+        "g8f6",
+        "c2c4",
+        "g7g6",
+        "b1c3",
+        "f8g7",
+        "d2d4",
+        "e8g8",
+        "c1f4",
+        "d7d5",
+        "d1b3",
+        "d5c4",
+        "b3c4",
+        "c7c6",
+        "e2e4",
+        "b8d7",
+        "a1d1",
+        "d7b6",
+        "c4c5",
+        "c8g4",
+        "f4g5",
+        "b6a4",
+        "c5a3",
+        "a4c3",
+        "b2c3",
+        "f6e4",
+        "g5e7",
+        "d8b6",
+        "f1c4",
+        "e4c3",
+        "e7c5",
+        "f8e8",
+        "e1f1",
+        "g4e6",
+        "c5b6",
+        "e6c4",
+        "f1g1",
+        "c3e2",
+        "g1f1",
+        "e2d4",
+        "f1g1",
+        "d4e2",
+        "g1f1",
+        "e2c3",
+        "f1g1",
+        "a7b6",
+        "a3b4",
+        "a8a4",
+        "b4b6",
+        "c3d1",
+        "h2h3",
+        "a4a2",
+        "g1h2",
+        "d1f2",
+        "h1e1",
+        "e8e1",
+        "b6d8",
+        "g7f8",
+        "f3e1",
+        "c4d5",
+        "e1f3",
+        "f2e4",
+        "d8b8",
+        "b7b5",
+        "h3h4",
+        "h7h5",
+        "f3e5",
+        "g8g7",
+        "h2g1",
+        "f8c5",
+        "g1f1",
+        "e4g3",
+        "f1e1",
+        "c5b4",
+        "e1d1",
+        "d5b3",
+        "d1c1",
+        "g3e2",
+        "c1b1",
+        "e2c3",
+        "b1c1",
+        "a2c2"
+      ],
+      "notes": [
+        {
+          "ply": 11,
+          "text": "6.Qb3: Byrne's queen comes out early to press on the center."
+        },
+        {
+          "ply": 25,
+          "text": "12...Nxc3 13.bxc3: the knight trade weakens the guard of White's e4 pawn."
+        },
+        {
+          "ply": 27,
+          "text": "14.Bxe7: Byrne grabs a pawn and attacks the rook on f8. Fischer ignores it."
+        },
+        {
+          "ply": 28,
+          "text": "14...Qb6!: instead of saving the rook, Fischer aims his queen at the f2 pawn and the white king."
+        },
+        {
+          "ply": 32,
+          "text": "16...Rfe8+: check on the open e-file. Byrne's king must walk to f1 and can no longer castle."
+        },
+        {
+          "ply": 35,
+          "text": "18.Bxb6: Byrne takes the queen. Now watch the black pieces."
+        },
+        {
+          "ply": 46,
+          "text": "23...axb6: the windmill is over. Fischer has collected pawns and the bishop, and will take the rook on d1 too."
+        },
+        {
+          "ply": 50,
+          "text": "25...Nxd1: two rooks, two bishops and a knight against queen, rook and knight. The rest is a hunt."
+        },
+        {
+          "ply": 72,
+          "text": "36...Ng3+: the black pieces chase the king across the board."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 22,
+          "prompt": "Fischer's knight on b6 has a bold jump. Where?",
+          "hint": "Attack the knight on c3, the piece that guards the e4 pawn.",
+          "why": "11...Na4! hits the knight on c3. If it disappears, the e4 pawn loses its guard and the long diagonal of the bishop on g7 opens up."
+        },
+        {
+          "ply": 26,
+          "prompt": "The e4 pawn has lost its guard. Take it.",
+          "hint": "Your knight on f6 can capture in the center.",
+          "why": "13...Nxe4 grabs the center pawn and opens the diagonal of the bishop on g7 toward c3. Byrne's king is still in the middle."
+        },
+        {
+          "ply": 34,
+          "prompt": "Your queen on b6 is attacked by the bishop on c5. Fischer leaves her there. What does he play?",
+          "hint": "Move the bishop on g4 to fight the bishop on c4.",
+          "why": "17...Be6!! offers the queen. If Bxb6, then ...Bxc4+ and a run of checks wins back far more. If Byrne does not take, Black wins material anyway."
+        },
+        {
+          "ply": 38,
+          "prompt": "Byrne took the queen. Start the windmill with a check.",
+          "hint": "The knight on c3 can check from e2. After that, every time it leaves e2, the bishop on c4 checks.",
+          "why": "19...Ne2+ 20.Kf1 Nxd4+: the knight jumps away with a discovered check from the bishop and grabs a pawn. It repeats the trick to collect the bishop on b6 and the rook on d1."
+        },
+        {
+          "ply": 82,
+          "prompt": "The hunt is over. Mate in one.",
+          "hint": "The rook on a2 can land right next to the king, protected by a bishop.",
+          "why": "41...Rc2#: the rook is guarded by the bishop on b3, and the knight and the other bishop cover every escape square."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "The queen offer",
+      "question": "Why could Fischer let Byrne take his queen with 18.Bxb6?",
+      "options": [
+        {
+          "text": "Discovered checks let his knight grab material with every move",
+          "why": "Yes. The bishop on c4 and the knight took turns giving check, and White could only move the king.",
+          "correct": true
+        },
+        {
+          "text": "The queen was already lost anyway",
+          "why": "She could have moved. Fischer chose to leave her because the windmill was stronger."
+        },
+        {
+          "text": "Byrne was not allowed to take a queen with a bishop",
+          "why": "Of course he was. He took it, and lost."
+        }
+      ],
+      "narration": "Why was the queen offer good?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Checks win time",
+      "fen": "1Q6/5pk1/2p3p1/1p2N2p/1b5P/1bn5/2r3P1/2K5 w - - 16 42",
+      "text": "After the queen offer, Byrne never had a free move: every Fischer move was a check, and each check grabbed something. A discovered check is the strongest kind of move, because the piece that steps away can do anything it likes while the opponent deals with the check.",
+      "narration": "When every move is a check, your opponent never gets a turn of his own. That is what the windmill does.",
+      "pose": "idea"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+ "title": "El alfil de color incorrecto",
+ "summary": "Una calidad y un peón arriba, y aún así solo un empate: cuando el alfil no puede controlar la esquina, el rey defensor se queda allí para siempre.",
+ "steps": [
+  {
+   "id": "the-wrong-corner",
+   "title": "La esquina equivocada",
+   "text": "Las blancas tienen una calidad y un peón arriba, pero el peón es un peón de torre y corona en a8, un cuadrado claro. El alfil de las blancas solo se mueve en cuadrados oscuros, así que nunca puede sacar al rey negro de la esquina. Observa el demo: las blancas se quedan sin movimientos útiles y el juego termina en ahogado.",
+   "narration": "Una calidad y un peón arriba, ¡y sigue siendo un empate! El peón quiere coronar en a8, un cuadrado claro, pero este alfil vive en los cuadrados oscuros. El peón avanza. [move] El rey espera en b8. [move] El peón da jaque. [move] De vuelta a la esquina. [move] Y cualquier movimiento del alfil ahora es ahogado. [move]"
+  },
+  {
+   "id": "right-and-wrong",
+   "title": "Alfil correcto, alfil incorrecto",
+   "text": "Observa el color del cuadrado donde el peón corona. Si el alfil puede llegar a ese color, es el alfil correcto: puede controlar la esquina y el peón corona. Si no, es el alfil incorrecto, y el defensor empata llevando al rey a la esquina. Esto solo ocurre con peones de torre, porque solo ellos coronan justo en la esquina.",
+   "narration": "Aquí está la prueba. Observa el cuadrado donde el peón corona. Si tu alfil puede llegar a ese color, ganas. Si no, el rey defensor simplemente se queda en la esquina. Y solo ocurre con peones en el borde del tablero."
+  },
+  {
+   "id": "race-to-a8",
+   "title": "Carrera a la esquina",
+   "prompt": "Tú eres Negro. Las blancas tienen el alfil incorrecto. Lleva tu rey a la esquina.",
+   "hint": "Tu rey necesita llegar a la esquina del flanco de dama, y el rey de las blancas intentará interponerse. Toma el camino más directo.",
+   "success": "Rey a e8 y d7. Tu rey llega a c8 a continuación, y desde allí b7 y a8 siempre están al alcance. El alfil no puede ayudar, porque nunca toca a8.",
+   "narration": "Tú eres el defensor, con un alfil menos. ¡Pero ese alfil tiene el color incorrecto para el peón de la columna 'a'! Mueve tu rey directamente hacia la esquina, y solo un camino llega a tiempo."
+  },
+  {
+   "id": "race-to-h8",
+   "title": "El otro lado",
+   "prompt": "Ahora el peón está en la columna 'h'. ¿Es este alfil del color incorrecto también? Dirígete a la esquina.",
+   "hint": "El peón 'h' se corona en h8, un cuadrado oscuro, y el alfil de White se mueve en casillas claras.",
+   "success": "Tu rey llega al área de la esquina alrededor de h8, y este alfil nunca podrá controlar el cuadrado oscuro de h8. Un empate, con un alfil menos.",
+   "narration": "Imagen espejo. El peón 'h' se corona en h8, que es oscuro, y este alfil solo se mueve en casillas claras. Así que dirígete a esa esquina y el empate es tuyo."
+  },
+  {
+   "id": "which-bishop",
+   "title": "¡Revísate!",
+   "question": "White tiene un rey, un peón 'h' y un alfil contra un rey solitario. ¿Qué alfil gana?",
+   "options": [
+    {
+     "text": "Un alfil de casillas oscuras",
+     "why": "El peón 'h' se corona en h8, un cuadrado oscuro. Un alfil de casillas oscuras lo controla y ayuda a expulsar al rey."
+    },
+    {
+     "text": "Un alfil de casillas claras",
+     "why": "Ese es el alfil incorrecto para un peón 'h'. Nunca podrá controlar h8, así que un rey en la esquina mantiene el empate."
+    },
+    {
+     "text": "Cualquiera de los dos, un alfil es un alfil",
+     "why": "No con un peón de torre. El color de la casilla de coronación lo decide todo."
+    }
+   ],
+   "narration": "Pregunta final. Las blancas tienen un peón de h y un alfil. ¿Qué alfil gana? Recuerda esto, y salvarás algunas partidas que parecen completamente perdidas. ¡Buen trabajo!"
+  }
+ ]
+}

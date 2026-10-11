@@ -1,0 +1,1183 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Brand layer: the rook logo, mascot, stars and character portraits. Loaded last. */
+.brand {
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.rail nav a.active {
+  background: var(--cream);
+  color: var(--forest);
+  font-weight: 700;
+}
+.rail nav a.active > span:first-child {
+  color: var(--brand-gold);
+}
+.button {
+  border-radius: 8px;
+  font-weight: 650;
+}
+.button.primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--cream);
+}
+.button.danger {
+  background: $red-600;
+  border-color: $red-600;
+  color: $white;
+}
+.button img {
+  display: block;
+}
+
+/* Stars */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  vertical-align: middle;
+}
+.stars img {
+  display: block;
+}
+.stars .star-gold {
+  filter: drop-shadow(0 0 4px rgba($gold-300, 0.6));
+}
+.stars-animate img {
+  animation: star-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.stars-animate .star-gold {
+  animation-name: star-pop, star-glow;
+  animation-duration: 0.5s, 2.4s;
+  animation-iteration-count: 1, infinite;
+  animation-direction: normal, alternate;
+}
+@keyframes star-pop {
+  from {
+    transform: scale(0) rotate(-30deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes star-glow {
+  from {
+    filter: drop-shadow(0 0 4px rgba($gold-300, 0.53));
+  }
+  to {
+    filter: drop-shadow(0 0 14px rgba($gold-300, 0.8));
+  }
+}
+@include reduced-motion {
+  .stars-animate img {
+    animation: none;
+  }
+}
+
+/* Portraits */
+.bot-hello {
+  font-style: italic;
+  opacity: 0.9;
+}
+.bot-best {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: $fs-sm;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+.player-avatar.portrait {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: $sand-100;
+  border: 0;
+  place-items: end center;
+}
+.player-avatar.portrait img {
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  object-position: 50% 100%;
+}
+
+/* Play: opponent and actions */
+.opponent-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  background: $neutral-50;
+}
+.opponent-card img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $sand-100;
+  object-fit: cover;
+  object-position: 50% 100%;
+  flex: none;
+}
+.opponent-card strong {
+  display: block;
+  font-size: $fs-base;
+  font-weight: 800;
+}
+.opponent-card small {
+  display: block;
+  font: #{$fs-xs} $font-mono;
+  color: $sage-600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.opponent-card p {
+  margin: 6px 0 0;
+  font-size: $fs-sm;
+  font-style: italic;
+  color: $sage-700;
+}
+.play-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.play-actions .button {
+  flex: 1;
+}
+
+/* Result dialog */
+#result-dialog {
+  max-width: 440px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 20px;
+}
+.result-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 28px 24px;
+  background: radial-gradient(circle at 50% 0, $sage-100 0, var(--cream) 62%);
+}
+.result-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+.result-card .mascot {
+  margin-bottom: 2px;
+}
+.result-card h2 {
+  margin: 4px 0 12px;
+  font: 850 #{$fs-4xl} $font-sans;
+  letter-spacing: -0.6px;
+}
+.result-goals {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 4px;
+  display: grid;
+  gap: 5px;
+  font-size: $fs-md;
+  color: $sage-500;
+}
+.result-goals li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.result-goals li span {
+  color: $sand-300;
+}
+.result-goals li.earned {
+  color: var(--ink);
+  font-weight: 650;
+}
+.result-goals li.earned span {
+  color: var(--brand-gold);
+}
+.result-best {
+  margin: 10px 0 0 !important;
+  font-weight: 800;
+  color: $gold-500 !important;
+  font-size: $fs-md !important;
+}
+.result-quote {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  margin: 14px 0 0 !important;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba($white, 0.53);
+  color: var(--ink) !important;
+  font-size: $fs-md !important;
+}
+.result-quote img {
+  border-radius: 50%;
+  background: $sand-100;
+  object-fit: cover;
+  object-position: 50% 100%;
+  flex: none;
+}
+.result-quote small {
+  display: block;
+  font-size: $fs-xs;
+  color: $sage-600;
+  margin-top: 2px;
+}
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+  width: 100%;
+}
+.result-actions .button {
+  flex: 1 1 auto;
+}
+
+/* Mascot in pages */
+.mascot {
+  display: block;
+  object-fit: contain;
+}
+/* The rook that watches the cursor (CursorRook): drawn eyes over a faceless body, leaning from its base. */
+.cursor-rook {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  transform: rotate(var(--rook-tilt, 0deg));
+  transform-origin: 50% 96%;
+  transition: transform 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.cursor-rook > :is(img, svg) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cursor-rook-eyes {
+  fill: $neutral-950;
+  transition: transform 0.18s ease-out;
+}
+.cursor-rook-eyes path {
+  fill: none;
+  stroke: $neutral-950;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.cursor-rook-eyes ellipse {
+  transition: ry 0.06s linear;
+}
+@include reduced-motion {
+  .cursor-rook,
+  .cursor-rook-eyes {
+    transition: none;
+  }
+  .cursor-rook {
+    transform: none;
+  }
+}
+
+.lesson-finished > .mascot {
+  margin: 0 auto 6px;
+}
+.lesson-verdict#puzzle-result {
+  position: relative;
+  padding-left: 84px;
+  min-height: 72px;
+}
+.verdict-mascot {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Awards */
+.awards {
+  padding-bottom: 60px;
+}
+.awards-hero {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 26px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, $sage-100, var(--cream) 60%);
+  border: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+.awards-hero h2 {
+  margin: 0 0 6px;
+  font: 850 #{$fs-4xl} $font-sans;
+  letter-spacing: -0.6px;
+}
+.awards-hero p {
+  margin: 0 0 12px;
+  color: $sage-700;
+  max-width: 560px;
+}
+.awards-tally {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.awards-tally span {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: $fs-sm;
+  font-weight: 700;
+  background: $white;
+  border: 1px solid var(--line);
+}
+.awards-tally b {
+  font-size: $fs-md;
+}
+.tally-gold b {
+  color: $gold-500;
+}
+.tally-silver b {
+  color: $slate-500;
+}
+.tally-bronze b {
+  color: $orange-600;
+}
+.awards-group {
+  margin-bottom: 30px;
+}
+.awards-group h3 {
+  margin: 0 0 12px;
+  font: 800 #{$fs-xl} $font-sans;
+}
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 12px;
+}
+.award-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: $neutral-50;
+  text-align: center;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+.award-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba($forest, 0.08);
+}
+.award-card[aria-pressed="true"] {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba($brand-green, 0.2);
+}
+.award-art {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+}
+.award-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba($black, 0.13));
+}
+.award-card.tier-locked .award-art img {
+  filter: grayscale(1) opacity(0.35);
+}
+.award-card strong {
+  font-size: $fs-md;
+  font-weight: 800;
+}
+.award-tier {
+  font: #{$fs-xs} $font-mono;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: $sage-100;
+  color: $sage-600;
+}
+.tier-unlocked .award-tier {
+  background: $sage-100;
+  color: $brand-green;
+}
+.tier-bronze .award-tier {
+  background: $sand-200;
+  color: $orange-700;
+}
+.tier-silver .award-tier {
+  background: $neutral-100;
+  color: $slate-700;
+}
+.tier-gold .award-tier {
+  background: $wheat-100;
+  color: $gold-600;
+}
+.award-progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: $sage-100;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.award-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--brand-gold);
+}
+.tier-locked .award-progress i {
+  background: $sage-400;
+}
+.award-card small {
+  font-size: $fs-xs;
+  color: $sage-600;
+}
+.award-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+}
+.award-detail h4 {
+  margin: 0;
+  font: 800 #{$fs-xl} $font-sans;
+}
+.award-detail p {
+  margin: 4px 0 0;
+  color: $sage-700;
+  font-size: $fs-md;
+}
+.award-steps {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.award-steps li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: $fs-xs;
+  color: $sage-500;
+  width: 82px;
+  text-align: center;
+}
+.award-steps img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.35);
+}
+.award-steps li.done img {
+  filter: drop-shadow(0 4px 8px rgba($black, 0.13));
+}
+.award-steps li.done {
+  color: var(--ink);
+  font-weight: 700;
+}
+.award-steps small {
+  font-weight: 400;
+  color: $sage-500;
+}
+.result-awards {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+}
+.result-award {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: $white;
+  border: 1px solid var(--line);
+  text-align: left;
+  animation: star-pop 0.5s 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.result-award strong {
+  display: block;
+  font-size: $fs-md;
+}
+.result-award small {
+  color: $sage-600;
+  font-size: $fs-xs;
+}
+.result-award.tier-gold {
+  border-color: $gold-300;
+  background: $sage-50;
+}
+@include down(md) {
+  .awards {
+    padding: 18px 16px 40px;
+  }
+  .awards-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .awards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+.award-card {
+  position: relative;
+}
+.award-lock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.85;
+}
+
+/* Topic art */
+#page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-art {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba($black, 0.13));
+}
+/* A page about one item reads "Section / Item"; the section is the link back. */
+.page-crumb {
+  color: $sage-500;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.page-crumb:hover {
+  color: var(--green);
+}
+.page-crumb-sep {
+  color: $sage-300;
+  font-weight: 400;
+}
+.dialog-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dialog-art {
+  object-fit: contain;
+}
+.card-art {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin: -4px 0 6px -4px;
+  filter: drop-shadow(0 6px 10px rgba($black, 0.13));
+  transition: transform 0.2s;
+}
+.lesson-card:hover .card-art {
+  transform: translateY(-2px) rotate(-3deg);
+}
+.puzzle-weak-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.puzzle-weak-item img,
+.button img {
+  object-fit: contain;
+}
+.section-art {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.insight-section h2,
+.insight-section-heading h2 {
+  display: flex;
+  align-items: center;
+}
+.row-art {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.cell-art {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cell-art img {
+  object-fit: contain;
+}
+.insight-intro {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $sage-700;
+  margin: 0 0 14px;
+}
+.runner-art {
+  object-fit: contain;
+  flex: none;
+}
+
+/* Clay piece set: shared scale and baseline are baked into the images. */
+.board:is(.pieces-clay, .pieces-staunton) .square img {
+  width: 96%;
+  height: 96%;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
+}
+.insight-board:is(.pieces-clay, .pieces-staunton) img,
+#promotion-options:is(.pieces-clay, .pieces-staunton) img {
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
+}
+
+/* Move grades */
+.move-grade {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: -6px;
+  margin-left: 3px;
+}
+.game-summary span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.game-summary img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.result-figure {
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba($black, 0.2));
+  animation: star-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.result-figure.winner {
+  filter: drop-shadow(0 0 18px rgba($gold-300, 0.6)) drop-shadow(0 8px 14px rgba($black, 0.2));
+}
+
+/* Board colours */
+:root[data-board-theme="stone"] {
+  --light-square: #{$board-stone-light};
+  --dark-square: #{$board-stone-dark};
+}
+:root[data-board-theme="walnut"] {
+  --light-square: #{$board-walnut-light};
+  --dark-square: #{$board-walnut-dark};
+}
+:root[data-board-theme="contrast"] {
+  --light-square: #{$board-contrast-light};
+  --dark-square: #{$board-contrast-dark};
+}
+
+/* Pieces with a soft shadow (Clay and Staunton) wherever they show outside a board. */
+:is(.pieces-clay, .pieces-staunton) img {
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
+}
+
+/* Review verdicts */
+.board .square img.grade-mark {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 40%;
+  height: 40%;
+  object-fit: contain;
+  transform-origin: 70% 30%;
+  z-index: 4;
+  filter: drop-shadow(0 3px 4px rgba($black, 0.33));
+  animation: grade-pop 0.45s cubic-bezier(0.3, 1.7, 0.5, 1) both;
+  pointer-events: none;
+}
+.board .square img.grade-blunder {
+  animation:
+    grade-pop 0.45s cubic-bezier(0.3, 1.7, 0.5, 1) both,
+    grade-shake 0.5s 0.45s ease-in-out;
+}
+@keyframes grade-pop {
+  from {
+    transform: scale(0) rotate(-25deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes grade-shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  20% {
+    transform: rotate(-12deg);
+  }
+  40% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(-7deg);
+  }
+  80% {
+    transform: rotate(4deg);
+  }
+}
+.move-verdict {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 14px 16px 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: $neutral-50;
+}
+.move-verdict img {
+  flex: none;
+  object-fit: contain;
+  animation: grade-pop 0.45s cubic-bezier(0.3, 1.7, 0.5, 1) both;
+}
+.move-verdict strong {
+  display: block;
+  font-size: $fs-base;
+  font-weight: 800;
+}
+.move-verdict p {
+  margin: 3px 0 0;
+  font-size: $fs-sm;
+  color: $sage-700;
+}
+.move-verdict small {
+  display: block;
+  margin-top: 4px;
+  font: #{$fs-xs} $font-mono;
+  color: $sage-500;
+}
+.move-verdict .text-button {
+  font-size: $fs-sm;
+  color: var(--green);
+  font-weight: 700;
+}
+.verdict-symbol {
+  font-family: $font-mono;
+}
+.move-verdict.grade-blunder {
+  background: $sand-50;
+  border-color: $clay-300;
+}
+.move-verdict.grade-blunder strong {
+  color: $red-600;
+}
+.move-verdict.grade-mistake {
+  background: $sand-50;
+  border-color: $peach-200;
+}
+.move-verdict.grade-mistake strong {
+  color: $orange-500;
+}
+.move-verdict.grade-inaccuracy {
+  background: $sage-50;
+  border-color: $wheat-200;
+}
+.move-verdict.grade-inaccuracy strong {
+  color: $gold-600;
+}
+.move-verdict.grade-brilliant {
+  background: $sage-50;
+  border-color: $mist-200;
+}
+.move-verdict.grade-brilliant strong {
+  color: $mist-600;
+}
+.move-verdict.grade-best {
+  background: $sage-50;
+  border-color: $moss-200;
+}
+@include reduced-motion {
+  .board .square img.grade-mark,
+  .move-verdict img {
+    animation: none;
+  }
+}
+
+/* Coach rook in Play */
+.coach-rook {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.coach-rook .mascot {
+  flex: none;
+  animation: coach-bob 0.4s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+.coach-bubble {
+  position: relative;
+  margin: 0;
+  padding: 9px 13px;
+  border-radius: 14px;
+  background: $white;
+  border: 1px solid var(--line);
+  font-size: $fs-md;
+  font-weight: 650;
+  color: var(--ink);
+}
+.coach-bubble:before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: $white;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-50%) rotate(45deg);
+}
+@keyframes coach-bob {
+  from {
+    transform: translateY(8px) scale(0.9);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.resign-mascot {
+  flex: none;
+  align-self: center;
+}
+
+/* Little game touches */
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.icon-text img {
+  object-fit: contain;
+}
+.playback button.autoplay img {
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+.bots-empty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.with-mascot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.with-mascot .mascot {
+  flex: none;
+}
+.result-awards-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 !important;
+  font-weight: 800;
+  color: var(--ink) !important;
+  font-size: $fs-md !important;
+}
+.result-award {
+  position: relative;
+}
+.result-award-unlocked {
+  position: absolute;
+  left: 44px;
+  top: 6px;
+}
+#show-help img {
+  display: block;
+  object-fit: contain;
+}
+
+/* Opening illustrations */
+.opening-art {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex: none;
+  filter: drop-shadow(0 4px 6px rgba($black, 0.13));
+  transition: transform 0.2s;
+}
+.insight-opening[open] .opening-art,
+.insight-opening summary:hover .opening-art {
+  transform: translateY(-2px) rotate(-4deg);
+}
+.opening-art.small {
+  width: 34px;
+  height: 34px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.insight-position h3 {
+  display: flex;
+  align-items: center;
+}
+/* The coach rook beside the review's verdict, reacting to the grade. */
+.move-verdict .verdict-coach {
+  margin-left: auto;
+  align-self: flex-end;
+  animation: grade-pop 0.45s 0.1s cubic-bezier(0.3, 1.7, 0.5, 1) both;
+}
+@include reduced-motion {
+  .move-verdict .verdict-coach {
+    animation: none;
+  }
+}
+/* The coach's word on the result: proud, relieved or consoling. */
+.result-coach {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px auto 0 !important;
+  max-width: 340px;
+  text-align: left;
+  font-size: $fs-sm !important;
+  color: $sage-700;
+}
+.result-coach .mascot {
+  flex: none;
+}
+#page-title > span {
+  color: inherit;
+}
+
+/* Voice packs: one row per language pack (Settings and the welcome screen). */
+.voice-packs {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.voice-pack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: $neutral-50;
+  text-align: left;
+}
+.voice-pack.installed {
+  background: $sage-50;
+  border-color: $sage-200;
+}
+.voice-pack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.voice-pack-info strong {
+  font: 800 #{$fs-md} $font-sans;
+  color: $sage-900;
+}
+.voice-pack-info small {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.voice-pack-bar {
+  display: block;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 5px;
+  background: $sage-100;
+  overflow: hidden;
+}
+.voice-pack-bar i {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  transition: width 0.3s ease;
+}
+.voice-pack-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.voice-pack-done {
+  font: 700 #{$fs-sm} $font-sans;
+  color: $green-700;
+}
+.voice-pack-error {
+  font-size: $fs-sm;
+  color: $red-700;
+}
+.voice-pack-note {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+
+/* The first-run welcome: language and voice, over whatever page opened first. */
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 24px 16px;
+  background: color-mix(in srgb, var(--paper, $neutral-50) 94%, transparent);
+  backdrop-filter: blur(6px);
+}
+.welcome-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(520px, 100%);
+  padding: 28px 30px 24px;
+  border-radius: 24px;
+  background: $neutral-50;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px -30px rgba($moss-900, 0.5);
+  text-align: center;
+}
+.welcome-card h1 {
+  margin: 6px 0 6px;
+  font: 800 #{$fs-4xl}/ 1.15 $font-sans;
+  letter-spacing: -1px;
+  color: $moss-900;
+}
+.welcome-lead {
+  margin: 0 0 6px;
+  font-size: $fs-md;
+  line-height: 1.6;
+  color: $sage-700;
+}
+.welcome-card h2 {
+  align-self: flex-start;
+  margin: 18px 0 8px;
+  font: 700 #{$fs-xs} $font-mono;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: $moss-600;
+}
+.welcome-languages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+.welcome-language {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 14px 14px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: $neutral-50;
+  font: 800 #{$fs-lg} $font-sans;
+  color: $sage-900;
+  transition:
+    transform 0.12s,
+    border-color 0.12s;
+}
+.welcome-language:hover {
+  transform: translateY(-2px);
+}
+.welcome-language .flag-icon {
+  border-radius: 4px;
+  box-shadow: 0 3px 8px -3px rgba($black, 0.27);
+}
+.welcome-language.chosen {
+  border-color: var(--green);
+  background: $sage-50;
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+.welcome-note {
+  align-self: stretch;
+  margin: 0 0 10px;
+  font-size: $fs-sm;
+  line-height: 1.55;
+  color: $sage-600;
+  text-align: left;
+}
+.welcome-card .voice-packs {
+  width: 100%;
+}
+.welcome-start {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px 18px;
+  font-size: $fs-base;
+}
+.welcome-skip {
+  margin-top: 10px;
+  font-size: $fs-sm;
+}
+
+/* Flags beside language names (Flag.tsx). */
+.flag-icon {
+  display: block;
+  flex: none;
+}
+.voice-pack > .flag-icon {
+  border-radius: 3px;
+}
+
+.move-verdict.grade-great strong { color: $blue-600; }
+.move-verdict.grade-book strong { color: $wheat-700; }

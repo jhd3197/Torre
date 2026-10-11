@@ -1,0 +1,55 @@
+{
+ "title": "Al paso",
+ "summary": "Una captura especial de peón: cuando un peón enemigo avanza dos casillas después del tuyo, puedes capturarlo como si hubiera movido solo una. Aprende cuándo está permitido.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "the-rule",
+   "title": "Capturando al paso",
+   "text": "El peón negro avanza dos casillas, de d7 a d5, aterrizando justo al lado del peón blanco en e5. El blanco puede capturarlo como si hubiera movido solo una casilla: el peón blanco se mueve diagonalmente a d6, y el peón negro en d5 se elimina. Esto se llama al paso, francés para 'al paso'.",
+   "narration": "Aquí está la regla más extraña del ajedrez. El peón negro intenta escabullirse con un doble paso. [move] Pero el peón blanco puede atraparlo al paso, moviéndose a la casilla que saltó y eliminándolo. [move]"
+  },
+  {
+   "id": "right-away-only",
+   "title": "Ahora o nunca",
+   "text": "Deben cumplirse tres cosas. Tu peón está en su quinta fila, el peón enemigo acaba de moverse dos casillas para aterrizar justo al lado de él, y capturas en el siguiente movimiento. Si esperas incluso un turno, la oportunidad desaparece para siempre.",
+   "narration": "Al paso tiene un límite de tiempo. Solo puedes hacerlo de inmediato, en el siguiente movimiento. Espera un turno, y la oportunidad desaparece para siempre."
+  },
+  {
+   "id": "en-passant-fork",
+   "title": "Captura al paso",
+   "prompt": "Negro acaba de jugar peón d7 a d5. Captúralo al paso y luego gana material.",
+   "hint": "Tu peón va a d6, la casilla que el peón negro saltó. Desde allí ataca c7 y e7.",
+   "success": "Capturar al paso coloca tu peón en d6, atacando su torre y el caballo a la vez. Negro salvó su torre, y el peón tomó el caballo.",
+   "narration": "El peón negro acaba de avanzar a d5, justo al lado del tuyo. ¡Captúralo al paso! Tu peón aterriza en d6, y mira lo que ataca desde allí."
+  },
+  {
+   "id": "black-takes-en-passant",
+   "title": "Ahora, como Negro",
+   "prompt": "El blanco acaba de empujar el peón de e dos casillas. ¡Captúralo al paso y ataca dos piezas!",
+   "hint": "Tu peón de d captura diagonalmente a e3, la casilla que el peón blanco saltó.",
+   "success": "El peón captura en e3 al paso. Ahora ataca a su torre en d2 y al caballo en f2, y el blanco solo puede salvar una.",
+   "narration": "Ahora tú eres Negro. El peón blanco acaba de saltar de e2 a e4, justo pasando por tu peón en d4. ¡Captúralo al pasar y tu peón atacará dos piezas blancas a la vez!"
+  },
+  {
+   "id": "en-passant-quiz",
+   "title": "Revisión rápida",
+   "question": "El peón negro movió dos casillas para quedar al lado de tu peón, pero tú hiciste un movimiento diferente. ¿Puedes capturarlo al paso en tu próximo turno?",
+   "options": [
+    {
+     "text": "No, al paso solo se permite de inmediato",
+     "why": "La captura debe realizarse en el siguiente movimiento. Después de eso, la oportunidad se pierde."
+    },
+    {
+     "text": "Sí, siempre que los peones permanezcan uno al lado del otro",
+     "why": "Solo inmediatamente después del doble avance. Esperar un turno pierde el derecho."
+    },
+    {
+     "text": "Sí, pero solo si da jaque.",
+     "why": "El jaque no tiene nada que ver. Lo que importa es el momento."
+    }
+   ],
+   "narration": "Última pregunta. Te perdiste la oportunidad de capturar al paso. ¿Aún puedes hacerlo un movimiento más tarde?"
+  }
+ ]
+}

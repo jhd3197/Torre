@@ -1,0 +1,61 @@
+{
+ "title": "La configuración Londres",
+ "summary": "d4, Bf4, e3, Nf3, c3, Bd3, Nbd2: una configuración tranquila que puedes usar contra casi cualquier cosa.",
+ "unit": "Defensa Londres",
+ "steps": [
+  {
+   "id": "the-setup",
+   "title": "Una configuración para cada partida",
+   "text": "El Sistema Londres es un conjunto de movimientos más que un conjunto de líneas: peón a d4, alfil a f4, peón a e3, caballo a f3, peón a c3, alfil a d3 y el otro caballo a d2. Puedes jugarlo contra casi cualquier respuesta de las negras. Por lo general, se dice que toma su nombre del torneo de Londres de 1922, después del cual fuertes jugadores comenzaron a usarlo. Recorre el inicio de una partida típica.",
+   "narration": "Bienvenido al Sistema Londres. Se trata menos de memorizar líneas y más de una configuración. Peón a d4. [move] Las negras responden con d5. [move] El alfil sale a f4. [move] El caballo negro sale. [move] Peón a e3. [move] Las negras juegan e6. [move] Caballo a f3. [move] Las negras empujan c5. [move] Peón a c3. [move] Caballo a c6. [move] El otro caballo a d2. [move] Alfil a d6. [move] Tu alfil retrocede a g3. [move] Las negras enrocan. [move] Y alfil a d3. [move] Cada pieza blanca ha encontrado su sitio."
+  },
+  {
+   "id": "the-pyramid",
+   "title": "La pirámide",
+   "text": "Los peones en c3, d4 y e3 forman una pirámide. El peón d4 está en la parte superior, protegido dos veces, por lo que los peones negros rebotan en él. Detrás de la pirámide, las piezas tienen trabajos fáciles: el caballo en f3 y el alfil en g3 ambos vigilan e5, el alfil en d3 apunta a h7. Muchos jugadores de Londres también añaden h3 en algún momento, para que el alfil siempre tenga h2 a donde retirarse y las piezas negras no puedan usar g4.",
+   "narration": "Mira los peones en c3, d4 y e3. Eso es la pirámide, y el peón en d4 en la parte superior está protegido dos veces, por lo que es muy difícil derribarlo. Detrás de él, tu caballo y alfil oscuro ambos vigilan la casilla e5, y el otro alfil apunta a h7."
+  },
+  {
+   "id": "bishop-first",
+   "title": "¿Por qué el alfil sale antes de e3",
+   "text": "Aquí, las blancas jugaron e3 demasiado pronto. El alfil en c1 ahora está encerrado: su camino a f4 pasa por e3, y la única casilla que queda es d2, detrás de sus propios peones. En el Londres, el orden es la clave: alfil a f4 primero, mientras el camino está abierto, y sólo entonces peón a e3 para apoyar d4.",
+   "narration": "Aquí está por qué el orden importa. Las blancas empujaron el peón de e primero, y ahora el alfil en c1 está atrapado detrás de sus propios peones. En el Londres siempre sacamos primero al alfil a f4, y sólo entonces jugamos e3."
+  },
+  {
+   "id": "block-the-check",
+   "title": "Bloquea con una jugada útil",
+   "prompt": "El alfil de las negras da jaque. Bloquéalo con una jugada que encaje con tu configuración.",
+   "hint": "Una jugada de peón que pertenece a la pirámide puede bloquear en la casilla correcta y atacar al alfil.",
+   "success": "c3 bloquea el jaque, ataca al alfil y construye la pirámide en una jugada. Caballo a d2 también es una jugada de configuración adecuada.",
+   "narration": "Las negras dan jaque a tu rey. No entres en pánico y no muevas al rey. Encuentra un bloqueo que también sea una jugada que quisieras hacer de todos modos."
+  },
+  {
+   "id": "punish-e5",
+   "title": "Las negras atacan demasiado pronto",
+   "prompt": "Las negras han adelantado un peón a e5, una casilla que tus piezas vigilan. Haz que las negras paguen por ello.",
+   "hint": "Captura en e5 con un peón y mira a qué ataca a continuación.",
+   "success": "dxe5 ataca al alfil en d6 y al caballo en f6 a la vez. Las negras recuperan en e5, pero después de los cambios en esa casilla, las negras están a una pieza entera por debajo.",
+   "narration": "Las negras empujaron el peón a e5, pero tu caballo, tu alfil y tu peón de d vigilan esa casilla. Tómalo con el peón y observa las dos piezas que ataca."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué un jugador de la Defensa Londinense pone el alfil en f4 antes de jugar e3?",
+   "options": [
+    {
+     "text": "Después de e3, el alfil en c1 quedaría atrapado detrás de sus propios peones.",
+     "why": "Bien. Primero el alfil, mientras el camino está abierto, luego e3 para apoyar d4."
+    },
+    {
+     "text": "El alfil en f4 ataca al rey de las negras.",
+     "why": "Apunta al flanco de dama y al casillero e5, no al rey."
+    },
+    {
+     "text": "e3 es un mal movimiento en la Defensa Londinense.",
+     "why": "e3 es parte de la pirámide. Simplemente viene después de que el alfil ha salido."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué el alfil va a f4 antes de que el peón vaya a e3? Responde esto y comprenderás la esencia de la Defensa Londinense. ¡Bien jugado!"
+  }
+ ]
+}

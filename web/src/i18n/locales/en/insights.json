@@ -1,0 +1,110 @@
+{
+  "label": "Your chess insights",
+  "sectionsLabel": "Insight sections",
+  "sections": {
+    "overview": "Overview",
+    "openings": "Openings",
+    "learn": "Learn",
+    "blunders": "Blunders"
+  },
+  "coverage": "{{analyzed}} / {{total}} games analyzed",
+  "replay": "Replay",
+  "explorePosition": "Explore position",
+  "result": {
+    "win": "Win",
+    "loss": "Loss",
+    "draw": "Draw"
+  },
+  "status": {
+    "retry": "Retry",
+    "loading": "Loading insights…",
+    "empty": "Import games to see your insights."
+  },
+  "metrics": {
+    "games": "Games",
+    "gamesNote": "{{wins}} wins · {{draws}} draws · {{losses}} losses",
+    "winRate": "Win rate",
+    "winRateNote": "All imported games",
+    "accuracy": "Accuracy",
+    "accuracyNote": "Your analyzed games",
+    "avgLoss": "Avg. loss / move",
+    "avgLossNote": "Centipawns · lower is better",
+    "blunders": "Blunders / game",
+    "blundersNote_one": "{{count}} in analyzed games",
+    "blundersNote_other": "{{count}} in analyzed games",
+    "mistakes": "Mistakes",
+    "mistakesNote_one": "{{count}} inaccuracies",
+    "mistakesNote_other": "{{count}} inaccuracies"
+  },
+  "form": {
+    "title": "Form over time",
+    "accuracy": "Accuracy",
+    "cpl": "Centipawn loss",
+    "empty": "Analyze games to see your progress.",
+    "chartLabel_one": "Accuracy and average centipawn loss across {{count}} analyzed games.",
+    "chartLabel_other": "Accuracy and average centipawn loss across {{count}} analyzed games.",
+    "detail": "{{result}} · ACPL {{acpl}} · Accuracy {{accuracy}} · {{blunders}} blunders",
+    "explore": "Explore game history",
+    "help": "Hover or drag to explore · Arrow keys to step through games"
+  },
+  "phases": {
+    "title": "By game phase",
+    "counts": "{{blunders}} blunders · {{mistakes}} mistakes · {{moves}} moves",
+    "empty": "No phase analysis yet."
+  },
+  "table": {
+    "games": "Games",
+    "winRate": "Win rate",
+    "acpl": "ACPL"
+  },
+  "colors": {
+    "title": "By color",
+    "color": "Color",
+    "blundersPerGame": "Blunders/game",
+    "white": "White",
+    "black": "Black"
+  },
+  "opponents": {
+    "title": "By opponent",
+    "opponent": "Opponent",
+    "wdl": "W / D / L"
+  },
+  "openings": {
+    "colorGames_one": "{{color}} · {{count}} games",
+    "colorGames_other": "{{color}} · {{count}} games",
+    "winRate": "win rate",
+    "wdl": "{{w}} wins, {{d}} draws, {{l}} losses",
+    "analyzed_one": "ACPL {{acpl}} · {{count}} analyzed games",
+    "analyzed_other": "ACPL {{acpl}} · {{count}} analyzed games",
+    "empty": "No openings found."
+  },
+  "recurring": {
+    "title": "Recurring positions",
+    "count_one": "{{count}} occurrences · {{eco}}",
+    "count_other": "{{count}} occurrences · {{eco}}",
+    "empty": "No recurring positions yet."
+  },
+  "learn": {
+    "empty": "Analyze some games to get practice suggestions.",
+    "takeLesson": "Take the lesson"
+  },
+  "blunders": {
+    "empty": "No analyzed mistakes yet.",
+    "intro": "Your costliest moves, worst first. Replay each one or explore the position.",
+    "before": "Position before the move",
+    "replayMove": "Replay move"
+  },
+  "quality": {
+    "title": "Your moves",
+    "note": "{{moves}} analyzed moves",
+    "brilliant": "Brilliant",
+    "best": "Best",
+    "good": "Good",
+    "inaccuracy": "Inaccuracies",
+    "mistake": "Mistakes",
+    "blunder": "Blunders",
+    "great": "Great",
+    "book": "Book",
+    "updating": "Updated ratings: {{current}} of {{total}} moves. Great and Book counts are incomplete until older games are reanalysed."
+  }
+}

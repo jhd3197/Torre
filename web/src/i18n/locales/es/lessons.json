@@ -1,0 +1,207 @@
+{
+ "categories": {
+  "basics": "Fundamentos",
+  "openings": "Aperturas",
+  "tactics": "Tácticas",
+  "checkmates": "Jaque mates",
+  "endgames": "Finales",
+  "strategy": "Estrategia",
+  "history": "Historia"
+ },
+ "meta": {
+  "minutes": "{{count}} min",
+  "steps_one": "{{count}} paso",
+  "steps_other": "{{count}} pasos",
+  "stepsAbout_one": "{{count}} paso · unos {{minutes}} min",
+  "stepsAbout_other": "{{count}} pasos · unos {{minutes}} min"
+ },
+ "toMove": {
+  "white": "Juegan blancas.",
+  "black": "Juegan negras."
+ },
+ "side": {
+  "white": "Blancas",
+  "black": "Negras"
+ },
+ "page": {
+  "label": "Lecciones"
+ },
+ "teacher": {
+  "listen": "Escucha al coach"
+ },
+ "list": {
+  "tryAgain": "Intenta de nuevo",
+  "loading": "Cargando lecciones…",
+  "completed": "{{done}} de {{total}} completadas.",
+  "followStory": "Sigue la historia en cambio",
+  "empty": "No hay lecciones instaladas.",
+  "groupDone": "{{done}} de {{total}} hechas",
+  "problems_one": "No se pudo cargar un archivo de lección",
+  "problems_other": "No se pudieron cargar {{count}} archivos de lecciones",
+  "placement": "¿Ya sabes algo? Haz una prueba rápida",
+  "reviewDue_one": "Toca repasar un ejercicio de una lección que terminaste.",
+  "reviewDue_other": "Toca repasar {{count}} ejercicios de lecciones que terminaste.",
+  "reviewNow": "Repasar ahora",
+  "videos": "Videos",
+  "videosNote": "Mira la partida y luego recórrela en la lección."
+ },
+ "tile": {
+  "completed": "Completado ✓",
+  "continue": "Continuar · paso {{step}} de {{total}}",
+  "start": "Empezar",
+  "bestAfter": "Mejor después: {{lessons}}",
+  "known": "Sabida ✓",
+  "video": "Video"
+ },
+ "view": {
+  "allLessons": "Todas las lecciones",
+  "loading": "Cargando la lección…",
+  "playback": "Reproducción de la lección",
+  "pauseLesson": "Pausar la lección",
+  "playLesson": "Reproducir la lección",
+  "pauseAutoplay": "Pausar la reproducción automática",
+  "autoplay": "Reproducción automática con la narración del coach",
+  "mute": "Silenciar al coach",
+  "unmute": "Activar el sonido del coach",
+  "steps": "Pasos de la lección",
+  "step": "Paso {{number}}",
+  "stepTitled": "Paso {{number}}: {{title}}",
+  "stepNotReached": "Paso {{number}} (aún no alcanzado)",
+  "complete": "Completado",
+  "stepOf": "Paso {{number}} de {{count}}"
+ },
+ "step": {
+  "finish": "Finaliza la lección",
+  "continue": "Continuar",
+  "previousMove": "Jugada anterior",
+  "nextMove": "Siguiente jugada",
+  "replay": "Juega la línea desde el principio",
+  "replayTitle": "Juega la línea",
+  "movesSoFar": "Movimientos hasta ahora",
+  "check": "Jaque",
+  "retry": "Reintentar",
+  "showMove": "Muestra el movimiento",
+  "showHint": "Muestra una pista",
+  "nicelyDone": "¡Muy bien!",
+  "tryAgain": "Inténtalo de nuevo.",
+  "hint": "<strong>Pista:</strong> {{hint}}"
+ },
+ "reel": {
+  "playback": "Reproducción de la partida",
+  "pause": "Pausar",
+  "play": "Reproducir",
+  "seek": "Avanza en la partida",
+  "speed": "Velocidad de reproducción {{speed}} veces; activa para cambiarla",
+  "speedTitle": "Velocidad de reproducción",
+  "moves": "Jugadas de la partida"
+ },
+ "guess": {
+  "thatWasTheMove": "Ese fue el movimiento.",
+  "summary": "Encontraste {{score}} de {{total}} movimientos clave.",
+  "itWas": "Fue {{san}}.",
+  "keepWatching": "Sigue viendo",
+  "skipToNext": "Saltar a la siguiente pregunta",
+  "skipToEnd": "Saltar al final",
+  "score": "Encontraste {{score}} de {{total}} jugadas clave.",
+  "findPlayed": "Fíjate en <strong>{{toMove}}</strong>. Encuentra la jugada que se jugó.",
+  "notGameMove": "Falso, <strong>✗ {{san}}</strong> no fue la jugada correcta.",
+  "notGameMoveTryAgain": "Falso, <strong>✗ {{san}}</strong> no fue la jugada correcta. Intenta de nuevo.",
+  "arrow": "La flecha indica la jugada correcta: <strong>{{san}}</strong>. Juega esa jugada en el tablero."
+ },
+ "play": {
+  "wellDone": "¡Bien hecho!",
+  "alsoStrong": "¡También es una jugada fuerte!",
+  "stockfishRates": "Stockfish considera <strong>{{san}}</strong> tan buena como <strong>{{lesson}}</strong>, la jugada que esta lección te enseña.",
+  "playAgain": "Juega de nuevo",
+  "notThisIdea": "Buena jugada, pero no es la idea principal de esta lección.",
+  "strongToo": "<strong>{{san}}</strong> también es una jugada buena. Esta lección trata sobre una jugada diferente, así que trata de encontrarla.",
+  "tryAgain": "Intenta de nuevo",
+  "notTheMove": "Falso, <strong>✗ {{san}}</strong> no es la jugada en este caso.",
+  "answers": "{{opponent}} responde <strong>{{reply}}</strong>.",
+  "answersLine": "{{opponent}} responde <strong>{{reply}}</strong>, y después de {{next}} viene <strong>{{then}}</strong>.",
+  "startOver": "Comienza la línea de nuevo",
+  "arrow": "La flecha te muestra la jugada: <strong>{{san}}</strong>. Juega esa jugada en el tablero.",
+  "otherDefence": "Prueba la otra defensa",
+  "showMe": "Muéstramelo en el tablero",
+  "showingWhy": "Por qué {{san}} no funciona",
+  "backToPosition": "Volver a la posición",
+  "watchAgain": "Verlo otra vez",
+  "backOne": "Deshacer una jugada"
+ },
+ "choose": {
+  "right": "Bien.",
+  "tryAnother": "Intenta otra respuesta.",
+  "answers": "Respuestas"
+ },
+ "finished": {
+  "closing": "¡Muy bien! Terminaste {{title}}.",
+  "kicker": "Lección completada",
+  "title": "¡Muy bien!",
+  "youFinished": "Terminaste <strong>{{title}}</strong>.",
+  "xpEarned": "XP obtenida",
+  "firstTry": "Primer intento",
+  "dayStreak": "Racha diaria",
+  "upNext": "A continuación",
+  "next": "Siguiente: {{title}}",
+  "backToMap": "Volver al mapa",
+  "backToPath": "Volver al camino",
+  "backToCoach": "Volver al entrenador",
+  "backToGame": "Volver a la partida",
+  "practise": "Practícalo con problemas",
+  "again": "Repásalo de nuevo",
+  "reviewLater": "Sus ejercicios vuelven para repasar en Entrenar en uno o dos días, y luego cada vez con menos frecuencia mientras los sigas resolviendo."
+ },
+ "intro": {
+  "kinds": {
+   "explain": "Aprende",
+   "play": "Tu movimiento",
+   "choose": "Prueba",
+   "reel": "Mira",
+   "guess": "Adivina la jugada"
+  },
+  "kicker": "Lección",
+  "soundCheck": "¡Hola! Si me puedes escuchar, todo está listo. ¡Aprendamos ajedrez!",
+  "coachTitle": "El entrenador te explica paso a paso.",
+  "coachBody": "Sube el volumen o ponte los audífonos, y luego verifica que puedes oírlo.",
+  "playing": "Jugando…",
+  "testSound": "Probar sonido",
+  "continueFrom": "Continúa desde el paso {{step}}",
+  "start": "Comenzar lección",
+  "startWithoutSound": "Comenzar sin sonido",
+  "startSilently": "Comenzar en silencio",
+  "alreadyKnow": "Ya sé esto",
+  "watch": "Ver el video",
+  "markedKnown": "Marcaste esta lección como sabida. Hazla cuando quieras para ganar sus estrellas."
+ },
+ "video": {
+  "frame": "{{title}}, video",
+  "close": "Cerrar",
+  "openYouTube": "Abrir en YouTube"
+ },
+ "hints": {
+  "nudge": "Mira cada jaque, cada captura y cada amenaza antes de mover.",
+  "whichPiece": "¿Qué pieza?",
+  "pieceCircled": "La pieza marcada con un círculo es la que debes mover.",
+  "hardMode": "Modo difícil: sin pistas ni respuestas. Puedes desactivarlo en Ajustes."
+ },
+ "why": {
+  "mate": "Eso le permite a {{opponent}} dar jaque mate.",
+  "fork": "Eso le permite a {{opponent}} hacer una horquilla a dos de tus piezas.",
+  "hanging": "Eso deja una pieza que {{opponent}} puede capturar gratis.",
+  "promotion": "Eso le permite a {{opponent}} coronar un peón.",
+  "material_one": "Unas jugadas después tienes un peón menos.",
+  "material_other": "Unas jugadas después tienes {{count}} puntos de material menos.",
+  "missedMate": "La jugada de la lección gana por la fuerza; esta deja escapar la victoria.",
+  "worse": "Stockfish la valora {{pawns}} peones peor que la jugada de la lección."
+ },
+ "placement": {
+  "known_one": "Resolviste una prueba limpiamente:",
+  "known_other": "Resolviste {{count}} pruebas limpiamente:",
+  "noneKnown": "Esta vez no hubo soluciones limpias. Vale la pena hacer estas lecciones.",
+  "mark_one": "Marcarla como sabida",
+  "mark_other": "Marcar estas {{count}} como sabidas",
+  "marked_one": "Marcada como sabida. Sigue disponible si quieres hacerla.",
+  "marked_other": "{{count}} lecciones marcadas como sabidas. Siguen disponibles si quieres hacerlas.",
+  "toTake": "Vale la pena hacer:"
+ }
+}

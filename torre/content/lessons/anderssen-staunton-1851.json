@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "title": "Anderssen at London 1851",
+  "summary": "The first international tournament: Adolf Anderssen beats Howard Staunton, the organiser, with a pawn storm against his king.",
+  "category": "history",
+  "unit": "The Romantic Era",
+  "order": 3,
+  "level": "intermediate",
+  "minutes": 7,
+  "requires": ["the-immortal-game"],
+  "orientation": "white",
+  "practice": "kingside-attack",
+  "steps": [
+    {
+      "id": "london-1851",
+      "kind": "explain",
+      "title": "London, 1851",
+      "text": "In 1851, while the Great Exhibition filled London with visitors, the city also hosted the first international chess tournament. Howard Staunton, England's leading player, organised it. Adolf Anderssen, a mathematics teacher from Breslau, won it, and on the way he beat Staunton himself. Here is one of their games: Staunton answers 1.e4 with the Sicilian Defence.",
+      "narration": "London, 1851, the first international chess tournament. A teacher from Breslau named Adolf Anderssen beats the organiser, Howard Staunton. Watch his pawns march.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Anderssen – Staunton, London 1851",
+      "text": "Anderssen points his queen and bishop at the black king, then pushes his kingside pawns at it one by one. Staunton looks for play on the queenside. The game stops at Anderssen's key moves.",
+      "narration": "Anderssen aims everything at the black king, and then his pawns start marching. Staunton goes the other way. Find Anderssen's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 17, "text": "9.Qh5: the queen goes straight to the kingside, next to the bishop on d3. Both aim at h7." },
+        { "ply": 19, "text": "10.e5: the pawn gains space and keeps Black's knight off f6, its best defensive square." },
+        { "ply": 23, "text": "12.f4: the f-pawn backs up e5 and gets ready to march." },
+        { "ply": 31, "text": "16.g4: now the g-pawn joins. White's pawns are coming for the king." },
+        { "ply": 35, "text": "18.Rf3: a rook lift. The rook climbs to the third rank so it can swing over toward the king." },
+        { "ply": 40, "text": "20...Qxa2: Staunton grabs a pawn on the queenside, far from his own king." },
+        { "ply": 44, "text": "22...Rxd3: Staunton gives a rook for the dangerous bishop to slow the attack down." },
+        { "ply": 51, "text": "26.h7+: a white pawn now stands right next to the black king." },
+        { "ply": 57, "text": "29.f5: the last pawn joins the storm." },
+        { "ply": 65, "text": "33.Rg3: the checks are over, and nothing can stop mate. Staunton resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 41,
+          "prompt": "Staunton's queen went pawn-grabbing on a2. Bring another piece to the attack.",
+          "hint": "Your rook on f3 can slide sideways to a file that points at the king.",
+          "why": "21.Rh3! The rook joins the queen on the h-file, so h7 is attacked twice. Staunton had to weaken his king with 21...h6.",
+          "also": ["f4f5"]
+        },
+        {
+          "ply": 49,
+          "prompt": "Black's knight has gone back to e7. Break open the black king.",
+          "hint": "One of your pawns can capture next to the king.",
+          "why": "25.gxh6! If Black takes back, the g-file opens toward the king. Staunton tried 25...g6 instead, but the pawn simply walked on to h7 with check."
+        },
+        {
+          "ply": 55,
+          "prompt": "Find the check that brings your queen right next to the black king.",
+          "hint": "Your queen on g5 can go to a square protected by your e5 pawn.",
+          "why": "28.Qf6+! The e5 pawn protects the queen, and Black must block with the knight on g7. That knight is now pinned to the king on h8."
+        },
+        {
+          "ply": 59,
+          "prompt": "The black knight on g7 is pinned. Add one more attacker.",
+          "hint": "Your bishop on e3 can attack g7 as well.",
+          "why": "30.Bh6! Now g7 is attacked by the queen and the bishop and defended only by the king. Staunton has a few checks left, and then nothing."
+        }
+      ],
+      "moves": ["e2e4", "c7c5", "d2d4", "c5d4", "g1f3", "e7e6", "f3d4", "f8c5", "b1c3", "a7a6", "c1e3", "c5a7", "f1d3", "g8e7", "e1g1", "e8g8", "d1h5", "e7g6", "e4e5", "d8c7", "a1e1", "b7b5", "f2f4", "c8b7", "c3e4", "b7e4", "d3e4", "b8c6", "d4c6", "d7c6", "g2g4", "a8d8", "g1h1", "c6c5", "f1f3", "c7a5", "e1f1", "a5a4", "e4d3", "a4a2", "f3h3", "h7h6", "g4g5", "d8d3", "c2d3", "a2d5", "f1f3", "g6e7", "g5h6", "g7g6", "h6h7", "g8h8", "h5g5", "e7f5", "g5f6", "f5g7", "f4f5", "d5b3", "e3h6", "b3d1", "h1g2", "d1e2", "f3f2", "e2g4", "h3g3"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Pawns as battering rams",
+      "marks": [["h7"], ["g7"], ["f5"]],
+      "text": "Anderssen won with a pawn storm: the e-, f-, g- and h-pawns all marched at the black king, with the pieces close behind. When your pieces point at the enemy king, pawns can be battering rams that knock its shelter down. Staunton's queen won pawns on the other wing, but a pawn on a2 does nothing to defend h7.",
+      "narration": "Four pawns marched at the black king with the pieces right behind them. And the pawns Staunton grabbed on the queenside did nothing to defend his king.",
+      "pose": "idea",
+      "fen": "5r1k/b4pnP/p3pQpB/1pp1PP2/6q1/3P2R1/1P3RKP/8 b - - 8 33"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Too slow",
+      "question": "Why was Staunton's 20...Qxa2 too slow?",
+      "options": [
+        {
+          "text": "His queen went far away from his king just as White's attack was arriving",
+          "correct": true,
+          "why": "Right. The extra pawn was real, but the queen could not get back in time to defend."
+        },
+        {
+          "text": "Taking pawns is always wrong",
+          "why": "Often a free pawn is worth taking. Here it simply cost too much time."
+        },
+        {
+          "text": "The queen got trapped on a2",
+          "why": "The queen was never trapped. The problem was how far she was from her own king."
+        }
+      ],
+      "narration": "One question: what was wrong with grabbing the pawn on a2?",
+      "pose": "thinking",
+      "fen": "3r1rk1/b4ppp/p3p1n1/1pp1P2Q/5PP1/3BBR2/qPP4P/5R1K w - - 0 21"
+    }
+  ]
+}

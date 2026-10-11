@@ -1,0 +1,96 @@
+{
+ "title": "El paseo del rey de Capablanca",
+ "summary": "Nueva York, 1924: Capablanca sacrifica dos peones para que su rey avance por el tablero y gane un final de la torre.",
+ "unit": "José Raúl Capablanca",
+ "steps": [
+  {
+   "id": "new-york-1924",
+   "title": "Nueva York, 1924",
+   "text": "Para 1924, Capablanca era campeón del mundo; había tomado el título de Lasker en 1921. En el gran torneo de Nueva York de 1924 conoció a Savielly Tartakower, un maestro ingenioso y ocurrente. El medio juego fue tranquilo. Entonces llegó un final de la torre, y Capablanca lo jugó de una manera que los jugadores todavía estudian: su rey caminó directamente por el tablero.",
+   "narration": "Nueva York, 1924. El campeón del mundo Capablanca llega a un final de la torre contra Savielly Tartakower. Observa a su rey: está a punto de salir a caminar."
+  },
+  {
+   "id": "the-game",
+   "title": "Capablanca – Tartakower, Nueva York 1924",
+   "text": "Las damas se retiran, luego las piezas menores, y queda un final de torre. Las negras ganan dos peones, pero el rey, la torre y el peón de g de Capablanca trabajan juntos contra el rey de las negras. El juego se detiene en las jugadas clave de Capablanca.",
+   "notes": [
+    {
+     "text": "25.Qxe8+: Las damas se retiran, y le sigue un par de torres."
+    },
+    {
+     "text": "27.h5: El peón de h avanza para abrir una columna para la torre de las blancas."
+    },
+    {
+     "text": "30.Rh7: la torre alcanza la séptima fila y mantiene al rey negro en la última fila."
+    },
+    {
+     "text": "34.Bxf5: las últimas piezas menores se intercambian. Ahora es un final de torre puro."
+    },
+    {
+     "text": "35...Rxc3+: Tartakower toma un peón con jaque. A Capablanca no le importa."
+    },
+    {
+     "text": "37...Rxf4+: ¡Otro peón cae, y el rey blanco se mueve!."
+    },
+    {
+     "text": "41.Rxc7: ¡La torre se lleva un peón propio!."
+    },
+    {
+     "text": "45.g7+: ¡El peón de g está a un paso de convertirse en dama!."
+    },
+    {
+     "text": "52.d6: el último avance de peón. Tartakower renunció."
+    }
+   ],
+   "narration": "Un juego tranquilo se convierte en un final con las torres. Capablanca sacrifica peones para activar a su rey. Encuentra sus movimientos clave.",
+   "guesses": [
+    {
+     "prompt": "La torre negra puede tomar tu peón de c3. Capablanca no lo defiende. ¿Qué juega él?.",
+     "hint": "En un final con torres, un rey activo vale más que un peón. Dirígete hacia los peones del rey negro.",
+     "why": "35.Kg3!: El rey se dirige a h4 y g5. El peón de c3 cae, pero el rey blanco pronto estará en medio de la posición de Black."
+    },
+    {
+     "prompt": "La torre negra está atacando tu peón de f4. Déjala ir y avanza.",
+     "hint": "Tu peón de g puede avanzar, con la torre en h7 justo a su lado.",
+     "why": "37.g6!: El peón está ahora a dos pasos de coronación, y el rey negro está atrapado en la última fila. El peón de f4 no importa."
+    },
+    {
+     "prompt": "Tu rey ha llegado a g5. Sigue caminando.",
+     "hint": "El rey puede acercarse bastante al rey de tu oponente.",
+     "why": "39.Kf6! El rey, la torre y el peón trabajan juntos. El rey negro queda atrapado en la última fila, y las amenazas de mate obligan a Tartakower a ceder terreno."
+    },
+    {
+     "prompt": "Tu oponente está dando jaque a tu rey. ¿Qué casilla lo mantiene activo?",
+     "hint": "Apunta hacia los peones del centro, no de vuelta al borde.",
+     "why": "44.Ke5! El rey avanza hacia d5 para recoger otro peón, y pronto tu oponente se queda sin jaques útiles."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "El rey es una pieza de ataque.",
+   "text": "En un final, el rey es una pieza de ataque. Capablanca dejó escapar dos peones para llevar a su rey a g5 y f6, donde apoyó su propio peón y ayudó a atrapar el rey negro. En los finales con torres, cuenta piezas activas, no solo peones.",
+   "narration": "Aquí está la ruta que siguió el rey. Capablanca renunció a dos peones por ello, y valió la pena cada uno. En el final, el rey lucha."
+  },
+  {
+   "id": "quiz",
+   "title": "Dos peones por un paseo del rey.",
+   "question": "¿Por qué Capablanca permitió que tu oponente ganara sus peones c3 y f4?",
+   "options": [
+    {
+     "text": "Su rey activo, la torre y el peón de g juntos valían más que los dos peones.",
+     "why": "Exactamente. Los peones fueron el precio de la actividad, y la actividad ganó la partida."
+    },
+    {
+     "text": "Él se equivocó al contar los peones.",
+     "why": "No. Los peones fueron un precio deliberado para avanzar al rey."
+    },
+    {
+     "text": "Los peones nunca importan en finales con las torres.",
+     "why": "Por lo general, importan mucho. Aquí, la actividad importó aún más."
+    }
+   ],
+   "narration": "Última pregunta: ¿por qué regalar dos peones?"
+  }
+ ]
+}

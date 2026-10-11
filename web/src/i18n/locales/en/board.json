@@ -1,0 +1,281 @@
+{
+  "grades": {
+    "brilliant": {
+      "label": "brilliant",
+      "message": "A brilliant move. Stockfish loves it.",
+      "short": "brilliant"
+    },
+    "best": {
+      "label": "the best move",
+      "message": "Exactly what Stockfish would play.",
+      "short": "best move"
+    },
+    "good": {
+      "label": "a good move",
+      "message": "A sound move. It keeps the position.",
+      "short": "good move"
+    },
+    "inaccuracy": {
+      "label": "an inaccuracy",
+      "message": "Not a disaster, but there was something better.",
+      "short": "inaccuracy"
+    },
+    "mistake": {
+      "label": "a mistake",
+      "message": "This one gives away part of your advantage.",
+      "short": "mistake"
+    },
+    "blunder": {
+      "label": "a blunder",
+      "message": "Ouch. This throws away a lot. Let’s see what was better.",
+      "short": "blunder"
+    },
+    "great": {
+      "label": "a great move",
+      "message": "The engine’s best move; the alternatives lose much more.",
+      "short": "great"
+    },
+    "book": {
+      "label": "a book move",
+      "message": "This move follows a line in the opening book.",
+      "short": "book"
+    }
+  },
+  "plan": {
+    "startOnPiece": "Start on a piece, or choose Freeform to draw from an empty square.",
+    "illegal": "That piece cannot legally move there in this position."
+  },
+  "pieces": {
+    "pawn": "pawn",
+    "knight": "knight",
+    "bishop": "bishop",
+    "rook": "rook",
+    "queen": "queen",
+    "king": "king"
+  },
+  "square": {
+    "empty": "Empty {{square}}",
+    "white": {
+      "pawn": "White pawn on {{square}}",
+      "knight": "White knight on {{square}}",
+      "bishop": "White bishop on {{square}}",
+      "rook": "White rook on {{square}}",
+      "queen": "White queen on {{square}}",
+      "king": "White king on {{square}}"
+    },
+    "black": {
+      "pawn": "Black pawn on {{square}}",
+      "knight": "Black knight on {{square}}",
+      "bishop": "Black bishop on {{square}}",
+      "rook": "Black rook on {{square}}",
+      "queen": "Black queen on {{square}}",
+      "king": "Black king on {{square}}"
+    }
+  },
+  "engine": {
+    "tryMove": "Try this move",
+    "notInstalled": "Stockfish is not installed.",
+    "gameOver": "The game is over in this position.",
+    "paused": "Analysis is paused. Turn it on to see the best moves.",
+    "unavailable": "Analysis unavailable. Turn analysis off and on to retry.",
+    "finding": "Finding continuations…",
+    "depth": "DEPTH {{depth}} · SCORES FOR WHITE",
+    "thinking": "Thinking…",
+    "on": "Analysis on",
+    "off": "Analysis off",
+    "choose": "Analysis engine"
+  },
+  "heat": {
+    "piece": "piece",
+    "none": "none",
+    "square": "{{square}} · {{kind}}. White: {{white}}. Black: {{black}}.",
+    "kind": {
+      "neutral": "Unattacked",
+      "contested": "Contested",
+      "white": "White control",
+      "black": "Black control"
+    },
+    "toggle": "Square control",
+    "hint": "Control now, not a guarantee of safety. Point at a square for details.",
+    "legend": {
+      "white": "White",
+      "black": "Black",
+      "both": "Both",
+      "neutral": "Unattacked"
+    }
+  },
+  "copy": {
+    "copied": "Position copied as FEN.",
+    "blocked": "Could not copy. Your browser blocked clipboard access."
+  },
+  "status": {
+    "thinking": "Stockfish is thinking…",
+    "whiteToMove": "White to move",
+    "blackToMove": "Black to move",
+    "check": "Check",
+    "exploration": "Exploration",
+    "loading": "Loading…"
+  },
+  "arrows": {
+    "playedInGame": "Played in the game",
+    "nextInLine": "Next in this line",
+    "label": "Board arrows",
+    "bestTitle": "Stockfish's best move from this position",
+    "best": "Best move",
+    "playedTitle": "The move played in the game",
+    "nextTitle": "The move that comes next in this line",
+    "sameMove": "Same move"
+  },
+  "workspace": {
+    "label": "Chess workspace",
+    "flipTitle": "Flip board (F)",
+    "flip": "Flip board"
+  },
+  "moves": {
+    "heading": "Moves",
+    "inProgress": "IN PROGRESS",
+    "goTo": "Go to move {{number}}, {{san}}{{grade}}",
+    "label": "Game moves",
+    "empty": "No moves yet.",
+    "progress": "Move {{number}} of {{total}}",
+    "start": "Starting position"
+  },
+  "eval": {
+    "pending": "Evaluation pending",
+    "title": "{{score}} for White · {{verdict}}",
+    "unavailable": "Evaluation unavailable",
+    "evaluating": "Evaluating…"
+  },
+  "verdict": {
+    "previewTitle": "Show this move on the board, from the position before",
+    "pick": "The engine's #{{rank}} choice",
+    "better_one": "{{count}} better move was there",
+    "better_other": "{{count}} better moves were there",
+    "you": "You",
+    "played": "Played",
+    "startTitle": "Ready when you are",
+    "startHint": "Step through with the arrow keys, or pick a move below.",
+    "pendingTitle": "Not reviewed yet",
+    "pendingHint": "This move has no review. Turn analysis on to grade it.",
+    "is": "{{number}} {{san}} is {{grade}}",
+    "preferred": "Stockfish preferred <b>{{san}}</b>.",
+    "showBefore": "Show the position before it",
+    "seeBefore": "See before",
+    "accuracy": "Move accuracy {{value}}%",
+    "voiceOn": "Say each move out loud",
+    "voiceOff": "Stop saying moves out loud"
+  },
+  "players": {
+    "white": "WHITE",
+    "black": "BLACK",
+    "ahead_one": "{{count}} pawn of material ahead",
+    "ahead_other": "{{count}} pawns of material ahead"
+  },
+  "playback": {
+    "first": "First move",
+    "previous": "Previous move",
+    "previousTitle": "Previous move (left arrow key)",
+    "pause": "Pause replay",
+    "autoplay": "Autoplay game",
+    "next": "Next move",
+    "nextTitle": "Next move (right arrow key)",
+    "last": "Last move",
+    "copyFen": "Copy position as FEN"
+  },
+  "planning": {
+    "drawTitle": "Draw arrows with two clicks or taps",
+    "draw": "Draw arrows",
+    "mode": "Arrow mode",
+    "legal": "Legal moves",
+    "freeform": "Freeform · empty squares",
+    "chooseStart": "Choose start, then destination",
+    "rightDrag": "Right-drag to plan",
+    "clearTitle": "Clear board drawings (Esc)",
+    "clear": "Clear"
+  },
+  "analysis": {
+    "running": "Analyzing your games",
+    "progress": "{{done}} of {{total}}",
+    "versus": "vs {{opponent}}",
+    "unknown": "Unknown",
+    "progressLabel": "Analysis progress",
+    "stop": "Stop",
+    "stopped": "Analysis stopped",
+    "retry": "Try again",
+    "notAnalyzed_one": "{{count}} games not analyzed",
+    "notAnalyzed_other": "{{count}} games not analyzed",
+    "install": "Install Stockfish to analyze them.",
+    "toAnalyze_one": "{{count}} games to analyze, {{outdated}} with older scoring",
+    "toAnalyze_other": "{{count}} games to analyze, {{outdated}} with older scoring",
+    "notAnalyzedYet_one": "{{count}} games not analyzed yet",
+    "notAnalyzedYet_other": "{{count}} games not analyzed yet",
+    "estimate": "Stockfish reviews every move · about {{minutes}} min · you can keep using the studio",
+    "all": "Analyze all",
+    "mining": "Turning your mistakes into puzzles",
+    "mined_one": "{{count}} puzzle from your games so far",
+    "mined_other": "{{count}} puzzles from your games so far"
+  },
+  "coachRook": {
+    "reviewing": "Looking back? Return to the live position to keep playing.",
+    "botThinking": "{{bot}} is thinking…",
+    "start": "Your move. Good luck!",
+    "promoted": "A new queen! Make it count.",
+    "castled": "Castled. Your king is safer now.",
+    "moved": "Solid. Let’s see the reply.",
+    "inCheck": "Check! Look after your king.",
+    "idle": "Take your time. There is no clock.",
+    "yourTurn": "Your turn. What’s the plan?",
+    "enPassantYou": "En passant! A pawn that jumps two squares past yours can be taken as if it moved one.",
+    "enPassantBot": "That was en passant: your pawn jumped two squares past theirs, so it could be taken as if it moved one. It is a real rule."
+  },
+  "openings": {
+    "name": "The name.",
+    "idea": "The idea.",
+    "lesson": "Lesson: learn it",
+    "famousGame": "Famous game: {{label}}",
+    "library": "Opening library",
+    "libraryIntro": "Where the names come from and what each opening is trying to do."
+  },
+  "stars_one": "{{count}} of 3 stars",
+  "stars_other": "{{count}} of 3 stars",
+  "chessboard": {
+    "illegalCastle": "Castling is not legal here. The path must be clear, neither piece can have moved, and the king cannot castle out of, through, or into check.",
+    "label": "Interactive chessboard",
+    "control": "{{square}}: White {{white}}, Black {{black}} attackers",
+    "castleHere": "Castle here",
+    "announce": "{{piece}}, from {{from}}",
+    "typeMove": "Type a move",
+    "typeMovePlaceholder": "Type a move: e4, Nf3, O-O",
+    "typeMoveError": "That is not a legal move here.",
+    "pieces": {
+      "pawn": "pawn",
+      "knight": "knight",
+      "bishop": "bishop",
+      "rook": "rook",
+      "queen": "queen",
+      "king": "king"
+    },
+    "illegal": {
+      "pinned": "That {{piece}} is pinned: the piece on {{attacker}} would attack your king if it moved.",
+      "inCheck": "Your king is in check from {{attacker}}. First get out of check: move the king, block, or capture the checker.",
+      "kingAttacked": "Your king cannot step onto a square the opponent attacks.",
+      "exposesKing": "That move would leave your king in check.",
+      "castleInCheck": "You cannot castle while your king is in check.",
+      "castleThroughCheck": "You cannot castle through or into a square the opponent attacks.",
+      "castleRights": "You cannot castle here: the king or that rook has already moved.",
+      "castleBlocked": "To castle, every square between the king and the rook must be empty.",
+      "pathBlocked": "The {{piece}} cannot jump: the piece on {{blocker}} is in the way.",
+      "pawnForward": "A pawn cannot capture straight ahead, and it is blocked by the piece in front of it.",
+      "pawnDiagonal": "A pawn moves diagonally only to capture.",
+      "pawnDouble": "A pawn moves two squares only from its starting square.",
+      "movement": "A {{piece}} does not move that way."
+    }
+  },
+  "panel": {
+    "label": "Game panel",
+    "moves": "Moves",
+    "engine": "Engine",
+    "summary": "Summary",
+    "stepThrough": "Step through the game"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "title": "Philidor plans",
+  "summary": "Two ways to play the Philidor: hold e5 with ...c6 and ...Qc7, or take on d4 and hit e4 with ...Re8.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Philidor Defense",
+  "order": 3,
+  "requires": ["philidor-setup"],
+  "orientation": "black",
+  "steps": [
+    {
+      "id": "hold-e5",
+      "kind": "explain",
+      "title": "Plan one: hold e5",
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "demo": ["d2d4", "g8f6", "b1c3", "b8d7", "f1c4", "f8e7", "e1g1", "e8g8", "f1e1", "c7c6", "a2a4", "d8c7"],
+      "marks": [["e5"], ["d6", "e5"], ["d7", "e5"], ["c7", "e5"]],
+      "text": "The first plan keeps the pawn on e5 no matter what. The d-pawn, the knight on d7 and later the queen on c7 all guard it, and ...c6 makes room for the queen. Black's position is a little cramped, but very hard to break. Later Black can play ...b5 on the queenside, or ...exd4 when the moment is right.",
+      "narration": "Plan one is the strongpoint. White strikes with pawn to d4. [move] Knight to f6. [move] Knight to c3. [move] The other knight guards e5 from d7. [move] Bishop to c4. [move] Bishop to e7. [move] White castles. [move] So do you. [move] Rook to e1. [move] Pawn to c6 makes room. [move] Pawn to a4. [move] And the queen guards e5 from c7. [move] It's a fortress. Slow, but very tough to crack.",
+      "pose": "shield"
+    },
+    {
+      "id": "calm-vs-ng5",
+      "kind": "play",
+      "title": "Stay calm",
+      "fen": "r1bq1rk1/pppnbppp/3p1n2/4p1N1/2BPP3/2N5/PPP2PPP/R1BQ1RK1 b - - 8 7",
+      "prompt": "White's knight jumps to g5 to stare at f7. You have castled, so f7 is safe. Make a calm, useful move.",
+      "hint": "f7 is guarded by your rook and king. Go on with your own plan: release the centre, kick the bishop, or prepare ...Qc7.",
+      "line": ["e5d4|d7b6|c7c6|c7c5"],
+      "success": "Good. With your king castled, the knight on g5 is not a real threat to f7, and you can carry on with your plan. Taking on d4, chasing the bishop with ...Nb6, or a pawn move to c6 or c5 are all fine.",
+      "narration": "White's knight jumps to g5 again. But you've castled now, and your rook guards f7. No need to panic. Just make a useful move.",
+      "pose": "content"
+    },
+    {
+      "id": "take-on-d4",
+      "kind": "explain",
+      "title": "Plan two: take on d4",
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "demo": ["d2d4", "e5d4", "f3d4", "g8f6", "b1c3", "f8e7", "f1e2", "e8g8", "e1g1", "f8e8"],
+      "marks": [["f6", "e4"], ["e8", "e4"], ["e4"]],
+      "text": "The second plan gives up the centre with ...exd4. In return your pieces get open lines. The knight on f6 and the rook on e8 both attack White's pawn on e4, so White must keep defending it. Many players follow up with ...Bf8, freeing the e-file for the rook.",
+      "narration": "Plan two: trade on d4 and play with your pieces. Pawn to d4. [move] You take. [move] White takes back. [move] Knight to f6 hits e4. [move] Knight to c3. [move] Bishop to e7. [move] Bishop to e2. [move] You castle. [move] White castles. [move] And the rook comes to e8. [move] Your knight and your rook both aim at White's e4 pawn, and White has to keep guarding it.",
+      "pose": "pointer"
+    },
+    {
+      "id": "grab-e4",
+      "kind": "play",
+      "title": "The pressure pays off",
+      "fen": "rnbqr1k1/ppp1bppp/3p1n2/6B1/3NP3/2N5/PPP1BPPP/R2Q1RK1 b - - 8 8",
+      "prompt": "White pinned your knight with the bishop, but forgot about the e-file. Win a pawn.",
+      "hint": "Take on e4. If White trades bishops on e7, your rook takes back.",
+      "line": ["f6e4", "g5e7", "e8e7|d8e7"],
+      "success": "Nxe4! The bishop on e7 was guarded by your rook and queen, so the trade on e7 costs nothing, and the pawn on e4 is yours. That's what the rook on e8 was waiting for.",
+      "narration": "White's bishop pins your knight to the bishop on e7. But your rook on e8 is guarding that bishop. So the knight can take on e4 anyway.",
+      "pose": "detective"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "After ...exd4 and ...Re8, what is Black's main target?",
+      "options": [
+        { "text": "White's pawn on e4, attacked by the knight on f6 and the rook on e8", "correct": true, "why": "Yes. Giving up the centre opens the e-file, and the e4 pawn becomes the target." },
+        { "text": "White's king on g1", "why": "Black's pieces are not aimed at the king in this plan; the play is in the centre." },
+        { "text": "White's pawn on b2", "why": "Nothing of Black's attacks b2 here. The pressure goes along the e-file." }
+      ],
+      "narration": "Final question. Once you take on d4 and put the rook on e8, what are you aiming at? Nicely done today!",
+      "pose": "trophy"
+    }
+  ]
+}

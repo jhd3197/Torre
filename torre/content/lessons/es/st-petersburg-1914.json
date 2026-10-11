@@ -1,0 +1,96 @@
+{
+ "title": "San Petersburgo 1914",
+ "summary": "El campeón mundial Lasker se enfrenta al ascendente Capablanca en la etapa final y gana con una apertura tranquila y un audaz avance de peón.",
+ "unit": "Grandes Torneos",
+ "steps": [
+  {
+   "id": "st-petersburg",
+   "title": "San Petersburgo, 1914",
+   "text": "En 1914 muchos de los jugadores más fuertes del mundo se reunieron en San Petersburgo. Después de una primera etapa, los cinco mejores se enfrentaron entre sí en una final: Emanuel Lasker, José Raúl Capablanca, Alexander Alekhine, Siegbert Tarrasch y Frank Marshall. Capablanca lideraba, pero en esta partida el campeón mundial Lasker lo venció, y Lasker continuó para ganar el torneo por medio punto.",
+   "narration": "San Petersburgo, 1914. El campeón mundial, Emanuel Lasker, necesita vencer al brillante joven Capablanca. Elige una apertura tranquila, y luego un audaz avance de peón."
+  },
+  {
+   "id": "the-game",
+   "title": "Lasker – Capablanca, San Petersburgo 1914",
+   "text": "Lasker necesita ganar y elige una línea que parece tranquila donde las damas se retiran en el movimiento seis. Luego un avance de peón le da a su caballo una casilla ideal, y las piezas de Capablanca se quedan sin espacio poco a poco. El juego termina en los movimientos clave de Lasker.",
+   "notes": [
+    {
+     "text": "4.Bxc6: la Variante del Intercambio. Lasker sacrifica su alfil por un caballo y se dirige hacia una posición tranquila."
+    },
+    {
+     "text": "7.Nxd4: las damas ya se han retirado. El blanco tiene cuatro peones contra tres en el flanco de rey; el negro tiene peones doblados en c."
+    },
+    {
+     "text": "14.Bxd6: después de 14...cxd6 el peón negro en d6 nunca podrá ser apoyado por un peón, y e6 es un punto débil."
+    },
+    {
+     "text": "23.g4: Lasker gana espacio en el flanco de rey, donde están sus peones."
+    },
+    {
+     "text": "25...axb4: Capablanca abre la columna 'a' para intentar hacer algo por su cuenta."
+    },
+    {
+     "text": "32.Rh3: una torre blanca toma la columna h abierta."
+    },
+    {
+     "text": "34.Rdh1: ambas torres blancas están en la columna h."
+    },
+    {
+     "text": "39.Rh7: una torre llega a la séptima fila."
+    },
+    {
+     "text": "42.Nc5: la posición de las negras se desmorona, y Capablanca renunció."
+    }
+   ],
+   "narration": "Las damas se mueven temprano y el juego parece tranquilo. No lo es. Encuentra los movimientos clave de Lasker.",
+   "guesses": [
+    {
+     "prompt": "Encuentra la audaz jugada de peón de Lasker. Cede la casilla e5, pero quita e6 a las negras para siempre.",
+     "hint": "¿Qué peón controlaría e6 después de que se mueva?",
+     "why": "12.f5!: el peón toma e6 y g6 de las piezas negras. Deja un agujero en e5, pero Lasker juzgó que su propio caballo en e6 valdría mucho más."
+    },
+    {
+     "prompt": "El agujero en e6 está listo. Úsalo.",
+     "hint": "Tu caballo en d4 está a un salto.",
+     "why": "16.Ne6!: el caballo está protegido por el peón f5, y ningún peón negro podrá perseguirlo jamás. Estorba toda la posición de las negras."
+    },
+    {
+     "prompt": "Los peones se encuentran en el flanco de rey. Abre una columna para tus torres.",
+     "hint": "Caza para que se abra una columna hacia el borde del tablero.",
+     "why": "31.hxg5! Después de 31...hxg5, la columna h está abierta y los alfiles de Lasker la aprovechan."
+    },
+    {
+     "prompt": "Ambas torres blancas están en la columna h. Ahora abre el centro para tus caballos.",
+     "hint": "Un empuje de peón sacrifica un peón, pero libera la casilla e4 para el caballo en c3.",
+     "why": "35.e5! Lasker sacrifica un peón para que su caballo llegue a e4 y luego a c5 o d6. Las piezas negras están atadas y no pueden hacer frente a cada amenaza."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "Cambia una debilidad por una casilla mejor.",
+   "text": "La jugada 12.f5 de Lasker dejó un agujero en e5, el tipo de debilidad que a los jugadores se les enseña a evitar. Pero le dio a las Blancas la casilla e6, y el caballo que aterrizó allí asfixió la posición de Capablanca durante el resto de la partida. Una debilidad solo importa si el oponente puede usarla, y una casilla fuerte para ti puede valer mucho más.",
+   "narration": "El empuje de peón dejó un agujero en e5, pero le dio al caballo de Lasker un hogar en e6. Ese caballo valió más que el agujero."
+  },
+  {
+   "id": "quiz",
+   "title": "El empuje de peón.",
+   "question": "¿Qué hizo que la jugada 12.f5 de Lasker fuera una jugada fuerte?",
+   "options": [
+    {
+     "text": "Le dio a su caballo un hogar permanente en e6.",
+     "why": "Sí. Protegido por el peón f5, el caballo en e6 nunca podría ser expulsado."
+    },
+    {
+     "text": "Ganó un peón",
+     "why": "No se intercambió material. El movimiento era sobre casillas."
+    },
+    {
+     "text": "Abrió la columna f para un mate rápido.",
+     "why": "No hubo mate. La idea era un puesto avanzado a largo plazo en e6."
+    }
+   ],
+   "narration": "Pregunta final: ¿qué hizo que el avance del peón fuera tan fuerte?"
+  }
+ ]
+}

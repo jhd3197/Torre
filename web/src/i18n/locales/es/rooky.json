@@ -1,0 +1,83 @@
+{
+  "speaker": {
+    "listen": "Escuchar a Rooky",
+    "stop": "Parar",
+    "tap": "Toca para escuchar a Rooky"
+  },
+  "home": {
+    "label": "El plan de Rooky para ti",
+    "loading": "Rooky está mirando tus partidas…",
+    "failed": "Rooky no pudo cargar tu plan.",
+    "retry": "Reintentar"
+  },
+  "asks": {
+    "label": "Pregúntale a Rooky",
+    "briefing": "El plan de hoy",
+    "focus": "¿En qué debo trabajar?",
+    "strengths": "¿Qué hago bien?",
+    "week": "Planea mi semana"
+  },
+  "session": {
+    "title": "La sesión de hoy",
+    "meta": "{{steps}} pasos · unos {{minutes}} min",
+    "start": "Empezar la sesión",
+    "resume": "Continuar ({{step}}/{{steps}})",
+    "again": "Repetirla",
+    "done": "Hecho por hoy",
+    "mix": "Un error tuyo, una lección rápida y problemas elegidos para ti.",
+    "none": "Juega o importa algunas partidas y Rooky preparará tu primera sesión.",
+    "progress": "Paso {{step}} de {{steps}}"
+  },
+  "focus": {
+    "title": "En qué estamos trabajando",
+    "intro": "Elegidas a partir de tus partidas y tu práctica. Cada una se queda hasta que la domines.",
+    "masteryLabel": "Dominio de {{skill}}",
+    "fresh": "Desde que empezamos: {{ok}} de {{count}} limpias",
+    "freshNone": "Aún no hay práctica desde que es objetivo",
+    "goal": "Para dominarlo: {{count}} respuestas, {{pct}}% limpias",
+    "goalLabel": "Progreso para dominar {{skill}}",
+    "evidence": "Dónde te costó",
+    "move": "contra {{opponent}}, jugada {{move}}",
+    "moveNoName": "Jugada {{move}}",
+    "practice": "Practicar esto",
+    "pin": "Mantener",
+    "unpin": "Soltar",
+    "skip": "Ahora no",
+    "pinned": "Fijado",
+    "trend": {
+      "better": "Mejorando",
+      "worse": "Empeorando",
+      "steady": "Estable",
+      "new": "Nuevo"
+    },
+    "toward": "Hacia el dominio"
+  },
+  "games": {
+    "title": "Lecciones de tus partidas",
+    "intro": "Rooky convierte los errores de tus partidas recientes en lecciones cortas.",
+    "moments_one": "Un momento clave",
+    "moments_other": "{{count}} momentos clave",
+    "open": "Abrir la lección",
+    "review": "Ver la partida",
+    "done": "Hecha",
+    "result": {
+      "win": "Ganada",
+      "loss": "Perdida",
+      "draw": "Tablas"
+    },
+    "empty": "Aún no hay lecciones: Rooky necesita partidas analizadas con algún error."
+  },
+  "graduated": {
+    "title": "Dominadas",
+    "news": "¡Dominaste {{skill}}!"
+  },
+  "skills": {
+    "title": "Todas tus habilidades",
+    "note": "Calculado con tus partidas, problemas, lecciones, ejercicios y finales. Lo reciente pesa más."
+  },
+  "recap": {
+    "lesson": "Aprender de esta partida",
+    "lessonDone": "Repetir la lección",
+    "coach": "Tu plan de entrenador"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "title": "Key squares",
+  "summary": "Every pawn has a few key squares. Put your king on one of them and the pawn queens, whoever is to move.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["king-and-pawn-vs-king"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "what-are-key-squares",
+      "kind": "explain",
+      "title": "Two ranks ahead",
+      "fen": "4k3/8/8/8/4P3/8/8/4K3 w - - 0 1",
+      "marks": [["d6"], ["e6"], ["f6"]],
+      "text": "For a pawn on its own half of the board, the key squares are the three squares two ranks in front of it. For the pawn on e4 they are d6, e6 and f6. If White's king reaches any of them, the pawn queens no matter who is to move. That turns a hard calculation into a simple race: can my king get there?",
+      "narration": "Every pawn has a few magic squares called key squares. For a pawn still on its own half of the board, they are the three squares two ranks in front of it. Get your king onto one of them, and the pawn will queen, whoever is to move.",
+      "pose": "pointer"
+    },
+    {
+      "id": "far-behind",
+      "kind": "play",
+      "title": "The pawn can wait",
+      "fen": "8/8/4k3/8/8/3K4/5P2/8 w - - 0 1",
+      "prompt": "The pawn on f2 has key squares on e4, f4 and g4. Reach one.",
+      "hint": "One of them is just a single step away from your king.",
+      "line": ["d3e4"],
+      "success": "King to e4 stands on a key square, so the game is won even though the pawn has not moved yet. A pawn move here would let Black's king take the key squares away.",
+      "narration": "The pawn is still at home, but that doesn't matter. Its key squares are e4, f4 and g4. Your king is one step from one of them. Take it, and the win is already in the bag.",
+      "pose": "detective"
+    },
+    {
+      "id": "beat-the-king-there",
+      "kind": "play",
+      "title": "Beat the king there",
+      "fen": "8/2k5/8/K7/8/2P5/8/8 w - - 0 1",
+      "prompt": "The c3 pawn's key squares are b5, c5 and d5. Get there first.",
+      "hint": "Which key square can your king reach right now?",
+      "line": ["a5b5"],
+      "success": "King to b5 lands on a key square before Black's king can cover it. From there your king leads the pawn all the way.",
+      "narration": "Here Black's king is close, so you have to be quick. The key squares of the c3 pawn are b5, c5 and d5. Grab one right now.",
+      "pose": "determined"
+    },
+    {
+      "id": "further-up",
+      "kind": "explain",
+      "title": "Further up the board",
+      "fen": "4k3/8/8/4P3/8/8/8/4K3 w - - 0 1",
+      "marks": [["d6"], ["e6"], ["f6"], ["d7"], ["e7"], ["f7"]],
+      "text": "Once the pawn crosses into the enemy half, it gets more key squares: the three squares one rank ahead and the three squares two ranks ahead. For the pawn on e5 those are d6, e6, f6, d7, e7 and f7. The further the pawn has gone, the easier it is to win.",
+      "narration": "When the pawn crosses the middle of the board, it earns more key squares: the three just in front of it, and the three in front of those. For a pawn on e5, that's six squares in all.",
+      "pose": "idea"
+    },
+    {
+      "id": "six-squares",
+      "kind": "play",
+      "title": "Six squares to choose from",
+      "fen": "4k3/2K5/8/4P3/8/8/8/8 w - - 0 1",
+      "prompt": "Put your king on a key square of the e5 pawn.",
+      "hint": "Your king touches two key squares, but one of them is next to Black's king.",
+      "line": ["c7d6"],
+      "success": "King to d6. From there your king escorts the pawn: wherever Black's king goes, the pawn advances with your king beside it.",
+      "narration": "Your king can reach the key squares right away, but one of them is off limits because Black's king is guarding it. Pick the safe one.",
+      "pose": "magnify"
+    },
+    {
+      "id": "name-them",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What are the key squares of a white pawn on d3?",
+      "options": [
+        { "text": "c5, d5 and e5", "correct": true, "why": "The pawn is on White's half of the board, so its key squares are the three squares two ranks in front of it." },
+        { "text": "c4, d4 and e4", "why": "Those are only one rank ahead. From there Black's king can still take the opposition and hold the draw." },
+        { "text": "d8 only", "why": "That is where the pawn promotes. The key squares are where your king must stand to force it through." }
+      ],
+      "narration": "Last one! What are the key squares of a white pawn on d3? Know these, and king and pawn endings become simple races. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

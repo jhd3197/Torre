@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "The hook mate",
+  "summary": "Rook, knight and pawn link up in a chain: the pawn protects the knight, the knight protects the rook, and the rook gives mate.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 5,
+  "level": "intermediate",
+  "minutes": 5,
+  "practice": "hook-mate",
+  "steps": [
+    {
+      "id": "the-chain",
+      "kind": "explain",
+      "title": "A chain of protection",
+      "fen": "4k2r/p4p1p/2N3p1/1P6/8/8/5PPP/3R2K1 w - - 0 1",
+      "marks": [["b5", "c6"], ["c6", "d8"], ["c6", "e7"], ["f7"]],
+      "text": "Look at the chain: the pawn on b5 protects the knight on c6, and the knight guards d8 and e7. If the rook checks from d8, the king cannot take it, cannot step to e7, and its own pawn on f7 blocks the last square. Three white units, each one holding the next, deliver the mate.",
+      "narration": "This mate is all about teamwork. The pawn guards the knight, the knight guards the rook's landing square and the square in front of the king, and Black's own pawn on f7 does the rest. One rook move, and the hook is set.",
+      "pose": "present"
+    },
+    {
+      "id": "set-the-hook",
+      "kind": "play",
+      "title": "Set the hook",
+      "fen": "4k2r/p4p1p/2N3p1/1P6/8/8/5PPP/3R2K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "The d-file is open all the way to the back rank.",
+      "line": ["d1d8"],
+      "success": "Rook to d8 is mate. The knight protects the rook and covers e7, the rook covers d7 and f8, and the pawn on f7 blocks the king.",
+      "narration": "Your move. Drive the rook straight up the open d-file. The knight protects it, and the pawn protects the knight. Checkmate.",
+      "pose": "detective"
+    },
+    {
+      "id": "lure-the-rook",
+      "kind": "play",
+      "title": "Pull the defender onto d8",
+      "fen": "4k2r/3r1p1p/2N3p1/1P6/8/8/Q4PPP/3R2K1 w - - 0 1",
+      "prompt": "Black threatens mate on your back rank, but you move first. Mate in two.",
+      "hint": "Check along the eighth rank with the queen. Black's only block opens the d-file for you.",
+      "line": ["a2a8", "d7d8", "d1d8"],
+      "success": "Queen to a8 check can only be blocked by rook to d8. That rook leaves the d-file, and rook takes d8 is the hook mate, protected by the knight on c6.",
+      "narration": "Careful, Black is threatening rook takes d1 mate! But it's your move. Check from a8 with the queen. Black has to block with the rook on d8, which opens the d-file, and your rook captures on d8 for the hook mate.",
+      "pose": "alarm"
+    },
+    {
+      "id": "weak-link",
+      "kind": "choose",
+      "title": "The weak link",
+      "question": "Black's pawn on f7 moves to f6 before the mate. What happens to rook to d8?",
+      "options": [
+        { "text": "It is no longer mate, because the king can step to f7", "correct": true, "why": "The f7 square was only blocked by Black's own pawn. Once it moves, the king has an escape." },
+        { "text": "It is still mate, because the knight guards f7", "why": "A knight on c6 does not reach f7. It covers d8, e7, b8, a7 and squares further down the board." },
+        { "text": "Black can capture the rook on d8", "why": "The knight still protects d8, so the king cannot take it." }
+      ],
+      "narration": "One last question. The hook needs Black's own pawn on f7. What happens if that pawn moves away first? Get this, and you understand the whole pattern. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

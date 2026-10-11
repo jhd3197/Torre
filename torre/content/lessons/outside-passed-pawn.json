@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "The outside passed pawn",
+  "summary": "A passed pawn far from the other pawns is a decoy: the enemy king must chase it, and your king feasts on the other wing.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["square-of-the-pawn"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "far-away",
+      "kind": "explain",
+      "title": "Far from the action",
+      "fen": "8/6pp/8/3k4/P7/4K3/6PP/8 w - - 0 1",
+      "marks": [["a4"], ["g2"], ["h2"], ["g7"], ["h7"]],
+      "text": "The pawns on the kingside are even, two against two. White's extra pawn is on the a-file, far away from all the others. That makes it an outside passed pawn. Black's king will have to go and stop it, and while it does, White's king walks over to the kingside and eats the black pawns there.",
+      "narration": "Count the pawns: two against two on the kingside, plus a lonely white pawn far away on the a-file. That's an outside passed pawn, and it's a decoy. Black's king has to run after it, and that leaves the kingside wide open for White's king.",
+      "pose": "pointer"
+    },
+    {
+      "id": "the-decoy",
+      "kind": "play",
+      "title": "Spend the pawn",
+      "fen": "8/6p1/7p/Pk6/4K3/7P/6P1/8 w - - 0 1",
+      "prompt": "Black's king is about to take your a-pawn. Make it pay, then go after the kingside.",
+      "hint": "Push the a-pawn one more step so the king has to go all the way to the a-file. Then head for g7.",
+      "line": ["a5a6", "b5a6", "e4f5", "h6h5", "f5g6"],
+      "success": "The black king is stuck on the a-file while your king takes the g-pawn and then the h-pawn. Your h-pawn queens long before Black's king can come back.",
+      "narration": "Your a-pawn is lost anyway, so sell it as dearly as possible. Push it one more square so Black's king has to walk all the way to the edge. Then turn around and march to the kingside pawns.",
+      "pose": "detective"
+    },
+    {
+      "id": "count-the-moves",
+      "kind": "explain",
+      "title": "Why it works",
+      "fen": "8/6p1/k7/5K1p/8/7P/6P1/8 w - - 0 3",
+      "marks": [["a6"], ["g7"]],
+      "text": "Compare the two kings. Black's king is on the a-file, five or six moves away from the kingside. White's king is right next to the black pawns. By the time Black's king gets back, White has won them and is pushing a pawn to queen. The further away the outside pawn is, the further it drags the enemy king.",
+      "narration": "Look at the two kings now. Black's king is stranded on the edge of the board, miles from the action. White's king is right next to the black pawns. That difference in distance is the whole point of an outside passed pawn.",
+      "pose": "idea"
+    },
+    {
+      "id": "pick-the-road",
+      "kind": "play",
+      "title": "Pick the right road",
+      "fen": "8/5pp1/7p/Pk6/4K3/6PP/5P2/8 w - - 0 1",
+      "prompt": "Same idea, with more pawns. Decoy the king, then pick the road that wins.",
+      "hint": "After the a-pawn falls, the f7 pawn is the weak point. Your king can reach it through the center, by way of d6 and e7.",
+      "line": ["a5a6", "b5a6", "e4e5|e4d5"],
+      "success": "Your king heads for d6 and e7 to attack the f7 pawn from behind, where Black's pawns cannot chase it away. Going straight to f5 or g4 runs into a wall of pawns and only draws.",
+      "narration": "More pawns this time, so the route matters. After the decoy, don't attack the black pawns from the front. Walk through the center and come at them from behind.",
+      "pose": "magnify"
+    },
+    {
+      "id": "what-makes-it-strong",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why is an outside passed pawn so strong in a king and pawn ending?",
+      "options": [
+        { "text": "It drags the enemy king away from the other pawns", "correct": true, "why": "While the enemy king chases the decoy, your king is free to win the pawns on the other wing." },
+        { "text": "It always queens by itself", "why": "Usually it does not queen at all. Its job is to be captured far away, at the cost of the enemy king's time." },
+        { "text": "It protects your king", "why": "It is far from everything, so it protects nothing. Its strength is the distance it creates." }
+      ],
+      "narration": "Last question. Why is an outside passed pawn such a strong weapon? Get this, and you'll know exactly why masters love to have one. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

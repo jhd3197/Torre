@@ -1,0 +1,179 @@
+{
+  "page": {
+    "label": "Puzzles"
+  },
+  "groups": {
+    "yours": "Your games",
+    "checkmates": "Checkmates",
+    "tactics": "Tactics",
+    "endgames": "Endgames"
+  },
+  "titles": {
+    "mixed": "Rated puzzles",
+    "missed": "Puzzles to retry",
+    "fallback": "Puzzles",
+    "weak": "Weak spots",
+    "streak": "Puzzle Streak",
+    "storm": "Puzzle Storm"
+  },
+  "overview": {
+    "tryAgain": "Try again",
+    "loading": "Loading puzzles…",
+    "notInstalled": "No puzzles are installed. Run <code>python import_puzzles.py</code> to build them from the Lichess database.",
+    "ratingLabel": "Puzzle rating",
+    "provisional": "Provisional · solve a few to find your level",
+    "solveRated": "Solve rated puzzles",
+    "recentTitle": "Recent attempts",
+    "problems_one": "{{count}} puzzle could not be loaded",
+    "problems_other": "{{count}} puzzles could not be loaded",
+    "ratedCount_one": "{{count}} rated",
+    "ratedCount_other": "{{count}} rated",
+    "week": "{{delta}} this week",
+    "firstTry": "first try",
+    "avgSolve": "avg. solve",
+    "modesLabel": "Ways to practise",
+    "solveRatedSub": "Picked near {{rating}} from all themes",
+    "retry": "Retry",
+    "retryDue_one": "{{count}} due",
+    "retryDue_other": "{{count}} due",
+    "retryNone": "Nothing due",
+    "streakSub": "Best: {{best}}",
+    "streakNew": "One mistake ends it",
+    "stormSub": "3 min · best {{best}}",
+    "stormNew": "3 minutes, as many as you can",
+    "showRules": "How scoring works",
+    "hideRules": "Hide scoring",
+    "rules": {
+      "firstTitle": "Your first try counts",
+      "firstText": "Only your first try at a puzzle moves your rating, in any theme. Harder puzzles pay more, and fast clean solves earn a bonus.",
+      "helpTitle": "Help costs points",
+      "helpText": "One wrong move or a hint still earns partial credit. Two wrong moves or showing the solution counts as a miss.",
+      "missTitle": "Misses come back",
+      "missText": "A missed puzzle returns in Retry minutes later, then after days, then weeks, until you solve it clean.",
+      "runsTitle": "Streak and Storm are unrated",
+      "runsText": "They never touch your rating. Only your best score is kept."
+    },
+    "filterLabel": "Show themes",
+    "filterAll": "All themes",
+    "filterStarted": "Started",
+    "filterNew": "Not started",
+    "search": "Find a theme…",
+    "searchLabel": "Find a theme",
+    "themeCount_one": "{{count}} theme",
+    "themeCount_other": "{{count}} themes",
+    "themesShown": "{{shown}} of {{total}} themes",
+    "noMatch": "No themes match. Try another word or show all.",
+    "recentSummary": "{{solved}} solved · {{missed}} missed"
+  },
+  "trend": {
+    "label": "Rating over the last {{count}} rated puzzles: {{from}} to {{to}}"
+  },
+  "themeCard": {
+    "status": "{{tried}} tried · {{percent}}% first try",
+    "statusWithMissed": "{{tried}} tried · {{percent}}% first try · {{missed}} missed",
+    "start": "Start",
+    "meta": "{{count}} puzzles · {{low}}–{{high}}",
+    "notStarted": "Not started",
+    "continue": "Continue"
+  },
+  "attempt": {
+    "hint": "hint",
+    "solutionShown": "solution shown",
+    "solved": "Solved",
+    "missed": "Missed",
+    "puzzle": "Puzzle",
+    "tried": "tried {{moves}}",
+    "seconds": "{{seconds}}s",
+    "unrated": "unrated"
+  },
+  "stream": {
+    "allPuzzles": "All puzzles",
+    "ratedPuzzles": "Rated puzzles",
+    "emptyMissedTitle": "Nothing left to retry",
+    "emptyMissedBody": "Every puzzle you missed has since been solved cleanly.",
+    "emptyAllTitle": "You have tried every puzzle here",
+    "emptyAllBody": "Pick another theme, or retry the ones you missed.",
+    "loading": "Loading the puzzle…",
+    "yourRating": "Your rating {{rating}}"
+  },
+  "coach": {
+    "missed": [
+      "Not this time. Look at it again, it’ll stick.",
+      "Close. Take another look at the solution."
+    ]
+  },
+  "toasts": {
+    "awardUnlocked": "Award unlocked: {{title}}",
+    "tierReached": "{{title}} reached {{tier}}"
+  },
+  "solver": {
+    "whiteToMove": "White to move.",
+    "blackToMove": "Black to move.",
+    "watchOpponent": "Watch your opponent’s move…",
+    "findBest": "Find the best move.",
+    "movesSoFar": "Moves so far",
+    "wrong": "<strong>✗ {{move}}</strong> is not it. Try again.",
+    "hint": "<strong>Hint:</strong> the circled piece makes the move.",
+    "showMove": "The arrow shows the move: <strong>{{move}}</strong>. Play it on the board.",
+    "hintButton": "Hint",
+    "showSolution": "Show the solution",
+    "solved": "✓ Solved",
+    "missed": "✗ Missed",
+    "checkmate": "Checkmate.",
+    "wholeLine": "You found the whole line.",
+    "rating": "Rating <strong>{{rating}}</strong> <delta>{{delta}}</delta>",
+    "notRated": "Not rated: you have tried this puzzle before.",
+    "puzzleRating": "Puzzle rating {{rating}}",
+    "nextPuzzle": "Next puzzle",
+    "tryAgain": "Try again",
+    "analyze": "Analyze",
+    "lichess": "Game on Lichess",
+    "partial": "✓ Solved with help",
+    "originalGame": "Original game",
+    "alsoGood": "<strong>{{move}}</strong> is a strong move too, but the puzzle has another idea. Find it.",
+    "goalMate_one": "Find the checkmate in one move.",
+    "goalMate_other": "Find the checkmate in {{count}} moves.",
+    "goalWin": "Find the best move: it wins material or a big advantage.",
+    "goalHold": "Find the best move: it saves the game.",
+    "solution": "The solution",
+    "stepBack": "Back",
+    "stepForward": "Forward",
+    "asPlayed": "Back to your game"
+  },
+  "missText": {
+    "triedFirst": "You tried {{moves}} first.",
+    "lookedAtSolution": "You looked at the solution.",
+    "usedHint": "You used a hint.",
+    "inList": "It is in your missed list to retry.",
+    "partialCredit": "Partial credit: it counts as solved."
+  },
+  "score": {
+    "score": "Score {{percent}}%",
+    "speedBonus": "speed bonus +{{percent}}%"
+  },
+  "run": {
+    "streakRules": "No mistakes allowed: each puzzle is a little harder than the last, and one wrong move ends the run. Unrated.",
+    "stormRules": "Three minutes, as many puzzles as you can. A wrong move skips the puzzle and costs 10 seconds. Unrated.",
+    "score": "Score {{score}}",
+    "best": "Best {{best}}",
+    "penalty": "−{{seconds}}s",
+    "clockLabel": "Time left {{time}}",
+    "end": "End run",
+    "over": "Streak over",
+    "timeUp": "Time’s up",
+    "final_one": "You solved {{count}} puzzle.",
+    "final_other": "You solved {{count}} puzzles.",
+    "missedMove": "You played {{tried}}; the move was {{answer}}.",
+    "newBest": "A new best!",
+    "again": "Play again"
+  },
+  "blind": {
+    "on": "Blindfold",
+    "off": "Show the pieces",
+    "letters": "KQRBN",
+    "white": "White: {{pieces}}",
+    "black": "Black: {{pieces}}",
+    "whitePlayed": "Then White played {{move}}.",
+    "blackPlayed": "Then Black played {{move}}."
+  }
+}

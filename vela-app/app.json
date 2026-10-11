@@ -1,0 +1,20 @@
+{
+  "id": "chess",
+  "name": "Torre",
+  "version": "0.2.0",
+  "description": "Play Stockfish, replay and explore games, and review your chess history.",
+  "icon": "icon.svg",
+  "category": "games",
+  "author": "Juan Denis",
+  "color": "#264c3c",
+  "platforms": {
+    "posix": {
+      "run": "python3 -m torre.server.studio --port {port} --proxied --data-dir ~/.vela-games/chess",
+      "port": 8877
+    },
+    "windows": {
+      "run": "python -m torre.server.studio --port {port} --proxied --data-dir ~/.vela-games/chess",
+      "port": 8877
+    }
+  }
+}

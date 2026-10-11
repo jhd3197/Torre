@@ -1,0 +1,66 @@
+# Python environments, caches, and build output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local chess archives, analysis, exports, and downloaded assets
+# The images the app shows: cut from art/source, kept on the art release (.\dev.ps1 art fetch), not in git.
+/web/public/art/
+/data/
+/books/
+/stockfish_dist/
+/engines/
+/chesscom_games_export*.json
+*.pdf
+*.epub
+
+# Browser sessions can contain account cookies and login credentials
+*_profile_copy/
+**/auth_state.json
+**/storage_state.json
+**/cookies.json
+**/cookies.txt
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local investigation scripts and captured responses
+/.probe/
+/probe_review*.py
+/pw_export.py
+
+# Editor, OS, and temporary output
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.bak
+*.swp
+node_modules/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+# Built from web/ by .\dev.ps1 (serve, build, check)
+/studio/ui/
+/graphify-out
+
+# The art pipeline (prompts, source sheets, build_assets.py) stays local; only its output ships, on the art release
+/art/
+
+# Master games for picking game stories (download_masters.py); never shipped
+/games/

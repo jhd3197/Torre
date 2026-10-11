@@ -1,0 +1,57 @@
+{
+ "title": "Mate de la coz",
+ "summary": "Un caballo da jaque mate a un rey que está encerrado por sus propias piezas, a menudo después de un sorprendente sacrificio de la dama.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "no-room",
+   "title": "Enterrado por su propio ejército",
+   "text": "El rey negro en la esquina está rodeado por su propia torre y peones. No tiene ningún cuadrado libre. Un jaque de caballo no puede ser bloqueado, así que si el caballo puede dar jaque al rey y nada puede capturarlo, es jaque mate. Eso es un mate de la coz.",
+   "narration": "Mira el rey negro acurrucado en la esquina. Su propia torre y peones lo rodean como una manta, y no puede moverse en absoluto. Un jaque de caballo no puede ser bloqueado, así que un salto del caballo es todo lo que se necesita."
+  },
+  {
+   "id": "the-knight-hop",
+   "title": "Un salto",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "¿Qué casilla al lado de los peones permite que el caballo dé jaque en h8?",
+   "success": "Caballo a f7 es mate. La propia torre y los peones del rey quitan todas las casillas, y ninguna pieza negra puede capturar al caballo.",
+   "narration": "Tu movimiento. Encuentra el salto del caballo que da jaque al rey acorralado. Nada puede bloquear un caballo, y nada puede capturarlo."
+  },
+  {
+   "id": "chase-back",
+   "title": "Vuelve a perseguirlo a la esquina",
+   "prompt": "Da jaque con el caballo, luego da jaque de nuevo para que el rey tenga que volver a la esquina.",
+   "hint": "Tu dama en c4 apunta a g8. El segundo jaque del caballo desde h6 también abre esa diagonal.",
+   "success": "El caballo a f7 da jaque, el rey se va a g8, y el caballo a h6 es un jaque doble del caballo y la dama. El rey debe correr de vuelta a h8 (ir a f8 permite que la dama haga mate en f7).",
+   "narration": "Da jaque con el caballo para sacar al rey a g8. Luego salta a h6. Eso es jaque doble, del caballo y de tu dama al mismo tiempo, así que el rey no puede bloquear y tiene que correr de vuelta a la esquina."
+  },
+  {
+   "id": "queen-sacrifice",
+   "title": "El sacrificio de la dama",
+   "prompt": "Sacrifica tu dama para bloquear la última casilla libre, luego da mate con el caballo.",
+   "hint": "Jaque en g8. El rey no puede capturar porque el caballo defiende esa casilla.",
+   "success": "La dama a g8 da jaque obliga a la torre a capturar en g8, porque el caballo defiende g8. Ahora la torre bloquea a su propio rey, y el caballo a f7 es mate de la coz.",
+   "narration": "Aquí viene la parte hermosa. Pon tu dama en g8 con jaque. El rey no puede capturla porque tu caballo defiende esa casilla, así que la torre tiene que hacerlo. Ahora la torre está bloqueando a su propio rey, y el caballo salta a f7 para dar mate de la coz."
+  },
+  {
+   "id": "why-it-works",
+   "title": "¿Por qué el sacrificio?",
+   "question": "En el último problema, ¿por qué las blancas renunciaron a la dama en g8?",
+   "options": [
+    {
+     "text": "Para forzar una pieza negra a g8, para que el rey no tenga casillas libres.",
+     "why": "Una vez que la torre captura en g8, cada casilla alrededor del rey está llena por sus propias piezas, y el jaque del caballo es mate."
+    },
+    {
+     "text": "Para cambiar las damas y llegar a un final de partida",
+     "why": "Negro no tenía dama para cambiar allí. La idea era llenar la última casilla libre del rey."
+    },
+    {
+     "text": "Para sacar a la dama del peligro",
+     "why": "La dama estaba segura en c4. Se sacrificó a propósito para preparar el mate."
+    }
+   ],
+   "narration": "Pregunta final. ¿Por qué White tiró la dama en g8? Piensa en lo que eso le hizo al rey de Black. Entiende esto, y habrás aprendido uno de los mates más bonitos del ajedrez. ¡Genial!"
+  }
+ ]
+}

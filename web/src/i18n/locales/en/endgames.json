@@ -1,0 +1,68 @@
+{
+  "page": {
+    "label": "Endgame practice",
+    "modes": "Training modes",
+    "drills": "Mistake drills",
+    "openings": "Opening repertoire"
+  },
+  "tryAgain": "Try again",
+  "loading": "Loading the endgames…",
+  "notFound": "This endgame does not exist.",
+  "noEngine": "Install Stockfish to play these positions out.",
+  "intro": "Classic endgames to play out against Stockfish. {{completed}} of {{total}} completed.",
+  "groups": {
+    "mates": "Basic checkmates",
+    "pawns": "King and pawn endings",
+    "pieces": "Pieces against pawns",
+    "rooks": "Rook endings"
+  },
+  "goal": {
+    "win": {
+      "white": "White to play and win",
+      "black": "Black to play and win"
+    },
+    "draw": {
+      "white": "White to play and draw",
+      "black": "Black to play and draw"
+    }
+  },
+  "meta": {
+    "win_one": "within {{count}} move",
+    "win_other": "within {{count}} moves",
+    "draw_one": "hold for {{count}} move",
+    "draw_other": "hold for {{count}} moves"
+  },
+  "status": {
+    "new": "Not tried yet",
+    "tried_one": "{{count}} attempt",
+    "tried_other": "{{count}} attempts",
+    "done_one": "Completed in {{count}} move",
+    "done_other": "Completed in {{count}} moves"
+  },
+  "left": {
+    "win_one": "{{count}} move left to win.",
+    "win_other": "{{count}} moves left to win.",
+    "draw_one": "Hold for {{count}} more move.",
+    "draw_other": "Hold for {{count}} more moves."
+  },
+  "result": {
+    "success": {
+      "mate": "✓ Checkmate! Done in {{count}} moves.",
+      "converted": "✓ Won: the position is converted into a clear win.",
+      "held": "✓ Draw held for {{count}} moves.",
+      "drawn": "✓ Drawn. Well defended."
+    },
+    "failed": {
+      "drawn": "✗ The game ended in a draw. The win slipped away.",
+      "limit": "✗ Out of moves. Try to win more directly.",
+      "mated": "✗ You were checkmated.",
+      "lost": "✗ This position is now lost.",
+      "slipped": "✗ The tablebases say the win is gone."
+    }
+  },
+  "actions": {
+    "retry": "Try again",
+    "next": "Next endgame",
+    "all": "All endgames"
+  }
+}

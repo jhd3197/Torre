@@ -1,0 +1,63 @@
+{
+ "title": "El Mate del Soldado",
+ "summary": "El jaque mate en cuatro movimientos que todo principiante conoce, cómo funciona, y los movimientos sencillos que lo evitan por completo.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "aim-at-f7",
+   "title": "El objetivo: f7",
+   "text": "El Mate del Soldado es la trampa más común en partidas de principiantes. El blanco saca la dama a h5 y el alfil a c4, y ambos apuntan a f7, el cuadrado al lado del rey negro que solo el rey protege. Observa la demostración para ver cómo el negro desarrolla un caballo, pasa por alto la amenaza, y pierde en cuatro movimientos.",
+   "narration": "Conoce la trampa más famosa del ajedrez. La dama blanca sale a h5. [move] El negro desarrolla un caballo. [move] El alfil se une a c4. [move] Ahora ambos apuntan a un pequeño y débil cuadrado, f7. El negro no se da cuenta y saca otro caballo. [move] La dama toma f7. ¡Jaque mate! [move]"
+  },
+  {
+   "id": "spot-the-mate",
+   "title": "Velo desde el punto de vista de las blancas",
+   "prompt": "El negro acaba de jugar caballo a f6. Encuentra el jaque mate de las blancas.",
+   "hint": "Cuenta las piezas blancas apuntando a f7, y las piezas negras que lo defienden.",
+   "success": "La dama toma f7 es mate. El alfil en c4 protege a la dama, así que el rey no puede capturarla, y cada casilla de escape está bloqueada.",
+   "narration": "Antes de aprender a defender, veamos la trampa desde el lado de las blancas. El negro acaba de colocar un caballo en f6 y ha olvidado f7. Encuentra el jaque mate."
+  },
+  {
+   "id": "stop-the-mate",
+   "title": "Evítalo",
+   "prompt": "Tú eres Negro. Detén el jaque mate en f7.",
+   "hint": "Pon algo en el camino de la dama hacia f7, o protege f7 con una pieza más.",
+   "success": "Peón a g6 bloquea la diagonal de la dama y la ataca, así que White pierde tiempo moviéndola de nuevo. Dama a e7 también funciona: protege f7 y mantiene el peón de e seguro.",
+   "narration": "Ahora tú eres Negro, y la dama y el alfil apuntan a f7. Caballo a f6 no ayuda aquí, porque no bloquea nada. Encuentra una jugada que realmente pare el mate."
+  },
+  {
+   "id": "the-knight-blocks",
+   "title": "La dama regresa",
+   "text": "Persiguiéndola desde h5, la dama de White a menudo va a f3 para apuntar a f7 de nuevo. Ahora, caballo a f6 es la respuesta perfecta: se coloca justo en el archivo de f entre la dama y f7, y desarrolla una pieza hacia el centro al mismo tiempo.",
+   "narration": "La dama de White suele regresar a f3, apuntando a f7 una vez más. [move] Esta vez, caballo a f6 es perfecto. [move] Bloquea el camino de la dama y desarrolla una pieza en un solo movimiento."
+  },
+  {
+   "id": "punish-the-queen",
+   "title": "Castiga a la dama errante",
+   "prompt": "La dama de White se mueve por tercera vez para apuntar a f7 de nuevo. Haz que pague.",
+   "hint": "Uno de tus caballos puede saltar a un cuadrado central donde ataca a la dama y a un peón junto al rey de White.",
+   "success": "Caballo a d4 ataca a la dama y amenaza caballo toma c2 jaque, horquilla al rey y a la torre en a1. White ha gastado tres movimientos con la dama y ahora tiene que defender todo a la vez.",
+   "narration": "La dama de White se ha movido tres veces mientras las otras piezas se quedan quietas. Es hora de castigar eso. Un salto de caballo ataca a la dama y amenaza una horquilla desagradable."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Con la dama blanca en h5 y el alfil en c4, ¿por qué el caballo a f6 es un error, cuando fue un gran movimiento contra la dama en f3?",
+   "options": [
+    {
+     "text": "Un caballo en f6 no se interpone entre h5 y f7, así que el mate sigue funcionando",
+     "why": "Correcto. La dama llega a f7 a lo largo de la diagonal a través de g6, y el caballo en f6 no está en ese camino. Contra la dama en f3, el caballo bloquea la columna f."
+    },
+    {
+     "text": "Los caballos nunca deberían ir a f6 en la apertura",
+     "why": "El caballo a f6 es uno de los mejores movimientos de desarrollo en ajedrez. Solo es incorrecto cuando ignora una amenaza de mate."
+    },
+    {
+     "text": "El caballo en f6 puede ser capturado por el alfil",
+     "why": "El alfil en c4 no puede llegar a f6. El problema es el jaque mate en f7, no el caballo."
+    }
+   ],
+   "narration": "Última pregunta. El caballo a f6 es genial en una posición y un error en la otra. ¿Por qué? Piensa en qué casilla bloquea realmente el caballo."
+  }
+ ]
+}

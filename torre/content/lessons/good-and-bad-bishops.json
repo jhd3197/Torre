@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Good and bad bishops",
+  "summary": "A bishop hemmed in by its own pawns is a bad bishop. Learn to tell good from bad, and how to beat a bad bishop.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Piece play",
+  "order": 4,
+  "requires": ["pawn-chains"],
+  "practice": "bishop-endgame",
+  "steps": [
+    {
+      "id": "the-bad-bishop",
+      "kind": "explain",
+      "title": "Stuck behind its own pawns",
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "marks": [["c8"], ["d5"], ["e6"], ["c8", "e6"]],
+      "text": "Black's bishop on c8 moves on light squares, and Black's centre pawns on d5 and e6 stand on light squares too. They block the bishop's diagonals, so it has almost nowhere to go. A bishop whose own pawns are fixed on its colour is called a bad bishop. A good bishop is one whose pawns stand on the other colour, leaving its diagonals open.",
+      "narration": "Look at Black's light-squared bishop on c8. Its own pawns on d5 and e6 sit on light squares and block it in. That's a bad bishop: it's not the bishop's fault, it's where its pawns stand.",
+      "pose": "present"
+    },
+    {
+      "id": "the-rule",
+      "kind": "explain",
+      "title": "Pawns on the other colour",
+      "fen": "8/3bk3/p3p1p1/1p1pP2p/1P1K1P1P/P7/4B3/8 w - - 0 1",
+      "marks": [["d7"], ["e2"], ["c5"], ["d4"]],
+      "text": "Both sides have a light-squared bishop. All of Black's pawns stand on light squares, so Black's bishop is stuck defending them and cannot control a single dark square. White's pawns stand on dark squares, so White's bishop is free and White's pawns are safe from Black's bishop. The dark squares, like c5, are open roads for White's king.",
+      "narration": "Same kind of bishop on both sides, but a very different story. Black's pawns are all on light squares, so Black's bishop is tied to them and can't guard any dark square. White's pawns are on dark squares, which leaves White's bishop free.",
+      "pose": "pointer"
+    },
+    {
+      "id": "invade-the-dark-squares",
+      "kind": "play",
+      "title": "Walk in on the dark squares",
+      "fen": "8/3bk3/p3p1p1/1p1pP2p/1P1K1P1P/P7/4B3/8 w - - 0 1",
+      "prompt": "Use the squares Black's bishop can never cover. March your king in and win a pawn.",
+      "hint": "Head for the queenside along dark squares: c5, then b6.",
+      "line": ["d4c5", "d7e8", "c5b6", "e7d8", "b6a6"],
+      "success": "Your king walked in on dark squares that Black's bishop could never challenge, and the a6 pawn fell. More will follow.",
+      "narration": "Black's bishop can't touch a single dark square. So walk your king in on exactly those squares, to c5 and then b6, and help yourself to Black's weak pawns.",
+      "pose": "determined"
+    },
+    {
+      "id": "where-pawns-go",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "You have only a light-squared bishop left. Where do your pawns usually belong?",
+      "options": [
+        { "text": "On dark squares", "correct": true, "why": "Then they don't block your bishop, and together pawns and bishop control both colours." },
+        { "text": "On light squares, so the bishop can defend them", "why": "That turns your bishop into a bad bishop: busy defending, blocked by its own pawns, and leaving the dark squares to your opponent." },
+        { "text": "It makes no difference", "why": "It makes a big difference. Pawns on the same colour as your bishop block it and leave the other colour weak." }
+      ],
+      "narration": "Final question. If your only bishop is a light-squared bishop, where should your pawns live? Think about what blocks the bishop. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

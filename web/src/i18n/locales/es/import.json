@@ -1,0 +1,104 @@
+{
+  "label": "Importar partidas",
+  "sourceLabel": "Dónde están tus partidas",
+  "sources": {
+    "chesscom": {
+      "name": "Chess.com",
+      "note": "Partidas en vivo y diarias de tu cuenta"
+    },
+    "lichess": {
+      "name": "Lichess",
+      "note": "Todas las partidas de tu cuenta"
+    },
+    "file": {
+      "name": "Archivo PGN",
+      "note": "Archivos o partidas pegadas, todas las que quieras"
+    }
+  },
+  "account": {
+    "username": "Tu usuario de {{site}}",
+    "placeholder": "usuario",
+    "range": "Partidas de",
+    "ranges": {
+      "month": "El último mes",
+      "quarter": "Los últimos 3 meses",
+      "year": "El último año",
+      "all": "Siempre"
+    },
+    "fetch": "Buscar partidas",
+    "botsNote": "Las partidas contra los bots de chess.com no están en la API pública, así que no se importan."
+  },
+  "file": {
+    "drop": "Suelta aquí archivos PGN, o",
+    "browse": "elige archivos",
+    "kinds": "Archivos .pgn con cualquier número de partidas",
+    "remove": "Quitar {{name}}",
+    "paste": "O pega partidas",
+    "pasteLabel": "Notación PGN de la partida",
+    "read": "Leer partidas"
+  },
+  "choose": {
+    "title": "¿Qué jugador eres tú?",
+    "note": "Ninguno de los nombres de estas partidas es una de tus cuentas. Elige el tuyo para contar victorias y derrotas desde tu lado.",
+    "games_one": "{{count}} partida",
+    "games_other": "{{count}} partidas",
+    "continue": "Continuar"
+  },
+  "fetching": {
+    "title": "Buscando las partidas de {{username}} en {{site}}",
+    "label": "Progreso de la importación",
+    "month": "Leyendo {{month}} · mes {{done}} de {{total}}",
+    "count_one": "{{count}} partida por ahora",
+    "count_other": "{{count}} partidas por ahora",
+    "finishing": "Casi listo…",
+    "cancel": "Cancelar",
+    "cancelled": "Importación cancelada."
+  },
+  "preview": {
+    "title_one": "{{count}} partida encontrada",
+    "title_other": "{{count}} partidas encontradas",
+    "fresh_one": "{{count}} nueva",
+    "fresh_other": "{{count}} nuevas",
+    "have_one": "{{count}} ya está en tu biblioteca",
+    "have_other": "{{count}} ya están en tu biblioteca",
+    "selectNew": "Elegir nuevas",
+    "selectNone": "Ninguna",
+    "nothing": "No se encontraron partidas. Prueba un periodo más largo.",
+    "columns": {
+      "pick": "Importar",
+      "date": "Fecha",
+      "opponent": "Rival",
+      "color": "Jugaste con",
+      "result": "Resultado",
+      "moves": "Jugadas"
+    },
+    "pick": "Importar la partida contra {{opponent}} del {{date}}",
+    "inLibrary": "En la biblioteca",
+    "white": "Blancas",
+    "black": "Negras",
+    "results": {
+      "win": "Victoria",
+      "loss": "Derrota",
+      "draw": "Tablas",
+      "unknown": "?"
+    },
+    "showMore_one": "Mostrar {{count}} más",
+    "showMore_other": "Mostrar más (quedan {{count}})",
+    "unreadable_one": "No se pudo leer {{count}} partida",
+    "unreadable_other": "No se pudieron leer {{count}} partidas",
+    "startOver": "Empezar de nuevo",
+    "import_one": "Importar {{count}} partida",
+    "import_other": "Importar {{count}} partidas"
+  },
+  "done": {
+    "added_one": "{{count}} partida añadida a tu biblioteca",
+    "added_other": "{{count}} partidas añadidas a tu biblioteca",
+    "duplicates_one": "{{count}} ya estaba allí.",
+    "duplicates_other": "{{count}} ya estaban allí.",
+    "analyze": "Analizar partidas nuevas",
+    "running": "Análisis en curso…",
+    "analyzing": "Análisis iniciado. Tus estadísticas se actualizan al terminar cada partida.",
+    "open": "Abrir partidas",
+    "more": "Importar más"
+  }
+}

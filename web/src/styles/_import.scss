@@ -1,0 +1,383 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* /import — source choice, account and file forms, fetch progress, preview table, summary. */
+
+.import-page {
+  padding: 4px 0 40px;
+  animation: arrive 0.35s ease-out both;
+}
+
+.import-sources {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.import-source {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: $neutral-50;
+  text-align: left;
+  color: var(--ink);
+}
+.import-source img {
+  flex: none;
+  object-fit: contain;
+}
+.import-source strong {
+  display: block;
+  font: 650 #{$fs-base} $font-sans;
+  letter-spacing: -0.3px;
+}
+.import-source small {
+  display: block;
+  font-size: $fs-xs;
+  color: $sage-600;
+  margin-top: 2px;
+  line-height: 1.5;
+}
+.import-source[aria-checked="true"] {
+  border-color: var(--green);
+  background: $sage-100;
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.import-panel {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: $neutral-50;
+  padding: 24px 26px;
+}
+.import-panel h2 {
+  font: 650 #{$fs-2xl} $font-sans;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+}
+.import-form {
+  display: grid;
+  gap: 18px;
+  max-width: 560px;
+}
+.import-field {
+  display: grid;
+  gap: 7px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.import-field > span,
+.import-field legend {
+  font-size: $fs-sm;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 7px;
+}
+.import-field input {
+  background: $neutral-50;
+  border: 1px solid $sage-200;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-size: $fs-md;
+  color: var(--ink);
+}
+.import-field textarea {
+  min-height: 150px;
+}
+.import-form > .button {
+  justify-self: start;
+}
+.import-ranges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.import-ranges button,
+.import-players button {
+  border: 1px solid var(--line);
+  background: $neutral-50;
+  border-radius: 5px;
+  padding: 8px 13px;
+  font-size: $fs-sm;
+  color: $sage-700;
+}
+.import-ranges button[aria-pressed="true"],
+.import-players button[aria-checked="true"] {
+  background: var(--green);
+  border-color: var(--green);
+  color: $sage-50;
+}
+.import-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.import-players button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.import-players small {
+  font-size: $fs-xs;
+  opacity: 0.75;
+}
+.import-hint {
+  font-size: $fs-sm;
+  color: $sage-600;
+  line-height: 1.6;
+  margin: 0;
+}
+.import-error {
+  color: $red-600;
+  font-size: $fs-sm;
+  margin: 14px 0 0;
+}
+
+.import-drop {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 26px 18px;
+  border: 1.5px dashed $sage-300;
+  border-radius: 7px;
+  background: $neutral-50;
+  text-align: center;
+}
+.import-drop.dragging {
+  border-color: var(--green);
+  background: $sage-100;
+}
+.import-drop p {
+  font-size: $fs-md;
+  margin: 4px 0 0;
+}
+.import-drop .text-button {
+  font-size: $fs-md;
+  color: var(--green);
+  text-decoration: underline;
+  padding: 0;
+}
+.import-drop small {
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+.import-files {
+  list-style: none;
+  margin: -6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.import-files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 6px 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font: #{$fs-xs} $font-mono;
+  background: $neutral-50;
+}
+.import-files li span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.import-files .icon-button {
+  width: 26px;
+  height: 26px;
+  font-size: $fs-lg;
+}
+
+.import-progress {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+.import-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 6px;
+  background: $sage-100;
+  overflow: hidden;
+  position: relative;
+}
+.import-bar i {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+.import-bar.indeterminate i {
+  position: absolute;
+  width: 30%;
+  animation: import-slide 1.2s ease-in-out infinite;
+}
+@keyframes import-slide {
+  from {
+    left: -30%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.import-preview-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.import-preview-actions {
+  display: flex;
+  gap: 16px;
+}
+.import-preview-actions .text-button {
+  font-size: $fs-sm;
+  color: var(--green);
+}
+.import-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  max-height: 460px;
+  overflow: auto;
+  background: $neutral-50;
+}
+.import-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $fs-sm;
+}
+.import-table th {
+  position: sticky;
+  top: 0;
+  background: $sage-50;
+  text-align: left;
+  font-weight: 600;
+  font-size: $fs-xs;
+  color: $sage-700;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  z-index: 1;
+}
+.import-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid $sage-100;
+  white-space: nowrap;
+}
+.import-table td:nth-child(2),
+.import-table td:last-child {
+  font-family: $font-mono;
+  font-size: $fs-xs;
+  color: $sage-600;
+}
+.import-table td small {
+  color: $sage-500;
+  font-size: $fs-xs;
+}
+.import-table tr.exists td {
+  color: $sage-400;
+}
+.import-table input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--green);
+}
+.import-badge {
+  margin-left: 8px;
+  font: #{$fs-2xs} $font-mono;
+  background: $sage-100;
+  color: $sage-600;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.result-badge.unknown {
+  color: $sage-500;
+  background: $neutral-100;
+}
+.import-more {
+  display: block;
+  margin: 10px auto;
+  font-size: $fs-sm;
+  color: var(--green);
+}
+.import-empty {
+  padding: 30px 0;
+  text-align: center;
+  color: $sage-500;
+  font-size: $fs-md;
+}
+.import-failures {
+  margin-top: 14px;
+  font-size: $fs-sm;
+  color: $sand-600;
+}
+.import-failures summary {
+  cursor: pointer;
+  color: $orange-600;
+}
+.import-failures ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  max-height: 200px;
+  overflow: auto;
+}
+.import-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.import-done {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 34px 26px;
+}
+.import-done h2 {
+  margin-top: 10px;
+}
+.import-done .import-footer {
+  justify-content: center;
+}
+.import-done .import-failures {
+  text-align: left;
+}
+
+@include down(md) {
+  .import-sources {
+    grid-template-columns: 1fr;
+  }
+  .import-panel {
+    padding: 18px 16px;
+  }
+  .import-footer {
+    justify-content: stretch;
+  }
+  .import-footer .button {
+    flex: 1;
+  }
+}
+@include reduced-motion {
+  .import-page {
+    animation: none;
+  }
+  .import-bar.indeterminate i {
+    animation: none;
+    left: 35%;
+  }
+}

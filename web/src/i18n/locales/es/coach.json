@@ -1,0 +1,138 @@
+{
+  "strengths": "Lo que funciona",
+  "focus": "Enfócate en",
+  "drill": {
+    "puzzles": "Practicar puzzles",
+    "lessons": "Abrir la lección",
+    "openings": "Repasar aperturas",
+    "play": "Jugar una partida"
+  },
+  "stale": "Hay actividad nueva. Tu plan guardado se mantiene hasta que lo actualices.",
+  "empty": "Importa y analiza algunas partidas y luego pide un plan a tu entrenador.",
+  "thinking": "Tu entrenador está leyendo tus partidas…",
+  "error": "El entrenador no pudo responder: {{error}}",
+  "model": "Modelo: {{model}}.",
+  "regenerate": "Actualizar plan",
+  "ask": "Preguntar al entrenador",
+  "setup": {
+    "prompture_missing": "El entrenador con IA lee tus partidas y te escribe un plan de entrenamiento. Necesita Prompture, una pequeña librería de Python, instalada una vez.",
+    "install": "Instalar el entrenador con IA",
+    "installing": "Instalando Prompture… tarda un minuto o dos.",
+    "installFailed": "La instalación falló: {{error}}",
+    "no_model": "El coach necesita un modelo de IA para escribir sus consejos.",
+    "button": "Configurar el coach con IA"
+  },
+  "modelAuto": "Modelo: {{model}} (encontrado en este equipo).",
+  "explain": {
+    "ask": "¿Por qué {{move}} fue un error?",
+    "thinking": "Tu entrenador está mirando la posición…",
+    "title": "Entrenador:"
+  },
+  "review": {
+    "ask": "Pide al entrenador que revise esta partida",
+    "thinking": "Tu entrenador está repasando la partida…",
+    "lesson": "Para recordar:"
+  },
+  "saved": "Tu plan guardado está al día. No hace falta consultar la IA de nuevo.",
+  "savedAt": "Guardado el {{date}}",
+  "onDemand": "Los consejos se generan cuando los pides.",
+  "loading": "Cargando tu plan guardado…",
+  "loadFailed": "No se pudo cargar tu plan.",
+  "retry": "Reintentar",
+  "hub": {
+    "label": "Entrenador",
+    "navigation": "Secciones del entrenador",
+    "plan": "Tu plan",
+    "progress": "Estadísticas",
+    "learn": "Centros de aprendizaje",
+    "planIntro": "Un plan breve hecho a partir de tus partidas. Practica aquí y míralo crecer.",
+    "progressIntro": "Cómo cambia tu juego, partida a partida.",
+    "learnIntro": "Elige dónde aprender, practicar o repasar tus partidas.",
+    "open": "Explorar",
+    "level": "Nivel {{level}}",
+    "levelLabel": "Nivel {{level}}: {{xp}} de {{goal}} PX para el siguiente nivel",
+    "xpLevel": "{{xp}}/{{goal}} PX",
+    "coverage": "{{analyzed}} de {{total}} partidas analizadas",
+    "coverageMoves": "{{analyzed}} de {{total}} partidas analizadas · {{moves}} de tus jugadas revisadas por Stockfish"
+  },
+  "tasks": {
+    "title": "Plan de práctica",
+    "complete": "{{count}} de {{total}} completadas",
+    "progress": "{{count}} / {{goal}} completadas",
+    "done": "Completada",
+    "again": "Practicar de nuevo",
+    "kind": {
+      "puzzles": "Mejora tu táctica",
+      "lessons": "Aprende una idea útil",
+      "openings": "Practica tus aperturas",
+      "play": "Ponlo en práctica"
+    },
+    "goal": {
+      "puzzles": "Resuelve {{count}} problemas sin pistas ni errores.",
+      "lessons": "Completa {{count}} lección.",
+      "openings": "Responde correctamente {{count}} tarjetas de repertorio.",
+      "play": "Termina {{count}} partida en Jugar."
+    }
+  },
+  "centers": {
+    "lessons": {
+      "title": "Lecciones",
+      "body": "Ideas guiadas, ejemplos y posiciones para resolver."
+    },
+    "puzzles": {
+      "title": "Problemas",
+      "body": "Entrena una táctica o practica un conjunto variado."
+    },
+    "train": {
+      "title": "Tus errores",
+      "body": "Repasa posiciones de tus propias partidas."
+    },
+    "openings": {
+      "title": "Aperturas",
+      "body": "Construye y recuerda tu repertorio."
+    },
+    "endgames": {
+      "title": "Finales",
+      "body": "Practica cómo convertir posiciones importantes."
+    },
+    "story": {
+      "title": "Historia",
+      "body": "Sigue el recorrido guiado por el ajedrez."
+    }
+  },
+  "notes": {
+    "title": "Rooky se fijó en"
+  },
+  "menu": {
+    "local": "{{model}} · en este equipo",
+    "change": "Cambiar el modelo del entrenador",
+    "settings": "Ajustes de IA"
+  },
+  "stats": {
+    "rangeLabel": "Mostrar",
+    "range": {
+      "month": "Últimos 30 días",
+      "half": "6 meses",
+      "all": "Todo"
+    },
+    "inRange": "Partidas analizadas en este periodo",
+    "rangeEmpty": "No hay partidas analizadas en este periodo.",
+    "read": {
+      "title": "Lo que Rooky ve en tus números",
+      "phase": "Tu fase más débil: {{phase}}",
+      "phaseText": "{{accuracy}}% de precisión ahí, frente a {{bestAccuracy}}% en tu mejor fase ({{best}}).",
+      "peakText": "El {{rate}}% de tus jugadas ahí son imprecisiones o algo peor."
+    },
+    "peak": "Pico: jugadas {{bucket}}",
+    "heatNote": "% de tus jugadas que fueron imprecisiones o algo peor, por número de jugada",
+    "strengthNote": "% de puntos, según el rating del rival frente al tuyo",
+    "timeBlunders": "errores graves",
+    "timeErrors": "otros errores",
+    "colors": "Por color",
+    "colorGames_one": "{{color}} · {{count}} partida",
+    "colorGames_other": "{{color}} · {{count}} partidas",
+    "colorNote": "ACPL {{acpl}} · {{blunders}} errores graves/partida",
+    "opponentsAll": "Ver los {{count}}",
+    "opponentsTop": "Ver los {{count}} primeros"
+  }
+}

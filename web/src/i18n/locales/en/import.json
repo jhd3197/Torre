@@ -1,0 +1,104 @@
+{
+  "label": "Import games",
+  "sourceLabel": "Where your games are",
+  "sources": {
+    "chesscom": {
+      "name": "Chess.com",
+      "note": "Live and daily games from your account"
+    },
+    "lichess": {
+      "name": "Lichess",
+      "note": "Every game from your account"
+    },
+    "file": {
+      "name": "PGN file",
+      "note": "Files or pasted games, as many as you like"
+    }
+  },
+  "account": {
+    "username": "Your {{site}} username",
+    "placeholder": "username",
+    "range": "Games from",
+    "ranges": {
+      "month": "Last month",
+      "quarter": "Last 3 months",
+      "year": "Last year",
+      "all": "All time"
+    },
+    "fetch": "Find games",
+    "botsNote": "Games against chess.com bots are not in the public API, so they are not imported."
+  },
+  "file": {
+    "drop": "Drop PGN files here, or",
+    "browse": "choose files",
+    "kinds": ".pgn files with any number of games",
+    "remove": "Remove {{name}}",
+    "paste": "Or paste games",
+    "pasteLabel": "PGN game notation",
+    "read": "Read games"
+  },
+  "choose": {
+    "title": "Which player are you?",
+    "note": "None of the names in these games is one of your accounts. Pick yours so wins and losses count from your side.",
+    "games_one": "{{count}} game",
+    "games_other": "{{count}} games",
+    "continue": "Continue"
+  },
+  "fetching": {
+    "title": "Finding {{username}}'s games on {{site}}",
+    "label": "Import progress",
+    "month": "Reading {{month}} · month {{done}} of {{total}}",
+    "count_one": "{{count}} game so far",
+    "count_other": "{{count}} games so far",
+    "finishing": "Almost done…",
+    "cancel": "Cancel",
+    "cancelled": "Import cancelled."
+  },
+  "preview": {
+    "title_one": "{{count}} game found",
+    "title_other": "{{count}} games found",
+    "fresh_one": "{{count}} new",
+    "fresh_other": "{{count}} new",
+    "have_one": "{{count}} already in your library",
+    "have_other": "{{count}} already in your library",
+    "selectNew": "Select new",
+    "selectNone": "Select none",
+    "nothing": "No games were found. Try a longer range.",
+    "columns": {
+      "pick": "Import",
+      "date": "Date",
+      "opponent": "Opponent",
+      "color": "You played",
+      "result": "Result",
+      "moves": "Moves"
+    },
+    "pick": "Import the game against {{opponent}} on {{date}}",
+    "inLibrary": "In library",
+    "white": "White",
+    "black": "Black",
+    "results": {
+      "win": "Win",
+      "loss": "Loss",
+      "draw": "Draw",
+      "unknown": "?"
+    },
+    "showMore_one": "Show {{count}} more",
+    "showMore_other": "Show more ({{count}} left)",
+    "unreadable_one": "{{count}} game could not be read",
+    "unreadable_other": "{{count}} games could not be read",
+    "startOver": "Start over",
+    "import_one": "Import {{count}} game",
+    "import_other": "Import {{count}} games"
+  },
+  "done": {
+    "added_one": "{{count}} game added to your library",
+    "added_other": "{{count}} games added to your library",
+    "duplicates_one": "{{count}} was already there.",
+    "duplicates_other": "{{count}} were already there.",
+    "analyze": "Analyse new games",
+    "running": "Analysis running…",
+    "analyzing": "Analysis started. Your insights update as each game finishes.",
+    "open": "Open games",
+    "more": "Import more"
+  }
+}

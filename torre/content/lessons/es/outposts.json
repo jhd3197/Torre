@@ -1,0 +1,55 @@
+{
+ "title": "Puestos avanzados",
+ "summary": "Una casilla que ningún peón enemigo puede atacar es el hogar perfecto para un caballo. Aprende a encontrar puestos avanzados y coloca tus piezas allí.",
+ "unit": "Juego de piezas",
+ "steps": [
+  {
+   "id": "what-is-an-outpost",
+   "title": "Una casilla a la que los peones no pueden llegar",
+   "text": "Mira d5. Negro no tiene peón de c, y el peón de e ya avanzó, así que ningún peón negro puede atacar esa casilla. El peón de e4 de Blanco también lo protege. Una casilla como esta, en la mitad del oponente y a salvo de los peones enemigos, es un puesto avanzado. Una pieza colocada allí solo puede ser retirada intercambiándola, y a los caballos más les gustan los puestos avanzados, porque necesitan estar cerca de la acción para ser fuertes.",
+   "narration": "Esta casilla, d5, es un puesto avanzado. Ningún peón negro puede atacarla jamás, y tu propio peón en e4 la apoya. Un caballo que aterriza allí solo puede ser retirado por intercambio, y dominará el tablero."
+  },
+  {
+   "id": "jump-in",
+   "title": "Ocupa el puesto avanzado",
+   "prompt": "Coloca a tu caballo en su mejor casilla.",
+   "hint": "La casilla delante del peón retrasado de Negro nunca puede ser atacada por un peón.",
+   "success": "Desde d5, el caballo ataca al alfil y vigila c7, e7, b6 y f6. El alfil de Negro está atrapado detrás de sus propios peones, mientras que el caballo no puede ser echado.",
+   "narration": "Lánzate al puesto avanzado. Desde allí tu caballo golpea el alfil de Negro, vigila las casillas clave alrededor de la posición de Negro, y ningún peón lo echará."
+  },
+  {
+   "id": "good-knight-bad-bishop",
+   "title": "Caballo contra alfil",
+   "text": "Las piezas están igualadas, pero el alfil negro está en los cuadrados oscuros, del mismo color que sus propios peones en d6 y e5. Lo bloquean, y no puede luchar por el cuadrado claro d5. El caballo blanco está a un salto de ese puesto avanzado. Una vez que aterrice allí, será más fuerte que el alfil durante el resto de la partida.",
+   "narration": "El material está igualado, pero fíjate en el alfil negro, rodeado por sus propios peones. Nunca podrá tocar el cuadrado claro d5, y el caballo blanco está a un solo salto de distancia."
+  },
+  {
+   "id": "outpost-endgame",
+   "title": "Planta el caballo",
+   "prompt": "Encuentra la jugada que coloque a las blancas firmemente en ventaja.",
+   "hint": "¿Qué cuadrado el alfil nunca podrá atacar?",
+   "success": "El caballo en d5 ataca al alfil y no puede ser desalojado. A continuación, el rey blanco avanza hacia el flanco de dama mientras las piezas negras solo pueden observar.",
+   "narration": "Planta el caballo en el puesto avanzado. Ataca al alfil, controla todo el tablero a su alrededor, y nada de lo que tenga el negro podrá apartarlo."
+  },
+  {
+   "id": "best-piece",
+   "title": "¡Revísate!",
+   "question": "¿Por qué los puestos avanzados son especialmente buenos para los caballos?",
+   "options": [
+    {
+     "text": "Un caballo es una pieza de corto alcance, por lo que necesita un puesto avanzado seguro para ser fuerte.",
+     "why": "Un caballo en sus propias filas de atrás hace poco. Plantado en un puesto avanzado cerca del campamento enemigo, ataca muchos cuadros importantes y no puede ser perseguido."
+    },
+    {
+     "text": "Los caballos no pueden ser capturados por alfiles",
+     "why": "Los alfiles pueden capturar caballos. Un puesto avanzado solo protege al caballo de los peones."
+    },
+    {
+     "text": "Los caballos en los puestos avanzados dan jaque con más frecuencia.",
+     "why": "Los jaques no son el punto. El caballo es valioso porque controla casillas desde un lugar donde no puede ser desplazado."
+    }
+   ],
+   "narration": "¿Última pregunta? ¿Por qué los puestos avanzados convienen tan bien a los caballos? Piensa en qué tan lejos puede llegar un caballo comparado con un alfil o una torre. ¡Excelente trabajo!"
+  }
+ ]
+}

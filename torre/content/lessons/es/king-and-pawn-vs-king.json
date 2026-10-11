@@ -1,0 +1,62 @@
+{
+ "title": "Rey y peón contra rey",
+ "summary": "El final de partida más básico de todos: cuándo un peón gana, cuándo es empate, y por qué el peón de la torre es especial.",
+ "steps": [
+  {
+   "id": "king-in-front",
+   "title": "El rey mueve primero",
+   "text": "Con un solo peón, el rey hace el trabajo y el peón lo sigue. Aquí el rey blanco está en la sexta fila, justo delante de su peón, y controla los cuadrados que el peón debe cruzar. Esto asegura la victoria para quien debe mover. Un peón adelantado a su rey es fácil de detener para el rey defensor.",
+   "narration": "Un peón contra un solo rey. La regla de oro: el rey lidera y el peón lo sigue. Con el rey blanco ubicado delante de su peón en la sexta fila, esta es una victoria sin importar de quién sea el turno."
+  },
+  {
+   "id": "step-in-front",
+   "title": "Ve delante",
+   "prompt": "Solo un movimiento gana. Coloca tu rey delante del peón.",
+   "hint": "La casilla justo delante del peón está libre, y ocuparla también te da la oposición.",
+   "success": "Rey a e5. Tu rey está delante del peón y se enfrenta al rey negro, así que el rey negro debe ceder y tu rey avanza a la sexta fila. Avanzar el peón en su lugar permite que el rey negro lo bloquee, y el juego termina en empate.",
+   "narration": "Es tu turno. Un movimiento gana, todo lo demás es empate. Avanza tu rey delante del peón, enfrentando al rey negro, y el rey negro tendrá que ceder."
+  },
+  {
+   "id": "rook-pawn",
+   "title": "El peón de la torre es diferente",
+   "text": "Un peón en la columna a o h se llama peón de la torre, y tiene una debilidad: la esquina. Una vez que el rey defensor llega a la esquina frente al peón, no hay forma de empujarlo, porque el rey atacante no tiene una casilla al lado del peón para rodearla. Observa la demostración: termina en ahogado.",
+   "narration": "Ahora conoce la excepción. Un peón en el borde del tablero se llama peón de torre. Si el rey defensor llega a la esquina delantera de él, nunca puede ser empujado. El peón avanza. [move] El rey espera en b8. [move] El peón da jaque. [move] De vuelta a la esquina. [move] Y el rey a a6 deja a las negras sin movimiento. [move] Ahogado."
+  },
+  {
+   "id": "run-to-the-corner",
+   "title": "Corre a la esquina",
+   "prompt": "Tú eres las negras. Salva el juego dirigiéndote a la esquina.",
+   "hint": "La esquina es a8. Tu rey necesita llegar al cuadrado c8 antes de que el rey blanco pueda detenerlo.",
+   "success": "Rey a d7 y luego c8. Tu rey se desliza al área de la esquina, y desde allí el blanco nunca puede forzarlo a salir. Cada otro primer movimiento fue demasiado lento.",
+   "narration": "Ahora tú eres el defensor. Un empate te está esperando en la esquina, pero solo una ruta llega allí a tiempo. Dirígete a c8, y estarás a salvo."
+  },
+  {
+   "id": "shut-the-door",
+   "title": "Cierra la puerta",
+   "prompt": "Ahora tú eres blanco. Mantén al rey negro alejado de la esquina.",
+   "hint": "El rey negro quiere c8. ¿Qué movimiento de rey le quita ese cuadrado?",
+   "success": "El rey a b7 protege c8 y c7, así que el rey negro queda excluido de la esquina y el peón llega a casa. Cualquier otro movimiento permite a las negras alcanzar c8 y empatar.",
+   "narration": "Cambia de lado. El rey negro está corriendo hacia la esquina. Usa tu rey como una puerta y ciérrala de golpe."
+  },
+  {
+   "id": "which-draws",
+   "title": "¡Revísate!",
+   "question": "El rey negro ha llegado a la esquina delantera del peón de torre de blanco. ¿Cuál es el resultado con el mejor juego?",
+   "options": [
+    {
+     "text": "Un empate",
+     "why": "El rey defensor no puede salir de la esquina. Las blancas lo dejan salir o lo ahogan."
+    },
+    {
+     "text": "Las blancas ganan acercando el rey",
+     "why": "El rey de las blancas no tiene forma de rodear al peón en el borde, así que solo puede quitarle casillas hasta que hay ahogado."
+    },
+    {
+     "text": "Las blancas ganan empujando el peón de inmediato",
+     "why": "El peón llega a la séptima fila y se atasca frente al rey negro, o la posición es ahogado."
+    }
+   ],
+   "narration": "Última pregunta. El rey defensor ha llegado a la esquina frente a un peón de torre. ¿Cuál es el resultado? Recuerda esto, te ahorrará medio punto durante años. ¡Bien jugado hoy!"
+  }
+ ]
+}

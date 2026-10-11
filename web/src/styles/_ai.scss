@@ -1,0 +1,95 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// The AI coach setup (AiSetup): providers as cards, the API key, then the model.
+.ai-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: $lobby-ink;
+}
+.ai-setup-step > h3 {
+  margin: 0 0 4px;
+  font-size: $fs-lg;
+  font-weight: 900;
+}
+.ai-setup-note {
+  margin: 0 0 10px;
+  color: $sage-600;
+  font-size: $fs-sm;
+}
+.ai-providers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+.ai-provider {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 14px;
+  background: $white;
+  color: $lobby-ink;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  @include press(3px);
+  @include focus-ring;
+}
+.ai-provider.is-chosen {
+  border-color: $brand-green;
+  background: $sage-50;
+}
+.ai-provider-name {
+  font-weight: 900;
+}
+.ai-provider-state {
+  color: $sage-600;
+  font-size: $fs-xs;
+}
+.ai-key,
+.ai-model {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ai-key > input,
+.ai-model > select {
+  flex: 1 1 220px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 12px;
+  background: $white;
+  color: $lobby-ink;
+  font: inherit;
+  @include focus-ring;
+}
+.ai-setup-current {
+  margin: 0;
+  font-weight: 800;
+  color: $brand-green;
+}
+.ai-setup-error {
+  margin: 0;
+  color: $red-600;
+  font-weight: 700;
+}
+
+// The same setup in its one-time dialog.
+.ai-setup-dialog {
+  width: min(560px, calc(100vw - 48px));
+  padding: 8px;
+}
+.ai-setup-dialog > h2 {
+  margin: 0 0 6px;
+  font-size: $fs-2xl;
+  font-weight: 900;
+}
+.ai-setup-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

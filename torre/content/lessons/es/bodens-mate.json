@@ -1,0 +1,49 @@
+{
+ "title": "Mate de Boden",
+ "summary": "Dos alfiles en diagonales cruzadas dan jaque mate al rey que ha enrocado en el flanco de dama, usualmente después de un sacrificio abre el camino.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "crossing-diagonals",
+   "title": "Diagonales cruzadas",
+   "text": "El rey negro ha enrocado en el flanco de dama, y su propia torre y caballo bloquean d8 y d7. El alfil oscuro de blancas en f4 cubre b8 y c7. Si el alfil claro da jaque desde a6, su diagonal cruza la otra como una X, y el rey no tiene a dónde ir. Este es el mate de Boden, nombrado en honor al jugador inglés Samuel Boden.",
+   "narration": "Dos alfiles pueden dar mate por sí solos cuando el rey está acorralado. El alfil oscuro en f4 cubre b8 y c7, y los propios piezas del rey bloquean el peón de d. Un jaque del otro alfil lo termina."
+  },
+  {
+   "id": "bishop-to-a6",
+   "title": "La X",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "La casilla b7 está vacía, así que un alfil en la diagonal a6 da jaque al rey.",
+   "success": "Alfil a a6 es mate. Entre ellos, los alfiles cubren b7, b8 y c7, y las propias piezas de negras llenan d7 y d8.",
+   "narration": "Es tu movimiento. Lleva el alfil claro a a6 con jaque, y observa cómo su diagonal cruza la del alfil oscuro. Mate."
+  },
+  {
+   "id": "queen-sacrifice",
+   "title": "Abre la diagonal",
+   "prompt": "Mate en dos. El peón en b7 protege al rey. Sacrifica tu dama para alejarlo.",
+   "hint": "Captura el caballo en c6 con jaque. El peón de b debe recapturar.",
+   "success": "La dama captura c6, jaque, fuerza a que el peón recapture c6, ya que b8 está cubierto por el alfil en f4. La casilla b7 ahora está vacía, y alfil a a6 es el mate de Boden.",
+   "narration": "El peón en b7 es lo único que lo impide. ¡Sacrifica tu dama en c6 con jaque! El peón debe tomar y eso abre la diagonal. Alfil a a6, y es el mate de Boden."
+  },
+  {
+   "id": "when-to-look",
+   "title": "Cuándo buscarlo",
+   "question": "¿Cuándo deberías empezar a buscar el mate de Boden?",
+   "options": [
+    {
+     "text": "Cuando el rey enemigo ha enrocado en el flanco de la dama y los peones delante están ausentes o pueden ser eliminados",
+     "why": "Diagonales abiertas hacia c8 o b8, más las propias piezas del rey en la columna d, son justo lo que necesitan los dos alfiles."
+    },
+    {
+     "text": "Siempre que tengas dos alfiles",
+     "why": "También necesitas diagonales abiertas y un rey atrapado por sus propias piezas. Sin eso, los alfiles solos no pueden dar mate."
+    },
+    {
+     "text": "Solo en el final",
+     "why": "El mate de Boden suele ocurrir en el medio juego, con muchas piezas aún en el tablero."
+    }
+   ],
+   "narration": "Pregunta final. ¿Cuándo vale la pena buscar este mate? Piensa dónde vive el rey y qué hay delante de él. Si lo aciertas, ¡detectarás el mate de Boden en tus propios juegos! ¡Fantástico!"
+  }
+ ]
+}

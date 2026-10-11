@@ -1,0 +1,281 @@
+{
+ "grades": {
+  "brilliant": {
+   "label": "brillante",
+   "message": "Una jugada brillante. A Stockfish le encanta.",
+   "short": "brillante"
+  },
+  "best": {
+   "label": "la mejor jugada",
+   "message": "Exactamente lo que jugaría Stockfish.",
+   "short": "mejor jugada"
+  },
+  "good": {
+   "label": "una buena jugada",
+   "message": "Una jugada sólida. Mantiene la posición.",
+   "short": "buena jugada"
+  },
+  "inaccuracy": {
+   "label": "una imprecisión",
+   "message": "No es una catástrofe, pero había algo mejor.",
+   "short": "imprecisión"
+  },
+  "mistake": {
+   "label": "un error",
+   "message": "Esta jugada regala parte de tu ventaja.",
+   "short": "error"
+  },
+  "blunder": {
+   "label": "un despiste",
+   "message": "Uf. Esto regala mucho. Veamos qué era mejor.",
+   "short": "despiste"
+  },
+  "great": {
+   "label": "una gran jugada",
+   "message": "La mejor jugada del motor; las alternativas pierden mucho más.",
+   "short": "grandes jugadas"
+  },
+  "book": {
+   "label": "una jugada de libro",
+   "message": "Esta jugada sigue una línea del libro de aperturas.",
+   "short": "de libro"
+  }
+ },
+ "plan": {
+  "startOnPiece": "Empieza con una pieza, o elige Libre para trazar desde un casillero vacío.",
+  "illegal": "Esa pieza no puede moverse legalmente allí en esta posición."
+ },
+ "pieces": {
+  "pawn": "peón",
+  "knight": "caballo",
+  "bishop": "alfil",
+  "rook": "torre",
+  "queen": "dama",
+  "king": "rey"
+ },
+ "square": {
+  "empty": "Vacía {{square}}",
+  "white": {
+   "pawn": "Peón blanco en {{square}}",
+   "knight": "Caballo blanco en {{square}}",
+   "bishop": "Alfil blanco en {{square}}",
+   "rook": "La torre blanca en {{square}}",
+   "queen": "La dama blanca en {{square}}",
+   "king": "Rey blanco en {{square}}"
+  },
+  "black": {
+   "pawn": "Peón negro en {{square}}",
+   "knight": "Caballo negro en {{square}}",
+   "bishop": "Alfil negro en {{square}}",
+   "rook": "La torre negra en {{square}}",
+   "queen": "La dama negra en {{square}}",
+   "king": "Rey negro en {{square}}"
+  }
+ },
+ "engine": {
+  "tryMove": "Prueba esta jugada",
+  "notInstalled": "Stockfish no está instalado.",
+  "gameOver": "La partida termina en esta posición.",
+  "paused": "El análisis está en pausa. Actívalo para ver las mejores jugadas.",
+  "unavailable": "Análisis no disponible. Desactiva y reactiva el análisis para reintentar.",
+  "finding": "Buscando continuaciones…",
+  "depth": "PROFUNDIDAD {{depth}} · PUNTUACIONES PARA BLANCO",
+  "thinking": "Pensando…",
+  "on": "Análisis activado",
+  "off": "Análisis desactivado",
+  "choose": "Motor de análisis"
+ },
+ "heat": {
+  "piece": "pieza",
+  "none": "ninguna",
+  "square": "{{square}} · {{kind}}. Blancas: {{white}}. Negras: {{black}}.",
+  "kind": {
+   "neutral": "Sin ataque",
+   "contested": "Disputada",
+   "white": "Control de blancas",
+   "black": "Control de negras"
+  },
+  "toggle": "Control de casillas",
+  "hint": "Control ahora, no es garantía de seguridad. Apunta a una casilla para ver detalles.",
+  "legend": {
+   "white": "Blancas",
+   "black": "Negras",
+   "both": "Ambos",
+   "neutral": "Sin ataque"
+  }
+ },
+ "copy": {
+  "copied": "Posición copiada como FEN.",
+  "blocked": "No se pudo copiar. Tu navegador bloqueó el acceso al portapapeles."
+ },
+ "status": {
+  "thinking": "Stockfish está pensando…",
+  "whiteToMove": "Blancas al movimiento",
+  "blackToMove": "Negras al movimiento",
+  "check": "Jaque",
+  "exploration": "Exploración",
+  "loading": "Cargando…"
+ },
+ "arrows": {
+  "playedInGame": "Jugada en la partida",
+  "nextInLine": "Siguiente en esta línea",
+  "label": "Flechas del tablero",
+  "bestTitle": "Mejor jugada de Stockfish desde esta posición",
+  "best": "Mejor jugada",
+  "playedTitle": "La jugada que se realizó en la partida",
+  "nextTitle": "La jugada que sigue en esta línea",
+  "sameMove": "Misma jugada"
+ },
+ "workspace": {
+  "label": "Espacio de trabajo de ajedrez",
+  "flipTitle": "Girar el tablero (F)",
+  "flip": "Girar el tablero"
+ },
+ "moves": {
+  "heading": "Jugadas",
+  "inProgress": "EN CURSO",
+  "goTo": "Ir a la jugada {{number}}, {{san}}{{grade}}",
+  "label": "Jugadas de la partida",
+  "empty": "Aún no hay jugadas.",
+  "progress": "Jugada {{number}} de {{total}}",
+  "start": "Posición inicial"
+ },
+ "eval": {
+  "pending": "Evaluación pendiente",
+  "title": "{{score}} para Blancas · {{verdict}}",
+  "unavailable": "Evaluación no disponible",
+  "evaluating": "Evaluando…"
+ },
+ "verdict": {
+  "previewTitle": "Ver esta jugada en el tablero, desde la posición anterior",
+  "pick": "La opción #{{rank}} del motor",
+  "better_one": "Había {{count}} jugada mejor",
+  "better_other": "Había {{count}} jugadas mejores",
+  "you": "Tú",
+  "played": "Jugada",
+  "startTitle": "Cuando quieras",
+  "startHint": "Avanza con las flechas del teclado o elige una jugada abajo.",
+  "pendingTitle": "Aún sin revisar",
+  "pendingHint": "Esta jugada no tiene revisión. Activa el análisis para calificarla.",
+  "is": "{{number}} {{san}} es {{grade}}",
+  "preferred": "Stockfish prefería <b>{{san}}</b>.",
+  "showBefore": "Mostrar la posición anterior",
+  "seeBefore": "Ver antes",
+  "accuracy": "Precisión de la jugada {{value}}%",
+  "voiceOn": "Decir cada jugada en voz alta",
+  "voiceOff": "Dejar de decir las jugadas en voz alta"
+ },
+ "players": {
+  "white": "BLANCAS",
+  "black": "NEGRO",
+  "ahead_one": "{{count}} peón de material de ventaja",
+  "ahead_other": "{{count}} peones de material de ventaja"
+ },
+ "playback": {
+  "first": "Primera jugada",
+  "previous": "Jugada anterior",
+  "previousTitle": "Jugada anterior (tecla flecha izquierda)",
+  "pause": "Pausar reproducción",
+  "autoplay": "Reproducción automática de la partida",
+  "next": "Siguiente jugada",
+  "nextTitle": "Siguiente jugada (tecla flecha derecha)",
+  "last": "Última jugada",
+  "copyFen": "Copiar posición como FEN"
+ },
+ "planning": {
+  "drawTitle": "Dibuja flechas con dos clics o toques",
+  "draw": "Dibuja flechas",
+  "mode": "Modo flecha",
+  "legal": "Jugadas legales",
+  "freeform": "Libre · casillas vacías",
+  "chooseStart": "Elige origen y luego destino",
+  "rightDrag": "Arrastra con el botón derecho para planificar",
+  "clearTitle": "Borrar dibujos del tablero (Esc)",
+  "clear": "Borrar"
+ },
+ "analysis": {
+  "running": "Analizando tus partidas",
+  "progress": "{{done}} de {{total}}",
+  "versus": "contra {{opponent}}",
+  "unknown": "Desconocido",
+  "progressLabel": "Progreso del análisis",
+  "stop": "Detente",
+  "stopped": "Análisis detenido",
+  "retry": "Intenta de nuevo",
+  "notAnalyzed_one": "{{count}} partidas sin analizar",
+  "notAnalyzed_other": "{{count}} partidas sin analizar",
+  "install": "Instala Stockfish para analizarlas.",
+  "toAnalyze_one": "{{count}} partidas por analizar, {{outdated}} con puntuación antigua",
+  "toAnalyze_other": "{{count}} partidas por analizar, {{outdated}} con puntuación antigua",
+  "notAnalyzedYet_one": "{{count}} partidas sin analizar aún",
+  "notAnalyzedYet_other": "{{count}} partidas sin analizar aún",
+  "estimate": "Stockfish revisa cada jugada · unos {{minutes}} min · puedes seguir usando el estudio",
+  "all": "Analizar todo",
+  "mining": "Convirtiendo tus errores en puzzles",
+  "mined_one": "{{count}} puzzle de tus partidas hasta ahora",
+  "mined_other": "{{count}} puzzles de tus partidas hasta ahora"
+ },
+ "coachRook": {
+  "reviewing": "¿Mirando hacia atrás? Vuelve a la posición en vivo para seguir jugando.",
+  "botThinking": "{{bot}} está pensando…",
+  "start": "Te toca. ¡Buena suerte!",
+  "promoted": "¡Una dama nueva! Haz que la cuente.",
+  "castled": "Enrocado. Tu rey está más seguro ahora.",
+  "moved": "Sólido. Veamos la respuesta.",
+  "inCheck": "¡Jaque! Cuida a tu rey.",
+  "idle": "Tómate tu tiempo. No hay reloj.",
+  "yourTurn": "Te toca. ¿Cuál es el plan?",
+  "enPassantYou": "¡Al paso! Un peón que avanza dos casillas junto al tuyo puede capturarse como si hubiera avanzado una.",
+  "enPassantBot": "Eso fue una captura al paso: tu peón avanzó dos casillas junto al suyo, así que pudo capturarlo como si hubiera avanzado una. Es una regla real."
+ },
+ "openings": {
+  "name": "El nombre.",
+  "idea": "La idea.",
+  "lesson": "Lección: apréndela",
+  "famousGame": "Partida famosa: {{label}}",
+  "library": "Biblioteca de aperturas",
+  "libraryIntro": "De dónde vienen los nombres y qué busca lograr cada apertura."
+ },
+ "stars_one": "{{count}} de 3 estrellas",
+ "stars_other": "{{count}} de 3 estrellas",
+ "chessboard": {
+  "illegalCastle": "Enrocar no es legal aquí. El camino debe estar libre, ninguna pieza debe haberse movido, y el rey no puede enrocar desde, por o hacia un jaque.",
+  "label": "Tablero de ajedrez interactivo",
+  "control": "{{square}}: {{white}} atacantes blancos, {{black}} negros",
+  "castleHere": "Enroca aquí",
+  "announce": "{{piece}}, desde {{from}}",
+  "typeMove": "Escribe una jugada",
+  "typeMovePlaceholder": "Escribe una jugada: e4, Cf3, O-O",
+  "typeMoveError": "Esa no es una jugada legal aquí.",
+  "pieces": {
+   "pawn": "peón",
+   "knight": "caballo",
+   "bishop": "alfil",
+   "rook": "torre",
+   "queen": "dama",
+   "king": "rey"
+  },
+  "illegal": {
+   "pinned": "Esa pieza ({{piece}}) está clavada: la pieza de {{attacker}} atacaría a tu rey si se moviera.",
+   "inCheck": "Tu rey está en jaque desde {{attacker}}. Primero sal del jaque: mueve el rey, interpón una pieza o captura la que da jaque.",
+   "kingAttacked": "Tu rey no puede ir a una casilla que el rival ataca.",
+   "exposesKing": "Esa jugada dejaría a tu rey en jaque.",
+   "castleInCheck": "No puedes enrocar mientras tu rey está en jaque.",
+   "castleThroughCheck": "No puedes enrocar pasando por una casilla atacada ni llegando a ella.",
+   "castleRights": "Aquí no puedes enrocar: el rey o esa torre ya se movieron.",
+   "castleBlocked": "Para enrocar, todas las casillas entre el rey y la torre deben estar vacías.",
+   "pathBlocked": "Esa pieza ({{piece}}) no puede saltar: la pieza de {{blocker}} le cierra el paso.",
+   "pawnForward": "Un peón no captura hacia adelante, y la pieza de enfrente lo bloquea.",
+   "pawnDiagonal": "Un peón solo avanza en diagonal para capturar.",
+   "pawnDouble": "Un peón solo avanza dos casillas desde su casilla inicial.",
+   "movement": "Esa pieza ({{piece}}) no se mueve así."
+  }
+ },
+ "panel": {
+  "label": "Panel de la partida",
+  "moves": "Jugadas",
+  "engine": "Motor",
+  "summary": "Resumen",
+  "stepThrough": "Recorrer la partida"
+ }
+}

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "title": "Check and checkmate",
+  "summary": "When your king is attacked you must save it. Learn the three ways out of check, and how to give a checkmate that ends the game.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Rules of the game",
+  "order": 7,
+  "requires": ["the-king"],
+  "practice": "mate-in-1",
+  "steps": [
+    {
+      "id": "what-is-check",
+      "kind": "explain",
+      "title": "What check means",
+      "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
+      "marks": [["a8", "e8"]],
+      "text": "When a piece attacks the king, the king is in check. The player in check must get out of it on the very next move: nothing else is allowed. Here White's rook gives check along the eighth rank.",
+      "narration": "When your king is attacked, that's called check. You must fix it right away. You can't ignore it and do something else.",
+      "pose": "check"
+    },
+    {
+      "id": "three-ways-out",
+      "kind": "play",
+      "title": "Three ways out",
+      "fen": "6k1/5ppp/8/8/8/3B4/5PP1/R3r1K1 w - - 0 1",
+      "marks": [["e1"]],
+      "prompt": "You're in check. You can move the king, block with the bishop, or capture the rook. Pick the best.",
+      "hint": "One way out also wins Black's rook.",
+      "line": ["a1e1"],
+      "success": "Capturing the checking piece is often the best way out. You escaped the check and won a rook.",
+      "narration": "There are three ways out of check: move the king, block the attack, or capture the attacker. Here you can do all three. Which one is best?",
+      "pose": "determined"
+    },
+    {
+      "id": "what-is-checkmate",
+      "kind": "explain",
+      "title": "Checkmate",
+      "fen": "R5k1/5ppp/8/8/8/8/8/6K1 b - - 0 1",
+      "marks": [["a8", "g8"], ["f7"], ["g7"], ["h7"]],
+      "text": "Checkmate is a check with no way out. The king cannot move to a safe square, nothing can block, and the attacker cannot be captured. Here Black's own pawns box the king in, and the rook's check cannot be stopped. Checkmate ends the game.",
+      "narration": "Checkmate is check with no escape. The king can't run, nobody can block, and the attacker can't be taken. That's the goal of the whole game.",
+      "pose": "trophy"
+    },
+    {
+      "id": "back-rank-mate",
+      "kind": "play",
+      "title": "Your first checkmate",
+      "fen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Black's king is walled in by its own pawns. Attack it along the back rank.",
+      "line": ["d1d8"],
+      "success": "Rook to d8 is checkmate. The pawns on f7, g7 and h7 trap their own king.",
+      "narration": "Now you try. Black's king is hiding behind its pawns, but those pawns are also its prison. Find the rook move that ends the game.",
+      "pose": "detective"
+    },
+    {
+      "id": "queen-and-king-mate",
+      "kind": "play",
+      "title": "Queen and king together",
+      "fen": "7k/8/6K1/8/8/8/8/1Q6 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Your king already covers g7 and h7. Check along the eighth rank.",
+      "line": ["b1b8"],
+      "success": "Queen to b8 is checkmate. The queen controls the whole back rank and your king guards the escape squares.",
+      "narration": "Your king is helping out here, guarding the squares in front of Black's king. Bring your queen in with check where nothing can stop her.",
+      "pose": "magnify"
+    },
+    {
+      "id": "check-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Your king is in check. Which of these is NOT a way out?",
+      "options": [
+        { "text": "Capture one of your opponent's other pieces", "correct": true, "why": "Unless that capture removes the attacker, the king is still in check. You must deal with the check itself." },
+        { "text": "Move the king to a safe square", "why": "That is one of the three ways out." },
+        { "text": "Put a piece between the king and the attacker", "why": "Blocking works against rooks, bishops and queens. It is one of the three ways out." },
+        { "text": "Capture the piece giving check", "why": "Removing the attacker is often the best way out of all." }
+      ],
+      "narration": "Last question. Remember the three ways out of check. Which of these choices doesn't actually save your king?",
+      "pose": "thinking"
+    }
+  ]
+}

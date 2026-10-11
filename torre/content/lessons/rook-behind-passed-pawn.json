@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "Rooks behind passed pawns",
+  "summary": "Tarrasch's rule: in rook endings, the rook belongs behind the passed pawn, whether it is yours or your opponent's.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["lucena"],
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "tarrasch-rule",
+      "kind": "explain",
+      "title": "Tarrasch's rule",
+      "fen": "r7/5pk1/6p1/P6p/8/6P1/5PKP/7R w - - 0 1",
+      "marks": [["a5"], ["a8"]],
+      "text": "The German master Siegbert Tarrasch taught a simple rule for rook endings: put your rook behind passed pawns. A rook behind its own pawn pushes it forward, and its range grows with every step the pawn takes. A rook in front of a pawn does the opposite: it gets more and more boxed in.",
+      "narration": "A famous old rule for rook endings, taught by the German master Siegbert Tarrasch: rooks belong behind passed pawns. From behind, the rook pushes the pawn forward, and every step the pawn takes gives the rook more room.",
+      "pose": "present"
+    },
+    {
+      "id": "defend-from-behind",
+      "kind": "play",
+      "title": "Get behind your pawn",
+      "fen": "r7/5pk1/6p1/P6p/8/6P1/5PKP/7R w - - 0 1",
+      "prompt": "Your a-pawn is attacked. Defend it the right way.",
+      "hint": "Which file is your passed pawn on? Put the rook on that file, on the far side from the promotion square.",
+      "line": ["h1a1"],
+      "success": "Rook to a1. It guards the pawn from behind and is ready to push it forward. Black's rook is stuck in front of the pawn, while White's king is free to march to the queenside.",
+      "narration": "Black's rook is eyeing your a-pawn. Guard it from behind, and your rook will push that pawn all the way up the board.",
+      "pose": "detective"
+    },
+    {
+      "id": "rook-in-front",
+      "kind": "explain",
+      "title": "The rook in front",
+      "fen": "R7/P4pk1/6p1/7p/8/6P1/r4PKP/8 w - - 0 1",
+      "marks": [["a8"], ["a2", "a7"]],
+      "text": "Here White's rook stands in front of its own pawn. It has to stay there to protect it, and it has no squares on the a-file at all. Black's rook sits behind the pawn and keeps an eye on it from far away, so Black's king is free. This kind of position is usually a draw, even a pawn down.",
+      "narration": "Now see the opposite. White's rook is stuck in front of its own pawn, doing nothing. Black's rook guards from behind, and that makes all the difference. Positions like this are often a draw, even a pawn down.",
+      "pose": "thinking"
+    },
+    {
+      "id": "defend-behind",
+      "kind": "play",
+      "title": "Behind the enemy pawn",
+      "fen": "8/5pk1/P5p1/7p/8/1R4P1/5PKP/4r3 b - - 0 1",
+      "prompt": "You are Black. White's a-pawn is running. Stop it the right way.",
+      "hint": "The rule works for the defender too. Get behind the pawn before White's rook does.",
+      "line": ["e1a1"],
+      "success": "Rook to a1. Your rook stops the pawn from behind, and if White's rook moves in front of it, it becomes passive. Going in front of the pawn with the rook would leave Black in a passive and lost position.",
+      "narration": "Now you defend. White's pawn is dangerous, and White's rook wants to get behind it. Beat it there. The rule works for both sides: behind the pawn, always.",
+      "pose": "shield"
+    },
+    {
+      "id": "where-does-it-go",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "In a rook ending, where does your rook belong when there is a passed pawn on the board?",
+      "options": [
+        { "text": "Behind the passed pawn, whoever it belongs to", "correct": true, "why": "Behind your own pawn it pushes the pawn forward. Behind the enemy pawn it keeps watching it while the pawn moves away." },
+        { "text": "In front of the pawn, to block it", "why": "A rook in front of a pawn gets boxed in. Blocking is a job for the king." },
+        { "text": "Beside the pawn, on the same rank", "why": "From the side, the rook can guard the pawn but gets pushed around by the enemy king and rook." }
+      ],
+      "narration": "Last question. When there is a passed pawn, where does your rook belong? Remember Tarrasch's rule, and your rook endings will improve overnight. Nicely done!",
+      "pose": "trophy"
+    }
+  ]
+}

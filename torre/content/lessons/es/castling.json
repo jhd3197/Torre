@@ -1,0 +1,55 @@
+{
+ "title": "Enrocar",
+ "summary": "Enrocar mueve al rey y a una torre en un movimiento, protegiendo al rey y poniendo la torre en juego. Aprende cómo y cuándo puedes enrocar.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "two-pieces-one-move",
+   "title": "Dos piezas, un movimiento",
+   "text": "Enrocar es el único movimiento en el que dos piezas se mueven a la vez. El rey avanza dos casillas hacia una torre, y esa torre salta a la casilla del otro lado del rey. Las blancas enrocan en el flanco de rey (el lado corto), luego las negras enrocan en el flanco de dama (el lado largo).",
+   "narration": "Enrocar es un movimiento especial. El rey se desliza dos casillas hacia una torre, y la torre salta al otro lado de él. Mira cómo las blancas enrocan en el lado corto. [move] Ahora las negras enrocan en el lado largo. [move] En un solo movimiento, el rey está seguro y la torre entra en juego."
+  },
+  {
+   "id": "the-rules",
+   "title": "Cuándo puedes enrocar",
+   "text": "Puedes enrocar solo si: el rey y esa torre nunca se han movido, los casilleros entre ellos están vacíos, el rey no está en jaque y el rey no pasa por una casilla atacada ni aterriza en una. Aquí el alfil negro ataca f1, así que las blancas no pueden enrocar en el flanco de rey. El enroque en el flanco de dama todavía está permitido.",
+   "narration": "Hay algunas reglas. El rey y la torre no deben haberse movido aún, el camino debe estar despejado y el rey no puede estar en jaque, cruzar una casilla atacada o aterrizar en una. Ese alfil observando f1 impide que las blancas enroquen corto."
+  },
+  {
+   "id": "castle-short-mate",
+   "title": "Enroca con fuerza",
+   "prompt": "Enrocar incluso puede dar jaque mate. Enroca en el flanco de rey para terminar el juego.",
+   "hint": "Mueve tu rey dos casillas a la derecha. La torre aterriza en f1, enfrentando al rey negro.",
+   "success": "Enrocar en el flanco de rey coloca la torre en f1 con jaque, y tu rey en g1 cubre g2 y f2. El rey negro no tiene a dónde ir: jaque mate.",
+   "narration": "El rey negro ha llegado hasta tu campo. Mira qué hace enrocar aquí. La torre aterriza en f1 dando jaque, y tu rey protege las casillas de escape. ¡Enroque corto!"
+  },
+  {
+   "id": "castle-long-mate",
+   "title": "Ahora el flanco largo",
+   "prompt": "Jaque mate con enroque largo.",
+   "hint": "Mueve tu rey dos casillas a la izquierda. La torre salta a d1.",
+   "success": "El enroque largo puso la torre en d1 con jaque, y tu rey en c1 cubre c2. Mover la torre a d1 por sí sola no sería mate, porque el rey negro podría escapar a c2.",
+   "narration": "Misma idea en el flanco largo. Enroque largo: tu rey va a c1 y su torre aterriza en d1, justo delante del rey negro."
+  },
+  {
+   "id": "castling-quiz",
+   "title": "Revisión rápida",
+   "question": "¿Cuál de estas cosas significa que ya nunca podrás enrocar en esta partida?",
+   "options": [
+    {
+     "text": "Tu rey ya se ha movido, aunque haya vuelto a su casilla.",
+     "why": "Una vez que el rey se ha movido, el enroque se pierde definitivamente, en ambos flancos."
+    },
+    {
+     "text": "Tu rey está en jaque ahora mismo.",
+     "why": "Eso solo te lo impide este turno. Una vez que el jaque ha terminado, aún puedes enrocar más tarde."
+    },
+    {
+     "text": "Un alfil enemigo está atacando tu su torre.",
+     "why": "El alfil podría estar atacado. Solo el camino propio del rey debe estar seguro."
+    }
+   ],
+   "narration": "Última pregunta. Algunas cosas solo impiden enrocar por un momento, pero una de estas lo elimina para siempre. ¿Cuál es?"
+  }
+ ]
+}

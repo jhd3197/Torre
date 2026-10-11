@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "title": "Tal gives away his queen",
+  "summary": "Varna, 1962: Tal lets his queen be trapped and wins with the pieces he gets in return.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Mikhail Tal",
+  "order": 2,
+  "practice": "sacrifice",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Varna, 1962",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "By 1962 Mikhail Tal had already been world champion, and everyone knew his style: sacrifice first, let the opponent prove it was wrong later. At the chess Olympiad in Varna, Bulgaria, he faced the German master Hans-Joachim Hecht. In this game Tal walks his queen into a trap on purpose. Press play and find his moves.",
+      "narration": "Varna, 1962. Mikhail Tal against Hans-Joachim Hecht. Watch closely, because Tal is about to let his queen be trapped on purpose.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Tal – Hecht, Varna Olympiad 1962",
+      "text": "White gets doubled pawns early but a big center. Then Tal brings his queen out to a4, where it can be trapped. He does not care: he is counting pieces and open lines, not points.",
+      "narration": "Tal brings his queen to the edge of the board, where it can be trapped. He knows. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "d2d4",
+        "g8f6",
+        "c2c4",
+        "e7e6",
+        "g1f3",
+        "b7b6",
+        "b1c3",
+        "f8b4",
+        "c1g5",
+        "c8b7",
+        "e2e3",
+        "h7h6",
+        "g5h4",
+        "b4c3",
+        "b2c3",
+        "d7d6",
+        "f3d2",
+        "e6e5",
+        "f2f3",
+        "d8e7",
+        "e3e4",
+        "b8d7",
+        "f1d3",
+        "d7f8",
+        "c4c5",
+        "d6c5",
+        "d4e5",
+        "e7e5",
+        "d1a4",
+        "c7c6",
+        "e1g1",
+        "f8g6",
+        "d2c4",
+        "e5e6",
+        "e4e5",
+        "b6b5",
+        "e5f6",
+        "b5a4",
+        "f6g7",
+        "h8g8",
+        "d3f5",
+        "g6h4",
+        "f5e6",
+        "b7a6",
+        "c4d6",
+        "e8e7",
+        "e6c4",
+        "g8g7",
+        "g2g3",
+        "e7d6",
+        "c4a6",
+        "h4f5",
+        "a1b1",
+        "f7f6",
+        "f1d1",
+        "d6e7",
+        "d1e1",
+        "e7d6",
+        "g1f2",
+        "c5c4",
+        "g3g4",
+        "f5e7",
+        "b1b7",
+        "a8g8",
+        "a6c4",
+        "e7d5",
+        "c4d5",
+        "c6d5",
+        "b7b4",
+        "g8c8",
+        "b4a4",
+        "c8c3",
+        "a4a6",
+        "d6c5",
+        "a6f6",
+        "h6h5",
+        "h2h3",
+        "h5g4",
+        "h3g4",
+        "g7h7",
+        "g4g5",
+        "h7h5",
+        "f6f5",
+        "c3c2",
+        "f2g3",
+        "c5c4",
+        "e1e5",
+        "d5d4",
+        "g5g6",
+        "h5h1",
+        "e5c5",
+        "c4d3",
+        "c5c2",
+        "d3c2",
+        "g3f4",
+        "h1g1",
+        "f5g5"
+      ],
+      "notes": [
+        {
+          "ply": 15,
+          "text": "8.bxc3: White has doubled pawns on the c-file, but the pawn mass in the center is strong."
+        },
+        {
+          "ply": 29,
+          "text": "15.Qa4+: the queen comes out with check. On a4 it is close to trouble."
+        },
+        {
+          "ply": 33,
+          "text": "17.Nc4: the knight heads for d6. Tal ignores that his bishop on h4 can be taken."
+        },
+        {
+          "ply": 36,
+          "text": "18...b5: Hecht traps the queen. It has no safe square left."
+        },
+        {
+          "ply": 38,
+          "text": "19...bxa4: the queen is gone. Tal has a knight and a monster pawn on f6 for it."
+        },
+        {
+          "ply": 41,
+          "text": "21.Bf5: the bishop hits Black's queen on e6. Hecht takes the h4 bishop first."
+        },
+        {
+          "ply": 51,
+          "text": "26.Bxa6: the smoke clears. Material is about level, but Tal's pieces are the active ones."
+        },
+        {
+          "ply": 97,
+          "text": "49.Rg5, after a long endgame Tal's extra activity tells. Black resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 35,
+          "prompt": "The bishop on h4 is attacked, and ...b5 would trap the queen. What does Tal play?",
+          "hint": "Do not save anything. Hit the knight on f6 with a pawn.",
+          "why": "18.e5! If ...b5 wins the queen, exf6 rips open the black king's side and the pawn heads for g7. Saving the bishop with Bg3 was also fine, but Tal wanted the fight.",
+          "also": [
+            "h4g3"
+          ]
+        },
+        {
+          "ply": 39,
+          "prompt": "The queen is gone. Which capture keeps Black busy?",
+          "hint": "Your pawn on f6 can take on g7, and look at the rook on h8.",
+          "why": "20.fxg7 attacks the rook on h8 and puts a pawn one step from queening. Black must spend a move on ...Rg8."
+        },
+        {
+          "ply": 43,
+          "prompt": "Black just took your bishop on h4. Your bishop on f5 has a big target.",
+          "hint": "What is standing on e6?",
+          "why": "22.Bxe6 takes the queen back. Tal has won his queen back with interest: the g7 pawn is still alive."
+        },
+        {
+          "ply": 45,
+          "prompt": "The bishop on a6 attacks your knight on c4. Answer with check.",
+          "hint": "The knight can jump to a square next to the black king.",
+          "why": "23.Nd6+ moves the knight out of danger with check. Black never gets time to pick off White's loose pieces."
+        },
+        {
+          "ply": 47,
+          "prompt": "Black's king attacks the knight on d6 and his bishop eyes your rook on f1. One quiet move fixes both.",
+          "hint": "Block the a6–f1 diagonal and fight that bishop at the same time.",
+          "why": "24.Bc4! The bishop leaves e6, blocks the diagonal to f1, and offers itself to the bishop on a6. Tal soon trades into an endgame where his pieces are the better ones."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Why did it work?",
+      "question": "Tal let his queen be trapped on a4. Why was that not a disaster?",
+      "options": [
+        {
+          "text": "In return he got a knight, a pawn on g7 and an attack that won the queen back",
+          "why": "Right. Every Black move was spent answering threats, and soon the queen came back on e6.",
+          "correct": true
+        },
+        {
+          "text": "Hecht did not notice he could take the queen",
+          "why": "He noticed and took it on move 19. It just did not help."
+        },
+        {
+          "text": "Queens are worth less than bishops",
+          "why": "A queen is worth about nine pawns. Tal won it back with tactics, not because it was cheap."
+        }
+      ],
+      "narration": "Tal lost his queen and still won. Why?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Count the whole position",
+      "fen": "8/p7/6P1/6R1/3p1K2/5P2/P1k5/6r1 b - - 3 49",
+      "text": "Tal did not ask \"how many points do I have?\" He asked \"what can my pieces do?\" When the queen fell, his pawn on g7, his knight and his bishops made threats every move, and the queen came back. A sacrifice works when the threats it creates are bigger than the material it gives.",
+      "narration": "A sacrifice works when it creates more threats than it gives away material. Tal counted threats, not points.",
+      "pose": "idea"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+ "title": "Morphy juega el Philidor",
+ "summary": "Londres, 1858: Paul Morphy ataca a d4, desarrolla con calma, y luego golpea en el centro con ...d5 y gana material.",
+ "unit": "Defensa Philidor",
+ "steps": [
+  {
+   "id": "the-scene",
+   "title": "Londres, 1858",
+   "text": "En 1858, el joven estadounidense Paul Morphy viajó a Europa y derrotó a los mejores jugadores que conoció. En Londres jugó con negras contra Thomas Wilson Barnes y eligió el Philidor. Observa cómo prepara su posición con calma, y lo rápido que cambia el juego una vez que abre el centro. El juego se detiene cuando Morphy tiene una decisión que tomar: encuentra su movimiento.",
+   "narration": "Londres, 1858. El joven estadounidense Paul Morphy tiene las negras y responde con el Philidor. Observa la tranquila preparación, luego el golpe en el centro, y adivina los movimientos de Morphy cuando el juego se pausa."
+  },
+  {
+   "id": "the-game",
+   "title": "Barnes – Morphy, Londres 1858",
+   "text": "Morphy ataca a d4, desarrolla y enroca, y espera el momento oportuno para abrir el centro.",
+   "notes": [
+    {
+     "text": "3...exd4: Morphy cede el centro y planea luchar con sus piezas."
+    },
+    {
+     "text": "7...c5 ahuyenta al caballo del medio del tablero."
+    },
+    {
+     "text": "12...Re8: La torre se alinea en la columna 'e', contra el peón en e4."
+    },
+    {
+     "text": "19...Bxa1: Las negras ganan una torre. El alfil blanco toma la torre en c8, pero las negras recuperan y tienen una pieza de ventaja."
+    }
+   ],
+   "narration": "Aquí está el juego. Cuando se detenga, juega el movimiento de Morphy en el tablero.",
+   "guesses": [
+    {
+     "prompt": "Tus piezas están todas desarrolladas y las blancas han avanzado peones en el flanco de rey. Ataca en el centro.",
+     "hint": "Tu peón de d ha estado esperando en d6 durante todo el juego.",
+     "why": "15...d5! abre el centro mientras el rey blanco está expuesto y las piezas blancas están dispersas."
+    },
+    {
+     "prompt": "El centro está abierto. Tu alfil oscuro tiene una diagonal larga ahora. Úsalo.",
+     "hint": "Mira la torre blanca en la esquina en a1.",
+     "why": "1. \"1. \"18...Bf6! apunta a la torre en a1. Las blancas se quedan con peones y la torre de c8, pero Morphy saca una pieza entera de ventaja.\""
+    },
+    {
+     "prompt": "Tienes una pieza de más. Intercambia la mejor defensora de las blancas.",
+     "hint": "Ofrece un cambio de alfiles en el medio del tablero.",
+     "why": "22...Bd4 ofrece cambiar el último alfil blanco. Cuando vas ganando, intercambiar piezas hace que tu pieza extra cuente aún más. Este fue el último movimiento del juego."
+    }
+   ]
+  },
+  {
+   "id": "takeaway",
+   "title": "Primero, tranquilidad, luego, ataca.",
+   "text": "Este es el momento justo antes de ...dxe4. Todas las piezas negras están desarrolladas, la torre en e8 vigila e4, y el peón de d acaba de llegar a d5. Eso es el Filidor en pocas palabras: un comienzo sólido, sin debilidades y una ruptura de peones en el centro una vez que tus piezas están listas.",
+   "narration": "Aquí está el momento justo antes de que Morphy capturara en e4. Todo está desarrollado y listo, y la ruptura de peones en el centro abre el juego a su favor. Primero sólido, luego ataca."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué 15...d5 fue un momento tan fuerte para Morphy?",
+   "options": [
+    {
+     "text": "Todas sus piezas estaban desarrolladas, así que abrir el centro le ayudó más que a las blancas",
+     "why": "Así es. Las líneas abiertas favorecen al bando cuyas piezas están listas, y las de Morphy lo estaban"
+    },
+    {
+     "text": "Ganó un peón por la fuerza de inmediato",
+     "why": "La idea era abrir líneas, no el peón en sí; el material llegó unos movimientos más tarde"
+    },
+    {
+     "text": "Protegía a su rey de los peones del flanco de rey de las blancas",
+     "why": "...d5 es una ruptura central. Su función era abrir el juego, no defender"
+    }
+   ],
+   "narration": "Una última pregunta sobre la partida de Morphy. ¿Por qué el empuje a d5 fue tan fuerte justo entonces? Piensa en sus piezas. ¡Excelente trabajo!"
+  }
+ ]
+}

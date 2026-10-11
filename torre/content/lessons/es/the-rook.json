@@ -1,0 +1,55 @@
+{
+ "title": "La torre",
+ "summary": "Las torres se mueven en línea recta a lo largo de las filas y columnas. Aprende cómo se mueven, qué las detiene y cómo obtener una pieza gratis.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "straight-lines",
+   "title": "Líneas rectas",
+   "text": "La torre se mueve en línea recta: arriba, abajo, izquierda o derecha, tantas casillas como le guste. Las filas de casillas se llaman filas y las columnas se llaman columnas. Desde d4, esta torre puede llegar a cualquier casilla en la columna d o la cuarta fila.",
+   "narration": "¡Conoce a la torre, ese soy yo! Me muevo en línea recta, hacia arriba y abajo o de lado a lado, tan lejos como me guste. Desde el centro de un tablero vacío, puedo alcanzar catorce casillas diferentes."
+  },
+  {
+   "id": "blocked-lines",
+   "title": "¿Qué detiene a una torre?",
+   "text": "Una torre no puede saltar. Mi propio peón en b4 me detiene en c4. Una pieza enemiga en mi camino puede ser capturada: la torre la toma al aterrizar en su casilla, pero no puede seguir avanzando. Aquí la torre puede tomar el peón en d6 o el caballo en g4. Avanza en la demostración para verla capturar al caballo.",
+   "narration": "Las torres no pueden saltar por encima de nada. Mi propio peón en b4 me bloquea, así que me detengo en c4. Pero, ¿una pieza enemiga en mi camino? Puedo capturarla aterrizando directamente en su casilla. Mírame capturar ese caballo en g4. [move] ¡Desapareció! Y me detengo justo ahí, no puedo seguir deslizándome pasándola."
+  },
+  {
+   "id": "grab-the-bishop",
+   "title": "Agarra al alfil gratis",
+   "prompt": "El alfil negro no tiene a nadie que lo defienda. ¡Captúralo con tu torre!",
+   "hint": "Mira directamente hacia arriba por la columna a.",
+   "success": "La columna 'a' estaba vacía hasta a6, así que la torre se deslizó hacia arriba y capturó al alfil. Nada puede recapturar la torre.",
+   "narration": "Aquí tienes un regalo. El alfil de las negras está en la misma columna que tu torre y nadie lo protege. ¡Desliza tu torre hacia arriba y caṕturalo!"
+  },
+  {
+   "id": "pick-the-safe-capture",
+   "title": "¿Cuál captura es segura?",
+   "prompt": "Tu torre puede capturar dos piezas. Solo una de ellas es segura de tomar. ¿Cuál?",
+   "hint": "Revisa qué pieza negra está al lado del rey.",
+   "success": "El alfil en h4 no tenía defensor, así que lo ganaste gratis. Capturar al caballo en d7 habría perdido tu torre, porque el rey negro está justo al lado.",
+   "narration": "Ten cuidado ahora. Tu torre puede capturar al caballo o al alfil, pero uno de ellos está protegido. Si tomas una pieza protegida, tu torre es recapturada. Encuentra la libre."
+  },
+  {
+   "id": "rook-quiz",
+   "title": "Revisión rápida",
+   "question": "Un peón propio de las blancas está en c4, justo al lado de la torre. ¿Puede la torre alcanzar a4?",
+   "options": [
+    {
+     "text": "No, el peón en c4 está en el camino",
+     "why": "Las torres nunca saltan. Una pieza de tu propio color bloquea la línea por completo."
+    },
+    {
+     "text": "Sí, las torres pueden saltar por encima de sus propias piezas.",
+     "why": "Solo el caballo puede saltar. La torre se detiene donde su camino está bloqueado."
+    },
+    {
+     "text": "Sí, pero solo capturando el peón primero.",
+     "why": "Nunca puedes capturar tus propias piezas. El peón simplemente bloquea el camino."
+    }
+   ],
+   "narration": "Última pregunta. Mi propio peón está justo a mi lado en c4. ¿Puedo pasar por encima para llegar a a4? Piensa en lo que acabas de aprender."
+  }
+ ]
+}

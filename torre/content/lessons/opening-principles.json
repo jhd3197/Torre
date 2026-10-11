@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "title": "Opening principles",
+  "summary": "Claim the center, develop your pieces, castle, and keep the queen home until it is safe.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "steps": [
+    {
+      "id": "the-center",
+      "kind": "explain",
+      "title": "The center",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "marks": [["d4"], ["e4"], ["d5"], ["e5"]],
+      "text": "The four circled squares are the center. Pieces placed there reach the most squares, and pieces aimed at it can switch quickly between the two sides of the board. Most good opening moves either occupy the center or attack it.",
+      "narration": "See those four squares in the middle of the board? That's the center, and it's the most valuable land in chess. A piece standing there reaches more squares than anywhere else, so almost every good opening move either grabs the center or fights for it.",
+      "pose": "idea"
+    },
+    {
+      "id": "claim-the-center",
+      "kind": "play",
+      "title": "Your first move",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "prompt": "Play a pawn move that puts a pawn in the center.",
+      "hint": "Move the king's pawn or the queen's pawn two squares.",
+      "line": ["e2e4|d2d4"],
+      "success": "That pawn takes a central square and opens a diagonal for a bishop and the queen.",
+      "narration": "Your turn! Put a pawn right in the center. Push your king's pawn or your queen's pawn two squares: either one is a wonderful first move.",
+      "pose": "detective"
+    },
+    {
+      "id": "develop-toward-the-center",
+      "kind": "choose",
+      "title": "Developing",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "question": "After 1. e4 e5, which move develops best?",
+      "options": [
+        { "text": "Nf3", "correct": true, "why": "It brings a piece out toward the center and attacks the pawn on e5 straight away." },
+        { "text": "Na3", "why": "A knight on the edge reaches only four squares. \"A knight on the rim is dim.\"" },
+        { "text": "Qh5", "why": "The queen comes out early and can be chased with tempo by Black's developing moves." },
+        { "text": "h4", "why": "A flank pawn move does nothing for the center or for your development." }
+      ],
+      "narration": "White played pawn to e4, and Black answered with pawn to e5. Now, which move develops best? Think about bringing a piece out toward the middle, where it does something useful right away.",
+      "pose": "thinking"
+    },
+    {
+      "id": "develop-and-castle",
+      "kind": "play",
+      "title": "Knights, bishops, castle",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "prompt": "Develop your kingside knight, then your kingside bishop, then castle. Black answers each move.",
+      "hint": "Knight to f3, bishop to c4, then castle short: move the king two squares toward the rook.",
+      "line": ["g1f3", "b8c6", "f1c4", "f8c5", "e1g1"],
+      "success": "In three moves two pieces are active and your king is tucked away behind its pawns. That is the Italian Game.",
+      "narration": "Let's build a real opening together. Bring your knight to f3, then your bishop to c4, then castle to tuck your king safely away. Black will answer every move you make.",
+      "pose": "playing"
+    },
+    {
+      "id": "early-queen-threat",
+      "kind": "explain",
+      "title": "When the queen comes out early",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+      "marks": [["h5", "f7"], ["c4", "f7"], ["f7"]],
+      "orientation": "black",
+      "text": "Here White tried the opposite: 2. Qh5 and 3. Bc4. Queen and bishop both aim at f7, a square only Black's king defends. If Black ignores it, Qxf7 is checkmate. This is Scholar's Mate.",
+      "narration": "Careful! White has rushed the queen out to h5 and the bishop to c4, and both of them are aiming at f7: a square only your king defends. If Black ignores this, queen takes f7 is checkmate. This sneaky trick is called Scholar's Mate.",
+      "pose": "alarm"
+    },
+    {
+      "id": "stop-scholars-mate",
+      "kind": "play",
+      "title": "Defend f7",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+      "prompt": "You are Black. Stop the mate on f7.",
+      "hint": "Defend f7 with the queen, or block the queen's path to f7 with a pawn that also attacks her.",
+      "line": ["g7g6|d8e7|d8f6"],
+      "success": "Mate is stopped. White's queen came out early and will lose more time running from your pieces.",
+      "narration": "Stop that mate! You're Black here. Guard f7 with your queen, or push the pawn to g6 to chase the white queen away. Any of these defenses does the job.",
+      "pose": "shield"
+    },
+    {
+      "id": "principles-quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Which of these is NOT a good opening habit?",
+      "options": [
+        { "text": "Moving the same piece several times to grab a pawn", "correct": true, "why": "Every extra move with one piece is a move your other pieces stay at home. Grab material only when it is safe and the rest of your army is ready." },
+        { "text": "Castling early", "why": "Castling is a good habit: it hides the king and connects the rooks." },
+        { "text": "Developing knights before bishops", "why": "This is a sound rule of thumb: knights have fewer good squares, so it is clear where they belong." },
+        { "text": "Fighting for the center with pawns", "why": "This is the first opening principle." }
+      ],
+      "narration": "Last question! Three of these are good opening habits, and one of them is not. Pick the bad habit, and great work finishing your very first lesson!",
+      "pose": "star"
+    }
+  ]
+}

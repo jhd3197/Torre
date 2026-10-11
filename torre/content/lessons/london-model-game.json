@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "title": "Kramnik plays the London",
+  "summary": "A former world champion shows the whole London plan in 22 moves: knight to e5, f4, the e4 break and an attack on the king.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "London System",
+  "order": 5,
+  "requires": ["london-plans"],
+  "practice": "kingside-attack",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-scene",
+      "kind": "explain",
+      "title": "Berlin, 2015",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "World Blitz Championship, Berlin, October 2015. Vladimir Kramnik, a former world champion, has White against Allan Rasmussen. Kramnik builds the London setup you know and then follows both plans from this unit, one after the other. The game will stop when Kramnik has a key decision to make: find his move.",
+      "narration": "Berlin, 2015, the World Blitz Championship. Former world champion Vladimir Kramnik plays the London. Watch him use every plan from this unit, and try to guess his moves when the game stops.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Kramnik – Rasmussen, Berlin 2015",
+      "text": "Watch how each plan move prepares the next one. When the game stops, find White's move on the board.",
+      "narration": "Here's the game. When it pauses, it's your turn to play Kramnik's move.",
+      "pose": "playing",
+      "moves": ["d2d4", "d7d5", "g1f3", "g8f6", "c1f4", "c7c5", "e2e3", "b8c6", "b1d2", "e7e6", "c2c3", "f8d6", "f4g3", "e8g8", "f1d3", "d8e7", "f3e5", "d6e5", "d4e5", "f6d7", "f2f4", "f7f6", "g3h4", "e7f7", "e5f6", "d7f6", "e1g1", "e6e5", "h4f6", "g7f6", "e3e4", "g8h8", "e4d5", "f7d5", "d3e4", "d5d6", "d2c4", "d6e7", "d1h5", "e5f4", "f1f4", "c6e5", "c4e5"],
+      "notes": [
+        { "ply": 13, "text": "7.Bg3: the bishop steps back from Black's bishop and keeps its eye on e5." },
+        { "ply": 20, "text": "10...Nd7: the pawn on e5 has chased Black's knight away from f6." },
+        { "ply": 27, "text": "14.O-O: only now does White castle, and the rook on f1 backs up the f-pawn." },
+        { "ply": 35, "text": "18.Be4: the bishop takes the long diagonal toward b7 and h7." }
+      ],
+      "guesses": [
+        { "ply": 17, "also": ["d4c5", "g3h4", "e3e4"], "prompt": "Black's queen has left d8. Time for plan one. Where does the knight go?", "hint": "The square in front of Black's e6 pawn.", "why": "9.Ne5 plants the knight on the key square. Black traded it off, and the recapture dxe5 kicked Black's knight away from f6." },
+        { "ply": 21, "also": ["d2f3", "d1b1"], "prompt": "The pawn on e5 is attacked by the knight on d7. Support it the London way.", "hint": "The f-pawn.", "why": "11.f4 holds e5 and opens the way for the rook along the f-file later." },
+        { "ply": 31, "also": ["c3c4", "f4e5"], "prompt": "Black's pawns in front of the king are broken. Now plan two: open the centre.", "hint": "Your e-pawn can hit d5.", "why": "16.e4 breaks open the centre while Black's king has lost its g-pawn cover. Every open line now leads to Black's king." },
+        { "ply": 43, "prompt": "Black's knight came to e5 to block. Finish the attack.", "hint": "Your knight on c4 can take it, and then look at f7 and f8.", "why": "22.Nxe5 removes the blocker. White's queen, rook, knight and bishop all point at Black's king, and this was the last move of the game." }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "explain",
+      "title": "What Kramnik did",
+      "fen": "r1b2r1k/pp2q2p/5p2/2p1N2Q/4BR2/2P5/PP4PP/R5K1 b - - 0 22",
+      "marks": [["e5"], ["f4"], ["h5"], ["e4"]],
+      "text": "Look at the final position. The knight is back on e5, the rook has come to f4 along the file the f-pawn opened, the queen is on h5 and the bishop on e4 aims at h7. Nothing here was magic: knight to e5, pawn to f4, then the e4 break, played in that order.",
+      "narration": "Look at the end. Knight on e5, rook on the f-file, queen and bishop aimed at the king. Every one of those pieces got there by following the plans you've learned.",
+      "pose": "idea"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "After Black traded on e5 and White took back with the d-pawn, what did the pawn on e5 achieve?",
+      "options": [
+        { "text": "It chased Black's knight away from f6, the main defender of the king", "correct": true, "why": "Yes. Without the knight on f6, Black's kingside was much easier to attack." },
+        { "text": "It won a pawn", "why": "It was a straight trade; the point was where the pawn ended up." },
+        { "text": "It blocked White's own bishop", "why": "The bishop on g3 went on to do plenty of work from h4 and then f6." }
+      ],
+      "narration": "Last question about the game. What did the pawn on e5 do for White? Think about which black piece had to move. Great game study!",
+      "pose": "trophy"
+    }
+  ]
+}

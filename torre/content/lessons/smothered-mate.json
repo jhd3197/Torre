@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "Smothered mate",
+  "summary": "A knight checkmates a king that is boxed in by its own pieces, often after a stunning queen sacrifice.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 1,
+  "level": "intermediate",
+  "minutes": 6,
+  "practice": "smothered-mate",
+  "steps": [
+    {
+      "id": "no-room",
+      "kind": "explain",
+      "title": "Buried by its own army",
+      "fen": "6rk/pp4pp/8/6N1/8/8/PP4PP/6K1 w - - 0 1",
+      "marks": [["g8"], ["g7"], ["h7"], ["g5", "f7"]],
+      "text": "Black's king in the corner is surrounded by its own rook and pawns. It has no free square at all. A knight check cannot be blocked, so if the knight can check the king and nothing can capture it, it is checkmate. That is a smothered mate.",
+      "narration": "Look at Black's king tucked in the corner. Its own rook and pawns surround it like a blanket, and it can't move at all. A knight check can't be blocked, so one hop of the knight is all it takes.",
+      "pose": "present"
+    },
+    {
+      "id": "the-knight-hop",
+      "kind": "play",
+      "title": "One hop",
+      "fen": "6rk/pp4pp/8/6N1/8/8/PP4PP/6K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Which square next to the pawns lets the knight check h8?",
+      "line": ["g5f7"],
+      "success": "Knight to f7 is mate. The king's own rook and pawns take every square away, and no black piece can capture the knight.",
+      "narration": "Your move. Find the knight jump that checks the cornered king. Nothing can block a knight, and nothing can take it.",
+      "pose": "detective"
+    },
+    {
+      "id": "chase-back",
+      "kind": "play",
+      "title": "Chase it back to the corner",
+      "fen": "1q2r2k/pp4pp/8/6N1/2Q5/8/PP4PP/6K1 w - - 0 1",
+      "prompt": "Check with the knight, then check again so the king has to go back to the corner.",
+      "hint": "Your queen on c4 aims at g8. The knight's second check from h6 also opens that diagonal.",
+      "line": ["g5f7", "h8g8", "f7h6"],
+      "success": "Knight to f7 check sends the king to g8, and knight to h6 is a double check from the knight and the queen. The king must run back to h8 (going to f8 allows queen to f7 mate).",
+      "narration": "Check with the knight to drive the king out to g8. Then jump to h6. That's double check, from the knight and from your queen at the same time, so the king can't block and has to run back to the corner.",
+      "pose": "playing"
+    },
+    {
+      "id": "queen-sacrifice",
+      "kind": "play",
+      "title": "The queen sacrifice",
+      "fen": "1q2r2k/pp4pp/7N/8/2Q5/8/PP4PP/6K1 w - - 0 1",
+      "prompt": "Sacrifice your queen to block the last free square, then mate with the knight.",
+      "hint": "Check on g8. The king cannot take because the knight guards that square.",
+      "line": ["c4g8", "e8g8", "h6f7"],
+      "success": "Queen to g8 check forces rook takes g8, because the knight guards g8. Now the rook blocks its own king, and knight to f7 is smothered mate.",
+      "narration": "Here comes the beautiful part. Put your queen on g8 with check. The king can't take her because your knight guards that square, so the rook has to. Now the rook is blocking its own king, and the knight hops to f7 for smothered mate.",
+      "pose": "shocked"
+    },
+    {
+      "id": "why-it-works",
+      "kind": "choose",
+      "title": "Why the sacrifice?",
+      "question": "In the last puzzle, why did White give up the queen on g8?",
+      "options": [
+        { "text": "To force a black piece onto g8, so the king has no free square left", "correct": true, "why": "Once the rook takes on g8, every square around the king is filled by its own pieces, and the knight check is mate." },
+        { "text": "To trade queens and reach an endgame", "why": "Black had no queen to trade there. The point was to fill the king's last free square." },
+        { "text": "To get the queen out of danger", "why": "The queen was safe on c4. It was given up on purpose to set up the mate." }
+      ],
+      "narration": "Final question. Why did White throw the queen away on g8? Think about what that did to Black's king. Get this, and you've learned one of the prettiest mates in chess. Brilliant!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "page": {
+    "label": "Opening repertoire trainer",
+    "modes": "Training modes",
+    "drills": "Mistake drills",
+    "endgames": "Endgame practice"
+  },
+  "counts": {
+    "due": "Due",
+    "newToday": "New today",
+    "learned": "Learned",
+    "ofTotal": "of {{total}}"
+  },
+  "tryAgain": "Try again",
+  "loading": "Loading your repertoire…",
+  "done": {
+    "title": "Repertoire reviewed",
+    "nextReview": "Your next review is {{when}}.",
+    "comeBack": "Come back tomorrow for new positions.",
+    "newWaiting_one": " {{count}} new position is waiting; you get {{perDay}} a day.",
+    "newWaiting_other": " {{count}} new positions are waiting; you get {{perDay}} a day."
+  },
+  "empty": {
+    "title": "No repertoire yet",
+    "body": "Positions you reach again and again in your games' openings become cards here. Import more games, or add a line of your own below."
+  },
+  "source": {
+    "start": "Starting position",
+    "after": "After {{line}}"
+  },
+  "prompt": {
+    "white": "<strong>White to move.</strong> Play your repertoire move.",
+    "black": "<strong>Black to move.</strong> Play your repertoire move.",
+    "seen_one": " You reached this position in {{count}} game.",
+    "seen_other": " You reached this position in {{count}} games.",
+    "custom": " This position is from a line you added."
+  },
+  "verdict": {
+    "correct": "<strong>✓ {{move}}</strong> That is your repertoire move.",
+    "missed": "<strong>✗ {{move}}</strong> is not your repertoire move. You play <best>{{best}}</best> here."
+  },
+  "detail": {
+    "corrected": "You never played a sound move here, so this card asks for the engine's choice.",
+    "played": "In your games: {{moves}}.",
+    "returns": "This position returns {{when}}."
+  },
+  "actions": {
+    "next": "Next position",
+    "explore": "Explore position"
+  },
+  "color": {
+    "white": "White",
+    "black": "Black"
+  },
+  "lines": {
+    "title": "Your own lines",
+    "body": "Add a line to practice it. Its moves win over the ones from your games.",
+    "color": "Play the line as",
+    "moves": "Moves",
+    "placeholder": "1. e4 e5 2. Nf3 Nc6",
+    "add": "Add line",
+    "added": "Line added to your repertoire.",
+    "remove": "Remove",
+    "removeLabel": "Remove {{line}}"
+  }
+}

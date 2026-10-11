@@ -1,0 +1,793 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// Home: the trailhead of the Story map, set in a little clay world. Sky above
+// the hero, the practice islands strung along a trail, the streak by the
+// campfire beside the journey so far, and a meadow at the foot of the page.
+// The scattered pieces are decoration (.home-deco): they float, never take
+// clicks, and thin out on small screens.
+
+.home {
+  position: relative;
+  padding: 118px 0 24px; // the sky band sits in the top padding
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
+  @include down(md) {
+    padding-top: 64px;
+  }
+}
+
+// ── The clay world ──────────────────────────────────────────────────────
+.home-deco {
+  position: absolute;
+  z-index: 0;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 12px rgba($moss-900, 0.12));
+  animation: home-float var(--float, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+@keyframes home-float {
+  from {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  to {
+    transform: translateY(var(--rise, -8px)) rotate(calc(var(--tilt, 0deg) * -1));
+  }
+}
+
+.home-sky {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 150px;
+  z-index: 2; // the balloon drifts over the hero's corner
+  pointer-events: none;
+}
+.home-deco-cloud {
+  top: 26px;
+  left: 2%;
+  width: 170px;
+  --float: 9s;
+  --rise: -6px;
+}
+.home-deco-sun {
+  top: 6px;
+  left: 44%;
+  width: 84px;
+  --float: 11s;
+  --tilt: 6deg;
+}
+.home-deco-puff {
+  top: 52px;
+  left: 64%;
+  width: 72px;
+  --float: 8s;
+  --delay: -3s;
+}
+.home-deco-balloon {
+  top: 14px;
+  right: -18px;
+  width: 116px;
+  --float: 6s;
+  --rise: -12px;
+  --tilt: 3deg;
+}
+
+// A saved bot game, slim and above everything else.
+.home-resume {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 8px 10px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: $wheat-200;
+  color: var(--ink);
+  font-size: $fs-md;
+  @include press(3px, $sand-300);
+  &:hover {
+    background: $wheat-100;
+  }
+  img {
+    flex: none;
+    margin: -10px 0;
+  }
+  strong {
+    font-weight: 750;
+  }
+}
+.home-resume-go {
+  margin-left: auto;
+  flex: none;
+  font-weight: 750;
+  color: $moss-800;
+}
+
+// ── Hero ────────────────────────────────────────────────────────────────
+.home-hero {
+  --unit: #{$green-500};
+  --unit-dark: #{$green-600};
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 320px;
+  padding: 40px 44px;
+  border-radius: 26px;
+  background: linear-gradient(120deg, var(--unit), var(--unit-dark));
+  color: $white;
+  box-shadow: 0 14px 30px -18px var(--unit-dark);
+
+  &.unit-openings {
+    --unit: #{$orange-500};
+    --unit-dark: #{$orange-600};
+  }
+  &.unit-strategy {
+    --unit: #{$steel-600};
+    --unit-dark: #{$steel-700};
+  }
+
+  // Loading and the unreachable map: same footprint, no colour to promise anything.
+  &.quiet {
+    grid-template-columns: 1fr;
+    background: $sage-50;
+    color: var(--ink);
+    box-shadow: none;
+    .home-hero-sub {
+      color: $sage-600;
+    }
+    .home-start-btn {
+      --unit-dark: #{$forest};
+      background: var(--green);
+      color: var(--cream);
+    }
+  }
+  &.loading h1 {
+    opacity: 0.55;
+  }
+
+  h1 {
+    font: 850 clamp(36px, 4.4vw, 60px)/1.02 $font-sans;
+    letter-spacing: -2px;
+    text-wrap: balance;
+  }
+}
+.home-hero-text {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.home-hero-chapter {
+  margin-bottom: 10px !important;
+  font: 750 #{$fs-md} $font-sans;
+  opacity: 0.9;
+}
+.home-hero-sub {
+  max-width: 440px;
+  margin: 14px 0 28px !important;
+  font-size: $fs-lg;
+  line-height: 1.55;
+  opacity: 0.94;
+  text-wrap: pretty;
+}
+.home-start-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+  min-height: 58px;
+  padding: 14px 34px;
+  border-radius: 14px;
+  background: $white;
+  color: var(--unit-dark, #{$forest});
+  font: 850 #{$fs-xl} $font-sans;
+  text-decoration: none;
+  &:hover {
+    background: $neutral-50;
+  }
+}
+
+// The picture side: the chapter's clay scene, and the piece on its board in front.
+// The scene spills past the hero's bottom edge so the stage and the page are one picture.
+.home-hero-art {
+  position: relative;
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+.home-hero-scene {
+  position: absolute;
+  right: -8px;
+  bottom: -64px;
+  width: min(300px, 70%);
+  filter: drop-shadow(0 18px 18px rgba($black, 0.18));
+  pointer-events: none;
+}
+.home-hero-boss {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border-radius: 50%;
+  border: 4px solid $white;
+  background: $white;
+}
+
+.piece-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: min(250px, 100%);
+  aspect-ratio: 1;
+  margin-right: auto;
+  border-radius: 14px;
+  overflow: visible;
+  box-shadow:
+    0 0 0 6px rgba($white, 0.22),
+    0 18px 30px -12px rgba($black, 0.35);
+  transform: rotate(-3deg);
+
+  > span {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    place-items: center;
+    background: var(--light-square);
+    &.dark {
+      background: var(--dark-square);
+    }
+    &:first-child {
+      border-top-left-radius: 14px;
+    }
+    &:nth-child(5) {
+      border-top-right-radius: 14px;
+    }
+    &:nth-child(21) {
+      border-bottom-left-radius: 14px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 14px;
+    }
+  }
+  // Squares the piece reaches: a dot each, lighting up in reading order on arrival.
+  .reach::after {
+    content: "";
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background: rgba($moss-900, 0.45);
+    animation: reach-in 0.32s calc(0.25s + var(--n) * 0.05s) cubic-bezier(0.34, 1.5, 0.64, 1) both;
+  }
+}
+.piece-stage-piece {
+  position: absolute;
+  z-index: 2;
+  inset: -35%; // the piece art carries transparent padding, so it outgrows its square
+  width: 170%;
+  max-width: none;
+  height: 170%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 3px rgba($black, 0.3));
+}
+// START: the piece jumps onto its first target, which flashes as it lands.
+.piece-stage.hop {
+  .piece-stage-piece {
+    animation: piece-hop 0.42s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+  }
+  .target::after {
+    animation: target-land 0.42s ease-out forwards;
+  }
+}
+@keyframes reach-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes piece-hop {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  45% {
+    transform: translate(calc(var(--hop-x) * 0.5), calc(var(--hop-y) * 0.5 - 40%)) scale(1.18);
+  }
+  100% {
+    transform: translate(var(--hop-x), var(--hop-y)) scale(1);
+  }
+}
+@keyframes target-land {
+  0%,
+  70% {
+    transform: scale(1);
+  }
+  85% {
+    transform: scale(2.6);
+    background: rgba($gold-300, 0.9);
+  }
+  100% {
+    transform: scale(2.2);
+    background: rgba($gold-300, 0.75);
+  }
+}
+
+// ── Practice: three islands along a trail ───────────────────────────────
+.home-practice {
+  position: relative;
+  margin-top: 88px; // room for the scene spilling out of the hero
+  h2 {
+    font: 850 #{$fs-3xl} $font-sans;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+  }
+}
+.home-doors {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 4px 70px 0;
+}
+// A dotted trail from island to island, behind them.
+.home-trail {
+  position: absolute;
+  inset: 96px 70px auto;
+  width: calc(100% - 140px);
+  height: 120px;
+  z-index: 0;
+  path {
+    fill: none;
+    stroke: $sand-300;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 2 14;
+    vector-effect: non-scaling-stroke;
+  }
+}
+.home-door {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px 14px;
+  border-radius: 24px;
+  color: var(--ink);
+  text-align: center;
+  transition: background 0.18s;
+  // The middle island sits lower, so the three read as stops on a path.
+  &:nth-of-type(2) {
+    margin-top: 56px;
+  }
+  img {
+    width: min(220px, 100%);
+    height: auto;
+    filter: drop-shadow(0 16px 14px rgba($moss-900, 0.16));
+    transition: transform 0.3s cubic-bezier(0.34, 1.5, 0.64, 1);
+  }
+  strong {
+    display: block;
+    font: 800 #{$fs-2xl}/ 1.2 $font-sans;
+    letter-spacing: -0.3px;
+  }
+  small {
+    display: block;
+    margin-top: 2px;
+    font-size: $fs-md;
+    color: $sage-600;
+  }
+  &:hover img {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  &:hover strong {
+    color: $moss-800;
+  }
+  &:active img {
+    transform: translateY(-2px) scale(0.98);
+  }
+  @include focus-ring;
+}
+.home-deco-butterflies {
+  top: 30px;
+  left: calc(33% - 30px);
+  width: 76px;
+  --float: 5s;
+  --rise: -14px;
+  --tilt: 5deg;
+}
+.home-deco-plane {
+  top: 10px;
+  right: calc(33% - 40px);
+  width: 82px;
+  --float: 6s;
+  --delay: -2s;
+  --tilt: -4deg;
+}
+// Big enough to read as islands of their own, not specks, beside the 220px ones.
+.home-deco-islet-left {
+  top: 160px;
+  left: -24px;
+  width: 128px;
+  --float: 8s;
+  --delay: -4s;
+}
+.home-deco-islet-right {
+  top: 110px;
+  right: -24px;
+  width: 136px;
+  --float: 9s;
+  --delay: -1s;
+}
+
+// ── Below: the streak by the campfire, and the journey so far ───────────
+.home-below {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 64px;
+  align-items: stretch;
+}
+.home-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 18px;
+  padding: 22px 24px 22px 18px;
+  border-radius: 26px;
+  background: $white;
+  box-shadow:
+    inset 0 0 0 1px $sage-100,
+    0 12px 28px -22px rgba($moss-900, 0.35);
+  > :not(.home-panel-art) {
+    grid-column: 2;
+  }
+}
+.home-panel-art {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  align-self: center;
+  width: 150px;
+  height: auto;
+  margin: -34px 0 -18px -26px; // the island pops out of the panel's corner
+  filter: drop-shadow(0 14px 12px rgba($moss-900, 0.16));
+}
+
+// This week: seven day cells, flames on streak days, today filling with XP.
+.home-today-head,
+.home-journey-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  strong {
+    font: 800 #{$fs-xl} $font-sans;
+    color: var(--ink);
+  }
+  span {
+    font-size: $fs-md;
+    color: $sage-600;
+  }
+}
+.home-today-head strong {
+  color: $orange-500;
+  &.cold {
+    color: $sage-600;
+  }
+}
+.home-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin: 14px 0 12px;
+  padding: 0;
+  list-style: none;
+  li {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+  }
+  small {
+    font: 700 #{$fs-xs} $font-sans;
+    color: $sage-500;
+  }
+  .today small {
+    color: var(--ink);
+  }
+}
+.home-week-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 46px;
+  border-radius: 12px;
+  background: $sage-100;
+  overflow: hidden;
+  .on & {
+    background: $wheat-200;
+    box-shadow: inset 0 -3px 0 rgba($gold-500, 0.35);
+  }
+  .today:not(.on) & {
+    box-shadow: inset 0 0 0 2px $sage-300;
+  }
+}
+.home-week-goal {
+  position: absolute;
+  inset: auto 0 0;
+  background: rgba($gold-300, 0.6);
+  transition: height 0.4s ease;
+}
+.home-today-bar {
+  align-self: end;
+  height: 10px;
+  border-radius: 6px;
+  background: $sage-100;
+  overflow: hidden;
+  i {
+    display: block;
+    height: 100%;
+    border-radius: 6px;
+    background: $gold-400;
+    transition: width 0.4s ease;
+  }
+}
+
+// The journey: one island per chapter. Cleared ones in full colour, yours
+// floating, the rest greyed out ahead.
+.home-chapters {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  margin: 10px 0 6px;
+  padding: 0;
+  list-style: none;
+  li {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  img {
+    width: 100%;
+    max-width: 72px;
+    height: auto;
+  }
+  .locked img {
+    filter: grayscale(1);
+    opacity: 0.4;
+  }
+  .done::after {
+    content: "✓";
+    position: absolute;
+    right: 2px;
+    bottom: 4px;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--green);
+    color: $white;
+    font: 900 #{$fs-2xs} $font-sans;
+  }
+  .current img {
+    transform: scale(1.18);
+    filter: drop-shadow(0 6px 6px rgba($moss-900, 0.25));
+    animation: home-float 2.4s ease-in-out infinite alternate;
+    --rise: -5px;
+  }
+  .current::before {
+    content: "";
+    position: absolute;
+    inset: auto 18% -4px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba($gold-400, 0.55);
+  }
+}
+.home-journey-link {
+  justify-self: end;
+  align-self: end;
+  font: 800 #{$fs-md} $font-sans;
+  color: $moss-800;
+  &::after {
+    content: " →";
+  }
+  &:hover {
+    color: var(--green);
+  }
+}
+
+// The black king, peeking over the top of the journey panel from behind it.
+.home-deco-king {
+  top: -58px;
+  right: 48px;
+  width: 92px;
+  --float: 4s;
+  --rise: -6px;
+  --tilt: 4deg;
+}
+
+// ── The meadow at the foot of the page ──────────────────────────────────
+.home-meadow {
+  position: relative;
+  height: 190px;
+  margin-top: 36px;
+  pointer-events: none;
+}
+.home-deco-nap {
+  bottom: 0;
+  left: 3%;
+  width: 180px;
+  animation: none;
+}
+.home-deco-leaves {
+  top: 0;
+  left: 30%;
+  width: 84px;
+  --float: 6s;
+  --rise: 12px;
+  --tilt: 8deg;
+}
+.home-deco-visitor {
+  bottom: 10px;
+  left: 52%;
+  width: 130px;
+  --float: 5s;
+  --delay: -2s;
+}
+.home-deco-picnic {
+  bottom: 12px;
+  right: 3%;
+  width: 190px;
+  --float: 10s;
+  --rise: -6px;
+}
+
+@include down(xl) {
+  .home-doors {
+    padding-inline: 20px;
+  }
+  .home-trail {
+    inset-inline: 20px;
+    width: calc(100% - 40px);
+  }
+  .home-deco-islet-left,
+  .home-deco-islet-right {
+    display: none;
+  }
+}
+@include down(lg) {
+  .home-deco-king {
+    display: none;
+  }
+  .home-below {
+    grid-template-columns: 1fr;
+  }
+}
+@include down(md) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    padding: 26px 22px 24px;
+    min-height: 0;
+    border-radius: 22px;
+  }
+  .home-hero-art {
+    min-height: 200px;
+    order: -1;
+  }
+  .home-hero-scene {
+    width: 46%;
+    bottom: -10px;
+    right: -4px;
+  }
+  .piece-stage {
+    width: 168px;
+    margin: 0;
+  }
+  .home-start-btn {
+    width: 100%;
+  }
+  .home-deco-cloud,
+  .home-deco-puff,
+  .home-trail,
+  .home-deco-butterflies,
+  .home-deco-plane,
+  .home-deco-leaves,
+  .home-deco-visitor {
+    display: none;
+  }
+  .home-deco-sun {
+    top: 4px;
+    left: 4px;
+    width: 52px;
+  }
+  .home-deco-balloon {
+    right: 0;
+    width: 68px;
+  }
+  .home-practice {
+    margin-top: 40px;
+  }
+  // On a phone the islands become rows: island, name, live line.
+  .home-doors {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 6px 0 0;
+  }
+  .home-door {
+    flex-direction: row;
+    gap: 14px;
+    padding: 6px 10px;
+    text-align: left;
+    &:nth-of-type(2) {
+      margin-top: 0;
+    }
+    img {
+      width: 84px;
+      flex: none;
+    }
+  }
+  .home-below {
+    margin-top: 32px;
+  }
+  .home-panel {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    > :not(.home-panel-art) {
+      grid-column: 1;
+    }
+  }
+  .home-panel-art {
+    position: absolute;
+    top: -40px;
+    right: 6px;
+    width: 92px;
+    margin: 0;
+  }
+  // Room for the island sitting in the panel's corner.
+  .home-today-head,
+  .home-journey-head {
+    flex-direction: column;
+    gap: 2px;
+    padding-right: 92px;
+  }
+  .home-meadow {
+    height: 120px;
+  }
+  .home-deco-nap {
+    width: 120px;
+  }
+  .home-deco-picnic {
+    width: 120px;
+  }
+}
+
+@include reduced-motion {
+  .piece-stage .reach::after,
+  .home-deco,
+  .home-chapters .current img {
+    animation: none;
+  }
+  .home-door img,
+  .home-week-goal,
+  .home-today-bar i {
+    transition: none;
+  }
+}

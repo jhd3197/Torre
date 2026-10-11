@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "title": "The Colle attack",
+  "summary": "After e4 the lines open toward Black's king. Use the long diagonal, and learn the bishop sacrifice on h7.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Colle System",
+  "order": 2,
+  "requires": ["colle-setup"],
+  "practice": "sacrifice",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "lines-open",
+      "kind": "explain",
+      "title": "What e4 opens",
+      "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPN2/PP1N1PPP/R1BQ1RK1 w - - 5 8",
+      "demo": ["e3e4", "d5e4", "d2e4", "f6e4", "d3e4"],
+      "marks": [["e4", "h7"], ["e4", "a8"], ["c1", "g5"]],
+      "text": "Once the e-pawn reaches e4 and pieces are traded there, your bishop sits on e4 with two long diagonals: one toward h7 next to Black's king, one toward c6 and the rook on a8. The bishop on c1 is free at last, and the knight on f3 can jump to g5. Black must watch all of this at once.",
+      "narration": "Here's what the e4 push does. Pawn to e4. [move] Black takes it. [move] Your knight takes back. [move] Black trades knights. [move] And your bishop lands on e4. [move] Now it looks two ways at once, at the king's corner and at the queenside, and your other bishop is finally free.",
+      "pose": "present"
+    },
+    {
+      "id": "long-diagonal",
+      "kind": "play",
+      "title": "Use the long diagonal",
+      "fen": "r1bq1rk1/p4ppp/1pnbp3/2p5/3PB3/2P2N2/PP3PPP/R1BQ1RK1 w - - 0 11",
+      "prompt": "Black's last move left a piece without protection. Win material.",
+      "hint": "Look along the diagonal from your bishop toward the corner.",
+      "line": ["e4c6"],
+      "success": "Black's b-pawn used to protect the knight on c6. Now the bishop takes it, and the rook on a8 is attacked next. That's a whole piece for nothing.",
+      "narration": "Black pushed the b-pawn, and that pawn was guarding the knight on c6. Your bishop is staring right at it.",
+      "pose": "detective"
+    },
+    {
+      "id": "greek-gift-setup",
+      "kind": "explain",
+      "title": "The Greek gift",
+      "fen": "r1b2rk1/ppqn1ppp/2n1p3/2ppP3/3P4/2PB1N2/PP1N1PPP/R2Q1RK1 w - - 0 12",
+      "marks": [["d3", "h7"], ["f3", "g5"], ["d1", "h5"], ["e5"]],
+      "text": "Sometimes the pawn reaches e5 and kicks Black's knight off f6. Then h7 is guarded only by the king. Check the ingredients: a bishop that can take on h7 with check, a knight that can follow with a check on g5, a queen that can reach h5, and no black piece that covers g5. When all four are there, the bishop sacrifice on h7 is on.",
+      "narration": "Now the famous one. Your pawn on e5 has pushed Black's knight away, so only the king guards h7. Bishop, knight and queen are all ready. This is the Greek gift.",
+      "pose": "idea"
+    },
+    {
+      "id": "greek-gift",
+      "kind": "play",
+      "title": "Give the gift",
+      "fen": "r1b2rk1/ppqn1ppp/2n1p3/2ppP3/3P4/2PB1N2/PP1N1PPP/R2Q1RK1 w - - 0 12",
+      "prompt": "Sacrifice on h7 and keep checking the king.",
+      "hint": "Bishop takes h7 with check, knight to g5 with check, then the queen checks along a diagonal toward g6.",
+      "line": ["d3h7", "g8h7", "f3g5", "h7g6", "d1c2|d1b1"],
+      "success": "The queen checks from the diagonal, and Black's king is stuck in front of its pawns with your queen and knight next to it. If the king had gone back to g8 instead, queen to h5 threatens mate on h7, and Black can only delay it.",
+      "narration": "Here we go. Take on h7 with check, follow with the knight check from g5, and when the king steps up to g6, check it again with the queen.",
+      "pose": "excited"
+    },
+    {
+      "id": "the-retreat",
+      "kind": "explain",
+      "title": "If the king runs back",
+      "fen": "r1b2r2/ppqn1ppk/2n1p3/2ppP1N1/3P4/2P5/PP1N1PPP/R2Q1RK1 b - - 1 13",
+      "demo": ["h7g8", "d1h5"],
+      "marks": [["h7"], ["g5", "h7"], ["h5", "h7"]],
+      "text": "Going back to g8 looks safe but is worse. Queen to h5 threatens queen to h7 mate, supported by the knight on g5. Black can give the king a square by moving the rook, but the queen keeps checking and the attack ends in mate.",
+      "narration": "What if the king runs back to g8? [move] Queen to h5! [move] Now mate on h7 is coming, and Black can only stall.",
+      "pose": "point"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Which of these would usually stop the Greek gift from working?",
+      "options": [
+        { "text": "A black knight on f6", "correct": true, "why": "Right. The knight on f6 guards h7 and h5, so the queen cannot come in. That is why kicking it with e5 matters so much." },
+        { "text": "Black's queen on c7", "why": "On c7 the queen is far from the king. It covers neither g5 nor h5." },
+        { "text": "White's rook on f1", "why": "The rook does not get in the way; it can even join later through f3 or f4." }
+      ],
+      "narration": "One last question. What usually stops the Greek gift? Remember it, and you'll know when to strike. Fantastic work!",
+      "pose": "trophy"
+    }
+  ]
+}

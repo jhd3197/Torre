@@ -1,0 +1,61 @@
+{
+ "title": "El caballo",
+ "summary": "El caballo salta en forma de L y es la única pieza que puede saltar por encima de otras. Aprende su movimiento y por qué detesta las esquinas.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "the-l-jump",
+   "title": "El salto en forma de L",
+   "text": "El caballo se mueve en L: dos casillas en una dirección, luego una casilla hacia el lado. Desde d4 puede aterrizar en cualquiera de las ocho casillas circundadas. Observa que siempre aterriza en una casilla de color opuesto a la casilla donde comenzó.",
+   "narration": "El caballo es el diferente. Se mueve en forma de L: dos casillas en una dirección, luego una casilla hacia el lado. Desde el medio del tablero tiene ocho lugares a los que puede llegar."
+  },
+  {
+   "id": "jumping-over",
+   "title": "Saltando sobre piezas",
+   "text": "El caballo es la única pieza que puede saltar. Las piezas de por medio no lo bloquean; solo importa la casilla de destino. Es por eso que un caballo puede moverse en el primer turno, saltando directamente sobre sus propios peones.",
+   "narration": "Aquí está el superpoder del caballo: puede saltar. Al comienzo del juego, salta directamente sobre los peones. [move] Nada de por medio puede bloquearlo."
+  },
+  {
+   "id": "knight-in-the-corner",
+   "title": "A los caballos les disgustan las esquinas",
+   "text": "Un caballo en la esquina solo puede alcanzar dos casillas, en comparación con ocho en el centro. Los jugadores dicen que un caballo en el borde es poco brillante. Mantén tus caballos cerca del medio del tablero, donde controlan la mayor cantidad de casillas.",
+   "narration": "Pobre caballo. Atrapado en la esquina, solo puede alcanzar dos casillas. Recuerda esto: un caballo en el borde es poco brillante. Acerca tus caballos hacia el centro."
+  },
+  {
+   "id": "hop-and-capture",
+   "title": "Atrapa al intruso",
+   "prompt": "La torre negra ha invadido tu segunda fila. ¡Captúrala con el caballo!",
+   "hint": "Cuenta dos casillas en una dirección y una casilla a un lado desde b1.",
+   "success": "Caballo a d2 captura la torre. La torre negra estaba atacando tus peones, y ahora se ha ido.",
+   "narration": "Una torre negra ha chocado en tu campamento en d2. Tu caballo en b1 está cerca. ¿Ves el salto en forma de L que lo captura?"
+  },
+  {
+   "id": "safe-knight-capture",
+   "title": "¿Qué captura es gratuita?",
+   "prompt": "Tu caballo puede capturar al alfil en c5 o al peón en f6. Toma la gratuita.",
+   "hint": "¿Cuál de los dos está protegido por un peón?",
+   "success": "El alfil no tenía defensor, así que ganaste una pieza. En f6 tu caballo habría sido capturado por el peón de g7.",
+   "narration": "Tu caballo puede capturar dos cosas. El peón en f6 da jaque, pero mira quién lo protege. El alfil en c5, por otro lado, está solo."
+  },
+  {
+   "id": "knight-quiz",
+   "title": "Revisión rápida",
+   "question": "¿Cuál de estas afirmaciones es verdadera sobre el caballo?",
+   "options": [
+    {
+     "text": "Puede saltar sobre otras piezas.",
+     "why": "El caballo es la única pieza que salta. Solo su casilla de destino tiene que estar libre de tus propias piezas."
+    },
+    {
+     "text": "Es más fuerte en la esquina.",
+     "why": "En la esquina, solo alcanza dos casillas. En el centro, alcanza ocho."
+    },
+    {
+     "text": "Se mueve en línea recta.",
+     "why": "Eso es la torre. El caballo se mueve en L: dos casillas, luego una hacia el lado."
+    }
+   ],
+   "narration": "Pregunta final sobre el caballo. ¿Cuál de estas afirmaciones es verdadera?"
+  }
+ ]
+}

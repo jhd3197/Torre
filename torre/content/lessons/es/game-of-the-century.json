@@ -1,0 +1,101 @@
+{
+ "title": "El Juego del Siglo",
+ "summary": "Nueva York, 1956: un niño de trece años, Bobby Fischer, sacrifica su dama y gana con una serie de jaques a la descubierta.",
+ "unit": "Bobby Fischer",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Nueva York, 1956",
+   "text": "Bobby Fischer tenía trece años cuando se sentó frente a Donald Byrne, uno de los jugadores más fuertes de los Estados Unidos, en un torneo en Nueva York. Fischer jugaba con piezas negras. Lo que hizo en esta partida fue tan superior a su edad que los escritores de ajedrez pronto la llamaron el Juego del Siglo. Juegas del lado de Fischer.",
+   "narration": "Nueva York, 1956. Bobby Fischer tiene trece años. Juega con piezas negras contra Donald Byrne, y está a punto de jugar el Juego del Siglo. Tú eres Fischer."
+  },
+  {
+   "id": "the-game",
+   "title": "D. Byrne – Fischer, Nueva York 1956",
+   "text": "Byrne saca su dama temprano y ocupa espacio. Fischer responde con un rápido desarrollo y una serie de saltos de caballo, luego hace una de las ofertas de dama más famosas de todos los tiempos.",
+   "notes": [
+    {
+     "text": "6.Qb3: La dama de Byrne sale temprano para presionar el centro."
+    },
+    {
+     "text": "12...Nxc3 13.bxc3: el cambio de caballos debilita la defensa del peón e4 de blancas."
+    },
+    {
+     "text": "14.Bxe7: Byrne captura un peón y ataca la torre en f8. Fischer lo ignora."
+    },
+    {
+     "text": "14...Qb6!: en lugar de salvar la torre, Fischer apunta su dama al peón f2 y al rey blanco."
+    },
+    {
+     "text": "16...Rfe8+: jaque en la columna abierta e. El rey de Byrne debe moverse a f1 y ya no puede enrocar."
+    },
+    {
+     "text": "18.Bxb6: Byrne toma la dama. Ahora mira las piezas negras."
+    },
+    {
+     "text": "23...axb6: el molino ha terminado. Fischer ha recolectado peones y al alfil, y también tomará la torre en d1."
+    },
+    {
+     "text": "25...Nxd1: dos torres, dos alfiles y un caballo contra dama, torre y caballo. Lo demás es una cacería."
+    },
+    {
+     "text": "36...Ng3+: las piezas negras persiguen al rey por todo el tablero."
+    }
+   ],
+   "narration": "La dama de Byrne sale temprano. Los caballos de Fischer empiezan a saltar. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "El caballo de Fischer en b6 tiene un salto audaz. ¿Dónde?",
+     "hint": "Ataca al caballo en c3, la pieza que protege al peón en e4.",
+     "why": "1. “11...Na4! ataca al caballo en c3. Si desaparece, el peón en e4 pierde su defensor y se abre la diagonal larga del alfil en g7.”"
+    },
+    {
+     "prompt": "El peón e4 ha perdido su defensor. ¡Tómalo!",
+     "hint": "Tu caballo en f6 puede capturar en el centro.",
+     "why": "13...Nxe4 toma el peón central y abre la diagonal del alfil en g7 hacia c3. El rey de Byrne todavía está en el centro."
+    },
+    {
+     "prompt": "Tu dama en b6 está atacada por el alfil en c5. Fischer la deja ahí. ¿Qué jugada hace?",
+     "hint": "Mueve el alfil en g4 para luchar contra el alfil en c4.",
+     "why": "17...Be6!! ofrece la dama. Si Bxb6, entonces ...Bxc4+ y una serie de jaques recupera mucho más. Si Byrne no toma, las negras ganan material de todos modos."
+    },
+    {
+     "prompt": "Byrne tomó la dama. Comienza el molino con un jaque.",
+     "hint": "El caballo en c3 puede dar jaque desde e2. Después de eso, cada vez que se aleja de e2, el alfil en c4 da jaque.",
+     "why": "19...Ne2+ 20.Kf1 Nxd4+: el caballo salta con un jaque a la descubierta del alfil y se lleva un peón. Repite el truco para recoger el alfil en b6 y la torre en d1."
+    },
+    {
+     "prompt": "La cacería ha terminado. Mate en uno.",
+     "hint": "La torre en a2 puede aterrizar justo al lado del rey, protegida por un alfil.",
+     "why": "41...Rc2#: la torre está guardada por el alfil en b3, y el caballo y el otro alfil cubren cada casilla de escape."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "La oferta de la dama.",
+   "question": "¿Por qué Fischer permitió que Byrne tomara su dama con 18.Bxb6?",
+   "options": [
+    {
+     "text": "Los jaques a la descubierta permiten que su caballo recoja material con cada jugada.",
+     "why": "Sí. El alfil en c4 y el caballo se turnaron para dar jaque, y el blanco solo podía mover el rey."
+    },
+    {
+     "text": "La dama ya estaba perdida de todos modos.",
+     "why": "Podría haberla movido. Fischer eligió dejarla porque el molino era más fuerte."
+    },
+    {
+     "text": "A Byrne no se le permitió tomar una dama con un alfil.",
+     "why": "Por supuesto que sí. La tomó y perdió."
+    }
+   ],
+   "narration": "¿Por qué la oferta de dama era buena?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Los jaques ganan tiempo.",
+   "text": "Después de la oferta de dama, Byrne nunca tuvo un movimiento libre: cada jugada de Fischer era un jaque, y cada jaque se llevaba algo. Un jaque a la descubierta es el tipo de movimiento más fuerte, porque la pieza que se aparta puede hacer lo que le plazca mientras el oponente se ocupa del jaque.",
+   "narration": "Cuando cada movimiento es un jaque, tu oponente nunca tiene su propio turno. Eso es lo que hace el molino."
+  }
+ ]
+}

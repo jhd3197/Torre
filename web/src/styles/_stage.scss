@@ -1,0 +1,769 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// /stage, the YouTube set. Everything is sized in --u (1% of the frame's short
+// side), so the same layout renders identically at 720x1280 or 1080x1920.
+// Portrait (Shorts) stacks header / board / caption; landscape puts the
+// board left and the panel right.
+
+.stage {
+  --u: min(1vw, 0.5625vh);
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: calc(var(--u) * 3);
+  padding: calc(var(--u) * 6) calc(var(--u) * 4) calc(var(--u) * 5);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba($lime, 0.55), transparent 60%),
+    $paper;
+  color: $ink;
+  font-family: $font-sans;
+}
+
+// ── header ─────────────────────────────────────────────────────────────────
+.stage-head {
+  display: grid;
+  gap: calc(var(--u) * 3);
+  justify-items: center;
+  text-align: center;
+}
+.stage-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.6);
+  padding: calc(var(--u) * 1.2) calc(var(--u) * 3) calc(var(--u) * 1.2) calc(var(--u) * 1.4);
+  border-radius: 999px;
+  background: $forest;
+  color: $rail-ink;
+  font: 800 calc(var(--u) * 3.4) / 1 $font-sans;
+  letter-spacing: -0.01em;
+
+  img {
+    width: calc(var(--u) * 5);
+    height: calc(var(--u) * 5);
+    object-fit: contain;
+  }
+}
+.stage-kicker {
+  color: $brand-green;
+  font: 900 calc(var(--u) * 3) / 1 $font-sans;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.stage-title h1 {
+  margin: calc(var(--u) * 1.6) 0 0;
+  font: 900 calc(var(--u) * 7.4) / 1.05 $font-sans;
+  letter-spacing: -0.02em;
+}
+
+// ── board area ─────────────────────────────────────────────────────────────
+.stage-play {
+  display: grid;
+  align-content: center;
+  gap: calc(var(--u) * 1.8);
+  min-height: 0;
+}
+.stage-board-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--u) * 1.6);
+  align-items: stretch;
+}
+.stage-player {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+  font: 800 calc(var(--u) * 4) / 1.1 $font-sans;
+
+  img {
+    width: calc(var(--u) * 9);
+    height: calc(var(--u) * 9);
+    border-radius: 50%;
+    object-fit: cover;
+    background: $sand-100;
+    border: calc(var(--u) * 0.5) solid $paper;
+    box-shadow: 0 0 0 calc(var(--u) * 0.4) $brand-gold;
+  }
+}
+.stage-player-detail {
+  color: $muted;
+  font: 700 calc(var(--u) * 3) / 1 $font-mono;
+}
+
+.stage-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: calc(var(--u) * 1.6);
+  // No overflow clipping: move badges on the edge files and ranks sit
+  // half outside the board. The corner squares carry the rounding instead.
+  box-shadow:
+    0 0 0 calc(var(--u) * 0.8) $forest,
+    0 calc(var(--u) * 3) calc(var(--u) * 7) rgba($forest, 0.28);
+}
+.stage-sq {
+  background: $board-forest-light;
+
+  &:nth-child(1) { border-top-left-radius: calc(var(--u) * 1.6); }
+  &:nth-child(8) { border-top-right-radius: calc(var(--u) * 1.6); }
+  &:nth-child(57) { border-bottom-left-radius: calc(var(--u) * 1.6); }
+  &:nth-child(64) { border-bottom-right-radius: calc(var(--u) * 1.6); }
+
+  &.dark {
+    background: $board-forest-dark;
+  }
+  &.last {
+    box-shadow: inset 0 0 0 999px rgba($gold-300, 0.5);
+  }
+}
+.stage-piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12.5%;
+  height: 12.5%;
+  padding: 0.6%;
+  object-fit: contain;
+  transition: transform 0.42s cubic-bezier(0.3, 0.7, 0.25, 1);
+  filter: drop-shadow(0 calc(var(--u) * 0.5) calc(var(--u) * 0.5) rgba($charcoal, 0.25));
+}
+.stage-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  .shaft {
+    fill: none;
+    stroke-width: 0.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.88;
+  }
+  .shaft.tone-gold { stroke: $gold-400; }
+  .shaft.tone-green { stroke: $green-600; }
+  .shaft.tone-red { stroke: $red-500; }
+  marker path.tone-gold { fill: $gold-400; }
+  marker path.tone-green { fill: $green-600; }
+  marker path.tone-red { fill: $red-500; }
+}
+.stage-mark {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+  border-radius: 50%;
+  border: calc(var(--u) * 0.5) solid $white;
+  transform: translate(-60%, -40%);
+  color: $white;
+  font: 900 calc(var(--u) * 3.4) / 1 $font-sans;
+  letter-spacing: -0.04em;
+  box-shadow: 0 calc(var(--u) * 0.6) calc(var(--u) * 1.6) rgba($charcoal, 0.35);
+  z-index: 1;
+  animation: stage-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+
+  &.brilliant { background: $mist-600; }
+  &.speculative { background: $gold-400; }
+  &.blunder { background: $red-600; }
+}
+// eval bar: White's share grows from the bottom (from the top when flipped)
+.stage-eval {
+  position: relative;
+  width: calc(var(--u) * 5.4);
+  border-radius: calc(var(--u) * 1);
+  overflow: hidden;
+  background: $charcoal;
+  box-shadow: 0 0 0 calc(var(--u) * 0.5) $forest;
+  transition: opacity 0.4s;
+
+  &.off { opacity: 0; }
+  &.flipped { transform: rotate(180deg); }
+
+  // The number reads level, like every other label on the stage: at White's end of the bar
+  // when White is better, at Black's end when Black is.
+  span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font: 700 calc(var(--u) * 1.75) / 1 $font-mono;
+    letter-spacing: -0.04em;
+    padding: calc(var(--u) * 0.9) 0;
+  }
+  span.white { bottom: 0; color: $charcoal; }
+  span.black { top: 0; color: $rail-ink; }
+  &.flipped span { transform: rotate(180deg); }
+}
+.stage-eval-white {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $neutral-50;
+  transition: height 0.8s cubic-bezier(0.3, 0.7, 0.25, 1);
+}
+
+// ── caption + mascot ───────────────────────────────────────────────────────
+.stage-foot {
+  position: relative;
+  min-height: calc(var(--u) * 30);
+}
+.stage-caption {
+  margin-right: calc(var(--u) * 24);
+  padding: calc(var(--u) * 3) calc(var(--u) * 3.6);
+  border-radius: calc(var(--u) * 3);
+  background: $white;
+  border: calc(var(--u) * 0.4) solid $line;
+  box-shadow: 0 calc(var(--u) * 1.4) calc(var(--u) * 4) rgba($forest, 0.12);
+  opacity: 0;
+  transform: translateY(calc(var(--u) * 2));
+  transition: opacity 0.3s, transform 0.3s;
+
+  &.on { opacity: 1; transform: none; }
+
+  strong {
+    display: block;
+    margin-bottom: calc(var(--u) * 1);
+    color: $brand-green;
+    font: 900 calc(var(--u) * 4.8) / 1.1 $font-sans;
+  }
+  p {
+    margin: 0;
+    font: 700 calc(var(--u) * 3.7) / 1.35 $font-sans;
+  }
+}
+// Countdown: lives in the caption card so the board stays fully visible.
+.stage-caption {
+  position: relative;
+  overflow: hidden;
+
+  &.timing { padding-right: calc(var(--u) * 20); }
+}
+.stage-timer {
+  position: absolute;
+  right: calc(var(--u) * 3);
+  top: 50%;
+  margin-top: calc(var(--u) * -7.5);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 15);
+  height: calc(var(--u) * 15);
+  border-radius: 50%;
+  background: $forest;
+  color: $lime;
+  border: calc(var(--u) * 0.8) solid $brand-gold;
+  font: 900 calc(var(--u) * 8.5) / 1 $font-sans;
+}
+.stage-timer-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: calc(var(--u) * 1.2);
+  width: 100%;
+  background: $brand-gold;
+  transform-origin: left center;
+  animation: stage-drain linear both;
+}
+@keyframes stage-drain {
+  to { transform: scaleX(0); }
+}
+
+.stage-mascot {
+  position: absolute;
+  right: calc(var(--u) * -2);
+  bottom: calc(var(--u) * -3);
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 30);
+  object-fit: contain;
+  animation: stage-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+// ── title and end cards ────────────────────────────────────────────────────
+.stage-card {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 3);
+  padding: calc(var(--u) * 8);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba($brand-green, 0.9), transparent 70%),
+    $forest;
+  color: $rail-ink;
+  animation: stage-fade 0.4s ease both;
+
+  .stage-kicker { color: $brand-gold; }
+  h1 {
+    margin: 0;
+    font: 900 calc(var(--u) * 9) / 1.05 $font-sans;
+    letter-spacing: -0.02em;
+  }
+  p {
+    margin: 0;
+    max-width: 90%;
+    color: $rail-muted;
+    font: 700 calc(var(--u) * 4.2) / 1.4 $font-sans;
+  }
+}
+.stage-card-logo {
+  width: calc(var(--u) * 26);
+  height: calc(var(--u) * 26);
+  object-fit: contain;
+}
+.stage-card-mascot {
+  width: calc(var(--u) * 46);
+  height: calc(var(--u) * 46);
+  object-fit: contain;
+}
+.stage-cta {
+  margin-top: calc(var(--u) * 2);
+  padding: calc(var(--u) * 2.4) calc(var(--u) * 5);
+  border-radius: 999px;
+  background: $brand-gold;
+  color: $charcoal;
+  font: 800 calc(var(--u) * 4.4) / 1 $font-mono;
+}
+
+// ── history beats ──────────────────────────────────────────────────────────
+// Full-frame story panels built from the app's clay illustrations. Portrait
+// stacks art over text; landscape (below) puts them side by side.
+//
+// A beat builds itself while the narrator talks: the art drops in as the lens
+// focuses, the figure hops on, the date is stamped, the title arrives word by
+// word. Each piece's start is its --d (StagePage BEAT / DUEL, which also time
+// the sound effects). The camera then pushes in for the rest of the beat, the
+// figure a little faster than the room (parallax). A beat that follows one
+// with the same layout crosses over: the old art fades out under the new.
+$spring: cubic-bezier(0.3, 1.6, 0.5, 1);
+$settle: cubic-bezier(0.3, 0.7, 0.25, 1);
+
+.stage-story {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: minmax(0, 1.25fr) auto;
+  align-items: center;
+  gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 10) calc(var(--u) * 7) calc(var(--u) * 12);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba($lime, 0.9), transparent 62%),
+    radial-gradient(ellipse at 50% 100%, rgba($brand-green, 0.16), transparent 55%),
+    $paper;
+}
+// The venue's colour, washed in behind everything; a new tint fades over the last.
+.stage-story-tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, color-mix(in srgb, var(--tint) 30%, transparent), transparent 70%);
+  animation: stage-fade 1.2s ease both;
+}
+.stage-story-art {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+
+  img { object-fit: contain; }
+  .art {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    max-height: calc(var(--u) * 92);
+    filter: drop-shadow(0 calc(var(--u) * 3) calc(var(--u) * 5) rgba($forest, 0.25));
+    animation:
+      story-drop 1.1s $settle both,
+      story-push 14s linear both;
+
+    &.leaving { animation: story-leave 0.8s ease both; }
+  }
+  .badge {
+    width: calc(var(--u) * 30);
+    height: calc(var(--u) * 30);
+    border-radius: 50%;
+    object-fit: cover;
+    background: $sand-100;
+    border: calc(var(--u) * 1) solid $paper;
+    box-shadow:
+      0 0 0 calc(var(--u) * 0.8) $brand-gold,
+      0 calc(var(--u) * 2) calc(var(--u) * 5) rgba($forest, 0.3);
+  }
+}
+.stage-story-art .figure {
+  height: calc(var(--u) * 46);
+  width: auto;
+  filter: drop-shadow(0 calc(var(--u) * 2) calc(var(--u) * 3) rgba($forest, 0.3));
+}
+.stage-story.hero .stage-story-art .figure,
+.stage-story.hero .stage-story-art .badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  animation:
+    story-hop 0.75s var(--d, 0s) $spring both,
+    story-push-near 14s var(--d, 0s) linear both;
+
+  &.leaving { animation: story-squash 0.3s ease-in both; }
+}
+.stage-story.hero .stage-story-art .badge {
+  right: 4%;
+  bottom: 2%;
+}
+
+// duel: the two players on pedestals under spotlights, swords and VS between them
+.stage-story.duel .stage-story-art {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: calc(var(--u) * 2);
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    filter: blur(calc(var(--u) * 0.4));
+    animation: story-push 14s linear both;
+  }
+  figure {
+    position: relative;
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    animation: story-enter-l 0.8s var(--d) $settle both;
+
+    &.right { grid-column: 3; animation-name: story-enter-r; }
+  }
+  .spot {
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--u) * 6);
+    width: calc(var(--u) * 40);
+    height: 120%;
+    translate: -50% 0;
+    background: conic-gradient(from 160deg at 50% 0%, transparent, rgba($lime, 0.85) 20deg, transparent 40deg);
+    filter: blur(calc(var(--u) * 1.2));
+    mix-blend-mode: screen;
+    animation: stage-fade 1s var(--d) ease both;
+  }
+  .figure {
+    position: relative;
+    z-index: 1;
+    height: calc(var(--u) * 50);
+    margin-bottom: calc(var(--u) * -6);
+    transform-origin: 50% 100%;
+    animation: story-hop 0.75s calc(var(--d) + 0.25s) $spring both;
+  }
+  .pedestal {
+    width: calc(var(--u) * 34);
+    height: calc(var(--u) * 26);
+  }
+  figcaption {
+    display: grid;
+    justify-items: center;
+    margin-top: calc(var(--u) * 1);
+    font: 900 calc(var(--u) * 4.4) / 1.1 $font-sans;
+    text-align: center;
+    animation: stage-rise 0.6s var(--d) $settle both;
+
+    small {
+      margin-top: calc(var(--u) * 0.8);
+      color: $muted;
+      font: 700 calc(var(--u) * 2.8) / 1.2 $font-sans;
+    }
+  }
+  .versus {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    display: grid;
+    place-items: center;
+  }
+  .swords {
+    grid-area: 1 / 1;
+    width: calc(var(--u) * 30);
+    height: calc(var(--u) * 30);
+    animation: story-clash 0.5s var(--d) $spring both;
+  }
+  .vs {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    width: calc(var(--u) * 15);
+    height: calc(var(--u) * 15);
+    border-radius: 50%;
+    background: $forest;
+    border: calc(var(--u) * 0.8) solid $brand-gold;
+    color: $brand-gold;
+    font: 900 calc(var(--u) * 5.6) / 1 $font-sans;
+    animation: story-slam 0.45s var(--d) cubic-bezier(0.5, 0, 0.75, 0) both;
+  }
+}
+
+// hall: a portrait on the pedestal, banners either side
+.stage-story.hall .stage-story-art {
+  .podium {
+    display: grid;
+    justify-items: center;
+    align-self: end;
+    animation: story-push-near 14s linear both;
+  }
+  .pedestal {
+    width: calc(var(--u) * 44);
+    height: calc(var(--u) * 44);
+    margin-top: calc(var(--u) * -13);
+  }
+  .figure,
+  .badge {
+    position: relative;
+    z-index: 1;
+    animation: story-hop 0.75s var(--d) $spring both;
+  }
+  .figure { margin-bottom: calc(var(--u) * -2); }
+  .banner {
+    position: absolute;
+    top: 0;
+    width: calc(var(--u) * 26);
+    height: calc(var(--u) * 26);
+    animation: stage-fade 0.8s 0.3s ease both;
+
+    &.left { left: 0; }
+    &.right { right: 0; }
+  }
+}
+
+.stage-story-text {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--u) * 2);
+  text-align: center;
+
+  .chip {
+    padding: calc(var(--u) * 1) calc(var(--u) * 2.6);
+    border-radius: 999px;
+    background: $forest;
+    color: $lime;
+    font: 700 calc(var(--u) * 2.8) / 1 $font-mono;
+    animation: story-ink 0.5s var(--d) ease-out both;
+  }
+  .stage-kicker { animation: stage-rise 0.5s var(--d) $settle both; }
+  h1 {
+    margin: 0;
+    font: 900 calc(var(--u) * 8.4) / 1.05 $font-sans;
+    letter-spacing: -0.02em;
+  }
+  .word {
+    display: inline-block;
+    color: inherit; // not the app's green `h1 > span`
+    white-space: pre;
+    animation: story-word 0.55s var(--d) $spring both;
+  }
+  p {
+    margin: 0;
+    max-width: 92%;
+    color: $sage-600;
+    font: 700 calc(var(--u) * 3.9) / 1.4 $font-sans;
+    animation: stage-rise 0.6s var(--d) $settle both;
+  }
+}
+
+// The art arrives from just above, out of focus, and the lens pulls focus as it lands.
+@keyframes story-drop {
+  from { opacity: 0; transform: translateY(calc(var(--u) * -5)); filter: blur(calc(var(--u) * 1.6)); }
+  60% { opacity: 1; filter: blur(calc(var(--u) * 0.3)); }
+}
+@keyframes story-leave {
+  to { opacity: 0; filter: blur(calc(var(--u) * 1)); scale: 1.08; }
+}
+// The camera: the room pushes in slowly, the figure in front of it a little faster.
+@keyframes story-push {
+  from { scale: 1; }
+  to { scale: 1.07; }
+}
+@keyframes story-push-near {
+  from { scale: 1; translate: 0 0; }
+  to { scale: 1.12; translate: calc(var(--u) * -2) 0; }
+}
+@keyframes story-hop {
+  0% { opacity: 0; transform: translateY(calc(var(--u) * -14)) scale(0.9, 1.1); }
+  55% { opacity: 1; transform: translateY(0) scale(1.12, 0.86); }
+  80% { transform: translateY(calc(var(--u) * -1.5)) scale(0.97, 1.04); }
+  100% { transform: none; }
+}
+@keyframes story-squash {
+  to { opacity: 0; transform: scale(1.2, 0.2); }
+}
+// The date chip is written on like ink, then stamped down.
+@keyframes story-ink {
+  0% { clip-path: inset(0 100% 0 0 round 999px); transform: scale(1.15); }
+  70% { clip-path: inset(0 0 0 0 round 999px); transform: scale(1.15); }
+  100% { clip-path: inset(0 0 0 0 round 999px); transform: scale(1); }
+}
+@keyframes story-word {
+  from { opacity: 0; transform: translateY(0.6em) scale(0.9); }
+}
+@keyframes story-enter-l {
+  from { opacity: 0; transform: translateX(calc(var(--u) * -30)); }
+}
+@keyframes story-enter-r {
+  from { opacity: 0; transform: translateX(calc(var(--u) * 30)); }
+}
+@keyframes story-clash {
+  from { opacity: 0; transform: scale(0.3) rotate(-25deg); }
+}
+@keyframes story-slam {
+  from { opacity: 0; transform: scale(3.2); }
+}
+@keyframes stage-rise {
+  from { opacity: 0; transform: translateY(calc(var(--u) * 3)); }
+}
+
+// ── move list (landscape only) ─────────────────────────────────────────────
+.stage-moves {
+  display: none;
+  margin: 0;
+  padding: calc(var(--u) * 2) calc(var(--u) * 3);
+  list-style: none;
+  border-radius: calc(var(--u) * 2.4);
+  background: $white;
+  border: calc(var(--u) * 0.3) solid $line;
+  overflow: hidden;
+  font: 500 calc(var(--u) * 2.8) / 1 $font-mono;
+
+  li {
+    display: grid;
+    grid-template-columns: calc(var(--u) * 8) 1fr 1fr;
+    align-items: center;
+    padding: calc(var(--u) * 0.45) 0;
+    border-bottom: calc(var(--u) * 0.15) solid $line;
+
+    &:last-child { border-bottom: 0; }
+  }
+  .num { color: $muted; }
+  .san {
+    justify-self: start;
+    padding: calc(var(--u) * 0.6) calc(var(--u) * 1.4);
+    border-radius: calc(var(--u) * 1);
+  }
+  .san.now {
+    background: $forest;
+    color: $lime;
+    font-weight: 500;
+  }
+}
+.stage-mark.mistake { background: $red-400; }
+
+// ── landscape (long-form): board left, panel right ─────────────────────────
+@media (min-aspect-ratio: 1/1) {
+  .stage {
+    --u: min(0.5625vw, 1vh);
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    column-gap: calc(var(--u) * 7);
+    row-gap: calc(var(--u) * 3);
+    padding: calc(var(--u) * 5) calc(var(--u) * 7);
+  }
+  .stage-head {
+    grid-column: 2;
+    grid-row: 1;
+    justify-items: start;
+    text-align: left;
+  }
+  .stage-title h1 { font-size: calc(var(--u) * 6.4); }
+  .stage-play {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: calc(var(--u) * 78);
+  }
+  .stage-moves {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    max-height: 100%;
+    // Bottom-anchored: when rows don't fit, the oldest ones scroll off the
+    // top and the current move always stays in view.
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    mask-image: linear-gradient(to bottom, transparent, $black calc(var(--u) * 7));
+
+    &.empty { visibility: hidden; }
+  }
+  .stage-foot {
+    grid-column: 2;
+    grid-row: 3;
+    min-height: calc(var(--u) * 24);
+  }
+  .stage-caption { margin-right: calc(var(--u) * 22); }
+  .stage-caption strong { font-size: calc(var(--u) * 4); }
+  .stage-caption p { font-size: calc(var(--u) * 3.2); }
+  .stage-mascot {
+    width: calc(var(--u) * 24);
+    height: calc(var(--u) * 24);
+  }
+  .stage-story {
+    grid-template-rows: none;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: calc(var(--u) * 8);
+    padding: calc(var(--u) * 8) calc(var(--u) * 12);
+  }
+  .stage-story-text {
+    justify-items: start;
+    text-align: left;
+
+    p { max-width: 100%; }
+  }
+  .stage-story-text h1 { font-size: calc(var(--u) * 10); }
+  .stage-story-text p { font-size: calc(var(--u) * 4.4); }
+  // The face-off takes the whole width, its title centred underneath.
+  .stage-story.duel {
+    grid-template-columns: none;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: calc(var(--u) * 2);
+    padding: calc(var(--u) * 5) calc(var(--u) * 16) calc(var(--u) * 6);
+  }
+  .stage-story.duel .stage-story-text {
+    justify-items: center;
+    text-align: center;
+
+    h1 { font-size: calc(var(--u) * 8); }
+    p { font-size: calc(var(--u) * 3.8); }
+  }
+  .stage-story.duel .stage-story-art .figure { height: calc(var(--u) * 46); }
+  .stage-story.duel .stage-story-art .pedestal {
+    width: calc(var(--u) * 28);
+    height: calc(var(--u) * 21);
+  }
+  .stage-story.duel .stage-story-art figcaption { font-size: calc(var(--u) * 4); }
+}
+
+@keyframes stage-pop {
+  from { opacity: 0; transform: translate(-60%, -40%) scale(0.4); }
+}
+.stage-timer,
+.stage-mascot {
+  animation-name: stage-pop-plain;
+}
+@keyframes stage-pop-plain {
+  from { opacity: 0; transform: scale(0.4); }
+}
+@keyframes stage-fade {
+  from { opacity: 0; }
+}

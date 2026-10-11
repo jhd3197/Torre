@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "The wrong-colored bishop",
+  "summary": "A whole bishop and a pawn up, and still only a draw: when the bishop cannot control the corner, the defending king sits there forever.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["king-and-pawn-vs-king"],
+  "practice": "bishop-endgame",
+  "steps": [
+    {
+      "id": "the-wrong-corner",
+      "kind": "explain",
+      "title": "The wrong corner",
+      "fen": "k7/8/1K6/P7/8/8/3B4/8 w - - 0 1",
+      "marks": [["a8"]],
+      "demo": ["a5a6", "a8b8", "a6a7", "b8a8", "d2e3"],
+      "text": "White is a bishop and a pawn up, but the pawn is a rook pawn and it queens on a8, a light square. White's bishop only moves on dark squares, so it can never chase Black's king out of the corner. Step through the demo: White runs out of useful moves and the game ends in stalemate.",
+      "narration": "A bishop and a pawn up, and it's still a draw! The pawn wants to queen on a8, a light square, but this bishop lives on the dark squares. The pawn steps up. [move] The king waits on b8. [move] The pawn gives check. [move] Back into the corner. [move] And any bishop move now is stalemate. [move]",
+      "pose": "shocked"
+    },
+    {
+      "id": "right-and-wrong",
+      "kind": "explain",
+      "title": "Right bishop, wrong bishop",
+      "fen": "k7/8/1K6/P7/8/8/3B4/8 w - - 0 1",
+      "marks": [["a8"], ["d2"]],
+      "text": "Look at the color of the pawn's promotion square. If the bishop moves on that color, it is the right bishop: it can control the corner and the pawn queens. If not, it is the wrong bishop, and the defender draws by getting the king into the corner. This only happens with rook pawns, because only they queen right in the corner.",
+      "narration": "Here's the test. Look at the square where the pawn promotes. If your bishop can reach that color, you win. If not, the defending king just sits in the corner. And it only happens with pawns on the edge of the board.",
+      "pose": "pointer"
+    },
+    {
+      "id": "race-to-a8",
+      "kind": "play",
+      "title": "Race to the corner",
+      "fen": "5k2/8/8/6B1/P7/2K5/8/8 b - - 0 1",
+      "prompt": "You are Black. White has the wrong bishop. Get your king to the corner.",
+      "hint": "Your king needs to reach the queenside corner, and White's king will try to get in the way. Take the most direct road.",
+      "line": ["f8e8", "c3b4", "e8d7"],
+      "success": "King to e8 and d7. Your king reaches c8 next, and from there b7 and a8 are always within reach. The bishop cannot help, because it never touches a8.",
+      "narration": "You are the defender, a whole bishop down. But that bishop is the wrong color for the a-pawn! Walk your king straight toward the corner, and only one path gets there in time.",
+      "pose": "shield"
+    },
+    {
+      "id": "race-to-h8",
+      "kind": "play",
+      "title": "The other side",
+      "fen": "3k4/8/8/8/2B4P/4K3/8/8 b - - 0 1",
+      "prompt": "Now the pawn is on the h-file. Is this bishop the wrong color too? Head for the corner.",
+      "hint": "The h-pawn queens on h8, a dark square, and White's bishop moves on light squares.",
+      "line": ["d8e7", "e3f4", "e7f8|e7f6"],
+      "success": "Your king reaches the corner area around h8, and this bishop can never control the dark h8 square. A draw, a whole piece down.",
+      "narration": "Mirror image. The h-pawn queens on h8, which is dark, and this bishop only walks on light squares. So head for that corner and the draw is yours.",
+      "pose": "determined"
+    },
+    {
+      "id": "which-bishop",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "White has a king, an h-pawn and a bishop against a lone king. Which bishop wins?",
+      "options": [
+        { "text": "A dark-squared bishop", "correct": true, "why": "The h-pawn queens on h8, a dark square. A dark-squared bishop controls it and helps drive the king out." },
+        { "text": "A light-squared bishop", "why": "That is the wrong bishop for an h-pawn. It can never control h8, so a king in the corner holds the draw." },
+        { "text": "Either one, a bishop is a bishop", "why": "Not with a rook pawn. The color of the promotion square decides everything." }
+      ],
+      "narration": "Final question. White has an h-pawn and a bishop. Which bishop wins? Remember this, and you'll save some games that look completely lost. Great work!",
+      "pose": "trophy"
+    }
+  ]
+}

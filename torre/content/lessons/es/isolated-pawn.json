@@ -1,0 +1,73 @@
+{
+ "title": "El peón aislado de la dama",
+ "summary": "Un peón de 'd' sin vecinos es tanto un blanco como un arma. Aprende cuándo bloquearlo y cuándo aprovechar el espacio que ofrece.",
+ "unit": "Estructura de peones",
+ "steps": [
+  {
+   "id": "the-isolani",
+   "title": "Un peón sin amigos",
+   "text": "El peón de 'd' de las blancas no tiene peones en las columnas 'c' ni 'e' a su lado. Un peón como este se llama aislado, y este en d4 es tan común que tiene su propio nombre: el peón aislado de la dama, o isolani. Ningún otro peón puede defenderlo jamás, así que las piezas deben hacer el trabajo. Esta estructura aparece en muchas aperturas, desde el Gambito de Dama hasta la Defensa Caro-Kann.",
+   "narration": "Conoce al isolani, un peón aislado de la dama. El peón de 'd' de las blancas no tiene vecinos de peones en absoluto, así que ningún peón puede protegerlo. Eso lo convierte en una debilidad, pero como veremos, también es una fuente de energía."
+  },
+  {
+   "id": "the-weakness",
+   "title": "La debilidad: el casillero delantero",
+   "text": "El casillero delante de un peón aislado nunca puede ser atacado por un peón blanco. El caballo negro ha saltado a d5 y se sienta allí de forma segura, bloqueando el peón para que no avance. Bloquear un peón como este se llama un bloqueo. Desde detrás de él, las piezas negras pueden alinearse contra d4, que las blancas deben seguir defendiendo con piezas.",
+   "narration": "Aquí está la contraparte. El casillero delante del peón aislado es un hogar perfecto para un caballo negro, porque ningún peón blanco puede espantarlo jamás. El caballo bloquea el peón, y las otras piezas negras pueden atacarlo en grupo."
+  },
+  {
+   "id": "the-strength",
+   "title": "La fortaleza: espacio y líneas abiertas",
+   "text": "Ahora mira desde el lado de las blancas. El peón controla e5 y c5, así que un caballo blanco puede asentarse en e5, donde es difícil de desplazar. Las columnas semiobertas 'c' y 'e' están listas para las torres de las blancas, y el alfil en d3 apunta al rey negro. Las blancas también mantienen la idea de empujar el peón a d5 para romper el bloqueo y abrir la posición. Con muchas piezas en el tablero, el isolani suele dar juego activo.",
+   "narration": "Ahora lanza la moneda. El peón aislado le da a las blancas espacio, un puesto avanzado para un caballo en e5, columnas abiertas para las torres y la oportunidad de empujar d4 a d5 en el momento justo. En el medio juego, el isolani a menudo es un arma."
+  },
+  {
+   "id": "tarrasch-break",
+   "title": "El isolani ataca",
+   "prompt": "Esta vez, las negras tienen el peón aislado. Úsalo para ganar material.",
+   "hint": "Un peón aislado que avanza ataca dos casillas a la vez. ¿Qué piezas blancas están en esas casillas?",
+   "success": "Empujar el isolani a d4 atacó al caballo en c3 y al alfil en e3 juntos. El caballo huyó y el peón tomó al alfil.",
+   "narration": "Aquí, las negras son las que tienen el peón aislado, y las blancas acaban de colocar un alfil en e3. Empuja el peón hacia adelante y mira las dos piezas blancas que ataca. Esto es lo que hace un isolani activo cuando el oponente se descuida."
+  },
+  {
+   "id": "blockade-square",
+   "title": "¿A dónde va el bloqueador?",
+   "question": "Las negras quieren combatir el peón aislado de las blancas. ¿Qué casilla es el mejor hogar para un caballo negro?",
+   "options": [
+    {
+     "text": "d5, justo delante del peón",
+     "why": "Ningún peón blanco puede jamás atacar d5, y un caballo allí bloquea el isolani y controla casillas importantes."
+    },
+    {
+     "text": "e4, en lo profundo del campo blanco",
+     "why": "Las blancas pueden echarlo con f2-f3 o cambiarlo, y no hace nada para detener el peón d."
+    },
+    {
+     "text": "b4, atacando al alfil",
+     "why": "Se puede perseguir con a2-a3 y no bloquea el peón. Molesto, pero no un hogar duradero."
+    }
+   ],
+   "narration": "Veamos la idea principal. Si estás luchando contra un peón aislado, ¿dónde debería vivir tu caballo? Piensa en qué casilla ningún peón puede atacar jamás."
+  },
+  {
+   "id": "when-is-it-weak",
+   "title": "¡Revísate!",
+   "question": "¿Cuándo se convierte normalmente un peón aislado en una debilidad real?",
+   "options": [
+    {
+     "text": "Después de que se hayan cambiado muchas piezas, especialmente en el final",
+     "why": "Con menos piezas hay menos juego de ataque para compensarlo, y el peón solitario se convierte en un blanco fácil."
+    },
+    {
+     "text": "Justo después de la apertura, cuando todas las piezas todavía están en juego",
+     "why": "Ahí es cuando el isolani está en su punto más fuerte: espacio, columnas abiertas y posibilidades de ataque."
+    },
+    {
+     "text": "Nunca, porque está en el centro",
+     "why": "Estar en el centro ayuda, pero un peón que ningún peón puede defender todavía puede ser ganado cuando se acaban las piezas."
+    }
+   ],
+   "narration": "Pregunta final. ¿Cuándo el isolani se transforma de un arma en una debilidad? Piensa en lo que sucede a medida que las piezas desaparecen del tablero. ¡Buen trabajo!"
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "title": "Las torres de Capablanca en el séptimo",
+ "summary": "Nueva York, 1909: el joven José Raúl Capablanca intercambia damas y vence a Frank Marshall con una torre en la séptima fila.",
+ "unit": "José Raúl Capablanca",
+ "steps": [
+  {
+   "id": "new-york-1909",
+   "title": "Nueva York, 1909",
+   "text": "José Raúl Capablanca, de Cuba, aprendió ajedrez cuando era un niño pequeño y se hizo famoso por hacer que pareciera fácil. En 1909 jugó un encuentro contra Frank Marshall, uno de los jugadores más fuertes de América, y lo ganó por un amplio margen. Este juego muestra su estilo: ningún ataque salvaje, solo piezas mejores, un intercambio de damas bien calculado y una torre en la séptima fila.",
+   "narration": "Nueva York, 1909. Un joven cubano llamado Capablanca juega contra Frank Marshall. Mira cómo lo hace parecer sencillo."
+  },
+  {
+   "id": "the-game",
+   "title": "Capablanca – Marshall, Nueva York 1909",
+   "text": "Marshall elige una línea aguda contra la apertura española. Capablanca se mantiene tranquilo y, cuando la dama de Marshall va tras un alfil, Capablanca toma una y coloca una torre en la séptima fila. El juego se detiene en los movimientos clave de Capablanca.",
+   "notes": [
+    {
+     "text": "3...f5: una línea de gambito aguda. Marshall quiere un juego salvaje."
+    },
+    {
+     "text": "18...Qe2: La dama de Marshall se lanza al campo de blancas para ir por el alfil en d2."
+    },
+    {
+     "text": "19...Qxd2: el alfil cae, pero Capablanca tiene una respuesta preparada."
+    },
+    {
+     "text": "22.Qxh6: Capablanca intercambia damas con gusto. En el final, su torre en e7 y peón en f6 dominarán."
+    },
+    {
+     "text": "26.Rxa7: otro peón cae. La torre en la séptima fila está avanzando."
+    },
+    {
+     "text": "30.f5: los peones de f avanzan, y la torre y el alfil de las negras están ocupados."
+    },
+    {
+     "text": "32.Rxc5: las blancas tienen tres peones de ventaja. Marshall renunció."
+    }
+   ],
+   "narration": "Marshall quiere pelear. Capablanca quiere un buen final, y lo consigue. Encuentra sus movimientos clave.",
+   "guesses": [
+    {
+     "prompt": "La dama de Marshall acaba de tomar tu alfil en d2. Devuelve una pieza y coloca tu torre en un gran casillero al hacerlo.",
+     "hint": "Un alfil negro se encuentra en el archivo e frente a tu torre.",
+     "why": "20.Rxe7!: El material vuelve a estar igualado, y la torre ahora se sienta en la séptima fila, atacando los peones negros."
+    },
+    {
+     "prompt": "Tu torre está en la séptima. Avanza un peón para hacerla aún más fuerte.",
+     "hint": "Uno de tus peones puede avanzar y atacar g7.",
+     "why": "21.f6!: El peón golpea g7, y con la torre en e7 y la dama en h5, el rey negro está en peligro real. Marshall ofreció un cambio de damas con 21...Qh6 para salir de ahí."
+    },
+    {
+     "prompt": "Las damas se han retirado. Incorpora tu otra torre al juego.",
+     "hint": "Tu primera torre está en el archivo e. La segunda puede unirse a ella.",
+     "why": "23.Rfe1! Ambas torres ahora trabajan juntas en la columna 'e', y las negras no pueden mantenerlas alejadas de su segunda fila."
+    },
+    {
+     "prompt": "El alfil de Marshall tomó el peón en a4. Empieza a recoger peones.",
+     "hint": "Tu torre en e7 puede deslizarse lateralmente a lo largo de la séptima fila.",
+     "why": "24.Rxb7! La torre toma un peón y se queda en la séptima fila, lista para tomar más."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "A las torres les encanta la séptima fila",
+   "text": "Capablanca aceptó el cambio de damas porque sus piezas eran mejores para el final. Una torre en la séptima fila ataca peones que aún están en sus casillas de inicio, y mantiene al rey enemigo atascado en la última fila. El peón en f6 hizo la jaula aún más apretada.",
+   "narration": "Una torre en la séptima fila ataca peones que no pueden escapar, y atrapa al rey en la última fila. Capablanca cambió damas para lograr eso exactamente."
+  },
+  {
+   "id": "quiz",
+   "title": "El cambio de damas",
+   "question": "¿Por qué Capablanca recibió con agrado el cambio de damas en la jugada 22?",
+   "options": [
+    {
+     "text": "Su torre en la séptima fila y el peón en f6 hicieron que el final fuera fácil de ganar.",
+     "why": "Bien. Sin damas, nada podía detener a la torre de comer peones."
+    },
+    {
+     "text": "Estaba por detrás en material y quería un empate.",
+     "why": "El material estaba igualado y el final era favorable para las Blancas."
+    },
+    {
+     "text": "Las damas siempre deberían intercambiarse temprano.",
+     "why": "Eso no es una regla. Capablanca intercambió porque este final en particular le era favorable."
+    }
+   ],
+   "narration": "Una pregunta: ¿por qué Capablanca estaba contento de intercambiar damas?"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+  "label": "Estadísticas detalladas",
+  "counts": "{{blunders}} errores graves · {{mistakes}} errores · {{moves}} jugadas",
+  "phases": {
+    "title": "Precisión por fase",
+    "opening": "Apertura",
+    "middlegame": "Medio juego",
+    "endgame": "Final",
+    "note": "Fórmula de precisión de Lichess · {{accuracy}} en total",
+    "train": "Entrenar esta fase"
+  },
+  "heatmap": {
+    "title": "Dónde cometes los errores",
+    "moves": "Jugadas {{bucket}}",
+    "peak": "Tus errores se concentran en las jugadas {{bucket}}."
+  },
+  "strength": {
+    "title": "Según la fuerza del rival",
+    "opponent": "Rival",
+    "much_lower": "Mucho menor (−200)",
+    "lower": "Menor",
+    "similar": "Parecida (±50)",
+    "higher": "Mayor",
+    "much_higher": "Mucho mayor (+200)"
+  },
+  "time": {
+    "title": "Tiempo de reflexión y errores",
+    "think": "Tiempo",
+    "errors": "Errores",
+    "blunders": "Errores graves",
+    "empty": "Analiza partidas jugadas con reloj para ver cómo el tiempo afecta tus errores."
+  },
+  "table": {
+    "games": "Partidas",
+    "wdl": "G / T / P",
+    "score": "Puntuación",
+    "moves": "Jugadas"
+  },
+  "coach": {
+    "title": "Notas del entrenador",
+    "tilt_one": "Tómate un descanso después de una derrota: rindes menos en la partida siguiente.",
+    "tilt_other": "Tómate un descanso después de {{count}} derrotas seguidas: tu puntuación baja después de eso."
+  },
+  "motifs": {
+    "title": "Tus puntos ciegos",
+    "intro_one": "Sacado de {{count}} error o error grave en tus partidas analizadas: la táctica que dejó jugar a tu rival y la que podías haber jugado tú.",
+    "intro_other": "Sacado de {{count}} errores y errores graves en tus partidas analizadas: la táctica que cada uno dejó jugar a tu rival y la que podías haber jugado tú.",
+    "allowed": "Lo que permitiste",
+    "missed": "Lo que se te pasó",
+    "allowedNone": "Ninguna táctica destaca en lo que permitiste.",
+    "missedNone": "Ninguna táctica destaca en lo que se te pasó.",
+    "times_one": "{{count}} vez",
+    "times_other": "{{count}} veces",
+    "practice": "Practicar estos puzzles",
+    "example": "Verlo contra {{opponent}}",
+    "unknown": "desconocido",
+    "tags": {
+      "hangingPiece": "Una pieza colgada",
+      "fork": "Un doble ataque",
+      "mateIn1": "Mate en 1",
+      "mateIn2": "Mate en 2",
+      "mateIn3": "Mate en 3",
+      "mateIn4": "Mate en 4",
+      "backRankMate": "Un mate en la última fila",
+      "promotion": "Una coronación"
+    },
+    "trend": {
+      "better": "Menos frecuente últimamente: {{recent}} cada 10 partidas, antes {{earlier}}.",
+      "worse": "Más frecuente últimamente: {{recent}} cada 10 partidas, antes {{earlier}}."
+    }
+  }
+}

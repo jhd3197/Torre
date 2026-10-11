@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "title": "Legal's Mate",
+  "summary": "Give up your queen and checkmate with three minor pieces: the most famous fake pin in chess.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 2,
+  "orientation": "white",
+  "practice": "sacrifice",
+  "steps": [
+    {
+      "id": "the-setup",
+      "kind": "explain",
+      "title": "A quiet start",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "text": "This trap is named after the 18th-century French player Kermur de Legall. Black develops the light-squared bishop to g4, pinning White's knight on f3 to the queen, and then plays the slow move pawn to g6. Step through the moves.",
+      "demo": [
+        "g1f3",
+        "d7d6",
+        "f1c4",
+        "c8g4",
+        "b1c3",
+        "g7g6"
+      ],
+      "narration": "This trap is almost three hundred years old, and it still catches people every day. Knight to f3. [move] Pawn to d6. [move] Bishop to c4. [move] Black pins the knight to the queen. [move] Knight to c3. [move] And Black plays a slow pawn move. [move]",
+      "pose": "present"
+    },
+    {
+      "id": "a-fake-pin",
+      "kind": "explain",
+      "title": "A pin that is not a pin",
+      "fen": "rn1qkbnr/ppp2p1p/3p2p1/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 5",
+      "marks": [
+        [
+          "g4",
+          "d1"
+        ],
+        [
+          "f7"
+        ],
+        [
+          "d5"
+        ]
+      ],
+      "text": "The knight on f3 looks stuck: if it moves, the bishop takes the queen on d1. But a pin to the queen is not a law. The knight may still move, as long as what White gets back is worth more than a queen. Here, that something is checkmate.",
+      "narration": "That knight looks pinned. If it moves, Black takes the queen. But a pin to a queen is only a warning, not a rule. If moving the knight leads to checkmate, who cares about the queen?",
+      "pose": "thinking"
+    },
+    {
+      "id": "spring-the-trap",
+      "kind": "play",
+      "title": "Spring the trap",
+      "fen": "rn1qkbnr/ppp2p1p/3p2p1/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 5",
+      "prompt": "Ignore the pin. Offer your queen and checkmate the king.",
+      "hint": "Start by taking the pawn on e5 with the knight Black thinks is pinned.",
+      "line": [
+        "f3e5",
+        "g4d1",
+        "c4f7",
+        "e8e7",
+        "c3d5"
+      ],
+      "success": "Knight takes e5, bishop takes the queen, bishop takes f7 check, king to e7, knight to d5 mate. Three minor pieces cover every square around the king.",
+      "narration": "Your turn to be bold. Move the pinned knight, let Black take your queen, and then deliver mate with your three little pieces.",
+      "pose": "excited"
+    },
+    {
+      "id": "if-black-says-no",
+      "kind": "play",
+      "title": "If Black refuses",
+      "fen": "rn1qkbnr/ppp2p1p/6p1/4p3/2B1P1b1/2N5/PPPP1PPP/R1BQK2R w KQkq - 0 6",
+      "prompt": "Black spotted the trick and took your knight instead. Collect your reward.",
+      "hint": "With the knight gone, nothing blocks your queen anymore. Which black piece is now loose?",
+      "line": [
+        "d1g4"
+      ],
+      "success": "Queen takes g4. You traded a knight for a pawn and a bishop, so you come out a pawn ahead with a fine position.",
+      "narration": "Not everyone falls for it. Here Black wisely took the knight. Don't worry, your queen is free now. Find what it can grab.",
+      "pose": "thumbs-up"
+    },
+    {
+      "id": "the-picture",
+      "kind": "explain",
+      "title": "The final picture",
+      "fen": "rn1q1bnr/ppp1kB1p/3p2p1/3NN3/4P3/8/PPPP1PPP/R1BbK2R b KQ - 2 7",
+      "marks": [
+        [
+          "d5"
+        ],
+        [
+          "e5"
+        ],
+        [
+          "f7"
+        ],
+        [
+          "e7"
+        ]
+      ],
+      "text": "Look at the finished net. The knight on d5 gives check and covers f6. The bishop on f7 covers e6 and e8. The knight on e5 guards the bishop and covers d7. Black's own pieces block d6, d8 and f8. The knight on c3 was the key: without it, nothing could reach d5.",
+      "narration": "Look at that finished net. Two knights and a bishop cover every escape square, and Black's own pieces block the rest. Notice the knight that started on c3. Without it, there's no mate.",
+      "pose": "trophy"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r2qkbnr/ppp2ppp/2np4/4p3/2B1P3/2N2b1P/PPPP1PP1/R1BQK2R w KQkq - 0 6",
+      "prompt": "Black guarded e5 with knight to c6 instead of playing pawn to g6, so the trick is off. You asked the bishop with pawn to h3, and it took your knight. Take back, then keep developing.",
+      "nudge": "Recapture first. Then look for a calm developing move.",
+      "hint": "Take back with the queen, not the pawn. Then castle or bring the knight to e2 or d5.",
+      "line": [
+        "d1f3",
+        "g8f6",
+        "e1g1|c3e2|c3d5|c4b5|d2d3|a2a3|a2a4"
+      ],
+      "success": "Queen takes f3 keeps your pawns healthy and eyes f7. After knight to f6, castle or bring a knight to the center. You have the two bishops and an easy game.",
+      "narration": "Strong players don't always walk into the trap. When Black guards e5, put the knight sacrifice away. Take back, castle, and enjoy your two bishops.",
+      "pose": "thinking",
+      "branches": [
+        {
+          "line": [
+            "d1f3",
+            "d8d7",
+            "e1g1|c3e2|c4b5|d2d3|a2a4|f3d1"
+          ],
+          "success": "Queen takes f3, and Black's queen came to d7 to guard f7. Castle or bring the knight to e2. You have the two bishops and an easy game."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "rn1qkbnr/ppp2p1p/3p2p1/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 5",
+      "question": "In the starting position of the trap, which white piece makes the queen sacrifice work?",
+      "options": [
+        {
+          "text": "The queen on d1",
+          "why": "The queen is the piece White gives away. The mate happens without her."
+        },
+        {
+          "text": "The knight on c3",
+          "why": "Yes. It is the piece that jumps to d5 for the final check. Without it the sacrifice just loses the queen.",
+          "correct": true
+        },
+        {
+          "text": "The rook on h1",
+          "why": "The rook never moves in this trap."
+        }
+      ],
+      "narration": "Last question. One white piece quietly makes the whole trick possible. Which one is it? Think about who gives the final check.",
+      "pose": "star"
+    }
+  ]
+}

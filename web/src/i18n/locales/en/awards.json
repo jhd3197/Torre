@@ -1,0 +1,21 @@
+{
+  "families": {
+    "milestones": "Milestones",
+    "tactics": "Tactics",
+    "strategy": "Strategy"
+  },
+  "tiers": {
+    "locked": "Locked",
+    "unlocked": "Unlocked",
+    "bronze": "Bronze",
+    "silver": "Silver",
+    "gold": "Gold"
+  },
+  "loading": "Counting your awards…",
+  "label": "Awards",
+  "earned_one": "{{count}} of {{total}} awards earned",
+  "earned_other": "{{count}} of {{total}} awards earned",
+  "intro": "Every game you play and every puzzle you solve counts. Unlock an award, then keep going for bronze, silver and gold.",
+  "maxed": "{{value}} {{unit}} · maxed",
+  "toNext": "{{value}} / {{next}} {{unit}}"
+}

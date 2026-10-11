@@ -1,0 +1,586 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Puzzles: the overview (rating, ways to practise, themes, recent attempts) and the solver's result pieces. */
+.puzzles {
+  padding-bottom: 40px;
+}
+.puzzles-empty {
+  margin: 18px 0;
+  font-size: $fs-md;
+  color: $sage-600;
+}
+.puzzles-empty code {
+  font: #{$fs-sm} $font-mono;
+}
+.puzzle-sub {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+
+// ── Overview ────────────────────────────────────────────────────────────────
+
+.puzzles-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: $lobby-ink;
+
+  h2,
+  h3 {
+    margin: 0;
+    color: $lobby-ink;
+  }
+}
+.puzzles-overview .puzzles-title {
+  margin: 0;
+  font: 900 #{$fs-display}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+  color: $lobby-ink;
+}
+
+// A white card on the cream page, with the lobby's solid lower edge.
+@mixin lobby-card($radius: 20px) {
+  border: 1.5px solid $lobby-line;
+  border-radius: $radius;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+
+.puzzle-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 20px;
+}
+
+// The rating, its trend and two numbers.
+.puzzle-rating-card {
+  @include lobby-card(24px);
+  flex: 1 1 420px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 22px;
+  min-width: 0;
+  padding: 20px 24px;
+}
+.puzzle-rating-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.puzzle-label {
+  font-size: $fs-sm;
+  font-weight: 800;
+  color: $lobby-muted;
+}
+#puzzle-rating {
+  font: 900 #{$fs-display}/ 1 $font-sans;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.puzzle-rating-main .puzzle-sub {
+  font-weight: 700;
+  color: $lobby-muted;
+  .up {
+    color: $moss-800;
+  }
+  .down {
+    color: $red-600;
+  }
+}
+.puzzle-trend {
+  flex: 1 1 200px;
+  min-width: 160px;
+  height: 80px;
+  .area {
+    fill: $lobby-pill;
+  }
+  .line {
+    fill: none;
+    stroke: $lobby-button;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+.puzzle-rating-stats {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  dd {
+    margin: 0;
+    font: 900 #{$fs-3xl}/ 1.2 $font-sans;
+    font-variant-numeric: tabular-nums;
+  }
+  dt {
+    font-size: $fs-xs;
+    font-weight: 700;
+    color: $lobby-muted;
+  }
+}
+
+// Ways to practise: the rated stream up top, the rest as tiles.
+.puzzle-modes {
+  flex: 1 1 380px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+.puzzle-go {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: $lobby-button;
+  color: $white;
+  @include press(3px, $lobby-button-shade);
+  @include focus-ring;
+  img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border-radius: 14px;
+    background: rgba($white, 0.14);
+    object-fit: contain;
+  }
+  > span:not(.puzzle-go-arrow) {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  strong {
+    font-size: $fs-xl;
+    font-weight: 900;
+  }
+  small {
+    font-size: $fs-sm;
+    font-weight: 700;
+    color: $sage-200;
+  }
+  &:hover {
+    background: $moss-800;
+    color: $white;
+  }
+}
+.puzzle-go-arrow {
+  margin-left: auto;
+  font-size: $fs-2xl;
+}
+.puzzle-mode {
+  @include lobby-card(16px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 14px;
+  color: $lobby-ink;
+  @include press(3px, $lobby-line);
+  @include focus-ring;
+  > span:last-child {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  strong {
+    font-size: $fs-base;
+    font-weight: 900;
+  }
+  small {
+    overflow: hidden;
+    font-size: $fs-xs;
+    font-weight: 700;
+    color: $lobby-muted;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &:hover {
+    background: $lobby-selected;
+    color: $lobby-ink;
+  }
+}
+.puzzle-mode-art {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: $lobby-tile;
+  &.warm {
+    background: $wheat-100;
+  }
+  img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+  }
+}
+.puzzle-rules-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1.5px dashed $stone;
+  border-radius: 16px;
+  background: transparent;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+  cursor: pointer;
+  @include focus-ring;
+  &.wide {
+    grid-column: 1 / -1;
+  }
+  &:hover {
+    background: $lobby-track;
+  }
+}
+.puzzle-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 10px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: $lobby-track;
+  }
+  strong {
+    font-size: $fs-base;
+    font-weight: 900;
+  }
+  p {
+    margin: 0;
+    font-size: $fs-sm;
+    line-height: 1.45;
+    color: $sage-700;
+  }
+}
+
+// Filter, search and count above the themes.
+.puzzle-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.bots-segments.puzzle-filter {
+  padding: 4px;
+  border-radius: 14px;
+  background: $lobby-track;
+  button {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font: 800 #{$fs-md} $font-sans;
+    color: $lobby-muted;
+    &.selected {
+      color: $lobby-ink;
+      font-weight: 800;
+    }
+  }
+}
+.puzzle-search {
+  flex: 0 1 260px;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 12px;
+  background: $white;
+  font: 700 #{$fs-md} $font-sans;
+  color: $lobby-ink;
+  outline: none;
+  &:focus {
+    border-color: $moss-800;
+  }
+}
+.puzzle-count {
+  margin-left: auto;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $lobby-muted;
+}
+
+// Themes by group.
+.puzzle-group,
+.puzzle-history {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.puzzle-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  h2 {
+    font: 900 #{$fs-3xl} $font-sans;
+  }
+  > span {
+    font-size: $fs-md;
+    color: $lobby-muted;
+  }
+}
+.puzzle-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 14px;
+}
+.puzzle-card {
+  @include lobby-card;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px;
+  color: $lobby-ink;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  @include focus-ring;
+  &:hover {
+    border-color: $lobby-selected-line;
+    box-shadow: 0 3px 0 $lobby-selected-line;
+    color: $lobby-ink;
+  }
+  h3 {
+    font: 900 #{$fs-lg} $font-sans;
+  }
+  p {
+    flex: 1;
+    margin: 0;
+    font-size: $fs-sm;
+    line-height: 1.4;
+    color: $sage-700;
+  }
+}
+.puzzle-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  > span:last-child {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+}
+.puzzle-card-art {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: $lobby-tile;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+}
+.puzzle-card-meta {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $sage-500;
+}
+.puzzle-card-progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: $lobby-track;
+  i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: $lobby-green;
+  }
+}
+.puzzle-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.puzzle-card-status {
+  font-size: $fs-sm;
+  font-weight: 800;
+  color: $sage-500;
+  .started & {
+    color: $moss-800;
+  }
+}
+.puzzle-card-cta {
+  flex: none;
+  margin-left: auto;
+  padding: 5px 12px;
+  border-radius: 9px;
+  background: $lobby-track;
+  font-size: $fs-xs;
+  font-weight: 900;
+  color: $lobby-ink;
+  .started & {
+    background: $lobby-button;
+    color: $white;
+  }
+}
+.puzzle-no-match {
+  margin: 0;
+  padding: 28px;
+  border-radius: 20px;
+  background: $lobby-track;
+  text-align: center;
+  font-size: $fs-base;
+  font-weight: 700;
+  color: $lobby-muted;
+}
+
+// Recent attempts.
+.puzzle-history ol {
+  @include lobby-card(22px);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+.puzzle-attempt {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto 64px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 16px;
+  & + & {
+    border-top: 1.5px solid $lobby-track;
+  }
+}
+.puzzle-attempt-mark {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $lobby-green;
+  font-size: $fs-xs;
+  font-weight: 900;
+  color: $white;
+  .missed & {
+    background: $red-600;
+  }
+}
+.puzzle-attempt-what {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  a {
+    overflow: hidden;
+    font-size: $fs-base;
+    font-weight: 800;
+    color: $lobby-ink;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.puzzle-attempt-detail {
+  overflow: hidden;
+  font: 500 #{$fs-xs} $font-mono;
+  color: $lobby-warm;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.puzzle-attempt-meta {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $sage-500;
+  white-space: nowrap;
+}
+.puzzle-delta {
+  font: 600 #{$fs-md} $font-mono;
+  text-align: right;
+  color: $sage-600;
+}
+.puzzle-delta.up {
+  color: $moss-800;
+}
+.puzzle-delta.down {
+  color: $red-600;
+}
+
+@include down(md) {
+  .puzzles-overview {
+    gap: 22px;
+  }
+  .puzzles-overview .puzzles-title {
+    font-size: $fs-7xl;
+  }
+  .puzzle-rating-card {
+    padding: 16px 18px;
+  }
+  #puzzle-rating {
+    font-size: $fs-8xl;
+  }
+  .puzzle-trend {
+    flex-basis: 100%;
+    height: 64px;
+  }
+  .puzzle-search {
+    flex: 1 1 100%;
+  }
+  .puzzle-count {
+    margin-left: 0;
+  }
+  .puzzle-attempt {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    row-gap: 2px;
+    padding: 10px 12px;
+  }
+  .puzzle-attempt-meta {
+    grid-column: 2;
+  }
+  .puzzle-attempt .puzzle-delta {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+// ── Solving ─────────────────────────────────────────────────────────────────
+
+.puzzle-header-rating {
+  margin-left: auto;
+}
+.puzzle-rating-change {
+  margin: 8px 0 0;
+  font-size: $fs-md;
+}
+.puzzle-rating-change .puzzle-delta {
+  margin-left: 6px;
+}
+.puzzle-info {
+  margin: 0;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.puzzle-info a {
+  text-decoration: underline;
+  text-decoration-color: $sage-300;
+  text-underline-offset: 3px;
+}
+
+@include down(md) {
+  .puzzle-header-rating {
+    margin-left: 0;
+  }
+}
+
+/* After the puzzle: the solution, step by step. */
+.puzzle-solution {
+  margin: 12px 0;
+}
+.puzzle-solution .lesson-line button[aria-current="step"] {
+  font-weight: 800;
+  text-decoration: underline;
+}

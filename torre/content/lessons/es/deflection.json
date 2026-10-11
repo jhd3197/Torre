@@ -1,0 +1,48 @@
+{
+ "title": "Desviación",
+ "summary": "Atrae a un defensor lejos de su posición. Una vez que ha sido arrastrado, lo que estaba protegiendo queda al descubierto.",
+ "steps": [
+  {
+   "id": "the-guard",
+   "title": "Un guardia con una sola tarea",
+   "text": "Las damas se enfrentan en la diagonal larga. La dama negra está defendida solo por el rey. Cambiar damas no da nada, pero si el rey pudiera ser forzado a salir de g7, la dama negra quedaría colgada. La desviación significa forzar a un defensor a dejar la casilla donde hace su trabajo, generalmente con un jaque o una captura que no puede rechazar.",
+   "narration": "Tu dama ataca a la dama negra, pero el rey en g7 la protege. Si pudieras simplemente alejar a ese rey, la dama sería tuya. Eso es desviación: fuerza al defensor a apartarse de su posición, luego toma lo que estaba protegiendo."
+  },
+  {
+   "id": "deflect-the-king",
+   "title": "Arrastra al rey",
+   "prompt": "Aleja el rey negro de la dama, y luego gánatela.",
+   "hint": "Tu alfil puede dar jaque en una casilla al lado del rey. Si el rey toma, ¿a dónde termina?",
+   "success": "¡Bh6+! Si Kxh6, el rey ha dejado g7, y Qxf6 gana la dama. Si el rey se mueve a g8 o h8 en cambio, la dama aún cae.",
+   "narration": "Jaquea al rey con tu alfil en h6. El alfil se ofrece, pero si el rey lo toma, se aleja de su dama. Entonces tu dama la captura. Un alfil por una dama es un gran negocio."
+  },
+  {
+   "id": "deflect-the-rook",
+   "title": "Abre el camino para un peón",
+   "prompt": "Tu peón en b2 quiere coronar, pero la torre blanca guarda b1. Desvíala.",
+   "hint": "Un jaque de torre en la quinta fila solo puede ser respondido de una manera sensata.",
+   "success": "Rc5+! La torre debe tomar (mover al rey te hace perder aún más), y una vez que se aleja de la columna b, b1=D te da una nueva dama.",
+   "narration": "El caballo blanco en b5 es lo único que detiene a tu peón. Pon jaque al rey desde c5, justo al lado de esa torre. Cuando la torre tome, habrá dejado la columna b abierta, y tu peón avanzará para coronar como dama."
+  },
+  {
+   "id": "deflection-quiz",
+   "title": "Encuentra la idea.",
+   "question": "¿Qué hace que una desviación funcione?",
+   "options": [
+    {
+     "text": "El defensor se ve forzado (por un jaque, una captura o una amenaza importante) a dejar la casilla o la línea que estaba defendiendo.",
+     "why": "Una desviación solo funciona si el defensor no puede negarse. Los jaques y las capturas son las formas habituales de forzarla."
+    },
+    {
+     "text": "Atacas al defensor con una pieza más valiosa.",
+     "why": "El cebo suele ser una pieza más barata, ofrecida para que el defensor tenga que tomarla o apartarse."
+    },
+    {
+     "text": "El defensor está clavado.",
+     "why": "Un defensor clavado es una debilidad diferente. La desviación consiste en alejar a un defensor libre de su trabajo."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué hace que una desviación funcione? Piensa en por qué el defensor no tiene otra opción. ¡Estás mejorando mucho!"
+  }
+ ]
+}

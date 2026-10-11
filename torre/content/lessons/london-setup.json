@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "title": "The London setup",
+  "summary": "d4, Bf4, e3, Nf3, c3, Bd3, Nbd2: one calm setup you can play against almost anything.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "London System",
+  "order": 1,
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setup",
+      "kind": "explain",
+      "title": "One setup for every game",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "demo": ["d2d4", "d7d5", "c1f4", "g8f6", "e2e3", "e7e6", "g1f3", "c7c5", "c2c3", "b8c6", "b1d2", "f8d6", "f4g3", "e8g8", "f1d3"],
+      "text": "The London System is a set of moves more than a set of lines: pawn to d4, bishop to f4, pawn to e3, knight to f3, pawn to c3, bishop to d3 and the other knight to d2. You can play it against almost any Black reply. It is usually said to take its name from the London tournament of 1922, after which strong players began to use it. Step through a typical game start.",
+      "narration": "Welcome to the London System. It's less about memorizing lines and more about one setup. Pawn to d4. [move] Black answers d5. [move] Bishop out to f4. [move] Black's knight comes out. [move] Pawn to e3. [move] Black plays e6. [move] Knight to f3. [move] Black pushes c5. [move] Pawn to c3. [move] Knight to c6. [move] The other knight to d2. [move] Bishop to d6. [move] Your bishop steps back to g3. [move] Black castles. [move] And bishop to d3. [move] Every White piece has found its home.",
+      "pose": "present"
+    },
+    {
+      "id": "the-pyramid",
+      "kind": "explain",
+      "title": "The pyramid",
+      "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R b KQ - 6 8",
+      "marks": [["c3"], ["d4"], ["e3"], ["d4", "e5"]],
+      "text": "The pawns on c3, d4 and e3 form a pyramid. The d4 pawn sits on top, protected twice, so Black's pawn breaks bounce off it. Behind the pyramid the pieces have easy jobs: the knight on f3 and the bishop on g3 both watch e5, the bishop on d3 aims at h7. Many London players also add h3 at some point, so the bishop always has h2 to retreat to and Black's pieces cannot use g4.",
+      "narration": "Look at the pawns on c3, d4 and e3. That's the pyramid, and the pawn on d4 at the top is protected twice, so it's very hard to knock down. Behind it, your knight and dark bishop both eye the e5 square, and the other bishop points at h7.",
+      "pose": "pointer"
+    },
+    {
+      "id": "bishop-first",
+      "kind": "explain",
+      "title": "Why the bishop comes out before e3",
+      "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/4P3/PPP2PPP/RNBQKBNR b KQkq - 0 2",
+      "marks": [["c1"], ["e3"], ["c1", "f4"]],
+      "text": "Here White played e3 too early. The bishop on c1 is now shut in: its road to f4 runs through e3, and the only square left is d2, behind its own pawns. In the London the order is the point: bishop to f4 first, while the road is open, and only then pawn to e3 to support d4.",
+      "narration": "Here's why the order matters. White pushed the e-pawn first, and now the bishop on c1 is stuck behind its own pawns. In the London we always get the bishop out to f4 first, and only then play e3.",
+      "pose": "idea"
+    },
+    {
+      "id": "block-the-check",
+      "kind": "play",
+      "title": "Block with a useful move",
+      "fen": "rnbqk2r/pppp1ppp/4pn2/8/1b1P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 1 4",
+      "prompt": "Black's bishop gives check. Block it with a move that fits your setup.",
+      "hint": "A pawn move that belongs in the pyramid can block on the right square and attack the bishop.",
+      "line": ["c2c3|b1d2"],
+      "success": "c3 blocks the check, hits the bishop and builds the pyramid in one move. Knight to d2 is also a fine setup move.",
+      "narration": "Black checks your king with the bishop. Don't panic and don't move the king. Find a block that is also a move you wanted to play anyway.",
+      "pose": "detective"
+    },
+    {
+      "id": "punish-e5",
+      "kind": "play",
+      "title": "Black breaks too early",
+      "fen": "r1bq1rk1/pp3ppp/2nb1n2/2ppp3/3P4/2PBPNB1/PP1N1PPP/R2QK2R w KQ - 0 9",
+      "prompt": "Black has pushed a pawn to e5, a square your pieces watch. Make Black pay for it.",
+      "hint": "Capture on e5 with a pawn and see what it attacks next.",
+      "line": ["d4e5", "c6e5", "g3e5|f3e5"],
+      "success": "dxe5 attacks the bishop on d6 and the knight on f6 at once. Black takes back on e5, but after the trades on that square Black is a whole piece down.",
+      "narration": "Black pushed the pawn to e5, but your knight, your bishop and your d-pawn all watch that square. Take it with the pawn, and look at the two pieces it hits.",
+      "pose": "magnify"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why does a London player put the bishop on f4 before playing e3?",
+      "options": [
+        { "text": "After e3 the bishop on c1 would be shut in behind its own pawns", "correct": true, "why": "Right. Bishop out first while the road is open, then e3 to support d4." },
+        { "text": "The bishop on f4 attacks Black's king", "why": "It aims at the queenside and the e5 square, not at the king." },
+        { "text": "e3 is a bad move in the London", "why": "e3 is part of the pyramid. It just comes after the bishop is out." }
+      ],
+      "narration": "Last question. Why does the bishop go to f4 before the pawn goes to e3? Get this one and you know the heart of the London. Well played!",
+      "pose": "trophy"
+    }
+  ]
+}

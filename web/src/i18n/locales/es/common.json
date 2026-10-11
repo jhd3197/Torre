@@ -1,0 +1,32 @@
+{
+ "date": {
+  "undated": "Sin fecha"
+ },
+ "result": {
+  "win": "Ganar",
+  "loss": "Perder",
+  "draw": "Tablas",
+  "unknown": "Desconocido"
+ },
+ "eval": {
+  "whiteMate": "Blancas tiene mate en {{count}}",
+  "blackMate": "Negras tiene mate en {{count}}",
+  "even": "Aproximadamente igual",
+  "whiteSlightly": "Blancas va ligeramente mejor",
+  "whiteBetter": "Blancas va mejor",
+  "blackSlightly": "Negras va ligeramente mejor",
+  "blackBetter": "Negras va mejor"
+ },
+ "relative": {
+  "moment": "en un momento",
+  "minutes_one": "en {{value}} min",
+  "minutes_other": "en {{value}} min",
+  "hours_one": "en {{value}} h",
+  "hours_other": "en {{value}} h",
+  "days_one": "en {{value}} días",
+  "days_other": "en {{value}} días"
+ },
+ "page": {
+  "loading": "Cargando…"
+ }
+}

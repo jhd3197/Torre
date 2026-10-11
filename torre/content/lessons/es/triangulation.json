@@ -1,0 +1,54 @@
+{
+ "title": "Triangulación",
+ "summary": "Pasa el turno a tu oponente: mueve un poco a tu rey en un triángulo y regresa a la misma casilla con el otro lado para mover.",
+ "steps": [
+  {
+   "id": "who-moves",
+   "title": "Si solo Negro tuviera que mover",
+   "text": "El rey negro en b7 está muy apretado. Los peones blancos cubren c7 y b6, y el rey blanco cubre c6. Si es el turno de las negras, el rey debe retroceder y dejar que el rey blanco pase, al peón a6 o alrededor a d7. Esto es zugzwang: las negras estarían bien si solo pudieran avanzar.",
+   "narration": "Mira qué apretado está el rey negro. Los peones quitan c7 y b6, y el rey blanco vigila c6. Si negro tiene que mover aquí, el rey debe retroceder, y el rey blanco entra. El problema es, en nuestra lección le toca a blanco mover."
+  },
+  {
+   "id": "lose-a-move",
+   "title": "Pierde un movimiento",
+   "prompt": "Le toca a blanco mover, y solo un movimiento gana. Comienza un triángulo.",
+   "hint": "Quieres regresar a d5 en tres movimientos. La primera esquina de tu triángulo está al lado de d5 y amenaza con entrar en b6.",
+   "success": "Rey a c5, la primera esquina del triángulo. Cada otro movimiento permite que el rey negro llegue a c6 y gane tu peón d6.",
+   "narration": "Aquí está el truco. No puedes pasar, pero tu rey puede caminar alrededor de un pequeño triángulo y volver a casa. El rey negro está demasiado apretado para hacer lo mismo. Da el primer paso."
+  },
+  {
+   "id": "the-triangle",
+   "title": "Alrededor del triángulo",
+   "text": "Pasa por la demostración. El rey blanco va a d5, c5, d4 y de vuelta a d5: tres movimientos. El rey negro tiene que seguir protegiendo b6, así que solo puede moverse a a7 y de vuelta. El tablero se ve exactamente como al principio, pero ahora le toca a negro mover, y negro está en zugzwang.",
+   "narration": "Observa el triángulo. El rey de blancas se mueve a c5. [move] El rey de negras está demasiado ocupado defendiendo para copiarlo, así que se desliza. [move] Luego a d4. [move] Regresa. [move] Y a casa a d5. [move] Misma posición, pero ahora negras tienen que mover, y eso las pierde."
+  },
+  {
+   "id": "another-triangle",
+   "title": "Encuéntralo de nuevo",
+   "prompt": "Negras perderían si movieran aquí. Es turno de blancas. Encuentra la única jugada ganadora.",
+   "hint": "No camines directamente hacia los peones. Muévete de lado para poder regresar a e5 con negras a mover, manteniendo un ojo en c6 al mismo tiempo.",
+   "success": "Rey a d5. También vigila c6, así que el rey de negras debe seguir protegiéndolo, y blancas puede volver a e5 con negras a mover. Cada otra jugada del rey permite que el rey de negras llegue a d6 y el peón en e6 cae.",
+   "narration": "Misma idea, pero con otros peones. Negras perderían si tuvieran que mover, así que pasa el turno. Muévete de lado primero."
+  },
+  {
+   "id": "why-triangle",
+   "title": "¡Revísate!",
+   "question": "¿Por qué la triangulación solo funciona cuando el rey defensor está apretado?",
+   "options": [
+    {
+     "text": "Si el defensor también tuviera espacio para un triángulo, podría copiarte y devolverte el turno inmediatamente",
+     "why": "La triangulación gana un tiempo solo cuando el otro rey no puede hacer el mismo bucle de tres pasos."
+    },
+    {
+     "text": "Porque un rey apretado no puede dar jaque",
+     "why": "Los jaques no tienen nada que ver con esto. Todo se trata de quién tiene que mover."
+    },
+    {
+     "text": "Funciona en todas las posiciones con reyes.",
+     "why": "En un tablero abierto, ambos reyes pueden triangulaciones, y nadie gana nada."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué el truco del triángulo solo funciona cuando el otro rey está apretado? Responde esto, ¡y entenderás una de las ideas más profundas en finales de peones! ¡Excelente trabajo!"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "title": "Eliminación del defensor",
+ "summary": "Si una pieza está protegida por un defensor, ataca al defensor. Entonces, la pieza que estaba protegiendo cae.",
+ "steps": [
+  {
+   "id": "one-guard",
+   "title": "Un defensor",
+   "text": "El alfil negro en e5 está clavado al rey por la torre en e1, así que no puede moverse. Solo el caballo en g6 lo protege. Elimina ese defensor y el alfil es una pieza suelta. Cuando no puedes ganar una pieza directamente, mira qué la defiende.",
+   "narration": "El alfil en e5 no puede moverse, porque tu torre lo clava al rey. Lo único que lo mantiene vivo es el caballo en g6. Así que el plan es simple: elimina al caballo, y el alfil cae."
+  },
+  {
+   "id": "take-the-guard",
+   "title": "Captura al defensor",
+   "prompt": "Elimina el único defensor del alfil, y luego gana el alfil.",
+   "hint": "Tu alfil puede tomar al caballo, e incluso da jaque.",
+   "success": "Bxg6+ hxg6 intercambia alfil por caballo, y Rxe5+ gana el alfil clavado con nadie que lo defienda.",
+   "narration": "Toma al caballo con tu alfil. Es jaque, así que las negras tienen que recapturar o mover el rey. De cualquier forma, el alfil en e5 queda sin defensor, y tu torre lo recoge."
+  },
+  {
+   "id": "back-rank-guard",
+   "title": "El defensor de la última fila",
+   "prompt": "El caballo en d6 mantiene tu torre fuera de e8. Elimínalo.",
+   "hint": "El caballo está protegido por un peón, pero ¿qué pasa si ese peón recaptura?",
+   "success": "¡Rxd6! Si cxd6, Re8 es mate: el caballo era la única pieza cubriendo e8. Si las negras no recapturan, simplemente tienes un caballo de más.",
+   "narration": "El caballo en d6 tiene una tarea importante: cubre la casilla e8. Cálpalo con tu torre. Si las negras recapturan, tu otra torre va a e8 con jaque mate."
+  },
+  {
+   "id": "what-to-target",
+   "title": "¿Qué atacar?",
+   "question": "Un rook enemigo está atacado una vez y defendido una vez, por un caballo. ¿Qué significa eliminar al defensor aquí?",
+   "options": [
+    {
+     "text": "Captura o ahuyenta al caballo, para que el rook quede sin defensa.",
+     "why": "Una vez que su único guardia se ha ido, el rook está libre y puedes tomarlo sin costo."
+    },
+    {
+     "text": "Cálpalo de inmediato.",
+     "why": "Con un atacante y un defensor, tomar el rook solo intercambia piezas. Primero, ocúpate del defensor."
+    },
+    {
+     "text": "Defiende tus propias piezas primero.",
+     "why": "La seguridad es importante, pero esta pregunta es sobre ganar el rook: ve tras lo que lo protege."
+    }
+   ],
+   "narration": "Pregunta final. Un rook está protegido por un solo caballo. ¿Qué significa eliminar al defensor en esa posición? ¡Entiende esto y empezarás a ver estas cosas por todas partes! ¡Buen trabajo!"
+  }
+ ]
+}

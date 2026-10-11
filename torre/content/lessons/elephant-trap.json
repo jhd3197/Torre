@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "title": "The Elephant Trap",
+  "summary": "In the Queen's Gambit Declined White grabs the d5 pawn, thinking Black's knight is pinned. A sneaky bishop check wins a piece.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 7,
+  "orientation": "black",
+  "practice": "zwischenzug",
+  "steps": [
+    {
+      "id": "the-setup",
+      "kind": "explain",
+      "title": "A pin on f6",
+      "fen": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq - 3 4",
+      "marks": [
+        [
+          "g5",
+          "d8"
+        ]
+      ],
+      "text": "In the Queen's Gambit Declined, White's bishop on g5 pins Black's knight on f6 to the queen. Black brings the other knight to d7, and after the trade on d5 the pawn there is attacked by White's knight on c3 and seems to have only one defender: the pinned knight.",
+      "demo": [
+        "b8d7",
+        "c4d5",
+        "e6d5"
+      ],
+      "narration": "White's bishop pins Black's knight to the queen. Black brings the other knight to d7. [move] White trades pawns on d5. [move] Black takes back. [move] Now that pawn looks like a free snack, since its only defender is the pinned knight.",
+      "pose": "host"
+    },
+    {
+      "id": "take-back-anyway",
+      "kind": "play",
+      "title": "Take back anyway",
+      "fen": "r1bqkb1r/pppn1ppp/5n2/3N2B1/3P4/8/PP2PPPP/R2QKBNR b KQkq - 0 6",
+      "prompt": "White grabbed the pawn on d5. Find the best reply.",
+      "hint": "A pin to the queen is not absolute. What happens if White takes your queen?",
+      "line": [
+        "f6d5"
+      ],
+      "success": "Knight takes d5! If White takes your queen on d8, you have a check that wins everything back, with interest.",
+      "narration": "White just grabbed your pawn, thinking your knight can't move. Take a closer look. A pin to the queen is only a pin if losing the queen really costs you.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-greedy-bishop",
+      "kind": "explain",
+      "title": "The queen falls",
+      "fen": "r1bqkb1r/pppn1ppp/8/3n2B1/3P4/8/PP2PPPP/R2QKBNR w KQkq - 0 7",
+      "text": "If White takes the queen, Black's bishop gives check on b4 before recapturing anything. White can only block with the queen on d2, where it is pinned, and Black comes out of the trade a piece ahead.",
+      "demo": [
+        "g5d8",
+        "f8b4"
+      ],
+      "narration": "If White takes your queen, don't panic. [move] Your bishop gives a check first, on b4. [move] White's only answer is to put the queen in the way, and you come out a piece ahead.",
+      "pose": "point"
+    },
+    {
+      "id": "cash-in",
+      "kind": "play",
+      "title": "Cash in",
+      "fen": "r1bBk2r/pppn1ppp/8/3n4/1b1P4/8/PP1QPPPP/R3KBNR b KQkq - 2 8",
+      "prompt": "White blocked the check with the queen. Collect your material.",
+      "hint": "White's bishop on d8 is cut off, and the queen on d2 is pinned to the king.",
+      "line": [
+        "e8d8|b4d2"
+      ],
+      "success": "King takes d8, and White's pinned queen will be traded for your bishop. Overall you win a knight for a pawn. Taking the queen on d2 first works too.",
+      "narration": "White's queen blocked the check, and now White's bishop and queen are both loose. Grab what's yours.",
+      "pose": "excited"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r1bqkb1r/pppn1ppp/4pn2/3P2B1/3P4/2N5/PP2PPPP/R2QKBNR b KQkq - 0 5",
+      "prompt": "White traded on d5. Take back, and if White does not grab the pawn, keep developing.",
+      "nudge": "First recapture. Then think about the pin on your knight.",
+      "hint": "Bishop to e7 breaks the pin and gets you ready to castle. Pawn to c6 or pawn to h6 are good too.",
+      "line": [
+        "e6d5",
+        "e2e3",
+        "f8e7|c7c6|h7h6|d7b6|f8b4"
+      ],
+      "success": "White played pawn to e3 and left d5 alone. That is the correct defence, and there is no trap today. Your d5 pawn is solid, so just develop: bishop to e7, castle, then pawn to c6.",
+      "narration": "A good player won't grab your pawn. Take back on d5, and if White just develops, don't hunt for tricks. Break the pin and get castled.",
+      "pose": "shield",
+      "branches": [
+        {
+          "line": [
+            "e6d5",
+            "g1f3",
+            "c7c6|h7h6|f8b4|f8e7|d7b6"
+          ],
+          "success": "White developed the knight to f3 instead of grabbing. Break the pin with bishop to e7 or ask the bishop with pawn to h6, then castle. Your d5 pawn is safe and your position is healthy."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkb1r/pppn1ppp/5n2/3N2B1/3P4/8/PP2PPPP/R2QKBNR b KQkq - 0 6",
+      "orientation": "black",
+      "question": "What made the knight on f6 free to recapture on d5?",
+      "options": [
+        {
+          "text": "The check on b4 wins back the queen if White takes it",
+          "why": "Right. The pin was only a pin to the queen, and the bishop check gets the queen back with extra material.",
+          "correct": true
+        },
+        {
+          "text": "The knight on d7 protected the queen",
+          "why": "The knight on d7 does not protect d8. The key is the bishop check on b4."
+        },
+        {
+          "text": "White is not allowed to take the queen while a knight is pinned",
+          "why": "White is allowed to. It just loses material."
+        }
+      ],
+      "narration": "Last question. Your knight looked pinned, but you moved it anyway. What made that safe?",
+      "pose": "trophy"
+    }
+  ]
+}

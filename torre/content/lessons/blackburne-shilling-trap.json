@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "title": "The Blackburne Shilling Trap",
+  "summary": "Black leaves the e5 pawn hanging on purpose. Learn why White should not take it, and what happens if you do.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Opening traps",
+  "order": 9,
+  "orientation": "white",
+  "practice": "defensive-move",
+  "steps": [
+    {
+      "id": "a-strange-knight",
+      "kind": "explain",
+      "title": "A strange knight move",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+      "marks": [
+        [
+          "e5"
+        ]
+      ],
+      "text": "Black's knight jumps to d4. It breaks an opening rule, moving the same piece twice, and leaves the pawn on e5 undefended. The trap is named after the English master Joseph Blackburne, who is said to have used it to win small bets of a shilling.",
+      "demo": [
+        "c6d4"
+      ],
+      "narration": "Black's knight hops to d4 and leaves the e5 pawn hanging. [move] That looks like a gift. It isn't.",
+      "pose": "present"
+    },
+    {
+      "id": "what-black-hopes",
+      "kind": "explain",
+      "title": "What Black is hoping for",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "text": "If White grabs the pawn, Black's queen comes to g5, hitting the knight and the g2 pawn. If White gets greedy again and takes f7, the queen takes g2, then takes e4 with check, and the knight on d4 mates on f3. Step through it.",
+      "demo": [
+        "f3e5",
+        "d8g5",
+        "e5f7",
+        "g5g2",
+        "h1f1",
+        "g2e4",
+        "c4e2",
+        "d4f3"
+      ],
+      "narration": "Here's what Black is dreaming of. White's knight grabs the pawn. [move] Black's queen jumps to g5, hitting the knight and g2. [move] White gets greedy again and takes on f7. [move] The queen takes g2. [move] The rook runs to f1. [move] Queen takes e4, check! [move] The bishop blocks on e2. [move] And knight to f3 is checkmate. [move]",
+      "pose": "rival"
+    },
+    {
+      "id": "dont-grab",
+      "kind": "play",
+      "title": "Don't grab",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "prompt": "Black's knight sits on d4 and the pawn on e5 looks free. Play the best move.",
+      "hint": "Get rid of the annoying knight, or simply get your king to safety.",
+      "line": [
+        "f3d4|e1g1"
+      ],
+      "success": "Knight takes d4 removes the intruder. After the pawn takes back, you are ahead in development and Black has a loose pawn on d4. Castling is just as good.",
+      "narration": "The e5 pawn is waving at you. Ignore it! Deal with the knight on d4, or tuck your king away first.",
+      "pose": "shield"
+    },
+    {
+      "id": "damage-control",
+      "kind": "play",
+      "title": "If you already grabbed",
+      "fen": "r1b1kbnr/pppp1ppp/8/4N1q1/2BnP3/8/PPPP1PPP/RNBQK2R w KQkq - 1 5",
+      "prompt": "Too late, you took on e5. Black's queen hits your knight and g2. Find a move that keeps you in the game.",
+      "hint": "Your king and rook are the real targets. Get them out of the line of fire.",
+      "line": [
+        "e1g1|c4f7"
+      ],
+      "success": "Castling defends g2 for good, and you give back the knight. Bishop takes f7 check first also works. The one move to avoid is knight takes f7, which walks into the mate.",
+      "narration": "Okay, you grabbed the pawn. Now Black's queen is attacking two things. Don't make it worse. Protect your king first, even if it costs the knight.",
+      "pose": "nervous"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "question": "After Black's knight jumps to d4, why is taking the e5 pawn a mistake?",
+      "options": [
+        {
+          "text": "Black's queen comes to g5 and attacks both the knight and g2",
+          "why": "Right. The free pawn turns into a lost knight, or worse.",
+          "correct": true
+        },
+        {
+          "text": "Taking pawns in the opening is always wrong",
+          "why": "Free pawns are often worth taking. This one has a hook in it."
+        },
+        {
+          "text": "The pawn on e5 is protected by the knight on d4",
+          "why": "A knight on d4 does not protect e5. The pawn really is undefended. The danger is what comes next."
+        }
+      ],
+      "narration": "Last question. Why is that pawn on e5 poisoned? Think about Black's queen.",
+      "pose": "trophy"
+    }
+  ]
+}

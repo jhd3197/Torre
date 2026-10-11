@@ -1,0 +1,17 @@
+{
+  "title": "Perfil de configuración",
+  "note": "Opciones UCI guardadas que se aplican cada vez que {{engine}} arranca: análisis, partidas y la Arena. El rating de un bot sigue fijando su propia fuerza.",
+  "unreported": "No se pudieron consultar las opciones del motor, así que estos valores se guardan sin comprobarlos.",
+  "loading": "Cargando opciones…",
+  "valueOf": "Valor de {{name}}",
+  "default": "por defecto {{value}}",
+  "engineDefault": "valor del motor",
+  "range": "{{min}}–{{max}}",
+  "on": "sí",
+  "off": "no",
+  "add": "Añadir una opción…",
+  "save": "Guardar perfil",
+  "saving": "Guardando…",
+  "saved": "Perfil guardado. Se aplica la próxima vez que arranque el motor.",
+  "clear": "Borrar perfil"
+}

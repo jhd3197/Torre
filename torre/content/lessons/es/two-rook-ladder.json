@@ -1,0 +1,55 @@
+{
+ "title": "El mate de la escalera",
+ "summary": "Dos torres se turnan para dar jaque, una fila a la vez, y llevan al rey al borde sin ninguna ayuda de tu propio rey.",
+ "unit": "Mates básicos",
+ "steps": [
+  {
+   "id": "two-rooks-climb",
+   "title": "Las torres escalando una escalera",
+   "text": "La torre en a4 impide que el rey negro esté en la cuarta fila. La otra torre da jaque en la quinta, así que el rey debe avanzar a la sexta. Entonces la primera torre da jaque en la sexta, y así sucesivamente. Cada jaque empuja al rey una fila más arriba, como peldaños de una escalera, hasta que se queda sin tablero. Algunas personas lo llaman el mate de la podadora.",
+   "narration": "Dos torres no necesitan a tu rey en absoluto. Una torre mantiene una fila, la otra da jaque en la siguiente, y siguen saltándose. Peldaño por peldaño, el rey asciende hasta la parte superior del tablero, y luego no queda más lugar para ir."
+  },
+  {
+   "id": "start-climbing",
+   "title": "Comienza la escalada",
+   "prompt": "Deja la torre en la cuarta fila donde está y da jaque con la otra torre, luego sigue escalando.",
+   "hint": "La torre en b1 da jaque en la quinta fila. Después de que el rey avance, la torre en a4 da jaque en la sexta.",
+   "success": "Torre a b5, luego torre a a6. Cada jaque proviene de la torre que estaba protegiendo la fila de abajo, así que el rey nunca puede retroceder.",
+   "narration": "Es tu turno de escalar. Da jaque con la torre de atrás en la quinta fila mientras la otra guarda la cuarta. Luego salta: la torre en a4 salta a la sexta fila con jaque."
+  },
+  {
+   "id": "top-of-the-ladder",
+   "title": "Arriba de la escalera",
+   "prompt": "Mate en dos. Sigue saltándose.",
+   "hint": "Jaque en la séptima fila, luego en la octava.",
+   "success": "La torre a b7 da jaque, y la torre a a8 es mate: la octava fila está cubierta por una torre y la séptima por la otra.",
+   "narration": "Dos peldaños más. Jaque en la séptima fila, luego en la octava, y el rey se cae de la parte superior de la escalera."
+  },
+  {
+   "id": "switch-sides",
+   "title": "Cuando el rey se acerca",
+   "text": "Aquí, el rey negro ataca la torre en b4. Si das jaque ahora, simplemente pierdes una torre. Sigue el ejemplo: mueve la torre atacada al lado opuesto del tablero a lo largo de la misma fila, para que la cerca se mantenga. Una vez que el rey está lejos de ambas torres, la escalera continúa.",
+   "narration": "Ten cuidado cuando el rey camina hacia tus torres. Aquí ataca la torre en b4. No entres en pánico ni des jaque todavía. Desliza esa torre al lado opuesto sobre la misma fila. [move] El rey se acerca, pero la cerca se mantiene. [move] Y ahora la escalera continúa. [move]"
+  },
+  {
+   "id": "queen-and-rook",
+   "title": "Otra escalera",
+   "question": "Tienes una dama y una torre en lugar de dos torres. ¿Sigue funcionando la escalera?",
+   "options": [
+    {
+     "text": "Sí. La dama también se mueve a lo largo de las filas, así que puede turnarse con la torre",
+     "why": "Una dama puede hacer todo lo que una torre hace en filas y columnas, por lo que el mismo salto funciona, a menudo incluso más rápido."
+    },
+    {
+     "text": "No, necesitas exactamente dos torres.",
+     "why": "Cualquier pieza que pueda dar jaque a lo largo de las filas sirve. Una dama y una torre son incluso más fuertes."
+    },
+    {
+     "text": "Solo si tu rey ayuda.",
+     "why": "La escalera nunca necesita a tu rey. Las dos piezas pesadas custodian cada una una fila."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué pasaría si tuvieras una dama y una torre en lugar de dos torres? Piensa en cómo se mueve la dama. Responde esto y habrás dominado la escalera. ¡Buen trabajo!"
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+  "label": "Your profile",
+  "title": "Your profile",
+  "level": "Level {{level}}",
+  "levelUnknown": "Level unknown",
+  "progress": "Your progress",
+  "xp": "{{xp}} XP",
+  "progressLabel": "Progress to the next level",
+  "toNext": "{{xp}} of {{goal}} XP to level {{level}}",
+  "loading": "Loading your profile…",
+  "streak": {
+    "days_one": "{{count}}-day streak",
+    "days_other": "{{count}}-day streak",
+    "goalMet": "Today’s goal is met. See you tomorrow.",
+    "progress": "{{xp}} of {{goal}} XP toward today’s goal."
+  },
+  "cards": {
+    "games": {
+      "title": "Games archive",
+      "text": "Every game you played or imported, replayed move by move."
+    },
+    "insights": {
+      "title": "Insights",
+      "text": "Form, openings and recurring mistakes across your archive."
+    },
+    "awards": {
+      "title": "Awards",
+      "text": "Trophies and badges earned along the way."
+    },
+    "lessons": {
+      "title": "Lesson library",
+      "text": "Browse every lesson freely, outside the story path."
+    },
+    "train": {
+      "title": "Train & review",
+      "text": "Spaced-repetition drills built from your own mistakes."
+    },
+    "settings": {
+      "title": "Settings",
+      "text": "Board, pieces, sounds and engine preferences."
+    }
+  },
+  "crests": {
+    "title": "Event crests"
+  },
+  "archive_one": "{{value}} game in your archive",
+  "archive_other": "{{value}} games in your archive",
+  "archiveEmpty": "No games in your archive yet",
+  "ratings": {
+    "label": "Your numbers",
+    "play": {
+      "title": "Play rating",
+      "month": "{{change}} in 30 days",
+      "last": "From your game on {{date}}"
+    },
+    "puzzles": {
+      "title": "Puzzle rating",
+      "trend": "{{change}} over {{count}} rated puzzles",
+      "count_one": "{{value}} rated puzzle",
+      "count_other": "{{value}} rated puzzles"
+    },
+    "accuracy": {
+      "title": "Accuracy",
+      "games_one": "Across {{value}} analyzed game",
+      "games_other": "Across {{value}} analyzed games"
+    },
+    "awards": {
+      "title": "Awards",
+      "next": "Next: {{title}}",
+      "done": "Every award at gold"
+    }
+  },
+  "record": {
+    "title": "Record",
+    "all": "All stats",
+    "win": "Wins",
+    "draw": "Draws",
+    "loss": "Losses",
+    "last_one": "Last game",
+    "last_other": "Last {{count}} games",
+    "short": {
+      "win": "W",
+      "draw": "D",
+      "loss": "L"
+    },
+    "tip": "{{result}} vs {{opponent}}, {{date}}"
+  },
+  "openings": {
+    "title": "Your openings",
+    "all": "All openings",
+    "games_one": "{{value}} game",
+    "games_other": "{{value}} games",
+    "white": "As White",
+    "black": "As Black",
+    "score": "Score {{score}}%",
+    "note": "The square shows your colour; the bar shows your score."
+  },
+  "awards": {
+    "title": "Awards",
+    "earned": "{{earned}} of {{total}} earned",
+    "all": "All awards"
+  },
+  "games": {
+    "title": "Recent games",
+    "all": "All games",
+    "vs": "vs {{opponent}}",
+    "moves_one": "{{count}} move",
+    "moves_other": "{{count}} moves",
+    "replay": "Replay",
+    "replayLabel": "Replay the game against {{opponent}}",
+    "result": {
+      "win": "Win",
+      "draw": "Draw",
+      "loss": "Loss"
+    }
+  },
+  "opponents": {
+    "title": "Most played",
+    "record_one": "{{value}} game · {{record}}",
+    "record_other": "{{value}} games · {{record}}"
+  },
+  "empty": {
+    "title": "No games yet",
+    "text": "Import your games or play a bot. Your record, openings and opponents will show here.",
+    "import": "Import games",
+    "play": "Play a bot"
+  },
+  "more": "Shortcuts"
+}

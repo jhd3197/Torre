@@ -1,0 +1,55 @@
+{
+ "title": "El mate del rey y la dama",
+ "summary": "Dar jaque mate a un rey solo con tu rey y dama: reduce el espacio, acerca tu rey, y nunca dejes al defensor sin una jugada.",
+ "unit": "Mates básicos",
+ "steps": [
+  {
+   "id": "the-box",
+   "title": "Dibuja una caja",
+   "text": "El rey negro no puede cruzar la columna 'e' ni la cuarta fila, porque la dama las defiende. Piensa en ellas como las paredes de una caja. Tu plan es hacer que la caja sea más pequeña hasta que el rey quede atrapado en el borde del tablero, y luego acercas tu propio rey para ayudar.",
+   "narration": "Una dama sola no puede dar jaque mate, pero puede construir una cerca. Aquí, ella defiende toda la columna 'e' y toda la cuarta fila, por lo que el rey negro queda encerrado en la esquina superior derecha. Seguimos reduciendo esa caja hasta que el rey esté clavado al borde."
+  },
+  {
+   "id": "lock-the-edge",
+   "title": "Fíjalo en el borde",
+   "prompt": "Atrapa al rey en la última fila con una jugada de la dama, acerca tu rey, y luego da mate.",
+   "hint": "Una dama en la séptima fila mantiene al rey en la octava. Elige una casilla que el rey no pueda alcanzar.",
+   "success": "Dama a f7 construye una pared en la séptima fila. Tu rey se acerca a c6 para proteger las casillas junto al rey negro, y la dama da mate.",
+   "narration": "El rey ya está en el borde, así que cierra la puerta. Coloca tu dama en la séptima fila, lo suficientemente lejos para que el rey no pueda tocarla. Luego, marcha tu propio rey hacia adelante y termina con la dama."
+  },
+  {
+   "id": "king-comes-up",
+   "title": "El rey hace el último trabajo",
+   "prompt": "Mate en dos: primero acerca tu rey, luego mate con la dama.",
+   "hint": "Coloca tu rey donde proteja las casillas frente al rey negro. Un jaque de dama solo persigue al rey.",
+   "success": "El rey a e6 cubre d7, e7 y f7. El rey negro solo puede moverse a f8, y la dama a h8 es mate en la última fila.",
+   "narration": "Los jaques no lo harán solos aquí. Avanza tu rey a e6 para que proteja las casillas frente al rey negro. El rey negro solo puede deslizarse lateralmente, y tu dama lo termina en la última fila."
+  },
+  {
+   "id": "stalemate-trap",
+   "title": "No provoques un ahogado.",
+   "text": "Recorre la demostración. La dama a b6 parece aplastante, pero el rey negro no está en jaque y no tiene movimiento legal. Eso es un ahogado, y el juego termina en empate. Cuando el rey está casi sin casillas, asegúrate de que tu movimiento le dé jaque o le deje al menos una casilla.",
+   "narration": "Ten cuidado ahora, este es el error clásico. La dama a b6. [move] Le quita todas las casillas, pero no es jaque. El negro no tiene movimiento legal, y eso es un ahogado, un empate. Siempre deja al rey una casilla, o dale jaque."
+  },
+  {
+   "id": "find-the-mate",
+   "title": "Mate, no ahogado.",
+   "question": "Blancas para mover. ¿Qué movimiento de dama es jaque mate?",
+   "options": [
+    {
+     "text": "La dama a a6.",
+     "why": "Da jaque por el a-file, y tu rey protege b7 y b8. El rey no tiene a dónde ir: jaque mate."
+    },
+    {
+     "text": "La dama a b6.",
+     "why": "Sin jaque, y sin movimiento legal para las negras. Eso es ahogado, un empate."
+    },
+    {
+     "text": "Dama a c6, jaque.",
+     "why": "Es jaque, pero el rey escapa a a7. Todavía ganas, solo que no en un movimiento."
+    }
+   ],
+   "narration": "Misma posición, tu movimiento. Uno de estos es jaque mate, uno es la trampa de ahogado que acabamos de ver, y uno deja escapar al rey. Elige el mate, ¡y habrás dominado el final de rey y dama! Buen trabajo."
+  }
+ ]
+}

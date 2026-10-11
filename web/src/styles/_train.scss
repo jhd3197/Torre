@@ -1,0 +1,233 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+.analysis-runner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  background: $sage-100;
+  border: 1px solid $sage-200;
+  border-radius: 6px;
+  font-size: $fs-sm;
+}
+.analysis-runner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.analysis-runner strong {
+  font: 600 #{$fs-md} $font-sans;
+  color: var(--ink);
+}
+.analysis-runner span {
+  color: $sage-600;
+}
+.analysis-runner progress {
+  flex: 0 1 220px;
+  height: 6px;
+  appearance: none;
+  border: 0;
+  border-radius: 3px;
+  background: $sage-200;
+  overflow: hidden;
+}
+.analysis-runner progress::-webkit-progress-bar {
+  background: $sage-200;
+}
+.analysis-runner progress::-webkit-progress-value {
+  background: var(--green);
+}
+.analysis-runner progress::-moz-progress-bar {
+  background: var(--green);
+}
+.analysis-runner-button {
+  border: 1px solid $sage-200;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-size: $fs-xs;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.analysis-runner-button.primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: $sage-50;
+}
+.analysis-runner-button:hover {
+  background: $sage-100;
+}
+.analysis-runner-button.primary:hover {
+  background: $moss-700;
+}
+.insights > [data-analysis-runner]:empty,
+.home [data-analysis-runner]:empty {
+  display: none;
+}
+
+.train {
+  padding: 8px 0 30px;
+}
+.train-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(260px, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.train-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 4px;
+}
+.train-source {
+  margin: 0;
+  font: #{$fs-xs} $font-sans;
+  color: $moss-600;
+  font-weight: 650;
+}
+.train-prompt,
+.train-verdict {
+  margin: 0;
+  font-size: $fs-base;
+  line-height: 1.6;
+}
+.train-prompt strong,
+.train-verdict strong {
+  font-family: $font-sans;
+}
+.train-verdict {
+  padding: 12px 14px;
+  border-radius: 5px;
+  border: 1px solid;
+}
+.train-verdict.correct {
+  background: $sage-100;
+  border-color: $moss-200;
+}
+.train-verdict.missed {
+  background: $sand-100;
+  border-color: $sand-200;
+}
+.train-detail {
+  margin: 0;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.train-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.train-actions .text-button {
+  font-size: $fs-xs;
+}
+.train-counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 6px 0 0;
+  padding: 14px 0;
+  border-top: 1px solid $sage-200;
+}
+.train-counts div {
+  min-width: 0;
+}
+.train-counts dt {
+  font-size: $fs-xs;
+  color: $sage-600;
+}
+.train-counts dd {
+  margin: 2px 0 0;
+  font: 650 #{$fs-3xl} $font-sans;
+  font-variant-numeric: tabular-nums;
+}
+.train-counts small {
+  font: 400 #{$fs-xs} $font-sans;
+  color: $sage-600;
+}
+.train-done {
+  max-width: 520px;
+  padding: 24px 0;
+}
+.train-done h2 {
+  margin: 0 0 6px;
+  font: 650 #{$fs-3xl} $font-sans;
+  letter-spacing: -0.6px;
+}
+.train-done p,
+.train-empty {
+  margin: 0 0 8px;
+  font-size: $fs-md;
+  line-height: 1.7;
+  color: $sage-600;
+}
+#export-pgn {
+  text-decoration: none;
+}
+#export-pgn[hidden] {
+  display: none;
+}
+
+@include down(md) {
+  .analysis-runner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .analysis-runner progress {
+    flex-basis: 100%;
+  }
+  .train-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+// The day's plan (TodayPlan): drills, puzzles to retry and new puzzles from your games.
+.today-plan {
+  max-width: 520px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid $sage-200;
+  h2 {
+    margin: 0 0 8px;
+    font: 650 #{$fs-lg} $font-sans;
+  }
+  ol {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    font-size: $fs-md;
+  }
+  li span {
+    color: $sage-600;
+    font-size: $fs-sm;
+  }
+  li.done strong {
+    color: $sage-600;
+    font-weight: 500;
+  }
+}
+
+// The coach's words on a move or a game (CoachExplain).
+.coach-explain {
+  margin: 10px 0;
+  p {
+    margin: 0 0 6px;
+    font-size: $fs-md;
+    line-height: 1.6;
+  }
+}

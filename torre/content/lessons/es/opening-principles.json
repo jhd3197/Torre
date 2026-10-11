@@ -1,0 +1,90 @@
+{
+ "title": "Principios de apertura",
+ "summary": "Asegura el centro, desarrolla tus piezas, enroca y mantén a la dama segura hasta que sea conveniente.",
+ "steps": [
+  {
+   "id": "the-center",
+   "title": "El centro",
+   "text": "Los cuatro cuadrados marcados son el centro. Las piezas colocadas allí alcanzan la mayor cantidad de casillas, y las piezas dirigidas hacia él pueden cambiar rápidamente entre los dos lados del tablero. La mayoría de los buenos movimientos de apertura ya sea ocupan el centro o lo atacan.",
+   "narration": "¿Ves esos cuatro cuadrados en medio del tablero? Ese es el centro, y es la tierra más valiosa en el ajedrez. Una pieza que está allí alcanza más casillas que en cualquier otro lugar, así que casi cada buen movimiento de apertura ya sea toma el centro o lucha por él."
+  },
+  {
+   "id": "claim-the-center",
+   "title": "Tu primer movimiento",
+   "prompt": "Juega un movimiento de peón que coloque un peón en el centro.",
+   "hint": "Mueve el peón del rey o el peón de la dama dos casillas.",
+   "success": "Ese peón ocupa una casilla central y abre una diagonal para un alfil y la dama.",
+   "narration": "¡Es tu turno! Coloca un peón justo en el centro. Empuja el peón del rey o el peón de la dama dos casillas: cualquiera de las dos es un primer movimiento maravilloso."
+  },
+  {
+   "id": "develop-toward-the-center",
+   "title": "Desarrollando",
+   "question": "Después de 1. e4 e5, ¿qué movimiento desarrolla mejor?",
+   "options": [
+    {
+     "text": "Nf3",
+     "why": "Saca una pieza hacia el centro y ataca el peón en e5 de inmediato."
+    },
+    {
+     "text": "Na3",
+     "why": "Un caballo en el borde solo alcanza cuatro casillas. 'Un caballo en el borde es tenue'."
+    },
+    {
+     "text": "Qh5",
+     "why": "La dama sale temprano y puede ser perseguida perdiendo tiempo por las jugadas de desarrollo de tu oponente."
+    },
+    {
+     "text": "h4",
+     "why": "Un movimiento de peón en el flanco no sirve para nada al centro ni para tu desarrollo."
+    }
+   ],
+   "narration": "El blanco movió un peón a e4, y el negro respondió con un peón a e5. Ahora, ¿qué movimiento desarrolla mejor? Piensa en sacar una pieza hacia el medio, donde haga algo útil de inmediato."
+  },
+  {
+   "id": "develop-and-castle",
+   "title": "Caballo, alfil, enrocar",
+   "prompt": "Desarrolla tu caballo del flanco de rey, luego tu alfil del flanco de rey, y luego enroca. El negro responde a cada jugada.",
+   "hint": "Caballo a f3, alfil a c4, y luego enroque corto: mueve el rey dos casillas hacia la torre.",
+   "success": "En tres movimientos, dos piezas están activas y tu rey está resguardado detrás de tus peones. Eso es la Apertura Italiana.",
+   "narration": "Construyamos una apertura de verdad juntos. Lleva tu caballo a f3, luego tu alfil a c4, y finalmente enroca para guardar tu rey a salvo. Las negras responderán a cada jugada que hagas."
+  },
+  {
+   "id": "early-queen-threat",
+   "title": "Cuando la dama sale temprano",
+   "text": "Aquí, las blancas intentaron lo contrario: 2. Qh5 y 3. Bc4. La dama y el alfil apuntan a f7, un casillero que solo el rey negro defiende. Si las negras lo ignoran, Qxf7 es jaque mate. Esto es el Mate del Escriba.",
+   "narration": "¡Ten cuidado! Las blancas han apresurado la dama a h5 y al alfil a c4, y ambos apuntan a f7: un casillero que solo tu rey defiende. Si las negras ignoran esto, la dama captura f7 es jaque mate. Este truco astuto se llama Mate del Escriba."
+  },
+  {
+   "id": "stop-scholars-mate",
+   "title": "Defiende f7",
+   "prompt": "Tú eres negro. Detén el mate en f7.",
+   "hint": "Defiende f7 con la dama, o bloquea el camino de la dama a f7 con un peón que también la ataca.",
+   "success": "El mate está detenido. La dama de las blancas salió temprano y perderá más tiempo huyendo de tus piezas.",
+   "narration": "¡Detén ese mate! Aquí eres negro. Protege f7 con tu dama, o empuja el peón a g6 para alejar la dama blanca. Cualquiera de estas defensas cumple el trabajo."
+  },
+  {
+   "id": "principles-quiz",
+   "title": "¡Revísate!",
+   "question": "¿Cuál de estas opciones NO es un buen hábito en la apertura?",
+   "options": [
+    {
+     "text": "Mover la misma pieza varias veces para capturar un peón.",
+     "why": "Cada movimiento extra con una pieza significa que otras piezas permanecen en casa. Captura material solo cuando sea seguro y el resto de tu ejército esté listo."
+    },
+    {
+     "text": "Enrocar temprano.",
+     "why": "Enrocar es un buen hábito: esconde al rey y conecta las torres."
+    },
+    {
+     "text": "Desarrollar los caballos antes que los alfiles.",
+     "why": "Esta es una buena regla general: los caballos tienen menos casillas buenas, así que es claro dónde deben estar."
+    },
+    {
+     "text": "Luchar por el centro con peones.",
+     "why": "Esta es la primera regla de la apertura."
+    }
+   ],
+   "narration": "¡Última pregunta! Tres de estos son buenos hábitos de apertura, y uno no lo es. Elige el mal hábito, ¡y excelente trabajo al terminar tu primera lección!"
+  }
+ ]
+}

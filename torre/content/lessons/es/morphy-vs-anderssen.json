@@ -1,0 +1,90 @@
+{
+ "title": "Morphi contra Anderssen",
+ "summary": "París, 1858: Morphy conoce a Adolf Anderssen, el héroe del Juego del Immortal, y desmantela su rey en diecinueve movimientos.",
+ "unit": "Paul Morphy",
+ "steps": [
+  {
+   "id": "paris-1858",
+   "title": "París, 1858",
+   "text": "En 1858, Morphy cruzó el Atlántico para encontrar a los oponentes más fuertes de Europa. En París, jugó un encuentro contra Adolf Anderssen de Alemania, el ganador del gran torneo de Londres de 1851 y el héroe del Juego del Immortal. Morphy ganó el encuentro claramente. En esta partida, abre con el Gambito de Rey, el tipo de ajedrez propio de Anderssen.",
+   "narration": "París, 1858. Morphy se enfrenta a Adolf Anderssen, el mejor jugador de ataque de Europa. Y lo vence en su propio juego: el Gambito de Rey."
+  },
+  {
+   "id": "the-game",
+   "title": "Morphy – Anderssen, París 1858",
+   "text": "Anderssen toma un peón y empuja sus peones del flanco de rey hacia adelante, mientras que Morphy saca todas las piezas. Luego comienzan los sacrificios. El juego se detiene en los movimientos clave de Morphy: encuéntralos.",
+   "notes": [
+    {
+     "text": "2.f4: el Gambito de Rey. Las blancas ofrecen un peón para abrir la columna f y desarrollar rápidamente, la apertura favorita de la época."
+    },
+    {
+     "text": "3...g5: Anderssen se aferra al peón extra empujando sus peones del flanco de rey."
+    },
+    {
+     "text": "7.Qb3: la dama y el alfil en c4 apuntan a f7, el punto débil junto al rey de las negras."
+    },
+    {
+     "text": "11.Bxf4: Las blancas recuperan un peón, todas las piezas blancas están en juego y el rey negro está atrapado en d8."
+    },
+    {
+     "text": "12.Bxg8: Otra pieza negra desaparece antes de haber hecho un movimiento."
+    },
+    {
+     "text": "16.Qxb7: La dama entra en el campo de las negras y fija su mirada en la torre en a8."
+    },
+    {
+     "text": "18.cxd4: Anderssen recuperó un peón con jaque, pero su rey sigue muy expuesto."
+    }
+   ],
+   "narration": "Anderssen se lleva un peón. Morphy gana tiempo. Observa lo rápido que un rey inseguro puede desmoronarse, y encuentra las jugadas clave de Morphy.",
+   "guesses": [
+    {
+     "prompt": "Cada pieza blanca está lista. Encuentra el sacrificio que abre el flanco de rey de las negras.",
+     "hint": "La dama negra en e7 defiende dos cosas: el peón en g5 y la casilla f7. Oblígala a elegir.",
+     "why": "9.Nxg5!: Si la dama captura, deja e7, donde estaba defendiendo f7. La dama blanca y el alfil apuntan a f7."
+    },
+    {
+     "prompt": "La dama negra ha abandonado e7. Aprovecha la oportunidad.",
+     "hint": "Tu dama y tu alfil apuntan al mismo peón junto al rey negro.",
+     "why": "10.Bxf7+!: El rey debe moverse a d8 y no puede enrocar. A continuación, Morphy recupera en f4 y ataca a la dama."
+    },
+    {
+     "prompt": "Tu dama ha llegado a b7. Encuentra la captura que deja al rey negro completamente abierto.",
+     "hint": "El peón en d6 es el último escudo frente al rey, y tu alfil en f4 puede alcanzarlo.",
+     "why": "17.Bxd6!: El alfil elimina el peón frente al rey y ataca a la dama en e7. Las negras no pueden cubrir todo a la vez."
+    },
+    {
+     "prompt": "Las negras acaban de capturar tu alfil. Encuentra la jugada que termina el juego.",
+     "hint": "Tu torre en f1 tiene una columna abierta hasta la séptima fila.",
+     "why": "1. \"19.Rf7+! La torre da jaque a lo largo de la séptima fila. Cuando el rey se mueve, la dama blanca captura la torre en a8. Anderssen renunció.\""
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "Primero desarrolla, luego abre líneas.",
+   "text": "Mira la posición final: ambas torres negras siguen en sus casillas de salida, y el rey negro nunca encontró refugio. Morphy sacrificó un caballo y un alfil para abrir líneas, y funcionó porque sus piezas estaban fuera y las de Anderssen no. Abre la posición cuando estás por delante en desarrollo, no antes.",
+   "narration": "Ambas torres negras nunca se movieron, y el rey negro nunca encontró un hogar. Morphy abrió líneas porque sus piezas estaban listas y las de Anderssen no."
+  },
+  {
+   "id": "quiz",
+   "title": "Por qué funcionó",
+   "question": "¿Por qué los sacrificios de Morphy funcionaron contra Anderssen?",
+   "options": [
+    {
+     "text": "Sus piezas estaban fuera y el rey negro estaba atrapado en el centro, así que abrir líneas ayudó sólo a las Blancas.",
+     "why": "Correcto. Abrir líneas es bueno para el bando cuyas piezas pueden aprovecharlas."
+    },
+    {
+     "text": "Anderssen no conocía el Gambito de Rey.",
+     "why": "Anderssen jugó el Gambito de Rey él mismo y lo conocía bien. El problema era su posición, no su conocimiento."
+    },
+    {
+     "text": "Morphy tuvo más material durante todo el juego.",
+     "why": "No. Morphy entregó material para abrir líneas, y lo recuperó con creces."
+    }
+   ],
+   "narration": "Pregunta rápida: ¿por qué funcionaron los sacrificios?"
+  }
+ ]
+}

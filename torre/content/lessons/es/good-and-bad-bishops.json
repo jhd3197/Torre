@@ -1,0 +1,47 @@
+{
+ "title": "'Buenos y malos alfiles'",
+ "summary": "'Un alfil acorralado por sus propios peones es un mal alfil. Aprende a distinguir entre un buen y un mal alfil, y cómo vencer a un mal alfil.'",
+ "unit": "Juego de piezas",
+ "steps": [
+  {
+   "id": "the-bad-bishop",
+   "title": "'Atrapado detrás de sus propios peones'",
+   "text": "'El alfil negro en c8 se mueve en casillas claras, y los peones negros en d5 y e6 también están en casillas claras. Bloquean las diagonales del alfil, así que casi no tiene dónde moverse. Un alfil cuyos propios peones están fijos en su color se llama mal alfil. Un buen alfil es aquel cuyos peones están en el otro color, dejando sus diagonales abiertas.'",
+   "narration": "'Mira el alfil de casillas claras de las negras en c8. Sus propios peones en d5 y e6 están en casillas claras y lo bloquean. Ese es un mal alfil: no es culpa del alfil, sino dónde están sus peones.'"
+  },
+  {
+   "id": "the-rule",
+   "title": "'Peones en el otro color'",
+   "text": "'Ambos lados tienen un alfil de casillas claras. Todos los peones de las negras están en casillas claras, por lo que el alfil negro está atado a defenderlos y no puede controlar ni una sola casilla oscura. Los peones de las blancas están en casillas oscuras, por lo que el alfil blanco está libre y los peones blancos están a salvo del alfil negro. Las casillas oscuras, como c5, son carreteras abiertas para el rey blanco.'",
+   "narration": "'El mismo tipo de alfil en ambos lados, pero una historia muy diferente. Los peones de las negras están todos en casillas claras, por lo que el alfil negro está atado a ellos y no puede proteger ninguna casilla oscura. Los peones de las blancas están en casillas oscuras, lo que deja el alfil blanco libre.'"
+  },
+  {
+   "id": "invade-the-dark-squares",
+   "title": "'Camina por las casillas oscuras'",
+   "prompt": "'Usa las casillas que el alfil negro nunca puede cubrir. Avanza tu rey y gana un peón.'",
+   "hint": "11. 'Dirígete al flanco de la dama por las casillas oscuras: c5, luego b6.'",
+   "success": "'Tu rey caminó por casillas oscuras que el alfil negro nunca pudo desafiar, y el peón a6 cayó. Seguirán más.'",
+   "narration": "El alfil negro no puede tocar ni un solo casillero oscuro. Así que mueve a tu rey exactamente por esos casilleros, a c5 y luego b6, y aprovecha los peones débiles de tu oponente."
+  },
+  {
+   "id": "where-pawns-go",
+   "title": "¡Revísate!",
+   "question": "Solo te queda un alfil de casillas claras. ¿Dónde suelen estar tus peones?",
+   "options": [
+    {
+     "text": "En casillas oscuras",
+     "why": "Así no bloquean a tu alfil, y juntos los peones y el alfil controlan ambos colores."
+    },
+    {
+     "text": "En casillas claras, para que el alfil pueda defenderlas.",
+     "why": "Eso convierte a tu alfil en un alfil malo: ocupado defendiendo, bloqueado por sus propios peones, y dejando las casillas oscuras a tu oponente."
+    },
+    {
+     "text": "No hace diferencia.",
+     "why": "Marca una gran diferencia. Los peones del mismo color que tu alfil lo bloquean y dejan el otro color débil."
+    }
+   ],
+   "narration": "Pregunta final. Si tu único alfil es un alfil de casillas claras, ¿dónde deberían vivir tus peones? Piensa en qué bloquea al alfil. ¡Buen trabajo!"
+  }
+ ]
+}

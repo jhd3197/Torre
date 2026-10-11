@@ -1,0 +1,48 @@
+{
+ "title": "La horquilla del caballo",
+ "summary": "Un caballo, dos objetivos. Aprende a identificar las casillas donde un caballo ataca al rey y a una pieza valiosa al mismo tiempo.",
+ "steps": [
+  {
+   "id": "how-a-knight-attacks",
+   "title": "Cómo ataca un caballo",
+   "text": "Un caballo en medio del tablero ataca ocho casillas, todas en forma de L. Sus ataques no pueden ser bloqueados, y ninguna otra pieza se mueve igual que él, así que un caballo puede atacar a una dama o torre sin ser atacado a su vez. Una horquilla es un movimiento que ataca a dos piezas a la vez.",
+   "narration": "Observa al caballo. Desde el medio del tablero ataca ocho casillas a la vez, todas con esa forma de L divertida, y nada puede bloquearlo. Cuando un solo movimiento de caballo ataca a dos piezas al mismo tiempo, eso se llama horquilla, y es uno de los trucos más fuertes en ajedrez."
+  },
+  {
+   "id": "win-the-queen",
+   "title": "Horquilla rey y dama",
+   "prompt": "Gana la dama de las negras con una horquilla de caballo.",
+   "hint": "Encuentra la casilla desde la cual el caballo ataca tanto a g8 como a c8.",
+   "success": "Ne7+ da jaque al rey y ataca a la dama. Las negras deben lidiar con el jaque, y la dama cae.",
+   "narration": "¡Es hora de cazar! Tu caballo en d5 puede saltar a una casilla donde da jaque al rey en g8 y ataca a la dama en c8 al mismo tiempo. Encuentra esa casilla, y la dama es tuya."
+  },
+  {
+   "id": "royal-fork",
+   "title": "Horquilla rey y torre",
+   "prompt": "La casilla c7 está sin defender. Úsala para ganar una torre.",
+   "hint": "Desde c7, un caballo ataca e8 y a8.",
+   "success": "Nc7+ hace una horquilla al rey y a la torre. ¡Ganas una torre entera sin nada a cambio!",
+   "narration": "Aquí está mi horquilla favorita de todas. El peón c7 está completamente sin defender: mueve tu caballo allí y da jaque al rey mientras ataca la torre en la esquina. ¡El rey debe moverse, y tomas una torre entera gratis!"
+  },
+  {
+   "id": "why-check-matters",
+   "title": "Por qué el jaque ayuda",
+   "question": "¿Por qué una horquilla que da jaque es especialmente fuerte?",
+   "options": [
+    {
+     "text": "El oponente debe responder al jaque, así que la otra pieza no puede ser salvada.",
+     "why": "El jaque le quita a tu oponente su elección. No tienen tiempo para mover, defender o contraatacar con la segunda pieza."
+    },
+    {
+     "text": "Un caballo que da jaque no puede ser capturado.",
+     "why": "Un caballo que da jaque puede ser capturado si algo lo ataca. La horquilla funciona por lo que el jaque fuerza."
+    },
+    {
+     "text": "Los jaques valen puntos extra",
+     "why": "No hay puntos por jaques. Lo que importa es el material que ganas."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué una horquilla que también da jaque es tan poderosa? Piensa en lo que el jaque obliga a tu oponente a hacer. Responde a esto, ¡y oficialmente serás un maestro de las horquillas! ¡Buen trabajo hoy!"
+  }
+ ]
+}

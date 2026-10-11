@@ -1,0 +1,151 @@
+{
+ "page": {
+  "label": "Historia",
+  "loading": "Cargando tu aventura…",
+  "title": "Historia",
+  "lead": "Aprende ajedrez paso a paso. Cada capítulo termina con un desafío de problemas y un jefe para vencer. ¡Gana, y el siguiente se abre!",
+  "library": "¿Solo quieres explorar? <library>Abre la biblioteca de lecciones</library>."
+ },
+ "chapter": {
+  "lockedLabel": "Capítulo {{number}}, bloqueado",
+  "kicker": "Capítulo {{number}}",
+  "steps": "{{done}} / {{total}} pasos",
+  "stars": "{{earned}} de {{available}} estrellas",
+  "locked": "Bloqueado",
+  "beatBoss": "Derrota a {{boss}} para abrir este capítulo.",
+  "finishPrevious": "Termina el capítulo antes de abrir este.",
+  "boss": "Jefe: {{name}}"
+ },
+ "node": {
+  "gauntlet": "Desafío de problemas",
+  "boss": "Jefe: {{name}}",
+  "minutes": "{{count}} min",
+  "puzzles_one": "{{count}} problema",
+  "puzzles_other": "{{count}} problemas",
+  "rated": "Con {{elo}} de clasificación",
+  "stars": "{{stars}} de 3 estrellas",
+  "start": "Empezar",
+  "locked": "{{title}} (bloqueado)"
+ },
+ "focus": {
+  "lesson": "lección",
+  "gauntlet": "{{chapter}} desafío",
+  "boss": "{{chapter}} jefe",
+  "leave": "Salir {{label}}",
+  "progress": "{{label}} progreso",
+  "xpTitle": "Nivel {{level}} · {{into}} de {{total}} XP para el siguiente nivel",
+  "xp": "{{xp}} XP"
+ },
+ "exit": {
+  "title": "¡Espera, no te vayas!",
+  "body": "Perderás el impulso de esta partida. El camino te esperará, pero al entrenador le gustaría que terminases.",
+  "streak": "Tu racha de {{days}} días sigue en juego hoy.",
+  "stay": "Sigue aprendiendo",
+  "leave": "Salir"
+ },
+ "boss": {
+  "unavailable": "El jefe de este capítulo aún no está disponible. El desafío de arriba sí cuenta.",
+  "kicker": "{{chapter}} · Jefe",
+  "meta": "{{elo}} de valoración · {{kind}}",
+  "quote": "“{{hello}}”",
+  "stars": "Mejor contra {{name}}: {{stars}} de 3 estrellas",
+  "beaten": "{{name}} ya ha caído ante ti, así que el siguiente capítulo está abierto. Lucha de nuevo para obtener las estrellas restantes.",
+  "stakes": "Gana, o al menos sobrevive veinte movimientos, para abrir el siguiente capítulo. Perder no te cuesta nada, así que intenta de nuevo tantas veces como quieras.",
+  "fightAgain": "Lucha de nuevo",
+  "start": "Comienza el desafío",
+  "note": "La partida se abre en el tablero de Juego. Tu resultado se registra en el momento en que termina, así que regresa aquí después."
+ },
+ "gauntlet": {
+  "noFresh": "No hay más problemas nuevos en los temas de este capítulo. Inténtalo de nuevo más tarde.",
+  "cleared": "Desafío superado",
+  "clearedBody": "Ya resolviste tres problemas. El jefe de {{chapter}} te espera al final del camino.",
+  "continue": "Continuar",
+  "loading": "Cargando problema {{number}} de {{total}}...",
+  "progress": "Problema {{number}} de {{total}}",
+  "nicelyDone": "¡Muy bien!",
+  "withHelp": "Resuelto, con ayuda.",
+  "finish": "Termina el desafío",
+  "next": "Siguiente problema",
+  "tryAgain": "Inténtalo de nuevo.",
+  "notTheMove": "Falso, <strong>✗ {{san}}</strong> no es la jugada en este caso.",
+  "retry": "Reintentar",
+  "check": "Jaque",
+  "showHint": "Muestra una pista",
+  "showMove": "Muestra el movimiento",
+  "clean": "Primer intento, sin pistas. El jefe debería preocuparse.",
+  "helped": "Resuelto. La solución limpia cuenta doble en tu mente.",
+  "toMove": {
+   "white": "Juegan blancas.",
+   "black": "Juegan negras."
+  },
+  "findBest": "Encuentra la mejor jugada.",
+  "hint": "<strong>Pista:</strong> la pieza marcada hace la jugada.",
+  "arrow": "La flecha te muestra la jugada: <strong>{{san}}</strong>. Juega esa jugada en el tablero.",
+  "movesSoFar": "Movimientos hasta ahora"
+ },
+ "placement": {
+  "title": "¿Saltar adelante?",
+  "body": "Ya resuelves tácticas como un jugador de nivel {{rating}}. Los primeros capítulos serían un calentamiento. Empieza más cerca de tu nivel en cambio.",
+  "accept": "Desbloquea hasta el capítulo {{through}}",
+  "decline": "Comienza desde el principio."
+ },
+ "sidebar": {
+  "lines": [
+   [
+    "Todos los expertos alguna vez fueron principiantes.",
+    "¡Sigue adelante!"
+   ],
+   [
+    "Pequeños movimientos llevan a grandes victorias.",
+    "Una lección a la vez."
+   ],
+   [
+    "El tablero recompensa la paciencia.",
+    "Tómate tu tiempo."
+   ],
+   [
+    "Los errores son solo lecciones disfrazadas.",
+    "¡Inténtalo de nuevo!"
+   ],
+   [
+    "Los jugadores fuertes se construyen un juego a la vez.",
+    "Estás en el camino correcto."
+   ],
+   [
+    "Observa cada jaque y cada captura.",
+    "Respira."
+   ],
+   [
+    "Un plan es mejor que una conjetura.",
+    "Piensa un movimiento más adelante."
+   ]
+  ],
+  "days": {
+   "mon": "Lunes",
+   "tue": "Martes",
+   "wed": "Miércoles",
+   "thu": "Jueves",
+   "fri": "Viernes",
+   "sat": "Sábado",
+   "sun": "Domingo"
+  },
+  "label": "Tu progreso",
+  "title": "Tu progreso",
+  "lessons": "{{done}} / {{total}} lecciones",
+  "xpEarned": "XP obtenida",
+  "stars": "Estrellas",
+  "chapters": "Capítulos",
+  "streak": "¡Racha de {{days}} días!",
+  "startStreak": "Empieza una racha",
+  "doneToday": "¡Listo por hoy! Nos vemos mañana!",
+  "meetGoal": "Alcanza la meta de hoy para que siga creciendo."
+ },
+ "streak": {
+  "chipTitle": "Racha de {{days}} días · {{xp}}/{{goal}} XP hoy",
+  "goalTitle": "Meta del día {{xp}}/{{goal}} XP",
+  "goalLabel": "Meta de hoy: {{xp}} de {{goal}} XP",
+  "goal": "Meta de hoy {{xp}}/{{goal}} XP",
+  "freezes_one": "1 protector de racha: un día perdido no la rompe.",
+  "freezes_other": "{{count}} protectores de racha: cada uno cubre un día perdido."
+ }
+}

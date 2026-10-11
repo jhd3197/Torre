@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "title": "Morphy's rook sacrifice against Bird",
+  "summary": "London, 1858: Henry Bird castles long, and Morphy gives up a rook so his queen can land next to the white king.",
+  "category": "history",
+  "unit": "Paul Morphy",
+  "order": 4,
+  "level": "intermediate",
+  "minutes": 7,
+  "requires": ["morphy-vs-anderssen"],
+  "orientation": "black",
+  "practice": "sacrifice",
+  "steps": [
+    {
+      "id": "london-1858",
+      "kind": "explain",
+      "title": "London, 1858",
+      "text": "Before Paris, Morphy spent the summer of 1858 in London, playing England's best. Henry Bird was a strong English master who loved unusual openings; an opening that starts by pushing the f-pawn two squares is still called Bird's Opening. Here Bird has White, and Morphy meets 1.e4 with an aggressive early ...f5. You play Black, as Morphy.",
+      "narration": "London, 1858. Morphy takes on Henry Bird, an English master who loved surprises. This time the surprise comes from Morphy. You play Black.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Bird – Morphy, London 1858",
+      "text": "The game gets sharp early. Bird castles queenside, and his king looks safe behind its pawns. Morphy gives up a rook to get his queen next to it. The game stops at Morphy's key moves.",
+      "narration": "Bird castles on the queenside and his king looks safe. Watch how Morphy reaches it anyway, and find his key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 6, "text": "3...f5: Morphy strikes at the center at once. It is risky, and it makes the game sharp from the start." },
+        { "ply": 24, "text": "12...Qxh5: after a short skirmish on the kingside, Morphy is a pawn up." },
+        { "ply": 30, "text": "15...bxc6: taking back this way opens the b-file for a black rook." },
+        { "ply": 32, "text": "16...Rb8: the rook takes the open file and points at b2." },
+        { "ply": 33, "text": "17.O-O-O: Bird castles queenside. His king sits behind three pawns on a2, b2 and c2." },
+        { "ply": 34, "text": "17...Rxf2!? Morphy gives up a rook on f2 to drag the bishop away from e3. Modern engines prefer a quieter move here, but watch what the bishop stops guarding." },
+        { "ply": 35, "text": "18.Bxf2: Bird takes the rook. Morphy is a whole rook down, but not for long." },
+        { "ply": 40, "text": "20...Qa1+: the queen checks from the corner, and the white king has to walk." },
+        { "ply": 46, "text": "23...Rxb4+: the b-file is open, and the rook joins with check." },
+        { "ply": 52, "text": "26...Bf5+: the last black piece joins the attack with check." },
+        { "ply": 58, "text": "29...Qb1+: the queen will take the rook on h1 next. Bird resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 36,
+          "prompt": "Bird's bishop took your rook on f2. Now find the queen move that explains the sacrifice.",
+          "hint": "The bishop has left e3. Which square right next to the white king is now unguarded?",
+          "why": "18...Qa3!! The queen lands next to the white king. If the b-pawn takes the queen, the bishop takes back on a3 and it is checkmate. Bird had to play 19.c3, and the queen took on a2 instead."
+        },
+        {
+          "ply": 44,
+          "prompt": "The white king has run to b2. Throw in another piece to open the b-file.",
+          "hint": "Your bishop on d6 can capture a pawn standing on the b-file.",
+          "why": "22...Bxb4! If the c-pawn takes back, the b-file opens and the rook on b8 joins the attack with check."
+        },
+        {
+          "ply": 50,
+          "prompt": "The queens are still on, and White's king is out in the open. Find the pawn move that lets your last piece join with check.",
+          "hint": "Your bishop wants to check from f5, but your own pawn on e4 blocks that diagonal.",
+          "why": "25...e3! The pawn gets out of the way, so the bishop can check from f5 along the long diagonal. Bird took the pawn, and 26...Bf5+ followed."
+        }
+      ],
+      "moves": ["e2e4", "e7e5", "g1f3", "d7d6", "d2d4", "f7f5", "b1c3", "f5e4", "c3e4", "d6d5", "e4g3", "e5e4", "f3e5", "g8f6", "c1g5", "f8d6", "g3h5", "e8g8", "d1d2", "d8e8", "g2g4", "f6g4", "e5g4", "e8h5", "g4e5", "b8c6", "f1e2", "h5h3", "e5c6", "b7c6", "g5e3", "a8b8", "e1c1", "f8f2", "e3f2", "h3a3", "c2c3", "a3a2", "b2b4", "a2a1", "c1c2", "a1a4", "c2b2", "d6b4", "c3b4", "b8b4", "d2b4", "a4b4", "b2c2", "e4e3", "f2e3", "c8f5", "d1d3", "b4c4", "c2d2", "c4a2", "d2d1", "a2b1"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "What does the defender leave behind?",
+      "marks": [["h3", "a3"], ["d6", "a3"], ["f2"]],
+      "text": "Morphy's rook sacrifice had one job: pull the bishop away from e3 so the queen could land on a3. Before you sacrifice, ask what the capturing piece stops guarding when it takes. Here a single bishop was holding the white king together.",
+      "narration": "The rook sacrifice pulled the bishop away from e3, and that let the queen land on a3. Always ask what a defender stops guarding when it captures.",
+      "pose": "idea",
+      "fen": "1rb3k1/p1p3pp/2pb4/3p4/3Pp3/q7/PPPQBB1P/2KR3R w - - 1 19"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "The point of the sacrifice",
+      "question": "What was the point of Morphy's 17...Rxf2?",
+      "options": [
+        {
+          "text": "To pull the bishop off e3 so the black queen could reach a3",
+          "correct": true,
+          "why": "Exactly. Once the bishop took on f2, a3 was unguarded and the queen jumped in next to the king."
+        },
+        {
+          "text": "To win the f2 pawn for free",
+          "why": "It was not free: Bird took the rook. The pawn was not the point."
+        },
+        {
+          "text": "To trade rooks and head for an endgame",
+          "why": "No rooks were traded. Morphy gave up his rook to attack the king."
+        }
+      ],
+      "narration": "Last question: what was the rook sacrifice really for?",
+      "pose": "thinking",
+      "fen": "1rb2rk1/p1p3pp/2pb4/3p4/3Pp3/4B2q/PPPQBP1P/2KR3R b - - 3 17"
+    }
+  ]
+}

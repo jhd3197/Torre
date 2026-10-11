@@ -1,0 +1,99 @@
+{
+ "title": "Los dos alfiles de Lasker",
+ "summary": "Ámsterdam, 1889: el joven Emanuel Lasker sacrifica ambos alfiles para dejar al rey negro completamente expuesto.",
+ "unit": "Emanuel Lasker",
+ "steps": [
+  {
+   "id": "amsterdam-1889",
+   "title": "Ámsterdam, 1889",
+   "text": "Emanuel Lasker fue campeón del mundo durante veintisiete años, de 1894 a 1921, más que nadie. Años antes, en Ámsterdam en 1889, el joven Lasker jugó este partido contra Johann Bauer. Abre con 1.f4, Apertura del Ave, apunta con ambos alfiles al rey negro, y luego se los regala.",
+   "narration": "Ámsterdam, 1889. Un joven Emanuel Lasker, el futuro campeón del mundo, apunta con ambos alfiles al rey negro. Luego se los regala."
+  },
+  {
+   "id": "the-game",
+   "title": "Lasker – Bauer, Ámsterdam 1889",
+   "text": "Lasker se prepara tranquilamente, con un alfil en la diagonal larga y el otro apuntando a h7. Luego un movimiento de caballo inicia una cadena de sacrificios. El juego se detiene en los movimientos clave de Lasker.",
+   "notes": [
+    {
+     "text": "4.Bb2: el alfil toma la diagonal larga hacia g7."
+    },
+    {
+     "text": "5.Bd3: el otro alfil apunta a h7. Ahora ambos apuntan al rey enrocado de Negro."
+    },
+    {
+     "text": "12.Bxe5: el alfil está de nuevo en la diagonal larga, justo delante de g7."
+    },
+    {
+     "text": "16.Qxh5+: La dama captura el caballo con jaque. Un alfil se ha ido, y el rey está expuesto."
+    },
+    {
+     "text": "1. «18.Qg4+: La dama sigue dando jaque para que el rey no pueda huir, mientras una torre se prepara para unirse. »"
+    },
+    {
+     "text": "1. \"2. «19.Rf3: La torre se dirige a la columna h. Se amenaza mate en h3. »\""
+    },
+    {
+     "text": "2. \"3. «19...e5: Bauer abre un camino para que su dama pueda bloquear en h6. Le costará la dama. »\""
+    },
+    {
+     "text": "3. \"4. «22.Qd7: Un ataque doble. La dama ataca a ambos alfiles negros, y uno de ellos debe caer. »\""
+    },
+    {
+     "text": "5. «23.Qxb7: Blancas ahora lideran en material, y el rey negro sigue expuesto. »"
+    },
+    {
+     "text": "6. «38.Qxd3: El peón pasado cae, y Bauer se rindió. »"
+    }
+   ],
+   "narration": "«Un comienzo tranquilo, dos alfiles apuntando al rey, y luego los fuegos artificiales. Encuentra las jugadas clave de Lasker. »",
+   "guesses": [
+    {
+     "prompt": "«Los alfiles de Lasker apuntan al rey negro. Primero ofrece un caballo. ¿Dónde? »",
+     "hint": "«Ataca al caballo en f6, el principal defensor del rey. »",
+     "why": "10. «14.Nh5!: El caballo ataca f6. Bauer lo tomó, y el peón en h7 perdió su defensor. »"
+    },
+    {
+     "prompt": "«Bauer tomó el caballo. Ahora sacrifica el primer alfil. »",
+     "hint": "«Tu alfil en d3 ve el peón frente al rey. »",
+     "why": "1. '15.Bxh7+! El rey debe tomar, y 16.Qxh5+ recupera el caballo con jaque.'."
+    },
+    {
+     "prompt": "'Ahora, el segundo alfil.'.",
+     "hint": "'El alfil en e5 apunta al otro peón delante del rey.'.",
+     "why": "4. \"4. '17.Bxg7!! Ambos alfiles se han ido, y el rey negro no tiene peones alrededor. Bauer tomó, y la dama y la torre vinieron a la caza.'\""
+    },
+    {
+     "prompt": "'La torre está lista. Da el jaque que gana la dama.'",
+     "hint": "'La columna h lleva directamente al rey negro.'.",
+     "why": "7. '20.Rh3+ fuerza 20...Qh6, y 21.Rxh6+ se lleva la dama. Dos alfiles se han convertido en una dama por una torre, y un alfil seguirá.'"
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "'Dos alfiles por un rey desnudo.'.",
+   "text": "'Después de ambos sacrificios, el rey negro está en g7 sin peones alrededor, y la dama y la torre de blancas están cerca. Esto es lo que hace que un sacrificio como este funcione: una vez que el escudo desaparece, tu dama y una torre deben poder alcanzar al rey rápidamente. Este doble sacrificio de alfiles se ha repetido en muchos juegos desde entonces, y todavía está ligado al nombre de Lasker.'",
+   "narration": "'Dos alfiles perdidos, y el rey negro está solo. El sacrificio funciona porque la dama y la torre de blancas pueden alcanzar al rey de inmediato.'"
+  },
+  {
+   "id": "quiz",
+   "title": "'Cuando funciona.'.",
+   "question": "'¿Cuándo funciona un doble sacrificio de alfiles como el de Lasker?'.",
+   "options": [
+    {
+     "text": "Cuando tu dama y una torre puedan alcanzar al rey rápidamente una vez que sus peones hayan desaparecido",
+     "why": "Bien. El sacrificio solo despeja el camino. La dama y la torre tienen que terminar el trabajo."
+    },
+    {
+     "text": "Cada vez que ambos alfiles apuntan al rey enrocado",
+     "why": "Apuntar no es suficiente. Sin una dama y una torre listas para continuar el ataque, simplemente estás dos piezas abajo."
+    },
+    {
+     "text": "Solo cuando el oponente ya ha perdido su dama",
+     "why": "Bauer aún tenía su dama. Lasker la ganó más tarde, como resultado del ataque."
+    }
+   ],
+   "narration": "Última pregunta: ¿cuándo funciona un sacrificio como este?"
+  }
+ ]
+}

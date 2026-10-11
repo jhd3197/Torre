@@ -1,0 +1,54 @@
+{
+ "title": "El peón pasado exterior",
+ "summary": "Un peón pasado lejos de los demás es una distracción: el rey enemigo debe perseguirlo, y tu rey se da un festín en el otro flanco.",
+ "steps": [
+  {
+   "id": "far-away",
+   "title": "Lejos de la acción",
+   "text": "Los peones del flanco de rey están igualados, dos contra dos. El peón extra de blancas está en la columna 'a', muy alejado de los demás. Eso lo convierte en un peón pasado exterior. El rey negro tendrá que ir a detenerlo, y mientras tanto, el rey de blancas se pasea hacia el flanco de rey y se come los peones negros allí.",
+   "narration": "Cuenta los peones: dos contra dos en el flanco de rey, más un peón blanco solitario y alejado en la columna 'a'. Eso es un peón pasado exterior, y es una distracción. El rey negro tiene que ir a perseguirlo, y eso deja el flanco de rey abierto para el rey de blancas."
+  },
+  {
+   "id": "the-decoy",
+   "title": "Gasta el peón",
+   "prompt": "El rey negro está a punto de tomar tu peón de 'a'. Haz que lo pague, y luego ve por el flanco de rey.",
+   "hint": "Empuja el peón de 'a' un paso más para que el rey tenga que ir hasta la columna 'a'. Luego dirígete a g7.",
+   "success": "El rey negro está atrapado en la columna 'a' mientras tu rey toma el peón de 'g' y luego el peón de 'h'. Tu peón de 'h' se corona mucho antes de que el rey negro pueda regresar.",
+   "narration": "Tu peón de 'a' está perdido de todos modos, así que véndelo lo más caro posible. Empújalo un cuadrado más para que el rey negro tenga que caminar hasta el borde. Luego da la vuelta y marcha hacia los peones del flanco de rey."
+  },
+  {
+   "id": "count-the-moves",
+   "title": "¿Por qué funciona?",
+   "text": "Compara a los dos reyes. El rey negro está en la columna 'a', a cinco o seis movimientos del flanco de rey. El rey blanco está justo al lado de los peones negros. Para cuando el rey negro regresa, blancas los ha ganado y está empujando un peón a dama. Cuanto más alejado esté el peón pasado exterior, más lejos arrastra al rey enemigo.",
+   "narration": "Mira a los dos reyes ahora. El rey negro está varado en el borde del tablero, a kilómetros de la acción. El rey blanco está justo al lado de los peones negros. Esa diferencia de distancia es el punto clave de un peón pasado exterior."
+  },
+  {
+   "id": "pick-the-road",
+   "title": "Elige el camino correcto",
+   "prompt": "La misma idea, pero con más peones. Engaña al rey, y luego elige el camino que te haga ganar.",
+   "hint": "Después de que el peón de 'a' cae, el peón de f7 es el punto débil. Tu rey puede alcanzarlo a través del centro, por medio de d6 y e7.",
+   "success": "Tu rey se dirige a d6 y e7 para atacar el peón de f7 por detrás, donde los peones negros no pueden ahuyentarlo. Ir directamente a f5 o g4 te hace chocar contra un muro de peones y solo te lleva a un empate.",
+   "narration": "Hay más peones esta vez, así que la ruta es importante. Después del señuelo, no ataques los peones negros desde el frente. Camina por el centro y acércate a ellos por detrás."
+  },
+  {
+   "id": "what-makes-it-strong",
+   "title": "¡Revísate!",
+   "question": "¿Por qué un peón pasado exterior es tan fuerte en un final de rey y peón?",
+   "options": [
+    {
+     "text": "Aleja al rey enemigo de los otros peones",
+     "why": "Mientras el rey enemigo persigue el señuelo, tu rey es libre de ganar los peones en el otro flanco."
+    },
+    {
+     "text": "Siempre se corona solo",
+     "why": "Por lo general, no se corona en absoluto. Su trabajo es ser capturado lejos, a costa del tiempo del rey enemigo."
+    },
+    {
+     "text": "Protege a tu rey",
+     "why": "Está lejos de todo, así que no protege nada. Su fuerza es la distancia que crea."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué un peón pasado exterior es un arma tan poderosa? Entiéndelo, y sabrás exactamente por qué a los maestros les encanta tener uno. ¡Bien hecho!"
+  }
+ ]
+}

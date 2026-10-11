@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "title": "Petrosian's exchange sacrifices",
+  "summary": "Moscow, 1966: the world champion gives up two exchanges for squares, then finishes with a queen sacrifice.",
+  "category": "history",
+  "level": "advanced",
+  "minutes": 8,
+  "unit": "Tigran Petrosian",
+  "order": 1,
+  "practice": "sacrifice",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Moscow, 1966",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Tigran Petrosian became world champion in 1963 and defended his title against Boris Spassky in Moscow in 1966. Petrosian was famous for stopping his opponent's plans before they started, and for giving up a rook for a minor piece, an exchange sacrifice, when it gave his pieces better squares. This game has both, and a queen sacrifice too.",
+      "narration": "Moscow, 1966. The world champion Tigran Petrosian defends his title against Boris Spassky. Watch him give up rooks for squares.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Petrosian – Spassky, World Championship, game 10, 1966",
+      "text": "A King's Indian set-up with the center closed. Spassky attacks on the kingside, wins a rook for a bishop, and looks dangerous. Petrosian lets him, because his knights and bishop get the light squares.",
+      "narration": "Spassky attacks and even wins material. Petrosian lets him, because he is collecting squares. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "g1f3",
+        "g8f6",
+        "g2g3",
+        "g7g6",
+        "c2c4",
+        "f8g7",
+        "f1g2",
+        "e8g8",
+        "e1g1",
+        "b8c6",
+        "b1c3",
+        "d7d6",
+        "d2d4",
+        "a7a6",
+        "d4d5",
+        "c6a5",
+        "f3d2",
+        "c7c5",
+        "d1c2",
+        "e7e5",
+        "b2b3",
+        "f6g4",
+        "e2e4",
+        "f7f5",
+        "e4f5",
+        "g6f5",
+        "c3d1",
+        "b7b5",
+        "f2f3",
+        "e5e4",
+        "c1b2",
+        "e4f3",
+        "g2f3",
+        "g7b2",
+        "c2b2",
+        "g4e5",
+        "f3e2",
+        "f5f4",
+        "g3f4",
+        "c8h3",
+        "d1e3",
+        "h3f1",
+        "a1f1",
+        "e5g6",
+        "e2g4",
+        "g6f4",
+        "f1f4",
+        "f8f4",
+        "g4e6",
+        "f4f7",
+        "d2e4",
+        "d8h4",
+        "e4d6",
+        "h4g5",
+        "g1h1",
+        "a8a7",
+        "e6f7",
+        "a7f7",
+        "b2h8"
+      ],
+      "notes": [
+        {
+          "ply": 15,
+          "text": "8.d5: the pawn closes the center and drives Black's knight to a5, on the edge of the board."
+        },
+        {
+          "ply": 29,
+          "text": "15.f3: Petrosian challenges the knight on g4 before it can cause trouble."
+        },
+        {
+          "ply": 40,
+          "text": "20...Bh3: Spassky attacks the rook on f1."
+        },
+        {
+          "ply": 41,
+          "text": "21.Ne3: Petrosian lets the rook go. The knight takes up a fine square instead."
+        },
+        {
+          "ply": 42,
+          "text": "21...Bxf1: Spassky wins the exchange: a rook for a bishop. But Black no longer has a light-square bishop."
+        },
+        {
+          "ply": 45,
+          "text": "23.Bg4: the bishop heads for e6, right in front of the black king, where no black piece can challenge it."
+        },
+        {
+          "ply": 51,
+          "text": "26.Ne4: the knight heads for d6 and f6. Black's knight on a5 is still far away."
+        },
+        {
+          "ply": 57,
+          "text": "29.Bxf7+: the bishop takes the rook. After ...Rxf7, the white queen and two knights hunt the king."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 47,
+          "prompt": "Black's knight on f4 is his best piece. Petrosian removes it, at a price.",
+          "hint": "A rook can take a knight when the squares you win are worth more.",
+          "why": "24.Rxf4! gives up a second exchange. After ...Rxf4 25.Be6+, the bishop and knights take over the light squares around Black's king."
+        },
+        {
+          "ply": 49,
+          "prompt": "The rook on f4 recaptured. Now check.",
+          "hint": "The bishop wants the e6 square.",
+          "why": "25.Be6+: the bishop sits on e6, cuts the king off, and no pawn can ever chase it away."
+        },
+        {
+          "ply": 53,
+          "prompt": "Your knight can grab a pawn and hit a pinned rook.",
+          "hint": "The rook on f7 is pinned to the king by the bishop on e6. Attack it again.",
+          "why": "27.Nxd6 takes a pawn and attacks the pinned rook on f7 a second time. Black cannot defend everything."
+        },
+        {
+          "ply": 59,
+          "prompt": "Finish with a queen sacrifice.",
+          "hint": "A check on h8 drags the king into a knight fork.",
+          "why": "30.Qh8+! Kxh8 31.Nxf7+ forks the king and the queen on g5. Spassky resigned."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Rook for a minor piece",
+      "question": "Petrosian gave up a rook for a bishop, then a rook for a knight. What did he get?",
+      "options": [
+        {
+          "text": "Total control of the light squares around Black's king",
+          "why": "Yes. With Black's light bishop gone, nothing could challenge White's bishop on e6 or the knights.",
+          "correct": true
+        },
+        {
+          "text": "Nothing; Spassky simply blundered",
+          "why": "Spassky took the material on purpose. Petrosian's pieces were just better than the rooks."
+        },
+        {
+          "text": "An easier endgame",
+          "why": "The game never reached an endgame. It ended with a mating attack and a queen sacrifice."
+        }
+      ],
+      "narration": "Two exchanges given away. What did Petrosian get for them?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Squares can beat material",
+      "fen": "6kQ/5r1p/p2N4/nppP2q1/2P5/1P2N3/P6P/7K b - - 1 30",
+      "text": "A rook is worth more than a bishop or knight on paper. But a rook with no open files does little, while a bishop or knight on a square the enemy cannot attack can dominate the board. Petrosian gave up two exchanges and still had the stronger pieces.",
+      "narration": "A rook is worth more on paper. But a bishop on a square that can never be attacked can be worth more on the board.",
+      "pose": "idea"
+    }
+  ]
+}

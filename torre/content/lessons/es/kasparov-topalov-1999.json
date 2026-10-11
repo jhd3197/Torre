@@ -1,0 +1,96 @@
+{
+ "title": "La cacería del rey de Kasparov",
+ "summary": "Wijk aan Zee, 1999: Garry Kasparov sacrifica una torre y persigue al rey de Topalov desde a7 hasta d1.",
+ "unit": "Karpov y Kasparov",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Wijk aan Zee, 1999",
+   "text": "Garry Kasparov tomó el título mundial de Karpov en 1985 y lo mantuvo hasta 2000. En 1999, en el torneo Hoogovens en Wijk aan Zee, jugó contra la estrella búlgara emergente Veselin Topalov. Esta partida es famosa por un sacrificio de torre seguido de una cacería del rey por todo el tablero.",
+   "narration": "Wijk aan Zee, 1999. Garry Kasparov contra Veselin Topalov. Prepárate para una de las caminatas más largas del rey que jamás hayas visto."
+  },
+  {
+   "id": "the-game",
+   "title": "Kasparov – Topalov, Wijk aan Zee 1999",
+   "text": "Ambos reyes enrocan en el flanco de dama. Topalov se acerca a los caballos blancos con ...d4, y Kasparov responde regalando piezas para arrastrar al rey negro.",
+   "notes": [
+    {
+     "text": "9.Qxh6: los alfiles oscuros son intercambiados. El rey negro no enrocará en el flanco de rey."
+    },
+    {
+     "text": "13...O-O-O: ambos reyes viven en el flanco de dama."
+    },
+    {
+     "text": "22.Nd5: el caballo es ofrecido. Después de ...Nxd5 exd5, la columna 'e' está abierta."
+    },
+    {
+     "text": "24.Rxd4!!: Kasparov sacrifica una torre entera para eliminar el peón d4 y abrir líneas al rey negro."
+    },
+    {
+     "text": "26...Kxa5: el rey negro avanza y captura el caballo en a5."
+    },
+    {
+     "text": "31...Kxa3: el rey negro sigue avanzando: a7, b6, a5, a4, a3."
+    },
+    {
+     "text": "35...Kd1: el rey negro ha llegado a la última fila de blancas."
+    },
+    {
+     "text": "37.Rd7!: otra ofrenda de torre, para quitar el alfil negro del segundo escalón."
+    },
+    {
+     "text": "44.Qa7: la dama y los peones vencen a la torre. Topalov renunció."
+    }
+   ],
+   "narration": "Ambos reyes están en el flanco de dama. Kasparov está a punto de regalar una torre. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "Kasparov dio una torre entera en d4, y negras lo tomaron. Ahora da jaque con el otro torre.",
+     "hint": "La columna 'e' está abierta hasta la séptima fila.",
+     "why": "25.Re7+ aleja al rey de a7. Si la dama toma la torre, Nc6+ horquilla al rey y la dama."
+    },
+    {
+     "prompt": "El rey tomó tu caballo en a5. ¡Sigue dando jaque!",
+     "hint": "Un peón puede dar jaque.",
+     "why": "27.b4+ empuja al rey a a4, profundamente en territorio blanco, donde no tiene defensores."
+    },
+    {
+     "prompt": "La dama negra está en c4. ¿Qué toma Kasparov?",
+     "hint": "Hay una pieza negra en f6 que nada defiende.",
+     "why": "31.Qxf6 captura al caballo. El rey negro todavía está atrapado, y las amenazas de las negras son demasiado lentas."
+    },
+    {
+     "prompt": "El rey negro está en d1. Encuentra el movimiento tranquilo del alfil que ataca todo.",
+     "hint": "El alfil en h3 puede cambiar de diagonal para atacar a la dama en c4.",
+     "why": "36.Bf1! ataca a la dama y cubre e2, así que Qe2 sería mate. Las negras tienen que devolver material."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "El caminar del rey",
+   "question": "¿Por qué el rey negro estuvo en tanto peligro después de caminar por el tablero?",
+   "options": [
+    {
+     "text": "Estaba lejos de sus propias piezas y rodeado por las blancas.",
+     "why": "Sí. En a3 o d1 el rey no tenía defensores, así que cada jaque blanco venía con nuevas amenazas."
+    },
+    {
+     "text": "A los reyes no se les permite pasar el centro del tablero.",
+     "why": "Se les permite estar en cualquier lugar. Solo es peligroso."
+    },
+    {
+     "text": "Las negras no tenían piezas restantes",
+     "why": "Negro todavía tenía una dama y torres. Simplemente no podían proteger a un rey tan alejado."
+    }
+   ],
+   "narration": "¿Por qué el rey errante estaba en peligro?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Arrastra al rey al descubierto",
+   "text": "Kasparov sacrificó una torre para romper el refugio del rey negro, y luego cada jaque lo alejó aún más de su casa. Un rey rodeado de piezas enemigas y lejos de las suyas está en peligro incluso cuando su lado tiene más material.",
+   "narration": "Saca al rey de su refugio, y cada jaque se convierte en una amenaza. Kasparov lo persiguió por todo el tablero."
+  }
+ ]
+}

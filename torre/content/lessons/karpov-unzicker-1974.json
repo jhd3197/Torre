@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "title": "Karpov's squeeze",
+  "summary": "Nice, 1974: Anatoly Karpov takes away every useful move from his opponent until he gives up with equal material.",
+  "category": "history",
+  "level": "advanced",
+  "minutes": 8,
+  "unit": "Karpov and Kasparov",
+  "order": 1,
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Nice, 1974",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Anatoly Karpov became world champion in 1975, when Bobby Fischer did not defend his title, and then held it for ten years. His style was a slow squeeze: grab space, take away the opponent's good squares, and wait. At the 1974 Olympiad in Nice he played the West German grandmaster Wolfgang Unzicker.",
+      "narration": "Nice, 1974. A young Anatoly Karpov, soon to be world champion, against Wolfgang Unzicker. Watch a squeeze.",
+      "pose": "present"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Karpov – Unzicker, Nice Olympiad 1974",
+      "text": "A closed Ruy Lopez. Nothing dramatic happens for a long time: Karpov locks the center, takes the a-file, and slowly pushes Black's pieces back until they have nothing to do.",
+      "narration": "No fireworks here. Karpov takes squares, files and space, one quiet move at a time.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "e7e5",
+        "g1f3",
+        "b8c6",
+        "f1b5",
+        "a7a6",
+        "b5a4",
+        "g8f6",
+        "e1g1",
+        "f8e7",
+        "f1e1",
+        "b7b5",
+        "a4b3",
+        "d7d6",
+        "c2c3",
+        "e8g8",
+        "h2h3",
+        "c6a5",
+        "b3c2",
+        "c7c5",
+        "d2d4",
+        "d8c7",
+        "b1d2",
+        "a5c6",
+        "d4d5",
+        "c6d8",
+        "a2a4",
+        "a8b8",
+        "a4b5",
+        "a6b5",
+        "b2b4",
+        "d8b7",
+        "d2f1",
+        "c8d7",
+        "c1e3",
+        "b8a8",
+        "d1d2",
+        "f8c8",
+        "c2d3",
+        "g7g6",
+        "f1g3",
+        "e7f8",
+        "a1a2",
+        "c5c4",
+        "d3b1",
+        "c7d8",
+        "e3a7",
+        "f6e8",
+        "b1c2",
+        "e8c7",
+        "e1a1",
+        "d8e7",
+        "c2b1",
+        "d7e8",
+        "g3e2",
+        "b7d8",
+        "f3h2",
+        "f8g7",
+        "f2f4",
+        "f7f6",
+        "f4f5",
+        "g6g5",
+        "b1c2",
+        "e8f7",
+        "e2g3",
+        "d8b7",
+        "c2d1",
+        "h7h6",
+        "d1h5",
+        "e7e8",
+        "d2d1",
+        "b7d8",
+        "a2a3",
+        "g8f8",
+        "a1a2",
+        "f8g8",
+        "h2g4",
+        "g8f8",
+        "g4e3",
+        "f8g8",
+        "h5f7",
+        "d8f7",
+        "d1h5",
+        "f7d8",
+        "h5g6",
+        "g8h8",
+        "g3h5"
+      ],
+      "notes": [
+        {
+          "ply": 25,
+          "text": "13.d5: Karpov closes the center. Now the fight moves to the wings."
+        },
+        {
+          "ply": 29,
+          "text": "15.axb5: the a-file opens. Karpov wants it for his rooks."
+        },
+        {
+          "ply": 44,
+          "text": "22...c4: Unzicker closes the queenside too. His pieces are getting short of room."
+        },
+        {
+          "ply": 47,
+          "text": "24.Ba7!: a surprising square. The bishop sits deep in Black's camp where no pawn can chase it, and Black's rook on a8 has no file."
+        },
+        {
+          "ply": 51,
+          "text": "26.Rea1: both white rooks on the a-file."
+        },
+        {
+          "ply": 59,
+          "text": "30.f4: with the queenside locked, Karpov opens a second front on the kingside."
+        },
+        {
+          "ply": 61,
+          "text": "31.f5: the kingside is locked as well. White has more space everywhere."
+        },
+        {
+          "ply": 81,
+          "text": "41.Bxf7+: the light-square bishops come off. Now g6 is a hole."
+        },
+        {
+          "ply": 87,
+          "text": "44.Nh5: material is exactly equal, yet Unzicker resigned. His pieces are stuck, and White's queen and knights are closing in on the king."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 69,
+          "prompt": "Karpov wants to trade off Black's best defender of the light squares.",
+          "hint": "Your light-square bishop can offer a trade to the bishop on f7.",
+          "why": "35.Bh5 offers a trade of light-square bishops. Once they are gone, g6 and f7 near Black's king become holes."
+        },
+        {
+          "ply": 83,
+          "prompt": "The bishops are gone. Where does the queen go?",
+          "hint": "Use the square the bishop just left.",
+          "why": "42.Qh5 aims at g6, the hole in front of the king. Next comes Qg6 and a knight to h5."
+        },
+        {
+          "ply": 85,
+          "prompt": "The queen is on h5. Move her into the hole.",
+          "hint": "Which square in front of Black's king can no black pawn ever cover again?",
+          "why": "43.Qg6 plants the queen next to the black king. No pawn can chase her, and the knights are coming to help."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Why resign?",
+      "question": "At the end, material was exactly equal. Why did Unzicker resign?",
+      "options": [
+        {
+          "text": "His pieces had no good moves and could not stop White's threats",
+          "why": "Right. Karpov took away every useful square, so material did not matter.",
+          "correct": true
+        },
+        {
+          "text": "He ran out of time",
+          "why": "Nothing in the game shows that. The position itself was lost."
+        },
+        {
+          "text": "He had a forced checkmate against him in one move",
+          "why": "There was no mate in one. The threats came slowly, but they could not be stopped."
+        }
+      ],
+      "narration": "Material was equal. Why did Black give up?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Take away the good moves",
+      "fen": "r1rnq2k/B1n3b1/3p1pQp/1p1PpPpN/1Pp1P3/R1P1N2P/R5P1/6K1 b - - 5 44",
+      "text": "Karpov won without a single sacrifice. He grabbed space, put a bishop where it could never be chased, owned the a-file, and traded off the pieces that defended Black's weak squares. When your opponent has no useful moves, the position can be lost even with equal material.",
+      "narration": "You do not always need to win material. Take away your opponent's good moves, and the position wins itself.",
+      "pose": "idea"
+    }
+  ]
+}

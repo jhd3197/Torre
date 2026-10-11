@@ -1,0 +1,57 @@
+{
+ "title": "El Mate de Dos Alfiles",
+ "summary": "Dos alfiles y un rey pueden forzar el mate, pero solo cerca de una esquina. Aprende la idea y practica los movimientos finales y precisos.",
+ "unit": "Mates básicos",
+ "steps": [
+  {
+   "id": "the-wall",
+   "title": "Una muralla de diagonales",
+   "text": "Un alfil solo ve un color, pero un alfil de casillas claras y uno de casillas oscuras juntos cubren una banda de diagonales que el rey no puede cruzar. Con la ayuda de tu rey, los alfiles empujan lentamente al defensor hacia atrás. Este mate solo es posible en o cerca de una esquina del tablero, y todo el trabajo puede tomar alrededor de veinte movimientos, así que aquí practicamos la última fase.",
+   "narration": "Dos alfiles trabajando juntos son una muralla por la que el rey no puede pasar, un alfil en casillas claras y uno en casillas oscuras. Este mate solo funciona cerca de una esquina, y el impulso completo toma un tiempo, así que nos enfocaremos en los movimientos finales."
+  },
+  {
+   "id": "corner-check",
+   "title": "Hacia la esquina",
+   "prompt": "Mate en dos. Jaque con el alfil de casillas claras para empujar al rey hacia la esquina.",
+   "hint": "Desde d3 el alfil de casillas claras ataca por la diagonal a b1. Luego usa la larga diagonal oscura.",
+   "success": "El alfil a d3 da jaque, dejando solo a1. Luego, el alfil a e5 da jaque por la diagonal larga, y cada casilla de escape está cubierta.",
+   "narration": "El rey está a un paso de la esquina. Jaquea con el alfil de casillas claras para que la esquina sea su única casilla. Luego el alfil de casillas oscuras se desliza sobre la larga diagonal para el mate."
+  },
+  {
+   "id": "beside-the-corner",
+   "title": "Cerca de la esquina",
+   "prompt": "Mate en dos. Comienza con un jaque del alfil oscuro.",
+   "hint": "El alfil oscuro puede dar jaque desde justo al lado del rey, donde tu propio rey lo protege.",
+   "success": "El alfil a f2 da jaque y está protegido por tu rey. El rey se mueve a f1, y el alfil a c4 cierra la última diagonal. El rey nunca llegó a la esquina en sí, pero estuvo lo suficientemente cerca para que los bordes y tu rey hicieran la mitad del trabajo.",
+   "narration": "Esta vez empieza con el alfil oscuro. El alfil a f2 da jaque, y tu rey lo protege. Cuando el rey negro se aparta, el alfil claro rodea a c4 y cierra la puerta."
+  },
+  {
+   "id": "quiet-first",
+   "title": "Un movimiento tranquilo primero.",
+   "prompt": "Mate en tres. La primera jugada no es un jaque: quita una casilla, luego da jaque dos veces.",
+   "hint": "Mueve el alfil claro al flanco de h para que el rey solo pueda usar h1 y g1.",
+   "success": "El alfil a h3 quita f1 y g2 sin jaque, y las negras no están en ahogado porque h1 está libre. El alfil a g2 da jaque envía al rey de vuelta, y el alfil a e3 es mate.",
+   "narration": "Aquí, la mejor jugada es tranquila. Escala el alfil claro a h3 para que el rey solo pueda moverse entre g1 y h1. Luego, da jaque con el alfil claro, y el alfil oscuro da mate."
+  },
+  {
+   "id": "where-to-mate",
+   "title": "¿Dónde termina todo?",
+   "question": "Con rey y dos alfiles contra un rey solo, ¿dónde debe estar el rey defensor para el mate?",
+   "options": [
+    {
+     "text": "Dentro o cerca de una esquina",
+     "why": "Cerca de una esquina, dos bordes quitan casillas a la vez, dejando pocas para que dos alfiles y un rey cubran el territorio."
+    },
+    {
+     "text": "Cualquier lugar en el borde",
+     "why": "En medio del borde, el rey tiene demasiados cuadrados de ambos colores. Debes empujarlo hacia una esquina."
+    },
+    {
+     "text": "En el centro",
+     "why": "En el centro, el rey tiene ocho cuadrados a su alrededor, demasiado para dos alfiles y un rey."
+    }
+   ],
+   "narration": "Última pregunta. ¿Dónde en el tablero pueden dos alfiles terminar el trabajo? Si lo consigues, sabrás cuál es el objetivo de todo el final. ¡Excelente trabajo!"
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "The queen",
+  "summary": "The queen moves like a rook and a bishop combined. Learn how strong she is, and how to use her to attack two things at once.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 3,
+  "requires": ["the-rook", "the-bishop"],
+  "steps": [
+    {
+      "id": "rook-plus-bishop",
+      "kind": "explain",
+      "title": "Rook plus bishop",
+      "fen": "4k3/8/8/8/3Q4/8/8/4K3 w - - 0 1",
+      "marks": [["d4", "d8"], ["d4", "d1"], ["d4", "a4"], ["d4", "h4"], ["d4", "a7"], ["d4", "h8"], ["d4", "a1"], ["d4", "g1"]],
+      "text": "The queen moves in straight lines like a rook and along diagonals like a bishop, as far as she likes. From the center she reaches 27 squares. She is the strongest piece on the board, worth about as much as a rook and a bishop together.",
+      "narration": "Here comes the queen, the most powerful piece in chess. She moves like a rook and a bishop rolled into one: straight lines and diagonals, as far as she wants.",
+      "pose": "starry"
+    },
+    {
+      "id": "not-too-early",
+      "kind": "explain",
+      "title": "Patience with the queen",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "demo": ["d1g4", "g8f6", "g4f3"],
+      "text": "Because she is so valuable, the queen has to run whenever a cheaper piece attacks her. Don't bring her out too early: in the demo, Black develops a knight with an attack on her, and White has to waste another move.",
+      "narration": "One warning: don't rush your queen out. Say White jumps her out to g4 on move two. [move] Black just develops a knight, and it attacks her. [move] So the queen has to run again. [move] See? Black got a piece out for free, and White wasted a move.",
+      "pose": "alarm"
+    },
+    {
+      "id": "long-diagonal-grab",
+      "kind": "play",
+      "title": "Take the loose rook",
+      "fen": "6k1/5pp1/7p/7r/8/8/5PPP/3Q2K1 w - - 0 1",
+      "prompt": "Black's rook on h5 is unprotected. Capture it with your queen.",
+      "hint": "The queen can move like a bishop. Follow the diagonal from d1.",
+      "line": ["d1h5"],
+      "success": "The diagonal from d1 to h5 was open, so the queen used her bishop powers to win a rook.",
+      "narration": "Black's rook on h5 has no protection. Your queen is far away on d1, but she can travel diagonally like a bishop. Find the path and grab it.",
+      "pose": "detective"
+    },
+    {
+      "id": "check-and-win",
+      "kind": "play",
+      "title": "Two attacks at once",
+      "fen": "4k3/5p2/8/8/7n/8/5PPP/3Q2K1 w - - 0 1",
+      "prompt": "Give a check that also attacks the knight on h4, then win the knight.",
+      "hint": "From a4 the queen looks at e8 along a diagonal and at h4 along the fourth rank.",
+      "line": ["d1a4", "e8e7", "a4h4"],
+      "success": "Queen to a4 checked the king and attacked the knight at the same time. Black had to deal with the check, so the knight fell.",
+      "narration": "Because the queen moves in so many directions, she can attack two things at once. Find a check that also hits the knight. Black will be busy saving the king, and the knight is yours.",
+      "pose": "excited"
+    },
+    {
+      "id": "queen-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Why is it usually a bad idea to bring the queen out in the first few moves?",
+      "options": [
+        { "text": "Smaller pieces can attack her and she must keep moving, which wastes time", "correct": true, "why": "Each time she runs, your opponent gets to develop another piece for free." },
+        { "text": "The queen is not allowed to move before the other pieces", "why": "She may move at any time. It is just usually not a good idea early on." },
+        { "text": "The queen is weak at the start of the game", "why": "She is always the strongest piece. Her value is exactly why she gets chased." }
+      ],
+      "narration": "Last question, and then you know the queen. Why should you be patient with her in the opening?",
+      "pose": "thinking"
+    }
+  ]
+}

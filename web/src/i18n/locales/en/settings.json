@@ -1,0 +1,344 @@
+{
+  "label": "Settings",
+  "title": "Settings",
+  "index": "Settings sections",
+  "info": "About {{setting}}",
+  "search": {
+    "label": "Search settings",
+    "placeholder": "Search settings",
+    "section": "Section",
+    "found_one": "{{count}} setting matches “{{query}}”",
+    "found_other": "{{count}} settings match “{{query}}”",
+    "none": "No setting matches “{{query}}”."
+  },
+  "general": {
+    "title": "General",
+    "startPage": "Start page",
+    "startPageNote": "The page Torre opens on.",
+    "start": {
+      "home": "Home",
+      "story": "Story",
+      "play": "Play",
+      "puzzles": "Puzzles",
+      "coach": "Coach"
+    },
+    "notes": "Show descriptions",
+    "notesNote": "Show what each setting does under its name, instead of behind the (i)."
+  },
+  "sidebar": {
+    "title": "Sidebar",
+    "shown": "In the sidebar",
+    "shownNote": "Drag to reorder, or use the arrows. Settings stays in the account menu at the bottom of the sidebar.",
+    "hidden": "Other pages",
+    "allShown": "Every page is in the sidebar.",
+    "up": "Move {{name}} up",
+    "down": "Move {{name}} down",
+    "hide": "Hide",
+    "hideNamed": "Hide {{name}}",
+    "add": "Add",
+    "addNamed": "Add {{name}}",
+    "behaviour": "Folding",
+    "rail": "Sidebar",
+    "railNote": "Automatic folds it on laptop-width screens. Press [ to fold or open it anywhere.",
+    "rails": {
+      "auto": "Automatic",
+      "open": "Open",
+      "folded": "Folded"
+    },
+    "reset": "Reset sidebar",
+    "resetNote": "Back to Home, Story, Play, Puzzles, Arena, Coach and Profile, in that order."
+  },
+  "language": {
+    "title": "Language",
+    "note": "The language of menus, buttons and messages. Lesson text follows when a translation exists."
+  },
+  "display": {
+    "title": "Board & pieces",
+    "preview": "Preview of the board with your settings"
+  },
+  "pieces": {
+    "label": "Piece set",
+    "sets": {
+      "staunton": {
+        "name": "Staunton",
+        "note": "Polished tournament pieces, made for Torre."
+      },
+      "clay": {
+        "name": "Clay",
+        "note": "Soft, rounded pieces with a drawn outline."
+      },
+      "classic": {
+        "name": "Classic",
+        "note": "Flat, high-contrast pieces. Easiest to read at small sizes."
+      }
+    }
+  },
+  "board": {
+    "title": "Board colours",
+    "themes": {
+      "forest": "Forest",
+      "stone": "Stone",
+      "walnut": "Walnut",
+      "contrast": "High contrast"
+    },
+    "behaviour": "On the board",
+    "coordinates": "Coordinates",
+    "coordinatesNote": "Files and ranks along the board's edge.",
+    "lastMove": "Highlight the last move",
+    "lastMoveNote": "Tint the two squares of the move just played.",
+    "legalDots": "Show legal moves",
+    "legalDotsNote": "Dots on the squares a picked-up piece can reach.",
+    "animation": "Move animation",
+    "animationNote": "How a moved piece slides to its square.",
+    "animations": {
+      "off": "Off",
+      "fast": "Fast",
+      "normal": "Normal"
+    },
+    "drag": "Drag pieces",
+    "dragNote": "When off, move by clicking a piece and then its square.",
+    "autoQueen": "Always promote to a queen",
+    "autoQueenNote": "Skip the promotion picker. Switch this off to underpromote."
+  },
+  "sound": {
+    "title": "Sound",
+    "mute": "Mute everything",
+    "muteNote": "Silences sound effects, music and the coach.",
+    "master": "Main volume",
+    "masterNote": "Turns effects, music and the coach up or down together.",
+    "effectsHeading": "Sound effects",
+    "effects": "Sound effects",
+    "effectsNote": "Moves, right and wrong answers, and the fanfare when you finish.",
+    "effectsVolume": "Effects volume",
+    "effectsVolumeNote": "Under the main volume.",
+    "sample": "Play a sample",
+    "moveSound": "Move sound",
+    "moveSoundNote": "The sound of a piece landing. Other effects still play with None.",
+    "moveSounds": {
+      "wood": "Wood",
+      "soft": "Soft",
+      "none": "None"
+    },
+    "musicHeading": "Music",
+    "music": "Background music",
+    "musicNote": "A quiet loop that dips while the coach is talking.",
+    "musicVolume": "Music volume",
+    "musicVolumeNote": "Only while background music is on.",
+    "hidden": "Quiet in the background",
+    "hiddenNote": "While Torre's tab is hidden, the music pauses and effects stay silent."
+  },
+  "voice": {
+    "title": "Coach & voice",
+    "speaks": "Coach voice",
+    "speaksNote": "The coach reads lessons aloud and reacts to your puzzles.",
+    "coach": "Voice",
+    "coachNote": "Which recorded coach speaks.",
+    "female": "Female",
+    "male": "Male",
+    "sample": "Hear the coach",
+    "speed": "Speech speed",
+    "speedNote": "Recordings and your browser's voice both follow it.",
+    "speeds": {
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast"
+    },
+    "volume": "Voice volume",
+    "volumeNote": "Under the main volume.",
+    "dip": "Music under the voice",
+    "dipNote": "How far the background music drops while the coach talks.",
+    "dips": {
+      "none": "No change",
+      "some": "A little",
+      "lots": "A lot"
+    },
+    "captions": "Captions",
+    "captionsNote": "Show the coach's words at the bottom of the screen while it speaks.",
+    "whenHeading": "When the coach speaks",
+    "rooky": "Rooky speaks first",
+    "rookyNote": "Rooky reads the Coach briefing and each new game recap aloud when they open.",
+    "review": "Narrate game reviews",
+    "reviewNote": "Stepping through a reviewed game, the coach says what each move was.",
+    "quiet": "Quiet coach",
+    "quietNote": "While you play, the coach stays silent and only speaks when you ask: no quips after captures or checks.",
+    "heading": "Voice packs",
+    "note": "Recorded coach voices sound natural and work offline, in a female or a male voice. Without the chosen voice's pack, the coach uses the other recorded voice, then your browser's.",
+    "size_one": "{{mb}} MB · {{count}} line",
+    "size_other": "{{mb}} MB · {{count}} lines",
+    "download": "Download",
+    "update": "Update",
+    "remove": "Remove",
+    "installed": "Installed",
+    "cancel": "Cancel",
+    "downloading": "Downloading",
+    "offline": "Voice packs can't be listed right now. Check your connection.",
+    "none": "No voice packs are available yet."
+  },
+  "learning": {
+    "title": "Learning & puzzles",
+    "hard": "Hard mode",
+    "hardNote": "Lessons and puzzles offer no hints and never show the answer. You work every move out yourself.",
+    "help": "Puzzle help",
+    "helpNote": "What a puzzle offers when you are stuck. Hard mode offers neither.",
+    "helps": {
+      "full": "Hint and solution",
+      "hint": "Hint only"
+    },
+    "autoNext": "Next puzzle automatically",
+    "autoNextNote": "After a clean solve, the next puzzle opens by itself.",
+    "ratings": "Show puzzle rating",
+    "ratingsNote": "Your rating and how much each puzzle changed it, while you solve.",
+    "blindfold": "Blindfold puzzles",
+    "blindfoldNote": "Puzzles show the squares only; you solve from memory.",
+    "playBlindfold": "Blindfold games",
+    "playBlindfoldNote": "Games against bots show the squares only, until the game ends."
+  },
+  "analysis": {
+    "title": "Analysis",
+    "auto": "Analyze positions automatically",
+    "autoNote": "Stockfish evaluates each position in Games and Explore.",
+    "depth": "Analysis depth",
+    "depthNote": "How long the engine thinks about each position. Deep is slower and stronger.",
+    "depths": {
+      "quick": "Quick",
+      "normal": "Normal",
+      "deep": "Deep"
+    },
+    "lines": "Engine lines",
+    "linesNote": "How many lines the engine panel lists.",
+    "lineCounts": {
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    },
+    "evalBar": "Evaluation bar",
+    "evalBarNote": "The bar beside the board that shows who is better.",
+    "best": "Best-move arrow",
+    "bestNote": "A gold arrow for Stockfish's choice.",
+    "next": "Next-move arrow",
+    "nextNote": "A grey arrow for the move played next in the game.",
+    "control": "Square control in Explore",
+    "controlNote": "Tint squares by which side attacks them.",
+    "background": "Analyze new games in the background",
+    "backgroundNote": "Imported games are reviewed by Stockfish on their own, and your mistakes become drills and puzzles."
+  },
+  "engines": {
+    "title": "Engines"
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "size": "Interface size",
+    "sizeNote": "Text, buttons and the board, a step larger.",
+    "sizes": {
+      "normal": "Normal",
+      "large": "Large",
+      "larger": "Larger"
+    },
+    "motion": "Animations",
+    "motionNote": "Reduced keeps pieces and pages still. System follows your device's setting.",
+    "motions": {
+      "system": "System",
+      "reduce": "Reduced",
+      "full": "Full"
+    },
+    "contrast": "High-contrast board",
+    "contrastNote": "Light and dark squares far apart, for low vision. Also under Board & pieces.",
+    "palette": "Arrow and highlight colours",
+    "paletteNote": "Colour-blind safe uses blue and orange in place of green and red.",
+    "palettes": {
+      "standard": "Standard",
+      "colorblind": "Colour-blind safe"
+    },
+    "announce": "Announce moves",
+    "announceNote": "A screen reader reads each move as it lands on the board.",
+    "typed": "Type moves",
+    "typedNote": "A box under the board takes moves like e4, Nf3 or O-O."
+  },
+  "data": {
+    "title": "Data",
+    "reset": "Reset settings",
+    "resetNote": "Every setting goes back to its default. Your language, games, stars and progress stay.",
+    "resetConfirm": "Yes, reset",
+    "resetDone": "Settings are back to their defaults.",
+    "cancel": "Cancel",
+    "backup": "Back up",
+    "backupNote": "Save your settings, stars and progress from this browser as a file. Games and puzzles are kept by the studio.",
+    "save": "Save backup",
+    "restore": "Restore a backup",
+    "restoreNote": "Replace what this browser keeps with a backup file. The page reloads.",
+    "choose": "Choose file",
+    "notBackup": "That file is not a Torre backup.",
+    "storage": "Stored in this browser",
+    "storageNote": "About {{size}} KB of settings and progress."
+  },
+  "progress": {
+    "title": "Progress",
+    "stars": "Bot stars",
+    "starsNote_one": "{{count}} ★ earned against bots, kept in this browser. Awards and puzzle progress are not affected.",
+    "starsNote_other": "{{count}} ★ earned against bots, kept in this browser. Awards and puzzle progress are not affected.",
+    "confirm": "Yes, clear stars",
+    "keep": "Keep them",
+    "clear": "Clear stars"
+  },
+  "about": {
+    "title": "About",
+    "loading": "Loading…",
+    "unavailable": "The studio could not be reached, so its details are not available.",
+    "version": "Version",
+    "released": "Released {{date}}",
+    "whatsNew": "What's new",
+    "data": "Data folder",
+    "dataNote": "Your games, analysis, puzzles and engines live here.",
+    "copy": "Copy path",
+    "copied": "Path copied.",
+    "copyBlocked": "The browser did not allow copying.",
+    "engines": "Installed engines",
+    "noEngines": "No engines are installed yet. Add one under Engines.",
+    "noVersion": "Version unknown",
+    "shortcuts": "Keyboard shortcuts",
+    "keys": {
+      "rail": "Fold or open the sidebar",
+      "step": "Step back and forward through moves",
+      "flip": "Flip the board",
+      "clear": "Clear arrows and circles drawn on the board"
+    },
+    "credits": "Built with",
+    "uses": {
+      "pythonChess": "Chess rules, PGN and talking to engines",
+      "puzzles": "The puzzles",
+      "kokoro": "The recorded coach voices",
+      "fsrs": "When missed puzzles and drills come back"
+    }
+  },
+  "ai": {
+    "title": "AI coach",
+    "loading": "Loading the AI setup…",
+    "provider": "Who runs the coach",
+    "providerNote": "Ollama runs a model on this computer for free. The others are online services: they need your own API key.",
+    "providerNoteHosted": "The coach runs on an AI service of your choice, with your own API key. You pay the service directly, usually a few cents a month.",
+    "onThisComputer": "On this computer",
+    "needsKey": "Needs a key",
+    "keySavedShort": "Key saved",
+    "key": "API key",
+    "keyFor": "API key for {{name}}",
+    "keyPlaceholder": "Paste your key",
+    "keyNote": "Your key is kept with your Torre data and is only used for the coach.",
+    "getKey": "Get a {{name}} key",
+    "saveKey": "Save key",
+    "checking": "Checking…",
+    "keySaved": "{{name}} key saved ({{hint}}).",
+    "removeKey": "Remove",
+    "keyStale": "{{name}} did not accept the saved key. Remove it and save a new one.",
+    "model": "Model",
+    "use": "Use this model",
+    "modelsAfterKey": "Save a key to see this provider's models.",
+    "ollamaMissing": "No local models yet. Install Ollama from ollama.com, run \"ollama pull qwen3:8b\", then come back.",
+    "current": "The coach uses {{model}}.",
+    "currentAuto": "The coach picked {{model}} on its own.",
+    "saved": "Done: the coach now uses {{model}}.",
+    "dialogTitle": "Set up the AI coach",
+    "dialogText": "Rooky's written advice comes from an AI model. Pick where it runs; you can change it any time in Settings.",
+    "later": "Not now",
+    "done": "Done"
+  }
+}

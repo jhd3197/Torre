@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "title": "The Fried Liver Attack",
+  "summary": "In the Two Knights Defense one natural recapture lets White sacrifice a knight on f7 and drag Black's king into the open.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Opening traps",
+  "order": 3,
+  "orientation": "white",
+  "practice": "exposed-king",
+  "steps": [
+    {
+      "id": "knight-to-g5",
+      "kind": "explain",
+      "title": "Knight to g5",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4",
+      "marks": [
+        [
+          "g5",
+          "f7"
+        ],
+        [
+          "c4",
+          "f7"
+        ]
+      ],
+      "text": "This is the Two Knights Defense. White's knight jumps to g5, joining the bishop against f7. Black's best answer is pawn to d5, blocking the bishop's diagonal, and White takes the pawn.",
+      "demo": [
+        "f3g5",
+        "d7d5",
+        "e4d5"
+      ],
+      "narration": "Here's the Two Knights Defense. White's knight jumps to g5 and teams up with the bishop against f7. [move] Black blocks with a pawn to d5. [move] And White takes it. [move]",
+      "pose": "present"
+    },
+    {
+      "id": "the-wrong-recapture",
+      "kind": "explain",
+      "title": "The natural mistake",
+      "fen": "r1bqkb1r/ppp2ppp/2n2n2/3Pp1N1/2B5/8/PPPP1PPP/RNBQK2R b KQkq - 0 5",
+      "text": "Taking back with the knight on d5 looks obvious, but it opens the way to a famous sacrifice. White's knight takes f7, attacking the queen and rook, and Black's king has to take it and come forward. White also has a quieter strong move here, pawn to d4, but the sacrifice is the one everyone remembers.",
+      "demo": [
+        "f6d5",
+        "g5f7",
+        "e8f7"
+      ],
+      "narration": "Knight takes d5 feels natural. [move] But it allows a wild idea. White throws the knight onto f7! [move] Black's king has to step out to take it. [move] Now the hunt begins.",
+      "pose": "alarm"
+    },
+    {
+      "id": "chase-the-king",
+      "kind": "play",
+      "title": "Chase the king",
+      "fen": "r1bq1b1r/ppp2kpp/2n5/3np3/2B5/8/PPPP1PPP/RNBQK2R w KQ - 0 7",
+      "prompt": "You are a knight down, but Black's king is in the open. Keep the pressure on.",
+      "hint": "Give a check that also attacks the knight on d5.",
+      "line": [
+        "d1f3",
+        "f7e6",
+        "b1c3"
+      ],
+      "success": "Queen to f3 check forces the king to e6 to keep guarding d5. Knight to c3 adds a third attacker to that knight, which is pinned to the king by your bishop.",
+      "narration": "You've given up a knight, so every move must hurt. Check the king and hit the knight on d5 at the same time, then bring one more piece to attack it.",
+      "pose": "determined"
+    },
+    {
+      "id": "punish-the-retreat",
+      "kind": "play",
+      "title": "If the king runs home",
+      "fen": "r1bqkb1r/ppp3pp/2n5/3np3/2B5/5Q2/PPPP1PPP/RNB1K2R w KQ - 2 8",
+      "prompt": "Black ran back to e8 instead of protecting d5. Strike.",
+      "hint": "Which black piece lost its protector when the king went back?",
+      "line": [
+        "c4d5"
+      ],
+      "success": "Bishop takes d5 wins the knight back with the bishop now aimed at f7 again. You are a pawn up, Black can no longer castle, and your attack is still going.",
+      "narration": "Black tried to run home instead. But the king was the only guard of that knight in the middle. Take advantage.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-safe-way",
+      "kind": "explain",
+      "title": "How Black stays safe",
+      "fen": "r1bqkb1r/ppp2ppp/2n2n2/3Pp1N1/2B5/8/PPPP1PPP/RNBQK2R b KQkq - 0 5",
+      "text": "Black doesn't have to recapture at all. Knight to a5 attacks the bishop on c4. After bishop to b5 check, pawn to c6 and pawn takes c6, pawn takes c6, Black is a pawn down but develops fast and chases White's pieces. This is the reliable choice for Black.",
+      "demo": [
+        "c6a5",
+        "c4b5",
+        "c7c6",
+        "d5c6",
+        "b7c6"
+      ],
+      "narration": "Here's the safe way for Black. Instead of taking the pawn, the knight jumps to a5 and attacks the bishop. [move] Bishop to b5, check. [move] Pawn to c6 blocks. [move] White takes. [move] Black takes back. [move] Black is a pawn down, but gets fast, easy development.",
+      "pose": "idea"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r1bqkb1r/ppp2ppp/2n2n2/3pp1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+      "prompt": "Take the pawn on d5. If Black does not take back with the knight, find the right answer.",
+      "nudge": "Capture first. Then look for a move with tempo: a check, or an attack on a piece.",
+      "hint": "If the knight jumps to a5, check on b5 saves your bishop. If it jumps to d4, push your c-pawn to kick it.",
+      "line": [
+        "e4d5",
+        "c6a5",
+        "c4b5",
+        "c7c6",
+        "d5c6",
+        "b7c6",
+        "b5e2|b5d3|d1f3|b5f1"
+      ],
+      "success": "Black played the safe knight to a5. Check on b5, take on c6, and drop the bishop back to e2. You keep an extra pawn. Black gets quick development for it, so finish yours and castle.",
+      "narration": "Not everyone takes back with the knight. Strong players jump to a5 instead. Then you need sound moves, not sacrifices.",
+      "pose": "thinking",
+      "branches": [
+        {
+          "line": [
+            "e4d5",
+            "c6d4",
+            "c2c3|d5d6|b1c3"
+          ],
+          "success": "Knight to d4 is a tricky defence. Pawn to c3 kicks the knight at once, before it causes trouble. Pushing the pawn to d6 is also good."
+        },
+        {
+          "line": [
+            "e4d5",
+            "c6a5",
+            "c4b5",
+            "c8d7",
+            "d1e2"
+          ],
+          "success": "Black blocked the check with the bishop. Queen to e2 guards your bishop on b5 and hits the pawn on e5. Stay a pawn up and keep developing."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkb1r/ppp2ppp/2n2n2/3Pp1N1/2B5/8/PPPP1PPP/RNBQK2R b KQkq - 0 5",
+      "question": "After White takes on d5, which move keeps Black out of trouble?",
+      "options": [
+        {
+          "text": "Knight takes d5",
+          "why": "That's the move that allows the Fried Liver sacrifice on f7."
+        },
+        {
+          "text": "Knight to a5",
+          "why": "Right. It attacks the bishop and keeps the king safe at home. Black gives up a pawn for quick development.",
+          "correct": true
+        },
+        {
+          "text": "Bishop to c5",
+          "why": "It ignores the threat on f7. White simply takes f7 and forks queen and rook."
+        }
+      ],
+      "narration": "Last question. White has just taken on d5. Which move keeps Black's king safe? Remember the knight jump that hits the bishop.",
+      "pose": "trophy"
+    }
+  ]
+}

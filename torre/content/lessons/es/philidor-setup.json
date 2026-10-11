@@ -1,0 +1,55 @@
+{
+ "title": "La configuración Philidor",
+ "summary": "Encuentra 1.e4 e5 2.Nf3 con ...d6: un muro sólido alrededor de e5, luego ...Nf6, ...Be7, enroca y ...c6.",
+ "unit": "Defensa Philidor",
+ "steps": [
+  {
+   "id": "the-move",
+   "title": "Peón a d6",
+   "text": "El caballo de blancas en f3 ataca tu peón en e5. En la Defensa Philidor lo proteges con el peón de d: 2...d6. Recibe su nombre de François-André Danican Philidor, el jugador de ajedrez más fuerte del siglo XVIII, que también fue un exitoso compositor de ópera. La jugada es sólida: tu peón de e5 está seguro y tu alfil de casillas claras puede salir.",
+   "narration": "Peón a e4. [move] Peón a e5. [move] El caballo de blancas ataca tu peón en e5. [move] Y tú lo proteges con calma con el peón de d. [move] Eso es la Defensa Philidor, nombrada así por François-André Philidor, el mejor jugador de ajedrez del siglo dieciocho y también compositor de ópera."
+  },
+  {
+   "id": "the-wall",
+   "title": "Construye el muro",
+   "text": "Aquí está el plan habitual. El caballo va a f6 para golpear e4, el otro caballo a d7 para proteger e5 una segunda vez, el alfil a e7, y tú enrocas. Luego el peón a c6 le da a tu dama la casilla c7 y se prepara para ...b5 o ...d5 más adelante. No es llamativo, pero tus piezas están juntas y e5 se mantiene.",
+   "narration": "Aquí está el muro Philidor. Blancas juegan peón a d4. [move] Caballo a f6. [move] Caballo a c3. [move] El otro caballo a d7, para proteger e5 de nuevo. [move] Alfil a c4. [move] Alfil a e7. [move] Blancas enrocan. [move] Tú también enrocas. [move] Torre a e1. [move] Y peón a c6. [move] Tus piezas están hombro con hombro, y e5 no se cae."
+  },
+  {
+   "id": "win-it-back",
+   "title": "Blancas toman en e5",
+   "prompt": "Blancas capturaron en e5. Recupera un peón de inmediato, luego salva a tu caballo.",
+   "hint": "Tu caballo en f6 puede tomar un peón también. Si la dama de blancas ataca a él, retrocede a una casilla segura.",
+   "success": "Nxe4 recupera el peón y cuando la dama ataca al caballo, Nc5 lo lleva a una casilla segura. El material es igual y tus piezas están listas para salir.",
+   "narration": "Blanco tomó tu peón en e5. No te asustes ni lo recuperes con el peón de d. Tu caballo puede tomar el peón de e de Blanco, y si lo persiguen, puede moverse a un lugar seguro."
+  },
+  {
+   "id": "be7-guards-g5",
+   "title": "El caballo salta demasiado pronto",
+   "prompt": "Blanco saltó el caballo a g5 para apuntar a f7. Púnzalo.",
+   "hint": "¿Qué de tus piezas ya mira a g5?",
+   "success": "Tu alfil en e7 defiende g5, así que el caballo simplemente estaba colgado. Esa es otra razón por la que ...Be7 pertenece a la configuración Philidor.",
+   "narration": "El caballo de Blanco saltó a g5 para atacar f7. Pero mira tu alfil en e7. Ya está observando ese casillero."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Qué hace el peón en d6 en la Defensa Philidor?",
+   "options": [
+    {
+     "text": "Protege el peón en e5 y abre el camino para el alfil de casillas claras.",
+     "why": "Exactamente. e5 está seguro, y tu alfil en c8 puede salir ahora."
+    },
+    {
+     "text": "Ataca el peón de e4 de Blanco",
+     "why": "Un peón en d6 ataca c5 y e5, no e4. El caballo en f6 es la pieza que golpea e4."
+    },
+    {
+     "text": "Se prepara para enrocar en el flanco de la dama",
+     "why": "Los jugadores del Philidor usualmente enrocan corto, después de ...Nf6 y ...Be7."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué está haciendo ese peón pequeño en d6 por ti? ¡Tú puedes con esto! ¡Buen trabajo!"
+  }
+ ]
+}

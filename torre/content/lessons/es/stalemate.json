@@ -1,0 +1,55 @@
+{
+ "title": "Ahogado",
+ "summary": "Si tu oponente no tiene movimientos legales y no está en jaque, el juego termina en empate. Aprende a evitar esta trampa cuando estés ganando.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "no-legal-moves",
+   "title": "Sin movimientos, sin jaque",
+   "text": "Es el turno de las negras. El rey no está en jaque, pero cada casilla a la que podría ir está atacada por la dama, y las negras no tienen otras piezas. Cuando el bando que debe mover no tiene un movimiento legal y no está en jaque, es ahogado, y el juego termina en empate.",
+   "narration": "El rey negro no está en jaque, pero no tiene a dónde ir ni otra pieza para mover. Eso es ahogado, y es un empate. Toda la ventaja extra de las blancas, desperdiciada."
+  },
+  {
+   "id": "the-winners-trap",
+   "title": "La trampa del ganador",
+   "text": "El ahogado suele ocurrir al jugador que está ganando. Con una dama contra un rey solo, es tentador apretar al rey cada vez más. Aquí, la dama a f7 parece fuerte, pero las negras no tendrían ningún movimiento. Antes de cada movimiento, pregúntate: ¿mi oponente todavía tendrá un movimiento legal?",
+   "narration": "El ahogado es una trampa para el ganador. Aquí, la dama a f7 parece una gran presión, pero deja a las negras sin movimientos. Siempre verifica que tu oponente aún pueda mover."
+  },
+  {
+   "id": "leave-a-square",
+   "title": "Dale al rey una casilla",
+   "prompt": "¡No provoques el ahogado! Acerca tu rey mientras le dejas un movimiento a las negras, luego intenta el jaque mate.",
+   "hint": "Usa tu rey, no el dama. Encuentra un movimiento de rey que deje g8 libre para los negras y te prepare para proteger a la dama.",
+   "success": "El rey a f6 dejó un movimiento para los negras, a g8. Entonces el dama aterrizó en g7, protegida por tu rey: jaque mate.",
+   "narration": "Tu dama ya ha encerrado al rey. Ahora acerca tu propio rey, pero asegúrate de que el rey negro todavía tenga una casilla a la que moverse. Luego termina con jaque mate."
+  },
+  {
+   "id": "other-corner",
+   "title": "La misma idea, en la otra esquina.",
+   "prompt": "Jaque mate en dos movimientos sin ahogar a tu oponente.",
+   "hint": "La dama a b6 sería un ahogado. Avanza tu rey en su lugar, y deja que el rey negro tenga un movimiento disponible.",
+   "success": "El rey a b6 dejó al rey negro solo b8, y luego la dama dio jaque mate en la última fila.",
+   "narration": "La otra esquina, la misma trampa. Mover la dama a b6 sería un ahogado. Avanza tu rey primero y deja que el negro dé un paso, y luego ataca."
+  },
+  {
+   "id": "stalemate-quiz",
+   "title": "Revisión rápida",
+   "question": "Es el turno de Negro. Negro no está en jaque pero no tiene ningún movimiento legal. ¿Qué sucede?",
+   "options": [
+    {
+     "text": "El juego es empate.",
+     "why": "Eso es ahogado. Ninguno de los lados gana, sin importar cuánto material tenga un lado."
+    },
+    {
+     "text": "Blanco gana.",
+     "why": "Solo el jaque mate gana. Sin jaque, no tener movimientos es un empate."
+    },
+    {
+     "text": "Negro pierde un turno.",
+     "why": "No se puede evitar nada en el ajedrez. Si no tienes movimientos legales y no hay jaque, el juego termina en empate."
+    }
+   ],
+   "narration": "Última pregunta. Las negras no están en jaque, pero no pueden mover nada. ¿Cuál es el resultado?"
+  }
+ ]
+}

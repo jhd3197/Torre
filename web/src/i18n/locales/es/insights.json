@@ -1,0 +1,110 @@
+{
+ "label": "Tus análisis de ajedrez",
+ "sectionsLabel": "Secciones de análisis",
+ "sections": {
+  "overview": "Resumen",
+  "openings": "Aperturas",
+  "learn": "Aprende",
+  "blunders": "Errores garrafales"
+ },
+ "coverage": "{{analyzed}} / {{total}} partidas analizadas",
+ "replay": "Reproducir",
+ "explorePosition": "Explora la posición",
+ "result": {
+  "win": "Ganar",
+  "loss": "Perder",
+  "draw": "Tablas"
+ },
+ "status": {
+  "retry": "Reintentar",
+  "loading": "Cargando análisis…",
+  "empty": "Importa partidas para ver tus análisis."
+ },
+ "metrics": {
+  "games": "Partidas",
+  "gamesNote": "{{wins}} victorias · {{draws}} tablas · {{losses}} derrotas",
+  "winRate": "Tasa de victorias",
+  "winRateNote": "Todas las partidas importadas",
+  "accuracy": "Precisión",
+  "accuracyNote": "Tus partidas analizadas",
+  "avgLoss": "Promedio de errores / jugada",
+  "avgLossNote": "Centipeones · cuanto más bajo, mejor",
+  "blunders": "Errores graves / partida",
+  "blundersNote_one": "{{count}} en partidas analizadas",
+  "blundersNote_other": "{{count}} en partidas analizadas",
+  "mistakes": "Errores",
+  "mistakesNote_one": "{{count}} imprecisiones",
+  "mistakesNote_other": "{{count}} imprecisiones"
+ },
+ "form": {
+  "title": "Desempeño en el tiempo",
+  "accuracy": "Precisión",
+  "cpl": "Pérdida de centipawn",
+  "empty": "Analiza tus partidas para ver tu progreso.",
+  "chartLabel_one": "Precisión y pérdida media de centipeones en {{count}} partidas analizadas.",
+  "chartLabel_other": "Precisión y pérdida media de centipeones en {{count}} partidas analizadas.",
+  "detail": "{{result}} · ACPL {{acpl}} · Precisión {{accuracy}} · {{blunders}} graves",
+  "explore": "Explorar historial de partidas",
+  "help": "Pasa el cursor o arrastra para explorar · Usa las flechas para cambiar de partida"
+ },
+ "phases": {
+  "title": "Por fase de juego",
+  "counts": "{{blunders}} graves · {{mistakes}} errores · {{moves}} jugadas",
+  "empty": "Aún no hay análisis por fase."
+ },
+ "table": {
+  "games": "Partidas",
+  "winRate": "Tasa de victorias",
+  "acpl": "ACPL"
+ },
+ "colors": {
+  "title": "Por color",
+  "color": "Color",
+  "blundersPerGame": "Errores por partida",
+  "white": "Blancas",
+  "black": "Negras"
+ },
+ "opponents": {
+  "title": "Por oponente",
+  "opponent": "Oponente",
+  "wdl": "E / E / P"
+ },
+ "openings": {
+  "colorGames_one": "{{color}} · {{count}} partidas",
+  "colorGames_other": "{{color}} · {{count}} partidas",
+  "winRate": "porcentaje de victorias",
+  "wdl": "{{w}} victorias, {{d}} empates, {{l}} derrotas",
+  "analyzed_one": "ACPL {{acpl}} · {{count}} partidas analizadas",
+  "analyzed_other": "ACPL {{acpl}} · {{count}} partidas analizadas",
+  "empty": "No se encontraron aperturas."
+ },
+ "recurring": {
+  "title": "Posiciones recurrentes",
+  "count_one": "{{count}} apariciones · {{eco}}",
+  "count_other": "{{count}} apariciones · {{eco}}",
+  "empty": "Aún no hay posiciones recurrentes."
+ },
+ "learn": {
+  "empty": "Analiza algunas partidas para recibir sugerencias de práctica.",
+  "takeLesson": "Toma la lección"
+ },
+ "blunders": {
+  "empty": "Aún no hay errores analizados.",
+  "intro": "Tus jugadas más costosas, de peor a mejor. Repite cada una o explora la posición.",
+  "before": "Posición antes de la jugada",
+  "replayMove": "Reproducir jugada"
+ },
+ "quality": {
+  "title": "Tus jugadas",
+  "note": "{{moves}} jugadas analizadas",
+  "brilliant": "Brillantes",
+  "best": "Mejores",
+  "good": "Buenas",
+  "inaccuracy": "Imprecisiones",
+  "mistake": "Errores",
+  "blunder": "Errores graves",
+  "great": "Grandes jugadas",
+  "book": "De libro",
+  "updating": "Calificaciones actualizadas: {{current}} de {{total}} jugadas. Los conteos de grandes jugadas y de libro están incompletos hasta volver a analizar las partidas anteriores."
+ }
+}

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Weak squares and holes",
+  "summary": "Every pawn move leaves squares behind that no pawn can guard again. Learn to spot these holes and move your pieces into them.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Planning",
+  "order": 1,
+  "requires": ["outposts"],
+  "practice": "kingside-attack",
+  "steps": [
+    {
+      "id": "what-is-a-hole",
+      "kind": "explain",
+      "title": "Squares no pawn can guard",
+      "fen": "r4rk1/pbpq1p1p/1p4p1/8/4N3/8/PPP1QPPP/R4RK1 w - - 0 1",
+      "marks": [["f6"], ["h6"], ["g6"]],
+      "text": "Pawns only move forward, so once a pawn has passed a square, it can never guard it again. Black pushed the g-pawn to g6, and the e-pawn is gone, so no black pawn will ever control f6 or h6. A square like this is called a hole, or a weak square. Black has also lost the dark-squared bishop that could have covered these squares, so they are open to White's pieces.",
+      "narration": "Pawns can't move backward, so every pawn move leaves some squares unguarded forever. Black's g-pawn has moved to g6, and now f6 and h6 are holes that no black pawn can ever cover again.",
+      "pose": "present"
+    },
+    {
+      "id": "land-in-the-hole",
+      "kind": "play",
+      "title": "Into the hole",
+      "fen": "r4rk1/pbpq1p1p/1p4p1/8/4N3/8/PPP1QPPP/R4RK1 w - - 0 1",
+      "prompt": "Use the hole on f6 to win material.",
+      "hint": "No pawn can attack a knight on f6. What would it attack from there?",
+      "line": ["e4f6", "g8g7", "f6d7"],
+      "success": "The knight landed in the hole with check and hit the queen on d7 at the same time. No pawn could challenge it there, and the queen fell.",
+      "narration": "The hole on f6 sits right next to Black's king, and no black pawn can ever cover it. Jump your knight in with check and look at what else it attacks.",
+      "pose": "detective"
+    },
+    {
+      "id": "holes-around-the-king",
+      "kind": "explain",
+      "title": "Holes around the king",
+      "fen": "r4rk1/pp3p1p/2n2Bp1/8/8/8/PPPQ1PPP/6K1 w - - 0 1",
+      "marks": [["f6"], ["h6"], ["g7"]],
+      "text": "Here White's bishop already sits in the hole on f6, guarding g7. Black's king has no dark-squared bishop to defend the dark squares around it. When holes appear next to a king, an attacker's queen and minor pieces can often move in and give mate.",
+      "narration": "White's bishop is already sitting in the hole on f6, staring at g7. Black has nothing that can cover the dark squares around the king, and that's a recipe for checkmate.",
+      "pose": "alarm"
+    },
+    {
+      "id": "queen-to-the-hole",
+      "kind": "play",
+      "title": "The queen joins in",
+      "fen": "r4rk1/pp3p1p/2n2Bp1/8/8/8/PPPQ1PPP/6K1 w - - 0 1",
+      "prompt": "Use the other hole and force checkmate.",
+      "hint": "Put the queen on h6. What does it threaten next to the bishop?",
+      "line": ["d2h6", "f8e8", "h6g7"],
+      "success": "The queen came to the hole on h6 and threatened mate on g7, protected by the bishop. Black had no pawn and no bishop to cover g7, so it was mate.",
+      "narration": "Your bishop guards g7. Bring the queen into the other hole on h6 and threaten mate. Black has no piece that can cover the dark squares in time.",
+      "pose": "excited"
+    },
+    {
+      "id": "why-holes",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What makes a square a hole?",
+      "options": [
+        { "text": "No pawn of the defending side can ever attack it again", "correct": true, "why": "Since pawns can't move backward, an enemy piece on such a square can only be removed by trading it." },
+        { "text": "It is an empty square near the king", "why": "Empty squares are everywhere. A hole is special because no defending pawn can ever guard it." },
+        { "text": "It is attacked by the opponent's pawns", "why": "That describes squares your opponent controls, not a hole in your own position." }
+      ],
+      "narration": "Last question. What turns an ordinary square into a hole? Think about which pieces can never cover it again. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

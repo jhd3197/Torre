@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "title": "The Englund Gambit Trap",
+  "summary": "Against 1.d4 Black offers a pawn and hopes White's bishop lands on c3. Then a pin wins the rook, or even mates.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 5,
+  "orientation": "black",
+  "practice": "pin",
+  "steps": [
+    {
+      "id": "the-gambit",
+      "kind": "explain",
+      "title": "A risky gambit",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "The Englund Gambit answers pawn to d4 with pawn to e5, giving away a pawn. It is objectively a dubious opening: a well-prepared White player keeps the pawn and stays better. It survives because its traps catch many players.",
+      "demo": [
+        "d2d4",
+        "e7e5",
+        "d4e5",
+        "b8c6",
+        "g1f3",
+        "d8e7"
+      ],
+      "narration": "The Englund Gambit gives away a pawn on the very first move. Pawn to d4. [move] Black answers e5! [move] White takes it. [move] Knight to c6. [move] Knight to f3. [move] Queen to e7. [move] Honestly, it's not a good opening against a careful player. But its traps are worth knowing, from either side.",
+      "pose": "shrug"
+    },
+    {
+      "id": "the-check",
+      "kind": "explain",
+      "title": "Check and grab",
+      "fen": "r1b1kbnr/ppppqppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq - 3 4",
+      "text": "After bishop to f4 protects the e5 pawn, Black's queen checks on b4 and attacks the pawn on b2 at the same time. White blocks with the bishop, and the queen grabs b2, now attacking the rook on a1. Here knight to c3 would be White's best answer, and Black's queen could get into trouble.",
+      "demo": [
+        "c1f4",
+        "e7b4",
+        "f4d2",
+        "b4b2"
+      ],
+      "narration": "White's bishop guards the extra pawn. [move] So Black's queen gives a check on b4. [move] The bishop blocks. [move] And the queen grabs the pawn on b2. [move] Now the rook in the corner is attacked.",
+      "pose": "point"
+    },
+    {
+      "id": "the-pin",
+      "kind": "play",
+      "title": "The bishop that cannot move",
+      "fen": "r1b1kbnr/pppp1ppp/2n5/4P3/8/2B2N2/PqP1PPPP/RN1QKB1R b KQkq - 1 6",
+      "prompt": "White's bishop jumped to c3 to attack your queen. Find the crushing reply.",
+      "hint": "Is the bishop on c3 really free to move? Look at the diagonal from your bishop on f8 to White's king.",
+      "line": [
+        "f8b4",
+        "c3d2",
+        "b2a1"
+      ],
+      "success": "Bishop to b4 pins the bishop on c3 to White's king, so it can no longer take your queen. White retreats, and queen takes a1 wins the rook.",
+      "narration": "White's bishop came to c3 to chase your queen. But it's standing on a dangerous diagonal. Find the move that freezes it in place.",
+      "pose": "magnify"
+    },
+    {
+      "id": "mate-on-c1",
+      "kind": "play",
+      "title": "Mate on the back rank",
+      "fen": "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqPQPPPP/RN2KB1R b KQkq - 3 7",
+      "prompt": "White defended the bishop with the queen. Finish the game.",
+      "hint": "Remove the pinned bishop, then look at the squares around White's king on the first rank.",
+      "line": [
+        "b4c3",
+        "d2c3",
+        "b2c1"
+      ],
+      "success": "Bishop takes c3, and if the queen takes back, queen to c1 is mate. If the knight takes back instead, queen takes a1 check still wins the rook.",
+      "narration": "White guarded the bishop with the queen. That leaves the back rank very thin. Take the bishop, and look for a mate.",
+      "pose": "excited"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r1b1kbnr/pppp1ppp/2n5/4P3/8/2N2N2/PqPBPPPP/R2QKB1R b KQkq - 1 6",
+      "prompt": "White did not play bishop to c3. Knight to c3 is the strong answer, and a rook on b1 would hunt your queen. Get her out safely.",
+      "nudge": "Your queen is short of squares. Stop White's knight from joining the hunt.",
+      "hint": "Bishop to b4 pins the knight on c3 to the bishop on d2. If the rook comes to b1, the queen escapes to a3.",
+      "line": [
+        "f8b4",
+        "a1b1",
+        "b2a3"
+      ],
+      "success": "Bishop to b4 pins the knight, and after rook to b1 your queen slips out to a3. You are still a little worse, so stop looking for tricks: develop, castle and fight for the e5 pawn.",
+      "narration": "A careful player answers with knight to c3, and now your queen is the one in danger. Pin that knight, then run. When a gambit fails, play safe moves, not more tricks.",
+      "pose": "nervous"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1b1kbnr/pppp1ppp/2n5/4P3/8/5N2/PqPBPPPP/RN1QKB1R w KQkq - 0 6",
+      "orientation": "white",
+      "question": "After Black's queen takes b2, what should White play instead of bishop to c3?",
+      "options": [
+        {
+          "text": "Bishop to c3, attacking the queen",
+          "why": "That is exactly the move that walks into the pin."
+        },
+        {
+          "text": "Knight to c3, developing and getting ready to trap the queen with the rook",
+          "why": "Right. The knight develops safely, and rook to b1 next can chase or trap the greedy queen.",
+          "correct": true
+        },
+        {
+          "text": "Pawn to e4, grabbing space",
+          "why": "The rook on a1 is still hanging, so queen takes a1 wins material."
+        }
+      ],
+      "narration": "Last question, from White's side this time. Black's queen has just taken on b2. What is White's best answer?",
+      "pose": "thinking"
+    }
+  ]
+}

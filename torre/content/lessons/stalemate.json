@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "Stalemate",
+  "summary": "If your opponent has no legal move and is not in check, the game is a draw. Learn to avoid this trap when you are winning.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 8,
+  "requires": ["check-and-checkmate"],
+  "steps": [
+    {
+      "id": "no-legal-moves",
+      "kind": "explain",
+      "title": "No moves, no check",
+      "fen": "7k/8/6Q1/8/8/8/8/6K1 b - - 0 1",
+      "marks": [["g8"], ["g7"], ["h7"]],
+      "text": "It is Black's turn. The king is not in check, but every square it could go to is attacked by the queen, and Black has no other pieces. When the side to move has no legal move and is not in check, it is stalemate, and the game ends in a draw.",
+      "narration": "Black's king isn't in check, but it has nowhere to go and no other piece to move. That's stalemate, and it's a draw. All of White's extra power, wasted.",
+      "pose": "facepalm"
+    },
+    {
+      "id": "the-winners-trap",
+      "kind": "explain",
+      "title": "The winner's trap",
+      "fen": "7k/4Q3/8/4K3/8/8/8/8 w - - 0 1",
+      "marks": [["e7", "f7"]],
+      "text": "Stalemate usually happens to the player who is winning. With a queen against a bare king it is tempting to squeeze the king tighter and tighter. Here queen to f7 looks strong, but Black would have no move at all. Before every move, ask: will my opponent still have a legal move?",
+      "narration": "Stalemate is a trap for the winner. Here, queen to f7 looks like a great squeeze, but it leaves Black with no moves at all. Always check that your opponent can still move.",
+      "pose": "alarm"
+    },
+    {
+      "id": "leave-a-square",
+      "kind": "play",
+      "title": "Give the king a square",
+      "fen": "7k/4Q3/8/4K3/8/8/8/8 w - - 0 1",
+      "prompt": "Don't stalemate! Bring your king closer while leaving Black a move, then checkmate.",
+      "hint": "Use your king, not the queen. Find a king move that leaves g8 free for Black and gets ready to protect the queen.",
+      "line": ["e5f6", "h8g8", "e7g7"],
+      "success": "King to f6 left Black one move, to g8. Then the queen landed on g7, protected by your king: checkmate.",
+      "narration": "Your queen has already boxed in the king. Now bring your own king closer, but make sure Black still has a square to step to. Then finish with checkmate.",
+      "pose": "detective"
+    },
+    {
+      "id": "other-corner",
+      "kind": "play",
+      "title": "Same idea, other corner",
+      "fen": "k7/8/8/K7/8/8/8/6Q1 w - - 0 1",
+      "prompt": "Checkmate in two moves without stalemating Black.",
+      "hint": "Queen to b6 would be stalemate. Step your king closer instead, and let Black's king have one square.",
+      "line": ["a5b6", "a8b8", "g1g8"],
+      "success": "King to b6 left Black only b8, and then the queen gave checkmate on the back rank.",
+      "narration": "The other corner, same trap. Moving the queen to b6 would be stalemate. Walk your king up first and let Black take one step, then strike.",
+      "pose": "magnify"
+    },
+    {
+      "id": "stalemate-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "It's Black's turn. Black is not in check but has no legal move. What happens?",
+      "options": [
+        { "text": "The game is a draw", "correct": true, "why": "That is stalemate. Neither side wins, no matter how much material one side has." },
+        { "text": "White wins", "why": "Only checkmate wins. Without check, having no moves is a draw." },
+        { "text": "Black skips a turn", "why": "There is no passing in chess. With no legal move and no check, the game ends in a draw." }
+      ],
+      "narration": "Last question. Black isn't in check, but can't move anything. What's the result?",
+      "pose": "thinking"
+    }
+  ]
+}

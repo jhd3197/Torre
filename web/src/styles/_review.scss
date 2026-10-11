@@ -1,0 +1,1360 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Game review and Explore: the board workspace in analysis. Loaded last, so it settles the older
+   workspace layers in _studio.scss for these two modes; Play keeps its own layout.
+   On a desktop the whole review fits the window: the board is sized from the window's height,
+   the panel matches it, and only the move list scrolls. */
+
+$analysis: 'body:is([data-mode="replay"], [data-mode="explore"])';
+// Everything above and below the board: top bar, page padding, heading, both player strips, arrow key.
+$board-chrome: 290px;
+
+/* Board arrows: green for the engine's best move, blue for the move played. Flat ends, and a line that
+   stops where its head begins (ChessBoard ARROW_TRIM), so no round cap shows at either end. */
+#hint-arrow,
+#next-arrow,
+.plan-arrow,
+.lesson-arrow {
+  fill: none;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+#hint-arrow {
+  stroke: $green-500;
+  opacity: 0.9;
+}
+#next-arrow {
+  stroke: $blue-500;
+  opacity: 0.75;
+}
+#arrows marker path {
+  &.arrowhead {
+    fill: $green-500;
+  }
+  &.next-arrowhead {
+    fill: $blue-500;
+  }
+  &.lesson-arrowhead {
+    fill: $green-600;
+  }
+  &.plan-arrowhead {
+    fill: $orange-500;
+  }
+}
+
+/* Colour-blind safe (Settings → Accessibility): the best move in blue, the move played in grey,
+   and square control in blue and orange instead of green and red. */
+:root[data-palette="colorblind"] {
+  #hint-arrow {
+    stroke: $blue-600;
+  }
+  #next-arrow {
+    stroke: $sage-500;
+  }
+  #arrows marker path.arrowhead {
+    fill: $blue-600;
+  }
+  #arrows marker path.next-arrowhead {
+    fill: $sage-500;
+  }
+  .square[data-heat="white"] {
+    background-image: linear-gradient(
+      color-mix(in srgb, $blue-600 calc(var(--heat-alpha) * 100%), transparent),
+      color-mix(in srgb, $blue-600 calc(var(--heat-alpha) * 100%), transparent)
+    );
+  }
+  .square[data-heat="black"] {
+    background-image: linear-gradient(
+      color-mix(in srgb, $orange-400 calc(var(--heat-alpha) * 100%), transparent),
+      color-mix(in srgb, $orange-400 calc(var(--heat-alpha) * 100%), transparent)
+    );
+  }
+}
+
+/* Evaluation bar: White's share in white, Black's in black, the score at the leading side's end. */
+.board-wrap {
+  padding-left: 26px;
+}
+.board-wrap > svg {
+  left: 26px;
+  width: calc(100% - 26px);
+}
+.eval-track {
+  width: 18px;
+  background: $neutral-900;
+  border: 1px solid $neutral-200;
+  border-radius: 4px;
+}
+.eval-track > span {
+  background: $neutral-50;
+}
+.eval-track > b {
+  left: 0;
+  right: 0;
+  width: auto;
+  padding: 0;
+  background: none;
+  font: 700 #{$fs-2xs}/ 1 $font-mono;
+  letter-spacing: -0.3px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.eval-track[data-label="bottom"] > b {
+  top: auto;
+  bottom: 5px;
+}
+.eval-track[data-label="top"] > b {
+  bottom: auto;
+  top: 5px;
+}
+.eval-track[data-ahead="white"] > b {
+  color: $neutral-950;
+}
+.eval-track[data-ahead="black"] > b {
+  color: $neutral-50;
+}
+
+/* Layout */
+#{$analysis} {
+  .workspace {
+    grid-template-columns: minmax(0, calc(var(--app-vh) - #{$board-chrome} + 26px)) minmax(320px, 400px);
+    justify-content: center;
+    align-items: stretch;
+    gap: 28px;
+    max-width: none;
+    padding-bottom: 12px;
+  }
+  .board-column {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  // Explore keeps its row of tools, adds its "exploring a copy" banner, and the square-control key below.
+  &[data-mode="explore"] .workspace {
+    grid-template-columns: minmax(0, calc(var(--app-vh) - #{$board-chrome} - 150px)) minmax(320px, 400px);
+  }
+  .board-heading {
+    height: auto;
+    min-height: 40px;
+    margin-bottom: 6px;
+  }
+  .board-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .board-heading-actions > #flip {
+    margin-left: auto;
+  }
+  .player {
+    padding: 6px 0;
+    margin-left: 26px;
+  }
+  /* The panel takes the board column's height (contain: size keeps its content from stretching the row). */
+  .analysis-panel {
+    display: flex;
+    flex-direction: column;
+    contain: size;
+    min-height: 0;
+    margin: 0;
+    overflow-y: auto;
+    border-radius: 14px;
+    border-color: $neutral-100;
+    background: $white;
+    scrollbar-width: thin;
+  }
+  .analysis-panel > * {
+    flex: none;
+  }
+  /* The open page takes the panel's spare height; only its own content scrolls. */
+  .analysis-panel > .panel-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .analysis-panel > .panel-page[hidden] {
+    display: none;
+  }
+  .analysis-panel > .panel-moves {
+    flex: 1 1 0;
+  }
+  .panel-moves > .move-list {
+    flex: 1 1 0;
+    min-height: 150px;
+    height: auto;
+    overflow-y: auto;
+  }
+  .analysis-panel[data-tab] > :is(.panel-engine, .panel-summary) {
+    flex: 1 1 0;
+    overflow-y: auto;
+  }
+}
+
+/* Panel tabs: Summary, Moves and Engine as one segmented control, the engine's score riding on its tab. */
+.analysis-panel > .panel-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin: 14px 14px 0;
+  padding: 4px;
+  border-radius: 14px;
+  background: $lobby-track;
+}
+.analysis-panel > .panel-tabs::before {
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba($moss-900, 0.15);
+}
+.analysis-panel > .panel-tabs > button {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px;
+  border-radius: 10px;
+  font: 800 #{$fs-base} $font-sans;
+  color: $lobby-muted;
+  cursor: pointer;
+  @include focus-ring;
+}
+.analysis-panel > .panel-tabs > button.selected {
+  color: $lobby-ink;
+}
+.panel-tab-score {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: $sage-100;
+  font: 700 #{$fs-2xs} $font-mono;
+  color: $moss-800;
+}
+
+/* Empty corners of the panel: the rook fills them instead of a blank box. */
+.verdict-idle-stage {
+  position: relative;
+}
+.verdict-idle-stage > .mascot,
+#{$analysis} .move-verdict .verdict-idle-stage > img.mascot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.verdict-idle-stage > .cursor-rook {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+// The verdict sizes its grade icon (img) at 36px; the rook's frame keeps its own size.
+#{$analysis} .move-verdict .cursor-rook > img {
+  width: 100%;
+  height: 100%;
+}
+.moves-empty,
+.engine-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.moves-empty .empty-moves,
+.engine-empty .engine-placeholder {
+  margin: 0;
+  padding: 0;
+  max-width: 32ch;
+}
+.panel-mascot {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding: 16px 0 12px;
+}
+.engine-empty .mascot {
+  opacity: 0.95;
+}
+
+/* Heading: back to the games, the game's actions as buttons, drawing tools and flip on the right. */
+.board-back {
+  font: 600 #{$fs-sm} $font-sans;
+  color: $moss-700;
+  text-decoration: none;
+  margin-right: 6px;
+}
+.board-back:hover {
+  color: $moss-900;
+}
+.board-actions,
+.board-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.board-tools {
+  margin-left: auto;
+}
+.board-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid $sage-200;
+  border-radius: 8px;
+  background: $white;
+  font: 600 #{$fs-sm} $font-sans;
+  color: $moss-800;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.board-action:hover {
+  background: $sage-50;
+  border-color: $moss-300;
+}
+.board-action[aria-pressed="true"] {
+  background: $moss-800;
+  border-color: $moss-800;
+  color: $white;
+}
+
+/* Arrow key: each swatch drawn as the arrow it names. */
+#{$analysis} .arrow-legend {
+  margin: 4px 0 0 26px;
+  gap: 16px;
+  font-size: $fs-sm;
+}
+#{$analysis} .arrow-key i {
+  position: relative;
+  width: 18px;
+  height: 5px;
+  margin-right: 10px;
+  border-radius: 0;
+  background: currentColor;
+}
+#{$analysis} .arrow-key i::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: -4px;
+  border-left: 8px solid currentColor;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+}
+#{$analysis} .arrow-key.best i {
+  color: $green-500;
+}
+#{$analysis} .arrow-key.next i {
+  color: $blue-500;
+}
+// The key follows the colour-blind safe palette (Settings → Accessibility), as the arrows do.
+:root[data-palette="colorblind"] {
+  #{$analysis} .arrow-key.best i {
+    color: $blue-600;
+  }
+  #{$analysis} .arrow-key.next i {
+    color: $sage-500;
+  }
+  .heat-white-key:before {
+    background: $blue-600;
+  }
+  .heat-black-key:before {
+    background: $orange-400;
+  }
+}
+#{$analysis} .arrow-key b {
+  margin-left: 6px;
+  color: $neutral-950;
+}
+
+/* Panel parts */
+#{$analysis} .session-meta {
+  padding: 12px 16px;
+  font-size: $fs-sm;
+}
+#{$analysis} .move-verdict {
+  display: block;
+  margin: 12px 12px 4px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid $neutral-100;
+  background: $sage-50;
+}
+#{$analysis} .move-verdict img {
+  flex: none;
+  width: 36px;
+  height: 36px;
+}
+#{$analysis} .move-verdict strong {
+  font: 650 #{$fs-md}/ 1.35 $font-sans;
+}
+#{$analysis} .move-verdict .verdict-better {
+  margin: 2px 0 0;
+  font-size: $fs-sm;
+  color: $sage-700;
+}
+.verdict-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* The verdict keeps one shape on every move (four pick rows, a two-line head), so stepping
+   through a game never moves the panel below it. */
+.verdict-head > div {
+  flex: 1;
+  min-width: 0;
+  min-height: 88px; /* title, two lines of message, the "better moves" line with its link */
+}
+#{$analysis} .move-verdict .verdict-head p:not(.verdict-better) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+#{$analysis} .move-verdict .verdict-head strong,
+#{$analysis} .move-verdict .verdict-better {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.verdict-picks .blank {
+  visibility: hidden;
+}
+.move-verdict.verdict-idle strong {
+  color: $sage-600;
+}
+/* The review voice switch, tucked in the verdict's corner; dimmed while the coach is quiet. */
+.verdict-head .verdict-voice {
+  flex: none;
+  align-self: flex-start;
+  margin-left: auto;
+  font-size: $fs-md;
+}
+.verdict-head .verdict-voice[aria-pressed='false'] {
+  opacity: 0.55;
+}
+/* The engine's top moves before this one, then yours (the dark row). Scores are for the side that
+   moved, so bigger is better; hovering a row shows that move on the position before. */
+.verdict-picks {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.verdict-picks button {
+  display: grid;
+  grid-template-columns: minmax(38px, max-content) 1fr auto;
+  column-gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: $white;
+  font: #{$fs-md} $font-mono;
+  text-align: left;
+  cursor: pointer;
+}
+.verdict-picks button:hover,
+.verdict-picks button:focus-visible {
+  border-color: $green-500;
+  outline: none;
+}
+.verdict-picks span {
+  font: 600 #{$fs-sm} $font-sans;
+  color: $sage-600;
+}
+.verdict-picks b {
+  font-weight: 700;
+  color: $neutral-950;
+}
+.verdict-picks em {
+  font-style: normal;
+  font-weight: 600;
+  color: $green-600;
+}
+.verdict-picks button.played {
+  background: $moss-800;
+}
+.verdict-picks button.played:hover,
+.verdict-picks button.played:focus-visible {
+  border-color: $blue-500;
+}
+.verdict-picks button.played :is(span, b) {
+  color: $white;
+}
+.verdict-picks button.played em {
+  color: $moss-200;
+}
+.verdict-picks button.played.worse em {
+  color: $peach-200;
+}
+:is(#{$analysis}, #arena) .moves-heading {
+  padding: 12px 16px 6px;
+  font: 600 #{$fs-sm} $font-sans;
+  letter-spacing: 0;
+  color: $sage-600;
+}
+:is(#{$analysis}, #arena) .move-list {
+  padding: 0 10px 8px;
+}
+/* Moves: White's in a light box, Black's in a dark one, the current move ringed in green. */
+:is(#{$analysis}, #arena) .move-row {
+  grid-template-columns: 34px 1fr 1fr;
+  gap: 6px;
+  min-height: 0;
+  padding: 3px 4px;
+  background: none;
+}
+:is(#{$analysis}, #arena) .move-row:nth-child(odd) {
+  background: none;
+}
+:is(#{$analysis}, #arena) .move-number {
+  font-size: $fs-sm;
+}
+:is(#{$analysis}, #arena) .move-row button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  font: 600 #{$fs-md} $font-mono;
+  padding: 6px 10px;
+  border-radius: 7px;
+}
+:is(#{$analysis}, #arena) .move-row > button:nth-child(2) {
+  background: $white;
+  border: 1px solid $neutral-200;
+  color: $neutral-950;
+}
+:is(#{$analysis}, #arena) .move-row > button:nth-child(3) {
+  background: $neutral-900;
+  border: 1px solid $neutral-900;
+  color: $neutral-50;
+}
+:is(#{$analysis}, #arena) .move-row > button:hover {
+  border-color: $green-500;
+}
+:is(#{$analysis}, #arena) .move-row button.current {
+  box-shadow: 0 0 0 2px $green-500;
+  border-color: $green-500;
+}
+:is(#{$analysis}, #arena) .move-row > button:nth-child(2).current {
+  background: $sage-100;
+}
+:is(#{$analysis}, #arena) .move-row button .move-grade {
+  width: 18px;
+  height: 18px;
+} .move-row button .move-grade {
+  width: 18px;
+  height: 18px;
+}
+#{$analysis} .playback {
+  margin: 0;
+  padding: 8px 14px;
+  border: 0;
+  border-top: 1px solid $neutral-100;
+  border-bottom: 1px solid $neutral-100;
+  border-radius: 0;
+}
+#{$analysis} .playback > span {
+  font-size: $fs-xs;
+}
+
+/* Engine: name and switch on one row, then the lines. */
+#{$analysis} .engine-section {
+  padding: 12px 16px;
+  border-top: 0;
+}
+#{$analysis} .engine-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#{$analysis} .engine-heading-actions .text-button {
+  font: 600 #{$fs-sm} $font-sans;
+  color: $moss-700;
+}
+#{$analysis} .engine-heading-actions .text-button:disabled {
+  color: $sage-400;
+}
+.engine-toggle {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid $sage-200;
+  background: $white;
+  font: 600 #{$fs-xs} $font-sans;
+  color: $sage-600;
+}
+.engine-toggle[aria-pressed="true"] {
+  background: $sage-100;
+  border-color: $moss-300;
+  color: $moss-800;
+}
+#{$analysis} .engine-line {
+  margin-top: 8px;
+  font-size: $fs-xs;
+  color: $sage-700;
+}
+#{$analysis} .engine-placeholder {
+  padding: 10px 0 4px;
+  line-height: 1.5;
+}
+
+/* Opening and the grade counts. */
+#{$analysis} .game-opening {
+  margin: 0;
+  padding: 12px 16px;
+  border-top: 1px solid $neutral-100;
+  font-size: $fs-sm;
+  line-height: 1.5;
+}
+#{$analysis} .game-opening p {
+  margin: 0 0 4px;
+}
+#{$analysis} .game-opening details {
+  margin: 2px 0 4px;
+  color: $sage-700;
+}
+#{$analysis} .game-opening summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: $moss-700;
+}
+#{$analysis} .game-opening .text-button {
+  font: 600 #{$fs-sm} $font-sans;
+  color: $moss-700;
+}
+#{$analysis} .game-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 12px 16px;
+  border-top: 1px solid $neutral-100;
+  font: 600 #{$fs-sm} $font-sans;
+}
+#{$analysis} .game-summary span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+#{$analysis} .game-summary img {
+  width: 20px;
+  height: 20px;
+}
+.game-summary .move-best {
+  color: $green-600;
+}
+/* The coach's game review, under the counts. */
+#{$analysis} .coach-game-review {
+  margin: 0;
+  padding: 12px 16px;
+  border-top: 1px solid $neutral-100;
+}
+#{$analysis} .coach-game-review > .text-button {
+  font: 600 #{$fs-sm} $font-sans;
+  color: $moss-700;
+}
+
+/* Play/pause: a light button, so the green icon does not sit on green. */
+.playback button.autoplay {
+  background: $sage-100;
+  border: 1px solid $sage-200;
+  border-radius: 8px;
+}
+.playback button.autoplay:hover:not(:disabled) {
+  background: $sage-200;
+}
+
+/* Saved games, now their own page at /games. */
+.library-section {
+  margin-top: 8px;
+}
+
+/* Below a desktop window the review stacks: board, then the panel at its natural height. */
+@include down(md) {
+  #{$analysis} {
+    .workspace {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+    .analysis-panel {
+      contain: none;
+      overflow: visible;
+    }
+    .panel-moves > .move-list {
+      flex: none;
+      height: 220px;
+    }
+    .board-actions {
+      order: 3;
+      width: 100%;
+    }
+    .player,
+    .arrow-legend {
+      margin-left: 0;
+    }
+  }
+  .board-wrap {
+    padding-left: 22px;
+  }
+  .board-wrap > svg {
+    left: 22px;
+    width: calc(100% - 22px);
+  }
+  .eval-track {
+    width: 14px;
+  }
+}
+
+/* The top bar's page slots (TopbarSlot): a back link in the title's place, tools beside Help. */
+.topbar-lead:empty,
+.topbar-tools:empty {
+  display: none;
+}
+.topbar:has(.topbar-lead:not(:empty)) #page-title {
+  display: none;
+}
+.topbar-lead {
+  margin-right: auto;
+}
+.topbar-lead .board-back {
+  font: 650 #{$fs-md} $font-sans;
+}
+.topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* More: a menu of the page's less frequent actions. */
+.more-menu {
+  position: relative;
+}
+.more-button span {
+  font-size: $fs-xs;
+  letter-spacing: 1px;
+  color: $moss-800;
+}
+.more-items {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  display: grid;
+  min-width: 210px;
+  padding: 6px;
+  border: 1px solid $neutral-100;
+  border-radius: 12px;
+  background: $white;
+  box-shadow: 0 10px 28px rgba($black, 0.12);
+}
+.more-items > :is(a, button) {
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font: 600 #{$fs-sm} $font-sans;
+  color: $neutral-950;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.more-items > :is(a, button):hover,
+.more-items > :is(a, button):focus-visible {
+  background: $sage-50;
+  outline: none;
+}
+
+/* ---- The game review (Torre Game Review design) ----
+   A heading with the players and the game's facts; a rounded panel with Summary, Moves and Engine;
+   the verdict as the coach's card; an evaluation strip that opens into a graph along the bottom. */
+$replay: 'body[data-mode="replay"]';
+
+.review-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 14px;
+}
+.review-head h1 {
+  margin: 0;
+  font: 900 #{$fs-2xl}/ 1.2 $font-sans;
+  color: $lobby-ink;
+}
+.review-head p {
+  margin: 0;
+  font: 700 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+
+#{$replay} {
+  // The heading above the board takes the place of the workspace's own row.
+  .workspace {
+    grid-template-columns: minmax(0, calc(var(--app-vh) - #{$board-chrome} - 40px + 26px)) minmax(340px, 460px);
+    gap: 24px;
+  }
+  .analysis-panel {
+    border: 1.5px solid $lobby-line;
+    border-radius: 22px;
+    box-shadow: 0 3px 0 $lobby-line;
+  }
+  .player-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 0;
+  }
+  .player-avatar.dark-piece {
+    background: $lobby-tile;
+  }
+  .player-avatar.light-piece {
+    background: $sage-200;
+  }
+  .player-avatar img {
+    width: 32px;
+    height: 32px;
+  }
+  .player strong {
+    font: 900 #{$fs-lg} $font-sans;
+    color: $lobby-ink;
+  }
+  .player small {
+    font: 700 #{$fs-sm} $font-sans;
+    color: $lobby-muted;
+  }
+}
+.player-lead {
+  margin-left: auto;
+  font: 600 #{$fs-base} $font-mono;
+  color: $lobby-muted;
+}
+
+/* Loading: Rooky with a magnifier, the moves counted off as the engine reaches them. */
+#{$replay} .review-loading {
+  flex: 1;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+  padding: 32px;
+  border: 0;
+}
+#{$replay} .review-loading .mascot {
+  mix-blend-mode: multiply;
+}
+#{$replay} .review-loading strong {
+  font: 900 #{$fs-3xl} $font-sans;
+  color: $lobby-ink;
+}
+#{$replay} .review-loading > span {
+  max-width: 260px;
+  font-size: $fs-base;
+  color: $sage-600;
+}
+.review-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 280px;
+}
+.review-progress > div {
+  height: 10px;
+  border-radius: 999px;
+  background: $lobby-track;
+  overflow: hidden;
+}
+.review-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: $lobby-green;
+  transition: width 0.15s;
+}
+.review-progress span {
+  font: 600 #{$fs-sm} $font-mono;
+  color: $lobby-muted;
+}
+#{$replay} .review-loading .text-button {
+  padding: 9px 16px;
+  border-radius: 12px;
+  font: 800 #{$fs-md} $font-sans;
+  color: $lobby-button;
+}
+
+/* Summary: its own scroll, the step-through button pinned under it. */
+#{$replay} .analysis-panel[data-tab] > .panel-summary {
+  overflow: hidden;
+}
+.panel-summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 16px 16px 8px;
+}
+#{$replay} .panel-summary-body {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+.summary-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 16px;
+  border-top: 1.5px solid $lobby-line;
+}
+.summary-actions .button {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 14px;
+  font-size: $fs-base;
+}
+.result-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px;
+  border-radius: 18px;
+  background: $sage-700;
+  color: $white;
+}
+.result-banner.result-won {
+  background: $lobby-green;
+}
+.result-banner.result-lost {
+  background: $sage-800;
+}
+.result-banner strong {
+  font: 900 #{$fs-3xl}/ 1.1 $font-sans;
+}
+.result-banner > span {
+  font: 700 #{$fs-md} $font-sans;
+  color: $sage-50;
+}
+.accuracy-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.accuracy-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 14px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 16px;
+  background: $white;
+}
+.accuracy-card.yours {
+  border-color: $lobby-selected-line;
+  background: $lobby-selected;
+}
+.accuracy-card > span {
+  overflow: hidden;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.accuracy-card > span:last-child {
+  font-size: $fs-xs;
+  font-weight: 700;
+}
+.accuracy-card b {
+  font: 900 #{$fs-5xl}/ 1 $font-sans;
+  font-variant-numeric: tabular-nums;
+  color: $lobby-ink;
+}
+.accuracy-card small {
+  font-size: $fs-lg;
+  color: $lobby-muted;
+}
+#{$replay} .summary-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#{$replay} .summary-block :is(h3, summary) {
+  margin: 0;
+  font: 900 #{$fs-lg} $font-sans;
+  color: $lobby-ink;
+}
+#{$replay} .summary-block summary {
+  cursor: pointer;
+}
+.grade-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.grade-chips li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 5px;
+  border-radius: 999px;
+  background: $neutral-100;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-ink;
+}
+#{$replay} .key-moments ol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#{$replay} .key-moment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 14px;
+  background: $white;
+  font-family: $font-sans;
+  color: $lobby-ink;
+  text-align: left;
+  cursor: pointer;
+}
+#{$replay} .key-moment:is(:hover, [aria-current="step"]) {
+  border-color: $lobby-hover-line;
+  background: $neutral-50;
+}
+#{$replay} .key-moment strong {
+  font: 900 #{$fs-base} $font-sans;
+}
+#{$replay} .key-moment small {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+#{$replay} .key-moment > i {
+  margin-left: auto;
+  font-style: normal;
+  font-size: $fs-xl;
+  color: $sage-400;
+}
+#{$replay} .key-moments-note {
+  margin: 0;
+  font-size: $fs-xs;
+  color: $lobby-muted;
+}
+#{$replay} .game-opening p {
+  margin: 0;
+}
+#{$replay} :is(.panel-summary-body > .panel-mascot, .game-recap-rooky, .coach-game-review) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.grade-compare .grade-table {
+  margin-top: 4px;
+}
+
+/* The verdict as the coach's card: green for a sound move, warm for a slip. */
+#{$replay} .move-verdict {
+  margin: 14px 16px 0;
+  padding: 14px;
+  border: 0;
+  border-radius: 18px;
+  background: $lobby-tile;
+}
+#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-mistake, .grade-blunder) {
+  background: rgba($wheat-100, 0.5);
+}
+#{$replay} .move-verdict .verdict-head strong {
+  font: 900 #{$fs-lg}/ 1.3 $font-sans;
+  color: $lobby-ink;
+}
+#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-mistake, .grade-blunder) .verdict-head strong {
+  color: $orange-700;
+}
+#{$replay} .move-verdict .verdict-head p {
+  font-size: $fs-md;
+  line-height: 1.4;
+  color: $sage-700;
+}
+#{$replay} .verdict-picks button {
+  padding: 7px 12px;
+  border-radius: 10px;
+  color: $lobby-ink;
+}
+#{$replay} .verdict-picks em {
+  color: $lobby-button;
+}
+#{$replay} .verdict-picks button.played {
+  background: $lobby-button;
+}
+#{$replay} .verdict-picks button.played em {
+  color: $gold-300;
+}
+
+/* The evaluation strip, under the verdict: dark for Black, light for White, your slips as dots. */
+.eval-strip {
+  position: relative;
+  display: block;
+  flex: none;
+  width: calc(100% - 32px);
+  height: 64px;
+  margin: 12px 16px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: $neutral-900;
+  overflow: hidden;
+  cursor: zoom-in;
+  @include focus-ring;
+}
+.eval-strip:hover {
+  box-shadow: 0 0 0 2px $green-500;
+}
+:is(.eval-strip, .eval-big) svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+:is(.eval-strip, .eval-big) path {
+  fill: $neutral-50;
+}
+:is(.eval-strip, .eval-big) line {
+  stroke: $sage-400;
+  stroke-width: 1px;
+  stroke-dasharray: 2 2;
+  vector-effect: non-scaling-stroke;
+}
+.eval-strip-label {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 2;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba($neutral-900, 0.75);
+  font: 800 #{$fs-2xs} $font-sans;
+  color: $white;
+}
+.eval-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+}
+.eval-big .eval-dot {
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 2px solid $white;
+}
+.eval-big .eval-dot.by-black {
+  border-color: $neutral-900;
+}
+.dot-inaccuracy {
+  background: $lobby-star;
+}
+.dot-mistake {
+  background: $orange-400;
+}
+.dot-blunder {
+  background: $red-500;
+}
+.eval-cursor,
+.eval-hover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: $lobby-green;
+  pointer-events: none;
+}
+.eval-hover {
+  width: 1px;
+  background: $lobby-star;
+}
+
+/* The graph, opened: a sheet along the bottom of the window, beside the rail. */
+.eval-sheet {
+  position: fixed;
+  left: var(--rail-offset, 0px);
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 28px 20px;
+  border-top: 1.5px solid $lobby-line;
+  border-radius: 22px 22px 0 0;
+  background: $white;
+  box-shadow: 0 -12px 32px rgba($moss-900, 0.14);
+}
+.eval-sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.eval-sheet-head h2 {
+  margin: 0;
+  font: 900 #{$fs-xl} $font-sans;
+  color: $lobby-ink;
+}
+.eval-readout {
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: $lobby-tile;
+  font: 600 #{$fs-md} $font-mono;
+  color: $lobby-ink;
+  white-space: pre;
+}
+.eval-legend {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $sage-600;
+}
+.eval-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.eval-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.eval-sheet-head .button {
+  margin-left: auto;
+}
+.eval-sheet-body {
+  display: flex;
+  gap: 10px;
+}
+.eval-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 0 20px;
+  font: 600 #{$fs-2xs} $font-mono;
+  color: $sage-500;
+}
+.eval-sheet-plot {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.eval-big {
+  position: relative;
+  height: 200px;
+  border-radius: 14px;
+  background: $neutral-900;
+  overflow: hidden;
+  cursor: crosshair;
+}
+.eval-ticks {
+  position: relative;
+  height: 14px;
+}
+.eval-ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  font: 600 #{$fs-2xs} $font-mono;
+  color: $sage-500;
+}
+
+/* Moves: plain cells, Black's a shade darker, the current one dark green. */
+#{$replay} #move-list .move-row > button:is(:nth-child(2), :nth-child(3)) {
+  border: 0;
+  border-radius: 10px;
+  background: $white;
+  color: $lobby-ink;
+}
+#{$replay} #move-list .move-row > button:nth-child(3) {
+  background: $neutral-100;
+}
+#{$replay} #move-list .move-row > button:hover {
+  background: $lobby-selected;
+}
+#{$replay} #move-list .move-row > button.current,
+#{$replay} #move-list .move-row > button:nth-child(2).current {
+  background: $lobby-button;
+  color: $white;
+  box-shadow: none;
+}
+#{$replay} #move-list .move-number {
+  font: 600 #{$fs-sm} $font-mono;
+  color: $sage-400;
+}
+#{$replay} .panel-moves > .move-list {
+  padding-top: 10px;
+}
+
+/* The step controls along the panel's foot. */
+#{$replay} .playback {
+  padding: 10px 12px;
+  border-top: 1.5px solid $lobby-line;
+  border-bottom: 0;
+  background: $neutral-50;
+}
+#{$replay} .playback > span {
+  padding-left: 4px;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+#{$replay} .playback button.autoplay {
+  width: 46px;
+  border: 0;
+  border-radius: 10px;
+  background: $sage-200;
+}
+
+@include down(md) {
+  #{$replay} {
+    .workspace {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .analysis-panel[data-tab] > :is(.panel-summary, .panel-engine),
+    .panel-summary-body {
+      flex: none;
+      overflow: visible;
+    }
+    .player-avatar {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .review-head h1 {
+    font-size: $fs-xl;
+  }
+  .eval-sheet {
+    left: 0;
+    padding: 14px 16px 16px;
+  }
+  .eval-big {
+    height: 160px;
+  }
+  .eval-legend {
+    display: none;
+  }
+}

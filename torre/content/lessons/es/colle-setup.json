@@ -1,0 +1,55 @@
+{
+ "title": "La configuración del Colle",
+ "summary": "d4, Nf3, e3, Bd3, Nbd2, c3 y enrocar: una configuración tranquila con una idea llamativa, el empuje e3-e4.",
+ "unit": "Sistema Colle",
+ "steps": [
+  {
+   "id": "the-setup",
+   "title": "Constrúyelo",
+   "text": "El Sistema Colle lleva el nombre del jugador belga Edgar Colle, quien lo usó en la década de 1920. Las blancas juegan peón a d4, caballo a f3, peón a e3, alfil a d3, el otro caballo a d2, peón a c3 y enrocan. Se parece al Londres, con una gran diferencia: el alfil de c1 se queda en casa, detrás del peón e3.",
+   "narration": "Conoce el Sistema Colle. Peón a d4. [move] Las negras responden d5. [move] Caballo a f3. [move] El caballo negro también sale. [move] Peón a e3. [move] Las negras juegan e6. [move] Alfil a d3. [move] Las negras empujan c5. [move] Peón a c3. [move] El otro caballo a c6. [move] El otro caballo a d2. [move] Alfil a d6. [move] Las blancas enrocan. [move] Y lo hacen las negras también. [move] Es como el Londres, excepto que el alfil de casillas oscuras se queda en casa por ahora."
+  },
+  {
+   "id": "the-point",
+   "title": "Todo apunta a e4",
+   "text": "¿Por qué dejar el alfil en c1? Porque toda la configuración está construida para empujar el peón de e3 a e4. El caballo en d2 y el alfil en d3 apoyan esa casilla. Una vez que ocurre e4, se abre el centro, el alfil de c1 finalmente puede salir y el alfil de d3 tiene una vista clara de h7.",
+   "narration": "Entonces, ¿por qué mantener el alfil en c1 encerrado? Porque el Colle tiene una gran idea: empujar el peón de e3 a e4. [move] Tu caballo y alfil ya lo apoyan, y ahora todo se abre."
+  },
+  {
+   "id": "recapture",
+   "title": "Toma atrás correctamente",
+   "prompt": "Las negras tomaron en e4. Toma atrás con la pieza correcta.",
+   "hint": "Tu alfil en d3 es tu mejor atacante. ¿Hay otra pieza que pueda recapturar?",
+   "success": "Caballo toma en e4 mantiene el alfil en d3 apuntando a h7 y desarrolla el caballo hacia el centro. Capturar con el alfil permite a las negras intercambiar tu mejor pieza de ataque.",
+   "narration": "Empujaste el peón de e y él capturó. Dos de tus piezas pueden tomarlo de vuelta. Elige la que mantenga a tu alfil atacante en su diagonal."
+  },
+  {
+   "id": "fork",
+   "title": "Cuando tu oponente va lento",
+   "prompt": "Tu oponente ignoró tu peón en e4. Empújalo de nuevo y gana material.",
+   "hint": "Desde e5, un peón ataca d6 y f6.",
+   "success": "e5 hace una horquilla al alfil y al caballo. Tu oponente puede devolver el alfil por un peón, pero aún pierde una pieza por un peón.",
+   "narration": "Tu oponente dejó que tu peón se quedara en e4. Empújalo una casilla más y observa qué dos piezas negras ataca a la vez."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Cuál es la idea principal del sistema Colle?",
+   "options": [
+    {
+     "text": "Prepara el avance de peón de e3 a e4",
+     "why": "Así es. El caballo en d2 y el alfil en d3 ambos apoyan a e4, y el avance abre el centro para tus piezas."
+    },
+    {
+     "text": "Saca al alfil de c1 temprano",
+     "why": "Eso es la Defensa London. En el Colle, el alfil espera en c1 hasta que e4 abra el camino."
+    },
+    {
+     "text": "Ataque en el flanco de dama con a4 y b4",
+     "why": "La idea del Colle se centra en el centro y en el flanco de rey, mediante e4."
+    }
+   ],
+   "narration": "Última pregunta. ¿Cuál es la idea principal detrás del Colle? Ya sabes esto. ¡Buen trabajo!"
+  }
+ ]
+}

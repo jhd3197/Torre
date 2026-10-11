@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "title": "When Black hits b2",
+  "summary": "Black's favourite London answer is ...c5 and ...Qb6 against your b2 pawn. Learn the calm replies and one sharp one.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "London System",
+  "order": 3,
+  "requires": ["london-setup"],
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-target",
+      "kind": "explain",
+      "title": "The hole the bishop leaves",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "demo": ["d2d4", "d7d5", "c1f4", "g8f6", "e2e3", "c7c5", "c2c3", "b8c6", "b1d2", "d8b6"],
+      "marks": [["b6", "b2"]],
+      "text": "At the start the bishop on c1 protects b2. Once it goes to f4, nothing guards that pawn. Black knows it: the pawn goes to c5 to hit d4, and the queen comes to b6, attacking b2 and adding pressure on d4. Step through it and see the queen arrive.",
+      "narration": "Here's the catch with the London. Pawn to d4. [move] Black answers d5. [move] The bishop leaves c1 for f4. [move] Knight to f6. [move] Pawn to e3. [move] Black pushes the c-pawn. [move] Pawn to c3. [move] Knight to c6. [move] Knight to d2. [move] And the queen comes to b6, aiming straight at b2, which has lost its guard. [move]",
+      "pose": "rival"
+    },
+    {
+      "id": "the-choices",
+      "kind": "explain",
+      "title": "Three calm answers",
+      "fen": "r1b1kb1r/pp2pppp/1qn2n2/2pp4/3P1B2/2P1P3/PP1N1PPP/R2QKBNR w KQkq - 3 6",
+      "marks": [["d1", "b3"], ["d1", "c2"], ["d1", "c1"], ["b2"]],
+      "text": "You have three good ways to deal with it. Queen to b3 offers a trade: if Black takes, you recapture with the a-pawn and your rook gets the half-open a-file. Queen to c2 or c1 simply guards b2 and keeps the queens on. What you must not do is carry on with your setup as if nothing happened, because the pawn on b2 then falls.",
+      "narration": "You have three good answers. Queen to b3 offers to trade queens. Queen to c2 or c1 just guards the pawn quietly. The one thing you can't do is ignore it.",
+      "pose": "pointer"
+    },
+    {
+      "id": "guard-b2",
+      "kind": "play",
+      "title": "Look after b2",
+      "fen": "r1b1kb1r/pp2pppp/1qn2n2/2pp4/3P1B2/2P1P3/PP1N1PPP/R2QKBNR w KQkq - 3 6",
+      "prompt": "Black's queen attacks b2. Deal with it.",
+      "hint": "Your queen can guard b2, or meet Black's queen face to face.",
+      "line": ["d1b3|d1c2|d1c1"],
+      "success": "Good. Queen to b3 is the most active choice, and queen to c2 or c1 guards b2 just as well. Your setup stays intact and the pawn is safe.",
+      "narration": "Black's queen has its eye on b2. Use your own queen to handle it.",
+      "pose": "shield"
+    },
+    {
+      "id": "after-c4",
+      "kind": "play",
+      "title": "Black pushes past",
+      "fen": "r1b1kb1r/pp2pppp/1qn2n2/3p4/2pP1B2/1QP1P3/PP1N1PPP/R3KBNR w KQkq - 0 7",
+      "prompt": "Black pushed the c-pawn to hit your queen. Where should it go?",
+      "hint": "Trading on b6 helps Black. Find a square where the queen still guards b2 and looks at the kingside.",
+      "line": ["b3c2"],
+      "success": "Queen to c2 keeps b2 guarded and watches f5, so Black's light bishop cannot come out to f5 without being taken. Taking on b6 would straighten Black's pawns and hand Black's rook the a-file.",
+      "narration": "Black kicks your queen with the c-pawn. Don't rush to trade. Find the square where the queen stays useful.",
+      "pose": "thinking"
+    },
+    {
+      "id": "early-qb6",
+      "kind": "play",
+      "title": "Even earlier",
+      "fen": "rnb1kbnr/pp2pppp/1q6/2pp4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 1 4",
+      "prompt": "Black's queen is out on move three. Find the active answer.",
+      "hint": "Develop a knight toward the centre and dare Black to take on b2.",
+      "line": ["b1c3"],
+      "success": "Knight to c3 develops and attacks d5. The b2 pawn is now bait: if the queen grabs it, your knight jumps forward with threats.",
+      "narration": "Sometimes Black brings the queen out even earlier. Here you don't need to defend at all. Develop with a threat and let Black worry.",
+      "pose": "determined"
+    },
+    {
+      "id": "punish-the-grab",
+      "kind": "play",
+      "title": "The queen grabbed it",
+      "fen": "rnb1kbnr/pp2pppp/8/2pp4/3P1B2/2N1P3/PqP2PPP/R2QKBNR w KQkq - 0 5",
+      "prompt": "Black took on b2. Punish the greedy queen.",
+      "hint": "Which pawn can your knight take, and what square would it hit next?",
+      "line": ["c3d5"],
+      "success": "Nxd5 wins a pawn back and threatens Nc7+, forking the king and the rook on a8. Black's queen is far away on b2, and your rook can chase it from b1.",
+      "narration": "Black grabbed the pawn. Now the queen is miles from home. Your knight can take a pawn and threaten a fork at the same time.",
+      "pose": "excited"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why is b2 a common target in the London System?",
+      "options": [
+        { "text": "The bishop that guarded it has gone to f4", "correct": true, "why": "Yes. On c1 the bishop protected b2; on f4 it does not, so you keep an eye on that pawn." },
+        { "text": "The pawn on c3 blocks the queen from defending it", "why": "The queen can still guard b2 from b3, c2 or c1." },
+        { "text": "It is not a target; Black never attacks it", "why": "...c5 and ...Qb6 against b2 is one of Black's most popular plans." }
+      ],
+      "narration": "One last question. Why does Black so often aim at b2 in the London? You've got this. Nice work today!",
+      "pose": "trophy"
+    }
+  ]
+}

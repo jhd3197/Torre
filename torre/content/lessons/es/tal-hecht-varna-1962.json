@@ -1,0 +1,98 @@
+{
+ "title": "“Tal regala su dama”",
+ "summary": "“Varna, 1962: Tal deja que su dama sea atrapada y gana con las piezas que recibe a cambio.”",
+ "unit": "Mikhail Tal",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "“Varna, 1962”",
+   "text": "“Para 1962, Mijail Tal ya había sido campeón del mundo, y todos conocían su estilo: sacrificar primero, dejar que el oponente demuestre que estaba equivocado después. En la Olimpiada de ajedrez en Varna, Bulgaria, se enfrentó al maestro alemán Hans-Joachim Hecht. En esta partida, Tal lleva su dama a una trampa a propósito. Presiona reproducir y encuentra sus movimientos.”",
+   "narration": "“Varna, 1962. Mijail Tal contra Hans-Joachim Hecht. Observa con atención, porque Tal está a punto de dejar que su dama sea atrapada a propósito.”"
+  },
+  {
+   "id": "the-game",
+   "title": "“Tal – Hecht, Olimpiada de Varna 1962”",
+   "text": "“El blanco obtiene peones doblados temprano pero un centro grande. Luego Tal saca su dama a a4, donde puede ser atrapada. No le importa: está contando piezas y líneas abiertas, no puntos.”",
+   "notes": [
+    {
+     "text": "“8.bxc3: El blanco tiene peones doblados en el archivo c, pero la masa de peones en el centro es fuerte.”"
+    },
+    {
+     "text": "“15.Qa4+: La dama sale con jaque. En a4 está cerca de problemas.”"
+    },
+    {
+     "text": "“17.Nc4: El caballo se dirige a d6. Tal ignora que su alfil en h4 puede ser tomado.”"
+    },
+    {
+     "text": "“18...b5: Hecht atrapa a la dama. No le queda ningún casillero seguro.”"
+    },
+    {
+     "text": "“19...bxa4: La dama se ha ido. Tal tiene un caballo y un peón monstruoso en f6 a cambio.”"
+    },
+    {
+     "text": "21.Bf5: el alfil ataca a la dama de las negras en e6. Hecht toma primero al alfil de h4."
+    },
+    {
+     "text": "26.Bxa6: el humo se disipa. El material está más o menos igualado, pero las piezas de Tal son las más activas."
+    },
+    {
+     "text": "49.Rg5, después de un largo final, la actividad extra de Tal demuestra su valía. Las negras renunciaron."
+    }
+   ],
+   "narration": "Tal lleva su dama al borde del tablero, donde puede quedar atrapada. Él lo sabe. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "El alfil de h4 está atacado, y ...b5 atraparía a la dama. ¿Qué juega Tal?",
+     "hint": "No guardes nada. Ataca al caballo de f6 con un peón.",
+     "why": "18.e5! Si ...b5 gana la dama, exf6 abre el flanco de rey negro y el peón se dirige a g7. Salvar al alfil con Bg3 también era aceptable, pero Tal quería la pelea."
+    },
+    {
+     "prompt": "La dama se ha ido. ¿Qué captura mantiene a las negras ocupadas?",
+     "hint": "Tu peón de f6 puede tomar en g7, y mira a la torre en h8.",
+     "why": "20.fxg7 ataca a la torre en h8 y pone un peón a un paso de coronación. Las negras deben gastar un movimiento en ...Rg8."
+    },
+    {
+     "prompt": "Las negras acaban de tomar tu alfil de h4. Tu alfil de f5 tiene un blanco importante.",
+     "hint": "¿Qué hay sobre e6?",
+     "why": "22.Bxe6 recupera la dama. Tal recuperó su dama con interés: el peón de g7 sigue vivo."
+    },
+    {
+     "prompt": "El alfil en a6 ataca a tu caballo en c4. Responde con jaque.",
+     "hint": "El caballo puede saltar a una casilla al lado del rey negro.",
+     "why": "23.Nd6+ saca al caballo del peligro con jaque. El negro nunca tiene tiempo para eliminar las piezas sueltas de White."
+    },
+    {
+     "prompt": "El rey negro ataca al caballo en d6 y su alfil observa tu la torre en f1. Un movimiento tranquilo soluciona ambos.",
+     "hint": "Bloquea la diagonal a6–f1 y combate a ese alfil al mismo tiempo.",
+     "why": "24.Bc4! El alfil deja e6, bloquea la diagonal a f1 y se ofrece al alfil en a6. Tal pronto cambia a un final donde sus piezas son mejores."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "¿Por qué funcionó?",
+   "question": "Tal dejó que su dama quedara atrapada en a4. ¿Por qué eso no fue un desastre?",
+   "options": [
+    {
+     "text": "A cambio, consiguió un caballo, un peón en g7 y un ataque que recuperó la dama.",
+     "why": "Bien. Cada movimiento de Negro se gastó respondiendo a amenazas, y pronto la dama volvió a e6."
+    },
+    {
+     "text": "Hecht no notó que podía tomar la dama.",
+     "why": "Se dio cuenta y lo tomó en el movimiento 19. Simplemente no ayudó."
+    },
+    {
+     "text": "Las damas valen menos que los alfiles.",
+     "why": "Una dama vale unas nueve piezas de peón. Tal la recuperó con tácticas, no porque fuera barata."
+    }
+   ],
+   "narration": "Tal perdió su dama y aún así ganó. ¿Por qué?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Cuenta toda la posición.",
+   "text": "Tal no se preguntó \"¿cuántos puntos tengo?\". Preguntó \"¿qué pueden hacer mis piezas?\" Cuando la dama cayó, su peón en g7, su caballo y sus alfiles hicieron amenazas en cada movimiento, y la dama regresó. Un sacrificio funciona cuando las amenazas que crea son mayores que el material que entrega.",
+   "narration": "Un sacrificio funciona cuando crea más amenazas de lo que entrega material. Tal contó amenazas, no puntos."
+  }
+ ]
+}

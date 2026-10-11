@@ -1,0 +1,55 @@
+{
+ "title": "La Trampa de la Libra de Blackburne",
+ "summary": "Negro deja el peón de e5 colgado a propósito. Aprende por qué White no debería tomarlo, y qué pasa si lo haces.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "a-strange-knight",
+   "title": "Un movimiento de caballo extraño",
+   "text": "El caballo de Negro salta a d4. Rompe una regla de apertura, moviendo la misma pieza dos veces, y deja el peón de e5 sin defensa. La trampa lleva el nombre del maestro inglés Joseph Blackburne, a quien se dice que la usó para ganar pequeñas apuestas de una libra.",
+   "narration": "El caballo de Negro salta a d4 y deja el peón de e5 colgado. [move] Eso parece un regalo. No lo es."
+  },
+  {
+   "id": "what-black-hopes",
+   "title": "Lo que Negro espera",
+   "text": "Si White se lleva el peón, la dama de Negro va a g5, golpeando el caballo y el peón de g2. Si White es codicioso de nuevo y toma f7, la dama toma g2, luego toma e4 con jaque, y el caballo en d4 da mate en f3. Revísalo paso a paso.",
+   "narration": "Aquí está lo que Negro está soñando. El caballo de White se lleva el peón. [move] La dama de Negro salta a g5, golpeando el caballo y g2. [move] White es codicioso de nuevo y toma en f7. [move] La dama toma g2. [move] La torre corre a f1. [move] La dama toma e4, jaque. [move] El alfil bloquea en e2. [move] Y caballo a f3 es jaque mate. [move]"
+  },
+  {
+   "id": "dont-grab",
+   "title": "No te apresures a tomar",
+   "prompt": "El caballo de Negro está sentado en d4 y el peón de e5 parece libre. Juega la mejor jugada.",
+   "hint": "Quítate del caballo molesto, o simplemente saca a tu rey a un lugar seguro.",
+   "success": "Caballo toma d4 elimina al intruso. Después de que el peón recupera, vas por delante en el desarrollo y Negro tiene un peón colgando en d4. Enrocar es igual de bueno.",
+   "narration": "El peón en e5 te está saludando. ¡Ignóralo! Primero atiende al caballo en d4, o resguarda a tu rey."
+  },
+  {
+   "id": "damage-control",
+   "title": "Si ya tomaste...",
+   "prompt": "Demasiado tarde, tomaste en e5. La dama negra ataca a tu caballo y a g2. Encuentra una jugada que te mantenga en el juego.",
+   "hint": "Tu rey y torre son los blancos reales. Sácatelas de la línea de fuego.",
+   "success": "Enrocar defiende bien g2, y tú devuelves el caballo. El alfil también puede tomar f7 en jaque primero. La jugada que debes evitar es caballo toma f7, que va directo al mate.",
+   "narration": "Bien, tomaste el peón. Ahora la dama negra ataca a dos cosas. No lo empeores. Protege a tu rey primero, incluso si eso te cuesta el caballo."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de que el caballo negro salte a d4, ¿por qué tomar el peón en e5 es un error?",
+   "options": [
+    {
+     "text": "La dama negra llega a g5 y ataca tanto al caballo como a g2",
+     "why": "Bien. Ese peón gratis se convierte en la pérdida del caballo, o peor."
+    },
+    {
+     "text": "Tomar peones en la apertura siempre es un error.",
+     "why": "Los peones gratis a menudo vale la pena tomarlos. Este tiene un truco."
+    },
+    {
+     "text": "El peón en e5 está protegido por el caballo en d4",
+     "why": "Un caballo en d4 no protege e5. El peón realmente está sin defensa. El peligro es lo que viene después."
+    }
+   ],
+   "narration": "¿Última pregunta. ¿Por qué está envenenado ese peón en e5? Piensa en la dama de las negras."
+  }
+ ]
+}

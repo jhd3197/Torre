@@ -1,0 +1,749 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// Rooky talking: the mascot and its caption bubble (RookSpeaker), on the Coach page and the game recap.
+.rook-speaker {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.rook-speaker-mascot {
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  @include focus-ring;
+}
+.rook-speaker-mascot .mascot {
+  display: block;
+  object-fit: contain;
+  transform-origin: 50% 90%;
+}
+.rook-speaker.is-speaking .rook-speaker-mascot .mascot {
+  @include motion-ok {
+    animation: rooky-talk 0.9s ease-in-out infinite;
+  }
+}
+.rook-speaker-bubble {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 14px 18px 12px;
+  background: $white;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.rook-speaker-bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 26px;
+  width: 14px;
+  height: 14px;
+  background: $white;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.rook-speaker-name {
+  display: block;
+  font: 800 #{$fs-xs} $font-sans;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $moss-600;
+  margin-bottom: 4px;
+}
+.rook-speaker-bubble p {
+  margin: 0;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.rook-speaker-bubble p span {
+  transition:
+    color 0.2s,
+    opacity 0.2s;
+}
+.rook-speaker-bubble p .said {
+  color: $sage-600;
+}
+.rook-speaker-bubble p .now {
+  color: var(--ink);
+  font-weight: 650;
+}
+.rook-speaker-bubble p .later {
+  opacity: 0.45;
+}
+.rook-speaker-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 12px;
+}
+.rook-speaker-listen {
+  font-size: $fs-sm;
+}
+.rook-speaker-listen.is-waiting {
+  color: $moss-700;
+  font-weight: 750;
+  @include motion-ok {
+    animation: rooky-nudge 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes rooky-talk {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  30% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+  60% {
+    transform: translateY(-1px) rotate(1.5deg);
+  }
+}
+@keyframes rooky-nudge {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+// The game recap: Rooky in the Summary tab, under the grade table.
+.game-recap-rooky {
+  margin-top: 14px;
+}
+.game-recap-rooky .rook-speaker-bubble {
+  background: $sage-50;
+}
+.game-recap-rooky .rook-speaker-bubble::before {
+  background: $sage-50;
+}
+.game-recap-rooky .rook-speaker-bubble p {
+  font-size: $fs-sm;
+}
+
+// The Coach page's plan (CoachHome), on the Torre Coach design: white cards with a soft lower
+// edge, Rooky on a green panel, the session beside him.
+@mixin card($radius: 22px) {
+  border-radius: $radius;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+
+.rooky-home {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+.rooky-loading {
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: $lobby-muted;
+  @include card;
+}
+.rooky-news {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: $wheat-100;
+  color: $wheat-700;
+  font-weight: 800;
+}
+.rooky-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 14px;
+  h2 {
+    margin: 0;
+    font: 900 #{$fs-3xl} $font-sans;
+  }
+  p {
+    margin: 0;
+    color: $sage-600;
+    font-size: $fs-base;
+  }
+}
+.rooky-intro {
+  color: $sage-600;
+  font-size: $fs-sm;
+  margin: 0 0 14px;
+  max-width: 64ch;
+}
+.rooky-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: $lobby-track;
+  color: $lobby-muted;
+  font: 900 #{$fs-2xs} $font-sans;
+  white-space: nowrap;
+  vertical-align: middle;
+  &.result-win {
+    background: $lobby-pill;
+    color: $moss-800;
+  }
+  &.result-loss {
+    background: $sand-50;
+    color: $red-700;
+  }
+  &.is-skill {
+    padding: 3px 10px;
+    background: $sand-50;
+    color: $orange-700;
+    font-size: $fs-xs;
+    font-weight: 800;
+  }
+}
+.rooky-trend {
+  font: 700 #{$fs-xs} $font-sans;
+  color: $sage-600;
+  &.trend-better {
+    color: $green-700;
+  }
+  &.trend-worse {
+    color: $orange-600;
+  }
+}
+.rooky-chip.rooky-trend {
+  font: 900 #{$fs-2xs} $font-sans;
+  &.trend-better {
+    background: $lobby-pill;
+    color: $moss-800;
+  }
+  &.trend-worse {
+    background: $sand-50;
+    color: $orange-700;
+  }
+}
+.rooky-pips {
+  display: flex;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: $neutral-100;
+    &.is-on {
+      background: $lobby-green;
+    }
+  }
+}
+
+// Top row: Rooky talking on the green panel, today's session beside him.
+.rooky-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.rooky-hero {
+  flex: 2 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 26px;
+  border-radius: 26px;
+  background: $lobby-green;
+  color: $white;
+}
+.rooky-briefing.rook-speaker {
+  gap: 22px;
+  align-items: stretch;
+}
+.rooky-briefing .rook-speaker-mascot {
+  border-radius: 26px;
+}
+.rooky-figure {
+  display: grid;
+  place-items: end center;
+  width: 160px;
+  height: 170px;
+  border-radius: 26px;
+  background: $white;
+  box-shadow: 0 10px 0 rgba($black, 0.08);
+  overflow: hidden;
+}
+.rooky-briefing.is-speaking .rooky-figure .cursor-rook {
+  @include motion-ok {
+    animation: rooky-talk 0.9s ease-in-out infinite;
+  }
+}
+.rooky-briefing .rook-speaker-bubble {
+  align-self: center;
+  padding: 18px 20px 14px;
+  border: 0;
+  border-radius: 20px 20px 20px 6px;
+  color: $lobby-ink;
+  min-height: 104px;
+  &::before {
+    display: none;
+  }
+  p {
+    font: 700 #{$fs-lg}/ 1.5 $font-sans;
+  }
+}
+.rooky-briefing .rook-speaker-name {
+  color: $lobby-muted;
+}
+.rooky-asks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 182px;
+  button {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1.5px solid rgba($white, 0.45);
+    background: transparent;
+    color: $white;
+    font: 800 #{$fs-md} $font-sans;
+    white-space: nowrap;
+    cursor: pointer;
+    &:hover {
+      background: rgba($white, 0.2);
+    }
+    &[aria-pressed="true"] {
+      background: $white;
+      color: $lobby-ink;
+    }
+    @include focus-ring;
+  }
+}
+
+.rooky-session {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  @include card(26px);
+  header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  h2 {
+    margin: 0;
+    font: 900 #{$fs-sm} $font-sans;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $lobby-warm;
+  }
+  header small {
+    margin-left: auto;
+    color: $lobby-muted;
+    font-size: $fs-xs;
+  }
+  p {
+    margin: 0;
+    color: $sage-700;
+    font-size: $fs-md;
+  }
+  &.is-done {
+    background: $paper;
+  }
+}
+.rooky-session-skill {
+  font: 900 #{$fs-3xl}/ 1.1 $font-sans;
+}
+.rooky-session-start.button {
+  margin-top: auto;
+  width: 100%;
+  min-height: 48px;
+  font-size: $fs-lg;
+}
+.rooky-done {
+  color: $green-700;
+  font-weight: 800;
+}
+
+// What we're working on: one card per skill in focus.
+.rooky-focus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+}
+.rooky-focus-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  min-width: 0;
+  @include card;
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  header > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  h3 {
+    margin: 0;
+    font: 900 #{$fs-xl}/ 1.2 $font-sans;
+  }
+}
+.rooky-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rooky-ring {
+  position: relative;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  svg {
+    width: 64px;
+    height: 64px;
+    transform: rotate(-90deg);
+  }
+  circle {
+    fill: none;
+    stroke-width: 4;
+  }
+  span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font: 700 #{$fs-md} $font-mono;
+  }
+}
+.rooky-ring-track {
+  stroke: $neutral-100;
+}
+.rooky-ring-fill {
+  stroke: $lobby-green;
+  stroke-linecap: round;
+}
+.rooky-idea {
+  margin: 0;
+  color: $sage-700;
+  font-size: $fs-sm;
+  line-height: 1.4;
+}
+.rooky-toward {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 #{$fs-sm} $font-sans;
+  > span {
+    color: $lobby-muted;
+  }
+  .rooky-pips {
+    flex: 1;
+  }
+  b {
+    font: 600 #{$fs-sm} $font-mono;
+    color: $lobby-muted;
+  }
+}
+.rooky-fresh {
+  margin-top: -6px;
+  color: $lobby-muted;
+  font-size: $fs-xs;
+}
+.rooky-evidence {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  > small {
+    font: 900 #{$fs-xs} $font-sans;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $sage-500;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 4px;
+    border-radius: 999px;
+    background: $paper;
+    color: $lobby-ink;
+    font: 800 #{$fs-xs} $font-sans;
+    white-space: nowrap;
+    &:hover {
+      background: $lobby-selected;
+    }
+  }
+}
+.rooky-face {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: $lobby-tile;
+  color: $lobby-muted;
+  font: 900 #{$fs-xs} $font-sans;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 10%;
+  }
+}
+.rooky-focus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: auto;
+  .button.primary {
+    flex: 1;
+  }
+}
+
+// Lessons from your games, with today's fixes and the coach's notes beside them.
+.rooky-lower {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+.rooky-games {
+  flex: 2 1 560px;
+  min-width: 0;
+}
+.rooky-game-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  @include card;
+}
+.rooky-game {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding: 12px 16px;
+  & + & {
+    border-top: 1.5px solid $lobby-track;
+  }
+  .rooky-face {
+    border-radius: 12px;
+  }
+  &.is-done {
+    background: $paper;
+  }
+}
+.rooky-game-who {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 900 #{$fs-lg} $font-sans;
+  }
+  small {
+    color: $lobby-muted;
+    font-size: $fs-sm;
+  }
+}
+.rooky-game-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rooky-game-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .button {
+    min-height: 34px;
+    padding: 6px 14px;
+    font-size: $fs-sm;
+  }
+}
+.rooky-side {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rooky-side .today-plan {
+  max-width: none;
+  margin: 0;
+  padding: 18px;
+  @include card;
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    font: 900 #{$fs-xl} $font-sans;
+  }
+  ol {
+    gap: 6px;
+  }
+  li {
+    align-items: center;
+    gap: 2px 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: $paper;
+  }
+  li strong {
+    flex: 1 1 60%;
+    font-weight: 800;
+  }
+  li span {
+    order: 3;
+    flex-basis: 100%;
+    font-size: $fs-xs;
+  }
+  li .text-button {
+    order: 2;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1.5px solid $lobby-line-strong;
+    background: $white;
+    color: $lobby-ink;
+    font: 900 #{$fs-sm} $font-sans;
+  }
+}
+
+.rooky-home progress {
+  width: 100%;
+  height: 8px;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  accent-color: $lobby-green;
+}
+.rooky-home progress::-webkit-progress-bar {
+  background: $neutral-100;
+}
+.rooky-home progress::-webkit-progress-value {
+  background: $lobby-green;
+}
+.rooky-home progress::-moz-progress-bar {
+  background: $lobby-green;
+}
+
+.rooky-skills {
+  padding: 16px 0;
+  border-top: 1.5px solid $lobby-line;
+  summary {
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 800;
+  }
+  .rooky-intro {
+    margin: 10px 0 14px;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 10px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 9rem) 1fr auto 5.5rem;
+    align-items: center;
+    gap: 10px;
+    font-size: $fs-sm;
+  }
+  li b {
+    font: 500 #{$fs-sm} $font-mono;
+  }
+}
+.rooky-graduated {
+  margin: 14px 0 0;
+  font-size: $fs-sm;
+  color: $sage-700;
+}
+
+@include down(lg) {
+  .rooky-asks {
+    padding-left: 0;
+  }
+}
+
+@include down(md) {
+  .rooky-hero {
+    padding: 18px;
+    border-radius: 22px;
+  }
+  .rooky-briefing.rook-speaker {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .rooky-briefing .rook-speaker-bubble {
+    align-self: stretch;
+    p {
+      font-size: $fs-base;
+    }
+  }
+  .rooky-figure {
+    width: 132px;
+    height: 140px;
+  }
+  .rooky-asks button {
+    padding: 7px 12px;
+    font-size: $fs-sm;
+  }
+  .rooky-heading h2 {
+    font-size: $fs-2xl;
+  }
+  .rooky-session {
+    padding: 18px;
+  }
+  .rooky-game-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .rooky-skills li {
+    grid-template-columns: minmax(0, 7rem) 1fr auto;
+  }
+  .rooky-skills li small {
+    display: none;
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "The pawn",
+  "summary": "Pawns move straight forward but capture diagonally, and can take two steps on their first move. Learn their quirks and a pawn fork.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 5,
+  "unit": "Rules of the game",
+  "order": 6,
+  "steps": [
+    {
+      "id": "forward-only",
+      "kind": "explain",
+      "title": "Forward, never back",
+      "fen": "4k3/8/8/8/8/8/4P3/4K3 w - - 0 1",
+      "marks": [["e3"], ["e4"]],
+      "demo": ["e2e4"],
+      "text": "A pawn moves straight forward one square, and it can never move backward. On its very first move it may take two steps instead of one, so this pawn can go to e3 or e4.",
+      "narration": "Pawns are the little soldiers of chess. They only march forward, one square at a time. But on its very first move, a pawn may take a double step. [move]",
+      "pose": "present"
+    },
+    {
+      "id": "diagonal-captures",
+      "kind": "explain",
+      "title": "Capturing sideways",
+      "fen": "4k3/8/8/3pp3/4P3/8/8/4K3 w - - 0 1",
+      "marks": [["e4", "d5"], ["e5"]],
+      "text": "Pawns capture differently from how they move: one square diagonally forward. The pawn on e4 is blocked by the pawn on e5, because a pawn cannot capture straight ahead. But it can take the pawn on d5.",
+      "narration": "Here's the tricky part. Pawns move straight, but they capture diagonally. This pawn is stuck behind the pawn on e5, but it can still take the one on d5.",
+      "pose": "point"
+    },
+    {
+      "id": "pawn-takes-knight",
+      "kind": "play",
+      "title": "Pick the best capture",
+      "fen": "6k1/5ppp/8/3n1p2/4P3/8/5PPP/1N4K1 w - - 0 1",
+      "prompt": "Your e-pawn can capture two things. Take the more valuable one.",
+      "hint": "A knight is worth about three pawns.",
+      "line": ["e4d5"],
+      "success": "Pawn takes knight. Trading your humble pawn for a whole knight is a great deal.",
+      "narration": "Your pawn on e4 can capture a pawn or a knight. Both are diagonal, both are possible. Which one would you rather have?",
+      "pose": "detective"
+    },
+    {
+      "id": "pawn-fork",
+      "kind": "play",
+      "title": "The double-step fork",
+      "fen": "6k1/5ppp/8/2n1n3/8/8/3P1PPP/1N4K1 w - - 0 1",
+      "prompt": "Black has an extra knight. Use your pawn's double step to attack both knights at once.",
+      "hint": "Which square attacks both c5 and e5? Your d-pawn can get there in one move.",
+      "line": ["d2d4", "e5f3", "g2f3"],
+      "success": "Pawn to d4 attacked both knights. Black gave up one with a check, and you took it. You won back the knight you were missing.",
+      "narration": "Black is a knight up, but look at those two knights side by side. If your d-pawn jumps two squares, it attacks them both. Black can only save one!",
+      "pose": "excited"
+    },
+    {
+      "id": "pawn-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "A white pawn is on e4 and a black pawn is directly in front of it on e5. What can the white pawn do?",
+      "options": [
+        { "text": "Nothing straight ahead: it is blocked", "correct": true, "why": "Pawns capture only diagonally, so a piece directly in front stops them. It can still capture on d5 or f5 if there is something there." },
+        { "text": "Capture the pawn on e5", "why": "Pawns never capture straight ahead. That move is not allowed." },
+        { "text": "Jump over it to e6", "why": "Only the knight can jump. A pawn with something in front of it cannot move forward." }
+      ],
+      "narration": "Last one. Two pawns are standing nose to nose. Can either of them move forward?",
+      "pose": "thinking"
+    }
+  ]
+}

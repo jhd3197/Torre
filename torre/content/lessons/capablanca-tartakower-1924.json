@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "title": "Capablanca's king walk",
+  "summary": "New York, 1924: Capablanca gives up two pawns so his king can march up the board and win a rook ending.",
+  "category": "history",
+  "unit": "José Raúl Capablanca",
+  "order": 2,
+  "level": "intermediate",
+  "minutes": 7,
+  "requires": ["capablanca-marshall-1909"],
+  "orientation": "white",
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "new-york-1924",
+      "kind": "explain",
+      "title": "New York, 1924",
+      "text": "By 1924 Capablanca was world champion; he had taken the title from Lasker in 1921. At the great New York tournament of 1924 he met Savielly Tartakower, an inventive and witty master. The middlegame was quiet. Then came a rook ending, and Capablanca played it in a way players still study: his king walked straight up the board.",
+      "narration": "New York, 1924. World champion Capablanca reaches a rook ending against Savielly Tartakower. Watch his king: it is about to go for a walk.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Capablanca – Tartakower, New York 1924",
+      "text": "Queens come off, then the minor pieces, and a rook ending is left. Black wins two pawns, but Capablanca's king, rook and g-pawn work together against Black's king. The game stops at Capablanca's key moves.",
+      "narration": "A quiet game turns into a rook ending. Capablanca gives away pawns to make his king active. Find his key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 49, "text": "25.Qxe8+: queens come off, and a rook pair follows." },
+        { "ply": 53, "text": "27.h5: the h-pawn goes forward to open a file for White's rook." },
+        { "ply": 59, "text": "30.Rh7: the rook reaches the seventh rank and keeps Black's king on the back rank." },
+        { "ply": 67, "text": "34.Bxf5: the last minor pieces are traded. Now it is a pure rook ending." },
+        { "ply": 70, "text": "35...Rxc3+: Tartakower takes a pawn with check. Capablanca does not mind." },
+        { "ply": 74, "text": "37...Rxf4+: another pawn falls, and the white king walks on." },
+        { "ply": 81, "text": "41.Rxc7: the rook collects a pawn of its own." },
+        { "ply": 89, "text": "45.g7+: the g-pawn is one step from becoming a queen." },
+        { "ply": 103, "text": "52.d6: the last pawn marches. Tartakower resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 69,
+          "prompt": "Black's rook can take your c3 pawn. Capablanca does not defend it. What does he play?",
+          "hint": "In a rook ending an active king is worth more than a pawn. Head toward Black's kingside pawns.",
+          "why": "35.Kg3! The king heads for h4 and g5. The c3 pawn falls, but the white king will soon be in the middle of Black's position."
+        },
+        {
+          "ply": 73,
+          "prompt": "Black's rook is attacking your f4 pawn. Let it go and push forward.",
+          "hint": "Your g-pawn can advance, with the rook on h7 right beside it.",
+          "why": "37.g6! The pawn is now two steps from queening, and the black king is boxed in on the back rank. The f4 pawn does not matter."
+        },
+        {
+          "ply": 77,
+          "prompt": "Your king has reached g5. Keep walking.",
+          "hint": "The king can step right up next to Black's king.",
+          "why": "39.Kf6! King, rook and pawn work together. Black's king is caught on the back rank, and mate threats force Tartakower to give ground."
+        },
+        {
+          "ply": 87,
+          "prompt": "Black is checking your king. Which square keeps it active?",
+          "hint": "Head toward the center pawns, not back to the edge.",
+          "why": "44.Ke5! The king walks toward d5 to collect another pawn, and Black soon runs out of useful checks."
+        }
+      ],
+      "moves": ["d2d4", "e7e6", "g1f3", "f7f5", "c2c4", "g8f6", "c1g5", "f8e7", "b1c3", "e8g8", "e2e3", "b7b6", "f1d3", "c8b7", "e1g1", "d8e8", "d1e2", "f6e4", "g5e7", "e4c3", "b2c3", "e8e7", "a2a4", "b7f3", "e2f3", "b8c6", "f1b1", "a8e8", "f3h3", "f8f6", "f2f4", "c6a5", "h3f3", "d7d6", "b1e1", "e7d7", "e3e4", "f5e4", "f3e4", "g7g6", "g2g3", "g8f8", "g1g2", "f6f7", "h2h4", "d6d5", "c4d5", "e6d5", "e4e8", "d7e8", "e1e8", "f8e8", "h4h5", "f7f6", "h5g6", "h7g6", "a1h1", "e8f8", "h1h7", "f6c6", "g3g4", "a5c4", "g4g5", "c4e3", "g2f3", "e3f5", "d3f5", "g6f5", "f3g3", "c6c3", "g3h4", "c3f3", "g5g6", "f3f4", "h4g5", "f4e4", "g5f6", "f8g8", "h7g7", "g8h8", "g7c7", "e4e8", "f6f5", "e8e4", "f5f6", "e4f4", "f6e5", "f4g4", "g6g7", "h8g8", "c7a7", "g4g1", "e5d5", "g1c1", "d5d6", "c1c2", "d4d5", "c2c1", "a7c7", "c1a1", "d6c6", "a1a4", "d5d6"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "The king is a fighting piece",
+      "marks": [["f3", "g3"], ["g3", "h4"], ["h4", "g5"], ["g5", "f6"]],
+      "text": "In an endgame the king is a fighting piece. Capablanca let two pawns go to bring his king to g5 and f6, where it supported his own pawn and helped trap Black's king. In rook endings, count active pieces, not just pawns.",
+      "narration": "Here is the route the king took. Capablanca gave up two pawns for it, and it was worth every one. In the endgame, the king fights.",
+      "pose": "idea",
+      "fen": "5k2/p1p4R/1pr5/3p1pP1/P2P1P2/2P2K2/8/8 w - - 0 35"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Two pawns for a king walk",
+      "question": "Why did Capablanca let Black win his c3 and f4 pawns?",
+      "options": [
+        {
+          "text": "His active king, rook and g-pawn together were worth more than the two pawns",
+          "correct": true,
+          "why": "Exactly. The pawns were the price of activity, and activity won the game."
+        },
+        {
+          "text": "He miscounted the pawns",
+          "why": "No. The pawns were a deliberate price for getting the king forward."
+        },
+        {
+          "text": "Pawns never matter in rook endings",
+          "why": "They usually matter a lot. Here, activity mattered even more."
+        }
+      ],
+      "narration": "Last question: why give away two pawns?",
+      "pose": "thinking",
+      "fen": "5k2/p1p4R/1pr5/3p1pP1/P2P1P2/2P2K2/8/8 w - - 0 35"
+    }
+  ]
+}

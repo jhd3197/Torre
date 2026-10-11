@@ -1,0 +1,82 @@
+{
+  "page": {
+    "label": "Train on your mistakes"
+  },
+  "counts": {
+    "due": "Due",
+    "newToday": "New today",
+    "learned": "Learned",
+    "ofTotal": "of {{total}}",
+    "mastered": "Fixed"
+  },
+  "tryAgain": "Try again",
+  "loading": "Loading your drills…",
+  "done": {
+    "title": "All caught up",
+    "nextReview": "Your next review is {{when}}.",
+    "comeBack": "Come back tomorrow for new positions.",
+    "newWaiting_one": " {{count}} new position is waiting; you get {{perDay}} a day.",
+    "newWaiting_other": " {{count}} new positions are waiting; you get {{perDay}} a day."
+  },
+  "empty": {
+    "title": "No drills yet",
+    "body": "Mistakes and blunders from your analyzed games become drills here. Analyze your games to build the deck."
+  },
+  "why": {
+    "best": "The engine’s choice.",
+    "mate": "Checkmate.",
+    "good": "Also good. The engine preferred {{move}}."
+  },
+  "source": "vs {{opponent}} · {{date}} · move {{move}}",
+  "unknownOpponent": "Unknown",
+  "prompt": {
+    "whiteToMove": "<strong>White to move.</strong> You played a {{class}} here. Find a better move.",
+    "blackToMove": "<strong>Black to move.</strong> You played a {{class}} here. Find a better move.",
+    "noEngine": " Install Stockfish to check your answers.",
+    "lessonWhite": "<strong>White to move.</strong> You solved this in a lesson. Find the move again.",
+    "lessonBlack": "<strong>Black to move.</strong> You solved this in a lesson. Find the move again.",
+    "mateWhite_one": "<strong>White to move.</strong> You had mate in one here and missed it. Find it.",
+    "mateWhite_other": "<strong>White to move.</strong> You had a forced mate in {{count}} here and let it go. Find the first move.",
+    "mateBlack_one": "<strong>Black to move.</strong> You had mate in one here and missed it. Find it.",
+    "mateBlack_other": "<strong>Black to move.</strong> You had a forced mate in {{count}} here and let it go. Find the first move."
+  },
+  "verdict": {
+    "correct": "<strong>✓ {{move}}</strong> {{why}}",
+    "missedAn": "<strong>✗ {{move}}</strong> would be an {{verdict}}. <best>{{best}}</best> was best.",
+    "missedA": "<strong>✗ {{move}}</strong> would be a {{verdict}}. <best>{{best}}</best> was best."
+  },
+  "detail": "In the game you played {{played}}. This position returns {{when}}.",
+  "actions": {
+    "next": "Next position",
+    "replay": "Replay game",
+    "explore": "Explore position",
+    "lesson": "Open the lesson"
+  },
+  "modes": {
+    "label": "Training modes",
+    "openings": "Opening repertoire",
+    "endgames": "Endgame practice",
+    "lessonsOnly": "Review lessons only",
+    "everything": "Review everything"
+  },
+  "today": {
+    "title_one": "Today: {{count}} thing to fix",
+    "title_other": "Today: {{count}} things to fix",
+    "allDone": "Today's mistakes are fixed",
+    "steps": {
+      "drills": "Positions from your games",
+      "reviews": "Puzzles to retry",
+      "mine": "New puzzles from your games"
+    },
+    "left_one": "{{count}} left",
+    "left_other": "{{count}} left",
+    "go": "Start",
+    "drillsDone": "Done for today.",
+    "drillsNone": "None yet. Your analyzed games fill this.",
+    "reviewsDone": "Nothing due. Missed puzzles come back here.",
+    "mineDone": "Done for today.",
+    "mineNone": "None yet. Analysis mines them from your games."
+  },
+  "lessonSource": "Review from the lesson {{title}}",
+  "lessonDetail": "This exercise returns {{when}}. Each time you solve it, it waits longer."
+}

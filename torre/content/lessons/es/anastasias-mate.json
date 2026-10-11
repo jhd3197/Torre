@@ -1,0 +1,49 @@
+{
+ "title": "Mate de Anastasia",
+ "summary": "Un caballo protege las casillas de escape mientras una torre o dama da jaque al rey a lo largo del último archivo.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "the-pattern",
+   "title": "Caballo en e7, torre en el archivo h",
+   "text": "El rey negro está en el archivo h con su propio peón en g7 a su lado. El caballo blanco en e7 protege g8 y g6, las únicas casillas a las que el rey podría moverse. Si una torre o dama da jaque por el archivo h, el rey queda atrapado contra el borde. Este patrón lleva el nombre de una novela, Anastasia und das Schachspiel, en la que apareció.",
+   "narration": "Aquí está la configuración. El caballo en e7 protege ambas casillas junto al rey, g8 y g6, y el propio peón de las negras está en g7. Solo falta un jaque por el archivo h."
+  },
+  {
+   "id": "rook-to-h3",
+   "title": "Por el archivo h",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "Tu torre puede alcanzar el archivo h a lo largo de la tercera fila.",
+   "success": "La torre a h3 es mate. La torre cubre todo el archivo h, el caballo protege g8 y g6, y el peón en g7 bloquea la última casilla.",
+   "narration": "Mueve tu torre al archivo h. El caballo ya protege las casillas de escape, así que el jaque es mate."
+  },
+  {
+   "id": "open-the-file",
+   "title": "Abre primero el archivo",
+   "prompt": "Mate en dos. El peón de h está en el camino, así que elimínalo con un sacrificio.",
+   "hint": "Captura en h7 con jaque. El rey debe recapturar, y luego tu torre se mueve.",
+   "success": "La dama captura h7 con jaque fuerza al rey a tomar h7, porque el caballo cubre g8. El archivo h ahora está abierto, y la torre a h3 es el mate de Anastasia.",
+   "narration": "El peón en h7 está bloqueando la columna. ¡Destrúyelo con tu dama! El rey tiene que tomar, porque el caballo defiende g8. Ahora la columna está abierta, y tu torre se mueve a h3 para dar mate."
+  },
+  {
+   "id": "job-of-the-knight",
+   "title": "El trabajo del caballo",
+   "question": "En el mate de Anastasia, ¿qué hace el caballo en e7?",
+   "options": [
+    {
+     "text": "Defiende g8 y g6, las casillas de escape del rey",
+     "why": "Con esas casillas cubiertas y el peón en g7 en el camino, el jaque en la columna h deja al rey sin escapatoria."
+    },
+    {
+     "text": "Da el jaque",
+     "why": "La torre o la dama dan el jaque por la columna h. El caballo solo defiende casillas."
+    },
+    {
+     "text": "Protege la torre",
+     "why": "La torre en h3 está lejos del rey y no necesita protección aquí."
+    }
+   ],
+   "narration": "Último. ¿Qué está haciendo realmente el caballo en este mate? Identifica su trabajo, y reconocerás este patrón cada vez que un caballo aterrice en e7. ¡Buen trabajo!"
+  }
+ ]
+}

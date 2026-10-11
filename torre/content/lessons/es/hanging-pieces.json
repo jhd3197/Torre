@@ -1,0 +1,74 @@
+{
+ "title": "Piezas colgadas",
+ "summary": "Las piezas sin defensa se caen. Aprende a identificar piezas que nadie defiende y a contar atacantes y defensores antes de capturar.",
+ "steps": [
+  {
+   "id": "loose-pieces",
+   "title": "Las piezas sin defensa se caen",
+   "text": "Una pieza colgada es aquella que puede ser capturada sin costo. Antes de cada movimiento, mira cada pieza enemiga y pregúntate: ¿quién la defiende? El caballo en c6 está guardado por el peón en b7, pero nada guarda al alfil en g4. Las piezas sin defensor se llaman sin defensa, y las piezas sin defensa son las primeras en caer.",
+   "narration": "Aquí tienes un hábito que gana más partidas que cualquier truco sofisticado. Antes de mover, mira cada pieza enemiga y pregúntate quién la protege. El caballo en c6 tiene un peón que lo guarda, pero el alfil en g4 no tiene a nadie. Una pieza sin defensa como esa solo está esperando a ser recogida."
+  },
+  {
+   "id": "take-the-loose-bishop",
+   "title": "Recógela",
+   "prompt": "El alfil de las negras ataca tu dama, pero no tiene defensor. Púnzala.",
+   "hint": "No huyas con la dama. Revisa qué defiende al alfil.",
+   "success": "Qxg4 gana un alfil entero. Cuando una pieza atacante está sin defensa, capturarla es mejor que retirarse de ella.",
+   "narration": "El alfil de las negras está molestando a tu dama. Tu primera reacción podría ser mover la dama, pero observa más de cerca: nada protege a ese alfil. ¡Así que no huyas de él! ¡Tómalo!"
+  },
+  {
+   "id": "count-them",
+   "title": "Cuenta atacantes y defensores",
+   "text": "Cuando una pieza está defendida, cuenta. El caballo negro en d5 es atacado dos veces (por el caballo en c3 y la dama en d1) y defendido una vez (por el alfil en b7). Más atacantes que defensores usualmente significa que ganas algo. El orden importa también: captura con tu pieza más barata primero.",
+   "narration": "Ahora el caballo en d5 está defendido, así que contamos. Dos de tus piezas lo atacan, tu caballo y tu dama, y solo una pieza negra lo defiende, el alfil. Dos contra uno significa que debería caer. Solo recuerda empezar las capturas con tu pieza menos valiosa."
+  },
+  {
+   "id": "cheapest-first",
+   "title": "Dos contra uno",
+   "prompt": "Gana el caballo en d5. Comienza el cambio con la pieza que menos te importaría perder.",
+   "hint": "Captura con la pieza que te molestaría menos perder, y luego recupera.",
+   "success": "Nxd5 Bxd5 Qxd5: caballo por caballo, luego la dama toma al alfil gratis. Dos atacantes vencen a un defensor.",
+   "narration": "Dos atacantes, un defensor. Empieza con el caballo, porque si las negras recapturan, solo entregaste un caballo por un caballo. Luego la dama recupera, y vas arriba una pieza entera."
+  },
+  {
+   "id": "wrong-order",
+   "title": "¿Por qué primero el caballo?",
+   "question": "¿Qué sale mal si las blancas empiezan con la dama, Qxd5?",
+   "options": [
+    {
+     "text": "El alfil toma la dama, y la recaptura del caballo solo recupera un alfil.",
+     "why": "Qxd5 Bxd5 Nxd5 da una dama por un caballo y un alfil. Las mismas capturas, orden incorrecto, y las blancas pierden mucho."
+    },
+    {
+     "text": "Nada, el resultado es el mismo",
+     "why": "El orden lo cambia todo. Tu pieza valiosa debe ir al final, después de que el defensor se haya ido."
+    },
+    {
+     "text": "La dama queda en jaque mate",
+     "why": "Aquí no hay mate, solo un cambio terrible: la dama se pierde por dos piezas menores."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué pasa si tomas el caballo con tu dama primero? Piensa en quién recaptura, y qué termina perdiendo cada lado."
+  },
+  {
+   "id": "habit",
+   "title": "El hábito",
+   "question": "Un alfil negro ataca a tu dama. ¿Qué deberías revisar primero?",
+   "options": [
+    {
+     "text": "Si el alfil está defendido, porque si no puedes simplemente tomarlo.",
+     "why": "Un atacante suelto es un regalo. Siempre busca una captura antes de retroceder."
+    },
+    {
+     "text": "Dónde la dama puede escapar de forma segura.",
+     "why": "A veces debes huir, pero primero mira si puedes ganar al atacante directamente."
+    },
+    {
+     "text": "Si puedes atacar la dama de las negras a cambio.",
+     "why": "Un contraataque puede funcionar, pero tomar una pieza gratis es más simple y más fuerte."
+    }
+   ],
+   "narration": "Una más. Cuando una pieza ataca a tu dama, ¿qué revisas antes que nada? Adopta este hábito y las piezas colgantes empezarán a caer en tu regazo. ¡Bien hecho!"
+  }
+ ]
+}

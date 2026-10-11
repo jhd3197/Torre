@@ -1,0 +1,200 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// Playing with the coach (PlayCoach.tsx): the hint ladder and the bot's threat on your turn.
+.play-coach {
+  margin: 0 22px 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: $sage-50;
+}
+.play-coach-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.play-coach-head p {
+  margin: 0;
+  font-size: $fs-md;
+  font-weight: 650;
+  color: var(--ink);
+}
+.play-coach-lines {
+  margin: 8px 0 0;
+  padding-left: 54px;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.play-coach-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 8px;
+  padding-left: 54px;
+}
+
+// The word before a mistake: the move is held until you think again or play it anyway.
+.coach-hold {
+  display: flex;
+  gap: 12px;
+  margin: 0 22px 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba($red-600, 0.35);
+  border-radius: 14px;
+  background: $sand-50;
+}
+.coach-hold strong {
+  display: block;
+  color: $red-700;
+  font-size: $fs-base;
+}
+.coach-hold p {
+  margin: 4px 0 10px;
+  font-size: $fs-md;
+  color: var(--ink);
+}
+.coach-hold-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+// The after-game card (BotReport.tsx): accuracy by phase, the rating, and the slips.
+.bot-report {
+  margin: 16px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-align: left;
+}
+.bot-report h3 {
+  margin: 0 0 8px;
+  font-size: $fs-base;
+}
+.phase-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $fs-sm;
+}
+.phase-table th,
+.phase-table td {
+  padding: 4px 6px;
+  text-align: right;
+  border-bottom: 1px solid $neutral-100;
+}
+.phase-table th[scope="row"],
+.phase-table thead th:first-child {
+  text-align: left;
+}
+.phase-table thead th {
+  color: $sage-600;
+  font-weight: 650;
+}
+.bot-report p {
+  margin: 8px 0 0 !important;
+  font-size: $fs-sm !important;
+  color: $sage-600;
+}
+.bot-report-loading {
+  margin: 14px 0 0 !important;
+  font-size: $fs-sm !important;
+  color: $sage-500;
+}
+
+// Why the game was drawn, and practice games played with the coach.
+.result-rule,
+.result-practice {
+  margin: 12px auto 0 !important;
+  max-width: 44ch;
+  font-size: $fs-md !important;
+  color: $sage-600;
+}
+
+// Game review: your key moments (KeyMoments.tsx) and accuracy by phase.
+.key-moments,
+.game-phases {
+  margin: 14px 0;
+}
+.key-moments h3,
+.game-phases h3 {
+  margin: 0 0 8px;
+  font-size: $fs-base;
+}
+.key-moments ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+.key-moment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.key-moment:hover,
+.key-moment[aria-current="step"] {
+  background: $sage-50;
+}
+.key-moment strong,
+.key-moment small {
+  display: block;
+}
+.key-moment small {
+  color: $sage-600;
+  font-size: $fs-xs;
+}
+.key-moments-note {
+  margin: 6px 0 0;
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+
+// Custom bot mechanics (data/botMechanics.ts): the bot's line, the night board, the shake.
+.bot-speech {
+  margin: 0 22px 12px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: $sand-50;
+  font-size: $fs-md;
+  font-style: italic;
+  color: var(--ink);
+}
+body[data-ambience="night"] .board {
+  filter: brightness(0.72) saturate(0.8) hue-rotate(-12deg);
+  box-shadow: 0 0 60px rgba($neutral-950, 0.55);
+  transition: filter 1.2s ease;
+}
+body[data-shake="1"] .board {
+  animation: board-shiver 0.6s ease-in-out;
+}
+@keyframes board-shiver {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15%,
+  45%,
+  75% {
+    transform: translateX(-4px) rotate(-0.3deg);
+  }
+  30%,
+  60%,
+  90% {
+    transform: translateX(4px) rotate(0.3deg);
+  }
+}
+@include reduced-motion {
+  body[data-shake="1"] .board {
+    animation: none;
+  }
+}

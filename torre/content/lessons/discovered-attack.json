@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "Discovered attacks",
+  "summary": "Move one piece out of the way and unleash the one behind it. When the hidden piece gives check, it is a discovered check.",
+  "category": "tactics",
+  "level": "beginner",
+  "minutes": 6,
+  "requires": ["knight-fork"],
+  "practice": "discovered-attack",
+  "steps": [
+    {
+      "id": "hidden-attacker",
+      "kind": "explain",
+      "title": "The hidden attacker",
+      "fen": "7r/4k3/8/8/3N4/8/1B6/6K1 w - - 0 1",
+      "marks": [["b2", "h8"], ["d4"]],
+      "demo": ["d4c6", "e7d6", "b2h8"],
+      "text": "White's bishop on b2 aims at the rook on h8, but its own knight on d4 is in the way. When the knight jumps, the bishop's attack is uncovered. That is a discovered attack: two threats from one move. Here the knight jumps with check, so Black must save the king, and the bishop takes the rook.",
+      "narration": "See the bishop on b2? It wants the rook on h8, but your own knight is blocking it. So the knight jumps to c6, with check! [move] Black has to save the king. [move] And the bishop's hidden attack takes the rook. [move]",
+      "pose": "idea"
+    },
+    {
+      "id": "discovered-check-queen",
+      "kind": "play",
+      "title": "Discovered check",
+      "fen": "4k3/p4ppp/8/1p6/q3B3/8/PP3PPP/4R1K1 w - - 0 1",
+      "prompt": "Move the bishop off the e-file with check, and attack the queen at the same time.",
+      "hint": "Once the bishop moves, the rook on e1 checks the king. Which bishop square also hits a4?",
+      "line": ["e4c2", "e8d7", "c2a4"],
+      "success": "Bc2+ uncovers the rook's check on the e-file, and the bishop now eyes the queen through b3. Black must answer the check, so Bxa4 wins the queen.",
+      "narration": "Your bishop is standing between your rook and Black's king. Any bishop move is check from the rook, so make it count: find the square where the bishop also attacks the queen on a4.",
+      "pose": "detective"
+    },
+    {
+      "id": "bishop-sac-check",
+      "kind": "play",
+      "title": "Take with check",
+      "fen": "4q1k1/pp3ppp/8/8/4B3/8/PP3PPP/4R1K1 w - - 0 1",
+      "prompt": "Your rook and Black's queen face each other on the e-file. Win the queen.",
+      "hint": "The bishop blocks the e-file. Move it with check, grabbing a pawn on the way.",
+      "line": ["e4h7", "g8f8", "e1e8"],
+      "success": "Bxh7+ is check from the bishop and uncovers the rook on the queen. Black has to deal with the check, and Rxe8+ takes the queen.",
+      "narration": "Right now your bishop blocks your own rook from Black's queen. Take the pawn on h7 with check. Black is busy with the king, and the rook takes the queen.",
+      "pose": "excited"
+    },
+    {
+      "id": "why-discovered-works",
+      "kind": "choose",
+      "title": "Why it works",
+      "question": "Why are discovered checks so strong?",
+      "options": [
+        { "text": "The piece that moves can go almost anywhere and grab something, because the opponent must answer the check first", "correct": true, "why": "The check comes from the piece behind, so the moving piece is free to attack, capture or even hang itself. The opponent only has time for the king." },
+        { "text": "A discovered check can never be blocked", "why": "It can be blocked like any check from a rook, bishop or queen. Its strength is that the other piece makes a second threat at the same time." },
+        { "text": "The moving piece cannot be captured", "why": "It can be captured, just not while the king is in check. That is why it gets away with so much." }
+      ],
+      "narration": "Last one. What makes a discovered check so dangerous? Think about which piece gives the check, and what the other piece gets to do meanwhile. Nicely done today!",
+      "pose": "trophy"
+    }
+  ]
+}

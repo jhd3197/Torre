@@ -1,0 +1,82 @@
+@use "sass:map";
+@use "tokens" as *;
+
+// Width queries: `down(md)` is phones up to 740px, `up(md)` is 741px and wider.
+$breakpoints: (
+  sm: $bp-sm,
+  md: $bp-md,
+  lg: $bp-lg,
+  xl: $bp-xl,
+  xxl: $bp-xxl,
+);
+
+@mixin down($name) {
+  @media (max-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}
+@mixin up($name) {
+  @media (min-width: map.get($breakpoints, $name) + 1px) {
+    @content;
+  }
+}
+// A screen both wide and tall enough that 14px text looks small beside the board.
+@mixin big-screen($width: $bp-wide, $height: $bp-tall) {
+  @media (min-width: $width) and (min-height: $height) {
+    @content;
+  }
+}
+// Motion: the system's prefers-reduced-motion, unless Settings → Accessibility → Animations chose
+// for it (data-motion="reduce" or "full" on <html>). Works at the top level or inside a rule.
+@mixin when-root($selector) {
+  @if & {
+    #{$selector} & {
+      @content;
+    }
+  } @else {
+    #{$selector} {
+      @content;
+    }
+  }
+}
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @include when-root(':root:not([data-motion="full"])') {
+      @content;
+    }
+  }
+  @include when-root(':root[data-motion="reduce"]') {
+    @content;
+  }
+}
+@mixin motion-ok {
+  @media (prefers-reduced-motion: no-preference) {
+    @include when-root(':root:not([data-motion="reduce"])') {
+      @content;
+    }
+  }
+  @include when-root(':root[data-motion="full"]') {
+    @content;
+  }
+}
+
+// The house control: a chunky, pressable button that sinks when pressed.
+@mixin press($depth: 4px, $shade: rgba($moss-900, 0.32)) {
+  box-shadow: 0 $depth 0 $shade;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.18s,
+    filter 0.18s;
+  &:active:not(:disabled) {
+    transform: translateY($depth - 1px);
+    box-shadow: 0 1px 0 $shade;
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 3px solid $gold-400;
+    outline-offset: 3px;
+  }
+}

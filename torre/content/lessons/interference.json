@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Interference",
+  "summary": "Drop a piece onto the line between a defender and what it guards. With the line cut, the defence stops working.",
+  "category": "tactics",
+  "level": "advanced",
+  "minutes": 7,
+  "requires": ["overloading"],
+  "practice": "interference",
+  "steps": [
+    {
+      "id": "cut-the-line",
+      "kind": "explain",
+      "title": "Cut the line",
+      "fen": "r7/4P1k1/8/8/8/8/1K6/3R4 w - - 0 1",
+      "marks": [["a8", "e8"], ["d8"], ["e7", "e8"]],
+      "text": "Black's rook on a8 stops the pawn from queening by guarding e8 along the back rank. Rooks, bishops and queens defend from a distance, and a long line can be cut. Put a piece on a square between the defender and the thing it guards, and the defence is switched off. That is interference.",
+      "narration": "Black's rook is guarding e8 from all the way over on a8. Long-range defenders have a weakness: anything placed in between blocks them. Find the square between the rook and e8, and the pawn is free.",
+      "pose": "point"
+    },
+    {
+      "id": "block-the-rook",
+      "kind": "play",
+      "title": "Block the guard",
+      "fen": "r7/4P1k1/8/8/8/8/1K6/3R4 w - - 0 1",
+      "prompt": "Cut Black's rook off from e8 and make a new queen.",
+      "hint": "Your rook can land on the eighth rank between a8 and e8. The pawn covers that square.",
+      "line": ["d1d8", "g7f6", "d8a8|e7e8q"],
+      "success": "Rd8! cuts the rook off from e8. Rxd8 exd8=Q is hopeless for Black, and after Kf6 you can take the rook on a8 or queen the pawn.",
+      "narration": "Drop your rook onto d8. It blocks the black rook's line to e8, and if the black rook takes it, your pawn takes back and becomes a queen. Black can't hold both.",
+      "pose": "detective"
+    },
+    {
+      "id": "block-the-diagonal",
+      "kind": "play",
+      "title": "Block the diagonal",
+      "fen": "5rk1/pp3p1p/6pQ/8/5B2/8/Pq3PPP/4R1K1 w - - 0 1",
+      "prompt": "You want to mate on g7, but Black's queen guards it from b2. Fix that with one move.",
+      "hint": "Put a protected piece on the long diagonal, on a square that also covers g7.",
+      "line": ["f4e5", "b2e5", "e1e5"],
+      "success": "Be5! cuts the queen off from g7 and supports Qg7 mate at the same time. If the queen takes the bishop, your rook takes her.",
+      "narration": "Your queen wants g7, but Black's queen covers it from b2, and nothing of yours backs the queen up. Put your bishop on e5, right in her path. Now the bishop supports g7, and if the black queen takes it, your rook takes her.",
+      "pose": "magnify"
+    },
+    {
+      "id": "interference-quiz",
+      "kind": "choose",
+      "title": "Which pieces can be cut off?",
+      "question": "Interference works against which kind of defender?",
+      "options": [
+        {"text": "Long-range pieces (rooks, bishops, queens) that defend along a line", "correct": true, "why": "Only a line can be blocked. Knights, kings and pawns defend squares right next to them or by jumping, so nothing can come between."},
+        {"text": "Knights", "why": "A knight jumps, so you cannot place anything between it and the square it guards."},
+        {"text": "Pawns", "why": "A pawn guards the squares diagonally in front of it, with no gap to block."}
+      ],
+      "narration": "Final question. Interference works against which kind of defender? Think about which pieces defend along a line. You've learned an advanced idea today. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+ "title": "El Ataque Colle",
+ "summary": "Después de e4, las líneas se abren hacia el rey de las negras. Usa la diagonal larga, y aprende el sacrificio del alfil en h7.",
+ "unit": "Sistema Colle",
+ "steps": [
+  {
+   "id": "lines-open",
+   "title": "Lo que e4 abre",
+   "text": "Una vez que el peón de e alcanza e4 y las piezas son intercambiadas allí, tu alfil se sitúa en e4 con dos diagonales largas: una hacia h7 cerca del rey negro, una hacia c6 y la torre en a8. El alfil en c1 está libre al fin, y el caballo en f3 puede saltar a g5. Las negras deben vigilar todo esto a la vez.",
+   "narration": "Aquí tienes lo que hace el empuje de e4. Peón a e4. [move] Las negras lo toman. [move] Tu caballo recupera. [move] Las negras intercambian caballos. [move] Y tu alfil aterriza en e4. [move] Ahora mira en dos direcciones a la vez, hacia el rincón del rey y hacia el flanco de dama, y tu otra alfil está finalmente libre."
+  },
+  {
+   "id": "long-diagonal",
+   "title": "Usa la diagonal larga",
+   "prompt": "La última jugada de las negras dejó una pieza sin protección. Gana material.",
+   "hint": "Mira a lo largo de la diagonal desde tu alfil hacia la esquina.",
+   "success": "El peón de b de las negras solía proteger al caballo en c6. Ahora el alfil lo toma, y la torre en a8 es atacada a continuación. Eso es una pieza entera a cambio de nada.",
+   "narration": "Las negras empujaron el peón de b, y ese peón estaba protegiendo al caballo en c6. Tu alfil lo está mirando fijamente."
+  },
+  {
+   "id": "greek-gift-setup",
+   "title": "El regalo griego",
+   "text": "A veces el peón alcanza e5 y empuja al caballo negro fuera de f6. Entonces h7 está defendido solo por el rey. Revisa los ingredientes: un alfil que puede tomar en h7 con jaque, un caballo que puede seguir con un jaque en g5, una dama que puede llegar a h5, y ninguna pieza negra que cubra g5. Cuando los cuatro están allí, el sacrificio del alfil en h7 está en juego.",
+   "narration": "Ahora el famoso. Tu peón en e5 ha empujado al caballo negro, así que solo el rey defiende h7. Alfil, caballo y dama están todos listos. Este es el regalo griego."
+  },
+  {
+   "id": "greek-gift",
+   "title": "Regálale esta oportunidad",
+   "prompt": "Sacrifícalo en h7 y sigue dando jaque al rey.",
+   "hint": "El alfil captura h7 dando jaque, caballo a g5 dando jaque, luego la torre da jaque por una diagonal hacia g6.",
+   "success": "La dama da jaque por la diagonal y el rey negro está atrapado delante de sus peones, con tu dama y caballo al lado. Si el rey hubiera retrocedido a g8, la dama a h5 amenaza mate en h7, y el negro solo puede retrasarlo.",
+   "narration": "Aquí vamos. Captura en h7 dando jaque, continúa con el jaque del caballo desde g5, y cuando el rey avance a g6, jaquéalo de nuevo con la dama."
+  },
+  {
+   "id": "the-retreat",
+   "title": "Si el rey retrocede",
+   "text": "Retroceder a g8 parece seguro, pero es peor. La dama a h5 amenaza con dama a h7 mate, apoyada por el caballo en g5. El negro puede darle un espacio al rey moviendo la torre, pero la dama sigue dando jaque y el ataque termina en mate.",
+   "narration": "¿Qué pasaría si el rey retrocede a g8? [move] ¡La dama a h5! [move] Ahora el mate en h7 está llegando, y el negro solo puede ganar tiempo."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Cuál de estas opciones normalmente impediría que funcione el regalo griego?",
+   "options": [
+    {
+     "text": "Un caballo negro en f6",
+     "why": "Bien. El caballo en f6 defiende h7 y h5, así que la dama no puede entrar. Por eso es tan importante echarlo con e5."
+    },
+    {
+     "text": "La dama negra en c7",
+     "why": "En c7 la dama está lejos del rey. No cubre ni g5 ni h5."
+    },
+    {
+     "text": "La torre de f1 de las blancas",
+     "why": "La torre no estorba; incluso puede unirse más tarde por f3 o f4."
+    }
+   ],
+   "narration": "Una última pregunta. ¿Qué suele detener el regalo griego? Recuerda esto, y sabrás cuándo atacar. ¡Trabajo fantástico!"
+  }
+ ]
+}

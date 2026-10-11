@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "title": "Morphy plays the Philidor",
+  "summary": "London, 1858: Paul Morphy takes on d4, develops calmly, then strikes in the centre with ...d5 and wins material.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Philidor Defense",
+  "order": 4,
+  "requires": ["philidor-plans"],
+  "orientation": "black",
+  "steps": [
+    {
+      "id": "the-scene",
+      "kind": "explain",
+      "title": "London, 1858",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "In 1858 the young American Paul Morphy travelled to Europe and beat the best players he met. In London he played Black against Thomas Wilson Barnes and chose the Philidor. Watch how calmly he sets up, and how quickly the game turns once he opens the centre. The game stops when Morphy has a decision to make: find his move.",
+      "narration": "London, 1858. The young American Paul Morphy has Black and answers with the Philidor. Watch the quiet setup, then the strike in the centre, and guess Morphy's moves when the game pauses.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Barnes – Morphy, London 1858",
+      "text": "Morphy takes on d4, develops and castles, and waits for the right moment to open the centre.",
+      "narration": "Here's the game. When it stops, play Morphy's move on the board.",
+      "pose": "playing",
+      "moves": ["e2e4", "e7e5", "g1f3", "d7d6", "d2d4", "e5d4", "f3d4", "g8f6", "f1d3", "f8e7", "b1c3", "e8g8", "e1g1", "c7c5", "d4e2", "b8c6", "f2f4", "a7a6", "a2a4", "c8g4", "h2h3", "g4e2", "d1e2", "f8e8", "e2f2", "a8c8", "g2g4", "c6b4", "b2b3", "d6d5", "g1h1", "d5e4", "c3e4", "f6e4", "d3e4", "e7f6", "e4b7", "f6a1", "b7c8", "d8c8", "c1e3", "c8c6", "h1h2", "a1d4"],
+      "notes": [
+        { "ply": 6, "text": "3...exd4: Morphy gives up the centre and plans to fight with his pieces instead." },
+        { "ply": 14, "text": "7...c5 chases the knight from the middle of the board." },
+        { "ply": 24, "text": "12...Re8: the rook lines up on the e-file, against the pawn on e4." },
+        { "ply": 38, "text": "19...Bxa1: Black wins a rook. White's bishop takes the rook on c8, but Black takes back and is a piece up." }
+      ],
+      "guesses": [
+        { "ply": 30, "prompt": "Your pieces are all developed and White has pushed pawns on the kingside. Strike in the centre.", "hint": "Your d-pawn has been waiting on d6 all game.", "why": "15...d5! opens the centre while White's king is loose and White's pieces are scattered." },
+        { "ply": 36, "prompt": "The centre is open. Your dark bishop has a long diagonal now. Use it.", "hint": "Look at White's rook in the corner on a1.", "why": "18...Bf6! aims at the rook on a1. White grabs pawns and the c8 rook, but Morphy comes out a whole piece ahead." },
+        { "ply": 44, "also": ["a1c3"], "prompt": "You are a piece up. Trade off White's best defender.", "hint": "Offer a bishop trade in the middle of the board.", "why": "22...Bd4 offers to trade White's last bishop. When you are ahead, trading pieces makes your extra piece count even more. This was the last move of the game." }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "explain",
+      "title": "Quiet first, then strike",
+      "fen": "2rqr1k1/1p2bppp/p4n2/2pp4/Pn2PPP1/1PNB3P/2P2Q2/R1B2R1K b - - 1 16",
+      "marks": [["d5", "e4"], ["e8", "e4"]],
+      "text": "This is the moment before ...dxe4. Every Black piece is developed, the rook on e8 eyes e4, and the d-pawn has just arrived on d5. That is the Philidor in a nutshell: a solid start, no weaknesses, and a central pawn break once your pieces are ready.",
+      "narration": "Here's the moment just before Morphy captured on e4. Everything is developed and ready, and the pawn break in the centre opens the game on his terms. Solid first, then strike.",
+      "pose": "idea"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why was 15...d5 such a strong moment for Morphy?",
+      "options": [
+        { "text": "All his pieces were developed, so opening the centre helped him more than White", "correct": true, "why": "Yes. Open lines favour the side whose pieces are ready, and Morphy's were." },
+        { "text": "It won a pawn by force right away", "why": "The point was opening lines, not the pawn itself; the material came a few moves later." },
+        { "text": "It protected his king from White's kingside pawns", "why": "...d5 is a central break. Its job was to open the game, not to defend." }
+      ],
+      "narration": "One last question about Morphy's game. Why was the push to d5 so strong just then? Think about his pieces. Wonderful work!",
+      "pose": "trophy"
+    }
+  ]
+}

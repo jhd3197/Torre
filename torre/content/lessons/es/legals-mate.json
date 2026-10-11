@@ -1,0 +1,75 @@
+{
+ "title": "El Mate Legal",
+ "summary": "Rinde tu dama y da jaque mate con tres piezas menores: es el falso clavado más famoso del ajedrez.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "the-setup",
+   "title": "Un comienzo tranquilo",
+   "text": "Esta trampa lleva el nombre del jugador francés del siglo XVIII, Kermur de Legall. Las negras desarrollan el alfil de casillas claras a g4, clavando el caballo blanco en f3 a la dama, y luego juegan el lento movimiento de peón a g6. Da un paso por las jugadas.",
+   "narration": "Esta trampa tiene casi trescientos años, y todavía engaña a la gente todos los días. Caballo a f3. [move] Peón a d6. [move] Alfil a c4. [move] Las negras clavan el caballo a la dama. [move] Caballo a c3. [move] Y las negras juegan un lento movimiento de peón. [move]"
+  },
+  {
+   "id": "a-fake-pin",
+   "title": "Un clavado que no es un clavado",
+   "text": "El caballo en f3 parece estar atascado: si se mueve, el alfil se lleva la dama en d1. Pero un clavado a la dama no es una ley. El caballo aún puede moverse, siempre y cuando lo que White reciba a cambio valga más que una dama. Aquí, eso es el jaque mate.",
+   "narration": "Ese caballo parece clavado. Si se mueve, las negras se llevan la dama. Pero un clavado a una dama es solo una advertencia, no una regla. Si mover el caballo lleva a un jaque mate, ¿a quién le importa la dama?"
+  },
+  {
+   "id": "spring-the-trap",
+   "title": "Desencadena la trampa",
+   "prompt": "Ignora el clavado. Ofrece tu dama y da jaque mate al rey.",
+   "hint": "Comienza tomando el peón en e5 con el caballo que las negras creen que está clavado.",
+   "success": "Caballo toma e5, alfil toma la dama, alfil toma f7 jaque, rey a e7, caballo a d5 mate. Tres piezas menores cubren cada casilla alrededor del rey.",
+   "narration": "Es tu turno para ser audaz. Mueve la caballo clavado, deja que las negras capturen tu dama, y luego da mate con tus tres pequeñas piezas."
+  },
+  {
+   "id": "if-black-says-no",
+   "title": "Si las negras se niegan",
+   "prompt": "Las negras descubrieron la trampa y tomaron tu caballo en su lugar. Recoge tu recompensa.",
+   "hint": "Con el caballo fuera, nada bloquea tu dama. ¿Qué pieza negra está ahora suelta?",
+   "success": "La dama captura g4. Intercambiaste un caballo por un peón y un alfil, así que sales un peón adelante con una posición excelente.",
+   "narration": "No todo el mundo cae en la trampa. Aquí las negras sabiamente tomaron la caballo. No te preocupes, tu dama está libre ahora. Encuentra qué puede capturar."
+  },
+  {
+   "id": "the-picture",
+   "title": "La imagen final",
+   "text": "Mira la red terminada. El caballo en d5 da jaque y cubre f6. El alfil en f7 cubre e6 y e8. El caballo en e5 protege al alfil y cubre d7. Las propias piezas negras bloquean d6, d8 y f8. El caballo en c3 fue la clave: sin él, nada podría alcanzar d5.",
+   "narration": "Mira esa red terminada. Dos caballos y un alfil cubren cada casilla de escape, y las propias piezas negras bloquean el resto. Observa el caballo que comenzó en c3. Sin él, no hay mate."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Las negras protegieron e5 con caballo a c6 en vez de jugar peón a g6, así que el truco ya no funciona. Le preguntaste al alfil con peón a h3, y capturó tu caballo. Recaptura y sigue desarrollando.",
+   "nudge": "Primero recaptura. Después busca una jugada tranquila de desarrollo.",
+   "hint": "Recaptura con la dama, no con el peón. Después enroca o lleva el caballo a e2 o a d5.",
+   "success": "Dama toma f3 mantiene sanos tus peones y apunta a f7. Después de caballo a f6, enroca o lleva un caballo al centro. Tienes la pareja de alfiles y un juego cómodo.",
+   "narration": "Los jugadores fuertes no siempre caen en la trampa. Cuando las negras protegen e5, guarda el sacrificio del caballo. Recaptura, enroca y disfruta tus dos alfiles.",
+   "branches": [
+    {
+     "success": "Dama toma f3, y la dama negra fue a d7 para proteger f7. Enroca o lleva el caballo a e2. Tienes la pareja de alfiles y un juego cómodo."
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "En la posición inicial de la trampa, ¿qué pieza blanca hace que el sacrificio de la dama funcione?",
+   "options": [
+    {
+     "text": "La dama en d1",
+     "why": "La dama es la pieza que blancas entregan. El mate ocurre sin ella."
+    },
+    {
+     "text": "El caballo en c3.",
+     "why": "Sí. Es la pieza que salta a d5 para el jaque final. Sin ella, el sacrificio simplemente pierde la dama."
+    },
+    {
+     "text": "La torre en h1.",
+     "why": "La torre nunca se mueve en esta trampa."
+    }
+   ],
+   "narration": "Última pregunta. Una pieza blanca hace posible todo el truco. ¿Cuál es? Piensa en quién da el jaque mate final."
+  }
+ ]
+}

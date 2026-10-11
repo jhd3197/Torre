@@ -1,0 +1,55 @@
+{
+ "title": "Cuadrados débiles y agujeros",
+ "summary": "Cada movimiento de peón deja cuadrados atrás que ningún peón puede defender de nuevo. Aprende a identificar estos agujeros y mueve tus piezas hacia ellos.",
+ "unit": "Planificación",
+ "steps": [
+  {
+   "id": "what-is-a-hole",
+   "title": "Cuadrados que ningún peón puede defender",
+   "text": "Los peones solo se mueven hacia adelante, así que una vez que un peón ha pasado por una casilla, nunca podrá defenderla de nuevo. Las negras empujaron el peón de g a g6, y el peón de e se fue, así que ningún peón negro controlará f6 o h6. Una casilla como esta se llama un agujero, o un cuadrado débil. Las negras también han perdido el alfil de casillas oscuras que podría haber cubierto estos cuadrados, así que están abiertos a las piezas de blancas.",
+   "narration": "Los peones no pueden retroceder, así que cada movimiento de peón deja algunas casillas sin defender para siempre. El peón de g de las negras se ha movido a g6, y ahora f6 y h6 son agujeros que ningún peón negro podrá cubrir jamás."
+  },
+  {
+   "id": "land-in-the-hole",
+   "title": "Hacia el agujero",
+   "prompt": "Usa el agujero en f6 para ganar material.",
+   "hint": "Ningún peón puede atacar al caballo en f6. ¿Qué lo atacaría desde allí?",
+   "success": "El caballo aterrizó en el agujero con jaque e impactó a la dama en d7 al mismo tiempo. Ningún peón podría desafiarlo allí, y la dama cayó.",
+   "narration": "El agujero en f6 está justo al lado del rey negro, y ningún peón negro podrá cubrirlo jamás. Lanza a tu caballo al ataque con jaque y mira qué más ataca."
+  },
+  {
+   "id": "holes-around-the-king",
+   "title": "Agujeros alrededor del rey",
+   "text": "Aquí, el alfil blanco ya está en el agujero en f6, protegiendo g7. Tu rey no tiene un alfil de casillas oscuras para defender las casillas oscuras a su alrededor. Cuando aparecen agujeros cerca de un rey, las damas y piezas menores del atacante a menudo pueden moverse y dar mate.",
+   "narration": "El alfil blanco ya está en el agujero en f6, mirando fijamente a g7. No tienes nada que pueda cubrir las casillas oscuras alrededor de tu rey, y eso es una receta para el jaque mate."
+  },
+  {
+   "id": "queen-to-the-hole",
+   "title": "La dama se une al ataque",
+   "prompt": "Usa el otro agujero y fuerza el jaque mate.",
+   "hint": "Coloca la dama en h6. ¿Qué amenaza al lado del alfil?",
+   "success": "La dama llegó al agujero en h6 y amenazó con mate en g7, protegido por el alfil. No tenías un peón ni un alfil para cubrir g7, así que fue mate.",
+   "narration": "Tu alfil protege g7. Trae la dama al otro agujero en h6 y amenaza con mate. No tienes ninguna pieza que pueda cubrir las casillas oscuras a tiempo."
+  },
+  {
+   "id": "why-holes",
+   "title": "¡Revísate!",
+   "question": "¿Qué hace que una casilla sea un agujero?",
+   "options": [
+    {
+     "text": "Ningún peón de tu bando podrá atacarla de nuevo",
+     "why": "Como los peones no pueden retroceder, una pieza enemiga en una casilla así solo puede ser removida intercambiándola."
+    },
+    {
+     "text": "Es una casilla vacía cerca del rey",
+     "why": "Las casillas vacías están por todas partes. Un agujero es especial porque ningún peón defensor puede protegerla jamás."
+    },
+    {
+     "text": "Está siendo atacado por los peones del oponente.",
+     "why": "Eso describe casillas que controla tu oponente, no un agujero en tu propia posición."
+    }
+   ],
+   "narration": "Última pregunta. ¿Qué transforma una casilla ordinaria en un agujero? Piensa en qué piezas nunca pueden cubrirla de nuevo. ¡Bien hecho!"
+  }
+ ]
+}

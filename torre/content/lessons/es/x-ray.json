@@ -1,0 +1,48 @@
+{
+ "title": "Rayos X",
+ "summary": "Una torre, alfil o dama sigue trabajando a través de una pieza enemiga que está en su camino. Cuando esa pieza se mueve o es cambiada, el poder oculto aparece.",
+ "steps": [
+  {
+   "id": "seeing-through",
+   "title": "Ver a través de una pieza",
+   "text": "Tu torre en d1 parece estar bloqueada por la torre de Negro en d7, pero aún así realiza rayos X a d8 a través de ella. Captura la dama en d8 con la tuya: si la torre de Negro recaptura, deja el archivo abierto, y tu torre llega a d8 con jaque mate. Un rayo X es un ataque o defensa por línea que pasa a través de una pieza enemiga.",
+   "narration": "Tu torre en d1 parece estar mirando a una pared, la torre de Negro en d7. Pero piensa un movimiento adelante. Dama captura dama en d8, ¡jaque! [move] La torre negra recupera. [move] Y tu torre ve claro hasta la última fila. ¡Jaque mate! [move] Eso es un rayo X."
+  },
+  {
+   "id": "x-ray-mate",
+   "title": "Cambia para dar mate",
+   "prompt": "Mate en dos. Tu torre en f1 ve a través de la torre de Negro en f6.",
+   "hint": "Cambia damas en f8. ¿Qué pieza negra debe recuperar?",
+   "success": "Qxf8+ Rxf8 Rxf8#. La torre negra tuvo que recuperar, lo que abrió el archivo f para tu torre, y la última fila no tuvo escapatoria.",
+   "narration": "Tu torre en f1 está apuntando a f8 a través de la torre de Negro en f6. Captura la dama en f8 con jaque. La torre de Negro debe recuperar, y ahora tu torre vuela por el archivo abierto para dar mate."
+  },
+  {
+   "id": "x-ray-material",
+   "title": "Gana una torre",
+   "prompt": "Usa el rayo X en el archivo e para salir con una torre adelante.",
+   "hint": "Tu torre en e1 ve a través de la torre negra en e3 hacia e8.",
+   "success": "Qxe8+ Rxe8 Rxe8+. Las damas desaparecen y cuando la torre negra recaptura en e8, camina hacia el rayo X de tu torre. Te quedas un peón arriba.",
+   "narration": "La torre negra en e3 está entre tu torre y la dama negra. Toma la dama con la tuya. Cuando la torre negra recaptura en e8, tu torre en e1 la vuelve a tomar al instante."
+  },
+  {
+   "id": "x-ray-quiz",
+   "title": "Revisa la línea.",
+   "question": "Antes de intercambiar en una casilla, ¿por qué deberías mirar la línea entera detrás de las piezas?",
+   "options": [
+    {
+     "text": "Una torre, un alfil o una dama detrás de una pieza enemiga pueden unirse en cuanto esa pieza se mueve o recaptura.",
+     "why": "Ese atacante o defensor oculto cambia la cuenta. Un rayo X convierte un intercambio justo en uno ganador."
+    },
+    {
+     "text": "Las piezas detrás de otras piezas nunca importan.",
+     "why": "Importan mucho: en el momento en que la pieza del frente se mueve, la que está detrás vuelve al juego."
+    },
+    {
+     "text": "Solo los caballos pueden atacar a través de otras piezas.",
+     "why": "Los caballos saltan por encima de las piezas, lo que es diferente. Los rayos X se refieren a piezas de largo alcance que ven a lo largo de una línea."
+    }
+   ],
+   "narration": "Pregunta final. Cuando cuentes un intercambio, ¿por qué deberías revisar toda la línea, no solo las piezas que tocan la casilla? Esto es material avanzado, y lo manejaste bien. ¡Bravo!"
+  }
+ ]
+}

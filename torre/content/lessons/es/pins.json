@@ -1,0 +1,40 @@
+{
+ "title": "Clavadas",
+ "summary": "Una pieza clavada no puede moverse sin exponer algo detrás de ella. Aprende a clavar, ¡y a ganar la pieza clavada!",
+ "steps": [
+  {
+   "id": "what-is-a-pin",
+   "title": "¿Qué es una clavada?",
+   "text": "El alfil blanco en b5 ataca al caballo en c6, y el rey negro está detrás de él en la misma diagonal. Si el caballo se moviera, el rey estaría en jaque, por lo que no puede moverse en absoluto. Eso es una clavada absoluta. Cuando la pieza detrás no es el rey (una dama o una torre, por ejemplo), mover es legal pero costoso: una clavada relativa.",
+   "narration": "Mira el alfil blanco en b5. Fija la mirada por la diagonal al caballo en c6, y justo detrás de ese caballo se sienta el rey negro. Si el caballo se mueve, el rey está en jaque, ¡así que esa pieza está clavada!"
+  },
+  {
+   "id": "pin-the-queen",
+   "title": "Clava y gana",
+   "prompt": "La dama y el rey negros comparten una diagonal. Clava a la dama y gánatela.",
+   "hint": "Coloca el alfil en esa diagonal, en una casilla que tu peón protege.",
+   "success": "Bc4 clava a la dama al rey. Solo puede tomar el alfil, y el peón de b la toma de vuelta: una dama por un alfil.",
+   "narration": "La dama y el rey negros están sentados en la misma diagonal. ¿Puedes clavar a esa dama y ganártela? Desliza tu alfil a c4. No te preocupes, tu peón en b3 la mantiene segura, y si la dama toma, el peón la toma de vuelta."
+  },
+  {
+   "id": "absolute-or-relative",
+   "title": "¿Absoluta o relativa?",
+   "question": "Un alfil blanco en g5 ataca al caballo negro en f6, y la dama negra está detrás de él en d8. ¿Qué tipo de clavada es esta?",
+   "options": [
+    {
+     "text": "Una clavada relativa",
+     "why": "El caballo puede moverse legalmente, pero entonces el alfil captura la dama. Mover está permitido, sólo que es caro."
+    },
+    {
+     "text": "Una clavada absoluta",
+     "why": "Solo una clavada contra el rey es absoluta. Aquí, la pieza detrás es la dama."
+    },
+    {
+     "text": "No es una clavada",
+     "why": "Es: una pieza más valiosa está detrás del caballo atacado en la misma línea."
+    }
+   ],
+   "narration": "Un último cheque. Un alfil en g5 ataca un caballo en f6, y la dama de las negras está detrás de él en d8. ¿Es eso una clavada absoluta, una clavada relativa o ninguna clavada en absoluto? ¡Domina esto y la dama es tuya!"
+  }
+ ]
+}

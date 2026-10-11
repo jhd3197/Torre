@@ -1,0 +1,98 @@
+{
+ "title": "La ofrenda de alfil de Botvínnik",
+ "summary": "Ámsterdam, 1938: Botvínnik impulsa un peón central a e7 y sacrifica un alfil para hacerlo la dama, contra Capablanca.",
+ "unit": "Mikhail Botvínnik",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "AVRO, 1938",
+   "text": "En 1938, una empresa de radiodifusión holandesa realizó un torneo para los ocho mejores jugadores del mundo, conocido como AVRO. Mikhail Botvínnik, el joven campeón soviético que luego se convirtió en campeón del mundo, se enfrentó a José Raúl Capablanca, el campeón del mundo de la década de 1920. La partida todavía se enseña como un modelo de un centro de peones avanzando.",
+   "narration": "Ámsterdam, 1938. Mikhail Botvínnik, el futuro campeón del mundo, contra José Raúl Capablanca, un antiguo campeón del mundo. Observa cómo los peones blancos avanzan."
+  },
+  {
+   "id": "the-game",
+   "title": "Botvínnik – Capablanca, AVRO 1938",
+   "text": "Las blancas aceptan peones doblados en c para obtener un centro fuerte. Capablanca ocupa espacio en el flanco de la dama e incluso gana un peón allí. Botvínnik lo ignora y empuja en el medio.",
+   "notes": [
+    {
+     "text": "6. bxc3: Las blancas tienen peones doblados, pero también un centro de peones grande y dos alfiles."
+    },
+    {
+     "text": "14...c4: Capablanca bloquea el flanco de la dama. Sus piezas atacarán allí."
+    },
+    {
+     "text": "18...Nb3: El caballo se adentra en el campamento de las blancas, lejos de su propio rey."
+    },
+    {
+     "text": "19...Qxa4: Capablanca gana un peón. Botvínnik tiene un objetivo diferente: los peones centrales avanzan."
+    },
+    {
+     "text": "20.e5: El peón empuja al caballo lejos del flanco de rey."
+    },
+    {
+     "text": "27.fxe6: Un peón pasado en e6, a dos pasos de coronar."
+    },
+    {
+     "text": "30...Qxa3: La dama ha tomado el alfil y dejado e7. El peón está libre para moverse."
+    },
+    {
+     "text": "41.Kh5: El rey avanza por el tablero, y los jaques se terminan. Capablanca renunció."
+    }
+   ],
+   "narration": "Capablanca juega en el flanco de dama. Botvinnik empuja sus peones centrales hacia el rey. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "Líneas abiertas delante del rey negro.",
+     "hint": "Tu peón de f puede avanzar y desafiar g6.",
+     "why": "24.f5 abre el flanco de rey. El peón pronto llegará a e6 y se convertirá en un peón pasado."
+    },
+    {
+     "prompt": "La torre negra protege la columna de e. Desafíala.",
+     "hint": "Coloca tu torre en una casilla delante de la torre negra, donde un peón puede recapturar.",
+     "why": "26.Re6!: Ofrece un cambio de las torres en una casilla donde el peón de f5 recaptura. Después de ...Rxe6 fxe6, las torres blancas tienen un peón pasado en e6."
+    },
+    {
+     "prompt": "La dama negra en e7 bloquea tu peón. ¿Cómo puedes ahuyentarla?",
+     "hint": "Un alfil en a3 atacaría e7. ¿Es seguro ahí? No tiene que serlo.",
+     "why": "30.Ba3!! ofrece el alfil. Si la dama lo captura, deja e7 y el peón puede avanzar. Si no, las blancas ganan su pieza de todas formas."
+    },
+    {
+     "prompt": "La dama capturó en a3. Ahora elimina al caballo que defiende e8.",
+     "hint": "Un jaque con el caballo en h5 alejaría al peón de g6.",
+     "why": "31.Nh5+! gxh5 32.Qg5+ Kf8 33.Qxf6+: el caballo en f6, que defendía e8, ya no está. Nada detiene al peón de e ahora."
+    },
+    {
+     "prompt": "Tu dama está en f6. Haz que el peón cuente.",
+     "hint": "La dama cubre e7 y e8.",
+     "why": "34.e7: el peón está a un paso de convertirse en dama. El negro solo puede dar jaques, y el rey de Botvínnik se aleja de ellos."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "El sacrificio del alfil",
+   "question": "¿Por qué 30.Ba3 fue tan fuerte?",
+   "options": [
+    {
+     "text": "Alejó la dama negra de e7, la casilla frente al peón pasado",
+     "why": "Exactamente. Eso se llama desviación: un defensor es alejado de la casilla que defiende."
+    },
+    {
+     "text": "Atacó al rey de las negras.",
+     "why": "El alfil en a3 apuntaba a la dama en e7, no al rey."
+    },
+    {
+     "text": "Protegía al propio rey de las blancas.",
+     "why": "No tenía nada que ver con la defensa. Era un sacrificio de ataque."
+    }
+   ],
+   "narration": "¿Qué hizo realmente el alfil al sacrificarse?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Elimina el bloqueador.",
+   "text": "Un peón pasado solo es peligroso si puede avanzar. La peón de e6 de Botvinnik estaba bloqueado por la dama negra, así que ofreció un alfil para alejarla y un caballo para eliminar al defensor de e8. Cuando una sola pieza bloquea tu peón pasado, busca una forma de desviarla.",
+   "narration": "Si una pieza bloquea tu peón pasado, busca una forma de alejarla. Botvinnik sacrificó un alfil para lograrlo."
+  }
+ ]
+}

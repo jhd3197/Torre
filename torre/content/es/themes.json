@@ -1,0 +1,150 @@
+{
+ "from-your-games": {
+  "title": "De tus partidas",
+  "summary": "Momentos de tus propias partidas en los que cometiste un error grave o dejaste escapar una victoria."
+ },
+ "mate-in-1": {
+  "title": "Mate en 1",
+  "summary": "Encuentra el jaque mate en una jugada."
+ },
+ "mate-in-2": {
+  "title": "Mate en 2",
+  "summary": "Fuerza el jaque mate en dos jugadas, sin importar la defensa."
+ },
+ "mate-in-3": {
+  "title": "Mate en 3",
+  "summary": "Secuencias de jugadas forzadas más largas que terminan en mate."
+ },
+ "back-rank-mate": {
+  "title": "Mate del pasillo",
+  "summary": "Mata a un rey atrapado detrás de sus propios peones."
+ },
+ "smothered-mate": {
+  "title": "Mate de la coz",
+  "summary": "Un caballo da mate a un rey encerrado por sus propias piezas."
+ },
+ "mate-in-4": {
+  "title": "Mate en 4",
+  "summary": "Líneas forzadas largas: cada jugada es un jaque o una amenaza."
+ },
+ "arabian-mate": {
+  "title": "Mate árabe",
+  "summary": "La torre y el caballo encajonan al rey en la esquina."
+ },
+ "anastasia-mate": {
+  "title": "Mate de Anastasia",
+  "summary": "El caballo y la torre clavan al rey contra el borde."
+ },
+ "boden-mate": {
+  "title": "Mate de Boden",
+  "summary": "Dos alfiles en diagonales cruzadas hacen mate al rey."
+ },
+ "hook-mate": {
+  "title": "Mate del ganchito",
+  "summary": "La torre, el caballo y el peón enganchan al rey."
+ },
+ "fork": {
+  "title": "Horquillas",
+  "summary": "Una pieza ataca dos objetivos a la vez."
+ },
+ "pin": {
+  "title": "Clavadas",
+  "summary": "Usa o aprovecha una pieza que no puede moverse sin dejar al descubierto una más importante."
+ },
+ "skewer": {
+  "title": "Pinches",
+  "summary": "Ataca una pieza valiosa y gana la que está detrás."
+ },
+ "discovered-attack": {
+  "title": "Ataques a la descubierta",
+  "summary": "Mueve una pieza para liberar a la otra."
+ },
+ "double-check": {
+  "title": "Jaque doble",
+  "summary": "Dos piezas dan jaque a la vez. Solo el rey puede moverse."
+ },
+ "x-ray": {
+  "title": "Ataques de rayos X",
+  "summary": "Una pieza ataca o defiende a través de otra."
+ },
+ "interference": {
+  "title": "Interferencia",
+  "summary": "Coloca una pieza entre dos que se cubren entre sí."
+ },
+ "clearance": {
+  "title": "Despeje",
+  "summary": "Aparta una pieza para abrir una línea o casilla."
+ },
+ "capturing-defender": {
+  "title": "Captura del defensor",
+  "summary": "Captura la pieza que defiende una casilla clave."
+ },
+ "exposed-king": {
+  "title": "Rey expuesto",
+  "summary": "Ataca a un rey sin cobertura de peones."
+ },
+ "kingside-attack": {
+  "title": "Ataque al flanco de rey",
+  "summary": "Asalta al rey enrocado."
+ },
+ "hanging-piece": {
+  "title": "Piezas colgadas",
+  "summary": "Encuentra y captura material dejado sin defender."
+ },
+ "trapped-piece": {
+  "title": "Piezas atrapadas",
+  "summary": "Gana una pieza que no tiene escapatoria."
+ },
+ "deflection": {
+  "title": "Desviación",
+  "summary": "Atrae a un defensor lejos de lo que defiende."
+ },
+ "attraction": {
+  "title": "Atracción",
+  "summary": "Arrastra una pieza, muchas veces el rey, a una casa fatal."
+ },
+ "sacrifice": {
+  "title": "Sacrificios",
+  "summary": "Da material para obtener algo más grande."
+ },
+ "zwischenzug": {
+  "title": "Jugada intermedia",
+  "summary": "Una jugada intermedia antes de la recaptura esperada."
+ },
+ "quiet-move": {
+  "title": "Jugadas silenciosas",
+  "summary": "La jugada ganadora no es un jaque ni una captura."
+ },
+ "defensive-move": {
+  "title": "Jugadas defensivas",
+  "summary": "Encuentra la única jugada que aguanta."
+ },
+ "promotion": {
+  "title": "Coronación",
+  "summary": "Empuja un peón hasta coronar una nueva dama."
+ },
+ "underpromotion": {
+  "title": "Coronación incompleta",
+  "summary": "Corona a caballo, torre o alfil cuando la dama no es la opción correcta."
+ },
+ "rook-endgame": {
+  "title": "Finales de torre",
+  "summary": "El final más común: juego preciso con las torres."
+ },
+ "pawn-endgame": {
+  "title": "Finales de peones",
+  "summary": "Rey y peones: cada tiempo cuenta."
+ },
+ "bishop-endgame": {
+  "title": "Finales de alfiles",
+  "summary": "Alfiles de mismo o distinto color, y los peones que deciden."
+ },
+ "knight-endgame": {
+  "title": "Finales de caballos",
+  "summary": "Los caballos son de corto alcance: tiempos y carreras de peones."
+ },
+ "queen-endgame": {
+  "title": "Finales de dama",
+  "summary": "Jaques, refugio y el avance del peón pasado."
+ }
+}

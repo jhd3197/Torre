@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "X-ray",
+  "summary": "A rook, bishop or queen keeps working through an enemy piece in its way. When that piece moves or is traded off, the hidden power appears.",
+  "category": "tactics",
+  "level": "advanced",
+  "minutes": 6,
+  "requires": ["skewer"],
+  "practice": "x-ray",
+  "steps": [
+    {
+      "id": "seeing-through",
+      "kind": "explain",
+      "title": "Seeing through a piece",
+      "fen": "3q2k1/pp1r1ppp/8/8/7Q/8/PP3PPP/3R2K1 w - - 0 1",
+      "marks": [["d1", "d8"], ["d7"], ["h4", "d8"]],
+      "demo": ["h4d8", "d7d8", "d1d8"],
+      "text": "Your rook on d1 looks blocked by Black's rook on d7, but it still x-rays d8 through it. Take the queen on d8 with yours: if the rook on d7 recaptures, it leaves the file, and your rook reaches d8 with checkmate. An x-ray is a line attack or defence that passes through an enemy piece.",
+      "narration": "Your rook on d1 seems to be staring at a wall, Black's rook on d7. But think one move ahead. Queen takes queen on d8, check! [move] The black rook takes back. [move] And your rook sees right through to the back rank. Checkmate! [move] That's an x-ray.",
+      "pose": "magnify"
+    },
+    {
+      "id": "x-ray-mate",
+      "kind": "play",
+      "title": "Trade into mate",
+      "fen": "1Q3q1k/1p4pp/p4r2/8/8/1P6/P3K3/5R2 w - - 4 46",
+      "prompt": "Mate in two. Your rook on f1 sees through Black's rook on f6.",
+      "hint": "Trade queens on f8. Which black piece has to take back?",
+      "line": ["b8f8", "f6f8", "f1f8"],
+      "success": "Qxf8+ Rxf8 Rxf8#. The black rook had to recapture, which opened the f-file for your rook, and the back rank had no escape.",
+      "narration": "Your rook on f1 is aimed at f8 through Black's rook on f6. Take the queen on f8 with check. Black's rook must take back, and now your rook flies down the open file to mate.",
+      "pose": "detective"
+    },
+    {
+      "id": "x-ray-material",
+      "kind": "play",
+      "title": "Win a rook",
+      "fen": "Q3q1k1/p7/3p2p1/5nP1/8/1P2r3/P1P5/1K2R3 w - - 2 33",
+      "prompt": "Use the x-ray on the e-file to come out a rook ahead.",
+      "hint": "Your rook on e1 sees through Black's rook on e3 to e8.",
+      "line": ["a8e8", "e3e8", "e1e8"],
+      "success": "Qxe8+ Rxe8 Rxe8+. The queens come off, and when the black rook recaptures on e8 it walks into your rook's x-ray. You are left a rook up.",
+      "narration": "Black's rook on e3 is standing between your rook and the black queen. Take the queen with yours. When the black rook recaptures on e8, your rook on e1 takes it right back.",
+      "pose": "excited"
+    },
+    {
+      "id": "x-ray-quiz",
+      "kind": "choose",
+      "title": "Check the line",
+      "question": "Before trading on a square, why should you look at the whole line behind the pieces?",
+      "options": [
+        { "text": "A rook, bishop or queen behind an enemy piece may join in once that piece moves or recaptures", "correct": true, "why": "That hidden attacker or defender changes the count. An x-ray turns a fair trade into a winning one." },
+        { "text": "Pieces behind other pieces never matter", "why": "They matter a lot: the moment the front piece moves, the one behind it is back in the game." },
+        { "text": "Only knights can attack through other pieces", "why": "Knights jump over pieces, which is different. X-rays are about long-range pieces seeing along a line." }
+      ],
+      "narration": "Final question. When you count a trade, why should you check the whole line, not just the pieces touching the square? This is advanced stuff, and you handled it. Bravo!",
+      "pose": "trophy"
+    }
+  ]
+}

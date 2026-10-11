@@ -1,0 +1,890 @@
+{
+  "_domains": {
+    "percent": [
+      0,
+      100
+    ],
+    "mate": [
+      1,
+      15
+    ],
+    "seconds": [
+      2,
+      59
+    ],
+    "minutes": [
+      2,
+      60
+    ],
+    "move": [
+      1,
+      80
+    ],
+    "count": [
+      2,
+      20
+    ]
+  },
+  "grade": {
+    "brilliant": [
+      "¡Brillante!",
+      "Guau. Eso es una jugada brillante.",
+      "¡Esa merece dos signos de exclamación!",
+      "Qué hallazgo. ¡Brillante!",
+      "Eso es una genialidad.",
+      "Jugada increíble.",
+      "Genio puro.",
+      "¡Eso sí es ajedrez!",
+      "Una jugada para recordar.",
+      "Ese tipo de jugada gana partidas.",
+      "¡Espectacular!",
+      "Nadie se lo esperaba.",
+      "¡Jugadón!",
+      "¡Brutal!",
+      "¡Ahí está! Brillante.",
+      "¡Qué maravilla de jugada!"
+    ],
+    "great": [
+      "¡Gran jugada!",
+      "Gran hallazgo.",
+      "La única buena, y bien encontrada.",
+      "Jugada única. Bien vista.",
+      "Muy precisa.",
+      "Fina y fuerte.",
+      "Excelente.",
+      "Eso era lo que había que jugar.",
+      "Encontró la única jugada.",
+      "Exactamente así.",
+      "Esa es fuerte.",
+      "Jugada de primera.",
+      "Muy fina.",
+      "Precisión total.",
+      "¡Ahí está!",
+      "Eso es jugar bien."
+    ],
+    "inaccuracy": [
+      "Imprecisión.",
+      "No es lo más preciso.",
+      "Un pequeño desliz.",
+      "Un poco imprecisa.",
+      "Había algo mejor.",
+      "No es la mejor.",
+      "Un poco floja.",
+      "Mmm, una imprecisión.",
+      "Eso devuelve un poco.",
+      "Cerca, pero no es la mejor.",
+      "No es lo ideal.",
+      "Un poco lenta.",
+      "Se escapa una oportunidad.",
+      "Había más en la posición.",
+      "Un poquito imprecisa.",
+      "No es la más fina.",
+      "Se podía apretar más."
+    ],
+    "mistake": [
+      "Error.",
+      "Esa cuesta algo.",
+      "Mmm, un error.",
+      "Eso es un error de verdad.",
+      "Uy, eso daña la posición.",
+      "Un error claro.",
+      "Así se escapa la ventaja.",
+      "Así no.",
+      "Eso va a doler.",
+      "Todo se complicó.",
+      "Dirección equivocada.",
+      "Ese es un desliz de verdad.",
+      "Eso es un regalito.",
+      "Error, y de los que cuestan.",
+      "Ojo, eso no era."
+    ],
+    "blunder": [
+      "¡Error grave!",
+      "Uy, un error grave.",
+      "Ay no, eso es un error grave.",
+      "Esa es grande. Error grave.",
+      "¡Desastre! Error grave.",
+      "Uf. Eso es un error grave.",
+      "Eso lo tira todo.",
+      "Un error grave y doloroso.",
+      "¡Error enorme!",
+      "Eso lo cambia todo.",
+      "Gran error. Muy grande.",
+      "Eso cambia la partida, y no para bien.",
+      "¡Vaya colgada!",
+      "Se la ha colgado.",
+      "¡Error tremendo!",
+      "Eso es un regalo enorme."
+    ]
+  },
+  "describe": {
+    "castleShort": [
+      "Enroque corto. El rey está a salvo.",
+      "Enroque corto, rey bien guardado.",
+      "Enrocando del lado del rey.",
+      "El rey a salvo.",
+      "Enroca. Hora de conectar las torres.",
+      "Guardando al rey."
+    ],
+    "castleLong": [
+      "Enroque largo.",
+      "Enroque largo, el rey se va al flanco de dama.",
+      "Enrocando largo. Valiente.",
+      "Enroque largo, la torre salta al centro.",
+      "Enroque largo. Esto se puede poner picante."
+    ],
+    "promote": {
+      "queen": [
+        "¡Una dama nueva!",
+        "¡Corona dama!"
+      ],
+      "rook": [
+        "Corona torre."
+      ],
+      "bishop": [
+        "Corona alfil."
+      ],
+      "knight": [
+        "Corona caballo. ¡Qué astuto!"
+      ]
+    },
+    "mate": [
+      "¡Jaque mate!",
+      "Y eso es mate.",
+      "¡Mate en el tablero!",
+      "Jaque mate. Se acabó.",
+      "Ese es el final de la partida."
+    ],
+    "recapture": [
+      "Recaptura.",
+      "Retoma.",
+      "Y retoma.",
+      "Retoma enseguida.",
+      "La recaptura.",
+      "El material vuelve a estar igualado."
+    ],
+    "trade": {
+      "pawn": [
+        "Cambio de peones.",
+        "Se cambian los peones.",
+        "Un cambio de peones.",
+        "Intercambio de peones."
+      ],
+      "knight": [
+        "Cambio de caballos.",
+        "Salen los caballos.",
+        "Caballo por caballo.",
+        "Intercambio de caballos."
+      ],
+      "bishop": [
+        "Cambio de alfiles.",
+        "Salen los alfiles.",
+        "Alfil por alfil.",
+        "Intercambio de alfiles."
+      ],
+      "rook": [
+        "Cambio de torres.",
+        "Salen las torres.",
+        "Torre por torre.",
+        "Intercambio de torres."
+      ],
+      "queen": [
+        "¡Fuera las damas!",
+        "Cambio de damas.",
+        "Salen las damas. Más tranquilo ahora.",
+        "Cambio de damas. Hacia una partida más calmada."
+      ]
+    },
+    "takes": {
+      "pawn": [
+        "Captura un peón.",
+        "Se lleva un peón.",
+        "Gana un peón.",
+        "Se come un peón.",
+        "Se come el peón."
+      ],
+      "knight": [
+        "Captura el caballo.",
+        "Se lleva el caballo.",
+        "Adiós al caballo.",
+        "Cae el caballo."
+      ],
+      "bishop": [
+        "Captura el alfil.",
+        "Se lleva el alfil.",
+        "Adiós al alfil.",
+        "Cae el alfil."
+      ],
+      "rook": [
+        "¡Captura la torre!",
+        "¡Se lleva la torre!",
+        "Gana la torre."
+      ],
+      "queen": [
+        "¡Captura la dama!",
+        "¡Se lleva la dama!",
+        "¡La dama cayó!"
+      ]
+    },
+    "check": {
+      "pawn": [
+        "Jaque con el peón.",
+        "¡Jaque de peón!"
+      ],
+      "knight": [
+        "¡Jaque de caballo!",
+        "Jaque con el caballo.",
+        "Un jaque de caballo."
+      ],
+      "bishop": [
+        "Jaque de alfil.",
+        "Jaque con el alfil.",
+        "Jaque en diagonal."
+      ],
+      "rook": [
+        "Jaque de torre.",
+        "Jaque con la torre.",
+        "Jaque por la columna."
+      ],
+      "queen": [
+        "Jaque de dama.",
+        "Jaque con la dama.",
+        "Dando jaque con la dama."
+      ],
+      "king": [
+        "¡Jaque descubierto!",
+        "¡Un jaque descubierto!"
+      ]
+    },
+    "develop": {
+      "knight": [
+        "Desarrollando el caballo.",
+        "Sale el caballo.",
+        "El caballo entra en juego.",
+        "Otra pieza en juego.",
+        "Sale el caballo a jugar.",
+        "Caballo a la acción."
+      ],
+      "bishop": [
+        "Desarrollando el alfil.",
+        "Sale el alfil.",
+        "El alfil entra en juego.",
+        "Sale el alfil a jugar.",
+        "Alfil a la acción.",
+        "Otra pieza desarrollada."
+      ]
+    },
+    "openFile": [
+      "Torre a la columna abierta.",
+      "La torre toma la columna abierta.",
+      "Ocupando la columna abierta.",
+      "La torre a la columna abierta.",
+      "La torre encuentra una columna abierta."
+    ],
+    "passedPawn": [
+      "Avanza el peón pasado.",
+      "El peón pasado sigue su marcha.",
+      "Ese peón va corriendo.",
+      "El peón pasado sigue adelante.",
+      "Un paso más cerca de una nueva dama."
+    ],
+    "center": [
+      "Tomando el centro.",
+      "Un peón en el centro.",
+      "Reclamando el centro.",
+      "Ganando espacio en el centro.",
+      "Una jugada de peón central."
+    ],
+    "fork": [
+      "¡Una horquilla!",
+      "¡Ataque doble!",
+      "Eso es una horquilla.",
+      "Dos piezas atacadas a la vez.",
+      "Horquilla a dos piezas."
+    ],
+    "forkKing": {
+      "queen": [
+        "¡Horquilla! El rey y la dama.",
+        "¡Horquilla real, rey y dama!",
+        "Jaque, y la dama también está atacada."
+      ],
+      "rook": [
+        "¡Horquilla! El rey y la torre.",
+        "Jaque, y la torre también está atacada.",
+        "Rey y torre, los dos atacados."
+      ],
+      "bishop": [
+        "¡Horquilla! El rey y el alfil.",
+        "Jaque, y el alfil también está atacado.",
+        "Rey y alfil, los dos atacados."
+      ],
+      "knight": [
+        "¡Horquilla! El rey y el caballo.",
+        "Jaque, y el caballo también está atacado.",
+        "Rey y caballo, los dos atacados."
+      ]
+    },
+    "attacks": {
+      "knight": [
+        "Atacando al caballo.",
+        "El caballo está atacado.",
+        "Va por el caballo.",
+        "Toca el caballo."
+      ],
+      "bishop": [
+        "Atacando al alfil.",
+        "El alfil está atacado.",
+        "Va por el alfil.",
+        "Toca el alfil."
+      ],
+      "rook": [
+        "Atacando a la torre.",
+        "La torre está atacada.",
+        "Va por la torre.",
+        "Golpe a la torre.",
+        "Toca la torre."
+      ],
+      "queen": [
+        "Atacando a la dama.",
+        "¡La dama está atacada!",
+        "Va por la dama.",
+        "Golpe a la dama. Tiene que moverse.",
+        "¡Ojo, que toca la dama!",
+        "Toca la dama."
+      ]
+    },
+    "tempo": {
+      "knight": [
+        "Desarrollo con tempo.",
+        "El caballo sale y ataca.",
+        "Desarrollo con amenaza."
+      ],
+      "bishop": [
+        "Desarrollo con tempo.",
+        "El alfil sale y ataca.",
+        "Desarrollo con amenaza."
+      ]
+    },
+    "earlyQueen": [
+      "Sacando la dama temprano.",
+      "La dama sale temprano. Cuidado.",
+      "Una jugada de dama muy temprana.",
+      "La dama sale pronto. Puede convertirse en blanco."
+    ],
+    "kingWalk": [
+      "El rey sale. Arriesgado.",
+      "¡Paseo del rey!",
+      "El rey está en movimiento.",
+      "El rey deja su refugio."
+    ],
+    "kingCenter": [
+      "El rey sigue en el centro.",
+      "Todavía sin enrocar, el rey está en el medio.",
+      "El rey aún no ha enrocado."
+    ],
+    "sacrifice": {
+      "pawn": [
+        "¡Un sacrificio de peón!",
+        "Entrega un peón a cambio de actividad.",
+        "Se ofrece el peón."
+      ],
+      "knight": [
+        "¡Un sacrificio de caballo!",
+        "¡Entrega el caballo!",
+        "Se ofrece el caballo."
+      ],
+      "bishop": [
+        "¡Un sacrificio de alfil!",
+        "¡Entrega el alfil!",
+        "Se ofrece el alfil."
+      ],
+      "rook": [
+        "¡Un sacrificio de torre!",
+        "¡Entrega la torre!",
+        "Se ofrece la torre. ¡Valiente!"
+      ],
+      "queen": [
+        "¡Un sacrificio de dama!",
+        "¡Entrega la dama!",
+        "Se ofrece la dama. ¡Guau!"
+      ]
+    },
+    "pin": {
+      "knight": [
+        "Clavando el caballo.",
+        "El caballo está clavado.",
+        "Una clavada al caballo."
+      ],
+      "bishop": [
+        "Clavando el alfil.",
+        "El alfil está clavado.",
+        "Una clavada al alfil."
+      ],
+      "rook": [
+        "Clavando la torre.",
+        "La torre está clavada.",
+        "Una clavada a la torre."
+      ],
+      "queen": [
+        "¡Clavando la dama!",
+        "¡La dama está clavada!",
+        "¡Una clavada a la dama!"
+      ]
+    },
+    "pinKing": {
+      "knight": [
+        "El caballo queda clavado al rey.",
+        "Clavada absoluta al caballo.",
+        "El caballo no se puede mover, está clavado al rey."
+      ],
+      "bishop": [
+        "El alfil queda clavado al rey.",
+        "Clavada absoluta al alfil.",
+        "El alfil no se puede mover, está clavado al rey."
+      ],
+      "rook": [
+        "La torre queda clavada al rey.",
+        "Clavada absoluta a la torre.",
+        "La torre no se puede mover, está clavada al rey."
+      ],
+      "queen": [
+        "¡La dama queda clavada al rey!",
+        "¡Clavada absoluta a la dama!",
+        "¡La dama no se puede mover, está clavada al rey!"
+      ]
+    },
+    "checkAgain": [
+      "¡Otro jaque!",
+      "Jaque tras jaque.",
+      "Los jaques siguen llegando.",
+      "Mantiene la presión con otro jaque."
+    ],
+    "exchangeSac": [
+      "¡Sacrificio de calidad!",
+      "Entrega la calidad.",
+      "Torre por pieza menor. ¡Sacrificio de calidad!"
+    ]
+  },
+  "reason": {
+    "hangs": {
+      "knight": [
+        "Eso deja el caballo colgando.",
+        "Ahora el caballo cuelga.",
+        "El caballo queda sin defensa."
+      ],
+      "bishop": [
+        "Eso deja el alfil colgando.",
+        "Ahora el alfil cuelga.",
+        "El alfil queda sin defensa."
+      ],
+      "rook": [
+        "Eso deja la torre colgando.",
+        "Ahora la torre cuelga.",
+        "La torre queda sin defensa."
+      ],
+      "queen": [
+        "¡Eso deja la dama colgando!",
+        "¡Ahora la dama cuelga!",
+        "¡La dama queda sin defensa!"
+      ]
+    }
+  },
+  "eval": {
+    "winning": {
+      "white": [
+        "Las blancas están ganando ahora.",
+        "Las blancas tienen el control total.",
+        "Esto debería ser ganado para las blancas.",
+        "Las blancas tienen una gran ventaja ahora."
+      ],
+      "black": [
+        "Las negras están ganando ahora.",
+        "Las negras tienen el control total.",
+        "Esto debería ser ganado para las negras.",
+        "Las negras tienen una gran ventaja ahora."
+      ]
+    },
+    "better": {
+      "white": [
+        "Las blancas están un poco mejor ahora.",
+        "Ligera ventaja para las blancas.",
+        "Las blancas presionan.",
+        "La posición favorece a las blancas.",
+        "Ventajita para las blancas."
+      ],
+      "black": [
+        "Las negras están un poco mejor ahora.",
+        "Ligera ventaja para las negras.",
+        "Las negras presionan.",
+        "La posición favorece a las negras.",
+        "Ventajita para las negras."
+      ]
+    },
+    "flipped": {
+      "white": [
+        "¡Se dieron vuelta las cosas! Ahora las blancas están mejor.",
+        "Qué giro, ahora mandan las blancas.",
+        "Todo cambió. Las blancas están mejor."
+      ],
+      "black": [
+        "¡Se dieron vuelta las cosas! Ahora las negras están mejor.",
+        "Qué giro, ahora mandan las negras.",
+        "Todo cambió. Las negras están mejor."
+      ]
+    },
+    "mate": {
+      "white": [
+        "Ahora las blancas pueden forzar el mate.",
+        "Las blancas tienen mate forzado.",
+        "Las blancas tienen mate en el tablero."
+      ],
+      "black": [
+        "Ahora las negras pueden forzar el mate.",
+        "Las negras tienen mate forzado.",
+        "Las negras tienen mate en el tablero."
+      ]
+    },
+    "equal": [
+      "Igualado otra vez.",
+      "De vuelta al equilibrio.",
+      "Se recupera el equilibrio.",
+      "Ahora está parejo."
+    ],
+    "slipAway": [
+      "Así se escapa la victoria.",
+      "La ventaja ganadora se esfumó.",
+      "La ventaja se evapora."
+    ]
+  },
+  "momentum": {
+    "blunderBack": [
+      "¡Y lo devuelve enseguida!",
+      "¡Devuelve el favor!",
+      "¡Un error grave de vuelta!",
+      "Ahora fallan los dos.",
+      "El error se devuelve de inmediato."
+    ],
+    "firstCapture": [
+      "La primera captura de la partida.",
+      "¡Primera sangre!",
+      "Por fin, la primera captura.",
+      "Sale la primera pieza del tablero."
+    ],
+    "repeat": [
+      "La misma posición otra vez.",
+      "Repitiendo jugadas.",
+      "Volvemos a donde estábamos."
+    ],
+    "threefold": [
+      "Triple repetición. Eso es tablas.",
+      "Repetición, y la partida es tablas.",
+      "La posición se repite por tercera vez."
+    ]
+  },
+  "end": {
+    "white": [
+      "Y eso es todo. Ganan las blancas.",
+      "Las blancas se llevan la partida.",
+      "Se acabó, victoria de las blancas."
+    ],
+    "black": [
+      "Y eso es todo. Ganan las negras.",
+      "Las negras se llevan la partida.",
+      "Se acabó, victoria de las negras."
+    ],
+    "draw": [
+      "Y termina en tablas.",
+      "La partida es tablas.",
+      "Tablas. Reparto de honores."
+    ]
+  },
+  "free": {
+    "pawn": [
+      "¡Peón gratis!",
+      "Un peón regalado.",
+      "Ese peón estaba colgando.",
+      "Peón gratis, gracias."
+    ],
+    "knight": [
+      "¡Caballo gratis! Gracias por el regalo.",
+      "¡Un caballo regalado!",
+      "Ese caballo estaba colgando.",
+      "Caballo gratis, y sin pelear."
+    ],
+    "bishop": [
+      "¡Alfil gratis! Gracias por el regalo.",
+      "¡Un alfil regalado!",
+      "Ese alfil estaba colgando.",
+      "Alfil gratis, y sin pelear."
+    ],
+    "rook": [
+      "¡Una torre entera, gratis!",
+      "¡Torre regalada!",
+      "Esa torre estaba colgando.",
+      "Torre gratis, ¡qué regalo!"
+    ],
+    "queen": [
+      "¡La dama, gratis! Guau.",
+      "¡Una dama regalada!",
+      "¡La dama estaba colgando!",
+      "¡Dama gratis!"
+    ]
+  },
+  "poisoned": {
+    "pawn": [
+      "Cuidado, ese peón estaba envenenado.",
+      "Ese peón era un cebo.",
+      "Tomar el peón cae en la trampa."
+    ],
+    "knight": [
+      "Ese caballo parecía gratis, pero era una trampa.",
+      "Ese caballo era un cebo.",
+      "Tomar el caballo cae en la trampa."
+    ],
+    "bishop": [
+      "Ese alfil parecía gratis, pero era una trampa.",
+      "Ese alfil era un cebo.",
+      "Tomar el alfil cae en la trampa."
+    ],
+    "rook": [
+      "Esa torre parecía gratis, pero era una trampa.",
+      "Esa torre era un cebo.",
+      "Tomar la torre cae en la trampa."
+    ],
+    "queen": [
+      "La dama parecía gratis, pero era una trampa.",
+      "Esa dama era un cebo.",
+      "Tomar la dama cae en la trampa."
+    ]
+  },
+  "live": {
+    "free": {
+      "pawn": [
+        "¡Peón gratis! Gracias.",
+        "Un peón, invita la casa.",
+        "¡Gracias por el peón!"
+      ],
+      "knight": [
+        "¡Caballo gratis! Ñam, ñam.",
+        "Un caballo, invita la casa.",
+        "¡Gracias por el caballo!"
+      ],
+      "bishop": [
+        "¡Alfil gratis! Qué rico.",
+        "Un alfil, invita la casa.",
+        "¡Gracias por el alfil!"
+      ],
+      "rook": [
+        "¡Una torre gratis! Qué regalo.",
+        "Una torre, invita la casa.",
+        "¡Gracias por la torre!"
+      ],
+      "queen": [
+        "¡La dama! ¡Gratis!",
+        "Una dama, invita la casa.",
+        "¡Gracias por la dama!"
+      ]
+    },
+    "took": {
+      "pawn": [
+        "Un peoncito menos.",
+        "Peón para nosotros.",
+        "Cayó un peón."
+      ],
+      "knight": [
+        "Cayó el caballo.",
+        "El caballo es nuestro.",
+        "Caballo capturado."
+      ],
+      "bishop": [
+        "Alfil a la caja.",
+        "El alfil es nuestro.",
+        "Alfil capturado."
+      ],
+      "rook": [
+        "Torre a la caja.",
+        "¡La torre es nuestra!",
+        "¡Torre capturada!"
+      ],
+      "queen": [
+        "¡Cayó la dama! A la caja.",
+        "¡La dama es nuestra!",
+        "¡Dama capturada!"
+      ]
+    },
+    "hung": {
+      "pawn": [
+        "Uy, ese peón estaba colgando.",
+        "Ese peón no estaba protegido.",
+        "Cuidado, ese peón estaba suelto."
+      ],
+      "knight": [
+        "Ay, dejaste tu caballo colgando.",
+        "Tu caballo no estaba protegido.",
+        "Cuidado, tu caballo estaba suelto."
+      ],
+      "bishop": [
+        "Ay, dejaste tu alfil colgando.",
+        "Tu alfil no estaba protegido.",
+        "Cuidado, tu alfil estaba suelto."
+      ],
+      "rook": [
+        "¡Tu torre estaba colgando! Ay.",
+        "Tu torre no estaba protegida.",
+        "Cuidado, tu torre estaba suelta."
+      ],
+      "queen": [
+        "¡Tu dama estaba colgando! Ay no.",
+        "¡Tu dama no estaba protegida!",
+        "¡Ay no, la dama estaba suelta!"
+      ]
+    },
+    "lost": {
+      "pawn": [
+        "Se llevaron un peón.",
+        "Perdimos un peón.",
+        "Cayó uno de tus peones."
+      ],
+      "knight": [
+        "Adiós a tu caballo.",
+        "Se llevaron tu caballo.",
+        "Perdiste el caballo."
+      ],
+      "bishop": [
+        "Adiós a tu alfil.",
+        "Se llevaron tu alfil.",
+        "Perdiste el alfil."
+      ],
+      "rook": [
+        "Adiós a tu torre.",
+        "Se llevaron tu torre.",
+        "Perdiste la torre."
+      ],
+      "queen": [
+        "Adiós a tu dama.",
+        "Se llevaron tu dama.",
+        "Perdiste la dama."
+      ]
+    }
+  },
+  "better": [
+    "La mejor jugada era",
+    "El motor quería",
+    "Lo correcto era",
+    "El motor prefería",
+    "Había que jugar"
+  ],
+  "move": {
+    "to": {
+      "pawn": "peón a {{square}}",
+      "knight": "caballo a {{square}}",
+      "bishop": "alfil a {{square}}",
+      "rook": "torre a {{square}}",
+      "queen": "dama a {{square}}",
+      "king": "rey a {{square}}"
+    },
+    "takes": {
+      "pawn": "peón captura en {{square}}",
+      "knight": "caballo captura en {{square}}",
+      "bishop": "alfil captura en {{square}}",
+      "rook": "torre captura en {{square}}",
+      "queen": "dama captura en {{square}}",
+      "king": "rey captura en {{square}}"
+    },
+    "castleShort": "enrocar corto",
+    "castleLong": "enrocar largo",
+    "promote": {
+      "queen": "coronando dama",
+      "rook": "coronando torre",
+      "bishop": "coronando alfil",
+      "knight": "coronando caballo"
+    },
+    "check": "con jaque",
+    "mate": "jaque mate"
+  },
+  "missedMate": {
+    "1": "Aquí había mate en una.",
+    "other": "Aquí había mate en {{mate}}."
+  },
+  "opening": [
+    "Apertura: {{opening}}.",
+    "Sobre el tablero: {{opening}}."
+  ],
+  "outOfBook": [
+    "Y ahora salimos del libro.",
+    "Aquí se acaba la teoría.",
+    "Ahora toca pensar por cuenta propia.",
+    "Fuera del libro de aperturas."
+  ],
+  "clock": {
+    "tookYou": [
+      "Eso tomó",
+      "Una pensada de",
+      "Esa jugada tomó"
+    ],
+    "seconds": {
+      "1": "un segundo",
+      "other": "{{seconds}} segundos"
+    },
+    "minutes": {
+      "1": "un minuto",
+      "other": "{{minutes}} minutos"
+    },
+    "worthIt": [
+      "Valió la pena.",
+      "Tiempo bien invertido.",
+      "Y dio resultado.",
+      "Buen uso del reloj."
+    ],
+    "stillWrong": [
+      "Y aun así salió mal.",
+      "Tanto tiempo, y aun así un desliz.",
+      "La pensada larga no ayudó.",
+      "Mucho tiempo, pero la elección equivocada."
+    ],
+    "fastWrong": [
+      "Rápido y mal. Tómate tu tiempo en jugadas así.",
+      "Demasiado rápido. Esa pedía más tiempo.",
+      "Jugada rápida, y costó algo.",
+      "Una jugada rápida, y cara."
+    ],
+    "lowMinute": [
+      "Menos de un minuto en el reloj.",
+      "Queda menos de un minuto.",
+      "El reloj se está acabando."
+    ],
+    "lowSeconds": [
+      "¡Solo quedan segundos!",
+      "¡Apuro de tiempo!",
+      "¡Casi se acaba el reloj!"
+    ]
+  },
+  "recap": {
+    "won": "¡Ganaste!",
+    "lost": "Esta la perdiste.",
+    "drew": "Es tablas.",
+    "comeback": "Ibas muy mal en la jugada {{move}}, y aun así le diste la vuelta.",
+    "collapse": "Ibas ganando en la jugada {{move}}, pero se te escapó.",
+    "slippedToDraw": "Ibas ganando en la jugada {{move}}, pero se te escapó a tablas.",
+    "saved": "Estabas en problemas en la jugada {{move}}, y salvaste las tablas.",
+    "control": "Tuviste el control de principio a fin.",
+    "accuracy": "{{percent}} por ciento de precisión.",
+    "brilliant": {
+      "1": "Una jugada brillante.",
+      "other": "{{count}} jugadas brillantes."
+    },
+    "blunder": {
+      "1": "Un error grave.",
+      "other": "{{count}} errores graves."
+    },
+    "mistake": {
+      "1": "Un error.",
+      "other": "{{count}} errores."
+    },
+    "noBlunders": "Y ni un solo error grave.",
+    "longestThink": "Tu pensada más larga fue de",
+    "onMove": "en la jugada {{move}}",
+    "paidOff": "y valió la pena.",
+    "didNotPayOff": "y aun así salió mal."
+  }
+}

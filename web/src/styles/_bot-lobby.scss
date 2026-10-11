@@ -1,0 +1,936 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Match the supplied Torre New Game export, scoped to the Play lobby. */
+body[data-page="bots"] {
+  background: $neutral-50;
+  color: $neutral-950;
+  font-family: $font-sans;
+  font-size: $fs-base;
+  line-height: 1.5;
+}
+body[data-page="bots"] main {
+  max-width: none;
+}
+#bot-lobby {
+  padding-bottom: 56px;
+}
+body[data-page="bots"] .rail {
+  width: 244px;
+  padding: 26px 20px;
+  background: var(--forest);
+  color: $sage-200;
+}
+body[data-page="bots"] .brand {
+  gap: 12px;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: $fs-3xl;
+  line-height: 1.05;
+  letter-spacing: -0.25px;
+  color: $neutral-50;
+}
+body[data-page="bots"] .rail nav {
+  margin-top: 28px;
+  gap: 4px;
+}
+body[data-page="bots"] .rail nav a {
+  padding: 12px 14px;
+  gap: 13px;
+  border-radius: 11px;
+  font-size: $fs-base;
+  color: $sage-200;
+  line-height: 22px;
+}
+body[data-page="bots"] .rail nav a.active {
+  background: $moss-200;
+  color: $moss-900;
+  font-weight: 500;
+}
+body[data-page="bots"] .rail nav a > span:first-child {
+  font-size: $fs-2xl;
+  width: 19px;
+}
+body[data-page="bots"] .profile {
+  display: flex;
+  padding-top: 22px;
+  gap: 12px;
+  border-top-color: rgba($white, 0.12);
+  font-size: $fs-md;
+  color: $sage-100;
+}
+body[data-page="bots"] .avatar {
+  width: 34px;
+  height: 34px;
+  background: $brand-green;
+  color: $moss-200;
+  border: 0;
+  font: 500 #{$fs-sm} $font-sans;
+}
+body[data-page="bots"] .profile > .online-dot {
+  background: $green-400;
+  width: 7px;
+  height: 7px;
+}
+#bot-lobby button,
+#bot-lobby input {
+  font-family: inherit;
+}
+#bot-lobby button {
+  transition:
+    background 0.16s,
+    border-color 0.16s,
+    color 0.16s;
+}
+#bot-lobby button:hover:not(:disabled) {
+  filter: none;
+}
+#bot-lobby button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+.bots-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $neutral-200;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.bots-header h1 {
+  font: 600 #{$fs-5xl}/ 1.5 $font-sans;
+  letter-spacing: -0.66px;
+  margin: 0;
+  color: $neutral-950;
+}
+.bots-header p {
+  font-size: $fs-md;
+  color: $sage-600;
+  margin: 4px 0 0;
+}
+.bots-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.bots-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  border: 1px solid $sage-200;
+  background: $neutral-50;
+  font-size: $fs-md;
+  line-height: 21px;
+  color: $neutral-950;
+}
+.bots-button:hover {
+  background: $sage-100;
+}
+.bots-button.solid {
+  border-color: $moss-800;
+  background: $moss-800;
+  color: $sage-50;
+  font-weight: 500;
+}
+.bots-button.solid:hover:not(:disabled) {
+  background: $moss-700;
+}
+.bots-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.bots-segments {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: $neutral-50;
+  flex-wrap: wrap;
+}
+.bots-segments button {
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 0;
+  background: transparent;
+  font-size: $fs-md;
+  line-height: 19.5px;
+  white-space: nowrap;
+  color: $sage-600;
+}
+.bots-segments button.selected {
+  background: $white;
+  color: $neutral-950;
+  font-weight: 500;
+}
+// Only the options you could switch to light up; the chosen one already sits on its pill.
+.bots-segments button:hover:not(:disabled, .selected, [aria-pressed="true"]) {
+  background: $sage-100;
+}
+.bots-segments button span {
+  font: #{$fs-xs} $font-mono;
+  opacity: 0.6;
+  margin-left: 3px;
+}
+#bot-search {
+  margin-left: auto;
+  width: 190px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  border: 1px solid $sage-200;
+  background: $neutral-50;
+  font-size: $fs-md;
+  line-height: 21px;
+  color: $neutral-950;
+}
+#bot-search::placeholder {
+  color: $sage-400;
+}
+.bots-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 356px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 18px;
+}
+#bot-roster {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.bot-group-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.bot-group-heading h2 {
+  font: 600 #{$fs-xl}/ 1.5 $font-sans;
+  letter-spacing: -0.17px;
+  margin: 0;
+}
+.bot-group-heading > span {
+  font-size: $fs-md;
+  color: $sage-500;
+}
+.bot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+  gap: 12px;
+}
+.bot-card {
+  min-width: 0;
+  text-align: left;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-height: 124px;
+  background: $neutral-50;
+  border: 1px solid $neutral-100;
+  color: $neutral-950;
+}
+.bot-card:hover {
+  border-color: $moss-300;
+  background: $neutral-50;
+}
+// Selected stays light: the figurines are drawn for a pale page, and read muddy on dark green.
+.bot-card.selected {
+  background: $sage-50;
+  border-color: $moss-600;
+  box-shadow: 0 0 0 1px $moss-600;
+  color: $neutral-950;
+}
+.bot-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.bot-icon {
+  font-family: "DejaVu Sans", "Segoe UI Symbol", "Apple Symbols", serif;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: $fs-xl;
+  background: $sage-100;
+  color: $moss-800;
+}
+.bot-identity {
+  min-width: 0;
+  flex: 1;
+}
+.bot-identity strong {
+  display: block;
+  font-size: $fs-md;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bot-identity small {
+  display: block;
+  font: #{$fs-xs}/ 1.5 $font-sans;
+  color: $sage-600;
+}
+.bot-rating {
+  font: #{$fs-sm}/ 1.5 $font-mono;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: $sage-100;
+  color: $moss-800;
+}
+.bot-card.selected .bot-icon,
+.bot-card.selected .bot-rating {
+  background: $moss-200;
+  color: $moss-800;
+}
+// A roster card with a dashed edge: the robot teacher, then what it does.
+.bot-card.bot-train-tile {
+  border: 1px dashed $sage-300;
+}
+.bot-card.bot-train-tile:hover {
+  border-color: $moss-500;
+}
+.bot-train-tile strong {
+  font-size: $fs-md;
+  font-weight: 600;
+}
+.bot-train-tile small {
+  font-size: $fs-xs;
+  color: $sage-600;
+  line-height: 1.4;
+}
+#bot-setup {
+  position: sticky;
+  top: 24px;
+  min-width: 0;
+}
+.bot-setup-card {
+  border-radius: 12px;
+  border: 1px solid $neutral-100;
+  background: $neutral-50;
+  overflow: hidden;
+}
+.bot-detail-header {
+  padding: 18px;
+  border-bottom: 1px solid $neutral-100;
+  color: $sage-800;
+}
+.bot-detail-header .bot-card-top {
+  gap: 12px;
+  margin-top: 14px;
+}
+/* The selected bot, large: the same picture tile as its roster card (selected), so every bot's
+   profile reads alike, characters, legends and engines. */
+.bot-stage {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: end center;
+  height: 232px;
+  padding-top: 10px;
+  border-radius: 12px;
+  background: $sage-50;
+  overflow: hidden;
+}
+.bot-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  animation: bot-stage-rise 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+/* A legend in front of their venue: the diorama fills the tile, softly, and the figurine
+   stands over it in the same grid cell. */
+.bot-stage.has-venue > img {
+  grid-area: 1 / 1;
+}
+.bot-stage.has-venue > img:not(.bot-stage-venue) {
+  position: relative; // the faded venue forms its own layer (opacity), so lift the figure above it
+  z-index: 1;
+  height: 88%;
+  align-self: end;
+}
+.bot-stage .bot-stage-venue {
+  object-position: 50% 40%;
+  opacity: 0.5;
+  animation: none;
+}
+.bot-stage .bot-icon {
+  place-self: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  font-size: $fs-5xl;
+}
+@keyframes bot-stage-rise {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@include reduced-motion {
+  .bot-stage img {
+    animation: none;
+  }
+}
+.bot-detail-header .bot-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  background: $moss-200;
+  color: $moss-800;
+  font-size: $fs-3xl;
+}
+.bot-detail-header strong {
+  font-size: $fs-xl;
+  color: $neutral-950;
+}
+.bot-detail-header small {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.bot-detail-rating {
+  margin-left: auto;
+  font: #{$fs-2xl} $font-mono;
+  color: $moss-700;
+}
+.bot-detail-header p {
+  font-size: $fs-md;
+  line-height: 1.5;
+  margin: 13px 0 0;
+  color: $sage-800;
+}
+.bot-styles {
+  padding: 16px 18px;
+  border-bottom: 1px solid $neutral-100;
+}
+.bot-style {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.bot-style > span {
+  font-size: $fs-sm;
+  color: $sage-600;
+  width: 86px;
+  flex: none;
+}
+.bot-style > i {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: $neutral-100;
+  overflow: hidden;
+}
+.bot-style b {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+.bot-style small {
+  font: #{$fs-xs} $font-sans;
+  color: $sage-500;
+  width: 34px;
+  text-align: right;
+}
+.bot-data-note {
+  font: #{$fs-xs}/ 1.6 $font-sans;
+  color: $sage-500;
+  margin-top: 10px;
+}
+.bot-engine-available {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $fs-md;
+  color: $moss-700;
+}
+.bot-engine-available i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $green-600;
+}
+.bot-game-options {
+  padding: 16px 18px;
+}
+.bot-field-label {
+  display: block;
+  font-size: $fs-sm;
+  color: $sage-500;
+  margin: 4px 0 8px;
+  font-weight: 650;
+}
+.bot-field-label > span {
+  float: right;
+  text-transform: none;
+  font-weight: 650;
+}
+// A tinted track with a solid green pill, so the chosen option stands out from the rest.
+.bot-game-options .bots-segments {
+  margin-bottom: 14px;
+  background: $sage-100;
+}
+.bot-game-options .bots-segments::before {
+  background: $moss-800;
+  box-shadow: 0 2px 0 $moss-900;
+}
+#bot-lobby .bot-game-options .bots-segments button.selected {
+  color: $white;
+}
+.bot-game-options .bots-segments button {
+  flex: 1;
+  padding: 7px 6px;
+  font-size: $fs-sm;
+}
+.bot-levels button.selected {
+  background: $moss-800;
+  color: $sage-50;
+}
+.bot-option-unavailable {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid $neutral-100;
+  font-size: $fs-md;
+}
+.bot-option-unavailable > span:last-child {
+  margin-left: auto;
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+.bot-start {
+  width: 100%;
+  margin-top: 14px;
+  padding: 13px 16px;
+  font-size: $fs-base;
+}
+.bot-start-summary {
+  font: #{$fs-xs}/ 1.5 $font-sans;
+  color: $sage-500;
+  margin: 9px 0 0;
+  text-align: center;
+}
+.bot-preview-note {
+  margin: 10px 0 0;
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $peach-600;
+}
+.bot-stockfish-link {
+  display: block;
+  margin: 12px auto 0;
+  border: 0;
+  background: transparent;
+  color: $moss-700;
+  font-size: $fs-md;
+}
+.bot-training {
+  border-radius: 12px;
+  border: 1px solid $neutral-100;
+  background: $neutral-50;
+  padding: 18px;
+}
+.bot-training .bot-group-heading button {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: $sage-600;
+  font-size: $fs-md;
+}
+.bot-training p {
+  font-size: $fs-md;
+  color: $sage-600;
+  margin: 0 0 14px;
+}
+.bot-training-source {
+  display: flex;
+  justify-content: space-between;
+  border-block: 1px solid $neutral-100;
+  padding: 14px 0;
+  margin: 14px 0;
+  font-size: $fs-md;
+}
+.bot-training-source strong {
+  font: #{$fs-md} $font-sans;
+}
+.bot-training .bots-button {
+  width: 100%;
+  margin-top: 10px;
+}
+.bots-empty {
+  font-size: $fs-md;
+  color: $sage-500;
+}
+.rail nav a > span:first-child svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+}
+.bot-setup-options > summary {
+  display: none;
+  cursor: pointer;
+  padding: 14px 18px;
+  font-size: $fs-md;
+  list-style: none;
+}
+.bot-setup-options > summary::-webkit-details-marker {
+  display: none;
+}
+.bot-setup-options > summary span {
+  float: right;
+  color: $sage-600;
+  font-size: $fs-sm;
+}
+.bot-setup-options > summary b {
+  margin-left: 12px;
+  font-weight: 400;
+}
+@include down(xl) {
+  .bot-setup-options > summary {
+    display: block;
+  }
+  .bot-setup-options[open] > summary {
+    border-bottom: 1px solid $neutral-100;
+  }
+  .bot-setup-options[open] > summary b {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+}
+@include down(xl) {
+  body[data-page="bots"] main {
+    padding-inline: 26px;
+  }
+  .bots-columns {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+  .bot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+}
+@include down(xl) {
+  .bots-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #bot-setup {
+    position: static;
+    grid-row: 1;
+  }
+  .bot-setup-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .bot-detail-header {
+    grid-column: 1;
+  }
+  .bot-styles {
+    grid-column: 1;
+    border-bottom: 0;
+  }
+  .bot-game-options {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .bots-header-actions {
+    margin-left: 0;
+  }
+}
+@include down(lg) {
+  body[data-page="bots"] .rail {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  body[data-page="bots"] main {
+    margin: 0;
+    padding: 20px 16px 40px;
+  }
+  body[data-page="bots"] .brand > span:last-child {
+    display: block;
+    font-size: $fs-3xl;
+  }
+  body[data-page="bots"] .rail nav {
+    display: flex;
+    margin: 0 0 0 auto;
+    gap: 4px;
+  }
+  body[data-page="bots"] .rail nav a {
+    font-size: $fs-md;
+    padding: 10px;
+    gap: 8px;
+  }
+  body[data-page="bots"] .profile {
+    display: none;
+  }
+  .bots-header {
+    gap: 16px;
+  }
+  .bots-header h1 {
+    font-size: $fs-4xl;
+  }
+  .bots-header p {
+    font-size: $fs-md;
+  }
+  .bots-header-actions {
+    margin-left: auto;
+  }
+  .bots-columns {
+    gap: 20px;
+  }
+}
+@include down(sm) {
+  body[data-page="bots"] .rail {
+    gap: 12px;
+    padding: 18px 16px;
+  }
+  body[data-page="bots"] .brand {
+    margin-right: auto;
+  }
+  body[data-page="bots"] .rail nav {
+    order: 3;
+    flex-basis: 100%;
+    margin: 0;
+  }
+  body[data-page="bots"] .rail nav a {
+    flex: 1;
+    justify-content: center;
+  }
+  .bots-header-actions {
+    margin: 0;
+    gap: 8px;
+  }
+  .bots-button {
+    padding: 9px 12px;
+    font-size: $fs-md;
+  }
+  .bots-filters {
+    gap: 8px;
+  }
+  .bots-filters .bots-segments {
+    width: 100%;
+    gap: 1px;
+  }
+  .bots-filters .bots-segments button {
+    flex: 1;
+    padding: 7px 6px;
+    font-size: $fs-sm;
+  }
+  .bots-segments button span {
+    font-size: $fs-2xs;
+    margin-left: 1px;
+  }
+  #bot-search {
+    width: 100%;
+    margin: 0;
+  }
+  .bot-setup-card {
+    display: block;
+  }
+  .bot-styles {
+    border-bottom: 1px solid $neutral-100;
+  }
+  .bot-grid {
+    grid-template-columns: 1fr;
+  }
+  .bot-group-heading {
+    gap: 8px;
+  }
+  .bot-group-heading > span {
+    font-size: $fs-sm;
+  }
+  .bot-card {
+    min-height: 140px;
+  }
+  .bot-detail-header strong {
+    white-space: normal;
+  }
+  .bots-columns {
+    display: flex;
+    flex-direction: column;
+  }
+  #bot-setup {
+    width: 100%;
+    order: -1;
+  }
+  #bot-roster {
+    width: 100%;
+  }
+}
+@include down(xl) {
+  .bot-setup-card {
+    display: block;
+  }
+  .bot-styles {
+    display: none;
+  }
+  .bot-game-options {
+    display: block;
+  }
+}
+/* Roster cards are picture-first: the character, their name and rating; the rest lives in the detail panel. */
+.bot-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.bot-card {
+  min-height: 0;
+  padding: 10px 10px 12px;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+.bot-picture {
+  display: grid;
+  // A fixed track: without it the row grows to the image's 3:4 height and the square clips the feet.
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: end center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding-top: 6px;
+  border-radius: 10px;
+  background: $sage-50;
+  overflow: hidden;
+}
+.bot-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+.bot-picture .bot-icon {
+  place-self: center;
+  width: 56px;
+  height: 56px;
+  font-size: $fs-4xl;
+}
+.bot-card.selected .bot-picture {
+  background: $moss-200;
+}
+.bot-card-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+.bot-card-name strong {
+  max-width: 100%;
+  font-size: $fs-md;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// Name, rating, stars: one line each.
+.bot-card-name {
+  flex-direction: column;
+  gap: 4px;
+}
+.bot-card-name .bot-rating {
+  flex: none;
+  font-size: $fs-xs;
+  padding: 1px 8px;
+}
+@include down(xl) {
+  .bot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+  }
+}
+@include down(sm) {
+  .bot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bot-card {
+    min-height: 0;
+  }
+}
+.bot-week {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bot-week h3 {
+  margin: 0 0 8px;
+  font: 600 #{$fs-md}/ 1.4 $font-sans;
+  color: $peach-600;
+}
+.bot-week h3 small {
+  margin-left: 6px;
+  font: #{$fs-xs}/ 1.4 $font-sans;
+  color: $sage-500;
+}
+/* A legend whose games are not on disk yet: their card, dimmed, with a button to fetch them. */
+.bot-card.waiting img {
+  filter: grayscale(0.85) opacity(0.5);
+}
+.bot-card.waiting strong {
+  color: $sage-500;
+}
+.bot-card.waiting small {
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+.bot-card.waiting button {
+  padding: 3px 10px;
+  border-radius: 8px;
+  border: 1px solid $sage-200;
+  background: $white;
+  font-size: $fs-xs;
+  color: $moss-800;
+  cursor: pointer;
+}
+.bot-card.waiting button:hover:not(:disabled) {
+  background: $sage-100;
+}
+
+// The coach toggle and the strength set for each phase.
+.bot-option-note {
+  margin: 6px 0 2px;
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+.bot-phase-sliders {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+.bot-phase-sliders label {
+  display: grid;
+  grid-template-columns: 96px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  font-size: $fs-sm;
+}
+.bot-phase-sliders b {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+

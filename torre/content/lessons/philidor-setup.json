@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "The Philidor setup",
+  "summary": "Meet 1.e4 e5 2.Nf3 with ...d6: a solid wall around e5, then ...Nf6, ...Be7, castle and ...c6.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Philidor Defense",
+  "order": 1,
+  "orientation": "black",
+  "steps": [
+    {
+      "id": "the-move",
+      "kind": "explain",
+      "title": "Pawn to d6",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "demo": ["e2e4", "e7e5", "g1f3", "d7d6"],
+      "marks": [["d6", "e5"], ["f3", "e5"]],
+      "text": "White's knight on f3 attacks your pawn on e5. In the Philidor Defense you guard it with the d-pawn: 2...d6. It is named after François-André Danican Philidor, the strongest chess player of the 18th century, who was also a successful opera composer. The move is solid: your e5 pawn is safe and your light bishop can come out.",
+      "narration": "Pawn to e4. [move] Pawn to e5. [move] White's knight attacks your pawn on e5. [move] And you calmly protect it with the d-pawn. [move] That's the Philidor Defense, named after François-André Philidor, the best chess player of the eighteenth century and an opera composer too.",
+      "pose": "present"
+    },
+    {
+      "id": "the-wall",
+      "kind": "explain",
+      "title": "Build the wall",
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "demo": ["d2d4", "g8f6", "b1c3", "b8d7", "f1c4", "f8e7", "e1g1", "e8g8", "f1e1", "c7c6"],
+      "marks": [["e5"], ["d6"], ["d7"], ["c6"]],
+      "text": "Here is the usual plan. The knight goes to f6 to hit e4, the other knight to d7 to guard e5 a second time, the bishop to e7, and you castle. Then the pawn to c6 gives your queen the c7 square and gets ready for ...b5 or ...d5 later. It is not flashy, but your pieces stand together and e5 holds.",
+      "narration": "Here's the Philidor wall. White plays pawn to d4. [move] Knight to f6. [move] Knight to c3. [move] The other knight to d7, to protect e5 again. [move] Bishop to c4. [move] Bishop to e7. [move] White castles. [move] So do you. [move] Rook to e1. [move] And pawn to c6. [move] Your pieces stand shoulder to shoulder, and e5 doesn't fall.",
+      "pose": "shield"
+    },
+    {
+      "id": "win-it-back",
+      "kind": "play",
+      "title": "White takes on e5",
+      "fen": "rnbqkb1r/ppp2ppp/3p1n2/4P3/4P3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+      "prompt": "White captured on e5. Win a pawn back right away, then save your knight.",
+      "hint": "Your knight on f6 can take a pawn too. If White's queen attacks it, step back to a safe square.",
+      "line": ["f6e4", "d1d5", "e4c5"],
+      "success": "Nxe4 wins the pawn back, and when the queen attacks the knight, Nc5 brings it to a safe square. Material is level and your pieces are ready to come out.",
+      "narration": "White took your pawn on e5. Don't panic and don't take back with the d-pawn. Your knight can grab White's e-pawn instead, and if it gets chased, it steps to safety.",
+      "pose": "detective"
+    },
+    {
+      "id": "be7-guards-g5",
+      "kind": "play",
+      "title": "The knight jumps too early",
+      "fen": "rnbqk1nr/ppp1bppp/3p4/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq - 3 4",
+      "prompt": "White jumped the knight to g5 to aim at f7. Punish it.",
+      "hint": "Which of your pieces already looks at g5?",
+      "line": ["e7g5"],
+      "success": "Your bishop on e7 guards g5, so the knight was simply hanging. That's one more reason ...Be7 belongs in the Philidor setup.",
+      "narration": "White's knight leapt to g5 to attack f7. But look at your bishop on e7. It's already watching that square.",
+      "pose": "magnify"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What does the pawn on d6 do in the Philidor Defense?",
+      "options": [
+        { "text": "It protects the pawn on e5 and opens the way for the light-squared bishop", "correct": true, "why": "Exactly. e5 is safe, and your bishop on c8 can now come out." },
+        { "text": "It attacks White's pawn on e4", "why": "A pawn on d6 attacks c5 and e5, not e4. The knight on f6 is the piece that hits e4." },
+        { "text": "It prepares to castle queenside", "why": "Philidor players usually castle short, after ...Nf6 and ...Be7." }
+      ],
+      "narration": "Last question. What is the little pawn on d6 doing for you? You've got this. Lovely work!",
+      "pose": "trophy"
+    }
+  ]
+}

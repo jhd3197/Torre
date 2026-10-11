@@ -1,0 +1,180 @@
+{
+  "label": "Arena",
+  "title": "Arena",
+  "enginesLink": "Engines",
+  "vs": "vs",
+  "start": "Start match",
+  "starting": "Starting…",
+  "stop": "Stop match",
+  "close": "Back to the live match",
+  "eloGap": "{{name}} ≈ +{{elo}} Elo",
+  "setup": {
+    "label": "Match setup",
+    "title": "Match setup",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "choose": "Choose a player",
+    "change": "Change player",
+    "pickerLabel": "Players for {{seat}}",
+    "legendEra": "Legends · {{era}}",
+    "anyStrength": "any strength",
+    "legends": "Legends",
+    "engines": "Engines",
+    "humanLike": "Human-like",
+    "strength": "Strength",
+    "fullStrength": "Full strength",
+    "rating": "Plays at {{elo}}",
+    "ccrl": "CCRL {{elo}}",
+    "modelNote": "Trained on human games to play like a {{elo}} player.",
+    "ratings": "Rating",
+    "nodeLimit": "Node limit (smoother)",
+    "nodes": "{{nodes}} nodes",
+    "nodesRated": "{{nodes}} nodes (~{{elo}})",
+    "legendNote_one": "Opens with the moves from their {{games}} game, then Stockfish plays at {{elo}}.",
+    "legendNote_other": "Opens with the moves from their {{games}} games, then Stockfish plays at {{elo}}.",
+    "legendNoteUnrated_one": "Opens with the moves from their {{games}} game, then Stockfish plays at {{elo}} (their era had no ratings).",
+    "legendNoteUnrated_other": "Opens with the moves from their {{games}} games, then Stockfish plays at {{elo}} (their era had no ratings).",
+    "games": "Games",
+    "movetime": "Time per move",
+    "seconds": "{{seconds}} s",
+    "openings": "Openings",
+    "openingsStart": "Start position",
+    "openingsVaried": "Varied openings",
+    "openingsBook": "Book openings",
+    "pace": "Pace",
+    "paceWatch": "Watch",
+    "paceFast": "Fast",
+    "sprt": "Stop early",
+    "sprtOff": "Off",
+    "sprtOn": "When decided",
+    "startHint": "Every game starts from the first move, with colors alternating. Legends pick from their real repertoire, so their games vary on their own.",
+    "variedHint": "Each pair of games starts from the same opening line, with each player taking both sides of it.",
+    "bookHint": "Each pair of games starts from a random line the legends played often, with each player taking both sides of it.",
+    "sprtHint": "The match ends as soon as the result is statistically clear (SPRT, 0 vs 50 Elo), so the game count is only a maximum.",
+    "eras": {
+      "romantic": "Romantic",
+      "golden": "Golden Age",
+      "cold-war": "Cold War",
+      "modern": "Modern"
+    }
+  },
+  "kinds": {
+    "legend": "Legend",
+    "engine": "Engine",
+    "model": "Human-like"
+  },
+  "predict": {
+    "title": "Expected score",
+    "label": "Expected score: {{first}} {{a}}, {{second}} {{b}}",
+    "even": "Even on paper",
+    "gap": "{{name}} is rated {{points}} points higher",
+    "unknown": "No rating to compare yet"
+  },
+  "legends": {
+    "more_one": "Add {{count}} more legend",
+    "more_other": "Add {{count}} more legends",
+    "source": "Downloads a legend’s games from PGN Mentor. Only the moves are used.",
+    "downloading": "Downloading…"
+  },
+  "player": {
+    "legend": "their games, then {{engine}} {{elo}}",
+    "evalTitle": "This engine's own evaluation (White's view)"
+  },
+  "score": {
+    "label": "Match score",
+    "preparing": "Reading the legends' games…",
+    "game": "Game {{number}} of {{total}}",
+    "finished_one": "Match over after {{count}} game",
+    "finished_other": "Match over after {{count}} games",
+    "stopped_one": "Stopped after {{count}} game",
+    "stopped_other": "Stopped after {{count}} games",
+    "failed": "The match stopped: {{error}}"
+  },
+  "book": {
+    "line": "{{name}} played this in {{count}} of {{total}} of their games from here, one of them against {{opponent}} ({{year}}).",
+    "opening": "Still in the opening line both players were given."
+  },
+  "games": {
+    "white": "White",
+    "black": "Black",
+    "result": "Result",
+    "moves": "Moves",
+    "ending": "How it ended",
+    "replay": "Replay",
+    "book_one": "{{count}} move from their games",
+    "book_other": "{{count}} moves from their games"
+  },
+  "endings": {
+    "checkmate": "Checkmate",
+    "stalemate": "Stalemate",
+    "insufficient_material": "Insufficient material",
+    "seventyfive_moves": "75-move rule",
+    "fivefold_repetition": "Fivefold repetition",
+    "fifty_moves": "50-move rule",
+    "threefold_repetition": "Threefold repetition",
+    "move_limit": "Move limit (draw)"
+  },
+  "openings": {
+    "italian": "Italian Game",
+    "ruy-lopez": "Ruy Lopez",
+    "sicilian-najdorf": "Sicilian Najdorf",
+    "french": "French Defense",
+    "caro-kann": "Caro-Kann",
+    "scandinavian": "Scandinavian",
+    "queens-gambit": "Queen's Gambit Declined",
+    "slav": "Slav Defense",
+    "kings-indian": "King's Indian",
+    "nimzo-indian": "Nimzo-Indian",
+    "english": "English Opening",
+    "london": "London System"
+  },
+  "recent": {
+    "title": "Recent matches",
+    "games_one": "{{count}} game",
+    "games_other": "{{count}} games",
+    "stopped": "stopped early",
+    "sprt": "decided early"
+  },
+  "sprt": {
+    "H1": "SPRT: {{name}} is stronger (LLR {{llr}})",
+    "H0": "SPRT: {{name}} is not {{elo1}} Elo stronger (LLR {{llr}})",
+    "open": "SPRT: LLR {{llr}} of {{lower}} to {{upper}}"
+  },
+  "ladder": {
+    "title": "Ladder",
+    "rankLabel": "Rank {{rank}}",
+    "rangeText": "95% range {{low}}–{{high}}",
+    "scoreText": "{{score}}% score",
+    "games": "Wins · draws · losses",
+    "nominal": "set at {{elo}}",
+    "hint_one": "Fitted over {{count}} Arena game. Engines held to a rating anchor the scale; more games narrow the range.",
+    "hint_other": "Fitted over {{count}} Arena games. Engines held to a rating anchor the scale; more games narrow the range.",
+    "groups_one": "",
+    "groups_other": "{{count}} groups have never played each other, so compare ratings only within a group."
+  },
+  "chance": {
+    "label": "{{first}} {{firstChance}}% · {{second}} {{secondChance}}%",
+    "pending": "Weighing the position…"
+  },
+  "result": {
+    "wins": "{{name}} wins",
+    "draw": "Drawn match",
+    "rematch": "Rematch",
+    "newMatch": "New match",
+    "back": "Back"
+  },
+  "tally": {
+    "label": "How each player moved",
+    "wins": "Wins",
+    "draws": "Draws",
+    "best": "Best moves",
+    "brilliant": "Brilliant",
+    "inaccuracy": "Inaccuracies",
+    "mistake": "Mistakes",
+    "blunder": "Blunders",
+    "great": "Great",
+    "good": "Good",
+    "book": "Book"
+  },
+  "moves": "Moves"
+}

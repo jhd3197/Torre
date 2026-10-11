@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "title": "The knight fork",
+  "summary": "One knight, two targets. Learn to spot squares where a knight attacks the king and a valuable piece at once.",
+  "category": "tactics",
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "fork",
+  "steps": [
+    {
+      "id": "how-a-knight-attacks",
+      "kind": "explain",
+      "title": "How a knight attacks",
+      "fen": "4k3/8/8/3N4/8/8/8/4K3 w - - 0 1",
+      "marks": [["b4"], ["b6"], ["c3"], ["c7"], ["e3"], ["e7"], ["f4"], ["f6"]],
+      "text": "A knight in the middle of the board attacks eight squares, all of them in an L-shape. Its attacks cannot be blocked, and no other piece moves like it, so a knight can attack a queen or rook without being attacked back. A fork is a single move that attacks two pieces at once.",
+      "narration": "Watch the knight. From the middle of the board it attacks eight squares at once, all in that funny L shape, and nothing can block it. When a single knight move attacks two pieces at the same time, that's called a fork, and it's one of the strongest tricks in chess.",
+      "pose": "puzzle"
+    },
+    {
+      "id": "win-the-queen",
+      "kind": "play",
+      "title": "Fork king and queen",
+      "fen": "2q3k1/5ppp/8/3N4/8/8/5PPP/6K1 w - - 0 1",
+      "prompt": "Win Black's queen with a knight fork.",
+      "hint": "Find the square from which the knight attacks both g8 and c8.",
+      "line": ["d5e7", "g8f8", "e7c8"],
+      "success": "Ne7+ checks the king and attacks the queen. Black must deal with the check, and the queen falls.",
+      "narration": "Time to hunt! Your knight on d5 can jump to a square where it checks the king on g8 and attacks the queen on c8 at the same time. Find that square, and the queen is yours.",
+      "pose": "detective"
+    },
+    {
+      "id": "royal-fork",
+      "kind": "play",
+      "title": "Fork king and rook",
+      "fen": "r3k2r/pp3ppp/8/1N6/8/8/PPP2PPP/R3K2R w KQkq - 0 1",
+      "prompt": "The c7 square is undefended. Use it to win a rook.",
+      "hint": "From c7 a knight attacks e8 and a8.",
+      "line": ["b5c7", "e8d8", "c7a8"],
+      "success": "Nc7+ forks king and rook. You win a whole rook for nothing.",
+      "narration": "Here's my favorite fork of all. The square c7 is completely undefended: hop your knight there and it checks the king while attacking the rook in the corner. The king must move, and you take a whole rook for free!",
+      "pose": "excited"
+    },
+    {
+      "id": "why-check-matters",
+      "kind": "choose",
+      "title": "Why check helps",
+      "question": "Why is a fork that gives check especially strong?",
+      "options": [
+        { "text": "The opponent must answer the check, so the other piece cannot be saved", "correct": true, "why": "Check takes away your opponent's choice. They have no time to move, defend or counterattack with the second piece." },
+        { "text": "A knight that gives check cannot be captured", "why": "A checking knight can be captured if something attacks it. The fork works because of what the check forces." },
+        { "text": "Checks are worth extra points", "why": "There are no points for checks. What matters is the material you win." }
+      ],
+      "narration": "Last question. Why is a fork that also gives check so powerful? Think about what the check forces your opponent to do. Answer this, and you're officially a fork master. Great job today!",
+      "pose": "trophy"
+    }
+  ]
+}

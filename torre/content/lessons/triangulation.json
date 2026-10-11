@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "Triangulation",
+  "summary": "Pass the move to your opponent: walk your king around a little triangle and come back to the same square with the other side to move.",
+  "category": "endgames",
+  "level": "advanced",
+  "minutes": 7,
+  "requires": ["opposition"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "who-moves",
+      "kind": "explain",
+      "title": "If only Black had to move",
+      "fen": "8/1k1p4/p2P4/P2K4/8/8/8/8 b - - 0 1",
+      "marks": [["c7"], ["b6"], ["c6"]],
+      "text": "Black's king on b7 is badly squeezed. White's pawns cover c7 and b6, and White's king covers c6. If it is Black to move, the king must step back and let White's king through, to the a6 pawn or around to d7. This is zugzwang: Black would be fine if only it could pass.",
+      "narration": "Look how cramped Black's king is. The pawns take away c7 and b6, and White's king guards c6. If Black has to move here, the king must retreat, and White's king walks in. The problem is, in our lesson it's White to move.",
+      "pose": "thinking"
+    },
+    {
+      "id": "lose-a-move",
+      "kind": "play",
+      "title": "Lose a move",
+      "fen": "8/1k1p4/p2P4/P2K4/8/8/8/8 w - - 0 1",
+      "prompt": "It is White to move, and only one move wins. Start a triangle.",
+      "hint": "You want to come back to d5 in three moves. The first corner of your triangle is next to d5 and threatens to walk into b6.",
+      "line": ["d5c5"],
+      "success": "King to c5, the first corner of the triangle. Every other move lets Black's king reach c6 and win your d6 pawn.",
+      "narration": "Here's the trick. You can't pass, but your king can walk around a small triangle and come home. Black's king is too cramped to do the same. Take the first step.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-triangle",
+      "kind": "explain",
+      "title": "Around the triangle",
+      "fen": "8/1k1p4/p2P4/P2K4/8/8/8/8 w - - 0 1",
+      "marks": [["d5", "c5"], ["c5", "d4"], ["d4", "d5"]],
+      "demo": ["d5c5", "b7a7", "c5d4", "a7b7", "d4d5"],
+      "text": "Step through the demo. White's king goes d5, c5, d4 and back to d5: three moves. Black's king has to keep b6 guarded, so it can only step to a7 and back. The board looks exactly as it did at the start, but now it is Black to move, and Black is in zugzwang.",
+      "narration": "Watch the triangle. White's king steps to c5. [move] Black's king is too busy guarding to copy it, so it shuffles. [move] Then to d4. [move] Shuffle back. [move] And home to d5. [move] Same position, but now Black has to move, and that loses.",
+      "pose": "idea"
+    },
+    {
+      "id": "another-triangle",
+      "kind": "play",
+      "title": "Find it again",
+      "fen": "8/2k1p3/1p2P3/1P2K3/8/8/8/8 w - - 0 1",
+      "prompt": "Black to move here would lose. It is White to move. Find the only winning move.",
+      "hint": "Do not walk straight at the pawns. Step sideways so that you can return to e5 later with Black to move, keeping an eye on c6 at the same time.",
+      "line": ["e5d5"],
+      "success": "King to d5. It also eyes c6, so Black's king must keep guarding it, and White can come back to e5 with Black to move. Every other king move lets Black's king reach d6 and the e6 pawn falls.",
+      "narration": "Same idea, different pawns. Black would lose if it had to move, so hand the move over. Step sideways first.",
+      "pose": "magnify"
+    },
+    {
+      "id": "why-triangle",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why does triangulation only work when the defending king is cramped?",
+      "options": [
+        { "text": "If the defender also had room for a triangle, it could copy you and pass the move straight back", "correct": true, "why": "Triangulation wins a tempo only when the other king cannot make the same three-step loop." },
+        { "text": "Because a cramped king cannot give check", "why": "Checks have nothing to do with it. It is all about who has to move." },
+        { "text": "It works in every position with kings", "why": "On an open board both kings can triangulate, and nobody gains anything." }
+      ],
+      "narration": "Last question. Why does the triangle trick only work when the other king is cramped? Answer this, and you understand one of the deepest ideas in pawn endings. Superb work!",
+      "pose": "trophy"
+    }
+  ]
+}

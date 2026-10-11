@@ -1,0 +1,54 @@
+{
+ "title": "El avance de peones",
+ "summary": "Tres peones contra tres, cara a cara. Sacrifica dos de ellos y el tercero se coronará.",
+ "steps": [
+  {
+   "id": "three-against-three",
+   "title": "Tres contra tres",
+   "text": "Los peones están cara a cara y los reyes están lejos en el otro flanco. Parece que no puede pasar nada. Pero los peones blancos han llegado a la quinta fila, a solo tres pasos de coronación, y el rey negro está demasiado lejos para ayudar. Las blancas pueden sacrificar dos peones para empujar el tercero.",
+   "narration": "Tres peones contra tres, nariz con nariz, y ambos reyes a kilómetros de distancia. Parece completamente bloqueado. Pero los peones blancos están cerca de la coronación, y el rey negro no puede ayudar a tiempo. Observa lo que puede hacer un pequeño sacrificio."
+  },
+  {
+   "id": "break-through",
+   "title": "Rompe la barrera",
+   "prompt": "Sacrifica peones para crear una dama.",
+   "hint": "Empieza con el peón central. Luego, apunta al peón que acaba de capturar.",
+   "success": "El peón central avanza primero, luego el segundo sacrificio despeja el camino, y el peón de 'a' camina a a8. El rey negro está demasiado lejos para detenerlo.",
+   "narration": "Es tu turno. Empieza con el peón central: empújalo hacia adelante y deja que las negras lo tomen. Luego sacrifica de nuevo, y el último peón tiene un camino libre hacia la casilla de coronación."
+  },
+  {
+   "id": "the-other-capture",
+   "title": "Si las negras toman de otra manera",
+   "prompt": "Esta vez, las negras tomaron con el peón de 'c'. Termina el trabajo.",
+   "hint": "Es la misma idea vista en un espejo. Sacrificio en el otro lado.",
+   "success": "El peón a6 arrastra al peón b de las negras, y el peón c no tiene nada delante. Tomar de vuelta en b6 dejaría una posición igual.",
+   "narration": "Las negras eligieron la otra captura. La misma idea, imagen espejo: sacrifica el peón en el lado lejano, y el peón c corre libre."
+  },
+  {
+   "id": "when-it-works",
+   "title": "¿Cuándo funciona esto?",
+   "text": "El avance necesita dos cosas. Tus peones deben estar lo suficientemente avanzados en el tablero, para que el último peón esté a solo un par de pasos de coronar. Y el rey enemigo debe estar demasiado lejos para alcanzarlo, lo que puedes comprobar con la casilla del peón. Si fuera el turno de las negras aquí, el rey caminaría y arruinaría todo.",
+   "narration": "Dos cosas hacen que el avance funcione. Tus peones deben estar muy adelantados, y el rey enemigo debe estar fuera de la casilla del peón que lo atraviesa. Si fuera el turno de las negras aquí, el rey caminaría a tiempo."
+  },
+  {
+   "id": "check-the-idea",
+   "title": "¡Revísate!",
+   "question": "Después de peón a b6, las negras capturan con el peón a. ¿Qué movimiento mantiene la victoria?",
+   "options": [
+    {
+     "text": "Peón a c6",
+     "why": "El segundo sacrificio. De cualquier forma que las negras capturen, el peón a avanza a a8."
+    },
+    {
+     "text": "Toma de vuelta en b6 con el peón a",
+     "why": "Eso intercambia peones, y el peón c de las negras toma de vuelta. El avance ha terminado y las negras están bien."
+    },
+    {
+     "text": "Peón a a6",
+     "why": "El peón de b7 lo captura, y las blancas no tienen nada con qué romper."
+    }
+   ],
+   "narration": "Pregunta final. Las negras tomaron con el peón de a. ¿Qué jugada mantiene viva la victoria? ¡Encuéntrala, y habrás dominado uno de los trucos más bonitos en finales de peones!"
+  }
+ ]
+}

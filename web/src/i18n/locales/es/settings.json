@@ -1,0 +1,344 @@
+{
+  "label": "Ajustes",
+  "title": "Ajustes",
+  "index": "Secciones de ajustes",
+  "info": "Acerca de {{setting}}",
+  "search": {
+    "label": "Buscar en los ajustes",
+    "placeholder": "Buscar en los ajustes",
+    "section": "Sección",
+    "found_one": "{{count}} ajuste coincide con «{{query}}»",
+    "found_other": "{{count}} ajustes coinciden con «{{query}}»",
+    "none": "Ningún ajuste coincide con «{{query}}»."
+  },
+  "general": {
+    "title": "General",
+    "startPage": "Página de inicio",
+    "startPageNote": "La página con la que abre Torre.",
+    "start": {
+      "home": "Inicio",
+      "story": "Historia",
+      "play": "Jugar",
+      "puzzles": "Problemas",
+      "coach": "Entrenador"
+    },
+    "notes": "Mostrar descripciones",
+    "notesNote": "Muestra lo que hace cada ajuste bajo su nombre, en lugar de tras la (i)."
+  },
+  "sidebar": {
+    "title": "Barra lateral",
+    "shown": "En la barra lateral",
+    "shownNote": "Arrastra para reordenar, o usa las flechas. Ajustes sigue en el menú de la cuenta, al pie de la barra lateral.",
+    "hidden": "Otras páginas",
+    "allShown": "Todas las páginas están en la barra lateral.",
+    "up": "Subir {{name}}",
+    "down": "Bajar {{name}}",
+    "hide": "Ocultar",
+    "hideNamed": "Ocultar {{name}}",
+    "add": "Añadir",
+    "addNamed": "Añadir {{name}}",
+    "behaviour": "Plegado",
+    "rail": "Barra lateral",
+    "railNote": "Automática la pliega en pantallas del ancho de un portátil. Pulsa [ para plegarla o abrirla en cualquier página.",
+    "rails": {
+      "auto": "Automática",
+      "open": "Abierta",
+      "folded": "Plegada"
+    },
+    "reset": "Restablecer la barra",
+    "resetNote": "Vuelve a Inicio, Historia, Jugar, Problemas, Arena, Entrenador y Perfil, en ese orden."
+  },
+  "language": {
+    "title": "Idioma",
+    "note": "El idioma de los menús, botones y mensajes. El texto de la lección se mostrará cuando haya una traducción disponible."
+  },
+  "display": {
+    "title": "Piezas y tablero",
+    "preview": "Vista previa del tablero con tus ajustes"
+  },
+  "pieces": {
+    "label": "Conjunto de piezas",
+    "sets": {
+      "staunton": {
+        "name": "Staunton",
+        "note": "Piezas de torneo pulidas, hechas para Torre."
+      },
+      "clay": {
+        "name": "Arcilla",
+        "note": "Piezas suaves y redondeadas con un contorno dibujado."
+      },
+      "classic": {
+        "name": "Clásico",
+        "note": "Piezas planas y de alto contraste. Son las más fáciles de leer en tamaños pequeños."
+      }
+    }
+  },
+  "board": {
+    "title": "Colores del tablero",
+    "themes": {
+      "forest": "Bosque",
+      "stone": "Piedra",
+      "walnut": "Nogal",
+      "contrast": "Alto contraste"
+    },
+    "behaviour": "En el tablero",
+    "coordinates": "Coordenadas",
+    "coordinatesNote": "Columnas y filas en el borde del tablero.",
+    "lastMove": "Resaltar la última jugada",
+    "lastMoveNote": "Colorea las dos casillas de la jugada recién hecha.",
+    "legalDots": "Mostrar jugadas legales",
+    "legalDotsNote": "Puntos en las casillas a las que puede ir la pieza que levantas.",
+    "animation": "Animación de las jugadas",
+    "animationNote": "Cómo se desliza una pieza hasta su casilla.",
+    "animations": {
+      "off": "Sin animación",
+      "fast": "Rápida",
+      "normal": "Normal"
+    },
+    "drag": "Arrastrar piezas",
+    "dragNote": "Si está desactivado, mueve haciendo clic en una pieza y luego en su casilla.",
+    "autoQueen": "Coronar siempre en dama",
+    "autoQueenNote": "Omite el selector de coronación. Desactívalo para coronar en otra pieza."
+  },
+  "sound": {
+    "title": "Sonido",
+    "mute": "Silenciar todo",
+    "muteNote": "Silencia los efectos, la música y al entrenador.",
+    "master": "Volumen general",
+    "masterNote": "Sube o baja a la vez los efectos, la música y al entrenador.",
+    "effectsHeading": "Efectos de sonido",
+    "effects": "Efectos de sonido",
+    "effectsNote": "Movimientos, respuestas correctas e incorrectas, y la fanfarria cuando terminas.",
+    "effectsVolume": "Volumen de los efectos",
+    "effectsVolumeNote": "Dentro del volumen general.",
+    "sample": "Escuchar una muestra",
+    "moveSound": "Sonido de las jugadas",
+    "moveSoundNote": "El sonido de una pieza al caer. Con Ninguno, los demás efectos siguen sonando.",
+    "moveSounds": {
+      "wood": "Madera",
+      "soft": "Suave",
+      "none": "Ninguno"
+    },
+    "musicHeading": "Música",
+    "music": "Música de fondo",
+    "musicNote": "Un bucle tranquilo que baja mientras el entrenador está hablando.",
+    "musicVolume": "Volumen de la música",
+    "musicVolumeNote": "Solo mientras suena la música de fondo.",
+    "hidden": "Silencio en segundo plano",
+    "hiddenNote": "Mientras la pestaña de Torre está oculta, la música se pausa y los efectos no suenan."
+  },
+  "voice": {
+    "title": "Entrenador y voz",
+    "speaks": "Voz de entrenador",
+    "speaksNote": "El entrenador lee las lecciones en voz alta y reacciona a tus problemas.",
+    "coach": "Voz",
+    "coachNote": "Qué voz grabada usa el entrenador.",
+    "female": "Femenina",
+    "male": "Masculina",
+    "sample": "Escuchar al entrenador",
+    "speed": "Velocidad de la voz",
+    "speedNote": "La siguen tanto las grabaciones como la voz de tu navegador.",
+    "speeds": {
+      "slow": "Lenta",
+      "normal": "Normal",
+      "fast": "Rápida"
+    },
+    "volume": "Volumen de la voz",
+    "volumeNote": "Dentro del volumen general.",
+    "dip": "Música bajo la voz",
+    "dipNote": "Cuánto baja la música de fondo mientras habla el entrenador.",
+    "dips": {
+      "none": "Sin cambio",
+      "some": "Un poco",
+      "lots": "Mucho"
+    },
+    "captions": "Subtítulos",
+    "captionsNote": "Muestra las palabras del entrenador al pie de la pantalla mientras habla.",
+    "whenHeading": "Cuándo habla el entrenador",
+    "rooky": "Rooky habla primero",
+    "rookyNote": "Rooky lee en voz alta el resumen del entrenador y el de cada partida nueva al abrirlos.",
+    "review": "Narrar las revisiones",
+    "reviewNote": "Al recorrer una partida revisada, el entrenador dice qué fue cada jugada.",
+    "quiet": "Entrenador en silencio",
+    "quietNote": "Mientras juegas, el entrenador guarda silencio y solo habla cuando se lo pides: sin comentarios tras capturas o jaques.",
+    "heading": "Paquetes de voz",
+    "note": "Las voces grabadas del entrenador suenan naturales y funcionan sin conexión, en voz femenina o masculina. Sin el paquete de la voz elegida, el entrenador usa la otra voz grabada y luego la de tu navegador.",
+    "size_one": "{{mb}} MB · {{count}} línea",
+    "size_other": "{{mb}} MB · {{count}} líneas",
+    "download": "Descargar",
+    "update": "Actualizar",
+    "remove": "Quitar",
+    "installed": "Instalado",
+    "cancel": "Cancelar",
+    "downloading": "Descargando",
+    "offline": "No se pueden mostrar los paquetes de voz ahora mismo. Revisa tu conexión.",
+    "none": "Aún no hay paquetes de voz disponibles."
+  },
+  "learning": {
+    "title": "Aprendizaje y problemas",
+    "hard": "Modo difícil",
+    "hardNote": "Las lecciones y los problemas no ofrecen pistas y nunca muestran la respuesta. Tú resuelves cada jugada.",
+    "help": "Ayuda en los problemas",
+    "helpNote": "Lo que ofrece un problema cuando te atascas. El modo difícil no ofrece ninguna.",
+    "helps": {
+      "full": "Pista y solución",
+      "hint": "Solo la pista"
+    },
+    "autoNext": "Siguiente problema automático",
+    "autoNextNote": "Tras resolver sin fallos, el siguiente problema se abre solo.",
+    "ratings": "Mostrar la puntuación",
+    "ratingsNote": "Tu puntuación de problemas y cuánto la cambió cada uno, mientras resuelves.",
+    "blindfold": "Problemas a ciegas",
+    "blindfoldNote": "Los problemas solo muestran las casillas; resuelves de memoria.",
+    "playBlindfold": "Partidas a ciegas",
+    "playBlindfoldNote": "Las partidas contra bots solo muestran las casillas, hasta que terminan."
+  },
+  "analysis": {
+    "title": "Análisis",
+    "auto": "Analiza las posiciones automáticamente",
+    "autoNote": "Stockfish evalúa cada posición en Juegos y Explora.",
+    "depth": "Profundidad del análisis",
+    "depthNote": "Cuánto piensa el motor cada posición. Profundo es más lento y más fuerte.",
+    "depths": {
+      "quick": "Rápido",
+      "normal": "Normal",
+      "deep": "Profundo"
+    },
+    "lines": "Líneas del motor",
+    "linesNote": "Cuántas líneas muestra el panel del motor.",
+    "lineCounts": {
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    },
+    "evalBar": "Barra de evaluación",
+    "evalBarNote": "La barra junto al tablero que muestra quién va mejor.",
+    "best": "Flecha del mejor movimiento",
+    "bestNote": "Una flecha dorada para la elección de Stockfish.",
+    "next": "Flecha del siguiente movimiento",
+    "nextNote": "Una flecha gris para el movimiento jugado a continuación en la partida.",
+    "control": "Control de casillas en Explora",
+    "controlNote": "Colorea las casillas según qué bando las ataca.",
+    "background": "Analizar partidas nuevas en segundo plano",
+    "backgroundNote": "Stockfish revisa solo las partidas importadas y tus errores se convierten en ejercicios y puzzles."
+  },
+  "engines": {
+    "title": "Motores"
+  },
+  "accessibility": {
+    "title": "Accesibilidad",
+    "size": "Tamaño de la interfaz",
+    "sizeNote": "Texto, botones y tablero, un poco más grandes.",
+    "sizes": {
+      "normal": "Normal",
+      "large": "Grande",
+      "larger": "Más grande"
+    },
+    "motion": "Animaciones",
+    "motionNote": "Reducidas deja quietas las piezas y las páginas. Sistema sigue el ajuste de tu dispositivo.",
+    "motions": {
+      "system": "Sistema",
+      "reduce": "Reducidas",
+      "full": "Completas"
+    },
+    "contrast": "Tablero de alto contraste",
+    "contrastNote": "Casillas claras y oscuras bien distintas, para baja visión. También en Piezas y tablero.",
+    "palette": "Colores de flechas y resaltados",
+    "paletteNote": "Apto para daltónicos usa azul y naranja en lugar de verde y rojo.",
+    "palettes": {
+      "standard": "Estándar",
+      "colorblind": "Apto para daltónicos"
+    },
+    "announce": "Anunciar las jugadas",
+    "announceNote": "Un lector de pantalla lee cada jugada cuando llega al tablero.",
+    "typed": "Escribir jugadas",
+    "typedNote": "Una casilla bajo el tablero acepta jugadas como e4, Cf3 u O-O."
+  },
+  "data": {
+    "title": "Datos",
+    "reset": "Restablecer ajustes",
+    "resetNote": "Cada ajuste vuelve a su valor inicial. Tu idioma, partidas, estrellas y progreso se mantienen.",
+    "resetConfirm": "Sí, restablecer",
+    "resetDone": "Los ajustes volvieron a sus valores iniciales.",
+    "cancel": "Cancelar",
+    "backup": "Copia de seguridad",
+    "backupNote": "Guarda en un archivo tus ajustes, estrellas y progreso de este navegador. Las partidas y los problemas los guarda el estudio.",
+    "save": "Guardar copia",
+    "restore": "Restaurar una copia",
+    "restoreNote": "Reemplaza lo que guarda este navegador con un archivo de copia. La página se recarga.",
+    "choose": "Elegir archivo",
+    "notBackup": "Ese archivo no es una copia de Torre.",
+    "storage": "Guardado en este navegador",
+    "storageNote": "Unos {{size}} KB de ajustes y progreso."
+  },
+  "progress": {
+    "title": "Progreso",
+    "stars": "Estrellas de los bots",
+    "starsNote_one": "Has ganado {{count}} estrellas contra los bots, y se guardan en este navegador. Las recompensas y el progreso en los problemas no se ven afectados.",
+    "starsNote_other": "Has ganado {{count}} estrellas contra los bots, y se guardan en este navegador. Las recompensas y el progreso en los problemas no se ven afectados.",
+    "confirm": "Sí, borrar estrellas",
+    "keep": "Guárdalas",
+    "clear": "Borrar estrellas"
+  },
+  "about": {
+    "title": "Acerca de",
+    "loading": "Cargando…",
+    "unavailable": "No se pudo contactar con el estudio, así que sus datos no están disponibles.",
+    "version": "Versión",
+    "released": "Publicada el {{date}}",
+    "whatsNew": "Novedades",
+    "data": "Carpeta de datos",
+    "dataNote": "Aquí están tus partidas, análisis, problemas y motores.",
+    "copy": "Copiar ruta",
+    "copied": "Ruta copiada.",
+    "copyBlocked": "El navegador no permitió copiar.",
+    "engines": "Motores instalados",
+    "noEngines": "Aún no hay motores instalados. Añade uno en Motores.",
+    "noVersion": "Versión desconocida",
+    "shortcuts": "Atajos de teclado",
+    "keys": {
+      "rail": "Plegar o abrir la barra lateral",
+      "step": "Retroceder y avanzar por las jugadas",
+      "flip": "Girar el tablero",
+      "clear": "Borrar las flechas y círculos dibujados en el tablero"
+    },
+    "credits": "Hecho con",
+    "uses": {
+      "pythonChess": "Reglas, PGN y la comunicación con los motores",
+      "puzzles": "Los problemas",
+      "kokoro": "Las voces grabadas del entrenador",
+      "fsrs": "Cuándo vuelven los problemas y ejercicios fallados"
+    }
+  },
+  "ai": {
+    "title": "Coach con IA",
+    "loading": "Cargando la configuración de IA…",
+    "provider": "Quién hace funcionar al coach",
+    "providerNote": "Ollama ejecuta un modelo en esta computadora, gratis. Los demás son servicios en línea: necesitan tu propia clave de API.",
+    "providerNoteHosted": "El coach funciona con el servicio de IA que elijas y tu propia clave de API. Le pagas directamente al servicio, normalmente unos centavos al mes.",
+    "onThisComputer": "En esta computadora",
+    "needsKey": "Necesita clave",
+    "keySavedShort": "Clave guardada",
+    "key": "Clave de API",
+    "keyFor": "Clave de API de {{name}}",
+    "keyPlaceholder": "Pega tu clave",
+    "keyNote": "Tu clave se guarda con tus datos de Torre y solo se usa para el coach.",
+    "getKey": "Obtener una clave de {{name}}",
+    "saveKey": "Guardar clave",
+    "checking": "Comprobando…",
+    "keySaved": "Clave de {{name}} guardada ({{hint}}).",
+    "removeKey": "Quitar",
+    "keyStale": "{{name}} no aceptó la clave guardada. Quítala y guarda una nueva.",
+    "model": "Modelo",
+    "use": "Usar este modelo",
+    "modelsAfterKey": "Guarda una clave para ver los modelos de este servicio.",
+    "ollamaMissing": "Aún no hay modelos locales. Instala Ollama desde ollama.com, ejecuta \"ollama pull qwen3:8b\" y vuelve.",
+    "current": "El coach usa {{model}}.",
+    "currentAuto": "El coach eligió {{model}} por su cuenta.",
+    "saved": "Listo: el coach ahora usa {{model}}.",
+    "dialogTitle": "Configura el coach con IA",
+    "dialogText": "Los consejos escritos de Rooky vienen de un modelo de IA. Elige dónde se ejecuta; puedes cambiarlo cuando quieras en Ajustes.",
+    "later": "Ahora no",
+    "done": "Listo"
+  }
+}

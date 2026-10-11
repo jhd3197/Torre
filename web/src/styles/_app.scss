@@ -1,0 +1,346 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Additions for the React app; the other sheets carry the original design. */
+#root {
+  display: contents;
+}
+.rail a,
+.home a,
+.insights a,
+.train a,
+.library-section a,
+.board-heading a,
+#explore-context a {
+  text-decoration: none;
+}
+.rail nav a {
+  color: inherit;
+}
+a.game-card {
+  display: block;
+  color: inherit;
+}
+a.button {
+  text-decoration: none;
+}
+
+.page-status,
+.page-empty {
+  padding: 40px 0;
+  color: $sage-600;
+  font-size: $fs-md;
+}
+.page-empty h2 {
+  margin: 0 0 6px;
+  font: 650 #{$fs-3xl} $font-sans;
+  color: var(--ink);
+}
+.page-empty p {
+  margin: 0 0 16px;
+}
+
+/* Analysis judgments in the move list: ?! inaccuracy, ? mistake, ?? blunder, !! brilliant. */
+.move-symbol {
+  margin-left: 2px;
+  font-weight: 700;
+}
+.move-list .move-inaccuracy .move-symbol,
+.grade-table .move-inaccuracy th {
+  color: $gold-500;
+}
+.move-list .move-mistake .move-symbol,
+.grade-table .move-mistake th {
+  color: $orange-500;
+}
+.move-list .move-blunder .move-symbol,
+.grade-table .move-blunder th {
+  color: $red-600;
+}
+.move-list .move-brilliant .move-symbol,
+.grade-table .move-brilliant th {
+  color: $mist-600;
+}
+.grade-table {
+  width: calc(100% - 32px);
+  margin: 4px 16px 8px;
+  border-collapse: collapse;
+  font-size: $fs-sm;
+}
+.grade-table th,
+.grade-table td {
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.grade-table thead th {
+  max-width: 110px;
+  overflow: hidden;
+  font: 650 #{$fs-xs} $font-sans;
+  color: $sage-600;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.grade-table tbody th {
+  font-weight: 600;
+  text-align: left;
+}
+.grade-table .grade-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.grade-table tbody th img {
+  width: 18px;
+  height: 18px;
+}
+.grade-table td {
+  width: 96px;
+  font: 650 #{$fs-md} $font-mono;
+  text-align: right;
+}
+.grade-table td.none {
+  color: $sage-400;
+  font-weight: 400;
+}
+.grade-table-accuracy th,
+.grade-table-accuracy td {
+  padding-bottom: 8px;
+  border-bottom-width: 2px;
+}
+.analysis-panel .analysis-runner {
+  margin: 12px 16px;
+}
+
+/* A page's code chunk downloading (lazy routes): the review spinner, centred in the page area. */
+.page-loading {
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+}
+
+/* The opening review, while it runs: one quiet section in place of the verdict, moves and engine. */
+.review-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 16px;
+  padding: 28px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-align: center;
+}
+.review-loading strong {
+  font: 650 #{$fs-md} $font-sans;
+  color: var(--ink);
+}
+.review-loading > span:not(.review-loading-spinner) {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.review-loading-spinner {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 6px;
+  border: 3px solid $sage-200;
+  border-top-color: $green-500;
+  border-radius: 50%;
+  animation: review-spin 0.9s linear infinite;
+}
+/* Placeholder rows where the moves will be. */
+.review-loading-lines {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  margin: 14px 0 6px;
+}
+.review-loading-lines i {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: $sage-100;
+  animation: review-fade 1.4s ease-in-out infinite;
+}
+.review-loading-lines i:nth-child(2n) {
+  width: 80%;
+  animation-delay: 0.2s;
+}
+@keyframes review-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes review-fade {
+  50% {
+    opacity: 0.45;
+  }
+}
+@include reduced-motion {
+  .review-loading-spinner,
+  .review-loading-lines i {
+    animation: none;
+  }
+}
+
+/* Board arrows: gold = Stockfish's best move, grey = the move played next. */
+#next-arrow {
+  fill: none;
+  stroke: $sage-500;
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+.arrow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  margin: 10px 0 2px;
+  font-size: $fs-xs;
+  color: $sage-600;
+}
+.arrow-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: none;
+  padding: 2px 0;
+  color: inherit;
+  font: inherit;
+}
+.arrow-key i {
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+}
+.arrow-key.best i {
+  background: $gold-300;
+}
+.arrow-key.next i {
+  background: $sage-500;
+}
+.arrow-key[aria-pressed="false"] {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+.arrow-key b {
+  font: 600 #{$fs-xs} $font-mono;
+  color: var(--ink);
+}
+.arrow-match {
+  font-size: $fs-xs;
+  color: $green-600;
+  font-weight: 600;
+}
+.engine-actions .button {
+  flex: 1;
+}
+
+/* Header XP chip: level badge plus lifetime XP (useProfile). */
+.xp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: $neutral-50;
+  font: 600 #{$fs-xs} $font-mono;
+  color: $moss-700;
+}
+.xp-level {
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--cream);
+  font: 700 #{$fs-xs} $font-sans;
+}
+
+.game-summary .move-great, .move-list .move-great .move-symbol { color: $blue-600; }
+.game-summary .move-book { color: $wheat-700; }
+
+/* Interface size (Settings → Accessibility): the whole page zoomed a step. Heights that follow the
+   window read --app-vh, which divides the zoom back out so a zoomed page still fits the window. */
+:root {
+  --app-vh: 100dvh;
+}
+:root[data-ui-size="large"] {
+  --app-vh: calc(100dvh / 1.125);
+}
+:root[data-ui-size="larger"] {
+  --app-vh: calc(100dvh / 1.25);
+}
+:root[data-ui-size="large"] body {
+  zoom: 1.125;
+}
+:root[data-ui-size="larger"] body {
+  zoom: 1.25;
+}
+
+/* Read by screen readers, not shown. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Captions (Settings → Coach & voice): the coach's line at the bottom of the screen. */
+.captions {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 60;
+  width: min(720px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.captions p {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba($neutral-950, 0.86);
+  color: $white;
+  font: 700 #{$fs-md}/ 1.45 $font-sans;
+  text-align: center;
+}
+
+/* Typed moves (Settings → Accessibility): a box under the board. */
+.move-entry {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: 8px;
+}
+.move-entry input {
+  flex: 1 1 200px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 10px;
+  background: $white;
+  font: 500 #{$fs-md} $font-mono;
+  color: $lobby-ink;
+  @include focus-ring;
+}
+.move-entry input[aria-invalid="true"] {
+  border-color: $red-500;
+}
+.move-entry-error {
+  font-size: $fs-sm;
+  color: $red-600;
+}

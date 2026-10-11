@@ -1,0 +1,78 @@
+{
+ "title": "La Trampa Lasker",
+ "summary": "En el Contraataque Albín, un peón negro avanza a la primera fila y se convierte en caballo, con jaque.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "albin",
+   "title": "El Contraataque Albín",
+   "text": "Contra el Gambito de Dama, las negras pueden responder de inmediato con peón a e5. Después de que las blancas toman, el peón en d4 restringe la posición de las blancas. La trampa que vas a aprender lleva el nombre del campeón mundial Emanuel Lasker.",
+   "narration": "Este es el Contraataque Albín. Peón a d4. [move] Peón a d5. [move] Las blancas ofrecen el Gambito de la Dama. [move] Las negras contraatacan con peón a e5. [move] Las blancas toman. [move] Y el peón de las negras aterriza en d4, justo en el camino de las blancas. [move]"
+  },
+  {
+   "id": "white-errs",
+   "title": "Una captura descuidada",
+   "text": "Peón a e3 parece natural, pero le da a las negras un objetivo. Después del alfil a b4, jaque, y alfil a d2, el peón negro captura en e3. Las blancas deben recuperar con el peón f. En cambio, el alfil captura b4, se lleva una pieza y olvida el peón en e3.",
+   "narration": "Las blancas juegan un peón que parece natural a e3. [move] Alfil a b4, jaque. [move] Las blancas bloquean con el alfil. [move] Ahora el peón d de las negras captura y se dirige hacia el rey blanco. [move] Si las blancas toman el alfil en lugar del peón, [move] sigue un desastre."
+  },
+  {
+   "id": "the-pawn-runs",
+   "title": "El peón corre",
+   "prompt": "Las blancas acabaron de tomar tu alfil. Empuja tu peón.",
+   "hint": "Captura primero con jaque. Cuando el peón llegue a la última fila, piensa cuidadosamente qué pieza quieres coronar.",
+   "success": "Peón captura f2, jaque, obliga al rey a e2. Luego, peón captura g1 y se convierte en caballo con jaque. Una dama ahí permitiría a las blancas intercambiar damas en d8 con jaque y mantener todo.",
+   "narration": "Tu peón en e3 está a dos casillas del final del tablero. Captura con jaque, luego coronar. Pero cuidado, una dama no es la mejor opción aquí."
+  },
+  {
+   "id": "why-a-knight",
+   "title": "¿Por qué no una dama?",
+   "text": "Si el peón se convierte en dama, no da jaque. Entonces, las blancas toman la dama de negras en d8 con jaque, y después de que el rey la retoma, la torre elimina la nueva dama. El material termina igualado y el ataque de las negras se acaba. El caballo en g1 da jaque, así que las blancas nunca obtienen ese movimiento gratis.",
+   "narration": "¿Por qué un caballo? Supongamos que las negras hacen una dama en g1. [move] No da jaque, así que las blancas cambian damas en d8 con jaque. [move] El rey la retoma. [move] Y la torre toma la nueva dama. [move] El caballo viene con jaque, y los jaques son prioritarios."
+  },
+  {
+   "id": "skewer-the-queen",
+   "title": "Gana la dama",
+   "prompt": "La torre tomó a tu nuevo caballo. Ahora gana la dama blanca.",
+   "hint": "El rey y la dama de las blancas están en la misma diagonal. Dale jaque al rey por esa diagonal.",
+   "success": "El alfil a g4 da jaque, clava al rey y a la dama detrás de él. Cuando el rey se mueve, tomas la dama. Si el rey blanco hubiera ido a e1, la dama a h4 daría jaque y mantendría el ataque en marcha.",
+   "narration": "La torre blanca tomó a tu caballo. Pero mira al rey y a la dama de las blancas, que están sobre una diagonal. Un solo jaque de alfil gana la dama."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "La mayoría nunca juega peón a e3. Caballo a f3 es la jugada principal. Desarrolla y ve por el peón de e5.",
+   "nudge": "Saca un caballo que ayude a recuperar tu peón.",
+   "hint": "Caballo a c6 ataca e5. Después el otro caballo va a e7, camino a g6.",
+   "success": "Caballo a c6, y luego caballo a e7 camino a g6. Los dos caballos apuntan a e5, y muchas veces recuperas tu peón. Peón a a5 también está bien.",
+   "narration": "Un jugador cuidadoso no caerá en la Trampa Lasker. Las blancas solo desarrollan el caballo a f3. Entonces tu tarea es recuperar el peón del gambito en e5.",
+   "branches": [
+    {
+     "success": "Las blancas planean poner el alfil en g2. Caballo a e7 y luego a g6 va por el peón de e5 antes de que las blancas puedan protegerlo."
+    },
+    {
+     "success": "Las blancas quieren avanzar peón a b4. Caballo a e7 y luego a g6 sigue yendo por el peón de e5. Peón a a5 o peón a g6 también están bien."
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué coronar a un caballo es más fuerte que coronar a una dama aquí?",
+   "options": [
+    {
+     "text": "El caballo da jaque, así que las blancas no tienen tiempo para cambiar damas en d8",
+     "why": "Correcto. Una dama en g1 no da jaque, y las blancas tomarían en d8 con jaque primero."
+    },
+    {
+     "text": "Los caballos valen más que las damas en el final.",
+     "why": "Una dama vale aproximadamente tres caballos. Lo importante aquí es el jaque."
+    },
+    {
+     "text": "Una dama en g1 provocaría ahogado.",
+     "why": "Aquí no hay ahogado. El problema es el cambio de damas con jaque en d8."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué elegimos un caballo en lugar de una dama? Piensa en qué podría hacer las blancas primero si la nueva pieza no diera jaque."
+  }
+ ]
+}

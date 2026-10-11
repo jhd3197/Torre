@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Deflection",
+  "summary": "Lure a defender away from its post. Once it has been dragged off, whatever it was guarding falls.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["removing-the-defender"],
+  "practice": "deflection",
+  "steps": [
+    {
+      "id": "the-guard",
+      "kind": "explain",
+      "title": "A guard with one job",
+      "fen": "8/pp3pkp/5qp1/8/3Q4/8/PP3PPP/2B3K1 w - - 0 1",
+      "marks": [["d4", "f6"], ["g7", "f6"], ["c1", "h6"]],
+      "text": "The queens face each other on the long diagonal. Black's queen is defended only by the king. Trading queens gets nothing, but if the king could be forced off g7, Black's queen would hang. Deflection means forcing a defender to leave the square where it does its job, usually with a check or a capture it cannot refuse.",
+      "narration": "Your queen attacks Black's queen, but the king on g7 protects her. If you could just pull that king away, the queen would be yours. That's deflection: force the defender off its post, then grab what it was guarding.",
+      "pose": "thinking"
+    },
+    {
+      "id": "deflect-the-king",
+      "kind": "play",
+      "title": "Drag the king away",
+      "fen": "8/pp3pkp/5qp1/8/3Q4/8/PP3PPP/2B3K1 w - - 0 1",
+      "prompt": "Force Black's king away from the queen, then win her.",
+      "hint": "Your bishop can give check on a square next to the king. If the king takes, where does it end up?",
+      "line": ["c1h6", "g7h6", "d4f6"],
+      "success": "Bh6+! If Kxh6 the king has left g7, and Qxf6 wins the queen. If the king steps to g8 or h8 instead, the queen still falls.",
+      "narration": "Check the king with your bishop on h6. The bishop is offered up, but if the king takes it, it walks away from its queen. Then your queen captures hers. A bishop for a queen is a great deal.",
+      "pose": "detective"
+    },
+    {
+      "id": "deflect-the-rook",
+      "kind": "play",
+      "title": "Clear the way for a pawn",
+      "fen": "8/5k2/7p/1R3Kp1/4P3/5P1P/1pr5/8 b - - 3 51",
+      "prompt": "Your pawn on b2 wants to queen, but White's rook guards b1. Deflect it.",
+      "hint": "A rook check on the fifth rank can only be answered one sensible way.",
+      "line": ["c2c5", "b5c5", "b2b1q"],
+      "success": "Rc5+! The rook must take (moving the king loses even more), and once it leaves the b-file, b1=Q gives you a new queen.",
+      "narration": "White's rook on b5 is the only thing stopping your pawn. Check the king from c5, right next to that rook. When the rook takes, it has left the b-file, and your pawn marches in to become a queen.",
+      "pose": "move-piece"
+    },
+    {
+      "id": "deflection-quiz",
+      "kind": "choose",
+      "title": "Spot the idea",
+      "question": "What makes a deflection work?",
+      "options": [
+        { "text": "The defender is forced (by a check, a capture or a big threat) to leave the square or line it was guarding", "correct": true, "why": "A deflection only works if the defender cannot refuse. Checks and captures are the usual ways to force it." },
+        { "text": "You attack the defender with a more valuable piece", "why": "The bait is usually a cheaper piece, offered so the defender has to take it or step away." },
+        { "text": "The defender is pinned", "why": "A pinned defender is a different weakness. Deflection is about pulling a free defender away from its job." }
+      ],
+      "narration": "Last question. What makes a deflection work? Think about why the defender has no choice. You're getting really good at this!",
+      "pose": "trophy"
+    }
+  ]
+}

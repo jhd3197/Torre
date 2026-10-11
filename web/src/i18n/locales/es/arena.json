@@ -1,0 +1,180 @@
+{
+  "label": "Arena",
+  "title": "Arena",
+  "enginesLink": "Motores",
+  "vs": "vs",
+  "start": "Empezar match",
+  "starting": "Empezando…",
+  "stop": "Detener match",
+  "close": "Volver al match en vivo",
+  "eloGap": "{{name}} ≈ +{{elo}} Elo",
+  "setup": {
+    "label": "Configuración del match",
+    "title": "Configuración del match",
+    "player1": "Jugador 1",
+    "player2": "Jugador 2",
+    "choose": "Elige un jugador",
+    "change": "Cambiar jugador",
+    "pickerLabel": "Jugadores para {{seat}}",
+    "legendEra": "Leyendas · {{era}}",
+    "anyStrength": "cualquier fuerza",
+    "legends": "Leyendas",
+    "engines": "Motores",
+    "humanLike": "Estilo humano",
+    "strength": "Fuerza",
+    "fullStrength": "Fuerza máxima",
+    "rating": "Juega a {{elo}}",
+    "ccrl": "CCRL {{elo}}",
+    "modelNote": "Entrenado con partidas humanas para jugar como alguien de {{elo}}.",
+    "ratings": "Rating",
+    "nodeLimit": "Límite de nodos (más gradual)",
+    "nodes": "{{nodes}} nodos",
+    "nodesRated": "{{nodes}} nodos (~{{elo}})",
+    "legendNote_one": "Abre con las jugadas de su {{games}} partida y luego Stockfish juega a {{elo}}.",
+    "legendNote_other": "Abre con las jugadas de sus {{games}} partidas y luego Stockfish juega a {{elo}}.",
+    "legendNoteUnrated_one": "Abre con las jugadas de su {{games}} partida y luego Stockfish juega a {{elo}} (en su época no había ratings).",
+    "legendNoteUnrated_other": "Abre con las jugadas de sus {{games}} partidas y luego Stockfish juega a {{elo}} (en su época no había ratings).",
+    "games": "Partidas",
+    "movetime": "Tiempo por jugada",
+    "seconds": "{{seconds}} s",
+    "openings": "Aperturas",
+    "openingsStart": "Posición inicial",
+    "openingsVaried": "Aperturas variadas",
+    "openingsBook": "Aperturas de libro",
+    "pace": "Ritmo",
+    "paceWatch": "Para ver",
+    "paceFast": "Rápido",
+    "sprt": "Terminar antes",
+    "sprtOff": "No",
+    "sprtOn": "Al decidirse",
+    "startHint": "Cada partida empieza desde la primera jugada, alternando colores. Las leyendas eligen de su repertorio real, así que sus partidas varían solas.",
+    "variedHint": "Cada par de partidas empieza desde la misma línea de apertura, y cada jugador juega ambos lados.",
+    "bookHint": "Cada par de partidas empieza desde una línea al azar que las leyendas jugaron a menudo, y cada jugador juega ambos lados.",
+    "sprtHint": "El match termina en cuanto el resultado es estadísticamente claro (SPRT, 0 contra 50 Elo), así que el número de partidas es solo un máximo.",
+    "eras": {
+      "romantic": "Romántica",
+      "golden": "Edad de Oro",
+      "cold-war": "Guerra Fría",
+      "modern": "Moderna"
+    }
+  },
+  "kinds": {
+    "legend": "Leyenda",
+    "engine": "Motor",
+    "model": "Humano"
+  },
+  "predict": {
+    "title": "Puntuación esperada",
+    "label": "Puntuación esperada: {{first}} {{a}}, {{second}} {{b}}",
+    "even": "Parejos sobre el papel",
+    "gap": "{{name}} tiene {{points}} puntos más de rating",
+    "unknown": "Aún no hay ratings que comparar"
+  },
+  "legends": {
+    "more_one": "Añadir {{count}} leyenda más",
+    "more_other": "Añadir {{count}} leyendas más",
+    "source": "Descarga las partidas de una leyenda desde PGN Mentor. Solo se usan las jugadas.",
+    "downloading": "Descargando…"
+  },
+  "player": {
+    "legend": "sus partidas, luego {{engine}} {{elo}}",
+    "evalTitle": "La evaluación de este motor (vista de las blancas)"
+  },
+  "score": {
+    "label": "Marcador del match",
+    "preparing": "Leyendo las partidas de las leyendas…",
+    "game": "Partida {{number}} de {{total}}",
+    "finished_one": "Match terminado tras {{count}} partida",
+    "finished_other": "Match terminado tras {{count}} partidas",
+    "stopped_one": "Detenido tras {{count}} partida",
+    "stopped_other": "Detenido tras {{count}} partidas",
+    "failed": "El match se detuvo: {{error}}"
+  },
+  "book": {
+    "line": "{{name}} jugó esto en {{count}} de {{total}} de sus partidas desde aquí, una de ellas contra {{opponent}} ({{year}}).",
+    "opening": "Todavía en la línea de apertura que recibieron ambos jugadores."
+  },
+  "games": {
+    "white": "Blancas",
+    "black": "Negras",
+    "result": "Resultado",
+    "moves": "Jugadas",
+    "ending": "Cómo terminó",
+    "replay": "Repetir",
+    "book_one": "{{count}} jugada de sus partidas",
+    "book_other": "{{count}} jugadas de sus partidas"
+  },
+  "endings": {
+    "checkmate": "Jaque mate",
+    "stalemate": "Ahogado",
+    "insufficient_material": "Material insuficiente",
+    "seventyfive_moves": "Regla de 75 jugadas",
+    "fivefold_repetition": "Quíntuple repetición",
+    "fifty_moves": "Regla de 50 jugadas",
+    "threefold_repetition": "Triple repetición",
+    "move_limit": "Límite de jugadas (tablas)"
+  },
+  "openings": {
+    "italian": "Apertura italiana",
+    "ruy-lopez": "Ruy López",
+    "sicilian-najdorf": "Siciliana Najdorf",
+    "french": "Defensa francesa",
+    "caro-kann": "Caro-Kann",
+    "scandinavian": "Escandinava",
+    "queens-gambit": "Gambito de dama rehusado",
+    "slav": "Defensa eslava",
+    "kings-indian": "India de rey",
+    "nimzo-indian": "Nimzoindia",
+    "english": "Apertura inglesa",
+    "london": "Sistema Londres"
+  },
+  "recent": {
+    "title": "Matches recientes",
+    "games_one": "{{count}} partida",
+    "games_other": "{{count}} partidas",
+    "stopped": "detenido antes",
+    "sprt": "decidido antes"
+  },
+  "sprt": {
+    "H1": "SPRT: {{name}} es más fuerte (LLR {{llr}})",
+    "H0": "SPRT: {{name}} no es {{elo1}} Elo más fuerte (LLR {{llr}})",
+    "open": "SPRT: LLR {{llr}} entre {{lower}} y {{upper}}"
+  },
+  "ladder": {
+    "title": "Clasificación",
+    "rankLabel": "Puesto {{rank}}",
+    "rangeText": "Rango 95%: {{low}}–{{high}}",
+    "scoreText": "{{score}}% de puntos",
+    "games": "Victorias · tablas · derrotas",
+    "nominal": "fijado en {{elo}}",
+    "hint_one": "Calculado con {{count}} partida del Arena. Los motores con Elo fijo anclan la escala; más partidas estrechan el rango.",
+    "hint_other": "Calculado con {{count}} partidas del Arena. Los motores con Elo fijo anclan la escala; más partidas estrechan el rango.",
+    "groups_one": "",
+    "groups_other": "{{count}} grupos nunca han jugado entre sí, así que compara el Elo solo dentro de cada grupo."
+  },
+  "chance": {
+    "label": "{{first}} {{firstChance}}% · {{second}} {{secondChance}}%",
+    "pending": "Evaluando la posición…"
+  },
+  "result": {
+    "wins": "{{name}} gana",
+    "draw": "Match empatado",
+    "rematch": "Revancha",
+    "newMatch": "Nuevo match",
+    "back": "Volver"
+  },
+  "tally": {
+    "label": "Cómo jugó cada uno",
+    "wins": "Victorias",
+    "draws": "Tablas",
+    "best": "Mejores jugadas",
+    "brilliant": "Brillantes",
+    "inaccuracy": "Imprecisiones",
+    "mistake": "Errores",
+    "blunder": "Errores graves",
+    "great": "Grandes jugadas",
+    "good": "Buenas",
+    "book": "De libro"
+  },
+  "moves": "Jugadas"
+}

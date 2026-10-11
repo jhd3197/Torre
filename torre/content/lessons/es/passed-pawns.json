@@ -1,0 +1,79 @@
+{
+ "title": "Peones pasados",
+ "summary": "Un peón sin peones enemigos a su alrededor es una futura dama. Aprende a identificar peones pasados, empújalos y crea los tuyos.",
+ "unit": "Estructura de peones",
+ "steps": [
+  {
+   "id": "what-is-passed",
+   "title": "Un peón con un camino despejado",
+   "text": "Un peón está pasado cuando ningún peón enemigo está delante de él en su columna o en las dos columnas adyacentes. El peón blanco en d5 no tiene ningún peón negro en las columnas c, d o e delante de él, por lo que nada puede bloquearlo o capturarlo en el camino a d8. Solo las piezas pueden detenerlo. La idea de que los peones son el alma del ajedrez se remonta a Philidor, y un peón pasado es la razón más clara de por qué.",
+   "narration": "Mira el peón blanco en d5. No hay peones negros delante de él, ni en las columnas adyacentes. Eso lo convierte en un peón pasado, y solo las piezas de Negro pueden impedir que se convierta en dama."
+  },
+  {
+   "id": "spot-it",
+   "title": "Encuentra el peón pasado",
+   "question": "¿Qué peón blanco está pasado?",
+   "options": [
+    {
+     "text": "El peón en h2",
+     "why": "Negro no tiene peones en las columnas g o h, por lo que nada puede bloquearlo o capturarlo nunca. Un peón puede estar pasado incluso en su casilla de partida."
+    },
+    {
+     "text": "El peón en e5",
+     "why": "El peón de Negro en d6 está en la columna contigua y delante de él, por lo que puede capturar en e5 o hacer guardia. No está pasado."
+    },
+    {
+     "text": "El peón en c4",
+     "why": "Los peones negros en b7 y d6 están en las columnas vecinas, delante de él."
+    },
+    {
+     "text": "El peón en a3",
+     "why": "El peón negro en a6 lo bloquea, y el peón en b7 protege la casilla adyacente."
+    }
+   ],
+   "narration": "Te toca a ti mirar. Revisa cada peón blanco: ¿hay peones negros delante de él, en su columna o en las columnas adyacentes? Solo un peón tiene un camino completamente despejado."
+  },
+  {
+   "id": "push-it",
+   "title": "Los peones pasados deben ser empujados",
+   "prompt": "El rey negro está corriendo para alcanzar tu peón. Gana la carrera.",
+   "hint": "Cada movimiento que gastes en otro lugar es un movimiento para el rey negro. Cuenta los pasos.",
+   "success": "Empuja, empuja, dama. Si las blancas hubieran dedicado incluso un movimiento al rey, el rey negro habría llegado a c7 a tiempo y el peón se habría perdido.",
+   "narration": "Aquí está la famosa regla: los peones pasados deben ser empujados. El rey negro está lo suficientemente cerca para alcanzar el peón si desperdicias un solo movimiento, así que no lo hagas. Hazlo avanzar directamente por el tablero."
+  },
+  {
+   "id": "protected-and-connected",
+   "title": "Protegidos y conectados",
+   "text": "Los peones blancos en c4 y d5 son ambos pasados, y están uno al lado del otro: peones pasados conectados. Pueden protegerse mutuamente mientras avanzan, así que el rey nunca tiene que cuidarlos. El peón d5 también está protegido, porque el peón c4 lo defiende. El peón negro en a7 también es pasado, pero está solo, y un peón solitario necesita ayuda de sus piezas.",
+   "narration": "Dos peones pasados juntos se llaman peones pasados conectados, y son una pesadilla de detener porque se protegen mutuamente mientras avanzan. El peón en d5 también está protegido por el de c4, así que Negro no puede simplemente ganarlo."
+  },
+  {
+   "id": "make-a-passer",
+   "title": "Crea uno de la nada",
+   "prompt": "Tres peones contra tres, y todavía no hay un peón pasado. Crea uno y promuévelo.",
+   "hint": "Sacrifica un peón en el medio para que uno de los otros tenga un camino libre.",
+   "success": "Esto es un avance. Blanco sacrificó dos peones para despejar un camino para el tercero, y el rey de Negro estaba demasiado lejos para atraparlo.",
+   "narration": "Aquí hay un hermoso truco llamado avance. Lanza un peón hacia adelante en el medio, luego otro, y de repente un tercer peón tiene un camino libre. El rey de Negro está demasiado lejos para hacer algo al respecto."
+  },
+  {
+   "id": "why-push",
+   "title": "¡Revísate!",
+   "question": "¿Por qué suele ser correcto empujar un peón pasado?",
+   "options": [
+    {
+     "text": "Cuanto más avanza, más fuerzas del oponente están atadas deteniéndolo",
+     "why": "Un peón pasado cerca del final del tablero necesita una guardia constante, por lo que las piezas del oponente se vuelven pasivas mientras las tuyas están libres."
+    },
+    {
+     "text": "Los peones son más seguros en el lado lejano del tablero",
+     "why": "Los peones avanzados también pueden ser débiles. La razón es que el peón pasado se vuelve más peligroso con cada paso."
+    },
+    {
+     "text": "Empujar peones siempre es mejor que mover piezas",
+     "why": "No, en absoluto. Los movimientos de peón ordinarios pueden crear debilidades. Los peones pasados son especiales porque solo piezas pueden detenerlos."
+    }
+   ],
+   "narration": "Pregunta final. ¿Por qué a los jugadores fuertes les encanta avanzar sus peones pasados? Piensa en lo que el oponente tiene que hacer para detener uno. ¡Buen trabajo hoy!"
+  }
+ ]
+}

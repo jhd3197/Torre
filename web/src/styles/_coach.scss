@@ -1,0 +1,956 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// The Coach hub (CoachPage): its tabs, your level, the coach's model, and the learning centers.
+.coach-hub {
+  padding: 24px 0 48px;
+  color: $lobby-ink;
+}
+
+// Header: tabs and a line on the left, level and model on the right.
+.coach-head {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.coach-head-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.coach-head-main > h1 {
+  margin: 0;
+  font: 900 #{$fs-display}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+  color: $lobby-ink;
+}
+.coach-head-main > p {
+  margin: 0;
+  color: $sage-600;
+  font-size: $fs-base;
+  max-width: 60ch;
+}
+.coach-head-side {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bots-segments.coach-tabs {
+  width: fit-content;
+  padding: 4px;
+  border-radius: 14px;
+  background: $lobby-track;
+  &::before {
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba($moss-900, 0.15);
+  }
+  button {
+    padding: 7px 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    color: $lobby-muted;
+    &.selected {
+      font-weight: 800;
+      color: $lobby-ink;
+    }
+  }
+}
+
+// Your level: a badge, the level and the XP into it.
+.coach-level {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 7px;
+  border-radius: 999px;
+  background: $white;
+  border: 1.5px solid $lobby-line-strong;
+  color: $lobby-ink;
+  text-decoration: none;
+  &:hover {
+    background: $lobby-selected;
+  }
+  @include focus-ring;
+}
+.coach-level-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: $lobby-button;
+  color: $white;
+  display: grid;
+  place-items: center;
+  font: 900 #{$fs-md} $font-mono;
+}
+.coach-level-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  strong {
+    font: 900 #{$fs-sm}/ 1 $font-sans;
+  }
+  > span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  small {
+    font: 600 #{$fs-2xs} $font-mono;
+    color: $lobby-muted;
+  }
+}
+.coach-level-bar {
+  width: 90px;
+  height: 6px;
+  border-radius: 999px;
+  background: $neutral-100;
+  overflow: hidden;
+  > span {
+    display: block;
+    height: 100%;
+    background: $lobby-star;
+  }
+}
+
+// The coach's model: a chip that opens the local models and a free field.
+.coach-model-menu {
+  position: relative;
+}
+.coach-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  font: 800 #{$fs-sm} $font-sans;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    background: $lobby-selected;
+  }
+  @include focus-ring;
+}
+.coach-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $lobby-green;
+}
+.coach-model-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 10;
+  width: min(320px, calc(100vw - 32px));
+  padding: 14px;
+  border-radius: 18px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 16px 36px rgba($moss-900, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  > p {
+    margin: 0;
+    font: 800 #{$fs-sm} $font-sans;
+    color: $lobby-muted;
+  }
+}
+.coach-model-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  button {
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    text-align: left;
+    font: 600 #{$fs-sm} $font-mono;
+    color: $lobby-ink;
+    cursor: pointer;
+    &:hover {
+      background: $lobby-selected;
+    }
+    &[aria-pressed="true"] {
+      background: $lobby-selected;
+      box-shadow: inset 0 0 0 1.5px $lobby-selected-line;
+    }
+  }
+}
+.coach-model {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1.5px solid $lobby-line;
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font: 700 #{$fs-sm} $font-sans;
+  }
+  input {
+    min-width: 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1.5px solid $lobby-line-strong;
+    font: 500 #{$fs-sm} $font-mono;
+  }
+  small {
+    color: $lobby-muted;
+    font-size: $fs-xs;
+  }
+}
+.coach-model-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+// "Rooky noticed" (CoachCard): the AI coach's notes beside the plan.
+.coach-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+  h2 {
+    margin: 0;
+    font: 900 #{$fs-xl} $font-sans;
+  }
+  h3 {
+    margin: 0;
+    font: 800 #{$fs-md} $font-sans;
+  }
+  > .button {
+    align-self: flex-start;
+  }
+}
+.coach-notes-loading {
+  min-height: 120px;
+  align-items: center;
+  justify-content: center;
+  color: $lobby-muted;
+}
+.coach-notes-headline {
+  margin: 0;
+  font: 800 #{$fs-md}/ 1.45 $font-sans;
+  text-wrap: pretty;
+}
+.coach-notes-text {
+  margin: 0;
+  color: $sage-700;
+  font-size: $fs-sm;
+  line-height: 1.5;
+}
+.coach-notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    gap: 10px;
+  }
+  li > span {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: $white;
+    font: 900 #{$fs-xs} $font-sans;
+  }
+  li.is-good > span {
+    background: $lobby-green;
+  }
+  li.is-fix > span {
+    background: $orange-400;
+  }
+  li > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  p {
+    margin: 0;
+    font-size: $fs-md;
+    line-height: 1.4;
+    color: $sage-800;
+  }
+  strong {
+    color: $lobby-ink;
+  }
+}
+.coach-notes-list p.coach-notes-why {
+  font-size: $fs-sm;
+  color: $lobby-muted;
+}
+.coach-notes-act {
+  width: fit-content;
+  font: 900 #{$fs-sm} $font-sans;
+  color: $brand-green;
+  &:hover {
+    color: $lobby-ink;
+  }
+}
+.coach-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.coach-tasks-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  span {
+    color: $lobby-muted;
+    font-size: $fs-xs;
+  }
+}
+.coach-task-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  span {
+    flex: none;
+    font: 600 #{$fs-xs} $font-sans;
+    color: $lobby-muted;
+  }
+  progress {
+    flex: 1;
+    height: 6px;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    accent-color: $lobby-green;
+  }
+  progress::-webkit-progress-bar {
+    background: $neutral-100;
+  }
+  progress::-webkit-progress-value {
+    background: $lobby-green;
+  }
+  progress::-moz-progress-bar {
+    background: $lobby-green;
+  }
+}
+.coach-notes-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1.5px solid $lobby-line;
+  p {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    font-size: $fs-xs;
+    color: $lobby-muted;
+  }
+  small {
+    display: block;
+    margin-top: 2px;
+  }
+  .button {
+    flex: none;
+    min-height: 32px;
+    padding: 6px 12px;
+    font-size: $fs-xs;
+  }
+}
+
+// Learning centers.
+.coach-centers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.coach-center {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 22px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+  color: $lobby-ink;
+  img {
+    object-fit: contain;
+  }
+  h3 {
+    margin: 0 0 6px;
+    font: 850 #{$fs-xl} $font-sans;
+  }
+  p {
+    color: $sage-600;
+    max-width: 44ch;
+    margin: 0 0 12px;
+  }
+  span {
+    color: $brand-green;
+    font-weight: 800;
+  }
+  &:hover {
+    border-color: $lobby-hover-line;
+  }
+}
+
+@include down(md) {
+  .coach-hub {
+    padding-top: 16px;
+  }
+  .coach-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .coach-head-side {
+    margin-left: 0;
+  }
+  .bots-segments.coach-tabs {
+    width: 100%;
+    flex-wrap: nowrap;
+    button {
+      flex: 1;
+      padding: 7px 8px;
+    }
+  }
+  .coach-model-panel {
+    right: auto;
+    left: 0;
+  }
+  .coach-centers {
+    grid-template-columns: 1fr;
+  }
+  .coach-center {
+    gap: 14px;
+    padding: 18px;
+    img {
+      width: 56px;
+      height: 56px;
+    }
+  }
+}
+
+// The Stats tab's overview (CoachStats), on the Torre Stats design.
+@mixin stat-card {
+  border-radius: 22px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+
+.coach-hub .insights {
+  max-width: none;
+}
+.coach-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: $lobby-ink;
+  h2 {
+    margin: 0;
+    font: 900 #{$fs-2xl} $font-sans;
+  }
+}
+.coach-stats-range {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  > span {
+    color: $lobby-muted;
+    font: 800 #{$fs-sm} $font-sans;
+  }
+}
+.coach-stat-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  > span {
+    margin-left: auto;
+    color: $lobby-muted;
+    font-size: $fs-sm;
+  }
+  > .coach-peak {
+    color: $lobby-warm;
+    font-weight: 800;
+  }
+  > .button {
+    margin-left: auto;
+  }
+}
+.coach-stat-empty {
+  margin: 0;
+  color: $lobby-muted;
+  font-size: $fs-sm;
+}
+.coach-stat-note {
+  color: $lobby-muted;
+  font-size: $fs-xs;
+}
+.coach-stat-act {
+  width: fit-content;
+  color: $brand-green;
+  font: 900 #{$fs-xs} $font-sans;
+}
+
+// Rooky's read: a few lines off the numbers, on the green panel.
+.coach-read {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  border-radius: 24px;
+  background: $lobby-green;
+  color: $white;
+  > div {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  h2 {
+    font: 900 #{$fs-sm} $font-sans;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $sage-50;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: $white;
+    color: $lobby-ink;
+  }
+  li strong {
+    font: 900 #{$fs-base} $font-sans;
+  }
+  li span {
+    color: $sage-700;
+    font-size: $fs-sm;
+    line-height: 1.4;
+  }
+}
+.coach-read-figure {
+  flex: none;
+  display: grid;
+  place-items: end center;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  background: $white;
+  overflow: hidden;
+}
+
+// Headline figures.
+.coach-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px;
+}
+.coach-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  @include stat-card;
+  border-radius: 20px;
+  span {
+    color: $lobby-muted;
+    font: 800 #{$fs-sm} $font-sans;
+  }
+  strong {
+    font: 900 #{$fs-5xl}/ 1.05 $font-sans;
+    font-variant-numeric: tabular-nums;
+  }
+  small {
+    color: $lobby-muted;
+    font: 700 #{$fs-xs} $font-sans;
+  }
+}
+
+// Your moves by grade: one bar and a legend.
+.coach-moves {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .quality-bar {
+    height: 16px;
+    margin: 0;
+    gap: 2px;
+  }
+}
+.coach-moves-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font: 800 #{$fs-md} $font-sans;
+  }
+  b {
+    font: 600 #{$fs-sm} $font-mono;
+  }
+  small {
+    color: $sage-500;
+    font: 500 #{$fs-xs} $font-mono;
+  }
+}
+
+// Cards: form, phases, where errors happen, strength, think time, colour.
+.coach-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px 20px;
+  @include stat-card;
+  .insight-chart {
+    border: 0;
+    border-radius: 14px;
+  }
+}
+.coach-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+}
+.coach-track {
+  display: flex;
+  height: 10px;
+  border-radius: 999px;
+  background: $neutral-100;
+  overflow: hidden;
+  i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: $lobby-green;
+  }
+  &.is-stacked i {
+    border-radius: 0;
+  }
+}
+.coach-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  > div {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+  }
+  strong {
+    font: 900 #{$fs-base} $font-sans;
+  }
+  small {
+    color: $lobby-muted;
+    font-size: $fs-xs;
+  }
+  b {
+    margin-left: auto;
+    font: 900 #{$fs-2xl} $font-mono;
+  }
+  &.is-good b {
+    color: $moss-800;
+  }
+  &.is-fair i {
+    background: $lobby-hover-line;
+  }
+  &.is-low {
+    b {
+      color: $lobby-warm;
+    }
+    i {
+      background: $lobby-star;
+    }
+  }
+}
+.coach-heat {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  height: 170px;
+  margin: 0;
+  padding: 10px 0 0;
+  list-style: none;
+  li {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+  span,
+  small {
+    color: $sage-500;
+    font: 600 #{$fs-2xs} $font-mono;
+  }
+  i {
+    display: block;
+    width: 100%;
+    border-radius: 6px 6px 2px 2px;
+    background: $stone;
+  }
+  li.is-high i {
+    background: $wheat-200;
+  }
+  li.is-peak {
+    i {
+      background: $orange-400;
+    }
+    span {
+      color: $lobby-warm;
+    }
+  }
+}
+.coach-bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 3.5rem;
+  align-items: center;
+  gap: 10px;
+  > span:first-child {
+    font: 800 #{$fs-sm} $font-sans;
+  }
+  b {
+    text-align: right;
+    font: 600 #{$fs-sm} $font-mono;
+  }
+  .coach-track {
+    height: 12px;
+  }
+  &.is-fair i {
+    background: $lobby-star;
+  }
+  &.is-low i {
+    background: $orange-400;
+  }
+  &.is-time {
+    grid-template-columns: 4rem minmax(0, 1fr) 3.5rem;
+    > span:first-child {
+      font: 600 #{$fs-sm} $font-mono;
+    }
+  }
+}
+.coach-track i.is-blunder,
+.coach-key.is-blunder {
+  background: $red-600;
+}
+.coach-track i.is-error,
+.coach-key.is-error {
+  background: $lobby-star;
+}
+.coach-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px 0 0;
+  border-radius: 2px;
+}
+.coach-color {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  background: $paper;
+  > span:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  strong {
+    font: 900 #{$fs-lg} $font-sans;
+  }
+  small {
+    color: $lobby-muted;
+    font-size: $fs-xs;
+  }
+  b {
+    margin-left: auto;
+    font: 900 #{$fs-4xl} $font-mono;
+  }
+}
+.coach-color-king {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border: 1.5px solid $stone;
+  font-size: $fs-4xl;
+  line-height: 1;
+  &.is-white {
+    background: $white;
+    color: $stone;
+  }
+  &.is-black {
+    background: $charcoal;
+    color: $neutral-100;
+  }
+}
+
+// Blind spots (BlindSpots), in the card look.
+.coach-blind .blind-spots {
+  margin: 0;
+  padding: 18px 20px;
+  @include stat-card;
+  h3 {
+    font: 900 #{$fs-lg} $font-sans;
+  }
+  .phase-track {
+    height: 8px;
+    border-radius: 999px;
+    background: $neutral-100;
+    i {
+      border-radius: 999px;
+      background: $red-600;
+    }
+  }
+  .insight-columns > div + div .phase-track i {
+    background: $blue-600;
+  }
+}
+
+// By opponent: a table of rows with a win / draw / loss bar.
+.coach-opponents {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.coach-opponent-table {
+  overflow: hidden;
+  @include stat-card;
+}
+.coach-opponent-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) 4rem minmax(7rem, 2fr) 4rem;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1.5px solid $lobby-track;
+  &.is-head {
+    border-top: 0;
+    background: $neutral-50;
+    color: $sage-500;
+    font: 900 #{$fs-xs} $font-sans;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    > span:nth-child(2),
+    > span:nth-child(4) {
+      text-align: right;
+    }
+  }
+  .is-num {
+    text-align: right;
+    font: 600 #{$fs-sm} $font-mono;
+  }
+  .rooky-face {
+    border-radius: 10px;
+  }
+}
+.coach-opponent-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: 800 #{$fs-base} $font-sans;
+  }
+}
+.coach-wdl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  small {
+    color: $lobby-muted;
+    font: 500 #{$fs-xs} $font-mono;
+    white-space: nowrap;
+  }
+}
+.coach-wdl-bar {
+  flex: 1;
+  display: flex;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: $neutral-100;
+  .is-win {
+    background: $lobby-green;
+  }
+  .is-draw {
+    background: $sand-300;
+  }
+  .is-loss {
+    background: $red-600;
+  }
+}
+
+@include down(md) {
+  .coach-head-main > h1 {
+    font-size: $fs-7xl;
+  }
+  .coach-stats-range {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .coach-read {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .coach-kpi strong {
+    font-size: $fs-4xl;
+  }
+  .coach-opponent-row {
+    grid-template-columns: minmax(0, 1fr) 3rem 3.5rem;
+    > :nth-child(3) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+}

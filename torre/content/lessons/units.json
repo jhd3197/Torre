@@ -1,0 +1,8 @@
+{
+  "openings": ["Opening traps", "London System", "Colle System", "Philidor Defense"],
+  "checkmates": ["Basic mates", "Mating patterns"],
+  "strategy": ["Pawn structure", "Piece play", "Planning"],
+  "history": ["The Romantic Era", "Paul Morphy", "Wilhelm Steinitz", "Emanuel Lasker", "Great Tournaments",
+              "José Raúl Capablanca", "Mikhail Botvinnik", "Mikhail Tal", "Tigran Petrosian", "Bobby Fischer",
+              "Karpov and Kasparov", "Judit Polgár", "Magnus Carlsen"]
+}

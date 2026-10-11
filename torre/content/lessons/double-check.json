@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "Double check",
+  "summary": "Two pieces give check at once. You cannot block two checks or capture two pieces, so the king must move, and often it has nowhere to go.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["discovered-attack"],
+  "practice": "double-check",
+  "steps": [
+    {
+      "id": "two-checks",
+      "kind": "explain",
+      "title": "Two checks at once",
+      "fen": "3qk3/6p1/8/8/4N3/8/8/4R1K1 w - - 0 1",
+      "marks": [["e1", "e8"], ["f6", "e8"], ["f6"]],
+      "demo": ["e4f6", "e8f7"],
+      "text": "A double check is a discovered check where the moving piece also gives check. After the knight jumps to f6, both the rook and the knight attack the king. The queen and the g7 pawn could each capture the knight, but that would leave the rook's check. A block cannot stop two checks either. Against a double check, only a king move helps.",
+      "narration": "Watch the knight jump to f6. [move] Now the rook checks the king and the knight checks it too. Black can take the knight, sure, but the rook is still giving check. With two checks at once, the only answer is to move the king. [move]",
+      "pose": "shocked"
+    },
+    {
+      "id": "double-check-mate",
+      "kind": "play",
+      "title": "Nowhere to run",
+      "fen": "rn1qkbnr/pppp1ppp/8/8/4N3/5N2/PPPP1PPP/R1BQR1K1 w kq - 0 6",
+      "prompt": "Checkmate in one with a double check.",
+      "hint": "Move the knight on e4 so that it checks the king too. The rook on e1 does the rest.",
+      "line": ["e4d6"],
+      "success": "Nd6 is double check and mate. Black's pawn could take the knight, but the rook would still be checking, and the king is boxed in by its own queen, bishop and pawns. Nf6 mates the same way.",
+      "narration": "Black's king is surrounded by its own pieces, and your rook is aimed straight at it. Jump the knight to a square where it checks the king too. Two checks at once, no square to run to: checkmate!",
+      "pose": "detective"
+    },
+    {
+      "id": "reti-queen-sac",
+      "kind": "play",
+      "title": "Sacrifice, then double check",
+      "fen": "rnb1kb1r/pp3ppp/2p5/4q3/4n3/3Q4/PPPB1PPP/2KR1BNR w kq - 0 9",
+      "prompt": "Sacrifice your queen, then finish with a double check. Mate in three.",
+      "hint": "Give up the queen on d8 with check. When the king takes, a bishop move uncovers your rook on the d-file.",
+      "line": ["d3d8", "e8d8", "d2g5", "d8c7", "g5d8"],
+      "success": "Qd8+ Kxd8, then Bg5+ is double check from bishop and rook. After Kc7 the bishop mates on d8 (after Ke8, the rook mates on d8). This finish is famous from a game in Vienna in 1910.",
+      "narration": "This one is a classic. Give your queen away on d8 with check. When the king takes it, move the bishop out of the rook's way with check of its own. Double check, and the king's only escapes lead straight into mate.",
+      "pose": "excited"
+    },
+    {
+      "id": "only-defence",
+      "kind": "choose",
+      "title": "The only defence",
+      "question": "Your king is in double check. Which answer can work?",
+      "options": [
+        { "text": "Moving the king", "correct": true, "why": "A king move is the only way to escape two checks at once. If there is no safe square, it is checkmate." },
+        { "text": "Capturing one of the checking pieces", "why": "The other piece would still be giving check, so this is illegal (unless the king itself makes the capture)." },
+        { "text": "Blocking one of the checks", "why": "One block leaves the other check standing. You cannot block two lines with one move." }
+      ],
+      "narration": "Final question. Your king is in double check. What is the one kind of move that can save it? Answer this and double checks will never surprise you again. Fantastic job!",
+      "pose": "trophy"
+    }
+  ]
+}

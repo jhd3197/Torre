@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "title": "Polgár opens the h-file",
+  "summary": "Budapest, 2003: Judit Polgár gives a knight and a rook to tear open the h-file against Ferenc Berkes.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Judit Polgár",
+  "order": 1,
+  "practice": "kingside-attack",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Budapest, 2003",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Judit Polgár is the strongest woman ever to play chess. She became a grandmaster at fifteen, younger than Fischer had been, and she played in the world's top ten. She was famous for fearless attacks. In this game in Budapest she faces the young Hungarian Ferenc Berkes.",
+      "narration": "Budapest, 2003. Judit Polgár, the strongest woman in chess history, against Ferenc Berkes. She is going straight for the king.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Polgár – Berkes, Budapest 2003",
+      "text": "A French Defense. White castles long, Black short, so Polgár can throw her kingside pawns forward. She will give a knight and a rook to open the h-file.",
+      "narration": "Polgár castles on the queenside and throws everything at the black king. Find her moves.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "e7e6",
+        "d2d4",
+        "d7d5",
+        "b1c3",
+        "g8f6",
+        "c1g5",
+        "d5e4",
+        "c3e4",
+        "f8e7",
+        "g5f6",
+        "e7f6",
+        "g1f3",
+        "e8g8",
+        "d1d2",
+        "b8d7",
+        "e1c1",
+        "f6e7",
+        "f1d3",
+        "b7b6",
+        "e4g5",
+        "h7h6",
+        "d3h7",
+        "g8h8",
+        "h7e4",
+        "h6g5",
+        "g2g4",
+        "a8b8",
+        "h2h4",
+        "g7g6",
+        "h4g5",
+        "h8g7",
+        "d2f4",
+        "c8b7",
+        "h1h7",
+        "g7h7",
+        "f4h2",
+        "h7g8",
+        "d1h1",
+        "e7g5",
+        "f3g5",
+        "d8g5",
+        "f2f4",
+        "g5f4",
+        "h2f4",
+        "b7e4",
+        "f4e4"
+      ],
+      "notes": [
+        {
+          "ply": 17,
+          "text": "9.O-O-O: opposite castling. Polgár's kingside pawns are free to storm."
+        },
+        {
+          "ply": 23,
+          "text": "12.Bh7+: a check to push the king into the corner."
+        },
+        {
+          "ply": 25,
+          "text": "13.Be4: Polgár leaves her knight on g5 where the h-pawn can take it. The h-file is what she wants."
+        },
+        {
+          "ply": 31,
+          "text": "16.hxg5+: the h-file is open, and it is check."
+        },
+        {
+          "ply": 39,
+          "text": "20.Rh1: the second rook arrives on the h-file. Black has to give material back."
+        },
+        {
+          "ply": 47,
+          "text": "24.Qxe4: material is level, but Black's king cannot survive the queen and rook on the h-file. Berkes resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 27,
+          "prompt": "You are a piece down. Stop ...g4 and prepare to open the h-file.",
+          "hint": "A pawn move can do both jobs at once.",
+          "why": "14.g4! stops Black from pushing ...g4 to kick the knight on f3, and gets ready for h4."
+        },
+        {
+          "ply": 29,
+          "prompt": "Now open the h-file.",
+          "hint": "Attack the pawn on g5 with another pawn.",
+          "why": "15.h4 hits g5. The h-file will open with White's rook already waiting on h1."
+        },
+        {
+          "ply": 35,
+          "prompt": "Rook sacrifice!",
+          "hint": "Check on the seventh rank. The king has to take.",
+          "why": "18.Rh7+! Kxh7 19.Qh2+: the king is dragged forward, and the queen and the other rook follow down the h-file."
+        },
+        {
+          "ply": 37,
+          "prompt": "The king took the rook. Follow up with check.",
+          "hint": "The queen wants the h-file too.",
+          "why": "19.Qh2+ drives the king back to g8. Next, Rh1 brings the last rook with a mating threat."
+        },
+        {
+          "ply": 43,
+          "prompt": "Black's queen gives check on g5. Block it with the move that hurts most.",
+          "hint": "A pawn can block and attack the queen at the same time.",
+          "why": "22.f4! blocks the check and hits the queen, which has no good square: retreats to h4 or h6 walk into the h-file. Black has to give the queen back."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "The open file",
+      "question": "Polgár gave a knight and a rook. What did she get for them?",
+      "options": [
+        {
+          "text": "An open h-file with her queen and rook on it, aimed at the king",
+          "why": "Yes. Every sacrifice opened the h-file wider, and the king could not escape it.",
+          "correct": true
+        },
+        {
+          "text": "A won endgame",
+          "why": "The game was decided by the attack on the king, not in an endgame."
+        },
+        {
+          "text": "More pawns",
+          "why": "She was never ahead in pawns. She was ahead in attackers."
+        }
+      ],
+      "narration": "What did all those sacrifices buy?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Open the file, then use it",
+      "fen": "1r3rk1/p1pn1p2/1p2p1p1/8/3PQ1P1/8/PPP5/2K4R b - - 0 24",
+      "text": "With kings on opposite sides, the attacker who opens a file first usually wins. Polgár spent a knight to open the h-file and a rook to drag the king onto it. Once her queen and rook stood on the open file, Black had to give everything back.",
+      "narration": "Open a file toward the enemy king, then put your queen and rook on it. That is how Polgár attacked.",
+      "pose": "idea"
+    }
+  ]
+}

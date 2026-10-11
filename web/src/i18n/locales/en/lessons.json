@@ -1,0 +1,207 @@
+{
+  "categories": {
+    "basics": "Basics",
+    "openings": "Openings",
+    "tactics": "Tactics",
+    "checkmates": "Checkmates",
+    "endgames": "Endgames",
+    "strategy": "Strategy",
+    "history": "History"
+  },
+  "meta": {
+    "minutes": "{{count}} min",
+    "steps_one": "{{count}} step",
+    "steps_other": "{{count}} steps",
+    "stepsAbout_one": "{{count}} step · about {{minutes}} min",
+    "stepsAbout_other": "{{count}} steps · about {{minutes}} min"
+  },
+  "toMove": {
+    "white": "White to move.",
+    "black": "Black to move."
+  },
+  "side": {
+    "white": "White",
+    "black": "Black"
+  },
+  "page": {
+    "label": "Lessons"
+  },
+  "teacher": {
+    "listen": "Listen to the coach"
+  },
+  "list": {
+    "tryAgain": "Try again",
+    "loading": "Loading lessons…",
+    "completed": "{{done}} of {{total}} completed.",
+    "followStory": "Follow the Story instead",
+    "empty": "No lessons are installed.",
+    "groupDone": "{{done}} of {{total}} done",
+    "problems_one": "One lesson file could not be loaded",
+    "problems_other": "{{count}} lesson files could not be loaded",
+    "placement": "Already know some? Take a quick check",
+    "reviewDue_one": "One exercise from a lesson you finished is due for review.",
+    "reviewDue_other": "{{count}} exercises from lessons you finished are due for review.",
+    "reviewNow": "Review now",
+    "videos": "Videos",
+    "videosNote": "Watch the game, then play through it in the lesson."
+  },
+  "tile": {
+    "completed": "Completed ✓",
+    "continue": "Continue · step {{step}} of {{total}}",
+    "start": "Start",
+    "bestAfter": "Best after: {{lessons}}",
+    "known": "Known ✓",
+    "video": "Video"
+  },
+  "view": {
+    "allLessons": "All lessons",
+    "loading": "Loading the lesson…",
+    "playback": "Lesson playback",
+    "pauseLesson": "Pause the lesson",
+    "playLesson": "Play the lesson",
+    "pauseAutoplay": "Pause autoplay",
+    "autoplay": "Autoplay with the coach narrating",
+    "mute": "Mute the coach",
+    "unmute": "Unmute the coach",
+    "steps": "Lesson steps",
+    "step": "Step {{number}}",
+    "stepTitled": "Step {{number}}: {{title}}",
+    "stepNotReached": "Step {{number}} (not reached yet)",
+    "complete": "Complete",
+    "stepOf": "Step {{number}} of {{count}}"
+  },
+  "step": {
+    "finish": "Finish lesson",
+    "continue": "Continue",
+    "previousMove": "Previous move",
+    "nextMove": "Next move",
+    "replay": "Play the line from the start",
+    "replayTitle": "Play line",
+    "movesSoFar": "Moves so far",
+    "check": "Check",
+    "retry": "Retry",
+    "showMove": "Show the move",
+    "showHint": "Show a hint",
+    "nicelyDone": "Nicely done!",
+    "tryAgain": "Try again.",
+    "hint": "<strong>Hint:</strong> {{hint}}"
+  },
+  "reel": {
+    "playback": "Game playback",
+    "pause": "Pause",
+    "play": "Play",
+    "seek": "Seek through the game",
+    "speed": "Playback speed {{speed}} times; activate to change",
+    "speedTitle": "Playback speed",
+    "moves": "Game moves"
+  },
+  "guess": {
+    "thatWasTheMove": "That was the move.",
+    "summary": "You found {{score}} of {{total}} key moves.",
+    "itWas": "It was {{san}}.",
+    "keepWatching": "Keep watching",
+    "skipToNext": "Skip to the next question",
+    "skipToEnd": "Skip to the end",
+    "score": "Found {{score}} of {{total}} key moves",
+    "findPlayed": "<strong>{{toMove}}</strong> Find the move that was played.",
+    "notGameMove": "<strong>✗ {{san}}</strong> was not the game move.",
+    "notGameMoveTryAgain": "<strong>✗ {{san}}</strong> was not the game move. Try again.",
+    "arrow": "The arrow shows the game move: <strong>{{san}}</strong>. Play it on the board."
+  },
+  "play": {
+    "wellDone": "Well done.",
+    "alsoStrong": "Also a strong move!",
+    "stockfishRates": "Stockfish rates <strong>{{san}}</strong> as good as <strong>{{lesson}}</strong>, the move this lesson teaches.",
+    "playAgain": "Play it again",
+    "notThisIdea": "Good move, but not this lesson's idea.",
+    "strongToo": "<strong>{{san}}</strong> is strong too. This lesson is about a different move, so try to find it.",
+    "tryAgain": "Try again",
+    "notTheMove": "<strong>✗ {{san}}</strong> is not the move here.",
+    "answers": "{{opponent}} answers <strong>{{reply}}</strong>.",
+    "answersLine": "{{opponent}} answers <strong>{{reply}}</strong>, and after {{next}} comes <strong>{{then}}</strong>.",
+    "startOver": "Start the line over",
+    "arrow": "The arrow shows the move: <strong>{{san}}</strong>. Play it on the board.",
+    "otherDefence": "Try the other defence",
+    "showMe": "Show me on the board",
+    "showingWhy": "Why {{san}} does not work",
+    "backToPosition": "Back to the position",
+    "watchAgain": "Watch again",
+    "backOne": "Take back one move"
+  },
+  "choose": {
+    "right": "Right.",
+    "tryAnother": "Try another answer.",
+    "answers": "Answers"
+  },
+  "finished": {
+    "closing": "Nicely done! You finished {{title}}.",
+    "kicker": "Lesson complete",
+    "title": "Nicely done!",
+    "youFinished": "You finished <strong>{{title}}</strong>.",
+    "xpEarned": "XP earned",
+    "firstTry": "First try",
+    "dayStreak": "Day streak",
+    "upNext": "Up next",
+    "next": "Next: {{title}}",
+    "backToMap": "Back to the map",
+    "backToPath": "Back to the path",
+    "backToCoach": "Back to Coach",
+    "backToGame": "Back to the game",
+    "practise": "Practise it on puzzles",
+    "again": "Go through it again",
+    "reviewLater": "Its exercises come back for review in Train after a day or two, then less and less often as you keep solving them."
+  },
+  "intro": {
+    "kinds": {
+      "explain": "Learn",
+      "play": "Your move",
+      "choose": "Quiz",
+      "reel": "Watch",
+      "guess": "Guess the move"
+    },
+    "kicker": "Lesson",
+    "soundCheck": "Hi! If you can hear me, you are all set. Let’s learn some chess.",
+    "coachTitle": "The coach talks you through it",
+    "coachBody": "Turn your sound up or put on headphones, then check you can hear it.",
+    "playing": "Playing…",
+    "testSound": "Test sound",
+    "continueFrom": "Continue from step {{step}}",
+    "start": "Start lesson",
+    "startWithoutSound": "Start without sound",
+    "startSilently": "Start silently",
+    "alreadyKnow": "I already know this",
+    "watch": "Watch the video",
+    "markedKnown": "You marked this lesson as known. Take it any time to earn its stars."
+  },
+  "video": {
+    "frame": "{{title}}, video",
+    "close": "Close",
+    "openYouTube": "Open on YouTube"
+  },
+  "hints": {
+    "nudge": "Look at every check, capture and threat before you move.",
+    "whichPiece": "Which piece?",
+    "pieceCircled": "The circled piece is the one to move.",
+    "hardMode": "Hard mode: no hints and no answers. You can turn it off in Settings."
+  },
+  "why": {
+    "mate": "That lets {{opponent}} give checkmate.",
+    "fork": "That lets {{opponent}} fork two of your pieces.",
+    "hanging": "That leaves a piece {{opponent}} can take for free.",
+    "promotion": "That lets {{opponent}} promote a pawn.",
+    "material_one": "A few moves later you are a pawn down.",
+    "material_other": "A few moves later you are {{count}} points of material down.",
+    "missedMate": "The lesson's move wins by force; this one lets the win slip away.",
+    "worse": "Stockfish rates it {{pawns}} pawns worse than the lesson's move."
+  },
+  "placement": {
+    "known_one": "You solved one check cleanly:",
+    "known_other": "You solved {{count}} checks cleanly:",
+    "noneKnown": "No clean solves this time. These lessons are worth taking.",
+    "mark_one": "Mark it as known",
+    "mark_other": "Mark these {{count}} as known",
+    "marked_one": "Marked as known. It stays open if you want to take it.",
+    "marked_other": "{{count}} lessons marked as known. They stay open if you want to take them.",
+    "toTake": "Worth taking:"
+  }
+}

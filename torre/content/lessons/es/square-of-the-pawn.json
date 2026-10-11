@@ -1,0 +1,48 @@
+{
+ "title": "El cuadrado del peón",
+ "summary": "¿Puede el rey alcanzar a un peón que huye? Dibuja un cuadrado imaginario y sabrás la respuesta sin contar un solo movimiento.",
+ "steps": [
+  {
+   "id": "draw-the-square",
+   "title": "Dibuja el cuadrado",
+   "text": "Imagina un cuadrado con un lado que va desde el peón hasta su casilla de coronación. Para el peón en a4, eso es de a4 a a8, así que el cuadrado llega hasta la columna 'e'. Si el rey defensor puede entrar en este cuadrado, lo atrapa. Si no puede, el peón se convierte en dama.",
+   "narration": "Aquí tienes un truco que te ahorra mucho conteo. Dibuja una línea desde el peón hasta la casilla donde se corona, luego construye un cuadrado sobre esa línea. Si el rey enemigo puede entrar en el cuadrado, lo atrapa. Si no, el peón se convierte en dama."
+  },
+  {
+   "id": "outside-the-square",
+   "title": "¡Corre!",
+   "prompt": "El rey negro está justo fuera del cuadrado. Asegúrate de que nunca entre.",
+   "hint": "Cada avance de peón hace que el cuadrado sea más pequeño. No le des al rey un movimiento gratis.",
+   "success": "El peón corre y el cuadrado se reduce más rápido de lo que el rey puede caminar. Cualquier movimiento del rey habría permitido que el negro entrara en el cuadrado en e5 y atrapara al peón.",
+   "narration": "El rey negro está a un paso fuera del cuadrado, así que no desperdicies ni un solo movimiento. Empuja el peón y sigue empujándolo. Cada paso reduce el cuadrado, y el rey nunca entra."
+  },
+  {
+   "id": "catch-it",
+   "title": "Atrapa al peón",
+   "prompt": "Tú eres negro. Entra en el cuadrado del peón 'g' y quédate dentro.",
+   "hint": "El cuadrado del peón de g4 va desde el archivo c hasta el archivo g, y desde la cuarta fila hacia arriba. ¿Qué movimiento del rey cae dentro de él?",
+   "success": "Cada vez que el peón avanza, el cuadrado se hace más pequeño, y cada vez que tu rey vuelve a entrar en él. Tu rey ahora protege las casillas en frente del peón, así que nunca podrá coronar de forma segura.",
+   "narration": "Ahora tú eres el defensor. Tu rey tiene exactamente una forma de entrar en el cuadrado del peón de g. Encuéntrala, y luego sigue al peón: cada vez que avanza, el cuadrado se reduce, y tú vuelves a entrar."
+  },
+  {
+   "id": "double-step",
+   "title": "Observa el primer movimiento",
+   "question": "Blancas a mover. ¿Qué movimiento gana?",
+   "options": [
+    {
+     "text": "Peón a b4, dos casillas de golpe",
+     "why": "Un peón en su casilla inicial puede saltar dos casillas, así que dibuja su cuadrado desde b3, no desde b2. Después de b4, el cuadrado solo llega al archivo f y el rey negro no puede entrar."
+    },
+    {
+     "text": "Peón a b3",
+     "why": "Demasiado lento. El cuadrado de un peón en b3 llega al archivo g, y el rey negro entra con rey a g4."
+    },
+    {
+     "text": "Rey a g2, para mantener al rey negro ocupado",
+     "why": "El rey blanco no puede detener nada desde allí, y el rey negro avanza hacia el peón y lo atrapa."
+    }
+   ],
+   "narration": "Una más, con un giro. Un peón en su casilla inicial puede saltar dos casillas de golpe, así que su cuadrado es más pequeño de lo que parece. Blancas a mover: ¿qué movimiento gana? Si aciertas, los peones fugaces nunca te engañarán de nuevo."
+  }
+ ]
+}

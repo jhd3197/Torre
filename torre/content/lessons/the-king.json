@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "The king",
+  "summary": "The king moves one square at a time and must never be left in check. Learn its moves and the rules that keep it safe.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 4,
+  "unit": "Rules of the game",
+  "order": 5,
+  "steps": [
+    {
+      "id": "one-square",
+      "kind": "explain",
+      "title": "One step at a time",
+      "fen": "7k/8/8/8/3K4/8/8/8 w - - 0 1",
+      "marks": [["c3"], ["c4"], ["c5"], ["d3"], ["d5"], ["e3"], ["e4"], ["e5"]],
+      "text": "The king moves one square in any direction: forward, backward, sideways or diagonally. It is not the strongest piece, but it is the most important one. If your king is trapped, you lose the game.",
+      "narration": "This is the king. He's slow, only one square at a time, but he can go in any direction. Protect him at all costs, because if he gets trapped, the game is over.",
+      "pose": "salute"
+    },
+    {
+      "id": "kings-never-touch",
+      "kind": "explain",
+      "title": "Never into check",
+      "fen": "8/8/3k4/8/3K4/8/8/8 w - - 0 1",
+      "marks": [["c5"], ["d5"], ["e5"]],
+      "text": "A king may never move onto a square that an enemy piece attacks. That is called moving into check, and it is not allowed. Kings attack the squares around them too, so the two kings can never stand next to each other: here neither king may step onto c5, d5 or e5.",
+      "narration": "Two rules keep the king alive. He can never step onto a square that's attacked, and the two kings can never touch. Those three squares in the middle are off limits to both of them.",
+      "pose": "alarm"
+    },
+    {
+      "id": "king-grabs-a-pawn",
+      "kind": "play",
+      "title": "A safe snack",
+      "fen": "8/8/2k5/3p1p2/4K3/8/7P/8 w - - 0 1",
+      "prompt": "Your king can reach two black pawns. Capture the one you are allowed to take.",
+      "hint": "The pawn on d5 sits right next to Black's king.",
+      "line": ["e4f5"],
+      "success": "King takes f5. You could not take on d5, because your king would then stand next to Black's king.",
+      "narration": "Your king is hungry. Two black pawns are within reach, but one of them is guarded by Black's king. Kings can't touch, so pick the other one.",
+      "pose": "detective"
+    },
+    {
+      "id": "capture-the-checker",
+      "kind": "play",
+      "title": "Answer the check",
+      "fen": "7k/6pp/8/8/8/6P1/5P1P/4rK2 w - - 0 1",
+      "prompt": "Black's rook gives check. Find the best way out.",
+      "hint": "Is anything protecting the rook on e1?",
+      "line": ["f1e1"],
+      "success": "The rook was right next to your king and had no protection, so the king captured it. A king can take an attacker, as long as it is not defended.",
+      "narration": "Check! Black's rook is right next to your king. You could run away, but look closer: is anyone protecting that rook? If not, your king can simply take it.",
+      "pose": "determined"
+    },
+    {
+      "id": "king-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Black's rook stands next to your king, and Black's bishop protects it. Can your king capture the rook?",
+      "options": [
+        { "text": "No, the king would be moving into check", "correct": true, "why": "After the capture the bishop would attack the king's new square. A king may never move into check." },
+        { "text": "Yes, the king can capture anything next to it", "why": "Only pieces that are not defended. Taking a defended piece puts your king in check." },
+        { "text": "Yes, but you lose the game afterwards", "why": "The move is simply illegal, so you are not allowed to play it at all." }
+      ],
+      "narration": "One last question. What if that rook next to your king were protected by a bishop? Could the king still take it?",
+      "pose": "thinking"
+    }
+  ]
+}

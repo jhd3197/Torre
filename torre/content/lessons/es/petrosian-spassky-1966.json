@@ -1,0 +1,93 @@
+{
+ "title": "Los sacrificios de caballo de Petrosian",
+ "summary": "Moscú, 1966: el campeón del mundo cede dos calidades por casillas, y luego termina con un sacrificio de dama.",
+ "unit": "Tigran Petrosian",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Moscú, 1966",
+   "text": "Tigran Petrosian se convirtió en campeón del mundo en 1963 y defendió su título contra Boris Spassky en Moscú en 1966. Petrosian era famoso por detener los planes de su oponente antes de que comenzaran y por sacrificar una torre por una pieza menor, un sacrificio de calidad, cuando daba a sus piezas mejores casillas. Esta partida tiene ambas, y también un sacrificio de dama.",
+   "narration": "Moscú, 1966. El campeón del mundo Tigran Petrosian defiende su título contra Boris Spassky. Míralo ceder torres por casillas."
+  },
+  {
+   "id": "the-game",
+   "title": "Petrosian – Spassky, Campeonato Mundial, partida 10, 1966",
+   "text": "Una estructura india de rey con el centro cerrado. Spassky ataca en el flanco de rey, gana una torre por un alfil y parece peligroso. Petrosian lo deja hacer, porque sus caballos y alfil obtienen las casillas claras.",
+   "notes": [
+    {
+     "text": "8.d5: el peón cierra el centro y obliga al caballo negro a a5, en el borde del tablero."
+    },
+    {
+     "text": "15.f3: Petrosian desafía al caballo en g4 antes de que pueda causar problemas."
+    },
+    {
+     "text": "20...Bh3: Spassky ataca la torre en f1."
+    },
+    {
+     "text": "21.Ne3: Petrosian deja que la torre se vaya. El caballo ocupa una bonita casilla en cambio."
+    },
+    {
+     "text": "21...Bxf1: Spassky gana la calidad: una torre por un alfil. Pero ahora Black ya no tiene un alfil de casillas claras."
+    },
+    {
+     "text": "23.Bg4: el alfil se dirige a e6, justo delante del rey negro, donde ninguna pieza negra puede desafiarlo."
+    },
+    {
+     "text": "26.Ne4: el caballo se dirige a d6 y f6. El caballo negro en a5 todavía está lejos."
+    },
+    {
+     "text": "29.Bxf7+: el alfil captura la torre. Después de ...Rxf7, la dama blanca y dos caballos cazan al rey."
+    }
+   ],
+   "narration": "Spassky ataca e incluso gana material. Petrosian se lo permite, porque está recolectando casillas. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "El caballo negro en f4 es su mejor pieza. Petrosian lo elimina, a un costo.",
+     "hint": "Una torre puede capturar un caballo cuando las casillas que ganas valen más.",
+     "why": "24.Rxf4! entrega una segunda calidad. Tras ...Rxf4 25.Be6+, el alfil y los caballos dominan las casillas claras alrededor del rey negro."
+    },
+    {
+     "prompt": "La torre en f4 recapturó. Ahora, jaque.",
+     "hint": "El alfil quiere la casilla e6.",
+     "why": "25.Be6+: El alfil se sienta en e6, corta al rey y ningún peón podrá espantarlo jamás."
+    },
+    {
+     "prompt": "Tu caballo puede tomar un peón e impactar una torre clavada.",
+     "hint": "La torre en f7 está clavada al rey por el alfil en e6. Atácalo de nuevo.",
+     "why": "27.Nxd6 toma un peón y ataca a la torre clavado en f7 una segunda vez. Negro no puede defender todo."
+    },
+    {
+     "prompt": "Termina con un sacrificio de dama.",
+     "hint": "Un jaque en h8 arrastra al rey a una horquilla de caballo.",
+     "why": "30.Qh8+! Kxh8 31.Nxf7+ horquilla al rey y a la dama en g5. Spassky renunció."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "La calidad",
+   "question": "Petrosian sacrificó una torre por un alfil, luego una torre por un caballo. ¿Qué obtuvo?",
+   "options": [
+    {
+     "text": "Control total de los cuadrados claros alrededor del rey de Negro",
+     "why": "Sí. Con el alfil claro de Negro desaparecido, nada podría desafiar al alfil de Blanco en e6 ni a los caballos."
+    },
+    {
+     "text": "Nada; Spassky simplemente se equivocó.",
+     "why": "Spassky tomó el material a propósito. Las piezas de Petrosian eran simplemente mejores que las torres."
+    },
+    {
+     "text": "Un final más fácil",
+     "why": "El juego nunca llegó a un final. Terminó con un ataque mate y un sacrificio de dama."
+    }
+   ],
+   "narration": "Dos calidad entregadas. ¿Qué obtuvo Petrosian a cambio?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Los casilleros pueden vencer el material.",
+   "text": "Una torre vale más que un alfil o un caballo en el papel. Pero una torre sin columnas abiertas no hace mucho, mientras que un alfil o un caballo en una casilla que el enemigo no puede atacar puede dominar el tablero. Petrosian renunció a dos calidad y aún tenía las piezas más fuertes.",
+   "narration": "Una torre vale más en el papel. Pero un alfil en una casilla que nunca puede ser atacada puede valer más en el tablero."
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "title": "Trampas de Londres",
+ "summary": "Una trampa para evitar (el truco de ...c4 contra b2) y una para preparar: el sacrificio del alfil en h7.",
+ "unit": "Defensa Londres",
+ "steps": [
+  {
+   "id": "autopilot",
+   "title": "El peligro de la pilota automática",
+   "text": "Como la Apertura Londinense siempre tiene la misma configuración, es tentador jugar las jugadas sin pensar. Aquí, las blancas mueven el alfil a d3 mientras la dama en b6 ya está mirando a b2. Las negras responden con ...c4, ¡golpeando al alfil! El alfil tiene que moverse, y entonces la dama captura b2, apuntando también a tu torre en a1. Revísalo paso a paso.",
+   "narration": "El mayor peligro de la Apertura Londinense es jugar de forma automática. Peón a d4. [move] Las negras responden con d5. [move] Alfil a f4. [move] Caballo a f6. [move] Peón a e3. [move] Las negras empujan c5. [move] Caballo a f3. [move] Y la dama negra va a b6. [move] Las blancas colocan el alfil en d3 como siempre. [move] Un empuje de peón lo desplaza. [move] El alfil tiene que moverse. [move] Y b2 cae. [move]"
+  },
+  {
+   "id": "limit-the-damage",
+   "title": "Limita el daño",
+   "prompt": "Caíste en ella y b2 se fue. La dama negra ahora apunta a tu torre en a1. Salva la situación con una jugada útil.",
+   "hint": "Tu dama en d1 protegería a1 a lo largo de la primera fila si un peón se apartara del camino.",
+   "success": "El caballo a d2 desarrolla y despeja la primera fila, por lo que tu dama ahora protege la torre. Estás un peón abajo, pero nada más está cayendo. La próxima vez, protege b2 con la dama antes de que el alfil vaya a d3.",
+   "narration": "Imagina que te pasó a ti. El peón se ha ido y la torre en a1 está en peligro. No pierdas más. Encuentra una jugada que desarrolle y proteja la torre."
+  },
+  {
+   "id": "greek-gift-setup",
+   "title": "Una trampa para las negras: el alfil en h7",
+   "text": "Ahora, buenas noticias. Tu peón en e5 ha alejado el caballo negro de f6, el habitual defensor de h7. La dama negra está en b6 y no puede llegar a g5 ni a h5. Cuando el alfil en d3, un caballo que puede saltar a g5 y una dama que puede avanzar, se alinean de esta manera, el sacrificio del alfil en h7 suele ser letal. Se le llama el regalo griego.",
+   "narration": "Ahora viene la parte divertida. El caballo negro ha sido empujado de f6, así que nada defiende h7 excepto el rey. Tu alfil, tu caballo y tu dama están todos listos. Ese es el planteamiento para un sacrificio famoso llamado regalo griego."
+  },
+  {
+   "id": "greek-gift",
+   "title": "El regalo griego",
+   "prompt": "Sacrifica el alfil en h7, luego introduce el caballo y la dama.",
+   "hint": "Toma en h7 con jaque, salta a g5 con jaque, y cuando el rey vaya a g6, lleva la dama al flanco de la g.",
+   "success": "La dama en g4 se alinea con el rey en g6, y cualquier movimiento del caballo ahora daría un ataque a la descubierta. El rey negro está en serio peligro y usualmente tiene que devolver material. Si el rey hubiera vuelto a g8, la dama en h5 habría llevado a mate.",
+   "narration": "Aquí vamos. El alfil toma en h7 con jaque, caballo a g5 con jaque, y cuando el rey avance a g6, lleva la dama al flanco de la g detrás del caballo."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Qué hizo que el sacrificio del alfil en h7 funcionara aquí?",
+   "options": [
+    {
+     "text": "No hay caballo en f6 para defender h7, y el caballo y una dama blancos podrían unirse rápidamente.",
+     "why": "Exactamente. Sin el caballo en f6, h7 solo tiene al rey para protegerlo, y el jaque del caballo en g5 más una dama terminan el trabajo."
+    },
+    {
+     "text": "Siempre funciona una vez que las negras han enrocado.",
+     "why": "Necesita las condiciones correctas. Con un caballo en f6, o una pieza negra cubriendo g5, usualmente solo pierde un alfil."
+    },
+    {
+     "text": "Una dama negra estaba atrapada en b6",
+     "why": "Una dama estaba libre; simplemente estaba demasiado lejos para ayudar al rey."
+    }
+   ],
+   "narration": "Pregunta final. ¿Qué hizo que el regalo griego funcionara en esta posición? Recuerda los ingredientes y lo reconocerás en tus propios partidas. ¡Buen trabajo!"
+  }
+ ]
+}

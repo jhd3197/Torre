@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "The Colle setup",
+  "summary": "d4, Nf3, e3, Bd3, Nbd2, c3 and castle: a quiet setup with one loud idea, the e3-e4 push.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Colle System",
+  "order": 1,
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setup",
+      "kind": "explain",
+      "title": "Build it",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "demo": ["d2d4", "d7d5", "g1f3", "g8f6", "e2e3", "e7e6", "f1d3", "c7c5", "c2c3", "b8c6", "b1d2", "f8d6", "e1g1", "e8g8"],
+      "text": "The Colle System is named after the Belgian player Edgar Colle, who used it in the 1920s. White plays pawn to d4, knight to f3, pawn to e3, bishop to d3, the other knight to d2, pawn to c3 and castles. It looks like the London, with one big difference: the bishop on c1 stays at home, behind the e3 pawn.",
+      "narration": "Meet the Colle System. Pawn to d4. [move] Black answers d5. [move] Knight to f3. [move] Black's knight comes out too. [move] Pawn to e3. [move] Black plays e6. [move] Bishop to d3. [move] Black pushes c5. [move] Pawn to c3. [move] Knight to c6. [move] The other knight to d2. [move] Bishop to d6. [move] White castles. [move] And so does Black. [move] It's like the London, except the dark-squared bishop stays at home for now.",
+      "pose": "present"
+    },
+    {
+      "id": "the-point",
+      "kind": "explain",
+      "title": "Everything aims at e4",
+      "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPN2/PP1N1PPP/R1BQ1RK1 w - - 5 8",
+      "marks": [["e3", "e4"], ["d2", "e4"], ["d3", "e4"], ["c1"]],
+      "demo": ["e3e4"],
+      "text": "Why leave the bishop on c1? Because the whole setup is built to push the e-pawn to e4. The knight on d2 and the bishop on d3 both support that square. Once e4 happens, the centre opens, the bishop on c1 can finally come out, and the bishop on d3 has a clear view of h7.",
+      "narration": "So why keep the bishop on c1 locked in? Because the Colle has one big idea: push the pawn from e3 to e4. [move] Your knight and bishop already support it, and now everything opens up.",
+      "pose": "pointer"
+    },
+    {
+      "id": "recapture",
+      "kind": "play",
+      "title": "Take back the right way",
+      "fen": "r1bq1rk1/pp3ppp/2nbpn2/2p5/3Pp3/2PB1N2/PP1N1PPP/R1BQ1RK1 w - - 0 9",
+      "prompt": "Black took on e4. Take back with the right piece.",
+      "hint": "Your bishop on d3 is your best attacker. Is there another piece that can recapture?",
+      "line": ["d2e4"],
+      "success": "Knight takes on e4 keeps the bishop on d3 aimed at h7 and develops the knight toward the centre. Taking with the bishop lets Black trade off your best attacking piece.",
+      "narration": "You pushed the e-pawn and Black captured it. Two of your pieces can take back. Pick the one that keeps your attacking bishop on its diagonal.",
+      "pose": "thinking"
+    },
+    {
+      "id": "fork",
+      "kind": "play",
+      "title": "When Black is slow",
+      "fen": "r1b2rk1/ppq2ppp/2nbpn2/2pp4/3PP3/2PB1N2/PP1N1PPP/R1BQ1RK1 w - - 1 9",
+      "prompt": "Black ignored your pawn on e4. Push it again and win material.",
+      "hint": "From e5 a pawn attacks d6 and f6.",
+      "line": ["e4e5", "d6e5", "f3e5|d4e5"],
+      "success": "e5 forks the bishop and the knight. Black can give back the bishop for a pawn, but still loses a piece for a pawn.",
+      "narration": "Black let your pawn stand on e4. Push it one more square, and see which two black pieces it attacks at once.",
+      "pose": "magnify"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What is the main idea of the Colle setup?",
+      "options": [
+        { "text": "Prepare the pawn push from e3 to e4", "correct": true, "why": "Yes. The knight on d2 and the bishop on d3 both support e4, and the push opens the centre for your pieces." },
+        { "text": "Get the bishop on c1 out early", "why": "That's the London. In the Colle the bishop waits on c1 until e4 opens the way." },
+        { "text": "Attack on the queenside with a4 and b4", "why": "The Colle's play is in the centre and on the kingside, through e4." }
+      ],
+      "narration": "Last question. What's the big idea behind the Colle? You know this one. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

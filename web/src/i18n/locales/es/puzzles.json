@@ -1,0 +1,179 @@
+{
+ "page": {
+  "label": "Problemas"
+ },
+ "groups": {
+  "yours": "Tus partidas",
+  "checkmates": "Jaque mates",
+  "tactics": "Tácticas",
+  "endgames": "Finales"
+ },
+ "titles": {
+  "mixed": "Problemas con calificación",
+  "missed": "Puzzles para reintentar",
+  "fallback": "Problemas",
+  "weak": "Puntos débiles",
+  "streak": "Racha de puzzles",
+  "storm": "Tormenta de puzzles"
+ },
+ "overview": {
+  "tryAgain": "Intenta de nuevo",
+  "loading": "Cargando puzzles…",
+  "notInstalled": "No hay puzzles instalados. Ejecuta <code>python import_puzzles.py</code> para construirlos desde la base de datos de Lichess.",
+  "ratingLabel": "Clasificación en puzzles",
+  "provisional": "Provisional · resuelve algunos para encontrar tu nivel",
+  "solveRated": "Resuelve puzzles con clasificación",
+  "recentTitle": "Intentos recientes",
+  "problems_one": "No se pudo cargar el {{count}} problema",
+  "problems_other": "No se pudieron cargar {{count}} problemas",
+  "ratedCount_one": "{{count}} calificado",
+  "ratedCount_other": "{{count}} calificados",
+  "week": "{{delta}} esta semana",
+  "firstTry": "a la primera",
+  "avgSolve": "tiempo medio",
+  "modesLabel": "Formas de practicar",
+  "solveRatedSub": "Elegidos cerca de {{rating}} entre todos los temas",
+  "retry": "Reintentar",
+  "retryDue_one": "{{count}} pendiente",
+  "retryDue_other": "{{count}} pendientes",
+  "retryNone": "Nada pendiente",
+  "streakSub": "Mejor: {{best}}",
+  "streakNew": "Un error y se acaba",
+  "stormSub": "3 min · mejor {{best}}",
+  "stormNew": "3 minutos, todos los que puedas",
+  "showRules": "Cómo se puntúa",
+  "hideRules": "Ocultar puntuación",
+  "rules": {
+   "firstTitle": "Cuenta tu primer intento",
+   "firstText": "Solo tu primer intento en un problema mueve tu calificación, en cualquier tema. Los problemas difíciles dan más puntos y resolver rápido y sin errores da un extra.",
+   "helpTitle": "La ayuda cuesta puntos",
+   "helpText": "Un movimiento incorrecto o una pista aún dan crédito parcial. Dos errores o mostrar la solución cuentan como fallo.",
+   "missTitle": "Los fallos vuelven",
+   "missText": "Un problema fallado vuelve a Reintentar minutos después, luego a los días y luego a las semanas, hasta que lo resuelvas sin errores.",
+   "runsTitle": "Racha y Tormenta no califican",
+   "runsText": "No tocan tu calificación. Solo se guarda tu mejor marca."
+  },
+  "filterLabel": "Mostrar temas",
+  "filterAll": "Todos los temas",
+  "filterStarted": "Empezados",
+  "filterNew": "Sin empezar",
+  "search": "Busca un tema…",
+  "searchLabel": "Busca un tema",
+  "themeCount_one": "{{count}} tema",
+  "themeCount_other": "{{count}} temas",
+  "themesShown": "{{shown}} de {{total}} temas",
+  "noMatch": "Ningún tema coincide. Prueba otra palabra o muéstralos todos.",
+  "recentSummary": "{{solved}} resueltos · {{missed}} fallidos"
+ },
+ "trend": {
+  "label": "Calificación en los últimos {{count}} problemas calificados: de {{from}} a {{to}}"
+ },
+ "themeCard": {
+  "status": "{{tried}} intentos · {{percent}}% a la primera",
+  "statusWithMissed": "{{tried}} intentos · {{percent}}% a la primera · {{missed}} fallidos",
+  "start": "Empezar",
+  "meta": "{{count}} problemas · {{low}}–{{high}}",
+  "notStarted": "Sin empezar",
+  "continue": "Continuar"
+ },
+ "attempt": {
+  "hint": "pista",
+  "solutionShown": "solución mostrada",
+  "solved": "Resuelto",
+  "missed": "Fallido",
+  "puzzle": "Problema",
+  "tried": "intentaste {{moves}}",
+  "seconds": "{{seconds}}s",
+  "unrated": "sin calificación"
+ },
+ "stream": {
+  "allPuzzles": "Todos los problemas",
+  "ratedPuzzles": "Problemas con calificación",
+  "emptyMissedTitle": "No queda nada para intentar de nuevo",
+  "emptyMissedBody": "Cada problema que fallaste ha sido resuelto perfectamente desde entonces.",
+  "emptyAllTitle": "Has intentado todos los problemas aquí",
+  "emptyAllBody": "Elige otro tema o intenta de nuevo los que fallaste.",
+  "loading": "Cargando el problema…",
+  "yourRating": "Tu calificación: {{rating}}"
+ },
+ "coach": {
+  "missed": [
+   "No esta vez. Míralo otra vez, te quedará claro.",
+   "Cerca. Mira nuevamente la solución."
+  ]
+ },
+ "toasts": {
+  "awardUnlocked": "¡Reconocimiento desbloqueado: {{title}}",
+  "tierReached": "{{title}} alcanzó el nivel {{tier}}"
+ },
+ "solver": {
+  "whiteToMove": "Juegan blancas.",
+  "blackToMove": "Juegan negras.",
+  "watchOpponent": "Observa el movimiento de tu oponente…",
+  "findBest": "Encuentra la mejor jugada.",
+  "movesSoFar": "Movimientos hasta ahora",
+  "wrong": "<strong>✗ {{move}}</strong> no es la correcta. Intenta de nuevo.",
+  "hint": "<strong>Pista:</strong> la pieza marcada hace la jugada.",
+  "showMove": "La flecha indica la jugada: <strong>{{move}}</strong>. Juega ese movimiento en el tablero.",
+  "hintButton": "Pista",
+  "showSolution": "Mostrar la solución",
+  "solved": "✓ ¡Resuelto!",
+  "missed": "✗ Lo perdiste",
+  "checkmate": "Jaque mate.",
+  "wholeLine": "¡Encontraste toda la línea!",
+  "rating": "Puntuación <strong>{{rating}}</strong> <delta>{{delta}}</delta>",
+  "notRated": "Sin clasificación: ya has probado este problema.",
+  "puzzleRating": "Clasificación del problema {{rating}}",
+  "nextPuzzle": "Siguiente problema",
+  "tryAgain": "Intenta de nuevo",
+  "analyze": "Analizar",
+  "lichess": "Partida en Lichess",
+  "partial": "✓ Resuelto con ayuda",
+  "originalGame": "Partida original",
+  "alsoGood": "<strong>{{move}}</strong> también es una jugada fuerte, pero el problema tiene otra idea. Encuéntrala.",
+  "goalMate_one": "Encuentra el jaque mate en una jugada.",
+  "goalMate_other": "Encuentra el jaque mate en {{count}} jugadas.",
+  "goalWin": "Encuentra la mejor jugada: gana material o una gran ventaja.",
+  "goalHold": "Encuentra la mejor jugada: salva la partida.",
+  "solution": "La solución",
+  "stepBack": "Atrás",
+  "stepForward": "Adelante",
+  "asPlayed": "Volver a tu partida"
+ },
+ "missText": {
+  "triedFirst": "Intentaste {{moves}} primero.",
+  "lookedAtSolution": "Viste la solución.",
+  "usedHint": "Usaste una pista.",
+  "inList": "Está en tu lista de problemas para intentar de nuevo.",
+  "partialCredit": "Crédito parcial: cuenta como resuelto."
+ },
+ "score": {
+  "score": "Puntuación {{percent}}%",
+  "speedBonus": "bono de velocidad +{{percent}}%"
+ },
+ "run": {
+  "streakRules": "Sin errores: cada puzzle es un poco más difícil que el anterior y una jugada mala termina la racha. Sin calificación.",
+  "stormRules": "Tres minutos para resolver todos los puzzles que puedas. Una jugada mala salta el puzzle y cuesta 10 segundos. Sin calificación.",
+  "score": "Puntos {{score}}",
+  "best": "Récord {{best}}",
+  "penalty": "−{{seconds}} s",
+  "clockLabel": "Tiempo restante {{time}}",
+  "end": "Terminar",
+  "over": "Fin de la racha",
+  "timeUp": "Se acabó el tiempo",
+  "final_one": "Resolviste {{count}} puzzle.",
+  "final_other": "Resolviste {{count}} puzzles.",
+  "missedMove": "Jugaste {{tried}}; la jugada era {{answer}}.",
+  "newBest": "¡Nuevo récord!",
+  "again": "Jugar otra vez"
+ },
+ "blind": {
+  "on": "A ciegas",
+  "off": "Mostrar las piezas",
+  "letters": "RDTAC",
+  "white": "Blancas: {{pieces}}",
+  "black": "Negras: {{pieces}}",
+  "whitePlayed": "Luego las blancas jugaron {{move}}.",
+  "blackPlayed": "Luego las negras jugaron {{move}}."
+ }
+}

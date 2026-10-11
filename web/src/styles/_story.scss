@@ -1,0 +1,913 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Story mode: the campaign map (hero, chapter cards, winding node map, side
+   column) and focus mode (the shell-less node screen). */
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 19vw, 360px);
+  gap: clamp(28px, 2.2vw, 44px);
+  align-items: start;
+  max-width: none;
+  padding: 0 0 48px;
+}
+.story-main {
+  min-width: 0;
+}
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.story-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 196px;
+}
+.story-hero-text {
+  max-width: 470px;
+  padding-bottom: 22px;
+}
+.story-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  color: $moss-600;
+}
+.story-hero-title {
+  margin: 2px 0 8px;
+  font: 800 #{$fs-display}/ 1 $font-sans;
+  letter-spacing: -2px;
+  color: $moss-900;
+}
+.story-hero-text p {
+  font-size: $fs-md;
+  line-height: 1.65;
+  color: $sage-600;
+}
+.story-hero-art {
+  position: relative;
+  flex: none;
+  width: 300px;
+  height: 196px;
+}
+.hero-rook {
+  position: absolute;
+  right: 30px;
+  bottom: -8px;
+  width: 190px;
+  filter: drop-shadow(0 8px 10px rgba($black, 0.13));
+}
+.hero-cloud {
+  position: absolute;
+  width: 74px;
+  opacity: 0.75;
+  animation: story-drift 16s ease-in-out infinite alternate;
+}
+.hero-cloud.a {
+  left: 0;
+  top: 30px;
+}
+.hero-cloud.b {
+  right: 0;
+  top: 6px;
+  width: 58px;
+  animation-delay: -7s;
+}
+.hero-birds {
+  position: absolute;
+  left: 40px;
+  top: 4px;
+  width: 52px;
+  animation: story-hover 4s ease-in-out infinite;
+}
+@keyframes story-drift {
+  from {
+    transform: translateX(-12px);
+  }
+  to {
+    transform: translateX(16px);
+  }
+}
+@keyframes story-hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ── Chapter cards ────────────────────────────────────────────────────── */
+
+:where(.story-chapter) {
+  --unit: #{$green-500};
+  --unit-dark: #{$green-600};
+}
+.story-chapter.unit-openings {
+  --unit: #{$orange-500};
+  --unit-dark: #{$orange-600};
+}
+.story-chapter.unit-strategy {
+  --unit: #{$steel-600};
+  --unit-dark: #{$steel-700};
+}
+.story-chapter {
+  margin-top: 22px;
+}
+.story-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 156px;
+  padding: 24px 290px 24px 30px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, var(--unit), var(--unit-dark));
+  color: $white;
+  box-shadow: 0 10px 24px -14px var(--unit-dark);
+}
+.story-card-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  opacity: 0.85;
+}
+.story-card h2 {
+  margin: 4px 0 4px;
+  font: 800 #{$fs-5xl}/ 1.1 $font-sans;
+  letter-spacing: -1px;
+}
+.story-card p {
+  font-size: $fs-md;
+  opacity: 0.92;
+}
+.story-card-meter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 16px;
+  font: 700 #{$fs-md} $font-sans;
+}
+.story-card-bar {
+  width: 200px;
+  height: 12px;
+  border-radius: 7px;
+  background: rgba($white, 0.25);
+  overflow: hidden;
+}
+.story-card-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 7px;
+  background: $white;
+  transition: width 0.5s ease;
+}
+.story-card-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.story-card-scene {
+  position: absolute;
+  right: 20px;
+  bottom: -4px;
+  height: 178px;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 10px rgba($black, 0.2));
+}
+.story-card-boss {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 3px;
+  border-radius: 50%;
+  background: $neutral-50;
+  box-shadow: 0 2px 6px rgba($black, 0.2);
+}
+.story-card-boss img {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Locked chapters fold to a quiet card: no map until the boss before them falls. */
+.story-chapter.locked .story-card {
+  min-height: 0;
+  padding: 16px 170px 16px 24px;
+  background: $sage-100;
+  color: $sage-700;
+  box-shadow: none;
+}
+.story-chapter.locked .story-card h2 {
+  font-size: $fs-2xl;
+}
+.story-chapter.locked .story-card p {
+  font-size: $fs-md;
+}
+.story-chapter.locked .story-card-scene {
+  height: 96px;
+  filter: grayscale(0.75) opacity(0.6);
+}
+.story-card-lock {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.story-chapter.locked + .story-chapter.locked {
+  margin-top: 12px;
+}
+
+/* ── The map ──────────────────────────────────────────────────────────── */
+
+/* --map-scale (set from the map's width) grows nodes, art and scenery together on wide screens. */
+.story-map {
+  --s: var(--map-scale, 1);
+  position: relative;
+  margin: 18px 0 12px;
+}
+.path-trail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.path-trail path {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 12 14;
+}
+.trail-todo {
+  stroke: $sage-200;
+}
+.trail-done {
+  stroke: var(--unit);
+  opacity: 0.55;
+}
+
+/* A node: number, circle, label, and START under the current one. Its point is the circle's centre. */
+.trail-node {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  translate: -50% calc(-82px * var(--s));
+  text-align: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+.trail-number {
+  display: grid;
+  place-items: center;
+  min-width: calc(26px * var(--s));
+  height: calc(26px * var(--s));
+  padding: 0 6px;
+  border-radius: 999px;
+  background: $sage-400;
+  color: $white;
+  font: 800 calc(13px * var(--s)) $font-sans;
+  box-shadow: 0 2px 0 rgba($black, 0.1);
+}
+.trail-circle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(96px * var(--s));
+  height: calc(96px * var(--s));
+  border-radius: 50%;
+  background: $neutral-50;
+  border: 5px solid $sage-200;
+  box-shadow: 0 5px 0 $sage-200;
+  transition: transform 0.15s ease;
+}
+.trail-circle > img:first-child {
+  width: calc(62px * var(--s));
+  height: calc(62px * var(--s));
+  object-fit: contain;
+}
+.trail-badge {
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: calc(28px * var(--s));
+  height: calc(28px * var(--s));
+  padding: 4px;
+  border-radius: 50%;
+  background: $white;
+  box-shadow: 0 2px 5px rgba($black, 0.2);
+}
+.trail-badge.done {
+  padding: 0;
+  background: var(--unit);
+  color: $white;
+  font: 900 #{$fs-base} $font-sans;
+  border: 3px solid $white;
+}
+.trail-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  max-width: 100%;
+}
+.trail-label strong {
+  font: 750 calc(15px * var(--s))/1.25 $font-sans;
+  letter-spacing: -0.2px;
+  text-wrap: balance;
+}
+.trail-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: calc(12px * var(--s));
+  color: $sage-600;
+}
+.trail-start {
+  margin-top: 4px;
+  padding: calc(8px * var(--s)) calc(30px * var(--s));
+  border-radius: 12px;
+  background: var(--unit);
+  color: $white;
+  font: 800 #{$fs-md} $font-sans;
+  box-shadow: 0 4px 0 var(--unit-dark);
+}
+a.trail-node:hover .trail-circle {
+  transform: translateY(-3px);
+}
+a.trail-node:active .trail-circle {
+  transform: translateY(2px);
+}
+
+.trail-node.done .trail-number {
+  background: var(--unit);
+}
+.trail-node.done .trail-circle {
+  border-color: var(--unit);
+  background: color-mix(in srgb, var(--unit) 16%, $neutral-50);
+  box-shadow: 0 5px 0 var(--unit-dark);
+}
+.trail-node.current .trail-number {
+  background: $orange-400;
+}
+.trail-node.current .trail-circle {
+  border-color: $gold-300;
+  box-shadow:
+    0 5px 0 $gold-400,
+    0 0 0 9px rgba($gold-300, 0.19),
+    0 0 26px rgba($gold-300, 0.5);
+  animation: story-glow 2.2s ease-in-out infinite;
+}
+.trail-node.locked .trail-circle > img:first-child {
+  filter: grayscale(1) opacity(0.45);
+}
+.trail-node.locked .trail-label strong {
+  color: $sage-500;
+}
+.trail-node.boss .trail-circle {
+  border-color: $gold-300;
+}
+.trail-node.boss .trail-circle > img:first-child {
+  width: calc(78px * var(--s));
+  height: calc(78px * var(--s));
+  border-radius: 50%;
+  object-fit: cover;
+}
+.trail-node.boss .trail-number {
+  background: $gold-400;
+}
+@keyframes story-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 5px 0 $gold-400,
+      0 0 0 7px rgba($gold-300, 0.19),
+      0 0 18px rgba($gold-300, 0.44);
+  }
+  50% {
+    box-shadow:
+      0 5px 0 $gold-400,
+      0 0 0 12px rgba($gold-300, 0.14),
+      0 0 30px rgba($gold-300, 0.56);
+  }
+}
+
+/* Scenery stands on its point (bottom centre); edge scenes hug the map's bottom corner. */
+.scenery {
+  position: absolute;
+  z-index: 1;
+  width: auto;
+  translate: -50% -100%;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 5px rgba($black, 0.09));
+}
+.scenery.flip {
+  scale: -1 1;
+}
+.scenery-tuft {
+  height: calc(56px * var(--s));
+  opacity: 0.95;
+}
+.scenery-tree {
+  height: calc(134px * var(--s));
+}
+.scenery-landmark {
+  height: calc(168px * var(--s));
+}
+/* Capped to the band under the last row, so a tall scene never reaches the nodes' labels. */
+.scenery-edge {
+  translate: none;
+  bottom: 0;
+  width: auto;
+  max-width: 40%;
+  height: auto;
+  max-height: var(--edge-band, 150px);
+  z-index: 0;
+}
+.scenery-edge.scenery-left {
+  left: 0;
+}
+.scenery-edge.scenery-right {
+  right: 0;
+}
+
+/* Things pop up out of the ground as they scroll into view. */
+.reveal {
+  transition:
+    opacity 0.45s ease,
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal:not(.in) {
+  opacity: 0;
+  transform: translateY(14px) scale(0.85);
+}
+.scenery.reveal {
+  transform-origin: 50% 100%;
+  transition-delay: 0.1s;
+}
+
+.story-library {
+  margin-top: 34px;
+  font-size: $fs-sm;
+  color: $sage-600;
+  text-align: center;
+}
+
+/* ── Side column ──────────────────────────────────────────────────────── */
+
+.story-side {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+}
+.side-card {
+  position: relative;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: $neutral-50;
+}
+.side-card h3 {
+  margin: 0 0 10px;
+  font: 800 #{$fs-lg} $font-sans;
+  letter-spacing: -0.3px;
+  color: $sage-900;
+}
+.side-quote {
+  min-height: 132px;
+  padding-right: 110px;
+  background: $sage-100;
+  border-color: $sage-200;
+  overflow: hidden;
+}
+.side-quote-mark {
+  display: block;
+  height: 26px;
+  font:
+    800 #{$fs-8xl}/ 1 Georgia,
+    serif;
+  color: $green-500;
+}
+.side-quote p {
+  font: 750 #{$fs-lg}/ 1.35 $font-sans;
+  color: $sage-900;
+}
+.side-quote small {
+  display: block;
+  margin-top: 6px;
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+.side-quote img {
+  position: absolute;
+  right: -8px;
+  bottom: -10px;
+  width: 118px;
+}
+.side-bar {
+  height: 10px;
+  border-radius: 6px;
+  background: $sage-100;
+  overflow: hidden;
+}
+.side-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: var(--green);
+  transition: width 0.5s ease;
+}
+.side-bar-label {
+  display: block;
+  margin-top: 6px;
+  font-size: $fs-sm;
+  color: $sage-600;
+  text-align: right;
+}
+.side-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.side-tiles span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  font-size: $fs-xs;
+  color: $sage-600;
+  text-align: center;
+}
+.side-tiles img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.side-tiles b {
+  font: 800 #{$fs-xl} $font-sans;
+  color: $sage-900;
+}
+.side-streak-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.side-streak-head h3 {
+  margin: 0 0 2px;
+  color: $sage-500;
+}
+.side-streak.lit .side-streak-head h3 {
+  color: $orange-500;
+}
+.side-streak-head p {
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $sage-600;
+}
+.side-streak .flame {
+  flex: none;
+  color: $sage-300;
+}
+.side-streak.lit .flame {
+  color: $orange-400;
+}
+.side-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.side-week li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: $fs-xs;
+  color: $sage-500;
+}
+.side-week li span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $sage-100;
+  color: $white;
+  font: 900 #{$fs-sm} $font-sans;
+}
+.side-week li.on span {
+  background: var(--green);
+}
+.side-goal .daily-goal {
+  margin: 0;
+  font-size: $fs-md;
+  color: $sage-700;
+}
+
+@include reduced-motion {
+  .hero-cloud,
+  .hero-birds,
+  .trail-node.current .trail-circle {
+    animation: none;
+  }
+  .reveal,
+  .reveal:not(.in) {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+@include down(xl) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+  .story-side {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 0;
+  }
+}
+@include down(md) {
+  .story-hero {
+    min-height: 150px;
+  }
+  .story-hero-title {
+    font-size: $fs-7xl;
+  }
+  .story-hero-art {
+    width: 150px;
+    height: 150px;
+  }
+  .hero-rook {
+    width: 130px;
+    right: 0;
+  }
+  .hero-cloud,
+  .hero-birds {
+    display: none;
+  }
+  .story-card {
+    padding: 20px 130px 20px 20px;
+  }
+  .story-card h2 {
+    font-size: $fs-3xl;
+  }
+  .story-card-scene {
+    height: 110px;
+    right: 8px;
+  }
+  .story-card-bar {
+    width: 120px;
+  }
+  .story-side {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The daily-goal ring (side column). */
+.daily-goal {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 6px 0 14px;
+  font: 600 #{$fs-xs} $font-sans;
+  color: $sage-500;
+}
+.daily-goal-ring {
+  transform: rotate(-90deg);
+}
+.daily-goal-track {
+  fill: none;
+  stroke: $sage-100;
+  stroke-width: 3;
+}
+.daily-goal-fill {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s ease;
+}
+.daily-goal-check {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.daily-goal.done {
+  color: $moss-700;
+}
+
+/* ── Focus mode ─────────────────────────────────────────────────────────── */
+
+/* While a story node is open the app shell hides; the node header is the only chrome. */
+body[data-focus="story"] .rail-shell,
+body[data-focus="story"] .rail-backdrop,
+body[data-focus="story"] .rail-menubar,
+body[data-focus="story"] .topbar {
+  display: none;
+}
+/* No rail in focus mode: the column spans the window and centres its content. */
+body[data-focus="story"] .shell main {
+  margin-left: 0;
+  max-width: none;
+}
+.story-focus-body .lessons {
+  margin: 0 auto;
+}
+
+.story-focus-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--cream, $neutral-50);
+  border-bottom: 1px solid var(--line);
+}
+.story-focus-exit {
+  font-size: $fs-3xl;
+  line-height: 1;
+}
+.story-focus-progress {
+  flex: 1;
+  height: 12px;
+  border-radius: 7px;
+  background: $sage-100;
+  overflow: hidden;
+}
+.story-focus-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 7px;
+  background: var(--green);
+  transition: width 0.3s ease;
+}
+.story-focus-body {
+  max-width: 1190px;
+  margin: 0 auto;
+  padding: 66px 16px 40px;
+}
+
+/* The streak flame chip, next to the XP chip; unlit until today's goal is met. */
+.streak-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: $neutral-50;
+  font: 600 #{$fs-xs} $font-sans;
+  color: $sage-400;
+}
+.streak-chip svg {
+  color: $sage-300;
+}
+.streak-chip.lit {
+  color: $orange-700;
+}
+.streak-chip.lit svg {
+  color: $orange-500;
+}
+
+/* The toast is offset for the nav rail; in focus mode there is no rail. */
+body[data-focus="story"] #toast {
+  left: 50%;
+}
+
+/* The exit modal ("Wait, don't go!"). */
+.exit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 6px 4px;
+  text-align: center;
+  max-width: 340px;
+}
+.exit-card h2 {
+  margin: 0;
+  font: 800 #{$fs-3xl} $font-sans;
+  letter-spacing: -0.4px;
+}
+.exit-card p {
+  margin: 0;
+  font-size: $fs-md;
+  line-height: 1.6;
+  color: $sage-600;
+}
+.exit-card .exit-streak {
+  color: $orange-600;
+  font-weight: 600;
+}
+.exit-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  width: 100%;
+}
+.exit-actions .button {
+  width: 100%;
+}
+
+/* The gauntlet node. */
+.gauntlet .gauntlet-progress {
+  margin: 2px 0 16px;
+}
+.gauntlet-finished {
+  padding-top: 30px;
+}
+
+/* The boss intro card. */
+.boss-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 520px;
+  margin: 30px auto;
+  padding: 28px 24px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: $neutral-50;
+}
+.boss-kicker {
+  font: 700 #{$fs-xs} $font-sans;
+  color: $moss-500;
+}
+.boss-portrait {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  background: $neutral-50;
+  border: 2px solid var(--line);
+  object-fit: cover;
+}
+.boss-intro h2 {
+  margin: 0;
+  font: 800 #{$fs-4xl} $font-sans;
+  letter-spacing: -0.5px;
+}
+.boss-quote {
+  margin: 0;
+  font-size: $fs-base;
+  font-style: italic;
+  color: $sage-700;
+}
+.boss-desc {
+  margin: 0;
+  font-size: $fs-md;
+  line-height: 1.6;
+  color: $sage-600;
+}
+.boss-stakes {
+  margin: 0;
+  font-size: $fs-md;
+  line-height: 1.6;
+}
+.boss-start {
+  min-width: 200px;
+  margin-top: 6px;
+}
+.boss-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 0;
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $sage-600;
+  text-align: left;
+}
+.boss-note .mascot {
+  flex: none;
+}
+
+/* Streak freezes in hand, beside the count. */
+.streak-freezes {
+  margin-left: 6px;
+  font-size: $fs-xs;
+  opacity: 0.8;
+}

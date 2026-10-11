@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "Boden's mate",
+  "summary": "Two bishops on crossing diagonals checkmate a king that has castled queenside, usually after a sacrifice opens the way.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 4,
+  "level": "intermediate",
+  "minutes": 5,
+  "practice": "boden-mate",
+  "steps": [
+    {
+      "id": "crossing-diagonals",
+      "kind": "explain",
+      "title": "Crossing diagonals",
+      "fen": "2kr4/p2n4/2p5/8/5B2/3B4/5PPP/6K1 w - - 0 1",
+      "marks": [["f4", "b8"], ["d3", "a6"], ["d7"], ["d8"]],
+      "text": "Black's king has castled queenside, and its own rook and knight block d8 and d7. White's dark bishop on f4 covers b8 and c7. If the light bishop checks from a6, its diagonal crosses the other one like an X, and the king has nowhere to go. This is Boden's mate, named after the English player Samuel Boden.",
+      "narration": "Two bishops can mate on their own when the king is boxed in. The dark bishop on f4 covers b8 and c7, and the king's own rook and knight block the d-file. One check from the other bishop finishes it.",
+      "pose": "present"
+    },
+    {
+      "id": "bishop-to-a6",
+      "kind": "play",
+      "title": "The X",
+      "fen": "2kr4/p2n4/2p5/8/5B2/3B4/5PPP/6K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "The b7 square is empty, so a bishop on the a6 diagonal checks the king.",
+      "line": ["d3a6"],
+      "success": "Bishop to a6 is mate. Between them the bishops cover b7, b8 and c7, and Black's own pieces fill d7 and d8.",
+      "narration": "Your move. Bring the light bishop to a6 with check, and look how its diagonal crosses the dark bishop's. Mate.",
+      "pose": "detective"
+    },
+    {
+      "id": "queen-sacrifice",
+      "kind": "play",
+      "title": "Open the diagonal",
+      "fen": "2kr4/pp1n4/2n5/8/5B2/5Q2/4BPPP/6K1 w - - 0 1",
+      "prompt": "Mate in two. The pawn on b7 guards the king. Give up your queen to drag it away.",
+      "hint": "Take the knight on c6 with check. The b-pawn must recapture.",
+      "line": ["f3c6", "b7c6", "e2a6"],
+      "success": "Queen takes c6 check forces pawn takes c6, since b8 is covered by the bishop on f4. The b7 square is now empty, and bishop to a6 is Boden's mate.",
+      "narration": "The pawn on b7 is the only thing in the way. Sacrifice your queen on c6 with check! The pawn has to take, and that opens the diagonal. Bishop to a6, and it's Boden's mate.",
+      "pose": "shocked"
+    },
+    {
+      "id": "when-to-look",
+      "kind": "choose",
+      "title": "When to look for it",
+      "question": "When should you start looking for Boden's mate?",
+      "options": [
+        { "text": "When the enemy king has castled queenside and the pawns in front of it are gone or can be removed", "correct": true, "why": "Open diagonals toward c8 or b8, plus the king's own pieces on the d-file, are exactly what the two bishops need." },
+        { "text": "Whenever you have two bishops", "why": "You also need open diagonals and a king hemmed in by its own pieces. Without that the bishops alone cannot mate." },
+        { "text": "Only in the endgame", "why": "Boden's mate usually happens in the middlegame, with many pieces still on the board." }
+      ],
+      "narration": "Final question. When is it worth hunting for this mate? Think about where the king lives and what's in front of it. Get it right, and you'll spot Boden's mate in your own games. Fantastic!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "title": "Kasparov's king hunt",
+  "summary": "Wijk aan Zee, 1999: Garry Kasparov gives up a rook and chases Topalov's king from a7 all the way to d1.",
+  "category": "history",
+  "level": "advanced",
+  "minutes": 8,
+  "unit": "Karpov and Kasparov",
+  "order": 2,
+  "practice": "exposed-king",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Wijk aan Zee, 1999",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Garry Kasparov took the world title from Karpov in 1985 and kept it until 2000. In 1999, at the Hoogovens tournament in Wijk aan Zee, he played the rising Bulgarian star Veselin Topalov. This game is famous for a rook sacrifice followed by a king hunt across the whole board.",
+      "narration": "Wijk aan Zee, 1999. Garry Kasparov against Veselin Topalov. Get ready for one of the longest king walks ever.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Kasparov – Topalov, Wijk aan Zee 1999",
+      "text": "Both kings castle on the queenside. Topalov closes in on White's knights with ...d4, and Kasparov answers by giving away pieces to drag the black king out.",
+      "narration": "Both kings are on the queenside. Kasparov is about to give away a rook. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "e2e4",
+        "d7d6",
+        "d2d4",
+        "g8f6",
+        "b1c3",
+        "g7g6",
+        "c1e3",
+        "f8g7",
+        "d1d2",
+        "c7c6",
+        "f2f3",
+        "b7b5",
+        "g1e2",
+        "b8d7",
+        "e3h6",
+        "g7h6",
+        "d2h6",
+        "c8b7",
+        "a2a3",
+        "e7e5",
+        "e1c1",
+        "d8e7",
+        "c1b1",
+        "a7a6",
+        "e2c1",
+        "e8c8",
+        "c1b3",
+        "e5d4",
+        "d1d4",
+        "c6c5",
+        "d4d1",
+        "d7b6",
+        "g2g3",
+        "c8b8",
+        "b3a5",
+        "b7a8",
+        "f1h3",
+        "d6d5",
+        "h6f4",
+        "b8a7",
+        "h1e1",
+        "d5d4",
+        "c3d5",
+        "b6d5",
+        "e4d5",
+        "e7d6",
+        "d1d4",
+        "c5d4",
+        "e1e7",
+        "a7b6",
+        "f4d4",
+        "b6a5",
+        "b2b4",
+        "a5a4",
+        "d4c3",
+        "d6d5",
+        "e7a7",
+        "a8b7",
+        "a7b7",
+        "d5c4",
+        "c3f6",
+        "a4a3",
+        "f6a6",
+        "a3b4",
+        "c2c3",
+        "b4c3",
+        "a6a1",
+        "c3d2",
+        "a1b2",
+        "d2d1",
+        "h3f1",
+        "d8d2",
+        "b7d7",
+        "d2d7",
+        "f1c4",
+        "b5c4",
+        "b2h8",
+        "d7d3",
+        "h8a8",
+        "c4c3",
+        "a8a4",
+        "d1e1",
+        "f3f4",
+        "f7f5",
+        "b1c1",
+        "d3d2",
+        "a4a7"
+      ],
+      "notes": [
+        {
+          "ply": 17,
+          "text": "9.Qxh6: the dark bishops are traded. Black's king will not castle kingside."
+        },
+        {
+          "ply": 26,
+          "text": "13...O-O-O: both kings live on the queenside."
+        },
+        {
+          "ply": 43,
+          "text": "22.Nd5: the knight is offered. After ...Nxd5 exd5, the e-file is open."
+        },
+        {
+          "ply": 47,
+          "text": "24.Rxd4!!: Kasparov gives up a whole rook to remove the d4 pawn and open lines at the black king."
+        },
+        {
+          "ply": 52,
+          "text": "26...Kxa5: the black king steps up and takes the knight on a5."
+        },
+        {
+          "ply": 62,
+          "text": "31...Kxa3: the black king keeps marching: a7, b6, a5, a4, a3."
+        },
+        {
+          "ply": 70,
+          "text": "35...Kd1: the black king has reached White's back rank."
+        },
+        {
+          "ply": 73,
+          "text": "37.Rd7!: another rook offer, to pull Black's rook off the second rank."
+        },
+        {
+          "ply": 87,
+          "text": "44.Qa7: the queen and pawns beat the rook. Topalov resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 49,
+          "prompt": "Kasparov gave a whole rook on d4, and Black took it. Now check with the other rook.",
+          "hint": "The e-file is open all the way to the seventh rank.",
+          "why": "25.Re7+ drives the king from a7. If the queen takes the rook, Nc6+ forks king and queen."
+        },
+        {
+          "ply": 53,
+          "prompt": "The king took your knight on a5. Keep checking!",
+          "hint": "A pawn can give check.",
+          "why": "27.b4+ pushes the king to a4, deep in White's camp, where it has no defenders."
+        },
+        {
+          "ply": 61,
+          "prompt": "Black's queen sits on c4. What does Kasparov take?",
+          "hint": "There is a black piece on f6 that nothing defends.",
+          "why": "31.Qxf6 grabs the knight. The black king is still caged, and Black's threats are too slow."
+        },
+        {
+          "ply": 71,
+          "prompt": "The black king is on d1. Find the quiet bishop move that hits everything.",
+          "hint": "The bishop on h3 can change diagonals to attack the queen on c4.",
+          "why": "36.Bf1! attacks the queen and covers e2, so Qe2 would be mate. Black has to give back material."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "The king walk",
+      "question": "Why was Black's king in so much danger after it walked up the board?",
+      "options": [
+        {
+          "text": "It was far from its own pieces and surrounded by White's",
+          "why": "Yes. On a3 or d1 the king had no defenders, so every white check came with new threats.",
+          "correct": true
+        },
+        {
+          "text": "Kings are not allowed past the middle of the board",
+          "why": "They are allowed anywhere. It is just dangerous."
+        },
+        {
+          "text": "Black had no pieces left",
+          "why": "Black still had a queen and rooks. They just could not protect a king so far away."
+        }
+      ],
+      "narration": "Why was the wandering king in danger?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Drag the king into the open",
+      "fen": "8/Q6p/6p1/5p2/5P2/2p3P1/3r3P/2K1k3 b - - 3 44",
+      "text": "Kasparov gave a rook to break the black king's shelter, and then every check pulled it further from home. A king surrounded by enemy pieces and far from its own is in danger even when its side has more material.",
+      "narration": "Pull the king out of its shelter, and every check becomes a threat. Kasparov chased it across the board.",
+      "pose": "idea"
+    }
+  ]
+}

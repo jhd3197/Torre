@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "title": "Two bishops mate",
+  "summary": "Two bishops and a king can force mate, but only near a corner. Learn the idea and practise the final, precise moves.",
+  "category": "checkmates",
+  "unit": "Basic mates",
+  "order": 4,
+  "level": "advanced",
+  "minutes": 7,
+  "requires": ["queen-mate"],
+  "practice": "mate-in-2",
+  "steps": [
+    {
+      "id": "the-wall",
+      "kind": "explain",
+      "title": "A wall of diagonals",
+      "fen": "8/8/8/3k4/8/3BB3/8/4K3 w - - 0 1",
+      "marks": [["d3", "h7"], ["e3", "a7"], ["d5"]],
+      "text": "A bishop alone only sees one colour, but a light and a dark bishop side by side cover a band of diagonals the king cannot cross. With your king's help, the bishops slowly push the defender back. This mate is only possible in or near a corner of the board, and the whole job can take around twenty moves, so here we practise the last phase.",
+      "narration": "Two bishops working together are a wall the king can't walk through, one bishop on light squares and one on dark. This mate only works near a corner, and the full drive takes a while, so we'll focus on the finishing moves.",
+      "pose": "present"
+    },
+    {
+      "id": "corner-check",
+      "kind": "play",
+      "title": "Into the corner",
+      "fen": "8/8/8/8/2B2B2/K7/8/1k6 w - - 0 1",
+      "prompt": "Mate in two. Check with the light bishop to drive the king into the corner.",
+      "hint": "From d3 the light bishop checks along the diagonal to b1. Then use the long dark diagonal.",
+      "line": ["c4d3", "b1a1", "f4e5"],
+      "success": "Bishop to d3 check leaves only a1. Then bishop to e5 checks down the long diagonal, and every escape square is covered.",
+      "narration": "The king is one step from the corner. Check it with the light-squared bishop so the corner is its only square. Then the dark-squared bishop slides onto the long diagonal for mate.",
+      "pose": "detective"
+    },
+    {
+      "id": "beside-the-corner",
+      "kind": "play",
+      "title": "Close to the corner",
+      "fen": "8/5B2/8/8/8/6K1/8/4B1k1 w - - 0 1",
+      "prompt": "Mate in two. Start with a check from the dark bishop.",
+      "hint": "The dark bishop can check from right next to the king, where your own king protects it.",
+      "line": ["e1f2", "g1f1", "f7c4"],
+      "success": "Bishop to f2 check is protected by your king. The king steps to f1, and bishop to c4 closes the last diagonal. The king never reached the corner itself, but it was close enough for the edges and your king to do half the work.",
+      "narration": "This time start with the dark bishop. Bishop to f2 gives check, and your king guards it. When Black's king steps aside, the light bishop comes round to c4 and shuts the door.",
+      "pose": "playing"
+    },
+    {
+      "id": "quiet-first",
+      "kind": "play",
+      "title": "A quiet move first",
+      "fen": "8/8/7B/8/8/6K1/8/5Bk1 w - - 0 1",
+      "prompt": "Mate in three. The first move is not a check: take away a square, then check twice.",
+      "hint": "Move the light bishop to the h-file so the king only has h1 and g1 to use.",
+      "line": ["f1h3", "g1h1", "h3g2", "h1g1", "h6e3"],
+      "success": "Bishop to h3 takes away f1 and g2 without check, and Black is not stalemated because h1 is free. Bishop to g2 check sends the king back, and bishop to e3 is mate.",
+      "narration": "Here the strongest move is quiet. Tuck the light bishop onto h3 so the king can only shuffle between g1 and h1. Then check with the light bishop, and the dark bishop gives mate.",
+      "pose": "thinking"
+    },
+    {
+      "id": "where-to-mate",
+      "kind": "choose",
+      "title": "Where does it end?",
+      "question": "With king and two bishops against a lone king, where must the defending king be for mate?",
+      "options": [
+        { "text": "In or near a corner", "correct": true, "why": "Near a corner two edges take away squares at once, leaving few enough for two bishops and a king to cover." },
+        { "text": "Anywhere on the edge", "why": "In the middle of an edge the king has too many squares of both colours. You must drive it on toward a corner." },
+        { "text": "In the centre", "why": "In the centre the king has eight squares around it, far too many for two bishops and a king." }
+      ],
+      "narration": "Last question. Where on the board can two bishops actually finish the job? Get this and you know the goal of the whole ending. Excellent work!",
+      "pose": "trophy"
+    }
+  ]
+}

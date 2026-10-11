@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "title": "Botvinnik's bishop offer",
+  "summary": "Amsterdam, 1938: Botvinnik pushes a central pawn to e7 and sacrifices a bishop to make it queen, against Capablanca.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Mikhail Botvinnik",
+  "order": 1,
+  "practice": "deflection",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "AVRO, 1938",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "In 1938 a Dutch broadcasting company held a tournament for eight of the best players in the world, known as AVRO. Mikhail Botvinnik, the young Soviet champion who later became world champion, faced José Raúl Capablanca, the world champion of the 1920s. The game is still taught as a model of a pawn center rolling forward.",
+      "narration": "Amsterdam, 1938. Mikhail Botvinnik, the future world champion, against José Raúl Capablanca, a former world champion. Watch the white pawns march.",
+      "pose": "present"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Botvinnik – Capablanca, AVRO 1938",
+      "text": "White accepts doubled c-pawns to get a strong center. Capablanca grabs space on the queenside and even wins a pawn there. Botvinnik ignores it and pushes in the middle.",
+      "narration": "Capablanca plays on the queenside. Botvinnik pushes his center pawns at the king. Find his moves.",
+      "pose": "playing",
+      "moves": [
+        "d2d4",
+        "g8f6",
+        "c2c4",
+        "e7e6",
+        "b1c3",
+        "f8b4",
+        "e2e3",
+        "d7d5",
+        "a2a3",
+        "b4c3",
+        "b2c3",
+        "c7c5",
+        "c4d5",
+        "e6d5",
+        "f1d3",
+        "e8g8",
+        "g1e2",
+        "b7b6",
+        "e1g1",
+        "c8a6",
+        "d3a6",
+        "b8a6",
+        "c1b2",
+        "d8d7",
+        "a3a4",
+        "f8e8",
+        "d1d3",
+        "c5c4",
+        "d3c2",
+        "a6b8",
+        "a1e1",
+        "b8c6",
+        "e2g3",
+        "c6a5",
+        "f2f3",
+        "a5b3",
+        "e3e4",
+        "d7a4",
+        "e4e5",
+        "f6d7",
+        "c2f2",
+        "g7g6",
+        "f3f4",
+        "f7f5",
+        "e5f6",
+        "d7f6",
+        "f4f5",
+        "e8e1",
+        "f1e1",
+        "a8e8",
+        "e1e6",
+        "e8e6",
+        "f5e6",
+        "g8g7",
+        "f2f4",
+        "a4e8",
+        "f4e5",
+        "e8e7",
+        "b2a3",
+        "e7a3",
+        "g3h5",
+        "g6h5",
+        "e5g5",
+        "g7f8",
+        "g5f6",
+        "f8g8",
+        "e6e7",
+        "a3c1",
+        "g1f2",
+        "c1c2",
+        "f2g3",
+        "c2d3",
+        "g3h4",
+        "d3e4",
+        "h4h5",
+        "e4e2",
+        "h5h4",
+        "e2e4",
+        "g2g4",
+        "e4e1",
+        "h4h5"
+      ],
+      "notes": [
+        {
+          "ply": 11,
+          "text": "6.bxc3: White has doubled pawns, but also a big pawn center and two bishops."
+        },
+        {
+          "ply": 28,
+          "text": "14...c4: Capablanca locks the queenside. His pieces will raid there."
+        },
+        {
+          "ply": 36,
+          "text": "18...Nb3: the knight goes deep into White's camp, far from its own king."
+        },
+        {
+          "ply": 38,
+          "text": "19...Qxa4: Capablanca wins a pawn. Botvinnik has a different goal: the center pawns roll."
+        },
+        {
+          "ply": 39,
+          "text": "20.e5: the pawn kicks the knight away from the kingside."
+        },
+        {
+          "ply": 53,
+          "text": "27.fxe6: a passed pawn on e6, two steps from queening."
+        },
+        {
+          "ply": 60,
+          "text": "30...Qxa3: the queen has taken the bishop and left e7. The pawn is free to move."
+        },
+        {
+          "ply": 81,
+          "text": "41.Kh5: the king walks up the board, and the checks run out. Capablanca resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 47,
+          "prompt": "Open lines in front of Black's king.",
+          "hint": "Your f-pawn can push and challenge g6.",
+          "why": "24.f5 breaks open the kingside. The pawn will soon reach e6 and become a passed pawn."
+        },
+        {
+          "ply": 51,
+          "prompt": "Black's rook guards the e-file. Challenge it.",
+          "hint": "Put your rook on a square in front of the black rook, where a pawn can take back.",
+          "why": "26.Re6! offers a rook trade on a square where the f5 pawn recaptures. After ...Rxe6 fxe6, White has a passed pawn on e6."
+        },
+        {
+          "ply": 59,
+          "prompt": "Black's queen on e7 blocks your pawn. How can you chase her away?",
+          "hint": "A bishop on a3 would attack e7. Is it safe there? It does not need to be.",
+          "why": "30.Ba3!! offers the bishop. If the queen takes it, she leaves e7 and the pawn can run. If she does not, White wins her post anyway."
+        },
+        {
+          "ply": 61,
+          "prompt": "The queen took on a3. Now remove the knight that guards e8.",
+          "hint": "A knight check on h5 would drag the g6 pawn away.",
+          "why": "31.Nh5+! gxh5 32.Qg5+ Kf8 33.Qxf6+: the knight on f6, which guarded e8, is gone. Nothing stops the e-pawn now."
+        },
+        {
+          "ply": 67,
+          "prompt": "Your queen is on f6. Make the pawn count.",
+          "hint": "The queen covers e7 and e8.",
+          "why": "34.e7: the pawn is one step from becoming a queen. Black can only give checks, and Botvinnik's king walks away from them."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "The bishop sacrifice",
+      "question": "Why was 30.Ba3 so strong?",
+      "options": [
+        {
+          "text": "It pulled Black's queen away from e7, the square in front of the passed pawn",
+          "why": "Exactly. That is called a deflection: a defender is dragged off the square it guards.",
+          "correct": true
+        },
+        {
+          "text": "It attacked Black's king",
+          "why": "The bishop on a3 aimed at the queen on e7, not the king."
+        },
+        {
+          "text": "It protected White's own king",
+          "why": "It had nothing to do with defence. It was an attacking sacrifice."
+        }
+      ],
+      "narration": "What did the bishop sacrifice really do?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Remove the blocker",
+      "fen": "6k1/p3P2p/1p3Q2/3p3K/2pP2P1/1nP5/7P/4q3 b - - 2 41",
+      "text": "A passed pawn is only dangerous if it can move. Botvinnik's pawn on e6 was stopped by Black's queen, so he gave a bishop to pull her away and a knight to remove the guard of e8. When a single piece blocks your passed pawn, look for a way to deflect it.",
+      "narration": "If one piece blocks your passed pawn, find a way to pull it away. Botvinnik gave a bishop to do it.",
+      "pose": "idea"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Open files",
+  "summary": "Rooks need open roads. Learn to grab the open file first, then double your rooks to own it.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Piece play",
+  "order": 2,
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "what-is-open",
+      "kind": "explain",
+      "title": "Roads for the rooks",
+      "fen": "r5k1/pp3ppp/2p5/4p3/4P3/2P5/PP3PPP/5RK1 w - - 0 1",
+      "marks": [["d1", "d8"]],
+      "text": "A file with no pawns on it at all is an open file. Here only the d-file is open: every other file is blocked by pawns. A rook on an open file can travel the whole length of the board and break into the enemy camp. A file with only enemy pawns on it is half-open, which is also useful: your rook can press against the pawn at the end of it.",
+      "narration": "Rooks are like trucks, they need open roads. A file with no pawns on it is an open file, and here the only one is the d-file. Whoever controls it can drive straight into the enemy position.",
+      "pose": "present"
+    },
+    {
+      "id": "take-the-file",
+      "kind": "play",
+      "title": "Grab it first",
+      "fen": "r5k1/pp3ppp/2p5/4p3/4P3/2P5/PP3PPP/5RK1 w - - 0 1",
+      "prompt": "Both rooks want the open file. Get there first.",
+      "hint": "If you don't take it now, Black's rook will on the next move.",
+      "line": ["f1d1"],
+      "success": "Your rook owns the d-file and threatens to drive to d7, among Black's pawns. Had you waited, Black's rook would have taken the file instead.",
+      "narration": "There's only one open file, and both rooks are one move away from it. Get there first. The rook that owns the open file decides what happens next.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-payoff",
+      "kind": "explain",
+      "title": "From the file to the seventh",
+      "fen": "r5k1/pp3ppp/2p5/4p3/4P3/2P5/PP3PPP/5RK1 w - - 0 1",
+      "demo": ["f1d1", "b7b5", "d1d7"],
+      "marks": [["d7"]],
+      "text": "Step through the demo. Once White controls the d-file, the rook drives all the way to the seventh rank, where it attacks Black's pawns from the side. The open file is not the goal in itself: it is the road to the squares where the rook does damage.",
+      "narration": "Watch why the file matters. The rook grabs the open d-file. [move] Black plays on the other wing. [move] And the rook uses the file as a highway straight to the seventh rank, where it starts eating pawns. [move] An open file is a road, and the seventh rank is where it leads.",
+      "pose": "point"
+    },
+    {
+      "id": "doubled-rooks",
+      "kind": "play",
+      "title": "Two rooks beat one",
+      "fen": "r2r2k1/p4ppp/8/8/8/7P/P2R1PP1/3R2K1 w - - 0 1",
+      "prompt": "Your rooks are doubled on the open file. Use them to win.",
+      "hint": "Two attackers against one defender: trade on d8 and see who is left.",
+      "line": ["d2d8", "a8d8", "d1d8"],
+      "success": "Doubled rooks outnumber the single defender. After the trade on d8, your second rook arrives on the back rank with checkmate.",
+      "narration": "When both your rooks stand on the same open file, they are doubled, and they win the fight for it because there are two of them. Trade on d8, and the second rook finishes the job.",
+      "pose": "excited"
+    },
+    {
+      "id": "why-double",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Both sides fight for one open file. Why does doubling your rooks on it help?",
+      "options": [
+        { "text": "Two rooks on the file outnumber one, so the opponent cannot contest it", "correct": true, "why": "If the opponent offers a trade, your second rook recaptures and keeps the file." },
+        { "text": "Doubled rooks protect your king from checks", "why": "They may, but that is not the point. Doubling is about winning control of the file." },
+        { "text": "Rooks are worth more when they stand next to each other", "why": "A rook's value comes from the lines it controls, not from standing beside the other rook." }
+      ],
+      "narration": "Final question. Why do strong players double their rooks on an open file? Think about what happens when the opponent tries to challenge it. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

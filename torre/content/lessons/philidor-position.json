@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Holding the draw (Philidor)",
+  "summary": "A pawn down in a rook ending? Keep the enemy king out with your rook on the third rank, then check it from behind.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 7,
+  "requires": ["lucena"],
+  "orientation": "black",
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "the-setup",
+      "kind": "explain",
+      "title": "The Philidor position",
+      "fen": "4k3/7R/1r6/3KP3/8/8/8/8 w - - 0 1",
+      "marks": [["e8"], ["b6", "g6"]],
+      "text": "Black is a pawn down, but this is a draw. Black's king stands in front of the pawn, and Black's rook guards the third rank from Black's side of the board, the sixth rank on the board. White's king cannot step up to d6 or e6 without walking into a check, and without its king's help the pawn cannot advance safely.",
+      "narration": "Welcome to the most important drawing position in rook endings, named after the great French player Philidor. Black's king blocks the pawn, and Black's rook stands guard on the sixth rank, so White's king can't come any closer.",
+      "pose": "shield"
+    },
+    {
+      "id": "checks-from-behind",
+      "kind": "explain",
+      "title": "When the pawn steps forward",
+      "fen": "4k3/7R/1r6/3KP3/8/8/8/8 w - - 0 1",
+      "demo": ["e5e6", "b6b1", "d5d6", "b1d1", "d6e5", "d1e1", "e5f6", "e1f1"],
+      "text": "White's only try is to push the pawn to e6. But now the pawn no longer shelters White's king from checks, so Black's rook drops all the way back and checks the king from behind. Step through: the king has nowhere to hide, and the checks go on forever.",
+      "narration": "White's only way to make progress is to push the pawn. [move] The moment it moves up, Black's rook drops to the first rank. [move] The king steps forward. [move] Check from behind! [move] The king steps up. [move] Check again. [move] Up again. [move] And check again. [move] With the pawn in front of it, White's king has nowhere to hide.",
+      "pose": "idea"
+    },
+    {
+      "id": "stop-the-mate",
+      "kind": "play",
+      "title": "Mate is threatened",
+      "fen": "4k3/7R/3KP3/8/8/8/8/1r6 b - - 0 1",
+      "prompt": "White threatens rook to h8, checkmate. Save the game.",
+      "hint": "A check right now leaves White no time for the mate.",
+      "line": ["b1d1|b1b6"],
+      "success": "Check! White's king has to step away from the pawn, and the checks keep coming. Any quiet move would have allowed rook to h8, checkmate.",
+      "narration": "Careful, White threatens checkmate on the back rank. You have no time to waste: give a check and keep the king busy.",
+      "pose": "alarm"
+    },
+    {
+      "id": "from-behind",
+      "kind": "play",
+      "title": "Check from behind",
+      "fen": "4k3/7R/4PK2/8/8/8/8/r7 b - - 0 1",
+      "prompt": "Mate is threatened again. Only one move holds.",
+      "hint": "Your rook is far away on the first rank. Which check comes from behind White's king?",
+      "line": ["a1f1"],
+      "success": "Rook to f1, check from behind. White's king cannot get away from the checks without leaving its pawn, so the game is a draw.",
+      "narration": "Same danger, rook to h8 is mate. This time only one check holds: come from behind the king, from far away down the board.",
+      "pose": "detective"
+    },
+    {
+      "id": "where-does-the-rook-go",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "4k3/7R/8/4PK2/8/8/8/1r6 b - - 0 1",
+      "question": "Black to move. White's king is on the fifth rank, ready to step up. Where should Black's rook go?",
+      "options": [
+        { "text": "To b6, on the sixth rank", "correct": true, "why": "That is Philidor's defence. The rook keeps White's king off the sixth rank, and if the pawn moves up the rook goes back to check from behind." },
+        { "text": "To b8, to guard the back rank", "why": "A passive rook loses here. White checks on h8 and the rook on b8 falls." },
+        { "text": "To d1, to keep an eye on the d-file", "why": "Too slow. White's king walks up to the sixth rank and the defence collapses." }
+      ],
+      "narration": "Final question. White's king is about to step forward. Where does Black's rook belong? Remember Philidor, and you'll save plenty of rook endings a pawn down. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

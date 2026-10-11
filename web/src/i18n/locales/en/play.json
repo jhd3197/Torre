@@ -1,0 +1,405 @@
+{
+  "game": {
+    "levels": {
+      "1": "Casual · level 1",
+      "4": "Club · level 4",
+      "10": "Challenging · level 10",
+      "20": "Full strength · level 20"
+    },
+    "earlierPosition": "This is an earlier position. Explore it, or return to your current game.",
+    "youBadge": "YOU",
+    "youWhite": "You · White pieces",
+    "youBlack": "You · Black pieces",
+    "botRated": "{{elo}} rated",
+    "botLevel": "Level {{level}}",
+    "whitePieces": "White pieces",
+    "blackPieces": "Black pieces",
+    "thinking": "{{name}} is thinking…",
+    "resigned": "{{result}} · resigned",
+    "explorePosition": "Explore position",
+    "exportTorre": "Export game data",
+    "exportTorreTitle": "Download this game and recorded thinking times as a .torre.json file",
+    "returnToLive": "Return to current position ↩",
+    "seeResult": "See result",
+    "rematch": "Rematch",
+    "confirmResign": "Yes, resign",
+    "keepPlaying": "Keep playing",
+    "resign": "Resign",
+    "settings": "Game settings",
+    "settingsOpponent": "Opponent & pieces",
+    "settingsStrength": "Strength & pieces",
+    "opponentStrength": "Opponent strength",
+    "newGame": "Start new game",
+    "engineUnavailable": "Engine unavailable",
+    "botCouldNotReply": "{{name}} could not reply. ",
+    "installStockfish": "Install Stockfish to play. ",
+    "retry": "Retry",
+    "botPhases": "Opening / middlegame / endgame: {{ratings}}",
+    "copyPgn": "Copy PGN",
+    "pgnCopied": "PGN copied. Paste it into Lichess, a study or a message.",
+    "pgnCopyFailed": "Could not copy the PGN. Your browser blocked the clipboard."
+  },
+  "result": {
+    "won": "You won!",
+    "draw": "A draw. Well held.",
+    "resigned": "You resigned",
+    "botWon": "{{name}} won this one",
+    "coachWin": "That’s how it’s done! The review shows your best moves.",
+    "coachDraw": "Half a point is still a point. The review shows where a win was hiding.",
+    "coachResigned": "Resigning is fine. The review shows where the game slipped away.",
+    "coachLoss": "Tough one. The review shows the moment it turned.",
+    "close": "Close result",
+    "newBest": "New best against {{name}}!",
+    "awardsLabel": "Awards earned",
+    "newAwards": "New awards",
+    "awardUnlocked": "Award unlocked",
+    "tierReached": "{{tier}} reached",
+    "rematch": "Rematch",
+    "review": "Review the game",
+    "anotherOpponent": "Another opponent",
+    "eventKept": "{{name}} is yours to keep from {{title}}: {{count}} of {{need}} for the crest.",
+    "eventCrest": "You earned the {{title}} crest!"
+  },
+  "lobby": {
+    "label": "Choose a chess bot",
+    "title": "Bots",
+    "rosterCount": "{{total}} bots · {{shown}} shown · {{stars}} ★ earned",
+    "backToGame": "Back to game",
+    "surprise": "Surprise me",
+    "trainBot": "Train a bot",
+    "categoriesLabel": "Bot categories",
+    "allCategories": "All",
+    "strengthLabel": "Bot strength",
+    "bands": {
+      "any": "Any rating",
+      "below": "Below me",
+      "near": "Around me",
+      "above": "Above me"
+    },
+    "search": "Search bots",
+    "engineLevel": "engine · level {{level}}",
+    "kindPreview": "{{kind}} · preview",
+    "kindDesignPreview": "{{kind}} · design preview",
+    "bestStars": "Best: {{count}} of 3 stars",
+    "trainNewBot": "Train a new bot",
+    "trainNewBotDetail": "From a slice of your own games",
+    "noMatch": "No bots match. Clear the search or widen the rating band.",
+    "setupLabel": "Bot and game settings",
+    "close": "Close",
+    "trainingIntro": "From a slice of your own games.",
+    "trainingSource_one": "Your collection <strong>{{count}} game</strong>",
+    "trainingSource_other": "Your collection <strong>{{count}} games</strong>",
+    "trainingNote": "Personal bot training is part of this design. A training engine has not been connected yet.",
+    "trainingNotConnected": "Training not connected",
+    "playStockfishInstead": "Play Stockfish instead",
+    "yourBest": "Your best",
+    "stockfishInstalled": "Stockfish 18 · installed locally",
+    "stockfishUnavailable": "Stockfish unavailable",
+    "styles": {
+      "aggression": "Aggression",
+      "accuracy": "Accuracy",
+      "endgame": "Endgame"
+    },
+    "notes": {
+      "engine": "Adjustable strength · no rated record",
+      "character": "Stockfish playing at {{elo}}",
+      "characterSlips": "Stockfish playing at {{elo}}, with the odd slip",
+      "preview": "Illustrative style and rating · not trained yet"
+    },
+    "gameSetup": "Game setup",
+    "engineStrength": "Engine strength",
+    "level": "Level {{level}}",
+    "timeControl": "Time control",
+    "timedNotConnected": "Timed games are not connected yet",
+    "opening": "Opening",
+    "openings": {
+      "none": "No book",
+      "repertoire": "Repertoire",
+      "drill": "Drill a line"
+    },
+    "openingNotConnected": "Opening setup is not connected yet",
+    "playAs": "Play as",
+    "sides": {
+      "White": "White",
+      "Black": "Black",
+      "Random": "Random"
+    },
+    "coachCommentary": "Coach commentary",
+    "notConnected": "Not connected",
+    "ladder": "Counts on the ladder",
+    "unrated": "Unrated",
+    "installStockfish": "Install Stockfish to start a game.",
+    "designPreview": "This bot is a design preview. Choose a character or Stockfish 18 to play.",
+    "start": "Start game",
+    "previewOnly": "Preview only",
+    "startSummary": "∞ · no book · {{side}}",
+    "chooseStockfish": "Choose Stockfish 18",
+    "coachOnNote": "Rooky plays at about your rating, set when the game starts. It speaks up when something matters, gives hints when you ask, warns you before a mistake, and lets you take moves back. Practice games: no stars.",
+    "strengthByPhase": "Strength",
+    "sameStrength": "{{elo}} all game",
+    "perPhase": "Set each phase",
+    "phases": {
+      "opening": "Opening",
+      "middlegame": "Middlegame",
+      "endgame": "Endgame"
+    },
+    "perPhaseNote": "The bot plays each phase at the rating you set, and never changes it on its own."
+  },
+  "explore": {
+    "back": {
+      "play": "Back to game ↩",
+      "games": "Back to replay ↩",
+      "train": "Back to training ↩",
+      "insights": "Back to insights ↩",
+      "home": "Back home ↩"
+    },
+    "loading": "Setting up the position…",
+    "white": "White",
+    "black": "Black",
+    "whitePieces": "White pieces",
+    "blackPieces": "Black pieces",
+    "checking": "Checking the move…",
+    "gamePaused": "Game paused",
+    "exploringCopy": "Exploring a copy",
+    "resetLine": "Reset line ↩"
+  },
+  "legend": {
+    "kind_one": "legend · {{games}} game",
+    "kind_other": "legend · {{games}} games",
+    "desc": "Opens with the moves {{name}} actually played, picked from their own games in proportion to how often. When the game leaves the positions they reached, Stockfish carries on at their {{elo}} peak.",
+    "descUnrated": "Opens with the moves {{name}} actually played, picked from their own games in proportion to how often. When the game leaves the positions they reached, Stockfish carries on at {{elo}}, since their era had no ratings.",
+    "peak": "peak {{elo}}",
+    "preRating": "before ratings",
+    "note": "The first 20 moves of each of their games make the book. After it, Stockfish plays at {{elo}}.",
+    "wins": "Won",
+    "draws": "Drew",
+    "losses": "Lost",
+    "favourite": "As White:",
+    "reading_one": "Reading {{games}} game…",
+    "reading_other": "Reading {{games}} games…",
+    "unreadable": "Their games could not be read.",
+    "fromGame": "{{name}} played this in {{count}} of {{total}} of their games from here, one of them against {{opponent}} ({{year}}).",
+    "outOfBook": "Past the positions {{name}} ever reached: Stockfish plays at {{elo}} from here."
+  },
+  "hall": {
+    "fetching": "Fetching the legends’ games… {{done}} of {{total}}",
+    "queued": "Games on the way…",
+    "downloading": "Downloading…",
+    "getGames": "Get their games",
+    "eras": {
+      "romantic": {
+        "name": "The Romantic era",
+        "years": "1750–1900 · cafés, gambits and daring attacks"
+      },
+      "golden": {
+        "name": "The Golden Age",
+        "years": "1900–1960 · grand tournaments and new ideas"
+      },
+      "cold-war": {
+        "name": "The Cold War",
+        "years": "1960–1995 · the Soviet school and its rivals"
+      },
+      "modern": {
+        "name": "The Modern era",
+        "years": "1995–today · engines, prep and online speed"
+      }
+    }
+  },
+  "coach": {
+    "ready": "Your move. Ask me for a hint, or what I am threatening.",
+    "looking": "The coach is looking at your move…",
+    "hint": "Hint",
+    "whichPiece": "Which piece?",
+    "showMove": "Show the move",
+    "threatButton": "What are you threatening?",
+    "hideThreat": "Hide the threat",
+    "takeBack": "Take back",
+    "holdOn": "Hold on, {{san}} is a mistake.",
+    "thinkAgain": "Let me think again",
+    "playAnyway": "Play it anyway",
+    "practiceGame_one": "A practice game with the coach (one move taken back). No stars, but it counts for your awards.",
+    "practiceGame_other": "A practice game with the coach ({{count}} moves taken back). No stars, but it counts for your awards.",
+    "piece": "Move your {{piece}}.",
+    "move": "The move is {{san}}.",
+    "pieces": {
+      "pawn": "pawn",
+      "knight": "knight",
+      "bishop": "bishop",
+      "rook": "rook",
+      "queen": "queen",
+      "king": "king"
+    },
+    "nudge": {
+      "mate": "There is a checkmate here. Look at every check.",
+      "fork": "One of your pieces can attack two things at once.",
+      "free": "Something is free to take. Look at what is undefended.",
+      "promotion": "A pawn is close to becoming a queen.",
+      "general": "Look at checks, captures and threats, yours and the bot's, before you move."
+    },
+    "threat": {
+      "none": "I have no direct threat right now. The move is yours.",
+      "mate": "I threaten checkmate with {{san}}!",
+      "fork": "I am threatening a fork with {{san}}.",
+      "material": "I threaten {{san}}, and that wins material."
+    },
+    "hello": "Hi, I am Rooky. I will play you and tell you when something matters. Ask me for a hint any time.",
+    "myMove": "My move. Let me think…",
+    "unasked": {
+      "threat": "Careful: I have a threat. Can you spot it before you move?",
+      "mate": "There is a checkmate on the board for you. Look at every check.",
+      "chance": "There is something here for you to win. Take a good look."
+    }
+  },
+  "report": {
+    "loading": "Checking how {{name}} played…",
+    "title": "How the game was played",
+    "phase": "Phase",
+    "you": "You",
+    "setTo": "Bot set to",
+    "phases": {
+      "opening": "Opening",
+      "middlegame": "Middlegame",
+      "endgame": "Endgame"
+    },
+    "steady": "{{name}} played every move at {{elo}}. A bot never gets stronger during a game.",
+    "byPhase": "{{name}} played each phase at the rating you set, and never changed it on its own.",
+    "slips_one": "{{name}} played one deliberate weaker move, the kind of slip a beginner makes.",
+    "slips_other": "{{name}} played {{count}} deliberate weaker moves, the kind of slip a beginner makes.",
+    "lucky_one": "One of them happened to be a good move: luck, not a stronger bot.",
+    "lucky_other": "{{count}} of them happened to be good moves: luck, not a stronger bot.",
+    "unlucky": "None of them turned out well.",
+    "retry": "Try your mistake again ({{move}} {{san}}), with the coach"
+  },
+  "drawRule": {
+    "stalemate": "Stalemate: the side to move had no legal move and was not in check. That is a draw, not a win.",
+    "insufficientMaterial": "Not enough material: neither side has the pieces left to give checkmate.",
+    "threefoldRepetition": "The same position came up three times, so the game is a draw.",
+    "fivefoldRepetition": "The same position came up five times, so the game is a draw.",
+    "fiftyMoves": "Fifty moves each passed with no capture and no pawn move, so the game is a draw.",
+    "seventyfiveMoves": "Seventy-five moves each passed with no capture and no pawn move, so the game is a draw.",
+    "lesson": "Learn the draw rules"
+  },
+  "bots": {
+    "clock": {
+      "d": "days",
+      "h": "hrs",
+      "m": "min",
+      "s": "sec",
+      "spoken": "{{d}} days, {{h}} hours, {{m}} minutes"
+    },
+    "groups": {
+      "season": "Seasonal events",
+      "country": "Countries",
+      "theme": "Collections",
+      "core": "Always here"
+    },
+    "home": {
+      "search": "Search all bots",
+      "results_one": "{{count}} match for “{{query}}”",
+      "results_other": "{{count}} matches for “{{query}}”",
+      "clear": "Clear search",
+      "noResults": "Nobody by that name yet.",
+      "matches": "Good matches for you",
+      "exact": "Your exact level",
+      "above": "{{count}} above you",
+      "below": "{{count}} below you",
+      "world": "Around the world",
+      "neighbour": "{{name}} came here from Venezuela",
+      "homeCrowd": "The home crowd",
+      "themes": "Collections",
+      "core": "Always here",
+      "tileCount": "{{count}} bots · {{won}} beaten",
+      "tileEmpty": {
+        "legends": "Play the greats from their own games",
+        "engines": "From the Random Mover to Stockfish",
+        "yours": "Trained from your own games"
+      },
+      "abroad_one": "+ {{count}} winning abroad",
+      "abroad_other": "+ {{count}} winning abroad",
+      "more_one": "Show {{count}} more",
+      "more_other": "Show {{count}} more"
+    },
+    "events": {
+      "live": "Live",
+      "ended": "Ended",
+      "inDays_one": "In {{count}} day",
+      "inDays_other": "In {{count}} days",
+      "characters_one": "{{count}} character",
+      "characters_other": "{{count}} characters",
+      "keptOf": "You kept {{count}} of {{total}}",
+      "liveKicker": "Seasonal event · live now",
+      "soonKicker": "Seasonal event · coming soon",
+      "endedKicker": "Seasonal event · ended",
+      "blurbLive": "{{count}} characters in costume, out until {{date}}. Beat {{need}} of them to earn the crest.",
+      "blurbSoon": "{{count}} characters in costume, arriving {{date}}.",
+      "blurbEnded": "{{count}} characters in costume. The ones you beat stay with you all year.",
+      "leavesIn": "Leaves in",
+      "arrivesIn": "Arrives in",
+      "progress": "{{count}} of {{need}} beaten for the crest · {{total}} to play",
+      "lockedUntil": "{{count}} characters · locked until it starts",
+      "youKept": "You kept {{count}} of {{total}}",
+      "returnsNote_one": "Back in {{when}}. The {{count}} you beat stays playable all year.",
+      "returnsNote_other": "Back in {{when}}. The {{count}} you beat stay playable all year.",
+      "play": "Play the event",
+      "preview": "Have a look",
+      "seeAll": "See all {{count}}",
+      "liveMeta": "Live · {{count}}/{{total}}",
+      "endedMeta": "Ended · kept {{count}}",
+      "arrivesMonth": "Arrives in {{when}}"
+    },
+    "collection": {
+      "navLabel": "Collections",
+      "allBots": "All bots",
+      "pickerLabel": "Choose a collection",
+      "pickerSearch": "Find a collection or country",
+      "sortLabel": "Order",
+      "sort": {
+        "easy": "Easiest first",
+        "near": "Near my level",
+        "hard": "Hardest first"
+      },
+      "hideBeaten": "Hide beaten",
+      "count": "{{shown}} of {{total}} shown",
+      "allBeaten": "You have beaten everyone here. Turn off “Hide beaten” to play them again.",
+      "beatenMeta": "{{count}} / {{total}} beaten",
+      "beatenOf": "{{count}} of {{total}} beaten",
+      "venezuelan": "Venezuelan",
+      "kicker": {
+        "country": "Country collection",
+        "theme": "Collection",
+        "core": "Always available"
+      },
+      "blurb": {
+        "country": "{{count}} characters from {{title}}.",
+        "theme": "{{count}} characters who share a line of work.",
+        "always": "The regulars, from your first game to the hardest. They never rotate out.",
+        "legends": "The greats, playing the openings they played in their own games.",
+        "engines": "Pure calculation, from the Random Mover to Stockfish.",
+        "yours": "Bots trained from your own games.",
+        "venezuela": "{{home}} at home, and {{abroad}} winning around the world."
+      },
+      "neighbourNote": "{{name}} grew up in Venezuela and lives in {{title}} now.",
+      "from": "From {{from}}",
+      "neighbourMoved": "{{name}} came from {{from}}, Venezuela, and is making it big in {{to}}.",
+      "venezuelaNote_one": "{{count}} of our people is out there winning around the world. Find them in their new country too.",
+      "venezuelaNote_other": "{{count}} of our people are out there winning around the world. Find them in their new countries too.",
+      "movedFrom": "From {{from}}",
+      "movedTo": "now in {{to}}"
+    },
+    "panel": {
+      "plays": "Plays",
+      "yourLevel": "Your level",
+      "vsYou": "{{diff}} vs you",
+      "wearing": "In costume for {{title}}",
+      "more": "More options",
+      "playedBy": "{{name}} in costume"
+    },
+    "locked": {
+      "soon_one": "Arrives in {{count}} day",
+      "soon_other": "Arrives in {{count}} days",
+      "soonNote": "Come back when the event starts.",
+      "returns": "Returns in {{when}}",
+      "endedNote": "You did not beat this one during the event."
+    }
+  }
+}

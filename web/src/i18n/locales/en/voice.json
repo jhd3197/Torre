@@ -1,0 +1,91 @@
+{
+  "capture": [
+    "Takes! Delicious.",
+    "Om nom nom.",
+    "Into the box you go.",
+    "Takes, takes, takes!",
+    "Free real estate.",
+    "Thank you for the donation.",
+    "That piece is on a long vacation now.",
+    "Another one bites the dust!",
+    "Snack acquired.",
+    "Collected. Next!"
+  ],
+  "check": [
+    "Check! Knock knock.",
+    "Your majesty, please move.",
+    "King on the run!",
+    "Check, and the king is sweating.",
+    "Heads up, king!",
+    "Ding dong, it's check.",
+    "Pressure!",
+    "Nowhere to hide... almost."
+  ],
+  "mate": [
+    "Checkmate! Game over.",
+    "And that's the ballgame.",
+    "Mate! Take a bow.",
+    "The king has left the building.",
+    "Curtains for the king.",
+    "That's a wrap.",
+    "Textbook mate.",
+    "Mic drop."
+  ],
+  "wrong": [
+    "Not quite. Try again.",
+    "Close, but the board says no.",
+    "Hmm, that one hangs something.",
+    "Plot twist: nope.",
+    "Look again. What's undefended?",
+    "The rook disapproves. Gently.",
+    "Nice try, sneaky.",
+    "Almost! Think checks, captures, threats.",
+    "A Botez Gambit? Bold.",
+    "Was that a sacrifice or a sneeze?"
+  ],
+  "great": [
+    "Brilliant!",
+    "You had it the whole time.",
+    "Magnus would approve.",
+    "Two exclamation marks for that one!",
+    "Chef's kiss.",
+    "Grandmaster energy.",
+    "That's going in the highlight reel.",
+    "Okay, show-off!"
+  ],
+  "fast": [
+    "Speedrun!",
+    "Bullet player detected.",
+    "Was that a premove?",
+    "Blink and you missed it.",
+    "Lightning hands!",
+    "Too fast for the clock.",
+    "Zoom!",
+    "Somebody had coffee."
+  ],
+  "hint": [
+    "A little help never hurts.",
+    "Even champions have coaches.",
+    "Hint unlocked. Now you see it?",
+    "Phone a friend: me.",
+    "Smart players ask.",
+    "Here's a nudge.",
+    "Next time, no peeking!"
+  ],
+  "streak": [
+    "Streak on fire!",
+    "You're on a roll.",
+    "Unstoppable.",
+    "Combo times three!",
+    "Keep cooking.",
+    "Somebody stop this player!"
+  ],
+  "lostPiece": [
+    "Ouch. They took one.",
+    "Hey, I needed that piece!",
+    "That one stings.",
+    "Okay, they bit. Bite back.",
+    "Down a piece. Time to get tricky.",
+    "Breathe. Look for the counterattack."
+  ]
+}

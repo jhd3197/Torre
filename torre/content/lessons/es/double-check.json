@@ -1,0 +1,48 @@
+{
+ "title": "Jaque doble",
+ "summary": "Dos piezas dan jaque al mismo tiempo. No puedes bloquear dos jaques ni capturar dos piezas, así que el rey debe moverse, y a menudo no tiene a dónde ir.",
+ "steps": [
+  {
+   "id": "two-checks",
+   "title": "Dos jaques a la vez",
+   "text": "Un jaque doble es un jaque a la descubierta donde la pieza que se mueve también da jaque. Después de que el caballo salta a f6, tanto la torre como el caballo atacan al rey. La dama y el peón de g7 podrían capturar al caballo, pero eso dejaría el jaque de la torre. Un bloqueo tampoco puede detener dos jaques. Contra un jaque doble, solo un movimiento del rey ayuda.",
+   "narration": "Observa cómo el caballo salta a f6. [move] Ahora la torre da jaque al rey y el caballo también lo ataca. Las negras pueden tomar al caballo, claro, pero la torre sigue dando jaque. Con dos jaques a la vez, la única respuesta es mover al rey. [move]"
+  },
+  {
+   "id": "double-check-mate",
+   "title": "Ahora no hay a dónde correr",
+   "prompt": "Jaque mate en uno con un jaque doble.",
+   "hint": "Mueve el caballo en e4 para que también dé jaque al rey. La torre en e1 termina el trabajo.",
+   "success": "Nd6 es jaque doble y mate. El peón de las negras podría tomar al caballo, pero la torre seguiría dando jaque, y el rey está atrapado por su propia dama, alfil y peones. Nf6 mate de la misma manera.",
+   "narration": "El rey de las negras está rodeado por sus propias piezas, y tu torre está apuntando directamente a él. Salta el caballo a una casilla donde también dé jaque al rey. Dos jaques a la vez, sin casilla a donde escapar: ¡jaque mate!"
+  },
+  {
+   "id": "reti-queen-sac",
+   "title": "Sacrificio, luego jaque doble",
+   "prompt": "Sacrifica tu dama, luego termina con un jaque doble. Mate en tres.",
+   "hint": "Rinde la dama en d8 con jaque. Cuando el rey toma, un movimiento del alfil descubre tu torre en la columna d.",
+   "success": "Qd8+ Kxd8, luego Bg5+ es un jaque doble del alfil y la torre. Después de Kc7, el alfil da mate en d8 (después de Ke8, la torre da mate en d8). Este final es famoso de una partida en Viena en 1910.",
+   "narration": "Este es un clásico. Dale tu dama en d8 con jaque. Cuando el rey la captura, saca al alfil del camino de la torre con un jaque propio. Jaque doble, y los únicos escapes del rey conducen directamente al mate."
+  },
+  {
+   "id": "only-defence",
+   "title": "La única defensa",
+   "question": "Tu rey está en jaque doble. ¿Qué respuesta puede funcionar?",
+   "options": [
+    {
+     "text": "Moviendo el rey",
+     "why": "Un movimiento del rey es la única forma de escapar de dos jaques a la vez. Si no hay una casilla segura, es jaque mate."
+    },
+    {
+     "text": "Capturando una de las piezas que dan jaque",
+     "why": "La otra pieza seguiría dando jaque, así que esto es ilegal (a menos que el propio rey haga la captura)."
+    },
+    {
+     "text": "Bloqueando uno de los jaques",
+     "why": "Un bloqueo deja el otro jaque en pie. No puedes bloquear dos líneas con una jugada."
+    }
+   ],
+   "narration": "Pregunta final. Tu rey está en jaque doble. ¿Cuál es el único tipo de movimiento que puede salvarlo? Responde a esto y los jaques dobles nunca te sorprenderán de nuevo. ¡Excelente trabajo!"
+  }
+ ]
+}

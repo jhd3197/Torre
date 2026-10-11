@@ -1,0 +1,57 @@
+{
+ "title": "Mate con rey y torre",
+ "summary": "Una torre puede dar mate a un rey solo, con la ayuda de tu rey. ¡Acota al rey, empújalo hacia el borde y enfréntalo con tu rey!",
+ "unit": "Mates básicos",
+ "steps": [
+  {
+   "id": "the-fence",
+   "title": "La torre construye una cerca",
+   "text": "La torre en la cuarta fila es una cerca que el rey negro no puede cruzar. Una torre cubre menos casillas que una dama, así que tu rey tiene que hacer más trabajo. El objetivo es el mismo: empujar al rey al borde del tablero y darle mate allí.",
+   "narration": "Con una torre en lugar de una dama, la idea es la misma pero un poco más lenta. La torre es una cerca a través del tablero, y tu rey es el pastor que empuja al rey negro hacia el borde."
+  },
+  {
+   "id": "face-to-face",
+   "title": "Cara a cara",
+   "prompt": "Los reyes se enfrentan. Jaque mate en un movimiento.",
+   "hint": "Tu rey ya protege la d7, la e7 y la f7. Da jaque a lo largo de la última fila.",
+   "success": "Torre a a8 es mate. La torre cubre toda la octava fila y tu rey cubre la séptima.",
+   "narration": "Mira a los dos reyes, enfrentados con un espacio entre ellos. Eso se llama oposición. Tu rey guarda la séptima fila, así que un jaque con la torre en la última fila es jaque mate."
+  },
+  {
+   "id": "take-the-opposition",
+   "title": "Entra en la oposición",
+   "prompt": "Mate en dos movimientos. Mueve tu rey primero.",
+   "hint": "La torre ya mantiene al rey alejado de la columna g. Coloca tu rey donde el rey negro tendrá que enfrentarla.",
+   "success": "Rey a e6 deja al rey negro solo e8, justo delante de tu rey. Entonces la torre a g8 es mate.",
+   "narration": "La torre en la columna g ya bloquea un lado. Avanza tu rey a e6. El rey negro tiene solo una casilla disponible, e8, lo que lo pone cara a cara con tu rey, y la torre termina el trabajo."
+  },
+  {
+   "id": "waiting-move",
+   "title": "La jugada de espera",
+   "prompt": "Mate en dos. Usa la torre para quitar casillas para que el rey tenga que avanzar hacia la oposición.",
+   "hint": "Cubre la columna d. Entonces la única jugada del rey es hacia tu rey.",
+   "success": "La torre a d4 toma d7 y d8. La única jugada disponible es rey a f8, enfrentando a tu rey, y la torre a d8 es mate.",
+   "narration": "A veces no das jaque en absoluto. Desliza la torre a la columna d y simplemente espera. El rey negro se ve forzado a moverse a f8, directamente a la oposición, y la torre cae a la última fila para dar mate."
+  },
+  {
+   "id": "when-to-check",
+   "title": "¿Cuándo funciona el jaque?",
+   "question": "El rey negro está en la última fila y tu torre puede dar jaque a lo largo de ella. ¿Cuándo es ese jaque jaque mate?",
+   "options": [
+    {
+     "text": "Cuando tu rey está directamente delante del rey negro, separado una casilla",
+     "why": "Entonces tu rey guarda las tres casillas delante del rey negro, y la torre cubre la fila en la que está."
+    },
+    {
+     "text": "Cuando el rey de las negras está al borde",
+     "why": "Si tu rey no está ayudando, el rey negro simplemente avanza fuera del borde."
+    },
+    {
+     "text": "Cuando tu torre está justo al lado del rey negro.",
+     "why": "Una torre al lado del rey puede simplemente ser capturada a menos que algo la proteja."
+    }
+   ],
+   "narration": "Aquí está la idea clave en una pregunta. ¿Cuándo un jaque de torre en la última fila se convierte en jaque mate? Entiéndelo, ¡y puedes dar mate con una sola torre! ¡Bien hecho!"
+  }
+ ]
+}

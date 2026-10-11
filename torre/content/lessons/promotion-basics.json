@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "title": "Promotion",
+  "summary": "A pawn that reaches the last rank turns into a queen, rook, bishop or knight. Learn how promotion works and why the queen is usually the choice.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 4,
+  "unit": "Rules of the game",
+  "order": 11,
+  "requires": ["the-pawn"],
+  "practice": "promotion",
+  "steps": [
+    {
+      "id": "reach-the-end",
+      "kind": "explain",
+      "title": "From pawn to queen",
+      "fen": "4k3/1P6/8/8/8/8/8/4K3 w - - 0 1",
+      "marks": [["b7", "b8"]],
+      "demo": ["b7b8q"],
+      "text": "When a pawn reaches the far end of the board, it must be promoted: you swap it for a queen, rook, bishop or knight of your color. You can even have two or three queens at once. Almost always you pick a queen, because she is the strongest piece.",
+      "narration": "Every pawn dreams of reaching the far side of the board. When it does, it transforms into any piece you like, and almost always that's a brand new queen. [move]",
+      "pose": "starry"
+    },
+    {
+      "id": "make-a-queen",
+      "kind": "play",
+      "title": "Crown your pawn",
+      "fen": "8/4P3/6k1/8/8/8/r5PP/6K1 w - - 0 1",
+      "prompt": "Your pawn is one step from the end. Promote it to a queen.",
+      "hint": "Push the pawn to e8 and choose the queen.",
+      "line": ["e7e8q"],
+      "success": "A new queen, and with check too. Black's rook is no match for her.",
+      "narration": "Your pawn on e7 is one step from glory, and nothing can stop it. Push it forward and pick the queen.",
+      "pose": "excited"
+    },
+    {
+      "id": "capture-to-promote",
+      "kind": "play",
+      "title": "Promote by capturing",
+      "fen": "rn4k1/1P3ppp/8/8/8/8/5PPP/6K1 w - - 0 1",
+      "prompt": "The square in front of your pawn is blocked. Find another way to promote.",
+      "hint": "Pawns capture diagonally, and a capture onto the last rank promotes too.",
+      "line": ["b7a8q"],
+      "success": "Pawn takes the rook and becomes a queen in the same move. You won a rook and gained a queen.",
+      "narration": "Black's knight blocks your pawn's path. But a pawn can also promote by capturing diagonally onto the last rank. Is there anything to capture?",
+      "pose": "detective"
+    },
+    {
+      "id": "promotion-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "question": "Your pawn reaches the last rank. Which of these can it NOT become?",
+      "options": [
+        { "text": "A king", "correct": true, "why": "Each side has exactly one king. A pawn may become a queen, rook, bishop or knight." },
+        { "text": "A second queen", "why": "You may have more than one queen. Promoting to a queen is the usual choice." },
+        { "text": "A knight", "why": "Promoting to a knight is allowed, and once in a while it is the best choice, for example when it gives a winning check." }
+      ],
+      "narration": "Last question. A pawn can become almost anything when it reaches the end. Almost. Which piece is off limits?",
+      "pose": "thinking"
+    }
+  ]
+}

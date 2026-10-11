@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "title": "Hastings 1895",
+  "summary": "A young American in his first big tournament, Harry Nelson Pillsbury, wins one of the strongest events ever held. Here he beats Tarrasch.",
+  "category": "history",
+  "unit": "Great Tournaments",
+  "order": 1,
+  "level": "intermediate",
+  "minutes": 8,
+  "orientation": "white",
+  "practice": "kingside-attack",
+  "steps": [
+    {
+      "id": "hastings",
+      "kind": "explain",
+      "title": "Hastings, 1895",
+      "text": "In 1895 the English seaside town of Hastings hosted a tournament with almost every great player of the day: the world champion Emanuel Lasker, the former champion Wilhelm Steinitz, Siegbert Tarrasch and Mikhail Chigorin among them. The winner was a 22-year-old American few of them knew, Harry Nelson Pillsbury, in his first big international tournament. This is his game against Tarrasch, one of the favourites.",
+      "narration": "Hastings, 1895. Nearly every great player in the world is there, and the winner is a young American almost nobody knew: Harry Nelson Pillsbury. Here he plays Siegbert Tarrasch.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Pillsbury – Tarrasch, Hastings 1895",
+      "text": "This game is a race. Tarrasch pushes his pawns on the queenside and wins material there. Pillsbury puts a knight on e5, pushes his f-pawn and aims everything at the black king. The game stops at Pillsbury's key moves.",
+      "narration": "Tarrasch attacks on the queenside, Pillsbury on the kingside. Who gets there first? Find Pillsbury's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 22, "text": "11...c4: Tarrasch gains space on the queenside. His plan is to push the pawns on that side." },
+        { "ply": 25, "text": "13.Ne5: a knight lands in the center." },
+        { "ply": 27, "text": "14.f4: the f-pawn supports the knight. Pillsbury's plan is the opposite of Tarrasch's: attack the king." },
+        { "ply": 41, "text": "21.f5: more space on the kingside, and Black's pieces get cramped." },
+        { "ply": 54, "text": "27...b4: Tarrasch's queenside pawns are rolling. The race is on." },
+        { "ply": 62, "text": "31...c3: Black's pawns are close to breaking through." },
+        { "ply": 69, "text": "35.g4: Pillsbury's pawns finally move against the black king." },
+        { "ply": 76, "text": "38...Bxb3: Tarrasch breaks through on the queenside and wins material." },
+        { "ply": 79, "text": "40.gxf6: the g-file opens toward the black king." },
+        { "ply": 89, "text": "45.Kh1: a quiet king move. The king leaves the g-file so a rook can use it." },
+        { "ply": 103, "text": "52.Qxh7#: checkmate, with Black's c-pawn just one step from queening." }
+      ],
+      "guesses": [
+        {
+          "ply": 39,
+          "prompt": "Black's ...f6 chases your knight from e5. Where should it go to stay near the black king?",
+          "hint": "Head toward the kingside, close to f6 and h6.",
+          "why": "20.Ng4! The knight stays near the black king and eyes f6 and h6. Pillsbury keeps his pieces on the side where he is attacking."
+        },
+        {
+          "ply": 83,
+          "prompt": "Tarrasch has won material on the queenside. Pillsbury needs a strike on the kingside. Find the knight move.",
+          "hint": "Your knight can jump to a square next to the black king and cover g8.",
+          "why": "42.Nh6! The knight covers g8, so Rg8 would now be mate. Tarrasch had to block with 42...Rg7, and after the rooks came off his king was dragged into the open."
+        },
+        {
+          "ply": 91,
+          "prompt": "The black king has come out to h6. Bring your last piece into the hunt.",
+          "hint": "The g-file is open, and your rook on f1 can use it.",
+          "why": "46.Rg1! The rook takes the g-file, and the king has even fewer squares. Tarrasch grabbed the f5 pawn, but the queen checks that follow win his queen."
+        },
+        {
+          "ply": 99,
+          "prompt": "You have won the queen for a rook, but Black's c-pawn is close to queening. Find the check that settles it.",
+          "hint": "Check from d6, and look at what else the queen attacks there.",
+          "why": "50.Qd6+! The king goes to h5, the queen takes the knight on d7, and mate on h7 comes before the c-pawn can queen."
+        }
+      ],
+      "moves": ["d2d4", "d7d5", "c2c4", "e7e6", "b1c3", "g8f6", "c1g5", "f8e7", "g1f3", "b8d7", "a1c1", "e8g8", "e2e3", "b7b6", "c4d5", "e6d5", "f1d3", "c8b7", "e1g1", "c7c5", "f1e1", "c5c4", "d3b1", "a7a6", "f3e5", "b6b5", "f2f4", "f8e8", "d1f3", "d7f8", "c3e2", "f6e4", "g5e7", "e8e7", "b1e4", "d5e4", "f3g3", "f7f6", "e5g4", "g8h8", "f4f5", "d8d7", "e1f1", "a8d8", "f1f4", "d7d6", "g3h4", "d8e8", "e2c3", "b7d5", "g4f2", "d6c6", "c1f1", "b5b4", "c3e2", "c6a4", "f2g4", "f8d7", "f4f2", "h8g8", "e2c1", "c4c3", "b2b3", "a4c6", "h2h3", "a6a5", "g4h2", "a5a4", "g2g4", "a4b3", "a2b3", "e8a8", "g4g5", "a8a3", "h2g4", "d5b3", "f2g2", "g8h8", "g5f6", "g7f6", "c1b3", "a3b3", "g4h6", "e7g7", "g2g7", "h8g7", "h4g3", "g7h6", "g1h1", "c6d5", "f1g1", "d5f5", "g3h4", "f5h5", "h4f4", "h5g5", "g1g5", "f6g5", "f4d6", "h6h5", "d6d7", "c3c2", "d7h7"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "The king is the target",
+      "marks": [["h7"], ["c2"]],
+      "text": "Tarrasch won the race on the queenside, but Pillsbury's pieces were all around the black king. When both sides attack on opposite wings, measure how close each attack is to a king, not to a pawn. Pillsbury won Hastings ahead of Chigorin, Lasker, Tarrasch and Steinitz.",
+      "narration": "Tarrasch won pawns. Pillsbury won the king. And the young American won the whole tournament, ahead of the world champion.",
+      "pose": "trophy",
+      "fen": "8/7Q/8/6pk/1p1Pp3/1r2P2P/2p5/7K b - - 0 52"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "The race",
+      "question": "Pillsbury and Tarrasch attacked on opposite wings. Why did Pillsbury's attack win?",
+      "options": [
+        {
+          "text": "It was aimed at the king, so it decided the game even though Tarrasch won material",
+          "correct": true,
+          "why": "Right. A mate ends the game, and an extra pawn does not."
+        },
+        {
+          "text": "Queenside attacks never work",
+          "why": "They often work. Tarrasch's pawns did break through. They were just a step too slow."
+        },
+        {
+          "text": "Pillsbury was ahead in material all game",
+          "why": "Pillsbury was behind in material for a long time. His attack was worth more."
+        }
+      ],
+      "narration": "One question about the race: why did Pillsbury win it?",
+      "pose": "thinking",
+      "fen": "8/7Q/8/6pk/1p1Pp3/1r2P2P/2p5/7K b - - 0 52"
+    }
+  ]
+}

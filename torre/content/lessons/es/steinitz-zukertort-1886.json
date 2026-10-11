@@ -1,0 +1,96 @@
+{
+ "title": "Steinitz, el primer campeón del mundo",
+ "summary": "1886: en la primera partida oficial por el campeonato mundial, Steinitz bloquea un peón aislado y poco a poco presiona a Zukertort.",
+ "unit": "Wilhelm Steinitz",
+ "steps": [
+  {
+   "id": "the-first-title-match",
+   "title": "La primera partida por el título",
+   "text": "En 1886, Wilhelm Steinitz y Johannes Zukertort jugaron una partida en los Estados Unidos que cuenta como el primer campeonato mundial oficial. Steinitz la ganó y se convirtió en el primer campeón del mundo. Él enseñó algo nuevo: antes de atacar, recolecta pequeñas ventajas, como un peón débil o una casilla fuerte. En esta partida él tiene las piezas negras. Tú juegas de su lado.",
+   "narration": "1886, la primera partida oficial por el campeonato mundial. Wilhelm Steinitz creía en las pequeñas ventajas: un peón débil aquí, una casilla fuerte allá. Míralas acumularse. Tú juegas con las negras, como Steinitz."
+  },
+  {
+   "id": "the-game",
+   "title": "Zukertort – Steinitz, Campeonato Mundial 1886",
+   "text": "Al principio, el peón d de las blancas queda aislado: no tiene peones vecinos para protegerlo. Steinitz estaciona un caballo delante de él, intercambia piezas y espera. Zukertort ataca en el flanco de rey, y Steinitz está listo. El juego se detiene en los movimientos clave de Steinitz.",
+   "notes": [
+    {
+     "text": "7.exd4: El peón d de las blancas ahora está solo, sin peones blancos en las columnas c o e para protegerlo. Eso es un peón aislado."
+    },
+    {
+     "text": "11...Nbd5: Un caballo aterriza justo delante del peón aislado. Ningún peón blanco podrá jamás sacarlo de d5."
+    },
+    {
+     "text": "18.bxc3: Los peones blancos en c3 y d4 ahora están juntos, pero ambos son blancos fáciles."
+    },
+    {
+     "text": "19...Nd5: El otro caballo toma la casilla de bloqueo."
+    },
+    {
+     "text": "22.c4: Los peones de c y d de blancas están uno al lado del otro sin vecinos. Son fuertes si pueden avanzar, débiles si los atacan."
+    },
+    {
+     "text": "25.Rh3: Zukertort mueve una torre hacia el rey de negras y comienza un ataque."
+    },
+    {
+     "text": "30...f5: Steinitz gana espacio en el flanco de rey y prepara una casilla ideal para su alfil en e4."
+    },
+    {
+     "text": "33.c5: Blancas empuja un peón para atacar a la dama. Parece fuerte, pero hay una táctica."
+    },
+    {
+     "text": "38...Qxe4: Negras tienen ventaja de material, el caballo de blancas en d1 está atado, y Zukertort renunció."
+    }
+   ],
+   "narration": "Blancas termina con un peón solitario en d4. Steinitz lo bloquea, lo presiona y espera su oportunidad. Encuentra sus movimientos clave.",
+   "guesses": [
+    {
+     "prompt": "Blancas acaba de tomar tu caballo en d5. ¿Qué pieza debe tomarlo?",
+     "hint": "Tomar con el peón te daría un peón aislado propio. Mantén la presión sobre d4.",
+     "why": "21...Rxd5!: La torre recupera y ataca d4 de una sola vez. Tomar con el peón de e habría bloqueado la columna de d y dejado a negras con un peón solitario propio."
+    },
+    {
+     "prompt": "La torre de Zukertort ha llegado a g6. Encuentra una casilla central fuerte para tu alfil.",
+     "hint": "Busca una casilla donde el alfil ataque a la dama blanca y esté protegido por un peón.",
+     "why": "1. \"31...Be4!: El alfil ataca a la dama en d3 y ocupa una excelente casilla central, protegida por el peón f5. El ataque de blancas se agota.\""
+    },
+    {
+     "prompt": "2. \"33.c5 ataca a tu dama. No la muevas. Encuentra algo más fuerte.\"",
+     "hint": "Si el peón de dama blanca captura en c5, ¿qué ve tu dama por la columna 'd'?",
+     "why": "4. \"33...¡Rxc5! El peón en d4 no puede recapturar: está clavado, porque después de que el peón capture, la dama capturaría la torre en d2. Steinitz gana el peón que había estado presionando todo el juego.\""
+    },
+    {
+     "prompt": "Blanco capturó en e6. Tu la torre puede unirse al ataque con jaque. ¿Cómo?",
+     "hint": "La última fila de blancas no tiene defensores.",
+     "why": "34...¡Rc1+! La torre invade con jaque, y el caballo tiene que bloquear en d1, donde se queda atascado."
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "Pequeñas ventajas se acumulan.",
+   "text": "Steinitz nunca atacó al rey a toda prisa en este juego. Bloqueó el peón solitario con un caballo, intercambió piezas y siguió presionando hasta que los peones blancos se agrietaron. Esa era su gran idea: acumular pequeñas ventajas, y las tácticas ganadoras aparecerán por sí solas.",
+   "narration": "Sin ataque salvaje. Steinitz bloqueó el peón débil, siguió presionando y las tácticas surgieron por sí solas. Así es como jugó el primer campeón del mundo."
+  },
+  {
+   "id": "quiz",
+   "title": "Contra el peón aislado",
+   "question": "Blanco tiene un peón aislado en d4. ¿Dónde quiere una pieza el negro?",
+   "options": [
+    {
+     "text": "En d5, justo delante del peón",
+     "why": "Sí. Una pieza en d5 impide que el peón avance, y ningún peón blanco puede alejarla."
+    },
+    {
+     "text": "En d8, muy atrás de sus propios peones",
+     "why": "Demasiado pasivo. Desde d8, la pieza no hace nada para detener al peón ni para usar la casilla al frente."
+    },
+    {
+     "text": "En cualquier lugar, siempre y cuando ataque al rey.",
+     "why": "Steinitz enseñó lo contrario: trabaja primero en las debilidades y ataca después."
+    }
+   ],
+   "narration": "Una pregunta: ¿dónde quieres una pieza contra un peón aislado?"
+  }
+ ]
+}

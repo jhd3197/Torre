@@ -1,0 +1,187 @@
+// Colour scale: every colour in the app comes from here.
+// Families by hue: sage is a greenish grey, sand a warm grey, slate a cool
+// grey; moss, mist, steel, heather, wheat, peach and clay are the muted
+// versions of green, teal, blue, plum, gold, orange and red. Steps go by
+// lightness, 50 lightest to 950 darkest. Pick the nearest step and never
+// write a raw hex anywhere else (styles.test.ts enforces it).
+
+// Brand: the named colours of Torre, exact.
+$paper: #f8f6ee;
+$ink: #1d2d27;
+$muted: #6a7065; // 4.7:1 on paper (was #858a80, 3.3:1)
+$line: #e3e0d4;
+$brand-green: #2f5d50;
+$lime: #f1e3b8;
+$forest: #1f4a3e;
+$charcoal: #1a1f1e;
+$stone: #d9d4c7;
+$brand-gold: #c9a552;
+$rail-bg: #1a3c30;
+$rail-edge: #142e24;
+$rail-hover: #234939;
+$rail-ring: #d9d3ba;
+$rail-ink: #eef3e5;
+$rail-muted: #93aa9b;
+
+// Scale
+$white: #ffffff;
+$black: #000000;
+$neutral-50: #fffdf8;
+$neutral-100: #eeeee7;
+$neutral-200: #e4e4dc;
+$neutral-900: #222222;
+$neutral-950: #1c1f1b;
+$sand-50: #fdf0ec;
+$sand-100: #efe9da;
+$sand-200: #e8cfc2;
+$sand-300: #c8c2b2;
+$sand-400: #b5ab97;
+$sand-600: #7d6a5a;
+$sage-50: #eef5e5;
+$sage-100: #e3e9d8;
+$sage-200: #d9e7c9;
+$sage-300: #b6c2ac;
+$sage-400: #b0b9a7;
+$sage-500: #6f746a; // muted text: 4.4:1 on paper
+$sage-600: #66725f; // secondary text: 4.7:1 on paper
+$sage-700: #4c5a44;
+$sage-800: #3a5144;
+$sage-900: #1f3527;
+$slate-100: #e7ecf5;
+$slate-500: #7d8790;
+$slate-700: #56606a;
+$moss-200: #d7e8c9;
+$moss-300: #a9c398;
+$moss-400: #a9b998;
+$moss-500: #7c8f64;
+$moss-600: #5d7a52;
+$moss-700: #3f5c32;
+$moss-800: #2c5138;
+$moss-900: #1d3b2a;
+$green-300: #d4ce76;
+$green-400: #8cc06a;
+$green-500: #7ba86f;
+$green-600: #4e7d4a;
+$green-700: #3f6b2f;
+$mist-200: #b6ded2;
+$mist-600: #2f8a7a;
+$steel-600: #5f7fae;
+$steel-700: #2f6b8f;
+$blue-500: #4a8fc4;
+$blue-600: #38709b;
+$plum-600: #8e63c9;
+$plum-700: #6f4ba3;
+$wheat-100: #f6e6b4;
+$wheat-200: #f0d9b5;
+$wheat-600: #8a6d30;
+$wheat-700: #79632c;
+$gold-300: #f5c64a;
+$gold-400: #d29a20;
+$gold-500: #b28a2a;
+$gold-600: #86651a;
+$peach-200: #f0d3b1;
+$peach-400: #d6ad98;
+$peach-500: #b58863;
+$peach-600: #8d6a3f;
+$peach-700: #7a5a4b;
+$orange-400: #ec7a2c;
+$orange-500: #c4703a;
+$orange-600: #a8693c;
+$orange-700: #8a5128;
+$clay-300: #efc4b8;
+$clay-400: #c6907a;
+$clay-500: #ac7661;
+$red-400: #dc8270;
+$red-500: #e0604d;
+$red-600: #b4442f;
+$red-700: #a0452c;
+
+// Events (the bot lobby's seasonal collections): each theme is a deep ground and a bright accent,
+// with white text on the ground. Picked to read as the holiday at a glance.
+$event-spooky: #3d2f4f;
+$event-spooky-accent: #f39a3c;
+$event-marigold: #4a2e1f;
+$event-marigold-accent: #f2a93b;
+$event-lantern: #2b2747;
+$event-lantern-accent: #f5c64a;
+$event-winter: #1c4337;
+$event-winter-accent: #ec6a55;
+$event-party: #24384a;
+$event-party-accent: #e7c25a;
+$event-fiesta: #1f3a6b;
+$event-fiesta-accent: #f4c430;
+$event-lucky: #6b1d1d;
+$event-lucky-accent: #f5c64a;
+$event-love: #5a2338;
+$event-love-accent: #f29bb0;
+$event-clover: #1e4a2c;
+$event-clover-accent: #e9c75a;
+$event-spring: #45395f;
+$event-spring-accent: #f3b6d0;
+$event-summer: #135a63;
+$event-summer-accent: #f7b34d;
+$event-chess: #2a2a2a;
+$event-chess-accent: #d9b25a;
+$event-ink: #2a1d10; // text on an accent button
+
+// The lobby's cards and panels (Torre Bot Collection design).
+$lobby-line: #ebe7da;
+$lobby-line-strong: #e6e2d4;
+$lobby-tile: #f1f5ea;
+$lobby-track: #efede3;
+$lobby-pill: #e6eedb;
+$lobby-ink: #1e3d2c;
+$lobby-muted: #6b766b;
+$lobby-green: #5e9356;
+$lobby-selected: #eef5e6;
+$lobby-selected-line: #c9dcba;
+$lobby-hover-line: #a9c79a;
+$lobby-star: #e2a930;
+$lobby-button: #275238;
+$lobby-button-shade: #173726;
+$lobby-warm: #b5651d;
+
+// Board themes are content the player picks, so they keep their exact colours.
+$board-forest-light: #ececdb;
+$board-forest-dark: #79917b;
+$board-stone-light: #efeadf;
+$board-stone-dark: #b5ab97;
+$board-walnut-light: #f0d9b5;
+$board-walnut-dark: #b58863;
+// High contrast (Settings → Accessibility): near-white against a deep blue, far apart for low vision.
+$board-contrast-light: #f7f5ee;
+$board-contrast-dark: #3f5f7f;
+
+// Type: one sans for everything, one mono for chess data (moves, ratings, clocks).
+$font-sans: Nunito, system-ui, sans-serif;
+$font-mono: "DM Mono", ui-monospace, monospace;
+
+// Breakpoints: the only widths a media query may use (via the mixins in _mixins.scss).
+$bp-sm: 560px;
+$bp-md: 740px;
+$bp-lg: 920px;
+$bp-xl: 1180px;
+$bp-xxl: 1500px;
+// Big screens (a 4K monitor, an ultrawide): the board screens scale their panel text up.
+$bp-wide: 2200px;
+$bp-huge: 3000px;
+$bp-tall: 1150px;
+$bp-taller: 1600px;
+
+// Type scale: the only font sizes. Nothing smaller than $fs-2xs (11px), and that
+// only for board coordinates, badges and counts; product body text is $fs-md.
+$fs-2xs: 11px;
+$fs-xs: 12px;
+$fs-sm: 13px;
+$fs-md: 14px;
+$fs-base: 15px;
+$fs-lg: 16px;
+$fs-xl: 18px;
+$fs-2xl: 20px;
+$fs-3xl: 24px;
+$fs-4xl: 28px;
+$fs-5xl: 32px;
+$fs-6xl: 36px;
+$fs-7xl: 44px;
+$fs-8xl: 48px;
+$fs-display: 58px;

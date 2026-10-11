@@ -1,0 +1,54 @@
+{
+ "title": "La oposición",
+ "summary": "En finales de rey y peón, el bando que no tiene que mover a menudo gana. Aprende a tomar la oposición.",
+ "steps": [
+  {
+   "id": "kings-face-off",
+   "title": "Reyes enfrentados",
+   "text": "Los reyes están en la misma columna con un cuadro entre ellos. Ninguno puede avanzar a e5, así que quien tiene que mover debe ceder. El bando que NO tiene que mover tiene la oposición. Aquí es el turno de las negras, así que las blancas la tienen, y el rey negro tendrá que dejar pasar al rey blanco.",
+   "narration": "Dos reyes, mirándose fijamente con un cuadro entre ellos. Ningún rey puede avanzar, así que quien tenga que mover primero debe ceder. Eso significa que no mover es un arma, y eso es exactamente lo que es la oposición."
+  },
+  {
+   "id": "take-the-opposition",
+   "title": "Toma la oposición",
+   "prompt": "Solo un movimiento gana. Toma la oposición.",
+   "hint": "Coloca tu rey directamente delante del del negro, con un cuadro entre ellos.",
+   "success": "Ke4. Ahora las negras tienen que mover y ceder terreno. Cada otro movimiento le permite al rey negro tomar la oposición, y el juego termina en empate.",
+   "narration": "Solo un movimiento gana aquí. Coloca tu rey directamente delante del rey negro, a un cuadro de distancia: rey a e4. Ahora las negras tienen que apartarse, y cada otro movimiento le permite a las negras tomar la oposición."
+  },
+  {
+   "id": "again",
+   "title": "Una vez más",
+   "prompt": "De nuevo, solo un movimiento gana.",
+   "hint": "La misma idea: enfréntate al rey en su columna, separados por una casilla.",
+   "success": "Ke3 toma la oposición. Observa que el rey lidera y el peón espera: empujar e2-e4 demasiado pronto arruinaría la victoria.",
+   "narration": "¡Una vez más! La misma idea, nueva posición: enfréntate al rey negro en su propia columna con una casilla de distancia entre ustedes. Y recuerda: el rey lidera, el peón espera. Empujar el peón demasiado pronto arruinaría la victoria."
+  },
+  {
+   "id": "how-it-wins",
+   "title": "Cómo se desarrolla la victoria",
+   "text": "Observa la demostración. Cuando el rey negro se aparta, el rey blanco camina a su lado (flanqueándolo) en lugar de empujar el peón. Solo una vez que el rey controla las casillas delante del peón, el peón avanza y se corona.",
+   "narration": "Aquí está cómo se desarrolla la victoria. El rey negro se aparta. [move] El rey blanco lo rodea, a f5. [move] El negro regresa. [move] Rey a e5. [move] El negro se aparta. [move] Rey a d6, justo a su lado. Eso es flanquear. [move] El negro espera. [move] Solo ahora el peón avanza. [move] El negro espera de nuevo. [move] Peón a e5. [move] Regresa a e8. [move] Rey a e6. [move] A f8. [move] Rey a d7, protegiendo la casilla de coronación. [move] El negro espera. [move] Peón a e6, jaque. [move] El rey se aparta. [move] Y peón a e7. Próxima parada, una nueva dama. [move]"
+  },
+  {
+   "id": "who-has-it",
+   "title": "¡Revísate!",
+   "question": "El rey blanco está en e4, el negro en e6, y es el turno de blancas. ¿Quién tiene la oposición?",
+   "options": [
+    {
+     "text": "Negras",
+     "why": "El bando que no tiene que mover tiene la oposición. Las blancas ahora deben ceder."
+    },
+    {
+     "text": "Blancas",
+     "why": "El rey blanco está bien posicionado, pero tener que mover es el problema: las blancas deben ceder."
+    },
+    {
+     "text": "Nadie, los reyes están demasiado lejos.",
+     "why": "Reyes separados por una casilla en la misma columna están en oposición directa."
+    }
+   ],
+   "narration": "¡Última pregunta! El rey blanco está en e4, el rey negro en e6, y es el turno de blancas. ¿Quién sostiene la oposición? Responde esto, y conocerás uno de los pequeños secretos más profundos del final de partida. ¡Bien hecho!"
+  }
+ ]
+}

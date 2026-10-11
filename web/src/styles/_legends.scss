@@ -1,0 +1,197 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Legends and the Arena's figurine picker. Figurines are 360x480 canvases with the figure standing on the
+   bottom edge, every figure the same height (art/build_assets.py stand). The lobby's legend cards are
+   ordinary roster cards (_bot-lobby.scss). */
+
+/* A figurine in a round portrait (Play's player strip): head and shoulders, not the base. */
+/* The same for character bots once they have a figurine (art/bots/), and in the story's boss circles. */
+:is(.player-avatar.portrait, .story-card-boss)
+  img:is([src*="art/legends/"], [src*="art/bots/"]) {
+  width: 190%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  transform: translateY(-4%);
+  align-self: start;
+}
+.player-avatar.portrait:has(img:is([src*="art/legends/"], [src*="art/bots/"])) {
+  place-items: start center;
+}
+.story-card-boss:has(img[src*="art/bots/"]) {
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  display: grid;
+  place-items: start center;
+}
+.trail-node.boss .trail-circle > img[src*="art/bots/"]:first-child,
+.boss-portrait[src*="art/bots/"] {
+  object-fit: contain;
+  object-position: 50% 100%;
+  border-radius: 0;
+}
+
+/* Each era is a panel headed by its diorama, so the hall reads as old masters through to today. */
+.hall-era {
+  border-radius: 16px;
+  border: 1px solid $neutral-100;
+  background: $white;
+  overflow: hidden;
+}
+.hall-era-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: $sage-50;
+  border-bottom: 1px solid $neutral-100;
+}
+.hall-era-heading img {
+  width: 120px;
+  height: auto;
+  flex: none;
+  filter: drop-shadow(0 4px 6px rgba($black, 0.1));
+}
+#bot-lobby .hall-era-heading h3 {
+  margin: 0;
+  font: 650 #{$fs-lg}/ 1.3 $font-sans;
+  color: $neutral-950;
+}
+.hall-era .bot-grid {
+  padding: 14px;
+}
+@include down(sm) {
+  .hall-era-heading img {
+    width: 84px;
+  }
+}
+
+.hall-fill {
+  margin: 0;
+  font: #{$fs-xs}/ 1.5 $font-mono;
+  color: $peach-600;
+}
+.hall-problem {
+  margin: 0;
+  font-size: $fs-sm;
+  color: $red-600;
+}
+
+@keyframes legend-rise {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Arena: the seat's player on a pedestal, the crossed swords between seats, and the legend picker. */
+.arena-seat-figure {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 132px;
+  margin: -2px 0 2px;
+  position: relative;
+}
+.arena-seat-figure::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  width: 90px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(rgba($black, 0.15), rgba($black, 0) 70%);
+}
+.arena-seat-figure img {
+  position: relative;
+  z-index: 1;
+  height: 128px;
+  width: auto;
+  animation: legend-rise 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.arena-vs-swords {
+  align-self: center;
+  width: 44px;
+  height: auto;
+  margin: -6px 0;
+}
+.arena-seat .arena-legend-open {
+  align-self: flex-start;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: $moss-700;
+  font-size: $fs-sm;
+  font-weight: 600;
+  cursor: pointer;
+}
+.arena-seat .arena-legend-open:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.arena-legend-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 340px;
+  overflow: auto;
+  padding: 4px 2px;
+  border-top: 1px solid var(--line);
+}
+.arena-legend-grid h3 {
+  font: 600 #{$fs-xs} $font-sans;
+  color: $sage-500;
+  margin: 6px 0 0;
+}
+.arena-legend-grid section > div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+}
+.arena-legend-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 2px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: none;
+  font-size: $fs-xs;
+  line-height: 1.2;
+  color: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.arena-legend-grid button:hover {
+  background: $sage-100;
+}
+.arena-legend-grid button[aria-pressed="true"] {
+  background: $sage-100;
+  border-color: $moss-300;
+}
+.arena-legend-grid button img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+.arena-legend-grid button span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Character bots are clay figurines too: give their roster cards the same room on wide screens. */
+@include up(xl) {
+  .bot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  }
+}

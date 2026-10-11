@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "The Evergreen Game",
+  "summary": "Berlin, 1852: Anderssen again: the Evans Gambit, a sacrificed queen, and a finish so pretty Steinitz named it himself.",
+  "category": "history",
+  "unit": "The Romantic Era",
+  "order": 2,
+  "level": "beginner",
+  "minutes": 9,
+  "requires": ["the-immortal-game"],
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "berlin-1852",
+      "kind": "explain",
+      "title": "Berlin, 1852",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "One year after the Immortal Game, Adolf Anderssen sits down in Berlin against Jean Dufresne, a strong player and popular chess writer. Anderssen produces another masterpiece, so fresh and sparkling that the first world champion, Wilhelm Steinitz, later called it the evergreen in Anderssen's laurel wreath. The name stuck. Press play.",
+      "narration": "Berlin, 1852. One year after the Immortal Game, Anderssen does it again: a game so fresh that a future world champion named it the Evergreen Game. Press play.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "reel",
+      "title": "Anderssen – Dufresne, Berlin 1852",
+      "text": "This time Anderssen opens with the Evans Gambit, sacrificing a pawn on move four for a headlong attack. Watch how the sacrifices build on each other until the stunning finish.",
+      "narration": "The Evans Gambit this time: a pawn sacrificed on move four. Watch how each sacrifice sets up the next.",
+      "pose": "playing",
+      "moves": ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "b2b4", "c5b4", "c2c3", "b4a5", "d2d4", "e5d4", "e1g1", "d4d3", "d1b3", "d8f6", "e4e5", "f6g6", "f1e1", "g8e7", "c1a3", "b7b5", "b3b5", "a8b8", "b5a4", "a5b6", "b1d2", "c8b7", "d2e4", "g6f5", "c4d3", "f5h5", "e4f6", "g7f6", "e5f6", "h8g8", "a1d1", "h5f3", "e1e7", "c6e7", "a4d7", "e8d7", "d3f5", "d7e8", "f5d7", "e8f8", "a3e7"],
+      "notes": [
+        { "ply": 7, "text": "4.b4!? The Evans Gambit: a pawn for speed and open lines. Anderssen's favorite way to start a fire." },
+        { "ply": 13, "text": "7.O-O: White is down two pawns, but look at that development. Every piece is ready." },
+        { "ply": 31, "text": "16.Bxd3: White's pieces swarm around the black queen, which has no good squares left." },
+        { "ply": 33, "text": "17.Nf6+! gxf6 18.exf6: the pawn crash opens the king's cover, and the rooks are coming." },
+        { "ply": 37, "text": "19.Rad1! Anderssen ignores his attacked queen and simply brings the last piece into the attack." },
+        { "ply": 38, "text": "19...Qxf3: Black grabs the queen. It looks like a swindle. It isn't." },
+        { "ply": 39, "text": "20.Rxe7+! The rook sacrifice begins the combination that made this game evergreen." },
+        { "ply": 41, "text": "21.Qxd7+!! The queen sacrifice! Kxd7 is forced, and now the bishops go hunting." },
+        { "ply": 43, "text": "22.Bf5+: double check! The bishop and the rook on d1 check at once, so the king must run." },
+        { "ply": 45, "text": "23.Bd7+! Kf8: the king cannot take the bishop; it is protected from a3." },
+        { "ply": 47, "text": "24.Bxe7# Checkmate! Two bishops finish what the queen started. The Evergreen Game." }
+      ]
+    },
+    {
+      "id": "the-finish",
+      "kind": "play",
+      "title": "Mate in two",
+      "fen": "1r2k1r1/pbp1np1p/1b3P2/5B2/8/B1P2q2/P4PPP/3R2K1 w - - 2 23",
+      "prompt": "The queen is gone, but Black's king has nowhere to hide. Find the mate in two that ends the Evergreen Game.",
+      "hint": "One bishop checks from d7, and it cannot be taken because of the other bishop.",
+      "line": ["f5d7", "e8f8", "a3e7"],
+      "success": "Bd7+! Kf8 Bxe7#: two bishops, no queen, no problem. You finished the Evergreen Game.",
+      "narration": "Your turn. No queen on the board for White, and mate in two anyway. Find it.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-name",
+      "kind": "choose",
+      "title": "Who named it?",
+      "question": "Who called this game 'the evergreen in Anderssen's laurel wreath', giving it its famous name?",
+      "options": [
+        { "text": "Wilhelm Steinitz, the first world champion", "correct": true, "why": "Right. Steinitz admired Anderssen's attacking genius even while teaching the world a more scientific style." },
+        { "text": "Howard Staunton, organizer of London 1851", "why": "Staunton organized the 1851 tournament, but the name came from Steinitz." },
+        { "text": "Paul Morphy, the American prodigy", "why": "Morphy was a teenager in 1852. The evergreen name is Steinitz's." }
+      ],
+      "narration": "And a last question: where did the name come from?",
+      "pose": "thinking"
+    }
+  ]
+}

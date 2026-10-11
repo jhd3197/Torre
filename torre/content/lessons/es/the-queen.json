@@ -1,0 +1,55 @@
+{
+ "title": "La dama",
+ "summary": "La dama se mueve como una torre y un alfil combinados. Aprende qué tan poderosa es, y cómo usarla para atacar dos cosas a la vez.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "rook-plus-bishop",
+   "title": "Torre más alfil",
+   "text": "La dama se mueve en línea recta como una torre y a lo largo de diagonales como un alfil, a la distancia que ella quiera. Desde el centro, alcanza 27 casillas. Es la pieza más fuerte del tablero, vale aproximadamente lo mismo que una torre y un alfil juntas.",
+   "narration": "Aquí viene la dama, la pieza más poderosa del ajedrez. Se mueve como una torre y un alfil combinados: líneas rectas y diagonales, a donde ella quiera."
+  },
+  {
+   "id": "not-too-early",
+   "title": "Paciencia con la dama",
+   "text": "Como es tan valiosa, la dama tiene que correr cada vez que una pieza más barata la ataca. No la saques demasiado pronto: en el ejemplo, las negras desarrollan un caballo con un ataque contra ella, y las blancas tienen que desperdiciar otro movimiento.",
+   "narration": "Una advertencia: no apresures a tu dama. Supongamos que las blancas la sacan a g4 en el segundo movimiento. [move] Las negras simplemente desarrollan un caballo, y la ataca. [move] Así que la dama tiene que correr de nuevo. [move] ¿Ves? Las negras obtuvieron una pieza gratis, y las blancas desperdiciaron un movimiento."
+  },
+  {
+   "id": "long-diagonal-grab",
+   "title": "Toma la torre descuidada",
+   "prompt": "La torre negra en h5 está sin proteger. Captúrala con tu dama.",
+   "hint": "La dama puede moverse como un alfil. Sigue la diagonal desde d1.",
+   "success": "La diagonal desde d1 a h5 estaba abierta, así que la dama usó sus poderes de alfil para ganar una torre.",
+   "narration": "La torre negra en h5 no tiene protección. Tu dama está lejos en d1, pero puede moverse diagonalmente como un alfil. Encuentra el camino y llévala."
+  },
+  {
+   "id": "check-and-win",
+   "title": "Dos ataques a la vez",
+   "prompt": "Da un jaque que también ataque al caballo en h4, y luego gana el caballo.",
+   "hint": "Desde a4 la dama mira a e8 a lo largo de una diagonal y a h4 a lo largo de la cuarta fila.",
+   "success": "La dama a a4 dio jaque al rey y atacó al caballo a la vez. El negro tuvo que lidiar con el jaque, y el caballo cayó.",
+   "narration": "Como la dama se mueve en tantas direcciones, puede atacar dos cosas a la vez. Encuentra un jaque que también golpee al caballo. El negro estará ocupado salvando al rey, y el caballo será tuyo."
+  },
+  {
+   "id": "queen-quiz",
+   "title": "Revisión rápida",
+   "question": "¿Por qué generalmente es mala idea sacar a la dama en las primeras jugadas?",
+   "options": [
+    {
+     "text": "Las piezas más pequeñas pueden atacarla y ella debe seguir moviéndose, lo que desperdicia tiempo.",
+     "why": "Cada vez que corre, tu oponente puede desarrollar otra pieza gratis."
+    },
+    {
+     "text": "La dama no puede moverse antes de las otras piezas.",
+     "why": "Ella puede moverse en cualquier momento. Solo que generalmente no es una buena idea al principio."
+    },
+    {
+     "text": "La dama es débil al comienzo de la partida.",
+     "why": "Ella siempre es la pieza más fuerte. Su valor es justamente por eso que la persiguen."
+    }
+   ],
+   "narration": "Última pregunta, y entonces ya conoces a la dama. ¿Por qué deberías ser paciente con ella en la apertura?"
+  }
+ ]
+}

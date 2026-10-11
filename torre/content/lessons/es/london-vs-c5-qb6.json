@@ -1,0 +1,71 @@
+{
+ "title": "Cuando las negras atacan b2",
+ "summary": "La respuesta favorita de las negras en la Defensa Londres es...c5 y...Qb6 contra tu peón en b2. Aprende las respuestas tranquilas y una respuesta agresiva.",
+ "unit": "Defensa Londres",
+ "steps": [
+  {
+   "id": "the-target",
+   "title": "El agujero que deja el alfil",
+   "text": "Al principio, el alfil en c1 protege b2. Una vez que se va a f4, nada guarda ese peón. Las negras lo saben: el peón va a c5 para golpear d4, y la dama va a b6, atacando b2 y añadiendo presión sobre d4. Revísalo paso a paso y observa cómo la dama llega.",
+   "narration": "Aquí está el truco con la Defensa Londres. Peón a d4. [move] Las negras responden d5. [move] El alfil deja c1 para f4. [move] Caballo a f6. [move] Peón a e3. [move] Las negras empujan el peón de la columna c. [move] Peón a c3. [move] Caballo a c6. [move] Caballo a d2. [move] Y la dama va a b6, apuntando directamente a b2, que ha perdido su protección. [move]"
+  },
+  {
+   "id": "the-choices",
+   "title": "Tres respuestas tranquilas",
+   "text": "Tienes tres buenas maneras de lidiar con esto. La dama a b3 ofrece un cambio: si las negras toman, recapturas con el peón a y tu torre controla la columna semiabierta a. La dama a c2 o c1 simplemente guarda b2 y mantiene a las damas en su sitio. Lo que no debes hacer es continuar con tu desarrollo como si nada hubiera pasado, porque entonces el peón en b2 cae.",
+   "narration": "Tienes tres buenas respuestas. La dama a b3 ofrece cambiar damas. La dama a c2 o c1 simplemente protege el peón en silencio. Lo que no puedes hacer es ignorarlo."
+  },
+  {
+   "id": "guard-b2",
+   "title": "Cuida de b2",
+   "prompt": "La dama negra ataca b2. Ocúpate de ello.",
+   "hint": "Tu dama puede proteger b2, o enfrentarse a una dama negra cara a cara.",
+   "success": "Bien. Una dama a b3 es una opción más activa, y una dama a c2 o c1 protege b2 igual de bien. Tu desarrollo se mantiene intacto y el peón está seguro.",
+   "narration": "Una dama de las negras tiene una vista fija en b2. Usa tu propia dama para encargarte de eso."
+  },
+  {
+   "id": "after-c4",
+   "title": "Las negras avanzan.",
+   "prompt": "Las negras empujaron el peón de c para golpear tu dama. ¿A dónde debería ir?",
+   "hint": "Cambiar en b6 ayuda a las negras. Encuentra una casilla donde la dama siga protegiendo b2 y mire al flanco de rey.",
+   "success": "La dama a c2 mantiene b2 protegido y vigila f5, así que el alfil de las negras no puede salir a f5 sin ser tomado. Tomar en b6 enderezaría los peones de las negras y le daría a la torre de las negras la columna a.",
+   "narration": "Las negras patean tu dama con el peón de c. No te apresures a cambiar. Encuentra la casilla donde la dama siga siendo útil."
+  },
+  {
+   "id": "early-qb6",
+   "title": "Aún más temprano.",
+   "prompt": "La dama de las negras está fuera en el tercer movimiento. Encuentra la respuesta activa.",
+   "hint": "Desarrolla un caballo hacia el centro y reta a las negras a tomar en b2.",
+   "success": "El caballo a c3 desarrolla y ataca d5. El peón de b2 es ahora cebo: si la dama lo atrapa, tu caballo salta hacia adelante con amenazas.",
+   "narration": "A veces las negras sacan la dama aún más temprano. Aquí no necesitas defender en absoluto. Desarrolla con una amenaza y deja que las negras se preocupen."
+  },
+  {
+   "id": "punish-the-grab",
+   "title": "La dama lo agarró.",
+   "prompt": "Negro capturó el peón en b2. Castiga a la dama ambiciosa.",
+   "hint": "¿Qué peón puede tomar tu caballo, y a qué casilla amenazaría después?",
+   "success": "Nxd5 recupera un peón y amenaza Nc7+, horquilando el rey y la torre en a8. La dama de Negro está lejos en b2, y tu torre puede perseguirla desde b1.",
+   "narration": "Negro se llevó el peón. Ahora la dama está a kilómetros de casa. Tu caballo puede tomar un peón y amenazar una horquilla al mismo tiempo."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "¿Por qué b2 es un blanco común en el Sistema Londres?",
+   "options": [
+    {
+     "text": "El alfil que lo defendía ha ido a f4.",
+     "why": "Sí. En c1, el alfil protegía b2; en f4, no lo hace, así que estate atento a ese peón."
+    },
+    {
+     "text": "El peón en c3 bloquea a la dama de defenderlo.",
+     "why": "La dama aún puede proteger b2 desde b3, c2 o c1."
+    },
+    {
+     "text": "No es un blanco; Negro nunca lo ataca.",
+     "why": "...c5 y ...Qb6 contra b2 es uno de los planes más populares de Negro."
+    }
+   ],
+   "narration": "Una última pregunta. ¿Por qué Negro apunta tan a menudo a b2 en el Londres? ¡Tú puedes con esto! Buen trabajo hoy."
+  }
+ ]
+}

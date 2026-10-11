@@ -1,0 +1,223 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// One content frame for the whole shell, including pages with their own header.
+:root {
+  --page-max: 1600px;
+  --page-gutter: clamp(20px, 3vw, 48px);
+  --page-content: 1280px;
+  --page-top: 28px;
+  --board-size: clamp(300px, calc(var(--app-vh) - 280px), 640px);
+}
+.shell {
+  --rail-offset: var(--rail-w);
+}
+.shell[data-rail="folded"] {
+  --rail-offset: var(--rail-w-folded);
+}
+.shell[data-rail="drawer"] {
+  --rail-offset: 0px;
+}
+.shell[data-rail] main {
+  width: calc(100% - var(--rail-offset));
+  max-width: var(--page-max);
+  margin-left: calc(
+    var(--rail-offset) + max(0px, (100vw - var(--rail-offset) - var(--page-max)) / 2)
+  );
+  padding: 0 var(--page-gutter);
+}
+// Every page that isn't a board screen shares one content width and one top margin, so moving
+// between Puzzles, Profile, Coach or Settings doesn't make the page jump. Pages set no width of their own.
+$content-pages: ".home, .puzzles, .train, .lessons, .insights, .library-section, .profile-page, .coach-hub, .awards, .import-page, #arena, #settings, #bot-lobby";
+$board-layouts: ".workspace, .train-layout, .lesson-layout:not(.no-board), .arena-live";
+.shell main > :is(#{$content-pages}) {
+  width: 100%;
+  max-width: var(--page-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+// A page holding a board (the puzzle solver, a lesson, a live Arena match) gets the whole width instead.
+.shell main > :is(#{$content-pages}):has(#{$board-layouts}) {
+  max-width: none;
+}
+.shell
+  main
+  > :is(
+    .puzzles,
+    .train,
+    .lessons,
+    .insights,
+    .profile-page,
+    .coach-hub,
+    .awards,
+    .import-page,
+    #arena,
+    #settings,
+    #bot-lobby
+  ) {
+  padding-top: var(--page-top);
+}
+.coach-hub .insights {
+  max-width: none;
+  width: 100%;
+}
+
+// One page title: every page that owns its <h1> sets it the same size, weight and colour.
+$page-titles: "#arena .arena-header h1, .puzzles-overview .puzzles-title, .profile-who h1, .coach-head-main > h1, #settings > h1, #bot-lobby .bots-header h1";
+.shell main :is(#{$page-titles}) {
+  margin: 0;
+  font: 900 #{$fs-display}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+  color: $lobby-ink;
+  overflow-wrap: anywhere;
+}
+@include down(md) {
+  .shell main :is(#{$page-titles}) {
+    font-size: $fs-7xl;
+  }
+}
+
+// The same board/panel proportions for review, Explore, Play, and every practice screen (puzzles,
+// lessons, trainers). The board is sized from whatever the window gives it: its height less the
+// chrome around the board, or its width less the rail, gutters and panel, whichever is smaller.
+// The Story focus screen is intentionally outside the shell.
+.shell {
+  --panel-w: clamp(320px, 22vw, 560px);
+  --board-gap: clamp(20px, 1.6vw, 40px);
+  --board-chrome: 280px;
+  --board-extra: 0px;
+  --board-size: clamp(
+    300px,
+    min(
+      var(--app-vh) - var(--board-chrome) - var(--board-extra),
+      100vw - var(--rail-offset) - 2 * var(--page-gutter) - var(--panel-w) - var(--board-gap) - 26px
+    ),
+    1800px
+  );
+}
+// Board screens use the whole width, so a big monitor gets a big board instead of empty margins.
+.shell[data-rail] main:has(.workspace, .train-layout, .lesson-layout:not(.no-board)) {
+  max-width: none;
+  margin-left: var(--rail-offset);
+}
+// Explore adds its tool row above the board and the square-control key below it.
+body[data-mode="explore"] .shell {
+  --board-extra: 130px;
+}
+// Practice screens carry a header above the board.
+.shell main:has(.train-layout, .lesson-layout:not(.no-board)) {
+  --board-chrome: 250px;
+}
+.shell main :is(.workspace, .train-layout, .lesson-layout:not(.no-board)) {
+  grid-template-columns: minmax(0, calc(var(--board-size) + 26px)) var(--panel-w);
+  justify-content: center;
+  align-items: start;
+  gap: var(--board-gap);
+  max-width: none;
+  margin: 0 auto;
+}
+.shell main :is(.board-column, .train-board-column, .lesson-board-column) {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+// One look for every board: no frame around it, the eval bar's lane kept so boards line up across screens.
+.shell :is(.train-board-column, .lesson-board-column) {
+  padding: 0 0 0 26px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.shell :is(.train-board-column, .lesson-board-column) .board-wrap {
+  padding-left: 0;
+}
+.shell :is(.train-board-column, .lesson-board-column) .board-wrap > svg {
+  left: 0;
+  width: 100%;
+}
+// One panel card for every board screen: white, rounded, as tall as the board.
+.shell main :is(.analysis-panel, .train-panel, .lesson-layout:not(.no-board) > .lesson-panel) {
+  align-self: stretch;
+  min-height: 0;
+  background: $white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.shell :is(.train-panel, .lesson-layout:not(.no-board) > .lesson-panel) {
+  padding: 20px 22px;
+  overflow-y: auto;
+}
+
+// On a big monitor the board grows past 1000px; the text around it grows with it.
+@include big-screen {
+  .shell
+    main
+    :is(
+      .analysis-panel,
+      .train-panel,
+      .lesson-panel,
+      .player,
+      .arrow-legend,
+      #explore-context,
+      #heat-legend,
+      #square-info
+    ) {
+    zoom: 1.15;
+  }
+  .shell {
+    --board-chrome: 312px;
+  }
+  .shell main:has(.train-layout, .lesson-layout:not(.no-board)) {
+    --board-chrome: 285px;
+  }
+}
+@include big-screen($bp-huge, $bp-taller) {
+  .shell
+    main
+    :is(
+      .analysis-panel,
+      .train-panel,
+      .lesson-panel,
+      .player,
+      .arrow-legend,
+      #explore-context,
+      #heat-legend,
+      #square-info
+    ) {
+    zoom: 1.35;
+  }
+  .shell {
+    --board-chrome: 340px;
+  }
+  .shell main:has(.train-layout, .lesson-layout:not(.no-board)) {
+    --board-chrome: 330px;
+  }
+}
+
+@include down(lg) {
+  .shell main :is(.workspace, .train-layout, .lesson-layout:not(.no-board)) {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 666px;
+    gap: 20px;
+  }
+  .shell main .workspace .analysis-panel {
+    contain: none;
+    overflow: visible;
+  }
+  // Stacked, the panel takes its natural height: no page stretches to fill it.
+  .shell main .workspace .analysis-panel > .panel-page {
+    flex: none;
+    overflow: visible;
+  }
+  .shell main .workspace .panel-moves > .move-list {
+    flex: none;
+    height: 220px;
+  }
+  .shell :is(.train-board-column, .lesson-board-column) {
+    padding-left: 0;
+  }
+}

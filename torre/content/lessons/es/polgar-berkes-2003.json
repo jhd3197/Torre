@@ -1,0 +1,92 @@
+{
+ "title": "Polgár abre la columna h",
+ "summary": "Budapest, 2003: Judit Polgár sacrifica un caballo y una torre para abrir la columna h contra Ferenc Berkes.",
+ "unit": "Judit Polgár",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Budapest, 2003",
+   "text": "Judit Polgár es la mujer más fuerte que jamás haya jugado al ajedrez. Se convirtió en Gran Maestra a los quince años, más joven que Fischer, y jugó entre los diez mejores del mundo. Era famosa por sus ataques audaces. En este juego en Budapest se enfrenta al joven húngaro Ferenc Berkes.",
+   "narration": "Budapest, 2003. Judit Polgár, la mujer más fuerte en la historia del ajedrez, contra Ferenc Berkes. Va directamente al ataque del rey."
+  },
+  {
+   "id": "the-game",
+   "title": "Polgár – Berkes, Budapest 2003",
+   "text": "Una Defensa Francesa. Las blancas enrocan largo, las negras corto, para que Polgár pueda avanzar sus peones del flanco de rey. Sacrificará un caballo y una torre para abrir la columna h.",
+   "notes": [
+    {
+     "text": "9.O-O-O: enroque opuesto. Los peones del flanco de rey de Polgár están libres para avanzar."
+    },
+    {
+     "text": "12.Bh7+: un jaque para empujar al rey hacia la esquina."
+    },
+    {
+     "text": "13.Be4: Polgár deja su caballo en g5 donde el peón de h puede capturarlo. La columna h es lo que ella quiere."
+    },
+    {
+     "text": "16.hxg5+: la columna h está abierta, y es jaque."
+    },
+    {
+     "text": "20.Rh1: la segunda torre llega a la columna h. Negro tiene que devolver material."
+    },
+    {
+     "text": "24.Qxe4: el material está igualado, pero el rey negro no puede sobrevivir a la dama y la torre en la columna h. Berkes renunció."
+    }
+   ],
+   "narration": "Polgár enroca en el flanco de dama y lanza todo contra el rey negro. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "Estás una pieza abajo. Detén ...g4 y prepárate para abrir la columna h.",
+     "hint": "Un movimiento de peón puede hacer ambos trabajos a la vez.",
+     "why": "14.g4! impide que Negro empuje ...g4 para echar al caballo de f3, y se prepara para h4."
+    },
+    {
+     "prompt": "Ahora abre la columna h.",
+     "hint": "Ataca el peón en g5 con otro peón.",
+     "why": "15.h4 ataca g5. La columna h se abrirá con la torre de blancas ya esperando en h1."
+    },
+    {
+     "prompt": "¡Sacrificio de torre!",
+     "hint": "Jaque en la séptima fila. El rey tiene que tomar.",
+     "why": "18.Rh7+! Kxh7 19.Qh2+: el rey es arrastrado hacia adelante, y la dama y la otra torre siguen por la columna h."
+    },
+    {
+     "prompt": "El rey tomó la torre. Dale jaque después.",
+     "hint": "La dama también quiere la columna h.",
+     "why": "19. Qh2+ devuelve al rey a g8. Luego, Rh1 trae la última torre con una amenaza de mate."
+    },
+    {
+     "prompt": "La dama negra da jaque en g5. Bloquéala con la jugada que más duele.",
+     "hint": "Un peón puede bloquear y atacar a la dama al mismo tiempo.",
+     "why": "22. f4! bloquea el jaque y golpea a la dama, que no tiene una casilla buena: retrocede a h4 o h6 y entra en la columna h. Las negras tienen que devolver a la dama."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "La columna abierta",
+   "question": "Polgár dio un caballo y una torre. ¿Qué recibió a cambio?",
+   "options": [
+    {
+     "text": "Una columna h abierta con su dama y torre sobre ella, apuntando al rey",
+     "why": "Sí. Cada sacrificio abrió la columna h aún más, y el rey no pudo escapar de ella."
+    },
+    {
+     "text": "Un final ganado",
+     "why": "La partida se decidió por el ataque al rey, no en un final."
+    },
+    {
+     "text": "Más peones.",
+     "why": "Ella nunca fue superior en peones. Era superior en atacantes."
+    }
+   ],
+   "narration": "¿Qué compraron todos esos sacrificios?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Abre la columna y luego úsala.",
+   "text": "Cuando los reyes están en flancos opuestos, el atacante que abre una columna primero suele ganar. Polgár sacrificó un caballo para abrir la columna 'h' y una torre para arrastrar al rey hacia ella. Una vez que su dama y torre estaban en la columna abierta, las negras tuvieron que devolverlo todo.",
+   "narration": "Abre una columna hacia el rey enemigo y luego coloca tu dama y torre sobre ella. Así es como Polgár atacó."
+  }
+ ]
+}

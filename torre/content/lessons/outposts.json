@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Outposts",
+  "summary": "A square no enemy pawn can attack is the perfect home for a knight. Learn to find outposts and plant your pieces there.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Piece play",
+  "order": 1,
+  "requires": ["doubled-and-backward-pawns"],
+  "practice": "knight-endgame",
+  "steps": [
+    {
+      "id": "what-is-an-outpost",
+      "kind": "explain",
+      "title": "A square pawns can't reach",
+      "fen": "3r2k1/ppb2ppp/3p4/4p3/4P3/2N5/PPPR1PPP/6K1 w - - 0 1",
+      "marks": [["d5"], ["c3", "d5"], ["e4", "d5"]],
+      "text": "Look at d5. Black has no c-pawn, and the e-pawn has already gone past, so no black pawn can ever attack that square. White's e4 pawn guards it as well. A square like this, in the opponent's half and safe from enemy pawns, is an outpost. A piece placed there can only be removed by being traded off, and knights love outposts most of all, because they need to be close to the action to be strong.",
+      "narration": "This square, d5, is an outpost. No black pawn can ever attack it, and your own pawn on e4 supports it. A knight that lands there can only be removed by trading it, and it will dominate the board.",
+      "pose": "present"
+    },
+    {
+      "id": "jump-in",
+      "kind": "play",
+      "title": "Occupy the outpost",
+      "fen": "3r2k1/ppb2ppp/3p4/4p3/4P3/2N5/PPPR1PPP/6K1 w - - 0 1",
+      "prompt": "Put your knight on its best square.",
+      "hint": "The square in front of Black's backward pawn can never be attacked by a pawn.",
+      "line": ["c3d5"],
+      "success": "From d5 the knight attacks the bishop and eyes c7, e7, b6 and f6. Black's bishop is shut in behind its own pawns, while the knight cannot be chased away.",
+      "narration": "Jump into the outpost. From there your knight hits Black's bishop, watches the key squares around Black's position, and no pawn will ever kick it out.",
+      "pose": "detective"
+    },
+    {
+      "id": "good-knight-bad-bishop",
+      "kind": "explain",
+      "title": "Knight against bishop",
+      "fen": "6k1/ppb2ppp/3p4/4p3/4PN2/4K3/PPP2PPP/8 w - - 0 1",
+      "marks": [["d5"], ["d6"], ["e5"], ["c7"]],
+      "text": "Pieces are even, but Black's bishop is on the dark squares, the same colour as its own pawns on d6 and e5. They block it, and it cannot fight for the light square d5. White's knight is one jump away from that outpost. Once it lands there, it will be stronger than the bishop for the rest of the game.",
+      "narration": "Material is level, but look at Black's bishop, hemmed in by its own pawns. It can never touch the light square d5, and White's knight is just one jump away from it.",
+      "pose": "thinking"
+    },
+    {
+      "id": "outpost-endgame",
+      "kind": "play",
+      "title": "Plant the knight",
+      "fen": "6k1/ppb2ppp/3p4/4p3/4PN2/4K3/PPP2PPP/8 w - - 0 1",
+      "prompt": "Find the move that puts White firmly on top.",
+      "hint": "Which square can the bishop never challenge?",
+      "line": ["f4d5"],
+      "success": "The knight on d5 hits the bishop and cannot be dislodged. Next White's king walks toward the queenside while Black's pieces can only watch.",
+      "narration": "Plant the knight on the outpost. It attacks the bishop, controls the whole board around it, and nothing Black has can ever push it away.",
+      "pose": "playing"
+    },
+    {
+      "id": "best-piece",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why are outposts especially good for knights?",
+      "options": [
+        { "text": "A knight is a short-range piece, so it needs a safe advanced square to be strong", "correct": true, "why": "A knight on its own back ranks does little. Planted on an outpost near the enemy camp, it attacks many important squares and can't be chased." },
+        { "text": "Knights cannot be captured by bishops", "why": "Bishops can capture knights. An outpost only protects the knight from pawns." },
+        { "text": "Knights on outposts give check more often", "why": "Checks are not the point. The knight is valuable because it controls squares from a spot where it can't be kicked out." }
+      ],
+      "narration": "Last question. Why do outposts suit knights so well? Think about how far a knight can reach compared with a bishop or rook. Excellent work!",
+      "pose": "trophy"
+    }
+  ]
+}

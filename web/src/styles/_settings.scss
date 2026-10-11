@@ -1,0 +1,725 @@
+// Settings: one section per page (general, board, sound, coach and voice, learning, analysis,
+// engines, accessibility, data), picked from the index. The Engines rows live in _engines.scss.
+@use "sass:map";
+@use "tokens" as *;
+@use "mixins" as *;
+
+#settings {
+  padding-bottom: 72px;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+  color: $lobby-ink;
+}
+
+/* The index: one link per section page. It stays put while a long section scrolls. */
+.settings-index {
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+/* The title, and the search box beside it. */
+.settings-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.settings-head h1 {
+  flex: 1 1 auto;
+  margin: 0;
+}
+.settings-search {
+  flex: 0 1 320px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 14px 8px 38px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 12px;
+  background: $white
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b766b' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E")
+    no-repeat 13px center;
+  font: 600 #{$fs-md} $font-sans;
+  color: $lobby-ink;
+  @include focus-ring;
+}
+.settings-search::placeholder {
+  color: $lobby-muted;
+}
+.settings-index a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+  text-decoration: none;
+  @include focus-ring;
+}
+.settings-index a:hover,
+.settings-index a[aria-current] {
+  background: $lobby-track;
+  color: $lobby-ink;
+}
+
+/* Sections: white cards of rows. */
+.settings-sections {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.settings-group {
+  scroll-margin-top: 24px;
+  padding: 14px 18px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 18px;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+.settings-group h2 {
+  margin: 0 0 2px;
+  font: 900 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+
+/* A row: label and note on the left, the control on the right. */
+.settings-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 9px 0;
+  border-top: 1.5px solid $lobby-track;
+}
+.settings-group h2 + .settings-row,
+.settings-subheading + .settings-row {
+  border-top: 0;
+}
+/* A heading that splits a long section into parts. */
+.settings-subheading {
+  margin: 14px 0 2px;
+  padding-top: 12px;
+  border-top: 1.5px solid $lobby-track;
+  font: 900 #{$fs-xs} $font-sans;
+  color: $lobby-muted;
+}
+.settings-group h2 + .settings-subheading,
+.settings-board-options > .settings-subheading:first-child {
+  margin-top: 4px;
+  padding-top: 0;
+  border-top: 0;
+}
+.settings-row-text {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.settings-row-text strong {
+  font: 900 #{$fs-md} $font-sans;
+}
+.settings-row-text small {
+  font-size: $fs-xs;
+  line-height: 1.35;
+  color: $lobby-muted;
+}
+.settings-row.disabled .settings-row-text {
+  opacity: 0.45;
+}
+.settings-switch:has(input:disabled) {
+  cursor: default;
+}
+.settings-switch input:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.settings-confirm {
+  display: flex;
+  gap: 8px;
+}
+
+/* The name and its (i): the description shows on hover, keyboard focus or a tap (TooltipLayer). */
+.settings-row-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.settings-info {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: -4px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: $lobby-muted;
+  cursor: help;
+  @include focus-ring;
+}
+.settings-info:hover {
+  background: $lobby-track;
+  color: $lobby-ink;
+}
+/* A row found by search: a moment of highlight so the eye lands on it. */
+.settings-row.settings-found,
+.settings-subheading.settings-found,
+.settings-block.settings-found {
+  margin-inline: -10px;
+  padding-inline: 10px;
+  border-radius: 10px;
+  background: $lobby-selected;
+  box-shadow: inset 0 0 0 1.5px $lobby-selected-line;
+  transition: background 0.4s;
+}
+.settings-section-note {
+  margin: 0 0 8px;
+  font-size: $fs-xs;
+  line-height: 1.4;
+  color: $lobby-muted;
+}
+.settings-value {
+  font: 800 #{$fs-md} $font-sans;
+}
+
+/* On/off: a small track with a sliding knob. */
+.settings-switch label {
+  cursor: pointer;
+}
+.settings-switch input {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 22px;
+  margin: 0;
+  border-radius: 999px;
+  background: $stone;
+  cursor: pointer;
+  transition: background 0.2s;
+  @include focus-ring;
+}
+.settings-switch input::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $white;
+  box-shadow: 0 1px 2px rgba($black, 0.25);
+  transition: transform 0.2s;
+}
+.settings-switch input:checked {
+  background: $lobby-green;
+}
+.settings-switch input:checked::after {
+  transform: translateX(18px);
+}
+
+/* Segmented choices (language, voice, volume, analysis engine): a white pill on a sand track. */
+#settings .settings-segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 10px;
+  background: $lobby-track;
+}
+// The chosen option sits on the house green pill, as in the Arena and the bot lobby.
+#settings .settings-segments::before {
+  border-radius: 7px;
+  background: $lobby-button;
+  box-shadow: 0 2px 0 $lobby-button-shade;
+}
+#settings .settings-segments button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 7px;
+  font: 800 #{$fs-sm} $font-sans;
+  white-space: nowrap;
+  color: $lobby-muted;
+}
+#settings .settings-segments button.selected {
+  color: $white;
+  font-weight: 800;
+}
+// A choice with a long or open-ended list (the analysis engine) is a dropdown, not segments.
+#settings .settings-select {
+  min-width: 200px;
+  padding: 8px 36px 8px 12px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 10px;
+  background: $white;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-ink;
+  cursor: pointer;
+}
+#settings .settings-select:focus-visible {
+  @include focus-ring;
+}
+// The lobby's segments show counts in small mono spans; a language name is not one.
+#settings .settings-segments button span {
+  margin: 0;
+  font: inherit;
+  opacity: 1;
+}
+#settings .settings-segments .flag-icon {
+  border-radius: 2px;
+}
+
+/* A level (volume) slider, its value, and an optional sample button. */
+.settings-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.settings-level input[type="range"] {
+  width: 180px;
+  height: 22px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  @include focus-ring;
+}
+.settings-level input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, $lobby-green var(--level), $lobby-track var(--level));
+}
+.settings-level input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, $lobby-green var(--level), $lobby-track var(--level));
+}
+.settings-level input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 2px solid $lobby-green;
+  border-radius: 50%;
+  background: $white;
+  box-shadow: 0 1px 2px rgba($black, 0.25);
+}
+.settings-level input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 2px solid $lobby-green;
+  border-radius: 50%;
+  background: $white;
+}
+.settings-level input[type="range"]:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.settings-level output {
+  min-width: 40px;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $lobby-muted;
+  text-align: right;
+}
+#settings .settings-sample {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  min-height: 32px;
+  padding: 0;
+}
+
+/* Board & pieces: the preview beside the options, stacked on narrow screens. */
+.settings-board-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: start;
+  gap: 8px 24px;
+}
+.settings-board-options {
+  min-width: 0;
+  grid-row: 1;
+  grid-column: 1;
+}
+.settings-preview {
+  position: sticky;
+  top: 28px;
+  grid-row: 1;
+  grid-column: 2;
+  margin: 8px 0 0;
+}
+.settings-preview-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+.settings-preview-board .square img {
+  width: 85%;
+  height: 85%;
+}
+.settings-preview-board .coordinate {
+  font-size: $fs-2xs;
+}
+
+/* Pieces and board colours: tiles with a swatch. */
+.settings-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  padding: 8px 0 4px;
+}
+.settings-tiles.boards {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.settings-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 2px solid $lobby-line;
+  border-radius: 12px;
+  background: $white;
+  color: $lobby-ink;
+  font: 900 #{$fs-md} $font-sans;
+  text-align: left;
+  @include focus-ring;
+}
+.settings-tile:hover {
+  border-color: $lobby-hover-line;
+}
+.settings-tile[aria-checked="true"] {
+  border-color: $lobby-green;
+  background: $lobby-tile;
+}
+.settings-tile-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.settings-tile-text small {
+  font: 400 #{$fs-xs}/ 1.3 $font-sans;
+  color: $lobby-muted;
+}
+.settings-piece-swatch {
+  flex: none;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--light-square);
+}
+.settings-piece-swatch img {
+  width: 19px;
+  height: 28px;
+  object-fit: contain;
+}
+.settings-board-swatch {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 6px;
+  overflow: hidden;
+}
+$board-swatches: (
+  forest: ($board-forest-light, $board-forest-dark),
+  stone: ($board-stone-light, $board-stone-dark),
+  walnut: ($board-walnut-light, $board-walnut-dark),
+  contrast: ($board-contrast-light, $board-contrast-dark),
+);
+@each $theme, $colours in $board-swatches {
+  .settings-board-swatch.board-#{$theme} i {
+    background: nth($colours, 1);
+  }
+  .settings-board-swatch.board-#{$theme} i.dark {
+    background: nth($colours, 2);
+  }
+}
+
+/* Voice packs: a compact table under the voice rows. */
+.settings-packs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 6px;
+}
+.settings-packs .settings-subheading {
+  margin-bottom: 0;
+}
+.settings-packs-note {
+  margin: 0;
+  font-size: $fs-xs;
+  line-height: 1.35;
+  color: $lobby-muted;
+}
+#settings .voice-packs {
+  gap: 0;
+  border: 1.5px solid $lobby-track;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#settings .voice-pack {
+  gap: 10px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 0;
+  background: $white;
+}
+#settings .voice-pack + .voice-pack {
+  border-top: 1.5px solid $lobby-track;
+}
+#settings .voice-pack.installed {
+  background: $lobby-tile;
+}
+#settings .voice-pack-info strong {
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-ink;
+}
+#settings .voice-pack-info small {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $lobby-muted;
+}
+#settings .voice-pack .button {
+  min-height: 30px;
+  padding: 4px 12px;
+  font-size: $fs-xs;
+}
+
+/* Search results: one link per matching setting, with its section and description. */
+.settings-results h2 {
+  margin-bottom: 8px;
+}
+.settings-results ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.settings-results li + li {
+  border-top: 1.5px solid $lobby-track;
+}
+.settings-results a {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0 -10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  color: $lobby-ink;
+  text-decoration: none;
+  @include focus-ring;
+}
+.settings-results a:hover {
+  background: $lobby-tile;
+}
+.settings-results strong {
+  font: 900 #{$fs-md} $font-sans;
+}
+.settings-results small {
+  font-size: $fs-xs;
+  line-height: 1.35;
+  color: $lobby-muted;
+}
+
+/* Sidebar: the links in the rail, in order, and the pages that can be added. */
+.settings-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 4px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 4px 6px 4px 10px;
+  border: 1.5px solid $lobby-line;
+  border-radius: 12px;
+  background: $white;
+}
+.settings-nav-item[draggable="true"] {
+  cursor: grab;
+}
+.settings-nav-item.dragging {
+  opacity: 0.45;
+}
+.settings-nav-item.off {
+  border-style: dashed;
+  background: $lobby-track;
+}
+.settings-nav-grip {
+  flex: none;
+  color: $lobby-muted;
+}
+.settings-nav-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background: $lobby-ink;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.settings-nav-item.off .settings-nav-icon {
+  background: $lobby-muted;
+}
+.settings-nav-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font: 800 #{$fs-md} $font-sans;
+  color: $lobby-ink;
+}
+.settings-nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.settings-nav-actions .icon-button {
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+}
+.settings-nav-actions .icon-button:disabled {
+  opacity: 0.3;
+}
+.settings-nav-actions .text-button {
+  padding: 4px 10px;
+  font: 800 #{$fs-sm} $font-sans;
+}
+
+/* About: the version, the release, the data folder, engines, shortcuts and credits. */
+.settings-release {
+  margin: 0 0 6px;
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $lobby-ink;
+}
+.settings-path {
+  display: block;
+  margin: -2px 0 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: $lobby-track;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $lobby-ink;
+  overflow-wrap: anywhere;
+}
+.settings-about-list {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.settings-about-list li {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  padding: 7px 0;
+  font-size: $fs-sm;
+}
+.settings-about-list li + li {
+  border-top: 1.5px solid $lobby-track;
+}
+.settings-about-list strong {
+  min-width: 160px;
+  font-weight: 800;
+  color: $lobby-ink;
+}
+.settings-about-list span {
+  flex: 1 1 auto;
+  color: $lobby-muted;
+}
+.settings-about-list a {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $lobby-green;
+}
+.settings-shortcuts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 4px 0 8px;
+  font-size: $fs-sm;
+}
+.settings-shortcuts dt {
+  display: flex;
+  gap: 4px;
+}
+.settings-shortcuts dd {
+  margin: 0;
+  color: $lobby-ink;
+}
+.settings-shortcuts kbd {
+  min-width: 26px;
+  padding: 2px 7px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 6px;
+  background: $white;
+  box-shadow: 0 2px 0 $lobby-line;
+  font: 600 #{$fs-xs} $font-mono;
+  text-align: center;
+  color: $lobby-ink;
+}
+
+@include down(md) {
+  .settings-search {
+    flex-basis: 100%;
+  }
+  #settings {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding-bottom: 48px;
+  }
+  .settings-index {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .settings-index a {
+    background: $lobby-track;
+    border-radius: 999px;
+  }
+  .settings-group {
+    padding: 12px 14px;
+  }
+  .settings-board-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .settings-preview {
+    position: static;
+    grid-column: 1;
+    width: min(260px, 100%);
+    justify-self: center;
+  }
+  .settings-board-options {
+    grid-row: 2;
+  }
+  .settings-level input[type="range"] {
+    width: 140px;
+  }
+}
+
+@include reduced-motion {
+  .settings-switch input,
+  .settings-switch input::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "The ladder mate",
+  "summary": "Two rooks take turns checking, one rank at a time, and walk the king to the edge without any help from your own king.",
+  "category": "checkmates",
+  "unit": "Basic mates",
+  "order": 3,
+  "level": "beginner",
+  "minutes": 5,
+  "practice": "mate-in-2",
+  "steps": [
+    {
+      "id": "two-rooks-climb",
+      "kind": "explain",
+      "title": "Rooks climbing a ladder",
+      "fen": "8/8/8/6k1/R7/8/8/1R4K1 w - - 0 1",
+      "marks": [["a4", "h4"], ["b1", "b5"]],
+      "text": "The rook on a4 keeps Black's king off the fourth rank. The other rook checks on the fifth, so the king must step up to the sixth. Then the first rook checks on the sixth, and so on. Each check pushes the king one rank higher, like rungs on a ladder, until it runs out of board. Some people call it the lawnmower mate.",
+      "narration": "Two rooks don't need your king at all. One rook holds a rank, the other checks on the next one up, and they keep leapfrogging. Rung by rung, the king climbs to the top of the board, and then there's nowhere left to go.",
+      "pose": "present"
+    },
+    {
+      "id": "start-climbing",
+      "kind": "play",
+      "title": "Start the climb",
+      "fen": "8/8/8/6k1/R7/8/8/1R4K1 w - - 0 1",
+      "prompt": "Leave the rook on the fourth rank where it is and check with the other rook, then keep climbing.",
+      "hint": "The rook on b1 checks on the fifth rank. After the king steps up, the rook on a4 checks on the sixth.",
+      "line": ["b1b5", "g5f6", "a4a6"],
+      "success": "Rook to b5, then rook to a6. Each check comes from the rook that was guarding the rank below, so the king can never step back.",
+      "narration": "Your turn to climb. Check with the back rook on the fifth rank while the other one guards the fourth. Then leapfrog: the rook on a4 jumps to the sixth rank with check.",
+      "pose": "playing"
+    },
+    {
+      "id": "top-of-the-ladder",
+      "kind": "play",
+      "title": "Top of the ladder",
+      "fen": "8/4k3/R7/1R6/8/8/8/6K1 w - - 2 3",
+      "prompt": "Mate in two. Keep leapfrogging.",
+      "hint": "Check on the seventh rank, then on the eighth.",
+      "line": ["b5b7", "e7d8", "a6a8"],
+      "success": "Rook to b7 checks, and rook to a8 is mate: the eighth rank is covered by one rook and the seventh by the other.",
+      "narration": "Two more rungs. Check on the seventh rank, then on the eighth, and the king falls off the top of the ladder.",
+      "pose": "determined"
+    },
+    {
+      "id": "switch-sides",
+      "kind": "explain",
+      "title": "When the king gets close",
+      "fen": "8/8/8/2k5/1R6/R7/8/6K1 w - - 0 1",
+      "demo": ["b4h4", "c5d5", "a3a5"],
+      "marks": [["b4"], ["c5"]],
+      "text": "Here Black's king attacks the rook on b4. If you check now, you just lose a rook. Step through the demo: move the attacked rook to the far side of the board along the same rank, so the fence stays up. Once the king is far from both rooks, the ladder carries on.",
+      "narration": "Watch out when the king walks toward your rooks. Here it attacks the rook on b4. Don't panic and don't check yet. Slide that rook to the far side on the same rank. [move] The king comes closer, but the fence stays up. [move] And now the ladder carries on. [move]",
+      "pose": "alarm"
+    },
+    {
+      "id": "queen-and-rook",
+      "kind": "choose",
+      "title": "Another ladder",
+      "question": "You have a queen and a rook instead of two rooks. Does the ladder still work?",
+      "options": [
+        { "text": "Yes. The queen moves along ranks too, so she can take turns with the rook", "correct": true, "why": "A queen can do anything a rook does on ranks and files, so the same leapfrogging works, often even faster." },
+        { "text": "No, you need exactly two rooks", "why": "Any two pieces that can check along ranks will do. A queen and a rook are even stronger." },
+        { "text": "Only if your king helps", "why": "The ladder never needs your king. The two heavy pieces guard one rank each." }
+      ],
+      "narration": "Last question. What if you had a queen and a rook instead of two rooks? Think about how the queen moves. Answer this and you've mastered the ladder. Great job!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+ "title": "El alfil",
+ "summary": "Los alfiles se deslizan por las diagonales y permanecen en un solo color durante todo el juego. Aprende cómo se mueven y cómo ganar una pieza descuidada.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "diagonals",
+   "title": "Líneas diagonales",
+   "text": "El alfil se mueve diagonalmente, tantas casillas como desee, en cualquiera de las cuatro direcciones. Al igual que la torre, no puede saltar: una pieza en su camino lo detiene, y una pieza enemiga puede ser capturada. Desde el centro del tablero, un alfil alcanza trece casillas.",
+   "narration": "Este es el alfil. Se desliza por las diagonales, de esquina a esquina, tan lejos como le guste. No puede saltar nada, pero puede capturar una pieza enemiga que esté en su camino."
+  },
+  {
+   "id": "light-and-dark",
+   "title": "Un color para siempre",
+   "text": "Un alfil que se mueve diagonalmente siempre aterriza en una casilla del mismo color. El alfil que comienza en c1 vive en casillas oscuras durante todo el juego, y el que está en f1 vive en casillas claras. Es por eso que cada bando obtiene uno de cada: juntos cubren todo el tablero.",
+   "narration": "Aquí tienes un dato curioso. Un alfil nunca cambia de color. El que empieza en c1 se queda en casillas oscuras para siempre, y el que está en f1 se queda en casillas claras. Por eso tienes uno de cada."
+  },
+  {
+   "id": "win-the-rook",
+   "title": "Imagina la torre",
+   "prompt": "Negro dejó una torre en la esquina en la diagonal de tu alfil. Captúrala.",
+   "hint": "Sigue la larga diagonal de casillas claras desde e4 hacia la esquina superior izquierda.",
+   "success": "La diagonal desde e4 a a8 estaba abierta, así que el alfil tomó una torre entera.",
+   "narration": "Mira la diagonal larga que va desde tu alfil hasta la esquina. La torre de las negras está al final y no tiene defensa. ¡Vete a capturarla!"
+  },
+  {
+   "id": "safe-target",
+   "title": "Elige el blanco correcto",
+   "prompt": "Tu alfil ataca al peón en h7 y al caballo en a6. Toma el que esté sin defender.",
+   "hint": "¿Cuál de los dos puede tomar el rey negro?",
+   "success": "El caballo en a6 estaba sin defender, así que lo ganaste gratis. Capturar en h7 daría jaque, pero el rey simplemente tomaría tu alfil.",
+   "narration": "Tu alfil está observando dos blancos negros. El peón en h7 parece tentador porque daría jaque, pero el rey está justo al lado. Toma el blanco que nadie puede defender."
+  },
+  {
+   "id": "bishop-quiz",
+   "title": "Revisión rápida",
+   "question": "El alfil blanco está en c1, un cuadrado oscuro. ¿Puede alguna vez llegar a e4, un cuadrado claro?",
+   "options": [
+    {
+     "text": "No, nunca",
+     "why": "Un alfil solo se mueve diagonalmente, así que nunca cambia el color de su casilla. Este se quedará en casillas oscuras durante todo el juego."
+    },
+    {
+     "text": "Sí, en dos movimientos",
+     "why": "Cada paso diagonal mantiene al alfil en una casilla oscura, sin importar cuántos movimientos haga."
+    },
+    {
+     "text": "Sí, pero solo capturando",
+     "why": "Una captura es simplemente un movimiento diagonal normal. Todavía cae en un casillero del mismo color."
+    }
+   ],
+   "narration": "Pregunta rápida. El alfil en c1 vive en casilleros oscuros. ¿Podría alguna vez llegar a e4, que es un casillero claro? Recuerda lo que hablamos sobre los colores."
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+# Torre, PGN imports, analysis, and reports
+python-chess==1.999
+fsrs==6.3.2
+# The AI coach and translate_content.py (the app can also install it from Insights)
+prompture>=1.13

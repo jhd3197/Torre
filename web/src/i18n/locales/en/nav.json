@@ -1,0 +1,106 @@
+{
+  "brand": "Torre",
+  "titles": {
+    "Home": "Home",
+    "Play": "Play",
+    "Bots": "Bots",
+    "Games": "Games",
+    "Explore": "Explore",
+    "Train": "Train",
+    "Puzzles": "Puzzles",
+    "Story": "Story",
+    "Profile": "Profile",
+    "Lessons": "Lessons",
+    "Awards": "Awards",
+    "Settings": "Settings",
+    "Insights": "Insights",
+    "Import": "Import",
+    "Arena": "Arena",
+    "Openings": "Openings",
+    "Endgames": "Endgames",
+    "Coach": "Coach"
+  },
+  "rail": {
+    "home": "Home",
+    "story": "Story",
+    "play": "Play",
+    "puzzles": "Puzzles",
+    "profile": "Profile",
+    "settings": "Settings",
+    "arena": "Arena",
+    "closeMenu": "Close menu",
+    "fold": "Fold navigation",
+    "expand": "Expand navigation",
+    "brandHome": "Torre home",
+    "sections": "Studio sections",
+    "closeNavigation": "Close navigation",
+    "openMenu": "Open menu",
+    "coach": "Coach",
+    "games": "Games",
+    "explore": "Explore",
+    "train": "Train",
+    "openings": "Openings",
+    "endgames": "Endgames",
+    "insights": "Insights",
+    "awards": "Awards",
+    "import": "Import",
+    "signOut": "Sign out",
+    "admin": "Admin"
+  },
+  "workspace": {
+    "label": "Workspace",
+    "labelFor": "Workspace: {{name}}"
+  },
+  "xp": {
+    "title": "Level {{level}} · {{xp}} of {{goal}} XP to the next level",
+    "total": "{{xp}} XP"
+  },
+  "actions": {
+    "newGame": "New game"
+  },
+  "import": {
+    "title": "Import games"
+  },
+  "help": {
+    "title": "Board controls",
+    "close": "Close help",
+    "items": {
+      "move": {
+        "term": "Move",
+        "text": "Click or drag a piece."
+      },
+      "castle": {
+        "term": "Castle",
+        "text": "Move the king two squares, or drop the king and rook onto each other."
+      },
+      "plan": {
+        "term": "Plan",
+        "text": "Right-drag for legal move arrows; knights bend into an L. Each arrow describes the current position, not a sequence. Right-click circles a square. Freeform allows notes from empty squares. On mobile, use Draw arrows."
+      },
+      "squareControl": {
+        "term": "Square control",
+        "text": "In Explore, green means White attacks a square, coral means Black, and gold means both. Uncolored squares are unattacked. Counts include pinned pieces and defended friendly pieces; control does not guarantee a safe move."
+      },
+      "analysis": {
+        "term": "Analysis",
+        "text": "In Games and Explore, Stockfish analyzes every position automatically: the bar shows the evaluation and the arrow its best move. Turn either off in the Stockfish panel. Positive scores favor White; a score is an estimate, not a guaranteed result."
+      },
+      "moveMarks": {
+        "term": "Move marks",
+        "text": "Move ratings: !! Brilliant, ! Great, star Best, checkmark Good, book Book, ?! Inaccuracy, ? Mistake, ?? Blunder. Each analysed move counts once."
+      },
+      "clear": {
+        "term": "Clear drawings",
+        "text": "Press Esc or click Clear."
+      },
+      "navigate": {
+        "term": "Navigate",
+        "text": "The left and right arrow keys step through moves. F flips the board."
+      },
+      "links": {
+        "term": "Links",
+        "text": "Every screen has its own address, including the move you are on. Bookmark it or use the browser’s back button."
+      }
+    }
+  }
+}

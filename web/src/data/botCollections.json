@@ -1,0 +1,825 @@
+{
+  "_comment": "Who is always shown, and the weekly collections (art/prompts/bots.md). Order inside a collection is the order of its figurine sheet.",
+  "core": [
+    {
+      "id": "core-beginners",
+      "title": "First Opponents",
+      "bots": [
+        "Baron Blunder",
+        "Pip Pawnworth",
+        "Charlie Scout",
+        "Poppy Lane",
+        "Tommy Tactics",
+        "Alon Luz",
+        "Molly Finch",
+        "Rico Cool"
+      ]
+    },
+    {
+      "id": "core-club",
+      "title": "The Club",
+      "bots": [
+        "Zuri Bello",
+        "Mila the Mimic",
+        "Rosie Reed",
+        "Hazel Snap",
+        "Marcus Moss",
+        "Amira Haddad",
+        "Paloma Sol",
+        "Knight Owl"
+      ]
+    },
+    {
+      "id": "core-masters",
+      "title": "The Masters",
+      "bots": [
+        "Gambit Gloria",
+        "Iron Wall Ivo",
+        "Zugzwang Zoya",
+        "Esperanza Gil",
+        "Tempo Tarik",
+        "Old Tom",
+        "Master Weiss",
+        "Granny Rose"
+      ]
+    }
+  ],
+  "weekly": [
+    {
+      "id": "schoolyard",
+      "title": "Schoolyard",
+      "bots": [
+        "Eli Sprout",
+        "Kwame Jr.",
+        "Toby Bright",
+        "Kofi Kingsley",
+        "Sunny Park",
+        "Jesse Field",
+        "Danny Quick",
+        "Ned Nutmeg"
+      ]
+    },
+    {
+      "id": "outdoors",
+      "title": "The Great Outdoors",
+      "bots": [
+        "Ollie Peak",
+        "Leo Wander",
+        "Lena Ridge",
+        "Camila Rio",
+        "Marisol Atlas",
+        "Jack Timber",
+        "Elijah Trail",
+        "Freya Nilsson"
+      ]
+    },
+    {
+      "id": "on-air",
+      "title": "On Air & On Camera",
+      "bots": [
+        "Benji Click",
+        "Owen Shutter",
+        "Mina Cho",
+        "Finn Stream",
+        "Remy Static",
+        "Rina Flash",
+        "Joy Adeyemi",
+        "Ivy Lens"
+      ]
+    },
+    {
+      "id": "studio",
+      "title": "The Artists' Studio",
+      "bots": [
+        "Amélie Petit",
+        "Tasha Wells",
+        "Margot Easel",
+        "Hana Ink",
+        "Mei Lin",
+        "Maya Focus",
+        "Indigo",
+        "Ada Archer"
+      ]
+    },
+    {
+      "id": "music",
+      "title": "Music & Words",
+      "bots": [
+        "Jaylen Beats",
+        "Felix Margin",
+        "DJ Rook",
+        "Sage Rivers",
+        "Ellie Notes",
+        "Ruby Tune",
+        "Imani Ross",
+        "Kai Keys"
+      ]
+    },
+    {
+      "id": "garden",
+      "title": "Gardens & Pets",
+      "bots": [
+        "Sam & Biscuit",
+        "Olive Hayes",
+        "Daisy Park",
+        "Willow Hart",
+        "Ama Fields",
+        "Fern Bloom",
+        "Luna & Mochi",
+        "Bodhi Stone"
+      ]
+    },
+    {
+      "id": "main-street",
+      "title": "Main Street",
+      "bots": [
+        "Nia Sugar",
+        "Milo Brew",
+        "Big Bruno",
+        "Gus Wrench",
+        "Jordan Lee",
+        "Chef Marco",
+        "Dale Fisher",
+        "Andre Banks"
+      ]
+    },
+    {
+      "id": "game-day",
+      "title": "Game Day",
+      "bots": [
+        "Rafael Lima",
+        "Rescue Rory",
+        "Tiago Swell",
+        "Ingrid Lund",
+        "Zeke Kickflip",
+        "Chloé Martin",
+        "Darnell Brooks",
+        "Coach Valeria"
+      ]
+    },
+    {
+      "id": "level-up",
+      "title": "Level Up",
+      "bots": [
+        "Hugo Lag",
+        "Pixel",
+        "Noah Script",
+        "Axel Respawn",
+        "Sora Tanaka",
+        "Arjun Loop",
+        "Harjit Singh",
+        "Kenji Byte"
+      ]
+    },
+    {
+      "id": "white-coats",
+      "title": "Uniforms & White Coats",
+      "bots": [
+        "Nurse Jamie",
+        "Captain Skye",
+        "Lucía Mendes",
+        "Professor Fizz",
+        "Dr. Malik Osei",
+        "Dr. Fiona Grey",
+        "Dr. Noor Rahman",
+        "Dr. Yuki Sato"
+      ]
+    },
+    {
+      "id": "classroom",
+      "title": "Library & Classroom",
+      "bots": [
+        "Diego Santos",
+        "Mateo Cruz",
+        "Oscar Penn",
+        "Priya Pages",
+        "Clara Quill",
+        "Keisha Bright",
+        "Iris Bell",
+        "The Archivist"
+      ]
+    },
+    {
+      "id": "nine-to-five",
+      "title": "Nine to Five",
+      "bots": [
+        "Sofia Reyes",
+        "Layla Amari",
+        "Grace Han",
+        "Stella Shade",
+        "Aaliyah Stone",
+        "Vic Ash",
+        "Adaeze Okafor",
+        "Simone Vale"
+      ]
+    },
+    {
+      "id": "park-bench",
+      "title": "The Park Bench",
+      "bots": [
+        "Maeve Quinn",
+        "Alex Frost",
+        "Ranger Raj",
+        "Uncle Ray",
+        "Big Tunde",
+        "Aiko Mori",
+        "Grandpa Walt",
+        "Professor Idris"
+      ]
+    },
+    {
+      "id": "sea-shore",
+      "title": "Sea & Shore",
+      "bots": [
+        "Coco Reyes",
+        "Kai Mahina",
+        "Marina Costa",
+        "Tomás Salgado",
+        "Nadia Okoro",
+        "Finn O’Hara",
+        "Captain Ana Lucía",
+        "Old Ishmael"
+      ]
+    },
+    {
+      "id": "stage",
+      "title": "Stage & Spotlight",
+      "bots": [
+        "Pepe Payaso",
+        "Lili Puppets",
+        "Zara Twirl",
+        "Rocco Laughs",
+        "Selene Silk",
+        "Ravi Grand",
+        "Dame Estela",
+        "Maestro Félix"
+      ]
+    },
+    {
+      "id": "kitchen-table",
+      "title": "Kitchen Table",
+      "bots": [
+        "Lucas",
+        "Mía & Canela",
+        "Diego",
+        "Valen",
+        "Papá Andrés",
+        "Tía Carmen",
+        "Abuelo Ramón",
+        "Abuela Rosa"
+      ]
+    },
+    {
+      "id": "gym",
+      "title": "Gym & Wellness",
+      "bots": [
+        "Toby Hops",
+        "Paz Calma",
+        "Dani Sprint",
+        "Mateo Pedal",
+        "Hana Kick",
+        "Big Moe",
+        "Rocío Punch",
+        "Coach Walt"
+      ]
+    },
+    {
+      "id": "science-lab",
+      "title": "Science Lab",
+      "bots": [
+        "Pip Volta",
+        "Luz Herrera",
+        "Theo Bones",
+        "Amara Byte",
+        "Kenji Mori",
+        "Dra. Inés Fuego",
+        "Commander Rhea Starr",
+        "Professor Albrecht"
+      ]
+    },
+    {
+      "id": "makers",
+      "title": "Makers & Inventors",
+      "bots": [
+        "Tina Sprocket",
+        "Mo Clay",
+        "Sasha Print",
+        "Don Hilario",
+        "Priya Solder",
+        "Olaf Glass",
+        "Rosa Gears",
+        "Ingeniero Bautista"
+      ]
+    },
+    {
+      "id": "night-owls",
+      "title": "Night Owls",
+      "bots": [
+        "Benny Yawn",
+        "Luna Spin",
+        "Ray Mendoza",
+        "Nell Dough",
+        "Kofi Watch",
+        "Dr. Lena Stern",
+        "Hiro Comet",
+        "Madame Noche"
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "id": "japan",
+      "title": "Japan"
+    },
+    {
+      "id": "russia",
+      "title": "Russia"
+    },
+    {
+      "id": "india",
+      "title": "India"
+    },
+    {
+      "id": "germany",
+      "title": "Germany"
+    },
+    {
+      "id": "ukraine",
+      "title": "Ukraine"
+    },
+    {
+      "id": "arabia",
+      "title": "Arabia"
+    },
+    {
+      "id": "hawaii",
+      "title": "Hawaiʻi"
+    },
+    {
+      "id": "argentina",
+      "title": "Argentina"
+    },
+    {
+      "id": "nordic",
+      "title": "The Nordics"
+    },
+    {
+      "id": "venezuela-1",
+      "title": "Venezuela"
+    },
+    {
+      "id": "venezuela-2",
+      "title": "Venezuela, part two"
+    },
+    {
+      "id": "korea",
+      "title": "Korea"
+    },
+    {
+      "id": "spain",
+      "title": "Spain"
+    },
+    {
+      "id": "france",
+      "title": "France"
+    },
+    {
+      "id": "hungary",
+      "title": "Hungary"
+    },
+    {
+      "id": "serbia",
+      "title": "Serbia"
+    },
+    {
+      "id": "sweden",
+      "title": "Sweden"
+    },
+    {
+      "id": "canada",
+      "title": "Canada"
+    },
+    {
+      "id": "mexico",
+      "title": "Mexico"
+    },
+    {
+      "id": "brazil",
+      "title": "Brazil"
+    },
+    {
+      "id": "usa",
+      "title": "The United States"
+    },
+    {
+      "id": "turkey",
+      "title": "Türkiye"
+    },
+    {
+      "id": "albania",
+      "title": "Albania"
+    },
+    {
+      "id": "chile",
+      "title": "Chile"
+    },
+    {
+      "id": "colombia",
+      "title": "Colombia"
+    },
+    {
+      "id": "el-salvador",
+      "title": "El Salvador"
+    },
+    {
+      "id": "china",
+      "title": "China"
+    },
+    {
+      "id": "peru",
+      "title": "Peru"
+    },
+    {
+      "id": "italy",
+      "title": "Italy"
+    },
+    {
+      "id": "armenia",
+      "title": "Armenia"
+    },
+    {
+      "id": "netherlands",
+      "title": "The Netherlands"
+    },
+    {
+      "id": "philippines",
+      "title": "The Philippines"
+    },
+    {
+      "id": "panama",
+      "title": "Panama"
+    }
+  ],
+  "diasporaSheets": {
+    "diaspora-a": [
+      "el-salvador",
+      "usa",
+      "brazil",
+      "chile",
+      "colombia",
+      "france",
+      "mexico",
+      "canada"
+    ],
+    "diaspora-b": [
+      "germany",
+      "turkey",
+      "japan",
+      "argentina",
+      "sweden",
+      "hungary",
+      "spain",
+      "korea"
+    ],
+    "diaspora-c": [
+      "russia",
+      "india",
+      "ukraine",
+      "arabia",
+      "hawaii",
+      "nordic",
+      "serbia",
+      "albania"
+    ],
+    "diaspora-d": [
+      "peru",
+      "portugal",
+      "panama",
+      "armenia",
+      "netherlands",
+      "philippines",
+      "china",
+      "italy"
+    ]
+  },
+  "seasons": [
+    {
+      "id": "dia-del-maestro",
+      "title": "Día del Maestro",
+      "country": "venezuela",
+      "from": "01-10",
+      "to": "01-15",
+      "theme": "fiesta"
+    },
+    {
+      "id": "seollal",
+      "title": "Seollal",
+      "country": "korea",
+      "from": "01-30",
+      "to": "02-08",
+      "theme": "lucky"
+    },
+    {
+      "id": "lunar-new-year",
+      "title": "Lunar New Year",
+      "from": "02-02",
+      "to": "02-11",
+      "theme": "lucky"
+    },
+    {
+      "id": "carnaval",
+      "title": "Carnaval",
+      "country": "brazil",
+      "from": "02-05",
+      "to": "02-14",
+      "theme": "fiesta"
+    },
+    {
+      "id": "valentines",
+      "title": "Valentine's Day",
+      "from": "02-07",
+      "to": "02-15",
+      "theme": "love"
+    },
+    {
+      "id": "dia-de-la-juventud",
+      "title": "Día de la Juventud",
+      "country": "venezuela",
+      "from": "02-11",
+      "to": "02-13",
+      "theme": "fiesta"
+    },
+    {
+      "id": "eid-al-fitr",
+      "title": "Eid al-Fitr",
+      "country": "arabia",
+      "from": "03-05",
+      "to": "03-14",
+      "theme": "lantern"
+    },
+    {
+      "id": "st-patricks",
+      "title": "St. Patrick's Day",
+      "from": "03-12",
+      "to": "03-18",
+      "theme": "clover"
+    },
+    {
+      "id": "holi",
+      "title": "Holi",
+      "country": "india",
+      "from": "03-17",
+      "to": "03-26",
+      "theme": "spring"
+    },
+    {
+      "id": "semana-santa",
+      "title": "Semana Santa",
+      "country": "venezuela",
+      "from": "03-20",
+      "to": "03-28",
+      "theme": "summer"
+    },
+    {
+      "id": "hanami",
+      "title": "Hanami",
+      "country": "japan",
+      "from": "03-27",
+      "to": "04-08",
+      "theme": "spring"
+    },
+    {
+      "id": "spring",
+      "title": "Spring",
+      "from": "03-29",
+      "to": "04-12",
+      "theme": "spring"
+    },
+    {
+      "id": "cruz-de-mayo",
+      "title": "Cruz de Mayo",
+      "country": "venezuela",
+      "from": "04-28",
+      "to": "05-04",
+      "theme": "spring"
+    },
+    {
+      "id": "diablos-de-yare",
+      "title": "Diablos de Yare",
+      "country": "venezuela",
+      "from": "05-22",
+      "to": "05-28",
+      "theme": "fiesta"
+    },
+    {
+      "id": "midsommar",
+      "title": "Midsommar",
+      "country": "sweden",
+      "from": "06-17",
+      "to": "06-27",
+      "theme": "summer"
+    },
+    {
+      "id": "summer",
+      "title": "Summer",
+      "from": "06-20",
+      "to": "08-31",
+      "theme": "summer"
+    },
+    {
+      "id": "independencia",
+      "title": "5 de Julio",
+      "country": "venezuela",
+      "from": "07-01",
+      "to": "07-06",
+      "theme": "fiesta"
+    },
+    {
+      "id": "chess-day",
+      "title": "World Chess Day",
+      "from": "07-14",
+      "to": "07-21",
+      "theme": "chess"
+    },
+    {
+      "id": "fiestas-patrias",
+      "title": "Fiestas Patrias",
+      "country": "chile",
+      "from": "09-12",
+      "to": "09-22",
+      "theme": "fiesta"
+    },
+    {
+      "id": "leyendas",
+      "title": "Venezuelan legends",
+      "country": "venezuela",
+      "from": "10-08",
+      "to": "10-19",
+      "theme": "spooky",
+      "costumes": {
+        "Gambit Gloria": {
+          "name": "El Ánima Sola",
+          "hello": "Light a candle for me… then we play."
+        },
+        "Iron Wall Ivo": {
+          "name": "El Silbón",
+          "hello": "Fi-fi-fi… Sounds close? Then I’m far away."
+        },
+        "Zugzwang Zoya": {
+          "name": "La Llorona",
+          "hello": "Aaay… I’m not crying. Your move."
+        },
+        "Esperanza Gil": {
+          "name": "La Sayona",
+          "hello": "Out alone tonight? Then play with me."
+        },
+        "Tempo Tarik": {
+          "name": "El Hachador",
+          "hello": "Chop, chop. Every tree, every piece."
+        },
+        "Old Tom": {
+          "name": "Juan Hilario",
+          "hello": "They told me not to go out tonight. I came anyway."
+        },
+        "Master Weiss": {
+          "name": "La Carreta",
+          "hello": "Creak… creak… That’s my cart. Your move."
+        },
+        "Granny Rose": {
+          "name": "La Cuentacuentos",
+          "hello": "Sit, mijo. A story first… it ends in checkmate."
+        }
+      }
+    },
+    {
+      "id": "halloween",
+      "title": "Halloween",
+      "country": "usa",
+      "from": "10-20",
+      "to": "10-31",
+      "theme": "spooky"
+    },
+    {
+      "id": "dia-de-muertos",
+      "title": "Día de Muertos",
+      "country": "mexico",
+      "from": "10-28",
+      "to": "11-04",
+      "theme": "marigold"
+    },
+    {
+      "id": "diwali",
+      "title": "Diwali",
+      "country": "india",
+      "from": "11-05",
+      "to": "11-14",
+      "theme": "lantern"
+    },
+    {
+      "id": "thanksgiving",
+      "title": "Thanksgiving",
+      "country": "usa",
+      "from": "11-19",
+      "to": "11-27",
+      "theme": "marigold"
+    },
+    {
+      "id": "navidad-venezolana",
+      "title": "Navidad venezolana",
+      "country": "venezuela",
+      "from": "12-01",
+      "to": "12-12",
+      "theme": "winter"
+    },
+    {
+      "id": "christmas",
+      "title": "Christmas",
+      "from": "12-01",
+      "to": "12-26",
+      "theme": "winter"
+    },
+    {
+      "id": "lucia-jul",
+      "title": "Lucia & Jul",
+      "country": "sweden",
+      "from": "12-13",
+      "to": "12-26",
+      "theme": "winter"
+    },
+    {
+      "id": "new-year",
+      "title": "New Year's Eve",
+      "from": "12-27",
+      "to": "01-03",
+      "theme": "party"
+    }
+  ],
+  "seasonSheets": {
+    "season-1": [
+      "season-halloween-1",
+      "season-halloween-2",
+      "season-halloween-3",
+      "season-halloween-4",
+      "season-dia-de-muertos-1",
+      "season-dia-de-muertos-2",
+      "season-dia-de-muertos-3",
+      "season-dia-de-muertos-4"
+    ],
+    "season-2": [
+      "season-diwali-1",
+      "season-diwali-2",
+      "season-diwali-3",
+      "season-diwali-4",
+      "season-navidad-venezolana-1",
+      "season-navidad-venezolana-2",
+      "season-navidad-venezolana-3",
+      "season-navidad-venezolana-4"
+    ],
+    "season-3": [
+      "season-lucia-jul-1",
+      "season-lucia-jul-2",
+      "season-lucia-jul-3",
+      "season-lucia-jul-4",
+      "season-seollal-1",
+      "season-seollal-2",
+      "season-seollal-3",
+      "season-seollal-4"
+    ],
+    "season-4": [
+      "season-carnaval-1",
+      "season-carnaval-2",
+      "season-carnaval-3",
+      "season-carnaval-4",
+      "season-eid-al-fitr-1",
+      "season-eid-al-fitr-2",
+      "season-eid-al-fitr-3",
+      "season-eid-al-fitr-4"
+    ],
+    "season-5": [
+      "season-holi-1",
+      "season-holi-2",
+      "season-holi-3",
+      "season-holi-4",
+      "season-hanami-1",
+      "season-hanami-2",
+      "season-hanami-3",
+      "season-hanami-4"
+    ],
+    "season-6": [
+      "season-midsommar-1",
+      "season-midsommar-2",
+      "season-midsommar-3",
+      "season-midsommar-4",
+      "season-fiestas-patrias-1",
+      "season-fiestas-patrias-2",
+      "season-fiestas-patrias-3",
+      "season-fiestas-patrias-4"
+    ],
+    "season-silbon": [
+      "season-halloween-5"
+    ]
+  },
+  "waitingCountries": [
+    "portugal"
+  ]
+}

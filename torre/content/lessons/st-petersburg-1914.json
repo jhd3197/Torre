@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "title": "St Petersburg 1914",
+  "summary": "World champion Lasker meets the rising Capablanca in the final stage and wins with a quiet opening and one bold pawn push.",
+  "category": "history",
+  "unit": "Great Tournaments",
+  "order": 2,
+  "level": "intermediate",
+  "minutes": 8,
+  "requires": ["hastings-1895"],
+  "orientation": "white",
+  "practice": "quiet-move",
+  "steps": [
+    {
+      "id": "st-petersburg",
+      "kind": "explain",
+      "title": "St Petersburg, 1914",
+      "text": "In 1914 many of the world's strongest players met in St Petersburg. After a first stage, the top five played each other again in a final: Emanuel Lasker, José Raúl Capablanca, Alexander Alekhine, Siegbert Tarrasch and Frank Marshall. Capablanca was leading, but in this game the world champion Lasker beat him, and Lasker went on to win the tournament by half a point.",
+      "narration": "St Petersburg, 1914. The world champion, Emanuel Lasker, needs to beat the brilliant young Capablanca. He picks a quiet opening, and then one bold pawn push.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Lasker – Capablanca, St Petersburg 1914",
+      "text": "Lasker needs a win and picks a quiet-looking line where the queens come off on move six. Then one pawn move gives his knight a dream square, and Capablanca's pieces slowly run out of room. The game stops at Lasker's key moves.",
+      "narration": "The queens come off early and the game looks quiet. It is not. Find Lasker's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 7, "text": "4.Bxc6: the Exchange Variation. Lasker gives up his bishop for a knight and heads for a quiet position." },
+        { "ply": 13, "text": "7.Nxd4: the queens are already off. White has four pawns against three on the kingside; Black has doubled c-pawns." },
+        { "ply": 27, "text": "14.Bxd6: after 14...cxd6 Black's pawn on d6 can never be supported by a pawn, and e6 is a hole." },
+        { "ply": 45, "text": "23.g4: Lasker gains space on the kingside, where his pawns are." },
+        { "ply": 50, "text": "25...axb4: Capablanca opens the a-file to make some play of his own." },
+        { "ply": 63, "text": "32.Rh3: a white rook takes the open h-file." },
+        { "ply": 67, "text": "34.Rdh1: both white rooks are on the h-file." },
+        { "ply": 77, "text": "39.Rh7: a rook reaches the seventh rank." },
+        { "ply": 83, "text": "42.Nc5: Black's position falls apart, and Capablanca resigned." }
+      ],
+      "guesses": [
+        {
+          "ply": 23,
+          "prompt": "Find Lasker's bold pawn move. It gives up the e5 square, but it takes e6 away from Black for good.",
+          "hint": "Which pawn would control e6 after it moves?",
+          "why": "12.f5! The pawn takes e6 and g6 away from Black's pieces. It leaves a hole on e5, but Lasker judged that his own knight on e6 would be worth far more."
+        },
+        {
+          "ply": 31,
+          "prompt": "The hole on e6 is ready. Use it.",
+          "hint": "Your knight on d4 is one jump away.",
+          "why": "16.Ne6! The knight is protected by the f5 pawn, and no black pawn can ever chase it. It cramps Black's whole position."
+        },
+        {
+          "ply": 61,
+          "prompt": "The pawns meet on the kingside. Open a file for your rooks.",
+          "hint": "Capture so that a file opens toward the edge of the board.",
+          "why": "31.hxg5! After 31...hxg5 the h-file is open, and Lasker's rooks take it next."
+        },
+        {
+          "ply": 69,
+          "prompt": "Both white rooks are on the h-file. Now open the center for your knights.",
+          "hint": "A pawn push gives up a pawn but frees the e4 square for the knight on c3.",
+          "why": "35.e5! Lasker gives a pawn so his knight can reach e4 and then c5 or d6. Black's pieces are tied up and cannot meet every threat."
+        }
+      ],
+      "moves": ["e2e4", "e7e5", "g1f3", "b8c6", "f1b5", "a7a6", "b5c6", "d7c6", "d2d4", "e5d4", "d1d4", "d8d4", "f3d4", "f8d6", "b1c3", "g8e7", "e1g1", "e8g8", "f2f4", "f8e8", "d4b3", "f7f6", "f4f5", "b7b6", "c1f4", "c8b7", "f4d6", "c7d6", "b3d4", "a8d8", "d4e6", "d8d7", "a1d1", "e7c8", "f1f2", "b6b5", "f2d2", "d7e7", "b2b4", "g8f7", "a2a3", "b7a8", "g1f2", "e7a7", "g2g4", "h7h6", "d2d3", "a6a5", "h2h4", "a5b4", "a3b4", "a7e7", "f2f3", "e8g8", "f3f4", "g7g6", "d3g3", "g6g5", "f4f3", "c8b6", "h4g5", "h6g5", "g3h3", "e7d7", "f3g3", "f7e8", "d1h1", "a8b7", "e4e5", "d6e5", "c3e4", "b6d5", "e6c5", "b7c8", "c5d7", "c8d7", "h3h7", "g8f8", "h1a1", "e8d8", "a1a8", "d7c8", "e4c5"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Trade a weakness for a better square",
+      "marks": [["e6"], ["f5"], ["e5"]],
+      "text": "Lasker's 12.f5 left a hole on e5, the kind of weakness players are taught to avoid. But it gave White the e6 square, and the knight that landed there choked Capablanca's position for the rest of the game. A weakness only matters if the opponent can use it, and a strong square for you can be worth much more.",
+      "narration": "The pawn push left a hole on e5, but it gave Lasker's knight a home on e6. That knight was worth more than the hole.",
+      "pose": "idea",
+      "fen": "3rr1k1/1b2n1pp/ppppNp2/5P2/4P3/2N5/PPP3PP/R4RK1 b - - 3 16"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "The pawn push",
+      "question": "What made Lasker's 12.f5 a strong move?",
+      "options": [
+        {
+          "text": "It gave his knight a permanent home on e6",
+          "correct": true,
+          "why": "Yes. Protected by the f5 pawn, the knight on e6 could never be chased away."
+        },
+        {
+          "text": "It won a pawn",
+          "why": "No material changed hands. The move was about squares."
+        },
+        {
+          "text": "It opened the f-file for a quick mate",
+          "why": "There was no mate. The point was a long-term outpost on e6."
+        }
+      ],
+      "narration": "Final question: what made the pawn push so strong?",
+      "pose": "thinking",
+      "fen": "r1b1r1k1/1pp1n1pp/p1pb1p2/8/4PP2/1NN5/PPP3PP/R1B2RK1 w - - 0 12"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+ "title": "Las cadenas de peones",
+ "summary": "Peones que se protegen mutuamente en una diagonal. Aprende a atacar la cadena por su base y a jugar en el lado al que apunta.",
+ "unit": "Estructura de peones",
+ "steps": [
+  {
+   "id": "what-is-a-chain",
+   "title": "Cabeza y base",
+   "text": "En esta posición de la Defensa Francesa, los peones blancos en d4 y e5 forman una cadena: d4 protege a e5. El negro también tiene una cadena, con e6 protegiendo d5. El peón delantero de una cadena es su cabeza y el peón trasero es su base. La cabeza está protegida, pero la base no tiene peón detrás, así que es el punto débil de la cadena.",
+   "narration": "Peones que se protegen mutuamente en una diagonal forman una cadena. El peón delantero es la cabeza y el peón trasero es la base. Aquí está la clave: la base no tiene nada que la proteja, así que ahí es donde atacas."
+  },
+  {
+   "id": "attack-the-base",
+   "title": "Ataca la base",
+   "text": "Sigue el ejemplo. El negro ataca la base de la cadena blanca con el peón de c, luego suma más piezas a d4: el caballo de c6 y la dama de b6. Si d4 alguna vez cae, el peón en e5 pierde su apoyo y toda la cadena se tambalea. El blanco gasta movimientos sosteniendo d4 con c3 y el caballo.",
+   "narration": "Observa cómo el negro ataca la base. El peón de c golpea a d4. [move] El blanco lo sostiene. [move] El caballo se une. [move] El blanco añade el caballo. [move] Y la dama también suma. [move] Si la base cae, la cabeza en e5 queda colgada, así que el blanco tiene que gastar un esfuerzo real defendiéndola."
+  },
+  {
+   "id": "which-side",
+   "title": "Juega donde apunta tu cadena",
+   "text": "En esta estructura de la India del Rey, las cadenas están bloqueadas. La cadena blanca e4-d5 apunta hacia el flanco de dama, donde el blanco tiene más espacio, así que el blanco ataca allí con el peón de c para golpear la base negra en d6. La cadena negra d6-e5 apunta hacia el flanco de rey, así que el negro avanza el peón de f para golpear la base blanca en e4 y atacar al rey. Cada lado juega en el ala al que apunta su cadena.",
+   "narration": "Aquí tienes una regla útil. Una cadena de peones apunta como una flecha, y normalmente atacas por el lado al que apunta. La cadena de blancas apunta al flanco de dama, así que blancas empuja el peón de c. La cadena de negras apunta al flanco de rey, así que negras empuja el peón de f."
+  },
+  {
+   "id": "kings-attack-the-base",
+   "title": "El rey ataca la base",
+   "prompt": "Ambos reyes correrán a comerse la base del otro lado. Elige la ruta más rápida y gana la carrera.",
+   "hint": "La base de negras está en e6. Tu rey necesita llegar hasta ella desde el lado, a través de f6.",
+   "success": "Tu rey tomó la base en e6 mientras que el rey de negras tomó d4. Pero ahora tu peón de e está libre para correr, con tu rey justo a su lado, y coronará primero.",
+   "narration": "En este final, cada rey quiere comerse la base de la cadena enemiga. La base de negras está en e6, así que toma el camino más corto hasta allí, rodeando por f6. Llega primero y tu peón de e se vuelve imparable."
+  },
+  {
+   "id": "which-break",
+   "title": "¡Revísate!",
+   "question": "Negras quiere socavar la cadena de blancas d4-e5. ¿Qué movimiento de peón golpea su base?",
+   "options": [
+    {
+     "text": "El peón de c a c5, atacando d4",
+     "why": "d4 es la base: ningún peón la protege, y si se va, e5 pierde su apoyo."
+    },
+    {
+     "text": "El peón de f a f6, atacando e5",
+     "why": "Eso golpea la cabeza, que todavía está protegida por d4. Puede ser útil más adelante, pero la base es el objetivo clásico."
+    },
+    {
+     "text": "El peón de h a h5",
+     "why": "No hace nada a la cadena de Blancas."
+    }
+   ],
+   "narration": "Pregunta final. A las negras quieren debilitar la cadena de Blancas. ¿Qué movimiento de peón ataca la base, el eslabón que ningún peón protege? ¡Buen trabajo!"
+  }
+ ]
+}

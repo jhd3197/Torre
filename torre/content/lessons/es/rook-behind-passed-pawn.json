@@ -1,0 +1,54 @@
+{
+ "title": "Torres detrás de peones pasados",
+ "summary": "La regla de Tarrasch: en finales de torres, la torre pertenece detrás del peón pasado, ya sea tuyo o del oponente.",
+ "steps": [
+  {
+   "id": "tarrasch-rule",
+   "title": "La regla de Tarrasch",
+   "text": "El maestro alemán Siegbert Tarrasch enseñó una regla simple para finales de torres: coloca tu torre detrás de los peones pasados. Una torre detrás de su propio peón lo empuja hacia adelante, y su alcance crece con cada paso que da el peón. Una torre delante de un peón hace lo contrario: se ve cada vez más encerrada.",
+   "narration": "Una regla antigua y famosa para finales de torres, enseñada por el maestro alemán Siegbert Tarrasch: las torres pertenecen detrás de los peones pasados. Desde atrás, la torre empuja el peón hacia adelante, y cada paso que da el peón le da a la torre más espacio."
+  },
+  {
+   "id": "defend-from-behind",
+   "title": "Ponte detrás de tu peón",
+   "prompt": "Tu peón a está siendo atacado. Defiéndelo de la manera correcta.",
+   "hint": "¿En qué columna está tu peón pasado? Coloca la torre en esa columna, en el lado opuesto del cuadrado de coronación.",
+   "success": "Torre a a1. Guarda el peón desde atrás y está lista para empujarlo hacia adelante. La torre de las negras está atrapada delante del peón, mientras que el rey de las blancas es libre de avanzar hacia el flanco de dama.",
+   "narration": "La torre negra está observando tu peón a. Guárdalo desde atrás, y tu torre empujará ese peón hasta el final del tablero."
+  },
+  {
+   "id": "rook-in-front",
+   "title": "La torre al frente",
+   "text": "Aquí, la torre de las blancas está de pie frente a su propio peón. Tiene que quedarse ahí para protegerlo, y no tiene casillas en el archivo a. La torre negra se sienta detrás del peón y lo vigila desde lejos, por lo que el rey negro es libre. Este tipo de posición suele ser un empate, incluso con un peón menos.",
+   "narration": "Ahora mira lo contrario. Tu torre blanca está atascada delante de su propio peón, sin hacer nada. La torre negra protege desde atrás, y eso hace toda la diferencia. Posiciones como esta a menudo terminan en empate, incluso perdiendo un peón."
+  },
+  {
+   "id": "defend-behind",
+   "title": "Detrás del peón enemigo",
+   "prompt": "Tú eres Negro. El peón a de Blanco está avanzando. Deténlo de la manera correcta.",
+   "hint": "La regla funciona para el defensor también. Colócate detrás del peón antes de que la torre de Blanco lo haga.",
+   "success": "Torre a a1. Tu torre detiene al peón desde atrás, y si la torre de Blanco se mueve delante de él, se vuelve pasiva. Ir delante del peón con la torre dejaría a Negro en una posición pasiva y perdida.",
+   "narration": "Ahora tú defiendes. El peón de Blanco es peligroso, y la torre de Blanco quiere colocarse detrás de él. Vence a Blanco ahí. La regla funciona para ambos lados: detrás del peón, siempre."
+  },
+  {
+   "id": "where-does-it-go",
+   "title": "¡Revísate!",
+   "question": "En un final con torres, ¿dónde debe estar tu torre cuando hay un peón pasado en el tablero?",
+   "options": [
+    {
+     "text": "Detrás del peón pasado, sea de quien sea",
+     "why": "Detrás de tu propio peón lo empuja hacia adelante. Detrás del peón enemigo vigila mientras el peón avanza."
+    },
+    {
+     "text": "Delante del peón, para bloquearlo",
+     "why": "Una torre delante de un peón queda atrapada. Bloquear es trabajo del rey."
+    },
+    {
+     "text": "Junto al peón, en la misma fila",
+     "why": "Desde un lado, la torre puede proteger al peón pero la empuja el rey y la torre del oponente."
+    }
+   ],
+   "narration": "Última pregunta. Cuando hay un peón pasado, ¿dónde debe estar tu torre? Recuerda la regla de Tarrasch, y tus finales con torres mejorarán de la noche a la mañana. ¡Bien hecho!"
+  }
+ ]
+}

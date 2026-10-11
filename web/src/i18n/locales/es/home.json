@@ -1,0 +1,80 @@
+{
+ "label": "Qué hacer ahora mismo",
+ "hero": {
+  "label": "Continúa tu camino",
+  "failedTitle": "El mapa de la historia no está disponible.",
+  "failedText": "Tu progreso está a salvo. Intenta abrir el mapa directamente.",
+  "openStory": "Abrir Historia",
+  "loading": "Buscando tu siguiente paso…",
+  "doneEyebrow": "Todos los capítulos superados",
+  "doneTitle": "Camino completado.",
+  "doneText": "Lecciones, desafíos, jefes: todo eso. El tablero es tuyo ahora.",
+  "revisit": "Revisitar el mapa",
+  "chapter": "Capítulo {{number}} · {{title}} · {{kind}}",
+  "start": {
+   "lesson": "Empezar la lección",
+   "gauntlet": "Empezar el desafío",
+   "boss": "Enfrentar al jefe"
+  },
+  "gauntletTitle": "Desafío de problemas",
+  "bossTitle": "Jefe: {{name}}",
+  "kind": {
+   "lesson": "Lección",
+   "gauntlet": "Desafío de problemas",
+   "boss": "Batalla contra el jefe"
+  }
+ },
+ "practice": {
+  "puzzles": {
+   "title": "Problemas",
+   "rating": "Puntuación {{rating}}",
+   "text": "Táctica contra el reloj de tu propia puntuación."
+  },
+  "review": {
+   "title": "Corrige tus errores",
+   "due_one": "{{count}} cosa por corregir hoy.",
+   "due_other": "{{count}} cosas por corregir hoy.",
+   "caughtUp": "Todo al día por hoy.",
+   "text": "Tus errores, practicados hasta que queden grabados."
+  },
+  "bot": {
+   "title": "Jugar contra un bot",
+   "text": "Un personaje de tu nivel te espera."
+  },
+  "label": "Práctica",
+  "heading": "¿A dónde ahora?"
+ },
+ "today": {
+  "label": "Hoy",
+  "streak_one": "racha de {{count}} días",
+  "streak_other": "racha de {{count}} días",
+  "goalLabel": "Meta de XP de hoy",
+  "goalMet": "Meta cumplida",
+  "progress": "{{xp}} de {{goal}} XP hoy",
+  "days": {
+   "mon": "Lun",
+   "tue": "Mar",
+   "wed": "Mié",
+   "thu": "Jue",
+   "fri": "Vie",
+   "sat": "Sáb",
+   "sun": "Dom"
+  }
+ },
+ "resume": {
+  "oneMove": "<strong>Partida en curso:</strong> tú contra {{bot}}, lleva {{count}} jugadas",
+  "moves": "<strong>Partida en curso:</strong> tú vs. {{bot}}, van {{count}} jugadas.",
+  "continue": "Continuar"
+ },
+ "journey": {
+  "title": "Tu camino",
+  "progress": "Capítulo {{number}} de {{total}}",
+  "done": "Todos los capítulos superados",
+  "open": "Abrir el mapa",
+  "state": {
+   "done": "{{title}}: superado",
+   "current": "{{title}}: estás aquí",
+   "locked": "{{title}}: por delante"
+  }
+ }
+}

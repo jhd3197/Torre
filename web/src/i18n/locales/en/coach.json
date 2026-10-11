@@ -1,0 +1,138 @@
+{
+  "strengths": "What is working",
+  "focus": "Focus on",
+  "drill": {
+    "puzzles": "Practice puzzles",
+    "lessons": "Open the lesson",
+    "openings": "Review openings",
+    "play": "Play a game"
+  },
+  "stale": "New activity is available. Your saved plan stays here until you update it.",
+  "empty": "Import and analyze some games, then ask your coach for a plan.",
+  "thinking": "Your coach is reading your games…",
+  "error": "The coach could not answer: {{error}}",
+  "model": "Model: {{model}}.",
+  "regenerate": "Update plan",
+  "ask": "Ask the coach",
+  "setup": {
+    "prompture_missing": "The AI coach reads your games and writes you a training plan. It needs Prompture, a small Python library, installed once.",
+    "install": "Install the AI coach",
+    "installing": "Installing Prompture… this takes a minute or two.",
+    "installFailed": "The install failed: {{error}}",
+    "no_model": "The coach needs an AI model to write its advice.",
+    "button": "Set up the AI coach"
+  },
+  "modelAuto": "Model: {{model}} (found on this computer).",
+  "explain": {
+    "ask": "Why was {{move}} a mistake?",
+    "thinking": "Your coach is looking at the position…",
+    "title": "Coach:"
+  },
+  "review": {
+    "ask": "Ask the coach to review this game",
+    "thinking": "Your coach is going over the game…",
+    "lesson": "Take away:"
+  },
+  "saved": "Your saved plan is up to date. No new AI request is needed.",
+  "savedAt": "Saved {{date}}",
+  "onDemand": "Advice is generated when you ask for it.",
+  "loading": "Loading your saved plan…",
+  "loadFailed": "Your plan could not load.",
+  "retry": "Try again",
+  "hub": {
+    "label": "Coach",
+    "navigation": "Coach sections",
+    "plan": "Your plan",
+    "progress": "Stats",
+    "learn": "Learning centers",
+    "planIntro": "A small plan built from your games. Practise here and watch it grow.",
+    "progressIntro": "How your play is changing, game by game.",
+    "learnIntro": "Choose a place to learn, practice, or review your own games.",
+    "open": "Explore",
+    "level": "Level {{level}}",
+    "levelLabel": "Level {{level}}: {{xp}} of {{goal}} XP to the next level",
+    "xpLevel": "{{xp}}/{{goal}} XP",
+    "coverage": "{{analyzed}} of {{total}} games analyzed",
+    "coverageMoves": "{{analyzed}} of {{total}} games analyzed · {{moves}} of your moves checked by Stockfish"
+  },
+  "tasks": {
+    "title": "Practice plan",
+    "complete": "{{count}} of {{total}} completed",
+    "progress": "{{count}} / {{goal}} completed",
+    "done": "Completed",
+    "again": "Practice again",
+    "kind": {
+      "puzzles": "Sharpen your tactics",
+      "lessons": "Learn a useful idea",
+      "openings": "Practice your openings",
+      "play": "Put it into practice"
+    },
+    "goal": {
+      "puzzles": "Solve {{count}} puzzles without hints or mistakes.",
+      "lessons": "Complete {{count}} lesson.",
+      "openings": "Answer {{count}} repertoire cards correctly.",
+      "play": "Finish {{count}} game in Play."
+    }
+  },
+  "centers": {
+    "lessons": {
+      "title": "Lessons",
+      "body": "Guided ideas, examples, and positions to solve."
+    },
+    "puzzles": {
+      "title": "Puzzles",
+      "body": "Train a specific tactic or practice a mixed set."
+    },
+    "train": {
+      "title": "Your mistakes",
+      "body": "Revisit positions from your own games."
+    },
+    "openings": {
+      "title": "Openings",
+      "body": "Build and remember your own repertoire."
+    },
+    "endgames": {
+      "title": "Endgames",
+      "body": "Practice converting the positions that matter."
+    },
+    "story": {
+      "title": "Story",
+      "body": "Follow the guided path through chess."
+    }
+  },
+  "notes": {
+    "title": "Rooky noticed"
+  },
+  "menu": {
+    "local": "{{model}} · on this computer",
+    "change": "Change the coach's model",
+    "settings": "AI settings"
+  },
+  "stats": {
+    "rangeLabel": "Show",
+    "range": {
+      "month": "Last 30 days",
+      "half": "6 months",
+      "all": "All time"
+    },
+    "inRange": "Analyzed games in this range",
+    "rangeEmpty": "No analyzed games in this range.",
+    "read": {
+      "title": "Rooky's read on your stats",
+      "phase": "Your weakest phase: {{phase}}",
+      "phaseText": "{{accuracy}}% accuracy there, against {{bestAccuracy}}% in your best phase ({{best}}).",
+      "peakText": "{{rate}}% of your moves there are inaccuracies or worse."
+    },
+    "peak": "Peak: moves {{bucket}}",
+    "heatNote": "% of your moves that were inaccuracies or worse, by move number",
+    "strengthNote": "Score %, by the opponent's rating against yours",
+    "timeBlunders": "blunders",
+    "timeErrors": "other errors",
+    "colors": "By color",
+    "colorGames_one": "{{color}} · {{count}} game",
+    "colorGames_other": "{{color}} · {{count}} games",
+    "colorNote": "ACPL {{acpl}} · {{blunders}} blunders/game",
+    "opponentsAll": "Show all {{count}}",
+    "opponentsTop": "Show top {{count}}"
+  }
+}

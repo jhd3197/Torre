@@ -1,0 +1,82 @@
+{
+ "title": "El Juego Eterno",
+ "summary": "Berlín, 1852: Anderssen de nuevo: el Gambito Evans, una dama sacrificada, y un final tan bonito que Steinitz lo nombró él mismo.",
+ "unit": "La Era Romántica",
+ "steps": [
+  {
+   "id": "berlin-1852",
+   "title": "Berlín, 1852",
+   "text": "Un año después del Juego Inmortal, Adolf Anderssen se sienta en Berlín contra Jean Dufresne, un jugador fuerte y un popular escritor de ajedrez. Anderssen produce otra obra maestra, tan fresca y brillante que el primer campeón del mundo, Wilhelm Steinitz, más tarde la llamó el juego eterno en la corona de laurel de Anderssen. El nombre quedó. Pulsa para empezar.",
+   "narration": "Berlín, 1852. Un año después del Juego Inmortal, Anderssen lo vuelve a hacer: un juego tan fresco que un futuro campeón del mundo lo llamó el Juego Eterno. Pulsa para empezar."
+  },
+  {
+   "id": "the-game",
+   "title": "Anderssen – Dufresne, Berlín 1852",
+   "text": "Esta vez, Anderssen abre con el Gambito Evans, sacrificando un peón en el cuarto movimiento para un ataque desenfrenado. Observa cómo los sacrificios se acumulan hasta el final impresionante.",
+   "notes": [
+    {
+     "text": "4.b4!? El Gambito Evans: un peón por velocidad y líneas abiertas. La forma favorita de Anderssen para iniciar un incendio."
+    },
+    {
+     "text": "7.O-O: Las blancas están por dos peones abajo, pero mira ese desarrollo. Cada pieza está lista."
+    },
+    {
+     "text": "16.Bxd3: Las piezas de las blancas rodean a la dama negra, que no tiene casillas buenas."
+    },
+    {
+     "text": "17.Nf6+! gxf6 18.exf6: el choque de peones abre la guardia del rey, y las torres están llegando."
+    },
+    {
+     "text": "19.Rad1! Anderssen ignora su dama atacada y simplemente introduce la última pieza en el ataque."
+    },
+    {
+     "text": "19...Qxf3: Las negras se quedan con la dama. Parece una trampa, pero no lo es."
+    },
+    {
+     "text": "20.Rxe7+: El sacrificio de torre comienza la combinación que hizo que este juego fuera inmortal."
+    },
+    {
+     "text": "21.Qxd7+!! ¡El sacrificio de dama! Kxd7 es forzado, y ahora los alfiles van a cazar."
+    },
+    {
+     "text": "22.Bf5+: ¡Jaque doble! El alfil y la torre en d1 dan jaque al mismo tiempo, así que el rey debe huir."
+    },
+    {
+     "text": "23.Bd7+! Kf8: el rey no puede tomar el alfil, está protegido por a3."
+    },
+    {
+     "text": "24.Bxe7# ¡Jaque mate! Dos alfiles terminan lo que la dama comenzó. El Juego Inmortal."
+    }
+   ],
+   "narration": "El Gambito Evans esta vez: un peón sacrificado en el movimiento cuatro. Observa cómo cada sacrificio prepara el siguiente."
+  },
+  {
+   "id": "the-finish",
+   "title": "Mate en dos movimientos",
+   "prompt": "La dama se ha ido, pero el rey negro no tiene a dónde esconderse. Encuentra el mate en dos movimientos que termina el Juego Inmortal.",
+   "hint": "Un alfil da jaque desde d7, y no puede ser tomado debido al otro alfil.",
+   "success": "Bd7+! Kf8 Bxe7#: dos alfiles, sin dama, sin problema. Terminaste el Juego Inmortal.",
+   "narration": "Es tu turno. No hay dama en el tablero para las blancas, y aun así es mate en dos movimientos. Encuéntralo."
+  },
+  {
+   "id": "the-name",
+   "title": "¿Quién lo nombró?",
+   "question": "¿Quién llamó a este juego 'el siempre verde en la gloria de Anderssen', dándole su famoso nombre?",
+   "options": [
+    {
+     "text": "Wilhelm Steinitz, el primer campeón del mundo",
+     "why": "Bien. Steinitz admiraba el genio atacante de Anderssen, incluso mientras enseñaba al mundo un estilo más científico."
+    },
+    {
+     "text": "Howard Staunton, organizador del torneo de Londres de 1851",
+     "why": "Staunton organizó el torneo de 1851, pero el nombre proviene de Steinitz."
+    },
+    {
+     "text": "Paul Morphy, el prodigio estadounidense",
+     "why": "Morphy era un adolescente en 1852. El nombre de 'siempre verde' es de Steinitz."
+    }
+   ],
+   "narration": "Y una última pregunta: ¿de dónde proviene el nombre?"
+  }
+ ]
+}

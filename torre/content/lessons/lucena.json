@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Building a bridge (Lucena)",
+  "summary": "The most important winning technique in rook endings: free your king from the checks by building a bridge with the rook.",
+  "category": "endgames",
+  "level": "intermediate",
+  "minutes": 8,
+  "practice": "rook-endgame",
+  "requires": ["opposition"],
+  "steps": [
+    {
+      "id": "the-position",
+      "kind": "explain",
+      "title": "The Lucena position",
+      "fen": "1K6/1P1k4/8/8/8/8/r7/2R5 w - - 0 1",
+      "marks": [["c1", "c8"], ["b8"]],
+      "text": "White's pawn is one step from queening, and the rook on the c-file keeps Black's king away. The trouble is White's own king: it blocks the pawn, and when it steps out, Black's rook checks it from behind. The solution is to bring the rook to the fourth rank, where it can later block those checks. This is called building a bridge.",
+      "narration": "This is the famous Lucena position. White's pawn is one square away from becoming a queen, but White's own king is stuck in front of it, and Black's rook is ready to chase it with endless checks. The trick is to bring our rook up to the fourth rank: that's what we call building a bridge.",
+      "pose": "thinking"
+    },
+    {
+      "id": "cut-and-bridge",
+      "kind": "play",
+      "title": "Push the king away, then build",
+      "fen": "1K6/1P1k4/8/8/8/8/r7/2R5 w - - 0 1",
+      "prompt": "First check Black's king one more file away. Then put your rook on the fourth rank.",
+      "hint": "Check from the d-file, then lift the rook to d4.",
+      "line": ["c1d1", "d7e7", "d1d4"],
+      "success": "Rd1+ pushes the king to the e-file, and Rd4 builds the bridge. The rook waits on the fourth rank for the checks to come.",
+      "narration": "Let's build it. First, check Black's king from the d-file so it has to step one file further away. Then lift your rook to d4: there it is, the bridge is built and waiting.",
+      "pose": "playing"
+    },
+    {
+      "id": "walk-out",
+      "kind": "play",
+      "title": "Walk out and block",
+      "fen": "1K6/1P2k3/8/8/3R4/8/8/r7 w - - 4 3",
+      "prompt": "Walk your king out toward the rook, and when the checks run out of room, block with the rook.",
+      "hint": "Each time you are checked, step toward your rook while staying next to the pawn. Once your king reaches b5, the rook on d4 can block the next check.",
+      "line": ["b8c7", "a1c1", "c7b6", "c1b1", "b6c6", "b1c1", "c6b5", "c1b1", "d4b4"],
+      "success": "Rb4. The checks are over and the pawn queens. You have built the bridge.",
+      "narration": "Now the king walks out. Every time Black's rook checks you, step toward your own rook and stay shoulder to shoulder with your pawn. Once the checks run out of room, block with the rook on b4, and the pawn marches on to become a queen!",
+      "pose": "determined"
+    },
+    {
+      "id": "which-rank",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "With the pawn on the seventh rank, which rank does the rook go to for the bridge?",
+      "options": [
+        { "text": "The fourth rank", "correct": true, "why": "From the fourth rank the rook can block a check on the b-file once the king has walked down to b5." },
+        { "text": "The eighth rank", "why": "Your own king and pawn are in the way there, and it does not shield the king as it walks out." },
+        { "text": "The first rank", "why": "Too far: the king would have to walk down most of the board before the rook could block." }
+      ],
+      "narration": "Final question. With your pawn on the seventh rank, which rank does the rook use for the bridge? Get this right, and you own the most important technique in all of rook endings. Brilliant work!",
+      "pose": "trophy"
+    }
+  ]
+}

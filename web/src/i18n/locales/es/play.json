@@ -1,0 +1,405 @@
+{
+  "game": {
+    "levels": {
+      "1": "Relajado · nivel 1",
+      "4": "Club · nivel 4",
+      "10": "Desafiante · nivel 10",
+      "20": "A toda fuerza · nivel 20"
+    },
+    "earlierPosition": "Esta es una posición anterior. Explórala, o regresa a tu partida actual.",
+    "youBadge": "TÚ",
+    "youWhite": "Tú · piezas blancas",
+    "youBlack": "Tú · piezas negras",
+    "botRated": "Con {{elo}} de clasificación",
+    "botLevel": "Nivel {{level}}",
+    "whitePieces": "Piezas blancas",
+    "blackPieces": "Piezas negras",
+    "thinking": "{{name}} está pensando…",
+    "resigned": "{{result}} · se rindió",
+    "explorePosition": "Explora la posición",
+    "exportTorre": "Exportar datos",
+    "exportTorreTitle": "Descarga la partida y los tiempos registrados en un archivo .torre.json",
+    "returnToLive": "Regresa a la posición actual ↩",
+    "seeResult": "Ver resultado",
+    "rematch": "Venganza",
+    "confirmResign": "Sí, abandona",
+    "keepPlaying": "Sigue jugando",
+    "resign": "Abandona",
+    "settings": "Configuración del juego",
+    "settingsOpponent": "Oponente y piezas",
+    "settingsStrength": "Dificultad y piezas",
+    "opponentStrength": "Dificultad del oponente",
+    "newGame": "Comienza una nueva partida",
+    "engineUnavailable": "Motor no disponible",
+    "botCouldNotReply": "{{name}} no pudo responder.",
+    "installStockfish": "Instala Stockfish para jugar.",
+    "retry": "Reintentar",
+    "botPhases": "Apertura / medio juego / final: {{ratings}}",
+    "copyPgn": "Copiar PGN",
+    "pgnCopied": "PGN copiado. Pégalo en Lichess, en un estudio o en un mensaje.",
+    "pgnCopyFailed": "No se pudo copiar el PGN. Tu navegador bloqueó el portapapeles."
+  },
+  "result": {
+    "won": "¡Tú ganaste!",
+    "draw": "Un empate. Bien defendido.",
+    "resigned": "Tú renunciaste.",
+    "botWon": "{{name}} ganó esta partida.",
+    "coachWin": "¡Así se hace! La revisión muestra tus mejores jugadas.",
+    "coachDraw": "Un medio punto sigue siendo un punto. La revisión muestra dónde se escondía una victoria.",
+    "coachResigned": "Renunciar está bien. La revisión muestra dónde se escapó la partida.",
+    "coachLoss": "Uno difícil. La revisión muestra el momento en que cambió el rumbo.",
+    "close": "Resultado apretado.",
+    "newBest": "¡Nueva mejor puntuación contra {{name}}!",
+    "awardsLabel": "Premios obtenidos",
+    "newAwards": "Nuevos premios",
+    "awardUnlocked": "Premio desbloqueado",
+    "tierReached": "Nivel {{tier}} alcanzado",
+    "rematch": "Venganza",
+    "review": "Revisa la partida",
+    "anotherOpponent": "Otro oponente",
+    "eventKept": "{{name}} se queda contigo después de {{title}}: {{count}} de {{need}} para el emblema.",
+    "eventCrest": "¡Ganaste el emblema de {{title}}!"
+  },
+  "lobby": {
+    "label": "Elige un bot de ajedrez",
+    "title": "Bots",
+    "rosterCount": "{{total}} bots · {{shown}} mostrados · {{stars}} ★ obtenidos",
+    "backToGame": "Volver al juego",
+    "surprise": "Sorpréndeme",
+    "trainBot": "Entrena un bot",
+    "categoriesLabel": "Categorías de bots",
+    "allCategories": "Todo",
+    "strengthLabel": "Dificultad del bot",
+    "bands": {
+      "any": "Cualquier nivel",
+      "below": "Por debajo de mí",
+      "near": "Alrededor de mí",
+      "above": "Por encima de mí"
+    },
+    "search": "Buscar bots",
+    "engineLevel": "motor · nivel {{level}}",
+    "kindPreview": "{{kind}} · vista previa",
+    "kindDesignPreview": "{{kind}} · vista previa de diseño",
+    "bestStars": "Mejor: {{count}} de 3 estrellas",
+    "trainNewBot": "Entrena un nuevo bot.",
+    "trainNewBotDetail": "De una partida tuya.",
+    "noMatch": "Ningún bot coincide. Limpia la búsqueda o amplía el rango de valoración.",
+    "setupLabel": "Ajustes del bot y la partida.",
+    "close": "Cerrar.",
+    "trainingIntro": "De una partida tuya.",
+    "trainingSource_one": "Tu colección <strong>{{count}} partida</strong>",
+    "trainingSource_other": "Tu colección <strong>{{count}} partidas</strong>",
+    "trainingNote": "El entrenamiento personal es parte del diseño. Aún no se ha conectado un motor de entrenamiento.",
+    "trainingNotConnected": "Entrenamiento no conectado.",
+    "playStockfishInstead": "Juega contra Stockfish en su lugar.",
+    "yourBest": "Tu mejor partida.",
+    "stockfishInstalled": "Stockfish 18 · instalado localmente",
+    "stockfishUnavailable": "Stockfish no disponible",
+    "styles": {
+      "aggression": "Agresividad",
+      "accuracy": "Precisión",
+      "endgame": "Final"
+    },
+    "notes": {
+      "engine": "Fuerza ajustable · sin historial de puntuación",
+      "character": "Stockfish jugando a {{elo}}",
+      "characterSlips": "Stockfish jugando a {{elo}}, con algún error ocasional",
+      "preview": "Estilo e intensidad ilustrativos · aún no entrenado"
+    },
+    "gameSetup": "Configuración de partida",
+    "engineStrength": "Fuerza del motor",
+    "level": "Nivel {{level}}",
+    "timeControl": "Control de tiempo",
+    "timedNotConnected": "Los juegos con tiempo aún no están conectados",
+    "opening": "Apertura",
+    "openings": {
+      "none": "Sin libro",
+      "repertoire": "Repertorio",
+      "drill": "Practica una línea"
+    },
+    "openingNotConnected": "La configuración de la apertura aún no está conectada",
+    "playAs": "Juega como",
+    "sides": {
+      "White": "Blancas",
+      "Black": "Negras",
+      "Random": "Aleatorio"
+    },
+    "coachCommentary": "Comentario del entrenador",
+    "notConnected": "No conectado",
+    "ladder": "Cuenta en la escalera",
+    "unrated": "Sin clasificación",
+    "installStockfish": "Instala Stockfish para comenzar una partida.",
+    "designPreview": "Este bot es una vista previa de diseño. Elige un personaje o Stockfish 18 para jugar.",
+    "start": "Comenzar partida",
+    "previewOnly": "Vista previa solamente",
+    "startSummary": "∞ · sin libro · {{side}}",
+    "chooseStockfish": "Elegir Stockfish 18",
+    "coachOnNote": "Rooky juega cerca de tu rating, fijado al empezar la partida. Habla cuando algo importa, te da pistas cuando las pides, te avisa antes de un error y te deja deshacer jugadas. Partidas de práctica: sin estrellas.",
+    "strengthByPhase": "Fuerza",
+    "sameStrength": "{{elo}} toda la partida",
+    "perPhase": "Elegir por fase",
+    "phases": {
+      "opening": "Apertura",
+      "middlegame": "Medio juego",
+      "endgame": "Final"
+    },
+    "perPhaseNote": "El bot juega cada fase con el rating que elijas y nunca lo cambia por su cuenta."
+  },
+  "explore": {
+    "back": {
+      "play": "Volver al juego ↩",
+      "games": "Volver a la repetición ↩",
+      "train": "Volver al entrenamiento ↩",
+      "insights": "Volver a los análisis ↩",
+      "home": "Volver al inicio ↩"
+    },
+    "loading": "Preparando la posición…",
+    "white": "Blancas",
+    "black": "Negras",
+    "whitePieces": "Piezas blancas",
+    "blackPieces": "Piezas negras",
+    "checking": "Verificando la jugada…",
+    "gamePaused": "El juego está pausado.",
+    "exploringCopy": "Explorando una copia.",
+    "resetLine": "Restablecer línea ↩"
+  },
+  "legend": {
+    "kind_one": "leyenda · {{games}} partida",
+    "kind_other": "leyenda · {{games}} partidas",
+    "desc": "Abre con las jugadas que {{name}} jugó de verdad, elegidas de sus propias partidas según cuántas veces las jugó. Cuando la partida sale de las posiciones que alcanzó, Stockfish sigue a su máximo de {{elo}}.",
+    "descUnrated": "Abre con las jugadas que {{name}} jugó de verdad, elegidas de sus propias partidas según cuántas veces las jugó. Cuando la partida sale de las posiciones que alcanzó, Stockfish sigue a {{elo}}, porque en su época no había ratings.",
+    "peak": "máximo {{elo}}",
+    "preRating": "antes de los ratings",
+    "note": "Las primeras 20 jugadas de cada partida forman el libro. Después, Stockfish juega a {{elo}}.",
+    "wins": "Ganó",
+    "draws": "Empató",
+    "losses": "Perdió",
+    "favourite": "Con blancas:",
+    "reading_one": "Leyendo {{games}} partida…",
+    "reading_other": "Leyendo {{games}} partidas…",
+    "unreadable": "No se pudieron leer sus partidas.",
+    "fromGame": "{{name}} jugó esto en {{count}} de {{total}} de sus partidas desde aquí, una de ellas contra {{opponent}} ({{year}}).",
+    "outOfBook": "Más allá de las posiciones que {{name}} alcanzó: desde aquí Stockfish juega a {{elo}}."
+  },
+  "hall": {
+    "fetching": "Descargando las partidas de las leyendas… {{done}} de {{total}}",
+    "queued": "Partidas en camino…",
+    "downloading": "Descargando…",
+    "getGames": "Descargar sus partidas",
+    "eras": {
+      "romantic": {
+        "name": "La era romántica",
+        "years": "1750–1900 · cafés, gambitos y ataques audaces"
+      },
+      "golden": {
+        "name": "La Edad de Oro",
+        "years": "1900–1960 · grandes torneos e ideas nuevas"
+      },
+      "cold-war": {
+        "name": "La Guerra Fría",
+        "years": "1960–1995 · la escuela soviética y sus rivales"
+      },
+      "modern": {
+        "name": "La era moderna",
+        "years": "1995–hoy · motores, preparación y partidas rápidas en línea"
+      }
+    }
+  },
+  "coach": {
+    "ready": "Te toca. Pídeme una pista, o pregúntame qué amenazo.",
+    "looking": "El entrenador está mirando tu jugada…",
+    "hint": "Pista",
+    "whichPiece": "¿Qué pieza?",
+    "showMove": "Mostrar la jugada",
+    "threatButton": "¿Qué amenazas?",
+    "hideThreat": "Ocultar la amenaza",
+    "takeBack": "Deshacer",
+    "holdOn": "Espera, {{san}} es un error.",
+    "thinkAgain": "Déjame pensarlo otra vez",
+    "playAnyway": "Jugarla de todos modos",
+    "practiceGame_one": "Una partida de práctica con el entrenador (una jugada deshecha). Sin estrellas, pero cuenta para tus logros.",
+    "practiceGame_other": "Una partida de práctica con el entrenador ({{count}} jugadas deshechas). Sin estrellas, pero cuenta para tus logros.",
+    "piece": "Mueve tu pieza: {{piece}}.",
+    "move": "La jugada es {{san}}.",
+    "pieces": {
+      "pawn": "peón",
+      "knight": "caballo",
+      "bishop": "alfil",
+      "rook": "torre",
+      "queen": "dama",
+      "king": "rey"
+    },
+    "nudge": {
+      "mate": "Aquí hay un jaque mate. Mira cada jaque.",
+      "fork": "Una de tus piezas puede atacar dos cosas a la vez.",
+      "free": "Hay algo gratis para capturar. Mira lo que no está defendido.",
+      "promotion": "Un peón está cerca de convertirse en dama.",
+      "general": "Antes de mover, mira jaques, capturas y amenazas, tuyas y del bot."
+    },
+    "threat": {
+      "none": "Ahora no tengo ninguna amenaza directa. La jugada es tuya.",
+      "mate": "¡Amenazo jaque mate con {{san}}!",
+      "fork": "Amenazo una horquilla con {{san}}.",
+      "material": "Amenazo {{san}}, y eso gana material."
+    },
+    "hello": "Hola, soy Rooky. Voy a jugar contigo y te diré cuando algo importe. Pídeme una pista cuando quieras.",
+    "myMove": "Me toca. Déjame pensar…",
+    "unasked": {
+      "threat": "Cuidado: tengo una amenaza. ¿Puedes verla antes de mover?",
+      "mate": "Tienes un jaque mate en el tablero. Mira cada jaque.",
+      "chance": "Aquí hay algo para que ganes. Míralo bien."
+    }
+  },
+  "report": {
+    "loading": "Revisando cómo jugó {{name}}…",
+    "title": "Cómo se jugó la partida",
+    "phase": "Fase",
+    "you": "Tú",
+    "setTo": "Rating del bot",
+    "phases": {
+      "opening": "Apertura",
+      "middlegame": "Medio juego",
+      "endgame": "Final"
+    },
+    "steady": "{{name}} jugó cada jugada con {{elo}}. Un bot nunca se vuelve más fuerte durante una partida.",
+    "byPhase": "{{name}} jugó cada fase con el rating que elegiste y nunca lo cambió por su cuenta.",
+    "slips_one": "{{name}} hizo a propósito una jugada más débil, el tipo de error de un principiante.",
+    "slips_other": "{{name}} hizo a propósito {{count}} jugadas más débiles, el tipo de error de un principiante.",
+    "lucky_one": "Una de ellas resultó ser buena: suerte, no un bot más fuerte.",
+    "lucky_other": "{{count}} de ellas resultaron ser buenas: suerte, no un bot más fuerte.",
+    "unlucky": "Ninguna salió bien.",
+    "retry": "Repite tu error ({{move}} {{san}}), con el entrenador"
+  },
+  "drawRule": {
+    "stalemate": "Ahogado: el bando que debía mover no tenía jugadas legales y no estaba en jaque. Es tablas, no victoria.",
+    "insufficientMaterial": "Material insuficiente: a ningún bando le quedan piezas para dar jaque mate.",
+    "threefoldRepetition": "La misma posición se repitió tres veces, así que la partida es tablas.",
+    "fivefoldRepetition": "La misma posición se repitió cinco veces, así que la partida es tablas.",
+    "fiftyMoves": "Pasaron cincuenta jugadas por bando sin capturas ni movimientos de peón, así que la partida es tablas.",
+    "seventyfiveMoves": "Pasaron setenta y cinco jugadas por bando sin capturas ni movimientos de peón, así que la partida es tablas.",
+    "lesson": "Aprende las reglas de tablas"
+  },
+  "bots": {
+    "clock": {
+      "d": "días",
+      "h": "h",
+      "m": "min",
+      "s": "s",
+      "spoken": "{{d}} días, {{h}} horas, {{m}} minutos"
+    },
+    "groups": {
+      "season": "Eventos de temporada",
+      "country": "Países",
+      "theme": "Colecciones",
+      "core": "Siempre aquí"
+    },
+    "home": {
+      "search": "Buscar en todos los bots",
+      "results_one": "{{count}} resultado para «{{query}}»",
+      "results_other": "{{count}} resultados para «{{query}}»",
+      "clear": "Borrar búsqueda",
+      "noResults": "Todavía no hay nadie con ese nombre.",
+      "matches": "Buenos rivales para ti",
+      "exact": "Justo tu nivel",
+      "above": "{{count}} por encima de ti",
+      "below": "{{count}} por debajo de ti",
+      "world": "Por el mundo",
+      "neighbour": "{{name}} llegó aquí desde Venezuela",
+      "homeCrowd": "Los de casa",
+      "themes": "Colecciones",
+      "core": "Siempre aquí",
+      "tileCount": "{{count}} bots · {{won}} vencidos",
+      "tileEmpty": {
+        "legends": "Juega contra los grandes con sus propias partidas",
+        "engines": "Del movedor aleatorio a Stockfish",
+        "yours": "Entrenados con tus propias partidas"
+      },
+      "abroad_one": "+ {{count}} triunfando afuera",
+      "abroad_other": "+ {{count}} triunfando afuera",
+      "more_one": "Ver {{count}} más",
+      "more_other": "Ver {{count}} más"
+    },
+    "events": {
+      "live": "En curso",
+      "ended": "Terminó",
+      "inDays_one": "En {{count}} día",
+      "inDays_other": "En {{count}} días",
+      "characters_one": "{{count}} personaje",
+      "characters_other": "{{count}} personajes",
+      "keptOf": "Te quedaste con {{count}} de {{total}}",
+      "liveKicker": "Evento de temporada · en curso",
+      "soonKicker": "Evento de temporada · muy pronto",
+      "endedKicker": "Evento de temporada · terminado",
+      "blurbLive": "{{count}} personajes disfrazados, hasta el {{date}}. Vence a {{need}} para ganar el emblema.",
+      "blurbSoon": "{{count}} personajes disfrazados, llegan el {{date}}.",
+      "blurbEnded": "{{count}} personajes disfrazados. Los que venciste se quedan contigo todo el año.",
+      "leavesIn": "Se van en",
+      "arrivesIn": "Llegan en",
+      "progress": "{{count}} de {{need}} vencidos para el emblema · {{total}} para jugar",
+      "lockedUntil": "{{count}} personajes · bloqueados hasta que empiece",
+      "youKept": "Te quedaste con {{count}} de {{total}}",
+      "returnsNote_one": "Vuelve en {{when}}. El que venciste sigue disponible todo el año.",
+      "returnsNote_other": "Vuelve en {{when}}. Los {{count}} que venciste siguen disponibles todo el año.",
+      "play": "Jugar el evento",
+      "preview": "Echar un vistazo",
+      "seeAll": "Ver los {{count}}",
+      "liveMeta": "En curso · {{count}}/{{total}}",
+      "endedMeta": "Terminó · te quedaste con {{count}}",
+      "arrivesMonth": "Llega en {{when}}"
+    },
+    "collection": {
+      "navLabel": "Colecciones",
+      "allBots": "Todos los bots",
+      "pickerLabel": "Elige una colección",
+      "pickerSearch": "Busca una colección o un país",
+      "sortLabel": "Orden",
+      "sort": {
+        "easy": "Más fáciles primero",
+        "near": "Cerca de mi nivel",
+        "hard": "Más difíciles primero"
+      },
+      "hideBeaten": "Ocultar vencidos",
+      "count": "{{shown}} de {{total}} visibles",
+      "allBeaten": "Ya venciste a todos aquí. Desactiva «Ocultar vencidos» para volver a jugarles.",
+      "beatenMeta": "{{count}} / {{total}} vencidos",
+      "beatenOf": "{{count}} de {{total}} vencidos",
+      "venezuelan": "Venezolano",
+      "kicker": {
+        "country": "Colección del país",
+        "theme": "Colección",
+        "core": "Siempre disponible"
+      },
+      "blurb": {
+        "country": "{{count}} personajes de {{title}}.",
+        "theme": "{{count}} personajes con el mismo oficio.",
+        "always": "Los de siempre, desde tu primera partida hasta la más difícil. Nunca rotan.",
+        "legends": "Los grandes, con las aperturas que jugaron en sus propias partidas.",
+        "engines": "Cálculo puro, del movedor aleatorio a Stockfish.",
+        "yours": "Bots entrenados con tus propias partidas.",
+        "venezuela": "{{home}} en casa y {{abroad}} triunfando por el mundo."
+      },
+      "neighbourNote": "{{name}} creció en Venezuela y ahora vive en {{title}}.",
+      "from": "De {{from}}",
+      "neighbourMoved": "{{name}} salió de {{from}}, Venezuela, y está triunfando en {{to}}.",
+      "venezuelaNote_one": "{{count}} de los nuestros está triunfando por el mundo. Búscalo también en su nuevo país.",
+      "venezuelaNote_other": "{{count}} de los nuestros están triunfando por el mundo. Búscalos también en sus nuevos países.",
+      "movedFrom": "De {{from}}",
+      "movedTo": "ahora en {{to}}"
+    },
+    "panel": {
+      "plays": "Juega",
+      "yourLevel": "Tu nivel",
+      "vsYou": "{{diff}} frente a ti",
+      "wearing": "Disfrazado para {{title}}",
+      "more": "Más opciones",
+      "playedBy": "{{name}} disfrazado"
+    },
+    "locked": {
+      "soon_one": "Llega en {{count}} día",
+      "soon_other": "Llega en {{count}} días",
+      "soonNote": "Vuelve cuando empiece el evento.",
+      "returns": "Vuelve en {{when}}",
+      "endedNote": "No le ganaste durante el evento."
+    }
+  }
+}

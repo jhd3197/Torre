@@ -1,0 +1,31 @@
+// The app's one stylesheet entry. Order matters: later partials override
+// earlier ones, so new page partials go before `brand` and `rail`.
+@use "studio";
+@use "insights";
+@use "bot-lobby";
+@use "bot-collections";
+@use "home";
+@use "train";
+@use "lessons";
+@use "story";
+@use "profile";
+@use "puzzles";
+@use "import";
+@use "engines";
+@use "arena";
+@use "settings";
+@use "stage";
+@use "play-coach";
+@use "app";
+@use "brand";
+@use "legends";
+@use "rail";
+@use "controls";
+@use "motion";
+// Game review and Explore: last, so it settles the older workspace layers for those modes.
+@use "review";
+
+@use "coach";
+@use "ai";
+@use "rooky";
+@use "consistency";

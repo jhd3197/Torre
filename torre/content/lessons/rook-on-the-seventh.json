@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Rook on the seventh",
+  "summary": "A rook on the opponent's second rank attacks pawns from the side and traps the king. Learn to get there, and what two rooks can do there.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Piece play",
+  "order": 3,
+  "requires": ["open-files"],
+  "practice": "rook-endgame",
+  "steps": [
+    {
+      "id": "why-the-seventh",
+      "kind": "explain",
+      "title": "The rook's favourite rank",
+      "fen": "r5k1/1R3ppp/p7/8/8/8/5PPP/6K1 b - - 0 1",
+      "marks": [["b7", "f7"], ["g8"], ["a8"]],
+      "text": "For White, the seventh rank is Black's second rank, where Black's pawns start. A rook there attacks pawns from the side, where they cannot defend each other, and it keeps Black's king shut in on the back rank. Black's rook has been forced to a8 to guard the a-pawn, a sad job for a rook.",
+      "narration": "The seventh rank is where your rook does its best work. From there it attacks the opponent's pawns from the side, and it keeps the enemy king locked on the back rank. Notice how Black's rook has been reduced to a pawn guard.",
+      "pose": "present"
+    },
+    {
+      "id": "get-there",
+      "kind": "play",
+      "title": "Invade",
+      "fen": "r6k/pp3ppp/2p5/8/8/2P5/PP3PPP/3R2K1 w - - 0 1",
+      "prompt": "Use the open file to put your rook on the seventh rank.",
+      "hint": "Drive straight up the open d-file.",
+      "line": ["d1d7"],
+      "success": "The rook on d7 hits b7 and f7 at once, and Black's rook on a8 and king on h8 are too far away to guard both. A pawn falls, and the rook stays active.",
+      "narration": "The d-file is open and leads right into Black's camp. Drive your rook to the seventh rank, and it attacks two pawns at once.",
+      "pose": "detective"
+    },
+    {
+      "id": "two-rooks",
+      "kind": "explain",
+      "title": "Two rooks on the seventh",
+      "fen": "5rk1/1RR3pp/p7/8/8/8/P4PPP/6K1 w - - 0 1",
+      "marks": [["b7"], ["c7"], ["g7"], ["h7"]],
+      "text": "One rook on the seventh is strong. Two rooks there are often decisive: they protect each other along the rank, eat the pawns in front of the king, and can build a mating net. Here Black's king has only its g- and h-pawns as cover, and its own rook blocks the escape square f8.",
+      "narration": "Now there are two white rooks on the seventh rank. Together they protect each other and sweep along the rank, and Black's king, boxed in by its own rook, is in serious trouble.",
+      "pose": "alarm"
+    },
+    {
+      "id": "pigs-on-the-seventh",
+      "kind": "play",
+      "title": "Sweep the rank",
+      "fen": "5rk1/1RR3pp/p7/8/8/8/P4PPP/6K1 w - - 0 1",
+      "prompt": "Checkmate Black with your two rooks.",
+      "hint": "Start by taking on g7 with check. The other rook keeps the first one protected.",
+      "line": ["c7g7", "g8h8", "g7h7", "h8g8", "b7g7"],
+      "success": "Each capture came with check and was protected by the other rook along the rank. The king, hemmed in by its own rook on f8, was mated on g8.",
+      "narration": "Two rooks on the seventh rank love to work together. Take the pawns in front of the king with check, one after the other, and keep each rook protected by its partner. Mate comes quickly.",
+      "pose": "excited"
+    },
+    {
+      "id": "why-seventh",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why is a rook on the seventh rank so strong?",
+      "options": [
+        { "text": "It attacks the opponent's pawns from the side and traps the king on the back rank", "correct": true, "why": "Pawns cannot protect each other sideways, and the king cannot step forward to help, so the defender's pieces get tied down." },
+        { "text": "Rooks gain extra power when they get close to promotion squares", "why": "A rook does not change with location. The seventh is strong because of what it attacks there." },
+        { "text": "The opponent's rook cannot reach the seventh rank", "why": "It can, and often it tries to challenge yours. The rook is strong there because of the pawns and king it pins down." }
+      ],
+      "narration": "Last question. What makes the seventh rank so special for a rook? Think about the pawns and the king. Well played!",
+      "pose": "trophy"
+    }
+  ]
+}

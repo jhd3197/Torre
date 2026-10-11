@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "title": "London plans",
+  "summary": "Your setup is built. Now what? The knight jump to e5 with f4, and the e4 break that opens the centre.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "London System",
+  "order": 2,
+  "requires": ["london-setup"],
+  "practice": "kingside-attack",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "plan-one",
+      "kind": "explain",
+      "title": "Plan one: knight to e5, pawn to f4",
+      "fen": "r1bq1rk1/pp3ppp/2nbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R b KQ - 6 8",
+      "demo": ["b7b6", "f3e5", "c8b7", "f2f4"],
+      "marks": [["e5"], ["f4"], ["d3", "h7"]],
+      "text": "The most popular London plan is to jump the knight to e5 and back it up with the pawn to f4. The knight on e5 is hard to chase away, it eyes f7, d7 and c6, and the pawn on f4 means that if Black ever takes it, a pawn can recapture. Later the queen, the rook along the f-file and the bishop on d3 can all join an attack on the king.",
+      "narration": "Here's plan number one. Black plays a quiet move. [move] The knight jumps to e5. [move] Black develops. [move] And the f-pawn comes up to support it. [move] From e5 the knight is a monster, and your other pieces can line up behind it against the king.",
+      "pose": "present"
+    },
+    {
+      "id": "grab-e5",
+      "kind": "play",
+      "title": "Grab the square first",
+      "fen": "r1bqr1k1/pp3ppp/2nbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R w KQ - 7 9",
+      "prompt": "Black's rook on e8 is getting ready to push the e-pawn. Act first with one of your plans.",
+      "hint": "Which square does Black want to fight for? Put a piece on it.",
+      "line": ["f3e5|e3e4"],
+      "success": "Knight to e5 sits on the very square Black wanted for the pawn. Now ...e5 is off the table, and your knight is in the heart of Black's position. Pushing the e-pawn to e4 is also good; that is the second plan, coming up next.",
+      "narration": "Black just put a rook on e8 to prepare the e-pawn push. Beat Black to it. Which piece can land on that square right now?",
+      "pose": "detective"
+    },
+    {
+      "id": "knight-eats-c6",
+      "kind": "play",
+      "title": "The knight finds c6",
+      "fen": "r1b2rk1/p3qppp/1pnbpn2/2ppN3/3P4/2PBP1B1/PP1N1PPP/R2QK2R w KQ - 0 10",
+      "prompt": "Black's last move left the knight on c6 without a pawn to protect it. Win material.",
+      "hint": "Take on c6, and remember what your bishop on g3 is looking at.",
+      "line": ["e5c6", "e7c7", "g3d6|c6e5"],
+      "success": "Nxc6 attacks the queen, so Black has no time to win your knight back, and the bishop on g3 now hits d6 as well. You stay a whole piece up.",
+      "narration": "Black pushed the b-pawn, and now the knight on c6 has lost its protector. Your knight on e5 is right next to it. Take it, and keep an eye on Black's bishop.",
+      "pose": "magnify"
+    },
+    {
+      "id": "plan-two",
+      "kind": "explain",
+      "title": "Plan two: the e4 break",
+      "fen": "r1bq1rk1/p4ppp/1pnbpn2/2pp4/3P4/2PBPNB1/PP1N1PPP/R2QK2R w KQ - 0 9",
+      "demo": ["e3e4", "d5e4", "d2e4", "f6e4", "d3e4"],
+      "marks": [["e3", "e4"], ["e4", "a8"]],
+      "text": "The second plan is to push the e-pawn to e4, backed by the knight on d2 and the bishop on d3. It challenges Black's d5 pawn and opens the centre while Black is still getting organised. Here, after the trades on e4, your bishop arrives on e4 and lines up against the knight on c6 and the rook on a8 behind it.",
+      "narration": "Plan two is the e4 push. Your knight and bishop already support it, so you can open the centre whenever Black is a little slow. Pawn to e4. [move] Black takes. [move] Knight takes back. [move] Knights come off. [move] And look where your bishop ends up. [move]",
+      "pose": "pointer"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Why does f4 so often follow knight to e5?",
+      "options": [
+        { "text": "It supports the knight, so if Black takes it a pawn recaptures", "correct": true, "why": "Right. With f4 in place, trading on e5 costs Black something, and the f-file can later open for your rook." },
+        { "text": "It frees the bishop on f1", "why": "The f-pawn does not block that bishop; it develops along f1 to d3." },
+        { "text": "It stops Black from castling", "why": "Black can still castle. The pawn on f4 is about holding e5 and attacking." }
+      ],
+      "narration": "Final question. Why do London players push the f-pawn after the knight lands on e5? Nail this and you've got your plan. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

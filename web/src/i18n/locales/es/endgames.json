@@ -1,0 +1,68 @@
+{
+  "page": {
+    "label": "Práctica de finales",
+    "modes": "Modos de entrenamiento",
+    "drills": "Ejercicios de errores",
+    "openings": "Repertorio de aperturas"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "loading": "Cargando los finales…",
+  "notFound": "Este final no existe.",
+  "noEngine": "Instala Stockfish para jugar estas posiciones.",
+  "intro": "Finales clásicos para jugar contra Stockfish. {{completed}} de {{total}} completados.",
+  "groups": {
+    "mates": "Mates básicos",
+    "pawns": "Finales de rey y peón",
+    "pieces": "Piezas contra peones",
+    "rooks": "Finales de torre"
+  },
+  "goal": {
+    "win": {
+      "white": "Juegan las blancas y ganan",
+      "black": "Juegan las negras y ganan"
+    },
+    "draw": {
+      "white": "Juegan las blancas y hacen tablas",
+      "black": "Juegan las negras y hacen tablas"
+    }
+  },
+  "meta": {
+    "win_one": "en {{count}} jugada",
+    "win_other": "en {{count}} jugadas",
+    "draw_one": "aguanta {{count}} jugada",
+    "draw_other": "aguanta {{count}} jugadas"
+  },
+  "status": {
+    "new": "Sin intentar",
+    "tried_one": "{{count}} intento",
+    "tried_other": "{{count}} intentos",
+    "done_one": "Completado en {{count}} jugada",
+    "done_other": "Completado en {{count}} jugadas"
+  },
+  "left": {
+    "win_one": "Te queda {{count}} jugada para ganar.",
+    "win_other": "Te quedan {{count}} jugadas para ganar.",
+    "draw_one": "Aguanta {{count}} jugada más.",
+    "draw_other": "Aguanta {{count}} jugadas más."
+  },
+  "result": {
+    "success": {
+      "mate": "✓ ¡Jaque mate! Hecho en {{count}} jugadas.",
+      "converted": "✓ Ganado: la posición ya es una victoria clara.",
+      "held": "✓ Tablas aguantadas durante {{count}} jugadas.",
+      "drawn": "✓ Tablas. Bien defendido."
+    },
+    "failed": {
+      "drawn": "✗ La partida terminó en tablas. Se escapó la victoria.",
+      "limit": "✗ Sin jugadas. Intenta ganar de forma más directa.",
+      "mated": "✗ Te dieron jaque mate.",
+      "lost": "✗ Esta posición ya está perdida.",
+      "slipped": "✗ Las tablas de finales dicen que la victoria se ha esfumado."
+    }
+  },
+  "actions": {
+    "retry": "Intentar de nuevo",
+    "next": "Siguiente final",
+    "all": "Todos los finales"
+  }
+}

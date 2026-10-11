@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "The rook",
+  "summary": "Rooks move in straight lines along ranks and files. Learn how they move, what stops them, and how to grab a free piece.",
+  "category": "basics",
+  "level": "beginner",
+  "minutes": 4,
+  "unit": "Rules of the game",
+  "order": 1,
+  "steps": [
+    {
+      "id": "straight-lines",
+      "kind": "explain",
+      "title": "Straight lines",
+      "fen": "4k3/8/8/8/3R4/8/8/4K3 w - - 0 1",
+      "marks": [["d4", "d8"], ["d4", "d1"], ["d4", "a4"], ["d4", "h4"]],
+      "text": "The rook moves in a straight line: up, down, left or right, as many squares as it likes. Rows of squares are called ranks and columns are called files. From d4 this rook can reach any square on the d-file or the fourth rank.",
+      "narration": "Meet the rook, that's me! I move in straight lines, up and down or side to side, as far as I like. From the middle of an empty board, I can reach fourteen different squares.",
+      "pose": "wave"
+    },
+    {
+      "id": "blocked-lines",
+      "kind": "explain",
+      "title": "What stops a rook",
+      "fen": "4k3/8/3p4/8/1P1R2n1/8/8/4K3 w - - 0 1",
+      "marks": [["d4", "d6"], ["d4", "g4"], ["c4"]],
+      "demo": ["d4g4"],
+      "text": "A rook cannot jump. Its own pawn on b4 stops it at c4. An enemy piece in its path can be captured: the rook takes it by landing on its square, but it cannot go any further. Here the rook can take the pawn on d6 or the knight on g4. Step through the demo to see it take the knight.",
+      "narration": "Rooks can't jump over anything. My own pawn on b4 blocks me, so I stop at c4. But an enemy piece in my path? I can capture it by landing right on its square. Watch me take that knight on g4. [move] Gone! And I stop right there, I can't keep sliding past it.",
+      "pose": "point"
+    },
+    {
+      "id": "grab-the-bishop",
+      "kind": "play",
+      "title": "Grab the free bishop",
+      "fen": "6k1/5pp1/b6p/8/8/8/5PPP/R5K1 w - - 0 1",
+      "prompt": "Black's bishop has nobody guarding it. Capture it with your rook.",
+      "hint": "Look straight up the a-file.",
+      "line": ["a1a6"],
+      "success": "The a-file was empty all the way to a6, so the rook slid up and took the bishop. Nothing can take the rook back.",
+      "narration": "Here's a gift. Black's bishop is sitting on the same file as your rook, and nobody is protecting it. Slide your rook up and take it!",
+      "pose": "detective"
+    },
+    {
+      "id": "pick-the-safe-capture",
+      "kind": "play",
+      "title": "Which capture is safe?",
+      "fen": "4k3/3n4/8/8/3R3b/8/6PP/6K1 w - - 0 1",
+      "prompt": "Your rook can capture two pieces. Only one of them is safe to take. Which?",
+      "hint": "Check which black piece the king is standing next to.",
+      "line": ["d4h4"],
+      "success": "The bishop on h4 had no defender, so you won it for free. Taking the knight on d7 would have lost your rook, because Black's king is right next to it.",
+      "narration": "Careful now. Your rook can capture the knight or the bishop, but one of them is protected. If you take a protected piece, your rook gets taken back. Find the free one.",
+      "pose": "magnify"
+    },
+    {
+      "id": "rook-quiz",
+      "kind": "choose",
+      "title": "Quick check",
+      "fen": "4k3/8/8/8/2PR4/8/8/4K3 w - - 0 1",
+      "marks": [["c4"]],
+      "question": "White's own pawn is on c4, right next to the rook. Can the rook reach a4?",
+      "options": [
+        { "text": "No, the pawn on c4 is in the way", "correct": true, "why": "Rooks never jump. A piece of your own color blocks the line completely." },
+        { "text": "Yes, rooks can jump over their own pieces", "why": "Only the knight can jump. The rook stops wherever its path is blocked." },
+        { "text": "Yes, but only by capturing the pawn first", "why": "You can never capture your own pieces. The pawn simply blocks the way." }
+      ],
+      "narration": "Last question. My own pawn is standing right beside me on c4. Can I get past it to reach a4? Think about what you just learned.",
+      "pose": "thinking"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+ "title": "Kramnik juega la Defensa del Londres",
+ "summary": "Un ex campeón del mundo te muestra todo el plan del Londres en 22 movimientos: caballo a e5, f4, el avance e4 y un ataque al rey.",
+ "unit": "Defensa Londres",
+ "steps": [
+  {
+   "id": "the-scene",
+   "title": "Berlín, 2015",
+   "text": "Campeonato Mundial de Ajedrez Blitz, Berlín, octubre de 2015. Vladimir Kramnik, un ex campeón del mundo, tiene las piezas blancas contra Allan Rasmussen. Kramnik construye la configuración del Londres que conoces y luego sigue ambos planes de esta lección, uno tras otro. El juego se detendrá cuando Kramnik tenga una decisión clave que tomar: encontrar su jugada.",
+   "narration": "Berlín, 2015, el Campeonato Mundial de Ajedrez Blitz. El ex campeón del mundo Vladimir Kramnik juega la Defensa del Londres. Observa cómo usa cada plan de esta lección e intenta adivinar sus movimientos cuando el juego se detenga."
+  },
+  {
+   "id": "the-game",
+   "title": "Kramnik – Rasmussen, Berlín 2015",
+   "text": "Observa cómo cada jugada prepara la siguiente. Cuando el juego se detenga, encuentra la jugada de las blancas en el tablero.",
+   "notes": [
+    {
+     "text": "7.Bg3: el alfil retrocede del alfil negro y mantiene su mirada en e5."
+    },
+    {
+     "text": "10...Nd7: el peón en e5 ha alejado el caballo negro de f6."
+    },
+    {
+     "text": "14.O-O: solo ahora las blancas enrocan, y la torre en f1 respalda al peón f."
+    },
+    {
+     "text": "18.Be4: el alfil toma la diagonal larga hacia b7 y h7."
+    }
+   ],
+   "narration": "Aquí está el juego. Cuando se detiene, es tu turno para jugar la jugada de Kramnik.",
+   "guesses": [
+    {
+     "prompt": "La dama negra ha salido de d8. Es hora del plan uno. ¿A dónde va el caballo?",
+     "hint": "La casilla delante del peón e6 negro.",
+     "why": "9.Ne5 planta el caballo en la casilla clave. Negro lo cambió y la recaptura dxe5 alejó el caballo negro de f6."
+    },
+    {
+     "prompt": "El peón en e5 está atacado por el caballo en d7. Apóyalo a la manera de Londres.",
+     "hint": "El peón f.",
+     "why": "11.f4 sostiene e5 y abre el camino para la torre a lo largo de la columna f más adelante."
+    },
+    {
+     "prompt": "Los peones negros delante del rey están rotos. Ahora plan dos: abre el centro.",
+     "hint": "Tu peón de e puede golpear d5.",
+     "why": "16.e4 abre el centro mientras el rey negro ha perdido la cubierta de su peón de g. Cada línea abierta ahora conduce al rey negro."
+    },
+    {
+     "prompt": "El caballo negro vino a e5 para bloquear. Termina el ataque.",
+     "hint": "Tu caballo en c4 puede tomarlo, y luego mira f7 y f8.",
+     "why": "22.Nxe5 elimina al bloqueador. La dama, torre, caballo y alfil blancos apuntan al rey negro, y este fue el último movimiento del juego."
+    }
+   ]
+  },
+  {
+   "id": "takeaway",
+   "title": "Lo que hizo Kramnik",
+   "text": "Mira la posición final. El caballo está de vuelta en e5, la torre ha llegado a f4 por la columna que el peón de f abrió, la dama está en h5 y el alfil en e4 apunta a h7. Nada de esto fue magia: caballo a e5, peón a f4, luego la ruptura de e4, jugada en ese orden.",
+   "narration": "Mira el final. Caballo en e5, torre en la columna f, dama y alfil apuntando al rey. Cada una de esas piezas llegó allí siguiendo los planes que has aprendido."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de que las negras intercambiaron en e5 y las blancas recuperaron con el peón de d, ¿qué logró el peón en e5?",
+   "options": [
+    {
+     "text": "Ahuyentó al caballo negro de f6, el principal defensor del rey",
+     "why": "Sí. Sin el caballo en f6, el flanco de rey negro era mucho más fácil de atacar."
+    },
+    {
+     "text": "Ganó un peón",
+     "why": "Fue un intercambio directo; el punto estaba en dónde terminó el peón."
+    },
+    {
+     "text": "Bloqueó al propio alfil blanco",
+     "why": "El alfil en g3 continuó desempeñando mucho trabajo desde h4 y luego f6."
+    }
+   ],
+   "narration": "Última pregunta sobre la partida. ¿Qué hizo el peón en e5 por las blancas? Piensa en qué pieza negra tuvo que moverse. ¡Excelente estudio de partida!"
+  }
+ ]
+}

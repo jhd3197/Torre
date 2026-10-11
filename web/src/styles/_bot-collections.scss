@@ -1,0 +1,1123 @@
+@use "sass:list";
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* The bot lobby (Torre Bots + Torre Bot Collection): /play/bots and /play/bots/:collection.
+   Chunky cards with a pressed edge, events in their own colours, countries under their flags. */
+
+$themes: (
+  spooky: ($event-spooky, $event-spooky-accent),
+  marigold: ($event-marigold, $event-marigold-accent),
+  lantern: ($event-lantern, $event-lantern-accent),
+  winter: ($event-winter, $event-winter-accent),
+  party: ($event-party, $event-party-accent),
+  fiesta: ($event-fiesta, $event-fiesta-accent),
+  lucky: ($event-lucky, $event-lucky-accent),
+  love: ($event-love, $event-love-accent),
+  clover: ($event-clover, $event-clover-accent),
+  spring: ($event-spring, $event-spring-accent),
+  summer: ($event-summer, $event-summer-accent),
+  chess: ($event-chess, $event-chess-accent),
+);
+#bot-lobby [data-theme] {
+  --event-ground: #{$event-party};
+  --event-accent: #{$event-party-accent};
+}
+@each $name, $pair in $themes {
+  #bot-lobby [data-theme="#{$name}"] {
+    --event-ground: #{list.nth($pair, 1)};
+    --event-accent: #{list.nth($pair, 2)};
+  }
+}
+
+#bot-lobby.bots-home,
+#bot-lobby.bots-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: $lobby-ink;
+}
+#bot-lobby .bots-header {
+  align-items: flex-end;
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#bot-lobby .bots-header h1 {
+  font: 900 #{$fs-display}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+  color: $lobby-ink;
+}
+#bot-lobby .bots-header p {
+  font-size: $fs-base;
+  color: $sage-600;
+  margin-top: 6px;
+}
+#bot-lobby #bot-search {
+  margin-left: 0;
+  width: 230px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  font-weight: 600;
+  font-size: $fs-base;
+}
+#bot-lobby .bots-button {
+  border-radius: 14px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  font-weight: 800;
+  font-size: $fs-base;
+  color: $lobby-ink;
+  box-shadow: 0 3px 0 $lobby-line-strong;
+}
+#bot-lobby .bots-button:hover:not(:disabled) {
+  background: $sage-50;
+}
+#bot-lobby .bots-button.solid {
+  border-color: $lobby-button;
+  background: $lobby-button;
+  color: $white;
+  box-shadow: 0 3px 0 $lobby-button-shade;
+}
+#bot-lobby .bots-button.solid:hover:not(:disabled) {
+  background: $moss-800;
+}
+
+// Sections and grids
+.bots-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bots-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bots-section-head h2 {
+  margin: 0;
+  font: 900 #{$fs-3xl}/ 1.2 $font-sans;
+  color: $lobby-ink;
+}
+.bots-section-head > span {
+  font-size: $fs-base;
+  color: $sage-600;
+}
+.bots-section-head .text-button {
+  margin-left: auto;
+  font-weight: 800;
+}
+.bots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 14px;
+}
+
+// A bot's card
+#bot-lobby .bot-card {
+  position: relative;
+  padding: 7px 7px 12px;
+  gap: 4px;
+  border-radius: 18px;
+  border: 2px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+  color: $lobby-ink;
+  cursor: pointer;
+  @include focus-ring;
+}
+#bot-lobby .bot-card:hover {
+  border-color: $lobby-hover-line;
+}
+#bot-lobby .bot-card.selected {
+  background: $lobby-selected;
+  border-color: $lobby-green;
+  box-shadow: 0 3px 0 $lobby-selected-line;
+}
+#bot-lobby .bot-card .bot-picture {
+  aspect-ratio: 4 / 5;
+  border-radius: 13px;
+  background: $lobby-tile;
+}
+#bot-lobby .bot-card.selected .bot-picture {
+  background: $lobby-tile;
+}
+#bot-lobby .bot-card.locked .bot-picture img {
+  filter: grayscale(1) opacity(0.55);
+}
+#bot-lobby .bot-card.locked strong {
+  color: $sage-500;
+}
+#bot-lobby .bot-card-name strong {
+  font-size: $fs-base;
+  font-weight: 800;
+}
+#bot-lobby .bot-rating {
+  font: 500 #{$fs-xs} $font-mono;
+  padding: 2px 9px;
+  border-radius: 8px;
+  background: $lobby-pill;
+  color: $moss-700;
+}
+.bot-card-note {
+  font-size: $fs-xs;
+  font-weight: 700;
+  color: $lobby-muted;
+  text-align: center;
+}
+.bot-card-mark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: $white;
+  font-weight: 900;
+  font-size: $fs-sm;
+}
+.bot-card-mark.beaten {
+  background: $lobby-green;
+  border: 2px solid $white;
+}
+.bot-card-mark.lock {
+  background: $lobby-ink;
+  font-size: $fs-xs;
+}
+.bot-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  max-width: calc(100% - 58px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: $white;
+  font-size: $fs-2xs;
+  font-weight: 800;
+  color: $lobby-ink;
+  box-shadow: 0 1px 3px rgba($black, 0.12);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flag {
+  flex: none;
+  width: 15px;
+  height: 10px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba($black, 0.12);
+}
+
+// Events: the hero (home and collection), the clock, the strip of other events
+.event-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 34px 36px;
+  border-radius: 26px;
+  background: var(--event-ground);
+  color: $white;
+  overflow: hidden;
+}
+.event-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.event-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $fs-sm;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--event-accent);
+}
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--event-accent);
+}
+@include motion-ok {
+  .live-dot {
+    animation: live-pulse 1.6s infinite;
+  }
+}
+@keyframes live-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+.event-hero h2 {
+  margin: 0;
+  font: 900 #{$fs-7xl}/ 1 $font-sans;
+  letter-spacing: -0.02em;
+}
+.event-hero p {
+  margin: 0;
+  max-width: 520px;
+  font-size: $fs-lg;
+  line-height: 1.5;
+  color: rgba($white, 0.82);
+}
+.event-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 380px;
+}
+.event-progress small {
+  font-size: $fs-md;
+  font-weight: 700;
+  color: rgba($white, 0.82);
+}
+.meter {
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba($white, 0.14);
+  overflow: hidden;
+}
+.meter i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--event-accent);
+}
+.event-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.event-play,
+.event-all {
+  padding: 12px 20px;
+  border-radius: 14px;
+  font: 900 #{$fs-base} $font-sans;
+  cursor: pointer;
+  @include focus-ring;
+}
+.event-play {
+  border: 0;
+  background: var(--event-accent);
+  color: $event-ink;
+  box-shadow: 0 3px 0 rgba($black, 0.3);
+}
+.event-all {
+  border: 1.5px solid rgba($white, 0.3);
+  background: transparent;
+  color: $white;
+}
+.event-all:hover {
+  background: rgba($white, 0.08);
+}
+.event-note {
+  max-width: 280px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba($white, 0.1);
+  font-size: $fs-md;
+  line-height: 1.45;
+  font-weight: 700;
+}
+// Five figures fanned like held cards.
+.event-fan {
+  position: relative;
+  width: min(440px, 38vw);
+  height: 270px;
+}
+.fan-card {
+  position: absolute;
+  width: 28%;
+  padding: 6px;
+  border: 0;
+  border-radius: 18px;
+  background: $white;
+  box-shadow: 0 10px 24px rgba($black, 0.35);
+  cursor: pointer;
+  transition: transform 0.18s ease;
+  @include focus-ring;
+}
+.fan-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  border-radius: 13px;
+  background: $lobby-tile;
+}
+.fan-card img.waiting {
+  filter: grayscale(1) opacity(0.7);
+}
+.fan-0 { left: 0; top: 40px; transform: rotate(-9deg); z-index: 1; }
+.fan-1 { left: 18%; top: 6px; transform: rotate(-3deg); z-index: 2; }
+.fan-2 { left: 36%; top: 30px; transform: rotate(2deg); z-index: 3; }
+.fan-3 { left: 54%; top: 4px; transform: rotate(6deg); z-index: 2; }
+.fan-4 { left: 71%; top: 44px; transform: rotate(11deg); z-index: 1; }
+.fan-card:hover {
+  z-index: 9;
+}
+
+.event-clock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.event-clock-label {
+  font-size: $fs-sm;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--event-accent);
+}
+.event-clock-parts {
+  display: flex;
+  gap: 8px;
+}
+.event-clock-parts > span {
+  min-width: 62px;
+  padding: 10px 8px 8px;
+  border-radius: 14px;
+  background: rgba($white, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.event-clock-parts b {
+  font: 900 #{$fs-4xl}/ 1 $font-sans;
+  font-variant-numeric: tabular-nums;
+}
+.event-clock-parts small {
+  margin-top: 4px;
+  font-size: $fs-2xs;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+// The last day: the boxes take the accent, and the seconds blink.
+.event-clock.urgent .event-clock-parts > span {
+  background: var(--event-accent);
+  color: $event-ink;
+}
+@include motion-ok {
+  .event-clock.urgent .event-clock-parts > span:last-child b {
+    animation: live-pulse 1s steps(1) infinite;
+  }
+}
+
+.event-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: -12px;
+}
+.event-chip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+  color: $lobby-ink;
+  text-decoration: none;
+}
+.event-chip:hover {
+  border-color: $lobby-hover-line;
+}
+.face-stack {
+  display: flex;
+  flex: none;
+  padding-right: 12px;
+}
+.face-stack img {
+  width: 46px;
+  height: 46px;
+  margin-right: -12px;
+  border-radius: 50%;
+  border: 2.5px solid $white;
+  background: $lobby-tile;
+  object-fit: cover;
+  object-position: 50% 6%;
+  box-shadow: 0 1px 3px rgba($black, 0.12);
+}
+.face-stack img.waiting {
+  filter: grayscale(1) opacity(0.7);
+}
+.event-chip-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.event-chip-text strong {
+  font-size: $fs-lg;
+  font-weight: 900;
+}
+.event-chip-text small {
+  font-size: $fs-md;
+  color: $sage-600;
+}
+.event-pill {
+  margin-left: auto;
+  flex: none;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: $fs-sm;
+  font-weight: 800;
+  background: $lobby-track;
+  color: $sage-600;
+}
+.event-pill.live,
+.event-pill.soon {
+  background: var(--event-ground);
+  color: var(--event-accent);
+}
+
+// Countries
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
+  gap: 16px;
+}
+.country-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+  overflow: hidden;
+  color: $lobby-ink;
+  text-decoration: none;
+}
+.country-card:hover {
+  border-color: $lobby-hover-line;
+}
+.flag.country-flag {
+  align-self: center;
+  width: 24px;
+  height: 16px;
+  border-radius: 3px;
+}
+.country-faces {
+  display: flex;
+  justify-content: center;
+  padding: 16px 12px 4px;
+  background: $neutral-50;
+}
+.country-faces img {
+  width: 58px;
+  height: 84px;
+  margin: 0 -8px;
+  border-radius: 14px;
+  border: 2.5px solid $white;
+  background: $lobby-tile;
+  object-fit: cover;
+  object-position: 50% 10%;
+  box-shadow: 0 2px 6px rgba($lobby-ink, 0.12);
+}
+.country-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px 16px;
+}
+.country-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.country-title strong {
+  font-size: $fs-xl;
+  font-weight: 900;
+}
+.country-title small {
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: $fs-sm;
+  font-weight: 800;
+  color: $lobby-muted;
+}
+.country-card .meter,
+.collection-hero.plain .meter {
+  height: 6px;
+  background: $neutral-100;
+}
+.country-card .meter i,
+.collection-hero.plain .meter i {
+  background: $lobby-green;
+}
+.country-note {
+  font-size: $fs-sm;
+  line-height: 1.35;
+  color: $sage-600;
+}
+
+// Collection tiles (themes, the always-on sets)
+.collection-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.collection-tile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+  color: $lobby-ink;
+  text-decoration: none;
+}
+.collection-tile:hover {
+  border-color: $lobby-hover-line;
+}
+.tile-faces {
+  display: flex;
+  flex: none;
+  padding-right: 12px;
+}
+.tile-faces img {
+  width: 52px;
+  height: 68px;
+  margin-right: -12px;
+  border-radius: 12px;
+  border: 2.5px solid $white;
+  background: $lobby-tile;
+  object-fit: cover;
+  object-position: 50% 12%;
+  box-shadow: 0 1px 4px rgba($lobby-ink, 0.14);
+}
+.tile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.tile-text strong {
+  font-size: $fs-xl;
+  font-weight: 900;
+}
+.tile-text small {
+  font-size: $fs-md;
+  color: $sage-600;
+}
+.tile-arrow {
+  margin-left: auto;
+  font-size: $fs-2xl;
+  color: $sage-400;
+}
+
+// The collection page: breadcrumb and picker, hero, tools, grid and panel
+.collection-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#bot-lobby .collection-nav .bots-button {
+  padding: 8px 12px;
+  font-size: $fs-md;
+  box-shadow: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#bot-lobby .collection-nav .picker {
+  font-weight: 900;
+  font-size: $fs-base;
+}
+#bot-lobby .collection-nav .picker.open {
+  border-color: $lobby-green;
+}
+.collection-group {
+  font-size: $fs-md;
+  font-weight: 700;
+  color: $sage-500;
+}
+.collection-slash {
+  color: $sage-300;
+}
+.collection-siblings {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+.picker-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+.collection-picker {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 21;
+  width: min(640px, 100%);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 18px 40px rgba($lobby-ink, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.collection-picker input {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $neutral-50;
+  font: 600 #{$fs-base} $font-sans;
+  color: $lobby-ink;
+}
+.picker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.picker-group-label {
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $sage-500;
+}
+.picker-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 6px;
+}
+.picker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px 7px 7px;
+  border-radius: 12px;
+  border: 1.5px solid $neutral-100;
+  color: $lobby-ink;
+  text-decoration: none;
+}
+.picker-item:hover {
+  background: $sage-50;
+}
+.picker-item.current {
+  background: $lobby-selected;
+  border-color: $lobby-green;
+}
+.picker-face {
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: $lobby-tile;
+  overflow: hidden;
+}
+.picker-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 6%;
+  transform: scale(1.6);
+  transform-origin: 50% 0;
+}
+.flag.picker-flag {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 15px;
+  height: 10px;
+}
+.picker-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.picker-text strong {
+  font-size: $fs-md;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.picker-text small {
+  font-size: $fs-xs;
+  font-weight: 700;
+  color: $lobby-muted;
+}
+.picker-text small.live {
+  color: $lobby-warm;
+}
+
+.collection-hero {
+  padding: 28px 32px;
+  border-radius: 24px;
+}
+.collection-hero h2 {
+  font-size: $fs-display;
+}
+.collection-hero.plain {
+  background: $white;
+  color: $lobby-ink;
+  border: 1.5px solid $lobby-line;
+}
+.collection-hero.plain h2 {
+  color: $lobby-ink;
+}
+.collection-hero.plain .event-kicker {
+  color: $lobby-muted;
+}
+.collection-hero.plain p,
+.collection-hero.plain .event-progress small {
+  color: $sage-600;
+}
+.collection-hero.plain .event-note {
+  background: $neutral-50;
+  color: $lobby-ink;
+}
+.flag.hero-flag {
+  width: 54px;
+  height: 36px;
+  margin-right: 14px;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+.collection-body {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: flex-end;
+  gap: 24px;
+}
+.collection-main {
+  flex: 999 1 480px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.collection-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.collection-tools .bots-segments {
+  background: $lobby-track;
+  border-radius: 14px;
+  padding: 4px;
+}
+.collection-tools .bots-segments button {
+  font-weight: 800;
+  border-radius: 10px;
+}
+.hide-beaten {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  font: 800 #{$fs-md} $font-sans;
+  color: $lobby-ink;
+  cursor: pointer;
+  @include focus-ring;
+}
+.switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: $sage-300;
+  transition: background 0.16s;
+}
+.switch i {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: $white;
+  transition: left 0.16s;
+}
+.hide-beaten[aria-checked="true"] .switch {
+  background: $lobby-green;
+}
+.hide-beaten[aria-checked="true"] .switch i {
+  left: 17px;
+}
+.collection-count {
+  margin-left: auto;
+  font-size: $fs-md;
+  font-weight: 700;
+  color: $lobby-muted;
+}
+
+// The play panel
+#bot-lobby .bot-panel {
+  flex: 1 1 300px;
+  max-width: 380px;
+  align-self: flex-end; // the row wraps in reverse (panel above on narrow screens), so flex-end is the top
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1.5px solid $lobby-line;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+}
+@include up(xl) {
+  #bot-lobby .bot-panel {
+    position: sticky;
+    top: 24px;
+  }
+}
+#bot-lobby .bot-panel .bot-stage {
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: $lobby-tile;
+}
+#bot-lobby .bot-stage.locked img {
+  filter: grayscale(1) opacity(0.55);
+}
+.bot-panel-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.bot-panel-title strong {
+  font: 900 #{$fs-3xl}/ 1.1 $font-sans;
+}
+.bot-panel-title .bot-detail-rating,
+.bot-panel-title .bots-button {
+  margin-left: auto;
+}
+#bot-lobby .bot-hello {
+  margin: 0;
+  font-size: $fs-base;
+  font-style: italic;
+  color: $sage-700;
+}
+.bot-panel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $fs-md;
+}
+.bot-panel-row > span {
+  font-weight: 700;
+  color: $lobby-muted;
+}
+.bot-panel-row > b {
+  font-weight: 800;
+}
+.bot-panel-row.bot-best {
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid $neutral-100;
+}
+.bot-best > b {
+  margin-left: auto;
+}
+.bot-best > b.above {
+  color: $lobby-warm;
+}
+.bot-best > b.below {
+  color: $lobby-green;
+}
+.bot-outfit {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: $fs-xs;
+  font-weight: 800;
+  background: $lobby-selected;
+  color: $moss-800;
+}
+.bot-locked {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 14px;
+  background: $lobby-track;
+  text-align: center;
+}
+.bot-locked strong {
+  font-size: $fs-lg;
+  font-weight: 900;
+}
+.bot-locked span {
+  font-size: $fs-sm;
+  color: $sage-600;
+}
+#bot-lobby .bot-panel .bots-segments {
+  background: $lobby-track;
+  border-radius: 12px;
+}
+#bot-lobby .bot-panel .bots-segments button {
+  flex: 1;
+  font-weight: 800;
+}
+#bot-lobby .bot-panel .bot-field-label {
+  font-size: $fs-sm;
+  font-weight: 800;
+  color: $lobby-muted;
+}
+#bot-lobby .bot-start {
+  padding: 14px;
+  border-radius: 14px;
+  font: 900 #{$fs-lg} $font-sans;
+}
+.bot-more {
+  margin-top: 6px;
+  border-top: 1.5px solid $neutral-100;
+  padding-top: 10px;
+}
+.bot-more > summary {
+  cursor: pointer;
+  font-size: $fs-md;
+  font-weight: 800;
+  color: $lobby-muted;
+}
+.bot-desc {
+  font-size: $fs-md;
+  line-height: 1.5;
+  color: $sage-700;
+}
+.bot-style b.style-0 {
+  background: $peach-500;
+}
+.bot-style b.style-1 {
+  background: $green-600;
+}
+.bot-style b.style-2 {
+  background: $green-500;
+}
+.bot-style b.record-wins {
+  background: $green-600;
+}
+.bot-style b.record-draws {
+  background: $gold-500;
+}
+.bot-style b.record-losses {
+  background: $peach-500;
+}
+
+// Narrow screens
+@include down(lg) {
+  .event-hero {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+  .event-fan {
+    width: 100%;
+    max-width: 440px;
+    height: 220px;
+    justify-self: center;
+  }
+  .event-hero h2 {
+    font-size: $fs-6xl;
+  }
+  #bot-lobby .bot-panel {
+    max-width: none;
+  }
+}
+@include down(sm) {
+  #bot-lobby .bots-header h1 {
+    font-size: $fs-6xl;
+  }
+  #bot-lobby #bot-search {
+    width: 100%;
+  }
+  .event-clock-parts > span {
+    min-width: 0;
+    flex: 1;
+  }
+  .event-clock-parts b {
+    font-size: $fs-3xl;
+  }
+  .event-strip,
+  .collection-tiles {
+    grid-template-columns: 1fr;
+  }
+  .bots-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .collection-siblings {
+    margin-left: 0;
+  }
+  .collection-count {
+    margin-left: 0;
+  }
+}
+
+// Venezuelans abroad: where they came from and where they live now, in the panel.
+.bot-move {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: $neutral-50;
+  font-size: $fs-sm;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.bot-move {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+.bot-move > span,
+.bot-move > a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.bot-move > a::after {
+  content: "›";
+  margin-left: auto;
+  color: $sage-400;
+}
+.bot-move > a:hover {
+  color: $moss-700;
+  text-decoration: underline;
+}
+.bot-move .flag {
+  width: 21px;
+  height: 14px;
+}
+
+// Show more, under the countries and the collections.
+#bot-lobby .show-more {
+  align-self: center;
+  padding: 10px 22px;
+}

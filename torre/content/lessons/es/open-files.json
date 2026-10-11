@@ -1,0 +1,55 @@
+{
+ "title": "Columnas abiertas",
+ "summary": "Las torres necesitan caminos libres. Aprende a tomar la columna abierta primero, luego dobla tus torres para controlarla.",
+ "unit": "Juego de piezas",
+ "steps": [
+  {
+   "id": "what-is-open",
+   "title": "Caminos para las torres",
+   "text": "Una columna sin peones es una columna abierta. Aquí solo la columna d está abierta: cada otra columna está bloqueada por peones. Una torre en una columna abierta puede recorrer toda la longitud del tablero y romper en el campamento enemigo. Una columna con solo peones del oponente también es semiabierta, lo cual también es útil: tu torre puede presionar contra el peón al final de ella.",
+   "narration": "Las torres son como camiones, necesitan caminos libres. Una columna sin peones es una columna abierta, y aquí la única es la columna d. Quien la controla puede conducir directamente a la posición enemiga."
+  },
+  {
+   "id": "take-the-file",
+   "title": "Tómala primero",
+   "prompt": "Ambas torres quieren la columna abierta. Llégalos primero.",
+   "hint": "Si no la tomas ahora, la torre de Negro lo hará en el siguiente movimiento.",
+   "success": "Tu torre controla la columna d y amenaza con avanzar a d7, entre los peones de Negro. Si hubieras esperado, la torre de Negro habría tomado la columna en su lugar.",
+   "narration": "Solo hay una columna abierta, y ambas torres están a un movimiento de ella. Llégalos primero. La torre que controla la columna abierta decide lo que sucede a continuación."
+  },
+  {
+   "id": "the-payoff",
+   "title": "De la columna al séptimo",
+   "text": "Pasa por la demostración. Una vez que las blancas controlan la columna d, la torre avanza hasta la séptima fila, donde ataca los peones de Negro desde un lado. La columna abierta no es el objetivo en sí mismo: es el camino a las casillas donde la torre hace daño.",
+   "narration": "Mira por qué la columna es importante. La torre se apodera de la columna 'd' abierta. [move] El bando negro juega en otra ala. [move] Y la torre usa la columna como autopista directa a la séptima fila, donde empieza a comer peones. [move] Una columna abierta es una carretera, y la séptima fila es donde lleva."
+  },
+  {
+   "id": "doubled-rooks",
+   "title": "Dos torres contra uno",
+   "prompt": "Tus torres están dobladas en la columna abierta. Úsalas para ganar.",
+   "hint": "Dos atacantes contra un defensor: intercambia en d8 y mira quién queda.",
+   "success": "Dos torres superan al defensor solitario. Después del intercambio en d8, tu segunda torre llega a la última fila con jaque mate.",
+   "narration": "Cuando ambas torres están sobre la misma columna abierta, están dobladas, y ganan la pelea por ella porque hay dos. Intercambia en d8, y la segunda torre termina el trabajo."
+  },
+  {
+   "id": "why-double",
+   "title": "¡Revísate!",
+   "question": "Ambos bandos luchan por una columna abierta. ¿Por qué te ayuda doblar tus torres en ella?",
+   "options": [
+    {
+     "text": "Dos torres en la columna superan a una, así que el oponente no puede disputarla",
+     "why": "Si el oponente ofrece un intercambio, tu segunda torre recaptura y mantiene la columna."
+    },
+    {
+     "text": "Las torres dobladas protegen a tu rey de los jaques.",
+     "why": "Puede ser, pero ese no es el punto. El doblar se trata de ganar el control de la columna."
+    },
+    {
+     "text": "Las torres valen más cuando están una al lado de la otra",
+     "why": "El valor de una torre proviene de las líneas que controla, no de estar al lado de la otra torre"
+    }
+   ],
+   "narration": "Pregunta final. ¿Por qué los jugadores fuertes doblan sus torres en una columna abierta? Piensa en lo que sucede cuando el oponente intenta desafiarla. ¡Buen trabajo!"
+  }
+ ]
+}

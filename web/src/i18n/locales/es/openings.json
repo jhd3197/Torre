@@ -1,0 +1,66 @@
+{
+  "page": {
+    "label": "Entrenador de repertorio de aperturas",
+    "modes": "Modos de entrenamiento",
+    "drills": "Ejercicios de errores",
+    "endgames": "Práctica de finales"
+  },
+  "counts": {
+    "due": "Pendientes",
+    "newToday": "Nuevas hoy",
+    "learned": "Aprendidas",
+    "ofTotal": "de {{total}}"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "loading": "Cargando tu repertorio…",
+  "done": {
+    "title": "Repertorio repasado",
+    "nextReview": "Tu próximo repaso es {{when}}.",
+    "comeBack": "Vuelve mañana para ver posiciones nuevas.",
+    "newWaiting_one": " Hay {{count}} posición nueva esperando; recibes {{perDay}} al día.",
+    "newWaiting_other": " Hay {{count}} posiciones nuevas esperando; recibes {{perDay}} al día."
+  },
+  "empty": {
+    "title": "Todavía no hay repertorio",
+    "body": "Las posiciones a las que llegas una y otra vez en las aperturas de tus partidas se convierten aquí en tarjetas. Importa más partidas o añade abajo una línea propia."
+  },
+  "source": {
+    "start": "Posición inicial",
+    "after": "Después de {{line}}"
+  },
+  "prompt": {
+    "white": "<strong>Juegan las blancas.</strong> Haz la jugada de tu repertorio.",
+    "black": "<strong>Juegan las negras.</strong> Haz la jugada de tu repertorio.",
+    "seen_one": " Llegaste a esta posición en {{count}} partida.",
+    "seen_other": " Llegaste a esta posición en {{count}} partidas.",
+    "custom": " Esta posición es de una línea que añadiste."
+  },
+  "verdict": {
+    "correct": "<strong>✓ {{move}}</strong> Esa es la jugada de tu repertorio.",
+    "missed": "<strong>✗ {{move}}</strong> no es la jugada de tu repertorio. Aquí juegas <best>{{best}}</best>."
+  },
+  "detail": {
+    "corrected": "Nunca jugaste aquí una jugada sólida, así que esta tarjeta pide la elección del motor.",
+    "played": "En tus partidas: {{moves}}.",
+    "returns": "Esta posición vuelve {{when}}."
+  },
+  "actions": {
+    "next": "Siguiente posición",
+    "explore": "Explora la posición"
+  },
+  "color": {
+    "white": "Blancas",
+    "black": "Negras"
+  },
+  "lines": {
+    "title": "Tus propias líneas",
+    "body": "Añade una línea para practicarla. Sus jugadas mandan sobre las de tus partidas.",
+    "color": "Juega la línea con",
+    "moves": "Jugadas",
+    "placeholder": "1. e4 e5 2. Nf3 Nc6",
+    "add": "Añadir línea",
+    "added": "Línea añadida a tu repertorio.",
+    "remove": "Quitar",
+    "removeLabel": "Quitar {{line}}"
+  }
+}

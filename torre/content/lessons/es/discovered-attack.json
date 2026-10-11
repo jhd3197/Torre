@@ -1,0 +1,48 @@
+{
+ "title": "Ataques a la descubierta",
+ "summary": "Mueve una pieza de en medio y libera a la que está detrás. Cuando la pieza oculta da jaque, es un ataque a la descubierta.",
+ "steps": [
+  {
+   "id": "hidden-attacker",
+   "title": "El atacante oculto",
+   "text": "El alfil blanco en b2 apunta al la torre en h8, pero su propio caballo en d4 está en el camino. Cuando el caballo salta, el ataque del alfil se descubre. Eso es un ataque a la descubierta: dos amenazas en un movimiento. Aquí el caballo salta con jaque, así que las negras deben salvar al rey, y el alfil toma la torre.",
+   "narration": "¿Ves el alfil en b2? Quiere la torre en h8, pero tu propio caballo lo está bloqueando. ¡Así que el caballo salta a c6, con jaque! [move] Las negras tienen que salvar al rey. [move] Y el ataque oculto del alfil toma la torre. [move]"
+  },
+  {
+   "id": "discovered-check-queen",
+   "title": "Jaque a la descubierta",
+   "prompt": "Mueve el alfil fuera de la columna 'e' con jaque y ataca a la dama al mismo tiempo.",
+   "hint": "Una vez que el alfil se mueve, la torre en e1 da jaque al rey. ¿Qué casilla de alfil también golpea a a4?",
+   "success": "Bc2+ descubre el jaque de la torre en la columna 'e', y el alfil ahora apunta a la dama a través de b3. Las negras deben responder al jaque, así que Bxa4 gana a la dama.",
+   "narration": "Tu alfil está entre tu torre y el rey negro. Cualquier movimiento de alfil es jaque de la torre, así que haz que cuente: encuentra la casilla donde el alfil también ataca a la dama en a4."
+  },
+  {
+   "id": "bishop-sac-check",
+   "title": "Toma con jaque",
+   "prompt": "Tu torre y la dama negra se enfrentan en la columna 'e'. Gana la dama.",
+   "hint": "El alfil bloquea la columna 'e'. Muévelo con jaque, agarrando un peón en el camino.",
+   "success": "Bxh7+ es jaque del alfil y descubre la torre sobre la dama. El negro tiene que atender el jaque, y Rxe8+ se lleva la dama.",
+   "narration": "Ahora mismo, tu alfil bloquea tu propia torre de la dama negra. Toma el peón en h7 con jaque. El negro está ocupado con el rey, y la torre se lleva la dama."
+  },
+  {
+   "id": "why-discovered-works",
+   "title": "¿Por qué funciona?",
+   "question": "¿Por qué los ataques a la descubierta son tan fuertes?",
+   "options": [
+    {
+     "text": "La pieza que se mueve puede ir casi a cualquier parte y tomar algo, porque el oponente debe atender el jaque primero.",
+     "why": "El jaque viene de la pieza detrás, así que la pieza que se mueve está libre de atacar, capturar o incluso exponerse. El oponente solo tiene tiempo para el rey."
+    },
+    {
+     "text": "Un ataque a la descubierta nunca puede ser bloqueado.",
+     "why": "Puede ser bloqueado como cualquier jaque de una torre, alfil o dama. Su fuerza es que la otra pieza hace una segunda amenaza al mismo tiempo."
+    },
+    {
+     "text": "La pieza que se mueve no puede ser capturada.",
+     "why": "Puede ser capturada, pero no mientras el rey está en jaque. Por eso se sale con la suya."
+    }
+   ],
+   "narration": "Último aviso. ¿Qué hace que un ataque a la descubierta sea tan peligroso? Piensa en qué pieza da el jaque y qué puede hacer la otra pieza mientras tanto. ¡Bien hecho hoy!"
+  }
+ ]
+}

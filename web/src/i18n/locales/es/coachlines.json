@@ -1,0 +1,217 @@
+{
+  "_text": {
+    "gameTitle": "Tu partida contra {{opponent}}",
+    "gameTitlePlain": "Tu partida",
+    "gameSummary": "Los momentos que decidieron tu partida, para que encuentres la mejor jugada.",
+    "moveTitle": "Jugada {{move}}",
+    "findTitle": "Encuentra la mejor jugada",
+    "whyTitle": "¿Qué salió mal?",
+    "sessionSummary": "Un error tuyo, una lección rápida y problemas elegidos para ti.",
+    "placementTitle": "¿Qué sabes ya? {{category}}",
+    "placementIntro": "Aquí tienes una posición de cada una de {{count}} lecciones de {{category}} que no has hecho. Resuélvela al primer intento, sin pistas, y podrás marcar esa lección como sabida y saltarla.",
+    "placementSummary": "Una prueba rápida para saltarte las lecciones que ya sabes."
+  },
+  "_domains": {
+    "count": [
+      2,
+      20
+    ],
+    "move": [
+      1,
+      80
+    ],
+    "percent": [
+      0,
+      100
+    ]
+  },
+  "skills": {
+    "hanging-piece": {
+      "name": "las piezas colgadas",
+      "title": "Piezas colgadas",
+      "option": "Una pieza quedó colgada",
+      "idea": "Antes de cada jugada, mira qué puede capturar gratis tu rival.",
+      "missed": "Aquí había una pieza gratis para capturar.",
+      "allowed": "Esta jugada dejó una pieza sin defensa."
+    },
+    "defence": {
+      "name": "la defensa",
+      "title": "Defensa",
+      "option": "Había una amenaza que parar",
+      "idea": "Cuando te atacan, busca la jugada que lo sostiene todo.",
+      "missed": "Primero había que atender una amenaza.",
+      "allowed": "Esta jugada ignoró la amenaza de tu rival."
+    },
+    "fork": {
+      "name": "las horquillas",
+      "title": "Horquillas",
+      "option": "Una horquilla",
+      "idea": "Una horquilla es una pieza que ataca dos objetivos a la vez.",
+      "missed": "Aquí tenías una horquilla.",
+      "allowed": "Esta jugada permitió una horquilla a tu rival."
+    },
+    "pin": {
+      "name": "las clavadas",
+      "title": "Clavadas",
+      "option": "Una clavada",
+      "idea": "Una pieza clavada no puede moverse sin exponer algo más valioso detrás.",
+      "missed": "Aquí podías clavar una pieza.",
+      "allowed": "Esta jugada cayó en una clavada."
+    },
+    "skewer": {
+      "name": "las enfiladas",
+      "title": "Enfiladas",
+      "option": "Una enfilada",
+      "idea": "Una enfilada ataca una pieza grande y gana la que está detrás.",
+      "missed": "Aquí había una enfilada.",
+      "allowed": "Esta jugada alineó tus piezas para una enfilada."
+    },
+    "discovered-attack": {
+      "name": "los ataques a la descubierta",
+      "title": "Ataques a la descubierta",
+      "option": "Un ataque a la descubierta",
+      "idea": "Quita una pieza del camino y la que está detrás ataca.",
+      "missed": "Aquí esperaba un ataque a la descubierta.",
+      "allowed": "Esta jugada permitió un ataque a la descubierta."
+    },
+    "deflection": {
+      "name": "la desviación",
+      "title": "Desviación",
+      "option": "Un defensor estaba sobrecargado",
+      "idea": "Aleja a un defensor y cae lo que protegía.",
+      "missed": "Aquí podías desviar a un defensor.",
+      "allowed": "Esta jugada dejó a un defensor con demasiadas tareas."
+    },
+    "sacrifice": {
+      "name": "los sacrificios",
+      "title": "Sacrificios",
+      "option": "Un sacrificio",
+      "idea": "A veces entregar material gana algo mucho más grande.",
+      "missed": "Un sacrificio habría roto la posición aquí.",
+      "allowed": "Esta jugada permitió a tu rival romper con un sacrificio."
+    },
+    "mate-in-one": {
+      "name": "el mate en uno",
+      "title": "Mate en uno",
+      "option": "Jaque mate en una jugada",
+      "idea": "Mira siempre todos los jaques. Uno de ellos puede ser mate.",
+      "missed": "Aquí tenías jaque mate en una jugada.",
+      "allowed": "Esta jugada permitió mate en uno."
+    },
+    "mating-attack": {
+      "name": "los ataques de mate",
+      "title": "Ataques de mate",
+      "option": "Un mate forzado",
+      "idea": "Jaques y amenazas, uno tras otro, hasta que el rey no tenga adónde ir.",
+      "missed": "Aquí tenías un mate forzado.",
+      "allowed": "Esta jugada permitió a tu rival forzar el mate."
+    },
+    "back-rank": {
+      "name": "la última fila",
+      "title": "Mates en la última fila",
+      "option": "Un mate en la última fila",
+      "idea": "Un rey encerrado tras sus peones puede recibir mate en la última fila.",
+      "missed": "Su última fila estaba débil aquí.",
+      "allowed": "Esta jugada dejó tu última fila expuesta al mate."
+    },
+    "promotion": {
+      "name": "la coronación",
+      "title": "Coronación",
+      "option": "Un peón podía coronar",
+      "idea": "Un peón que llega a la última fila se convierte en dama. Empújalo, o detenlo.",
+      "missed": "Aquí podías avanzar un peón hasta coronar.",
+      "allowed": "Esta jugada dejó pasar al peón de tu rival."
+    },
+    "pawn-endgame": {
+      "name": "los finales de peones",
+      "title": "Finales de peones",
+      "option": "Una idea de final de peones",
+      "idea": "En los finales de peones cada tiempo cuenta: calcula antes de mover.",
+      "missed": "Aquí había una jugada de peón ganadora.",
+      "allowed": "Esta jugada tiró el final de peones."
+    },
+    "piece-endgame": {
+      "name": "los finales con piezas",
+      "title": "Finales con piezas",
+      "option": "Una técnica de final",
+      "idea": "En el final, activa tu rey y tus piezas antes que nada.",
+      "missed": "Aquí había una forma más limpia de ganar el final.",
+      "allowed": "Esta jugada complicó el final."
+    }
+  },
+  "briefing": {
+    "hello": [
+      "¡Hola, soy Rooky!",
+      "¡Bienvenido de vuelta! Aquí Rooky.",
+      "¡Qué gusto verte! Soy Rooky."
+    ],
+    "games": {
+      "1": "Jugaste una partida desde la última vez.",
+      "other": "Jugaste {{count}} partidas desde la última vez."
+    },
+    "noGames": "Juega o importa algunas partidas y encontraré en qué trabajar.",
+    "focus": "Ahora mismo trabajamos en {{skill}}.",
+    "missedWeek": {
+      "1": "Esta semana se te escapó una de estas en tus partidas.",
+      "other": "Esta semana se te escaparon {{count}} de estas en tus partidas."
+    },
+    "cleanWeek": "Esta semana no fallaste ninguna en tus partidas. ¡Bien!",
+    "progress": "Desde que empezamos, el {{percent}} por ciento de tus respuestas fueron limpias.",
+    "almost": "Ya casi lo dominas.",
+    "graduated": "¡Dominaste {{skill}}! Hora de algo nuevo.",
+    "added": "Nuevo objetivo: {{skill}}.",
+    "session": [
+      "Tu sesión está lista. ¡Vamos!",
+      "Preparé la sesión de hoy para ti. ¿Listo?",
+      "La sesión de hoy te espera."
+    ],
+    "sessionDone": [
+      "Terminaste la sesión de hoy. ¡Gran trabajo!",
+      "Sesión completada por hoy. ¡Hasta mañana!"
+    ]
+  },
+  "recap": {
+    "focus": "Esto tiene que ver con lo que estamos trabajando: {{skill}}.",
+    "lesson": "Te preparé una lección con esta partida. ¿Quieres verla?",
+    "clean": "No hay grandes errores que corregir en esta partida. ¡Bien!"
+  },
+  "lesson": {
+    "gameIntro": [
+      "Veamos los momentos que decidieron esta partida.",
+      "Volvamos a los momentos clave de esta partida."
+    ],
+    "onMove": "En la jugada {{move}}, jugaste",
+    "reply": "Ahora tu rival puede jugar",
+    "best": "La mejor jugada era",
+    "find": [
+      "Encuentra la mejor jugada.",
+      "Ahora encuentra la jugada que se te escapó."
+    ],
+    "whatWentWrong": "¿Qué salió mal aquí?",
+    "gameOutro": [
+      "Esos son los momentos que hay que recordar de esta partida.",
+      "Recuerda esto y la próxima partida irá mejor."
+    ],
+    "sessionIntro": "La sesión de hoy: {{skill}}.",
+    "yourMoment": [
+      "Aquí hay un momento de una de tus partidas.",
+      "Primero, un momento de tus propias partidas."
+    ],
+    "practice": [
+      "Ahora te toca. Encuentra la mejor jugada.",
+      "Tu turno. Encuentra la jugada más fuerte.",
+      "Encuentra la idea ganadora."
+    ],
+    "review": "Esta se te resistió antes. Inténtalo de nuevo.",
+    "solved": [
+      "¡Eso es!",
+      "¡Bien visto!",
+      "¡Exacto!",
+      "¡Esa es la jugada!"
+    ],
+    "sessionOutro": [
+      "Esa es la sesión de hoy. ¡Gran trabajo!",
+      "Sesión terminada. Cada una de estas te hace más fuerte."
+    ]
+  }
+}

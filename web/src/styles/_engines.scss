@@ -1,0 +1,305 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+/* Settings → Engines (EngineSettings.tsx): the analysis engine, then installed, available and custom
+   engines as rows; a row opens onto its facts, models and config profile (EngineProfileEditor.tsx). */
+.engines-group {
+  padding: 10px 0 8px;
+  border-top: 1.5px solid $lobby-track;
+}
+.settings-group h2 + .engines-group {
+  border-top: 0;
+}
+.engines-group-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.engines-group-heading h3 {
+  margin: 0;
+  font: 900 #{$fs-md} $font-sans;
+}
+.engines-group-heading > span {
+  font-size: $fs-xs;
+  color: $lobby-muted;
+}
+.engines-empty {
+  margin: 0;
+  font-size: $fs-sm;
+  color: $lobby-muted;
+}
+
+.engine-row {
+  border: 1.5px solid $lobby-line;
+  border-radius: 14px;
+  background: $white;
+}
+.engine-row + .engine-row {
+  margin-top: 6px;
+}
+.engine-row.open {
+  border-color: $lobby-selected-line;
+}
+.engine-row-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 8px 12px;
+}
+.engine-figure {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: $lobby-tile;
+  object-fit: cover;
+  object-position: 50% 10%;
+}
+.engine-row-toggle {
+  flex: 1 1 260px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  @include focus-ring;
+}
+.engine-row-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.engine-row-title strong {
+  font: 900 #{$fs-md} $font-sans;
+}
+.engine-row-toggle small {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: $fs-xs;
+  line-height: 1.35;
+  color: $lobby-muted;
+}
+.engine-type {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: $slate-100;
+  color: $slate-700;
+  font: 800 #{$fs-2xs} $font-sans;
+}
+.engine-type-neural {
+  background: $wheat-100;
+  color: $wheat-700;
+}
+.engine-type-custom {
+  background: $lobby-pill;
+  color: $brand-green;
+}
+.engine-rating {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $brand-green;
+}
+.engine-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.engine-row-actions .button,
+.engine-option-control .button,
+.engine-fields .button {
+  min-height: 32px;
+  padding: 5px 12px;
+  font-size: $fs-sm;
+}
+
+.engine-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px 10px;
+}
+.engine-progress i {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: $lobby-track;
+  overflow: hidden;
+}
+.engine-progress b {
+  display: block;
+  height: 100%;
+  background: $lobby-green;
+  transition: width 0.3s ease;
+}
+.engine-progress span {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $lobby-muted;
+}
+.engine-error {
+  margin: 0;
+  padding: 0 12px 10px;
+  font-size: $fs-sm;
+  color: $red-600;
+}
+.engine-error-inline {
+  font-size: $fs-xs;
+  color: $red-600;
+}
+
+/* An open row: facts as chips, capabilities, models and the config profile. */
+.engine-more {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 12px 12px;
+  border-top: 1.5px solid $lobby-track;
+}
+.engine-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.engine-detail > * {
+  align-self: stretch;
+}
+.engine-detail > .engine-repo {
+  align-self: flex-start;
+}
+.engine-detail h4 {
+  margin: 4px 0 0;
+  font: 900 #{$fs-sm} $font-sans;
+  color: $lobby-muted;
+}
+.engine-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.engine-facts li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: $lobby-track;
+  font-size: $fs-xs;
+}
+.engine-facts li span {
+  color: $lobby-muted;
+}
+.engine-facts li b {
+  font: 500 #{$fs-xs} $font-mono;
+}
+.engine-facts li.off b {
+  color: $sage-500;
+}
+.engine-repo {
+  font: 800 #{$fs-sm} $font-sans;
+  color: $moss-700;
+}
+.engine-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1.5px solid $lobby-track;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.engine-options li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 7px 10px;
+}
+.engine-options li + li {
+  border-top: 1.5px solid $lobby-track;
+}
+.engine-option-name {
+  flex: 1 1 180px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.engine-option-name strong {
+  font: 800 #{$fs-sm} $font-sans;
+}
+.engine-option-name small {
+  font: 500 #{$fs-xs} $font-mono;
+  color: $lobby-muted;
+}
+.engine-option-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.engine-model-installed {
+  font: 800 #{$fs-xs} $font-sans;
+  color: $green-700;
+}
+.engine-option-control :is(input, select),
+.engine-fields :is(input, select) {
+  padding: 5px 9px;
+  border: 1.5px solid $lobby-line-strong;
+  border-radius: 8px;
+  background: $white;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $lobby-ink;
+}
+.engine-option-control :is(input, select) {
+  width: 170px;
+}
+.engine-fields {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.engine-fields input {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-family: $font-sans;
+}
+.engine-note {
+  margin: 0;
+  font-size: $fs-xs;
+  line-height: 1.4;
+  color: $lobby-muted;
+}
+.engine-custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.engine-custom-form .engine-error {
+  padding: 0;
+}
+
+@include down(md) {
+  .engine-option-control :is(input, select) {
+    width: 100%;
+  }
+  .engine-option-control {
+    flex: 1 1 100%;
+  }
+}
+@include reduced-motion {
+  .engine-progress b {
+    transition: none;
+  }
+}

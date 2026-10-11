@@ -1,0 +1,72 @@
+{
+  "label": "Detailed game stats",
+  "counts": "{{blunders}} blunders · {{mistakes}} mistakes · {{moves}} moves",
+  "phases": {
+    "title": "Accuracy by phase",
+    "opening": "Opening",
+    "middlegame": "Middlegame",
+    "endgame": "Endgame",
+    "note": "Lichess accuracy formula · {{accuracy}} overall",
+    "train": "Train this phase"
+  },
+  "heatmap": {
+    "title": "Where your mistakes happen",
+    "moves": "Moves {{bucket}}",
+    "peak": "Your errors peak at moves {{bucket}}."
+  },
+  "strength": {
+    "title": "Against opponent strength",
+    "opponent": "Opponent",
+    "much_lower": "Much lower (−200)",
+    "lower": "Lower",
+    "similar": "Similar (±50)",
+    "higher": "Higher",
+    "much_higher": "Much higher (+200)"
+  },
+  "time": {
+    "title": "Think time and errors",
+    "think": "Think time",
+    "errors": "Errors",
+    "blunders": "Blunders",
+    "empty": "Analyze games played with a clock to see how time affects your mistakes."
+  },
+  "table": {
+    "games": "Games",
+    "wdl": "W / D / L",
+    "score": "Score",
+    "moves": "Moves"
+  },
+  "coach": {
+    "title": "Coach notes",
+    "tilt_one": "Take a break after a loss: you score lower in the game right after one.",
+    "tilt_other": "Take a break after {{count}} losses in a row: your score drops after that."
+  },
+  "motifs": {
+    "title": "Your blind spots",
+    "intro_one": "Read from {{count}} mistake or blunder in your analyzed games: the tactic it let your opponent play, and the one you could have played.",
+    "intro_other": "Read from {{count}} mistakes and blunders in your analyzed games: the tactic each let your opponent play, and the one you could have played.",
+    "allowed": "What you allowed",
+    "missed": "What you missed",
+    "allowedNone": "No tactic stands out in what you allowed.",
+    "missedNone": "No tactic stands out in what you missed.",
+    "times_one": "{{count}} time",
+    "times_other": "{{count}} times",
+    "practice": "Practice these puzzles",
+    "example": "See it vs {{opponent}}",
+    "unknown": "unknown",
+    "tags": {
+      "hangingPiece": "A hanging piece",
+      "fork": "A fork",
+      "mateIn1": "Mate in 1",
+      "mateIn2": "Mate in 2",
+      "mateIn3": "Mate in 3",
+      "mateIn4": "Mate in 4",
+      "backRankMate": "A back-rank mate",
+      "promotion": "A promotion"
+    },
+    "trend": {
+      "better": "Rarer lately: {{recent}} per 10 games, down from {{earlier}}.",
+      "worse": "More often lately: {{recent}} per 10 games, up from {{earlier}}."
+    }
+  }
+}

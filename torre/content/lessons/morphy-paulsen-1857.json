@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "title": "Morphy against Paulsen",
+  "summary": "New York, 1857: the twenty-year-old Morphy gives his queen for a bishop and hunts the white king with a rook and a bishop.",
+  "category": "history",
+  "unit": "Paul Morphy",
+  "order": 2,
+  "level": "intermediate",
+  "minutes": 7,
+  "requires": ["morphy-opera-game"],
+  "orientation": "black",
+  "practice": "sacrifice",
+  "steps": [
+    {
+      "id": "new-york-1857",
+      "kind": "explain",
+      "title": "New York, 1857",
+      "text": "In 1857 the best players in America met in New York for the first American Chess Congress. Paul Morphy, twenty years old and from New Orleans, won it. This game comes from his final match against Louis Paulsen, a careful, patient player. You sit on Black's side, as Morphy.",
+      "narration": "New York, 1857. Young Paul Morphy meets Louis Paulsen in the final of the first American Chess Congress. You play Black, as Morphy. Keep an eye on his queen: she does not stay on the board for long.",
+      "pose": "present",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Paulsen – Morphy, New York 1857",
+      "text": "Morphy lets a pawn go to get his pieces out fast, then parks his queen deep in White's camp. When Paulsen tries to trade it off, Morphy has a much bigger idea. The game stops at Morphy's key moves: find them.",
+      "narration": "Morphy develops fast and puts his queen right in the middle of White's position. When Paulsen tries to chase it away, get ready. You will find Morphy's key moves.",
+      "pose": "playing",
+      "notes": [
+        { "ply": 12, "text": "6...Re8: Morphy lets the e5 pawn go and puts his rook on the open e-file instead. He wants time and open lines, not pawns." },
+        { "ply": 20, "text": "10...Rxe4: the pawn is back, and every black piece is active." },
+        { "ply": 24, "text": "12...Qd3! The queen settles on d3. She blocks White's d-pawn, so the bishop on c1 and the rook on a1 cannot get out easily." },
+        { "ply": 33, "text": "17.Qa6: Paulsen's queen attacks Morphy's queen on d3. Most players would trade queens or step back." },
+        { "ply": 35, "text": "18.gxf3: Paulsen has to take, and his king loses the pawn on g2 that sheltered it." },
+        { "ply": 44, "text": "22...Bg2+: the bishop dances around the king, check after check, while the white queen and rooks watch from the queenside." },
+        { "ply": 48, "text": "24...Bxf2: the other bishop joins in, and now the white queen must run back to defend." },
+        { "ply": 50, "text": "25...Bxf1: Morphy takes the queen. He has won back more than he gave." }
+      ],
+      "guesses": [
+        {
+          "ply": 34,
+          "prompt": "Paulsen's queen attacks yours. Morphy neither trades nor retreats. What does he play?",
+          "hint": "The bishop on f3 is the only piece guarding White's king. What happens if it disappears?",
+          "why": "17...Qxf3!! Morphy gives his queen for a bishop. After 18.gxf3 the white king has no pawn in front of it on the g-file, and Black's rook and bishop can attack it with check after check."
+        },
+        {
+          "ply": 36,
+          "prompt": "Paulsen took the queen. Start the attack on the open king.",
+          "hint": "The g-file just opened. Which piece can use it with check?",
+          "why": "18...Rg6+ uses the open g-file at once. The king has to hide in the corner on h1."
+        },
+        {
+          "ply": 38,
+          "prompt": "The king is in the corner. Bring one more piece with a threat.",
+          "hint": "Your light-squared bishop can reach a square next to the white king.",
+          "why": "19...Bh3! The bishop is heading for g2. From there it checks the king, and when it moves on it uncovers a check from the rook on g6. White's queen and rooks are too far away to help."
+        },
+        {
+          "ply": 56,
+          "prompt": "Paulsen's 28.d4 lets his bishop on c1 attack your rook on h6. Morphy does not move the rook. What does he play?",
+          "hint": "The bishop attacks h6 along a diagonal. Can one of your pieces stand in the way?",
+          "why": "28...Be3! The bishop blocks the diagonal, so the rook on h6 is safe, and the rooks threaten to crash through on h2. Paulsen resigned."
+        }
+      ],
+      "moves": ["e2e4", "e7e5", "g1f3", "b8c6", "b1c3", "g8f6", "f1b5", "f8c5", "e1g1", "e8g8", "f3e5", "f8e8", "e5c6", "d7c6", "b5c4", "b7b5", "c4e2", "f6e4", "c3e4", "e8e4", "e2f3", "e4e6", "c2c3", "d8d3", "b2b4", "c5b6", "a2a4", "b5a4", "d1a4", "c8d7", "a1a2", "a8e8", "a4a6", "d3f3", "g2f3", "e6g6", "g1h1", "d7h3", "f1d1", "h3g2", "h1g1", "g2f3", "g1f1", "f3g2", "f1g1", "g2h3", "g1h1", "b6f2", "a6f1", "h3f1", "d1f1", "e8e2", "a2a1", "g6h6", "d2d4", "f2e3"]
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "A queen for an open king",
+      "marks": [["e6", "g6"], ["d7", "h3"]],
+      "text": "Morphy gave his queen for a bishop, yet Paulsen never got to enjoy the extra material. The trade tore open the white king, and the rook and bishop left behind did the work of a whole army. Extra material only helps if those pieces can reach the fight; Paulsen's queen and rooks were stuck on the queenside.",
+      "narration": "The queen sacrifice was never about material. It opened the white king, and Morphy's rook and bishop did the rest while White's extra pieces stood far away.",
+      "pose": "idea",
+      "fen": "4r1k1/p1pb1ppp/Qbp1r3/8/1P6/2P2P2/R2P1P1P/2B2RK1 b - - 0 18"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Why it worked",
+      "question": "Why could Morphy afford to give his queen for a bishop?",
+      "options": [
+        {
+          "text": "White's king lost its pawn cover, and White's queen and rooks were too far away to help",
+          "correct": true,
+          "why": "Exactly. Morphy's rook and bishop reached the king long before White's big pieces could come back."
+        },
+        {
+          "text": "Paulsen's queen was about to be trapped anyway",
+          "why": "Not so. Paulsen's queen on a6 was perfectly safe. Morphy gave his own queen on purpose."
+        },
+        {
+          "text": "A bishop is worth as much as a queen in the middlegame",
+          "why": "A queen is worth about three bishops. Morphy was paid in attack, not in material."
+        }
+      ],
+      "narration": "One question: why could Morphy afford to give away his queen?",
+      "pose": "thinking",
+      "fen": "4r1k1/p1pb1ppp/Qbp1r3/8/1P6/2P2P2/R2P1P1P/2B2RK1 b - - 0 18"
+    }
+  ]
+}

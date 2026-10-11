@@ -1,0 +1,10 @@
+{
+ "title": "Bienvenido a Torre",
+ "lead": "Aprende, juega y fortalece tu juego, un movimiento a la vez. Dos opciones rápidas y listo.",
+ "language": "Idioma",
+ "voice": "Voz de entrenador",
+ "voiceNote": "Descarga la narración de voz grabada para una narración natural que también funciona sin conexión. Puedes cambiar esto más adelante en Ajustes.",
+ "start": "Empezar",
+ "waiting": "Descargando...",
+ "skip": "Omitir por ahora, usar la voz del navegador"
+}

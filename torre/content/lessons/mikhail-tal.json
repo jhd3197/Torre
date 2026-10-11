@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "Mikhail Tal, the Magician from Riga",
+  "summary": "Yugoslavia, 1959: the 22-year-old Tal sacrifices his queen against a former world champion, and wins the brilliancy prize.",
+  "category": "history",
+  "level": "intermediate",
+  "minutes": 8,
+  "requires": ["morphy-opera-game"],
+  "unit": "Mikhail Tal",
+  "order": 1,
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-magician",
+      "kind": "explain",
+      "title": "The magician from Riga",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "Mikhail Tal played chess like a magician: pieces vanished from his board and reappeared in your nightmares. In 1959, at twenty-two, he faced Vasily Smyslov, a former world champion famous for impregnable defense, at the Candidates Tournament, with a world championship match at stake. Tal won this game with a queen sacrifice, took the brilliancy prize, and a year later was the youngest world champion in history. Press play.",
+      "narration": "Mikhail Tal, the magician from Riga. In 1959 he faced Smyslov, a former world champion, with a title match at stake. What he does in this game won the brilliancy prize. Press play.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "reel",
+      "title": "Tal – Smyslov, Candidates 1959",
+      "text": "Smyslov answers 1.e4 with the solid Caro-Kann. Tal responds the only way he knows: open lines, pieces forward, and a queen sacrifice that the chess world still talks about.",
+      "narration": "Smyslov chooses the solid Caro-Kann. Tal answers the only way he knows: open lines, pieces forward, and then the thunderbolt.",
+      "pose": "playing",
+      "moves": ["e2e4", "c7c6", "d2d3", "d7d5", "b1d2", "e7e5", "g1f3", "b8d7", "d3d4", "d5e4", "d2e4", "e5d4", "d1d4", "g8f6", "c1g5", "f8e7", "e1c1", "e8g8", "e4d6", "d8a5", "f1c4", "b7b5", "g5d2", "a5a6", "d6f5", "e7d8", "d4h4", "b5c4", "h4g5", "f6h5", "f5h6", "g8h8", "g5h5", "a6a2", "d2c3", "d7f6", "h5f7", "a2a1", "c1d2", "f8f7", "h6f7", "h8g8", "d1a1", "g8f7", "f3e5", "f7e6", "e5c6", "f6e4", "d2e3", "d8b6", "c3d4"],
+      "notes": [
+        { "ply": 9, "text": "5.d4! Tal opens the center immediately: against Smyslov, quiet maneuvering would be playing his game." },
+        { "ply": 17, "text": "9.O-O-O: Tal castles long. The kings glare at each other across an open board." },
+        { "ply": 19, "text": "10.Nd6! The knight plants itself in Black's position, and it cannot be chased away." },
+        { "ply": 25, "text": "13.Nf5! The knight eyes h6 and e7. The storm clouds gather over the black king." },
+        { "ply": 27, "text": "14.Qh4! The queen slides to the kingside. Something is brewing: Smyslov can feel it." },
+        { "ply": 29, "text": "15.Qg5! Every white piece is now aimed at the king. Black's knight jumps to h5 to block." },
+        { "ply": 31, "text": "16.Nh6+! A shocking check: taking the knight would tear open the g-file." },
+        { "ply": 33, "text": "17.Qxh5! Tal takes the knight. Smyslov grabs the a2 pawn with check, counterattacking…" },
+        { "ply": 37, "text": "19.Qxf7!! THE MOVE. Tal sacrifices his queen on the spot: the thunderbolt this game is famous for." },
+        { "ply": 39, "text": "20.Kd2! The king calmly steps up. Black must take the queen, and walk into what Tal prepared." },
+        { "ply": 41, "text": "21.Nxf7+! Check, and now Black's queen on a1 is lost. This was Tal's idea all along." },
+        { "ply": 43, "text": "22.Rxa1: the queen is recaptured. When the smoke clears, Tal has won material with a crushing position." },
+        { "ply": 51, "text": "26.Bd4! and Smyslov resigned. The judges gave Tal the tournament's brilliancy prize." }
+      ]
+    },
+    {
+      "id": "the-sacrifice",
+      "kind": "play",
+      "title": "Play the thunderbolt",
+      "fen": "r1bb1r1k/p4ppp/2p2n1N/7Q/2p5/2B2N2/qPP2PPP/2KR3R w - - 2 19",
+      "prompt": "Black's knight just attacked your queen, and his queen is about to take on a2 with check. Every defender would save the queen. Tal did the opposite: find his move, then follow the combination.",
+      "hint": "The queen is not running away. She has one last job to do on f7.",
+      "line": ["h5f7", "a2a1", "c1d2", "f8f7", "h6f7"],
+      "success": "Qxf7!! Qa1+ Kd2! Rxf7 Nxf7+: the queen comes back with interest. You saw it the way Tal saw it.",
+      "narration": "Here is the moment. Your queen is attacked, and Tal's answer made this game immortal. Find it.",
+      "pose": "detective"
+    },
+    {
+      "id": "his-style",
+      "kind": "choose",
+      "title": "The Tal style",
+      "question": "What made Mikhail Tal so terrifying to play against, even for world champions?",
+      "options": [
+        { "text": "His sacrifices dragged opponents into complications only he could navigate", "correct": true, "why": "Exactly. Tal said there were two kinds of sacrifices: correct ones, and his. The complications did the rest." },
+        { "text": "He ground out tiny endgame edges for eighty moves", "why": "That was Smyslov's and Karpov's territory. Tal wanted the opposite: chaos, as early as possible." },
+        { "text": "He never took risks and waited for mistakes", "why": "Tal took risks almost every game: that was the whole point. His opponents' mistakes came from the pressure." }
+      ],
+      "narration": "Last question: what exactly made Tal so terrifying?",
+      "pose": "thinking"
+    }
+  ]
+}

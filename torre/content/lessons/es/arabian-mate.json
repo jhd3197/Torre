@@ -1,0 +1,49 @@
+{
+ "title": "El Mate Árabe",
+ "summary": "Una torre y un caballo se unen para atrapar al rey en una esquina. Es uno de los patrones de mate más antiguos que existen.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "the-pattern",
+   "title": "Torre y caballo en la esquina",
+   "text": "El rey negro está en la esquina. El caballo en f6 protege h7 y g8. Si la torre da jaque desde h7, el caballo lo defiende, así que el rey no puede capturar, y la propia torre cubre g7. Cada casilla está bloqueada. El patrón es muy antiguo: ya se conocía en shatranj, el antepasado árabe del ajedrez.",
+   "narration": "Aquí tienes una pareja clásica. El caballo en f6 protege h7 y g8, justo al lado del rey acorralado. Coloca la torre en h7 y el caballo la protege. El rey no puede capturar y no queda ningún lugar a donde escapar."
+  },
+  {
+   "id": "rook-to-h7",
+   "title": "Cierra la esquina",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "¿Qué casilla al lado del rey protege el caballo?",
+   "success": "La torre a h7 es mate. El caballo protege a la torre y cubre g8, y la torre cubre g7.",
+   "narration": "Tu movimiento. Desliza la torre a lo largo de la séptima fila hasta la casilla que protege el caballo. Ese es el Mate Árabe."
+  },
+  {
+   "id": "knight-first",
+   "title": "Avanza el caballo con jaque",
+   "prompt": "Mate en dos. El caballo se une al ataque con jaque primero.",
+   "hint": "Desde f6 el caballo da jaque a g8 y también protege h7.",
+   "success": "El caballo a f6 con jaque deja solo h8, ya que el propio alfil de las negras bloquea f8 y tu torre cubre la séptima fila. Entonces la torre a h7 es el mate árabe.",
+   "narration": "Primero, mueve el caballo a f6 con jaque. El propio alfil de las negras está en el camino en f8, así que el rey debe deslizarse hacia la esquina. Luego, la torre aterriza en h7, y es mate."
+  },
+  {
+   "id": "rook-on-seventh",
+   "title": "¿Por qué la séptima fila?",
+   "question": "¿Por qué una torre en la séptima fila es tan útil para este mate?",
+   "options": [
+    {
+     "text": "Puede deslizarse directamente a h7 y, mientras tanto, mantiene al rey fuera de la séptima fila.",
+     "why": "Desde la séptima fila, la torre llega a h7 en un movimiento y protege g7 todo el tiempo."
+    },
+    {
+     "text": "Protege al caballo.",
+     "why": "El caballo protege a la torre en este mate, no al revés."
+    },
+    {
+     "text": "Las torres son más fuertes en la séptima fila porque se mueven más lejos.",
+     "why": "Una torre se mueve de la misma manera en todas partes. La séptima fila importa aquí debido a los cuadrados que cubre junto al rey."
+    }
+   ],
+   "narration": "Última pregunta. ¿Por qué la torre ama la séptima fila en este patrón? Piensa en qué casillas cubre. Domina esto, y el mate árabe es tuyo. ¡Bien hecho!"
+  }
+ ]
+}

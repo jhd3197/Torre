@@ -1,0 +1,91 @@
+{
+ "title": "La estrangulación de Karpov",
+ "summary": "Bien, 1974: Anatoli Karpov le quita a su oponente cada movimiento útil hasta que se rinde con material igual.",
+ "unit": "Karpov y Kasparov",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Bien, 1974",
+   "text": "Anatoli Karpov se convirtió en campeón del mundo en 1975, cuando Bobby Fischer no defendió su título, y luego lo mantuvo durante diez años. Su estilo fue una lenta estrangulación: toma espacio, quita los buenos casilleros al oponente y espera. En la Olimpiada de 1974 en Niza jugó contra el Gran Maestro alemán Wolfgang Unzicker.",
+   "narration": "Niza, 1974. Un joven Anatoli Karpov, pronto a ser campeón del mundo, contra Wolfgang Unzicker. Observa una estrangulación."
+  },
+  {
+   "id": "the-game",
+   "title": "Karpov – Unzicker, Olimpiada de Niza 1974",
+   "text": "Una Apertura Española cerrada. Nada dramático sucede durante mucho tiempo: Karpov bloquea el centro, toma el alfil 'a' y lentamente empuja las piezas de las negras hasta que no tienen nada que hacer.",
+   "notes": [
+    {
+     "text": "13.d5: Karpov cierra el centro. Ahora la lucha se desplaza a las alas."
+    },
+    {
+     "text": "15.axb5: el alfil 'a' se abre. Karpov lo quiere para sus torres."
+    },
+    {
+     "text": "22...c4: Unzicker cierra el flanco de dama también. Sus piezas se están quedando sin espacio."
+    },
+    {
+     "text": "24.Ba7!: Un casillero sorprendente. El alfil se sienta en el campo de las negras donde ningún peón puede perseguirlo, y la torre de las negras en a8 no tiene una columna."
+    },
+    {
+     "text": "26.Rea1: ambas torres blancas están en la columna 'a'."
+    },
+    {
+     "text": "30.f4: con el flanco de dama bloqueado, Karpov abre un segundo frente en el flanco de rey."
+    },
+    {
+     "text": "31.f5: el flanco de rey también está bloqueado. Las blancas tienen más espacio por todas partes."
+    },
+    {
+     "text": "41.Bxf7+: los alfiles de casillas claras se retiran. Ahora g6 es un punto débil."
+    },
+    {
+     "text": "44.Nh5: el material es exactamente igual, pero Unzicker renunció. Sus piezas están atrapadas, y la dama y los caballos blancos se acercan al rey."
+    }
+   ],
+   "narration": "No hay fuegos artificiales aquí. Karpov toma casillas, columnas y espacio, un movimiento tranquilo a la vez.",
+   "guesses": [
+    {
+     "prompt": "Karpov quiere intercambiar al mejor defensor de casillas claras de las negras.",
+     "hint": "Tu alfil de casillas claras puede ofrecer un cambio al alfil en f7.",
+     "why": "35.Bh5 ofrece un cambio de alfiles de casillas claras. Una vez que se van, g6 y f7 cerca del rey negro se convierten en puntos débiles."
+    },
+    {
+     "prompt": "Los alfiles se han ido. ¿A dónde va la dama?",
+     "hint": "Usa la casilla que acaba de dejar el alfil.",
+     "why": "42.Qh5 apunta a g6, el punto débil delante del rey. A continuación viene Qg6 y un caballo a h5."
+    },
+    {
+     "prompt": "La dama está en h5. Muévela al hueco.",
+     "hint": "¿Qué casilla delante del rey negro nunca podrá cubrir ningún peón negro?",
+     "why": "43.Qg6 coloca la dama al lado del rey negro. Ningún peón puede perseguirla, y los caballos vienen a ayudar."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "¿Por qué renunciar?",
+   "question": "Al final, el material estaba exactamente igual. ¿Por qué renunció Unzicker?",
+   "options": [
+    {
+     "text": "Sus piezas no tenían buenas jugadas y no podían detener las amenazas de blancas.",
+     "why": "Bien. Karpov quitó cada cuadrado útil, así que el material no importó."
+    },
+    {
+     "text": "Se le acabó el tiempo.",
+     "why": "Nada en la partida muestra eso. La posición en sí estaba perdida."
+    },
+    {
+     "text": "Tenía un jaque mate forzado contra él en un movimiento.",
+     "why": "No había mate en un movimiento. Las amenazas llegaron lentamente, pero no se podían detener."
+    }
+   ],
+   "narration": "El material estaba igualado. ¿Por qué se rindió negro?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Quita las buenas jugadas.",
+   "text": "Karpov ganó sin una sola entrega. Tomó espacio, puso un alfil donde nunca podría ser atacado, dominó la columna 'a' e intercambió las piezas que defendían los peones débiles de las negras. Cuando tu oponente no tiene movimientos útiles, la posición puede perderse incluso con material igual.",
+   "narration": "No siempre necesitas ganar material. Quita las buenas jugadas a tu oponente, y la posición se gana sola."
+  }
+ ]
+}

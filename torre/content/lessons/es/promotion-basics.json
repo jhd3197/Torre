@@ -1,0 +1,49 @@
+{
+ "title": "Coronación",
+ "summary": "Cuando un peón llega a la última fila, se transforma en dama, torre, alfil o caballo. Aprende cómo funciona la coronación y por qué la dama suele ser la opción preferida.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "reach-the-end",
+   "title": "De peón a dama",
+   "text": "Cuando un peón llega al final del tablero, debe ser coronado: lo cambias por una dama, torre, alfil o caballo de tu color. Incluso puedes tener dos o tres damas a la vez. Casi siempre eliges una dama, porque es la pieza más poderosa.",
+   "narration": "Cada peón sueña con llegar al otro lado del tablero. Cuando lo hace, se transforma en la pieza que desees, y casi siempre eso es una dama nueva. [move]"
+  },
+  {
+   "id": "make-a-queen",
+   "title": "Corona tu peón",
+   "prompt": "Tu peón está a un paso del final. Corónalo a dama.",
+   "hint": "Empuja el peón a e8 y elige la dama.",
+   "success": "Una dama nueva, y además con jaque. La torre de las negras no es rival para ella.",
+   "narration": "Tu peón en e7 está a un paso de la gloria, y nada puede detenerlo. Empújalo hacia adelante y elige la dama."
+  },
+  {
+   "id": "capture-to-promote",
+   "title": "Corona capturando",
+   "prompt": "La casilla delante de tu peón está bloqueada. Encuentra otra forma de coronar.",
+   "hint": "Los peones capturan en diagonal, y una captura en la última fila también coronará.",
+   "success": "El peón captura la torre y se convierte en dama en el mismo movimiento. Ganaste una torre y obtuviste una dama.",
+   "narration": "El caballo negro bloquea el camino de tu peón. Pero un peón también puede coronar capturando en diagonal hacia la última fila. ¿Hay algo para capturar?"
+  },
+  {
+   "id": "promotion-quiz",
+   "title": "Revisión rápida",
+   "question": "Tu peón llega a la última fila. ¿A qué de estas NO puede convertirse?",
+   "options": [
+    {
+     "text": "Un rey",
+     "why": "Cada bando tiene exactamente un rey. Un peón puede convertirse en dama, torre, alfil o caballo."
+    },
+    {
+     "text": "Una segunda dama",
+     "why": "Puedes tener más de una dama. Coronar a dama es la elección habitual."
+    },
+    {
+     "text": "Un caballo",
+     "why": "Coronar a caballo está permitido, y de vez en cuando es la mejor opción, por ejemplo cuando da un jaque ganador."
+    }
+   ],
+   "narration": "Última pregunta. Un peón puede convertirse en casi cualquier cosa cuando llega al final. Casi. ¿Qué pieza está fuera de la lista?"
+  }
+ ]
+}

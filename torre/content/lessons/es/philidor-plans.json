@@ -1,0 +1,55 @@
+{
+ "title": "Los planes de Philidor",
+ "summary": "Dos maneras de jugar la defensa Philidor: mantener e5 con ...c6 y ...Qc7, o tomar en d4 y atacar e4 con ...Re8.",
+ "unit": "Defensa Philidor",
+ "steps": [
+  {
+   "id": "hold-e5",
+   "title": "Plan uno: mantener e5",
+   "text": "El primer plan mantiene el peón en e5 sin importar qué. El peón de d, el caballo en d7 y más tarde la dama en c7 lo protegen, y ...c6 crea espacio para la dama. La posición de las negras está un poco apretada, pero muy difícil de romper. Más tarde las negras pueden jugar ...b5 en el flanco de dama, o ...exd4 cuando sea el momento oportuno.",
+   "narration": "El plan uno es el punto fuerte. El blanco ataca con peón a d4. [move] Caballo a f6. [move] Caballo a c3. [move] El otro caballo protege e5 desde d7. [move] Alfil a c4. [move] Alfil a e7. [move] El blanco enroca. [move] Tú también enroca. [move] Torre a e1. [move] Peón a c6 crea espacio. [move] Peón a a4. [move] Y la dama protege e5 desde c7. [move] Es una fortaleza. Lento, pero muy difícil de romper."
+  },
+  {
+   "id": "calm-vs-ng5",
+   "title": "Mantén la calma",
+   "prompt": "El caballo del blanco salta a g5 para mirar a f7. Tú ya has enrocado, así que f7 está seguro. Haz un movimiento calmado y útil.",
+   "hint": "f7 está protegido por tu torre y rey. Sigue con tu propio plan: libera el centro, lanza al alfil o prepara ...Qc7.",
+   "success": "Bien. Con tu rey enrocado, el caballo en g5 no es una amenaza real para f7, y puedes continuar con tu plan. Tomar en d4, perseguir al alfil con ...Nb6, o un movimiento de peón a c6 o c5 son todas opciones válidas.",
+   "narration": "El caballo del blanco salta a g5 de nuevo. Pero tú ya has enrocado, y tu torre protege f7. No hay necesidad de entrar en pánico. Simplemente haz un movimiento útil."
+  },
+  {
+   "id": "take-on-d4",
+   "title": "Plan dos: tomar en d4",
+   "text": "El segundo plan cede el centro con ...exd4. A cambio, tus piezas obtienen líneas abiertas. El caballo en f6 y la torre en e8 ambos atacan el peón de blanco en e4, así que el blanco debe seguir defendiéndolo. Muchos jugadores continúan con ...Bf8, liberando la columna e para la torre.",
+   "narration": "Plan dos: intercambia en d4 y juega con tus piezas. Peón a d4. [move] Tú tomas. [move] Blancas recuperan. [move] Caballo a f6 ataca e4. [move] Caballo a c3. [move] Alfil a e7. [move] Alfil a e2. [move] Tú enrocas. [move] Blancas enrocan. [move] Y la torre va a e8. [move] Tu caballo y tu torre apuntan a ambos al peón de e4 de blancas, y blancas tienen que seguir protegiéndolo."
+  },
+  {
+   "id": "grab-e4",
+   "title": "La presión da resultados",
+   "prompt": "Blancas clavaron tu caballo con el alfil, pero olvidaron la columna e. Gana un peón.",
+   "hint": "Toma en e4. Si blancas intercambian alfiles en e7, tu torre recupera.",
+   "success": "¡Nxe4! El alfil de e7 estaba defendido por tu torre y dama, así que el intercambio en e7 no cuesta nada, y el peón de e4 es tuyo. Eso es lo que estaba esperando la torre en e8.",
+   "narration": "El alfil de blancas clava tu caballo al alfil en e7. Pero tu torre en e8 está protegiendo ese alfil. Así que el caballo puede tomar en e4 de todos modos."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de ...exd4 y ...Re8, ¿cuál es el objetivo principal de negras?",
+   "options": [
+    {
+     "text": "El peón de e4 de blancas, atacado por el caballo en f6 y la torre en e8",
+     "why": "Sí. Ceder el centro abre la columna e, y el peón de e4 se convierte en el objetivo."
+    },
+    {
+     "text": "El rey de blancas en g1",
+     "why": "Las piezas de negras no están dirigidas al rey en este plan; el juego está en el centro."
+    },
+    {
+     "text": "El peón de blancas en b2",
+     "why": "Nada de los ataques de las negras en b2 aquí. La presión va por la columna e."
+    }
+   ],
+   "narration": "Última pregunta. Una vez que tomas en d4 y pones la torre en e8, ¿a qué estás apuntando? ¡Bien hecho hoy!"
+  }
+ ]
+}

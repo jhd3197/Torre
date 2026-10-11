@@ -1,0 +1,61 @@
+{
+ "title": "Trampas de Philidor",
+ "summary": "Los trucos tempranos de las blancas apuntan a f7 y a una ...Bg4 descuidada. Aprende las respuestas seguras antes de que te cuesten la partida.",
+ "unit": "Defensa Philidor",
+ "steps": [
+  {
+   "id": "target-f7",
+   "title": "El punto débil: f7",
+   "text": "Al principio, f7 está solo defendido por tu rey, y la defensa Philidor es un poco lenta para enrocar. Eso hace de f7 el blanco favorito de las blancas: el alfil en c4 apunta a él, y el caballo puede saltar a g5 para golpearlo una segunda vez. Aquí las negras jugaron ...Nf6 antes de ...Be7, así que nada cubre g5.",
+   "narration": "Tu casilla más débil al principio es f7, al lado de tu rey. El alfil blanco en c4 apunta a ella, y ahora el caballo salta a g5 para atacarla dos veces. [move]"
+  },
+  {
+   "id": "answer-ng5",
+   "title": "Bloquea al alfil",
+   "prompt": "El alfil y el caballo golpean f7. Encuentra la única buena defensa, y luego empuja al caballo.",
+   "hint": "Un peón puede entrar en el camino del alfil y atacarlo al mismo tiempo.",
+   "success": "…d5 corta al alfil de f7. Después de que las Blancas toman, …h6 ahuyenta al caballo y las Negras obtienen un desarrollo rápido para el peón. Defensas lentas como …Be6 o …Qe7 pierden material aquí.",
+   "narration": "Dos piezas blancas están golpeando f7. No intentes protegerlo con una pieza. Empuja un peón en el camino del alfil, y luego persigue al caballo."
+  },
+  {
+   "id": "bg4-trap",
+   "title": "El temprano clavada con ...Bg4",
+   "text": "Fijar al caballo con ...Bg4 parece activo, pero es arriesgado tan pronto. Las blancas toman en e5, y si las negras responden con el peón de d, las damas entran en jaque y el caballo toma e5. Ahora ataca f7 y al alfil en g4 al mismo tiempo, y las negras han perdido un peón y el derecho a enrocar.",
+   "narration": "Aquí tienes una trampa clásica. El alfil clava al caballo, y las blancas capturan en e5. [move] Si recapturas con el peón, [move] las damas salen con jaque. [move] El rey recaptura. [move] Y el caballo llega a e5, atacando dos cosas a la vez. [move]"
+  },
+  {
+   "id": "avoid-the-trap",
+   "title": "No recaptures",
+   "prompt": "Las blancas capturaron en e5. Recapturar con el peón pierdes material. Juega un movimiento de desarrollo seguro en su lugar.",
+   "hint": "Saca un caballo, hacia el peón en e5.",
+   "success": "Un movimiento de caballo desarrolla y ejerce más presión sobre e5, y el file d permanece cerrado para la dama blanca. Las blancas están un poco mejor después del ...Bg4 temprano, pero aún estás en el juego.",
+   "narration": "Misma posición, tu turno. No captures en e5 con el peón. Desarrolla un caballo en su lugar y mantén el file d cerrado."
+  },
+  {
+   "id": "qd5-trap",
+   "title": "Un truco más: dama a d5",
+   "text": "Otro truco común. Con el caballo en d7 y el alfil en e7, las negras recapturan en e5 con el peón, y la dama blanca salta a d5. Junto con el alfil en c4 amenaza mate en f7, y las negras tienen que renunciar a una pieza para detenerlo. En ese orden de movimientos, ...c6 en lugar de ...Be7, o capturando en d4, te mantiene seguro.",
+   "narration": "Una más para recordar. Peón a d4. [move] El caballo va a d7. [move] Alfil a c4. [move] Alfil a e7. [move] Las blancas intercambian en e5. [move] Las negras recapturan con el peón. [move] ¡Y la dama blanca salta a d5! [move] Junto con el alfil amenaza mate en f7. Las negras tienen que renunciar a una pieza para detenerlo."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "El alfil blanco está en c4 y el caballo salta a g5, ambos golpeando f7, mientras que tu alfil todavía está en f8. ¿Cuál es la mejor respuesta?",
+   "options": [
+    {
+     "text": "Avanza el peón d a d5, bloqueando al alfil",
+     "why": "Bien. ...d5 corta al alfil de f7 y lo ataca, y ...h6 puede perseguir al caballo después."
+    },
+    {
+     "text": "El alfil a e6",
+     "why": "El caballo captura en e6, y después de ...fxe6 el alfil también captura en e6: un peón se ha ido y tu rey está muy abierto."
+    },
+    {
+     "text": "La dama a e7",
+     "why": "El alfil captura en f7 con jaque de todos modos, ganando un peón y persiguiendo a tu rey."
+    }
+   ],
+   "narration": "Pregunta final. Tanto el alfil como el caballo están atacando f7. ¿Cuál es tu mejor respuesta? Recuerda esto y estos trucos no te pillarán. ¡Buen trabajo!"
+  }
+ ]
+}

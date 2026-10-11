@@ -1,0 +1,90 @@
+{
+ "title": "El caballo de Tal en d5",
+ "summary": "Bled, 1965: en la última partida de un encuentro de aspirantes, Tal lanza un caballo al centro y ataca el rey de Larsen.",
+ "unit": "Mikhail Tal",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Bled, 1965",
+   "text": "Tal perdió su título mundial contra Botvínik en 1961 y lo quería de vuelta. En 1965 jugó contra la estrella danesa Bent Larsen en una semifinal de aspirantes en Bled, Yugoslavia. Esta es la décima y última partida de su encuentro. Tal la ganó, y con ella, el encuentro. Empieza a jugar.",
+   "narration": "Bled, 1965. La última partida de un encuentro de aspirantes entre Mikhail Tal y Bent Larsen. Tal necesita atacar, y lo hará."
+  },
+  {
+   "id": "the-game",
+   "title": "Tal – Larsen, semifinal de aspirantes, Bled 1965",
+   "text": "Una siciliana con los reyes en lados opuestos: las blancas hacen enroque largo, las negras corto. En estas partidas, ambos jugadores empujan peones hacia el rey contrario, y la velocidad es lo más importante.",
+   "notes": [
+    {
+     "text": "9.O-O-O: los reyes hacen enroque en lados opuestos. Ahora los peones pueden atacar sin exponer su propio rey."
+    },
+    {
+     "text": "14.g5: el peón ahuyenta al caballo que defiende el rey de las negras."
+    },
+    {
+     "text": "16.Nd5!?: Tal coloca el caballo donde un peón puede tomarlo. No es el movimiento más seguro, pero abre la columna 'e'."
+    },
+    {
+     "text": "17.exd5: el caballo se ha ido, pero ahora la columna 'e' apunta directamente al alfil en e7."
+    },
+    {
+     "text": "20.Bxf5: Tal da el alfil por un peón para despejar la columna 'e'..."
+    },
+    {
+     "text": "26.Qxf3, después de una larga persecución de la torre, Tal gana la torre. Ahora tiene una clara ventaja."
+    },
+    {
+     "text": "37.Qf7: la torre en f8 está atacada dos veces y la última fila está a punto de romperse. Larsen renunció."
+    }
+   ],
+   "narration": "Enroque opuesto. Ambos bandos corren hacia el rey contrario, y Tal es muy rápido.",
+   "guesses": [
+    {
+     "prompt": "Tal introduce un peón más en el ataque. ¿Cuál?",
+     "hint": "El peón en g5 es una vanguardia. Necesita un amigo.",
+     "why": "19.h4 apoya el peón de g5 para que pueda seguir avanzando, hacia g6. El flanco de rey de las negras permanece congelado."
+    },
+    {
+     "prompt": "Las negras tomaron el alfil en f5. Ahora el file de e rinde sus frutos.",
+     "hint": "¿Qué pieza negra en el file de e no tiene defensor?",
+     "why": "21.Rxe7 toma el alfil. La pieza regresa, y la torre aterriza en la séptima fila al lado del rey negro."
+    },
+    {
+     "prompt": "La torre en f1 da jaque. ¿Bloquearla o mover el rey?",
+     "hint": "Bloquear con la dama la pierde. El rey puede avanzar con seguridad.",
+     "why": "32.Kd2! El rey sale del jaque hacia el medio. Las negras no tienen jaques buenos restantes, y la dama y la torre de las blancas siguen apuntando a su rey."
+    },
+    {
+     "prompt": "Termina el ataque. Empieza con un jaque.",
+     "hint": "La dama puede dar jaque desde e6, luego ve por la torre en f8.",
+     "why": "36.Qe6+ Kh8 37.Qf7: la torre en f8 está atacada por dama y torre y solo la dama de Negro la defiende. La última fila no puede resistir."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "Enroque opuesto",
+   "question": "Los reyes enrocaron en flancos opuestos. ¿Qué suele significar eso?",
+   "options": [
+    {
+     "text": "Ambos bandos atacan al rey contrario con peones, y la velocidad decide.",
+     "why": "Sí. Avanzar peones hacia el rey enemigo no debilita a tu propio rey cuando está en el otro flanco."
+    },
+    {
+     "text": "El juego será lento y tranquilo.",
+     "why": "El enroque opuesto es todo lo contrario a tranquilo. Cada tiempo cuenta."
+    },
+    {
+     "text": "Ningún bando debe avanzar peones.",
+     "why": "Las tormentas de peones son exactamente el plan. Tal empujó g4, g5 y h4."
+    }
+   ],
+   "narration": "Los reyes enrocaron en flancos opuestos. ¿Qué significa eso para el plan?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Abre líneas hacia el rey.",
+   "text": "Tal sacrificó un caballo en d5 para abrir la columna 'e', y más tarde un alfil para abrirla por completo hasta e7. Cada pieza que sacrificó compró una línea directa al rey de Larsen. Cuando los reyes están en flancos opuestos, las columnas abiertas hacia el rey enemigo valen más que una pieza sentada tranquilamente en casa.",
+   "narration": "Cada pieza que Tal sacrificó abrió una línea al rey. Ese intercambio a menudo vale la pena."
+  }
+ ]
+}

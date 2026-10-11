@@ -1,0 +1,49 @@
+{
+ "title": "El mate del anzuelo",
+ "summary": "La torre, el caballo y el peón se unen en una cadena: el peón protege al caballo, el caballo protege a la torre, y la torre da mate.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "the-chain",
+   "title": "Una cadena de protección",
+   "text": "Observa la cadena: el peón en b5 protege al caballo en c6, y el caballo vigila d8 y e7. Si la torre da jaque desde d8, el rey no puede capturarla, no puede moverse a e7, y su propio peón en f7 bloquea el último cuadro. Tres piezas blancas, cada una sosteniendo a la siguiente, dan el mate.",
+   "narration": "Este mate se trata de trabajo en equipo. El peón protege al caballo, el caballo protege la casilla de destino de la torre y la casilla delante del rey, y el propio peón negro en f7 termina el trabajo. Un movimiento de la torre, y el anzuelo está listo."
+  },
+  {
+   "id": "set-the-hook",
+   "title": "Prepara el anzuelo",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "La columna 'd' está abierta hasta la última fila.",
+   "success": "La torre a d8 da mate. El caballo protege a la torre y cubre e7, la torre cubre d7 y f8, y el peón en f7 bloquea al rey.",
+   "narration": "Tu movimiento. Empuja la torre directamente por la columna 'd' abierta. El caballo la protege, y el peón protege al caballo. Jaque mate."
+  },
+  {
+   "id": "lure-the-rook",
+   "title": "Atrae al defensor a d8",
+   "prompt": "Negro amenaza con mate en tu última fila, pero tú mueves primero. Mate en dos movimientos.",
+   "hint": "Haz un jaque a lo largo de la octava fila con la dama. El único bloqueo de negro abre la columna 'd' para ti.",
+   "success": "La dama a a8 jaque solo puede ser bloqueada por una torre a d8. Esa torre deja la columna d abierta, y la torre captura d8 es el mate del anzuelo, protegido por el caballo en c6.",
+   "narration": "Cuidado, el negro está amenazando con que la torre capture d1 mate! Pero es tu turno. Jaque desde a8 con la dama. El negro tiene que bloquear con la torre en d8, lo que abre la columna d, y tu torre captura en d8 para el mate del anzuelo."
+  },
+  {
+   "id": "weak-link",
+   "title": "El eslabón débil",
+   "question": "El peón negro en f7 se mueve a f6 antes del mate. ¿Qué pasa con la torre a d8?",
+   "options": [
+    {
+     "text": "Ya no es mate, porque el rey puede moverse a f7",
+     "why": "La casilla f7 solo estaba bloqueada por el propio peón negro. Una vez que se mueve, el rey tiene una vía de escape."
+    },
+    {
+     "text": "Sigue siendo mate, porque el caballo guarda f7",
+     "why": "Un caballo en c6 no alcanza f7. Cubre d8, e7, b8, a7 y casillas más abajo en el tablero."
+    },
+    {
+     "text": "El negro puede capturar la torre en d8",
+     "why": "El caballo todavía protege d8, así que el rey no puede tomarla."
+    }
+   ],
+   "narration": "Una última pregunta. El anzuelo necesita el propio peón negro en f7. ¿Qué pasa si ese peón se aleja primero? Entiéndelo, y entenderás todo el patrón. ¡Buen trabajo!"
+  }
+ ]
+}

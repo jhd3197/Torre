@@ -1,0 +1,82 @@
+{
+ "page": {
+  "label": "Practica con tus errores"
+ },
+ "counts": {
+  "due": "Pendiente",
+  "newToday": "Nuevo hoy",
+  "learned": "Aprendido",
+  "ofTotal": "de {{total}}",
+  "mastered": "Corregidas"
+ },
+ "tryAgain": "Intenta de nuevo",
+ "loading": "Cargando tus ejercicios…",
+ "done": {
+  "title": "¡Ya estás al día!",
+  "nextReview": "Tu próxima revisión es {{when}}.",
+  "comeBack": "Vuelve mañana para nuevas posiciones.",
+  "newWaiting_one": "{{count}} nueva posición te está esperando; tienes {{perDay}} al día.",
+  "newWaiting_other": "{{count}} nuevas posiciones te están esperando; tienes {{perDay}} al día."
+ },
+ "empty": {
+  "title": "Aún no tienes ejercicios",
+  "body": "Los errores y descuidos de tus partidas analizadas se convierten en ejercicios aquí. Analiza tus partidas para construir tu mazo."
+ },
+ "why": {
+  "best": "La elección del motor.",
+  "mate": "Jaque mate.",
+  "good": "También es buena. El motor prefirió {{move}}."
+ },
+ "source": "Contra {{opponent}} · {{date}} · movimiento {{move}}",
+ "unknownOpponent": "Desconocido",
+ "prompt": {
+  "whiteToMove": "<strong>Juegan las blancas.</strong> Aquí jugaste un {{class}}. Busca una jugada mejor.",
+  "blackToMove": "<strong>Juegan las negras.</strong> Aquí jugaste un {{class}}. Busca una jugada mejor.",
+  "noEngine": "Instala Stockfish para verificar tus respuestas.",
+  "lessonWhite": "<strong>Juegan las blancas.</strong> Resolviste esto en una lección. Encuentra la jugada otra vez.",
+  "lessonBlack": "<strong>Juegan las negras.</strong> Resolviste esto en una lección. Encuentra la jugada otra vez.",
+  "mateWhite_one": "<strong>Juegan las blancas.</strong> Aquí tenías mate en una y no lo viste. Encuéntralo.",
+  "mateWhite_other": "<strong>Juegan las blancas.</strong> Aquí tenías un mate forzado en {{count}} y lo dejaste pasar. Encuentra la primera jugada.",
+  "mateBlack_one": "<strong>Juegan las negras.</strong> Aquí tenías mate en una y no lo viste. Encuéntralo.",
+  "mateBlack_other": "<strong>Juegan las negras.</strong> Aquí tenías un mate forzado en {{count}} y lo dejaste pasar. Encuentra la primera jugada."
+ },
+ "verdict": {
+  "correct": "<strong>✓ {{move}}</strong> {{why}}",
+  "missedAn": "<strong>✗ {{move}}</strong> sería una {{verdict}}. <best>{{best}}</best> fue la mejor jugada.",
+  "missedA": "<strong>✗ {{move}}</strong> sería una {{verdict}}. <best>{{best}}</best> era la mejor jugada."
+ },
+ "detail": "En la partida que jugaste hiciste {{played}}. Esta posición se repite {{when}}.",
+ "actions": {
+  "next": "Siguiente posición",
+  "replay": "Revivir partida",
+  "explore": "Explora la posición",
+  "lesson": "Abrir la lección"
+ },
+ "modes": {
+  "label": "Modos de entrenamiento",
+  "openings": "Repertorio de aperturas",
+  "endgames": "Práctica de finales",
+  "lessonsOnly": "Repasar solo lecciones",
+  "everything": "Repasarlo todo"
+ },
+ "today": {
+  "title_one": "Hoy: {{count}} cosa por corregir",
+  "title_other": "Hoy: {{count}} cosas por corregir",
+  "allDone": "Los errores de hoy están corregidos",
+  "steps": {
+   "drills": "Posiciones de tus partidas",
+   "reviews": "Puzzles para reintentar",
+   "mine": "Puzzles nuevos de tus partidas"
+  },
+  "left_one": "Queda {{count}}",
+  "left_other": "Quedan {{count}}",
+  "go": "Empezar",
+  "drillsDone": "Listo por hoy.",
+  "drillsNone": "Aún no hay. Tus partidas analizadas lo llenan.",
+  "reviewsDone": "Nada pendiente. Los puzzles fallados vuelven aquí.",
+  "mineDone": "Listo por hoy.",
+  "mineNone": "Aún no hay. El análisis los saca de tus partidas."
+ },
+ "lessonSource": "Repaso de la lección {{title}}",
+ "lessonDetail": "Este ejercicio vuelve {{when}}. Cada vez que lo resuelves, tarda más en volver."
+}

@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "title": "Carlsen's endgame grind",
+  "summary": "Chennai, 2013: in the world championship match, Carlsen presses an equal endgame for hours until Anand cracks.",
+  "category": "history",
+  "level": "advanced",
+  "minutes": 8,
+  "unit": "Magnus Carlsen",
+  "order": 2,
+  "practice": "rook-endgame",
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "the-setting",
+      "kind": "explain",
+      "title": "Chennai, 2013",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "In 2013 Magnus Carlsen, aged twenty-two, challenged the world champion Viswanathan Anand in Chennai, in Anand's home country, India. The first four games were drawn. In game five Carlsen took a quiet, almost equal endgame and kept pressing. He won the game and later the match, becoming world champion.",
+      "narration": "Chennai, 2013. Magnus Carlsen challenges the world champion Viswanathan Anand. Game five: an equal endgame, and Carlsen will not let it go.",
+      "pose": "present"
+    },
+    {
+      "id": "the-game",
+      "kind": "guess",
+      "title": "Carlsen – Anand, World Championship, game 5, 2013",
+      "text": "The queens come off early and the position is close to equal. Most players would agree a draw. Carlsen keeps asking small questions, and late in the game Anand finally makes a slip.",
+      "narration": "An equal endgame, and a very patient Carlsen. Watch for the moment Anand slips, then find the winning plan.",
+      "pose": "playing",
+      "moves": [
+        "c2c4",
+        "e7e6",
+        "d2d4",
+        "d7d5",
+        "b1c3",
+        "c7c6",
+        "e2e4",
+        "d5e4",
+        "c3e4",
+        "f8b4",
+        "e4c3",
+        "c6c5",
+        "a2a3",
+        "b4a5",
+        "g1f3",
+        "g8f6",
+        "c1e3",
+        "b8c6",
+        "d1d3",
+        "c5d4",
+        "f3d4",
+        "f6g4",
+        "e1c1",
+        "g4e3",
+        "f2e3",
+        "a5c7",
+        "d4c6",
+        "b7c6",
+        "d3d8",
+        "c7d8",
+        "f1e2",
+        "e8e7",
+        "e2f3",
+        "c8d7",
+        "c3e4",
+        "d8b6",
+        "c4c5",
+        "f7f5",
+        "c5b6",
+        "f5e4",
+        "b6b7",
+        "a8b8",
+        "f3e4",
+        "b8b7",
+        "h1f1",
+        "b7b5",
+        "f1f4",
+        "g7g5",
+        "f4f3",
+        "h7h5",
+        "d1f1",
+        "d7e8",
+        "e4c2",
+        "b5c5",
+        "f3f6",
+        "h5h4",
+        "e3e4",
+        "a7a5",
+        "c1d2",
+        "c5b5",
+        "b2b3",
+        "e8h5",
+        "d2c3",
+        "b5c5",
+        "c3b2",
+        "h8d8",
+        "f1f2",
+        "d8d4",
+        "f6h6",
+        "h5d1",
+        "c2b1",
+        "c5b5",
+        "b2c3",
+        "c6c5",
+        "f2b2",
+        "e6e5",
+        "h6g6",
+        "a5a4",
+        "g6g5",
+        "b5b3",
+        "b2b3",
+        "d1b3",
+        "g5e5",
+        "e7d6",
+        "e5h5",
+        "d4d1",
+        "e4e5",
+        "d6d5",
+        "b1h7",
+        "d1c1",
+        "c3b2",
+        "c1g1",
+        "h7g8",
+        "d5c6",
+        "h5h6",
+        "c6d7",
+        "g8b3",
+        "a4b3",
+        "b2b3",
+        "g1g2",
+        "h6h4",
+        "d7e6",
+        "a3a4",
+        "e6e5",
+        "a4a5",
+        "e5d6",
+        "h4h7",
+        "d6d5",
+        "a5a6",
+        "c5c4",
+        "b3c3",
+        "g2a2",
+        "a6a7",
+        "d5c5",
+        "h2h4"
+      ],
+      "notes": [
+        {
+          "ply": 29,
+          "text": "15.Qxd8+: the queens come off early. Carlsen is happy to play an endgame."
+        },
+        {
+          "ply": 57,
+          "text": "29.e4: the position is almost level, but Carlsen keeps improving his pieces."
+        },
+        {
+          "ply": 79,
+          "text": "40.Rxg5: Carlsen grabs a pawn; Anand hits back on b3."
+        },
+        {
+          "ply": 100,
+          "text": "50...Rxg2: Anand wins a pawn back. It looks like a draw."
+        },
+        {
+          "ply": 102,
+          "text": "51...Ke6?: a natural move, but it is the mistake. Moving the rook to e2 at once was the better defence."
+        },
+        {
+          "ply": 103,
+          "text": "52.a4!: Carlsen lets the e-pawn go. The passed a-pawn is what counts."
+        },
+        {
+          "ply": 115,
+          "text": "58.h4: the a-pawn is about to promote and Black's rook is tied up. Anand resigned."
+        }
+      ],
+      "guesses": [
+        {
+          "ply": 93,
+          "prompt": "Find a check that leads to trading the bishops.",
+          "hint": "Your bishop can check from g8, and later attack b3.",
+          "why": "47.Bg8+ drives the king back, and soon Bxb3 trades the bishops. Rook endgames are where Carlsen squeezes best."
+        },
+        {
+          "ply": 105,
+          "prompt": "Black's king just took the e5 pawn. What matters now?",
+          "hint": "Your a-pawn is passed and far from Black's king. Run!",
+          "why": "53.a5: the a-pawn is far away from Black's king, and every step it takes is a new problem for Black."
+        },
+        {
+          "ply": 107,
+          "prompt": "The pawn is on a5. Black's king wants to run to the queenside. Stop it.",
+          "hint": "Your rook can cut the king off along a rank.",
+          "why": "54.Rh7 cuts the black king off along the seventh rank, so it cannot reach the a-pawn in time."
+        },
+        {
+          "ply": 109,
+          "prompt": "The king is cut off. What now?",
+          "hint": "Every tempo counts. Push!",
+          "why": "55.a6: the pawn runs to a6 and then a7. Black's rook will have to sit in front of it."
+        }
+      ]
+    },
+    {
+      "id": "the-quiz",
+      "kind": "choose",
+      "title": "Endgame patience",
+      "question": "The endgame was almost equal for a long time. What did Carlsen do?",
+      "options": [
+        {
+          "text": "Kept making small, safe improvements until Anand made a mistake",
+          "why": "Yes. Carlsen took no risks; he just kept asking questions, and one wrong answer was enough.",
+          "correct": true
+        },
+        {
+          "text": "Offered a draw",
+          "why": "He kept playing for nearly sixty moves. That is the whole point of the game."
+        },
+        {
+          "text": "Sacrificed material to attack the king",
+          "why": "There was no attack. The game was won by a passed pawn in a rook endgame."
+        }
+      ],
+      "narration": "The position was equal for hours. What was Carlsen's secret?",
+      "pose": "thinking"
+    },
+    {
+      "id": "the-lesson",
+      "kind": "explain",
+      "title": "Outside passed pawn",
+      "fen": "8/P6R/8/2k5/2p4P/2K5/r7/8 b - - 0 58",
+      "text": "In rook endgames, a passed pawn far from the enemy king is a huge asset. Carlsen gave up his e-pawn to free the a-pawn, cut Black's king off with his rook, and pushed. Just as important: he kept playing an equal position, because endgames reward the player who keeps asking questions.",
+      "narration": "Do not agree to a draw just because it is equal. Keep pressing, and when the chance comes, push the passed pawn.",
+      "pose": "idea"
+    }
+  ]
+}

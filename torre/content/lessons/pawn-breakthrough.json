@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "title": "The pawn breakthrough",
+  "summary": "Three pawns against three, face to face. Sacrifice two of them and the third one queens.",
+  "category": "endgames",
+  "level": "advanced",
+  "minutes": 6,
+  "requires": ["square-of-the-pawn"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "three-against-three",
+      "kind": "explain",
+      "title": "Three against three",
+      "fen": "8/ppp3k1/8/PPP5/8/8/8/7K w - - 0 1",
+      "marks": [["b5", "b6"]],
+      "text": "The pawns stand face to face and the kings are far away on the other wing. It looks like nothing can happen. But White's pawns have reached the fifth rank, only three steps from queening, and Black's king is too far away to help. White to move can sacrifice two pawns to push the third one through.",
+      "narration": "Three pawns against three, nose to nose, and both kings miles away. It looks completely blocked. But White's pawns are close to promotion, and Black's king can't help in time. Watch what a little sacrifice can do.",
+      "pose": "thinking"
+    },
+    {
+      "id": "break-through",
+      "kind": "play",
+      "title": "Break through",
+      "fen": "8/ppp3k1/8/PPP5/8/8/8/7K w - - 0 1",
+      "prompt": "Sacrifice pawns to make a queen.",
+      "hint": "Start with the middle pawn. Then aim at the pawn that just captured.",
+      "line": ["b5b6", "a7b6", "c5c6", "b7c6", "a5a6"],
+      "success": "The middle pawn goes first, then the second sacrifice clears the way, and the a-pawn walks to a8. Black's king is too far away to stop it.",
+      "narration": "Your turn. Start with the middle pawn: push it forward and let Black take it. Then sacrifice again, and the last pawn has a free road to the queening square.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-other-capture",
+      "kind": "play",
+      "title": "If Black takes the other way",
+      "fen": "8/pp4k1/1p6/P1P5/8/8/8/7K w - - 1 2",
+      "prompt": "This time Black took with the c-pawn. Finish the job.",
+      "hint": "It is the same idea seen in a mirror. Sacrifice on the other side.",
+      "line": ["a5a6", "b7a6", "c5c6"],
+      "success": "Pawn to a6 drags Black's b-pawn away, and the c-pawn has nothing in front of it. Taking back on b6 instead would leave a dead-equal position.",
+      "narration": "Black chose the other capture. Same idea, mirror image: sacrifice the pawn on the far side, and the c-pawn runs free.",
+      "pose": "magnify"
+    },
+    {
+      "id": "when-it-works",
+      "kind": "explain",
+      "title": "When does it work?",
+      "fen": "8/ppp3k1/8/PPP5/8/8/8/7K w - - 0 1",
+      "marks": [["g7"], ["a8"], ["c8"]],
+      "text": "The breakthrough needs two things. Your pawns must be far enough up the board, so the last pawn is only a couple of steps from queening. And the enemy king must be too far away to catch it, which you can check with the square of the pawn. If it were Black to move here, the king would walk over and spoil everything.",
+      "narration": "Two things make the breakthrough work. Your pawns must be far advanced, and the enemy king must be outside the square of the pawn that runs through. Black to move here, and the king walks over in time.",
+      "pose": "idea"
+    },
+    {
+      "id": "check-the-idea",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "After pawn to b6, Black captures with the a-pawn. Which move keeps the win?",
+      "fen": "8/1pp3k1/1p6/P1P5/8/8/8/7K w - - 0 2",
+      "options": [
+        { "text": "Pawn to c6", "correct": true, "why": "The second sacrifice. Whichever way Black takes, the a-pawn walks through to a8." },
+        { "text": "Take back on b6 with the a-pawn", "why": "That trades pawns, and Black's c-pawn takes back. The breakthrough is over and Black is fine." },
+        { "text": "Pawn to a6", "why": "The b7 pawn captures it, and White has nothing left to break through with." }
+      ],
+      "narration": "Final question. Black took with the a-pawn. Which move keeps the win alive? Find it, and you have mastered one of the prettiest tricks in pawn endings!",
+      "pose": "trophy"
+    }
+  ]
+}

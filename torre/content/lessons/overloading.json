@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Overloading",
+  "summary": "One defender, two jobs. Make it do one of them, and the other job is left undone.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["deflection"],
+  "practice": "deflection",
+  "steps": [
+    {
+      "id": "two-jobs",
+      "kind": "explain",
+      "title": "Two jobs, one piece",
+      "fen": "3r2k1/pp3ppp/8/8/3q4/8/PQ3PPP/4R1K1 w - - 0 1",
+      "marks": [["d8", "d4"], ["d8", "e8"], ["e1", "e8"]],
+      "text": "Black's rook on d8 is doing two jobs. It protects the queen on d4, and it guards the back rank against your rook landing on e8. A piece with two jobs is overloaded: if it carries out one of them, it abandons the other. Look for defenders that are being asked to be in two places at once.",
+      "narration": "Look at Black's rook on d8. It's protecting the queen, and it's also keeping your rook out of e8. That's two jobs for one piece. Make it do one, and the other is left wide open.",
+      "pose": "pointer"
+    },
+    {
+      "id": "overload-the-rook",
+      "kind": "play",
+      "title": "Make it choose",
+      "fen": "3r2k1/pp3ppp/8/8/3q4/8/PQ3PPP/4R1K1 w - - 0 1",
+      "prompt": "Make the rook on d8 choose between its two jobs.",
+      "hint": "Offer a queen trade. If the rook takes back, what happens on e8?",
+      "line": ["b2d4", "d8d4", "e1e8"],
+      "success": "Qxd4! If Rxd4, Re8 is mate because the rook left the back rank. If Black does not take back, you have simply won the queen.",
+      "narration": "Take Black's queen with yours. If the rook recaptures, it has left the back rank, and your rook drops onto e8 with checkmate. If it doesn't recapture, you're a queen up. Either way, Black loses.",
+      "pose": "detective"
+    },
+    {
+      "id": "overload-again",
+      "kind": "play",
+      "title": "Guarding the knight and the rank",
+      "fen": "4r1k1/pb3ppp/1p6/4n3/8/2N4P/PPP2PP1/3RR1K1 w - - 0 1",
+      "prompt": "Black's rook on e8 guards both the knight on e5 and the back rank. Exploit it.",
+      "hint": "Take the knight. If the rook recaptures, your other rook heads for the eighth rank.",
+      "line": ["e1e5", "e8e5", "d1d8", "e5e8", "d8e8"],
+      "success": "Rxe5! Rxe5 Rd8+ Re8 Rxe8 is mate. The rook could not hold both the knight and the back rank, so Black's best is to give up the knight.",
+      "narration": "That rook on e8 is stretched thin. Grab the knight. If the rook takes back, it can't also guard the back rank, and your other rook checks on d8 and mates on e8.",
+      "pose": "excited"
+    },
+    {
+      "id": "overload-quiz",
+      "kind": "choose",
+      "title": "Spot the overload",
+      "question": "Which piece is overloaded?",
+      "options": [
+        { "text": "A knight that is the only defender of both a rook and a bishop that you attack", "correct": true, "why": "It can only recapture once. Take one piece, it takes back, and the other is left hanging." },
+        { "text": "A queen that is attacked by a pawn", "why": "That is just a threat to the queen. Overloading is about one defender holding two things at once." },
+        { "text": "A rook defended by both of its own knights", "why": "That rook has plenty of help. Overloading is when one piece has too many jobs, not too many helpers." }
+      ],
+      "narration": "Last one. Which of these pieces is overloaded? Look for the one being asked to do two jobs at once. Super work today!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+ "title": "Jaque y jaque mate",
+ "summary": "Cuando tu rey está atacado, debes salvarlo. Aprende las tres formas de salir de jaque, y cómo dar un jaque mate que termina el juego.",
+ "unit": "Reglas del juego",
+ "steps": [
+  {
+   "id": "what-is-check",
+   "title": "Qué significa jaque",
+   "text": "Cuando una pieza ataca al rey, el rey está en jaque. El jugador en jaque debe salir de él en el siguiente movimiento: no se permite nada más. Aquí la torre de las blancas da jaque por la octava fila.",
+   "narration": "Cuando tu rey está atacado, eso se llama jaque. Debes arreglarlo de inmediato. No puedes ignorarlo y hacer otra cosa."
+  },
+  {
+   "id": "three-ways-out",
+   "title": "Tres formas de salir",
+   "prompt": "Estás en jaque. Puedes mover el rey, bloquear con el alfil o capturar la torre. Elige la mejor.",
+   "hint": "Una forma de salir también gana una torre de las negras.",
+   "success": "Capturar una pieza que da jaque es a menudo la mejor forma de salir. Escapaste del jaque y ganaste una torre.",
+   "narration": "Hay tres formas de salir de jaque: mover el rey, bloquear el ataque o capturar al atacante. Aquí puedes hacer las tres. ¿Cuál es la mejor?"
+  },
+  {
+   "id": "what-is-checkmate",
+   "title": "Jaque mate",
+   "text": "Jaque mate es un jaque sin forma de salir. El rey no puede moverse a una casilla segura, nada puede bloquear, y el atacante no puede ser capturado. Aquí los propios peones de las negras encierran al rey, y el jaque de una torre no puede ser detenido. El jaque mate termina el juego.",
+   "narration": "Jaque mate es jaque sin escapatoria. El rey no puede huir, nadie puede bloquear, y el atacante no puede ser tomado. Ese es el objetivo de todo el juego."
+  },
+  {
+   "id": "back-rank-mate",
+   "title": "Tu primer jaque mate",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "El rey negro está rodeado por sus propios peones. Atácalo a lo largo de la última fila.",
+   "success": "Torre a d8 es jaque mate. Los peones en f7, g7 y h7 atrapan a su propio rey.",
+   "narration": "Ahora te toca a ti. El rey negro se esconde detrás de sus peones, pero esos peones también son su prisión. Encuentra el movimiento de la torre que termina el juego."
+  },
+  {
+   "id": "queen-and-king-mate",
+   "title": "La dama y el rey juntos",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "Tu rey ya cubre g7 y h7. Da jaque a lo largo de la octava fila.",
+   "success": "Dama a b8 es jaque mate. La dama controla toda la última fila y tu rey guarda los casilleros de escape.",
+   "narration": "Tu rey está ayudando aquí, guardando los casilleros en frente del rey negro. Introduce a tu dama con jaque donde nada puede detenerla."
+  },
+  {
+   "id": "check-quiz",
+   "title": "Revisión rápida",
+   "question": "Tu rey está en jaque. ¿Cuál de estos NO es una forma de salir?",
+   "options": [
+    {
+     "text": "Captura una de las otras piezas de tu oponente",
+     "why": "A menos que esa captura elimine al atacante, el rey sigue en jaque. Debes resolver el jaque en sí mismo."
+    },
+    {
+     "text": "Mueve el rey a una casilla segura",
+     "why": "Esa es una de las tres opciones."
+    },
+    {
+     "text": "Pon una pieza entre el rey y el atacante",
+     "why": "Bloquear funciona contra torres, alfiles y damas. Es una de las tres opciones."
+    },
+    {
+     "text": "Captura la pieza que da jaque",
+     "why": "Eliminar al atacante suele ser la mejor forma de salir del jaque."
+    }
+   ],
+   "narration": "Última pregunta. Recuerda las tres formas de salir del jaque. ¿Cuál de estas opciones no salva a tu rey?"
+  }
+ ]
+}

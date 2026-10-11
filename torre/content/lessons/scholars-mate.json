@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "title": "Scholar's Mate",
+  "summary": "The four-move checkmate every beginner meets, how it works, and the simple moves that stop it cold.",
+  "category": "openings",
+  "level": "beginner",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 1,
+  "requires": [
+    "opening-principles"
+  ],
+  "orientation": "black",
+  "practice": "defensive-move",
+  "steps": [
+    {
+      "id": "aim-at-f7",
+      "kind": "explain",
+      "title": "The target: f7",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "marks": [
+        [
+          "f7"
+        ]
+      ],
+      "text": "Scholar's Mate is the most common trap in beginner games. White brings the queen to h5 and the bishop to c4, and both aim at f7, the square beside Black's king that only the king protects. Step through the demo to see Black develop a knight, miss the threat, and lose in four moves.",
+      "demo": [
+        "d1h5",
+        "b8c6",
+        "f1c4",
+        "g8f6",
+        "h5f7"
+      ],
+      "narration": "Meet the most famous trap in chess. White's queen comes out to h5. [move] Black develops a knight. [move] The bishop joins in on c4. [move] Now both aim at one weak little square, f7. Black doesn't notice and brings out another knight. [move] Queen takes f7. Checkmate! [move]",
+      "pose": "present"
+    },
+    {
+      "id": "spot-the-mate",
+      "kind": "play",
+      "title": "See it from White",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+      "prompt": "Black just played knight to f6. Find White's checkmate.",
+      "hint": "Count the white pieces aimed at f7, and the black pieces guarding it.",
+      "line": [
+        "h5f7"
+      ],
+      "success": "Queen takes f7 is mate. The bishop on c4 protects the queen, so the king can't take her, and every escape square is blocked.",
+      "narration": "Before we learn to defend, let's see the trap from White's side. Black has just put a knight on f6 and forgotten about f7. Find the checkmate.",
+      "pose": "detective"
+    },
+    {
+      "id": "stop-the-mate",
+      "kind": "play",
+      "title": "Stop it",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3",
+      "prompt": "You are Black. Stop the checkmate on f7.",
+      "hint": "Put something in the queen's path to f7, or guard f7 with one more piece.",
+      "line": [
+        "g7g6|d8e7"
+      ],
+      "success": "Pawn to g6 blocks the queen's diagonal and attacks her, so White loses time moving her again. Queen to e7 also works: it guards f7 and keeps the e-pawn safe.",
+      "narration": "Now you're Black, and the queen and bishop are both pointing at f7. Knight to f6 won't help here, because it doesn't block anything. Find a move that really stops the mate.",
+      "pose": "shield"
+    },
+    {
+      "id": "the-knight-blocks",
+      "kind": "explain",
+      "title": "The queen comes back",
+      "fen": "r1bqkbnr/pppp1p1p/2n3p1/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 0 4",
+      "marks": [
+        [
+          "f3",
+          "f7"
+        ]
+      ],
+      "text": "Chased from h5, White's queen often goes to f3 to aim at f7 again. Now knight to f6 is the perfect answer: it stands right on the f-file between the queen and f7, and it develops a piece toward the center at the same time.",
+      "demo": [
+        "h5f3",
+        "g8f6"
+      ],
+      "narration": "White's queen usually comes back to f3, aiming at f7 once more. [move] This time knight to f6 is perfect. [move] It blocks the queen's path and develops a piece in one move.",
+      "pose": "point"
+    },
+    {
+      "id": "punish-the-queen",
+      "kind": "play",
+      "title": "Punish the wandering queen",
+      "fen": "r1bqkb1r/pppp1p1p/2n2np1/4p3/2B1P3/1Q6/PPPP1PPP/RNB1K1NR b KQkq - 3 5",
+      "prompt": "White's queen moves for the third time to aim at f7 again. Make her pay.",
+      "hint": "One of your knights can jump to a central square where it attacks the queen and a pawn next to White's king.",
+      "line": [
+        "c6d4"
+      ],
+      "success": "Knight to d4 attacks the queen and threatens knight takes c2 check, forking the king and the rook on a1. White has spent three moves with the queen and now has to defend everything at once.",
+      "narration": "White's queen has moved three times while the other pieces stay at home. Time to punish that. One knight jump attacks the queen and threatens a nasty fork.",
+      "pose": "magnify"
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+      "orientation": "black",
+      "question": "With White's queen on h5 and bishop on c4, why is knight to f6 a blunder, when it was a great move against the queen on f3?",
+      "options": [
+        {
+          "text": "A knight on f6 doesn't stand between h5 and f7, so the mate still works",
+          "why": "Right. The queen reaches f7 along the diagonal through g6, and the knight on f6 is not on that road. Against the queen on f3 the knight blocks the f-file.",
+          "correct": true
+        },
+        {
+          "text": "Knights should never go to f6 in the opening",
+          "why": "Knight to f6 is one of the best developing moves in chess. It is only wrong when it ignores a mate threat."
+        },
+        {
+          "text": "The knight on f6 can be captured by the bishop",
+          "why": "The bishop on c4 cannot reach f6. The problem is the checkmate on f7, not the knight."
+        }
+      ],
+      "narration": "Last question. Knight to f6 is great in one position and a blunder in the other. Why? Think about which square the knight actually blocks.",
+      "pose": "trophy"
+    }
+  ]
+}

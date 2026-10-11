@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "title": "The opposition",
+  "summary": "In king-and-pawn endings, the side that does not have to move often wins. Learn to take the opposition.",
+  "category": "endgames",
+  "level": "beginner",
+  "minutes": 7,
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "kings-face-off",
+      "kind": "explain",
+      "title": "Kings facing off",
+      "fen": "8/8/4k3/8/4K3/8/4P3/8 b - - 0 1",
+      "marks": [["e5"]],
+      "text": "The kings stand on the same file with one square between them. Neither may step onto e5, so whoever has to move must give way. The side that is NOT to move has the opposition. Here it is Black to move, so White has it, and Black's king will have to let White's through.",
+      "narration": "Two kings, staring each other down with one square between them. Neither king may step forward, so whoever has to move first must give way. That means not moving is a weapon, and that's exactly what the opposition is.",
+      "pose": "thinking"
+    },
+    {
+      "id": "take-the-opposition",
+      "kind": "play",
+      "title": "Take the opposition",
+      "fen": "8/8/4k3/8/3K4/8/4P3/8 w - - 0 1",
+      "prompt": "Only one move wins. Take the opposition.",
+      "hint": "Put your king directly in front of Black's, with one square between them.",
+      "line": ["d4e4"],
+      "success": "Ke4. Now Black has to move and give ground. Every other move lets Black's king take the opposition instead, and the game is a draw.",
+      "narration": "Only one move wins here. Put your king directly in front of Black's king, one square apart: king to e4. Now Black has to step aside, and every other move lets Black take the opposition instead.",
+      "pose": "detective"
+    },
+    {
+      "id": "again",
+      "kind": "play",
+      "title": "Once more",
+      "fen": "8/8/8/4k3/8/3K4/4P3/8 w - - 0 1",
+      "prompt": "Again, only one move wins.",
+      "hint": "Same idea: face the king on its file, one square apart.",
+      "line": ["d3e3"],
+      "success": "Ke3 takes the opposition. Notice the king leads and the pawn waits: pushing e2-e4 too early would throw the win away.",
+      "narration": "Once more! Same idea, new position: face Black's king on its own file with one square between you. And remember: the king leads, the pawn waits. Pushing the pawn too early would throw the win away.",
+      "pose": "determined"
+    },
+    {
+      "id": "how-it-wins",
+      "kind": "explain",
+      "title": "How the win goes",
+      "fen": "8/8/4k3/8/4K3/8/4P3/8 b - - 0 1",
+      "demo": ["e6d6", "e4f5", "d6e7", "f5e5", "e7f7", "e5d6", "f7f6", "e2e4", "f6f7", "e4e5", "f7e8", "d6e6", "e8f8", "e6d7", "f8f7", "e5e6", "f7f6", "e6e7"],
+      "text": "Step through the demo. When Black's king steps aside, White's king walks past it (outflanking) instead of pushing the pawn. Only once the king controls the squares in front of the pawn does the pawn advance, and it promotes.",
+      "narration": "Here's how the win unfolds. Black's king steps aside. [move] White's king goes around it, to f5. [move] Black comes back. [move] King to e5. [move] Black steps over. [move] King to d6, right past it. That's outflanking. [move] Black waits. [move] Only now does the pawn march. [move] Black waits again. [move] Pawn to e5. [move] Back to e8. [move] King to e6. [move] Over to f8. [move] King to d7, guarding the queening square. [move] Black waits. [move] Pawn to e6, check. [move] The king steps away. [move] And pawn to e7. Next stop, a new queen. [move]",
+      "pose": "idea"
+    },
+    {
+      "id": "who-has-it",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "White's king is on e4, Black's on e6, and it is White to move. Who has the opposition?",
+      "options": [
+        { "text": "Black", "correct": true, "why": "The side that does not have to move has the opposition. White must now give way." },
+        { "text": "White", "why": "White's king stands well, but having to move is the problem: White must give way." },
+        { "text": "Nobody, the kings are too far apart", "why": "Kings one square apart on the same file are in direct opposition." }
+      ],
+      "narration": "Last question! White's king on e4, Black's king on e6, and it's White to move. Who holds the opposition? Answer this, and you know one of the deepest little secrets of the endgame. Well done!",
+      "pose": "star"
+    }
+  ]
+}

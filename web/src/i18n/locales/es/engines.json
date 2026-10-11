@@ -1,0 +1,71 @@
+{
+  "loading": "Cargando motores…",
+  "analysis": {
+    "title": "Motor de análisis",
+    "note": "Las evaluaciones y las flechas de mejor jugada en Partidas y Explorar vienen de este motor."
+  },
+  "sections": {
+    "installed": "Instalados",
+    "available": "Disponibles",
+    "custom": "Personalizados"
+  },
+  "notes": {
+    "installed": "listos para analizar y jugar",
+    "available": "descargar e instalar",
+    "custom": "añadidos por ti"
+  },
+  "types": {
+    "nnue": "NNUE",
+    "neural": "Neuronal",
+    "custom": "Personalizado"
+  },
+  "card": {
+    "strength": "Rating CCRL en torno a {{rating}}",
+    "source": "Código fuente",
+    "play": "Jugar",
+    "install": "Instalar",
+    "downloading": "Descargando… {{percent}}%",
+    "phases": {
+      "download": "Descargando…",
+      "extract": "Extrayendo…",
+      "probe": "Comprobando el motor…",
+      "done": "Instalado"
+    },
+    "uninstall": "Desinstalar",
+    "confirmUninstall": "¿Desinstalarlo?",
+    "remove": "Quitar",
+    "confirmRemove": "¿Quitarlo?",
+    "cancel": "Cancelar",
+    "addByPath": "Añadir por ruta",
+    "addByPathTitle": "No hay descarga para esta plataforma; añade el binario abajo como motor personalizado"
+  },
+  "form": {
+    "note": "Indica a Torre un binario de motor UCI que ya esté en este equipo. Se comprueba antes de añadirlo.",
+    "name": "Nombre del motor",
+    "path": "Ruta al binario",
+    "add": "Añadir motor",
+    "adding": "Comprobando…"
+  },
+  "detail": {
+    "ccrl": "Rating CCRL",
+    "version": "Versión",
+    "unknownVersion": "sin registrar",
+    "needs": "Requiere",
+    "downloadSize": "Descarga",
+    "megabytes": "{{size}} MB",
+    "license": "Licencia",
+    "capabilities": "Capacidades",
+    "limitStrength": "Límite de Elo",
+    "skillLevel": "Niveles de habilidad",
+    "multipv": "MultiPV",
+    "yes": "Sí",
+    "no": "No",
+    "models": "Modelos",
+    "modelInstalled": "instalado",
+    "needsLc0": "Instala primero {{engine}}",
+    "ratingTarget": "juega como ~{{rating}}"
+  },
+  "empty": {
+    "installed": "No hay ningún motor instalado. Stockfish suele venir con la app."
+  }
+}

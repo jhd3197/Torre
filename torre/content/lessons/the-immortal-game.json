@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "The Immortal Game",
+  "summary": "London, 1851: Adolf Anderssen gives up his queen, both rooks and a bishop, and checkmates anyway.",
+  "category": "history",
+  "unit": "The Romantic Era",
+  "order": 1,
+  "level": "beginner",
+  "minutes": 8,
+  "requires": [],
+  "orientation": "white",
+  "steps": [
+    {
+      "id": "london-1851",
+      "kind": "explain",
+      "title": "London, 1851",
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "text": "The year is 1851 and the world's best players have gathered in London for the first international chess tournament. During a break, the German master Adolf Anderssen sits down for a friendly game against Lionel Kieseritzky. What follows becomes the most famous game ever played: the Immortal Game. Press play and watch it happen.",
+      "narration": "London, 1851. The first international chess tournament in history. In a side room, Adolf Anderssen plays a friendly game that will become the most famous of all time. Press play and watch.",
+      "pose": "starry"
+    },
+    {
+      "id": "the-game",
+      "kind": "reel",
+      "title": "Anderssen – Kieseritzky, London 1851",
+      "text": "Anderssen plays the King's Gambit, the favorite weapon of chess's romantic era, when attack was everything and material was just a price to pay. The captions tell the story as the game rolls.",
+      "narration": "Anderssen opens with the King's Gambit, the swaggering weapon of the romantic era. Watch what he does with it.",
+      "pose": "playing",
+      "moves": ["e2e4", "e7e5", "f2f4", "e5f4", "f1c4", "d8h4", "e1f1", "b7b5", "c4b5", "g8f6", "g1f3", "h4h6", "d2d3", "f6h5", "f3h4", "h6g5", "h4f5", "c7c6", "g2g4", "h5f6", "h1g1", "c6b5", "h2h4", "g5g6", "h4h5", "g6g5", "d1f3", "f6g8", "c1f4", "g5f6", "b1c3", "f8c5", "c3d5", "f6b2", "f4d6", "c5g1", "e4e5", "b2a1", "f1e2", "b8a6", "f5g7", "e8d8", "f3f6", "g8f6", "d6e7"],
+      "notes": [
+        { "ply": 4, "text": "The King's Gambit: White offers a pawn for a head start in development. Black accepts." },
+        { "ply": 9, "text": "5.Bxb5: Kieseritzky tried to chase the bishop away with ...b5. Anderssen simply takes the pawn." },
+        { "ply": 21, "text": "11.Rg1! The rook joins the attack. In this era, material meant nothing: only the enemy king mattered." },
+        { "ply": 33, "text": "17.Nd5! Anderssen is behind in material, yet every one of his pieces is hunting the black king." },
+        { "ply": 35, "text": "18.Bd6!! The famous move. Anderssen offers BOTH of his rooks." },
+        { "ply": 36, "text": "18...Bxg1: Black takes the first rook…" },
+        { "ply": 38, "text": "19...Qxa1+: …and then the second one. But the black queen is now far away from her own king." },
+        { "ply": 41, "text": "21.Nxg7+ Kd8: the black king is trapped in the middle of the board." },
+        { "ply": 43, "text": "22.Qf6+!! A queen sacrifice, forcing mate. If the knight takes, the bishop lands on e7." },
+        { "ply": 45, "text": "23.Be7# Checkmate! Down a queen, two rooks and a bishop, Anderssen mates with his three little pieces. The Immortal Game." }
+      ]
+    },
+    {
+      "id": "the-finish",
+      "kind": "play",
+      "title": "You be Anderssen",
+      "fen": "r1bk2nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w - - 1 22",
+      "prompt": "Black's king is cornered and his queen is off in the corner of the board. Find Anderssen's immortal finish.",
+      "hint": "The queen can give herself up: if it clears the road to e7 for the bishop on d6.",
+      "line": ["f3f6", "g8f6", "d6e7"],
+      "success": "Qf6+!! Nxf6 Be7#: the most famous checkmate of the nineteenth century. You found the immortal finish.",
+      "narration": "Now it's your turn. This is the exact position where Anderssen stunned the chess world. Find the finish.",
+      "pose": "detective"
+    },
+    {
+      "id": "the-era",
+      "kind": "choose",
+      "title": "The romantic era",
+      "question": "The Immortal Game is the symbol of chess's romantic era. What did that style value above everything else?",
+      "options": [
+        { "text": "Daring sacrifices and direct attacks on the king", "correct": true, "why": "Exactly. Players like Anderssen happily gave up whole rooks and queens if it led to the enemy king." },
+        { "text": "Slow pawn maneuvering and careful defense", "why": "That style came later, with Steinitz. The romantics wanted fireworks, not safety." },
+        { "text": "Endgame technique and tiny advantages", "why": "Endgame science was barely born in 1851: these games were decided by attacks long before an endgame." }
+      ],
+      "narration": "One last question about the era this game created.",
+      "pose": "thinking"
+    }
+  ]
+}

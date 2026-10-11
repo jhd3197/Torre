@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Attraction",
+  "summary": "Drag an enemy piece, usually the king, onto a square where it walks into a fork or a mate.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["deflection"],
+  "practice": "attraction",
+  "steps": [
+    {
+      "id": "pull-it-in",
+      "kind": "explain",
+      "title": "Pull it in",
+      "fen": "3q2k1/pp4p1/4p3/6N1/8/7R/PP3PPP/6K1 w - - 0 1",
+      "marks": [["h8"], ["f7", "h8"], ["f7", "d8"]],
+      "text": "Deflection pulls a piece away from a square; attraction pulls it onto one. Here a knight on f7 would attack both h8 and d8. Black's king is on g8, not h8, so the fork does not work yet. A rook sacrifice on h8 can drag the king onto the very square the knight wants to hit.",
+      "narration": "From f7, your knight would hit h8 and d8 at the same time. The queen is already on d8. The king isn't on h8 yet, but a rook sacrifice can lure it there. That's attraction: drag the piece onto the square you want it on.",
+      "pose": "idea"
+    },
+    {
+      "id": "attract-the-king",
+      "kind": "play",
+      "title": "Sacrifice, then fork",
+      "fen": "3q2k1/pp4p1/4p3/6N1/8/7R/PP3PPP/6K1 w - - 0 1",
+      "prompt": "Lure the king to h8, then fork king and queen.",
+      "hint": "Give up the rook with check in the corner.",
+      "line": ["h3h8", "g8h8", "g5f7", "h8h7", "f7d8"],
+      "success": "Rh8+! Kxh8 is forced, and Nf7+ forks king and queen. After the king moves, Nxd8 leaves you a knight up.",
+      "narration": "Throw your rook into the corner with check. The king has to take it, and now it stands right where your knight wants it. Jump to f7 with check, and the queen falls next.",
+      "pose": "detective"
+    },
+    {
+      "id": "smothered",
+      "kind": "play",
+      "title": "Attract the rook",
+      "fen": "5r1k/pp4pp/7N/3Q4/8/8/PPq3PP/7K w - - 0 1",
+      "prompt": "Mate in two: lure Black's rook onto g8, then let the knight finish.",
+      "hint": "Offer the queen on g8. The king cannot take it, because the knight guards g8.",
+      "line": ["d5g8", "f8g8", "h6f7"],
+      "success": "Qg8+! The rook must capture, and now it blocks the king's last square. Nf7 is a smothered mate: the king is buried by its own pieces.",
+      "narration": "The king can't take on g8 because your knight guards it, so a queen check there forces the rook to capture. Now the rook is sitting on the king's last escape square. Hop the knight to f7 and it's checkmate.",
+      "pose": "excited"
+    },
+    {
+      "id": "attraction-or-deflection",
+      "kind": "choose",
+      "title": "Which is which",
+      "question": "You sacrifice on h8 so the king must take and stand on h8, where a knight check forks it. Which tactic is that?",
+      "options": [
+        { "text": "Attraction: you dragged the king onto a bad square", "correct": true, "why": "The point was where the king ends up. Attraction pulls a piece onto a square; deflection pulls it away from one." },
+        { "text": "Deflection", "why": "Deflection is about what the piece leaves behind. Here what matters is the square the king is forced onto." },
+        { "text": "A skewer", "why": "A skewer attacks two pieces on one line. The sacrifice here sets up a knight fork instead." }
+      ],
+      "narration": "Final question. You sacrificed so the king had to step onto h8, right into a fork. Is that attraction or deflection? Nail it and you've got both ideas down. Brilliant!",
+      "pose": "trophy"
+    }
+  ]
+}

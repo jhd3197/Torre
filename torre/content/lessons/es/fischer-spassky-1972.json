@@ -1,0 +1,91 @@
+{
+ "title": "Fischer – Spassky, partida seis",
+ "summary": "Reikiavik, 1972: en el encuentro del siglo, Fischer sorprende a Spassky con 1.c4 y juega un juego posicional perfecto.",
+ "unit": "Bobby Fischer",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Reikiavik, 1972",
+   "text": "En 1972, Bobby Fischer desafió al campeón del mundo Boris Spassky en Reikiavik, Islandia. Durante la Guerra Fría, el encuentro atrajo la atención más allá del ajedrez. Para la partida seis, Fischer, que casi siempre abría con su peón de rey, empujó el peón de c en su lugar. Ganó la partida y más tarde el encuentro, convirtiéndose en campeón del mundo.",
+   "narration": "Reikiavik, 1972. Fischer contra el campeón del mundo Boris Spassky. En la partida seis, Fischer abre con una jugada que nadie esperaba."
+  },
+  {
+   "id": "the-game",
+   "title": "Fischer – Spassky, Campeonato Mundial, partida 6, 1972",
+   "text": "Un Gambito de Dama. Las negras terminan con dos peones uno al lado del otro en c5 y d5, llamados peones colgantes. Fischer los hace moverse, luego usa sus peones extra en el flanco de rey para atacar.",
+   "notes": [
+    {
+     "text": "1.c4: una sorpresa. Fischer casi siempre abría con 1.e4."
+    },
+    {
+     "text": "15...bxc5: las negras tienen peones colgantes en c5 y d5. Controlan casillas, pero pueden convertirse en objetivos."
+    },
+    {
+     "text": "19.Nxe6: Fischer cambia su caballo por el buen alfil de las negras. Después de ...fxe6, los peones negros están rígidos."
+    },
+    {
+     "text": "20...d4, después de 20.e4, Spassky avanza. El centro ahora está cerrado."
+    },
+    {
+     "text": "22.e5: el peón fija el peón e6 y abre la diagonal para el alfil de blancas."
+    },
+    {
+     "text": "24.Qh3: La dama se desplaza para atacar e6 por segunda vez y vigilar al rey negro."
+    },
+    {
+     "text": "26.f5: La ruptura de peones que abre la columna f hacia el rey negro."
+    },
+    {
+     "text": "36...Qe8: Spassky solo puede mover su dama de un lado a otro. El blanco construye su ataque con tranquilidad."
+    },
+    {
+     "text": "41.Qf4: El rey negro ya no tiene dónde refugiarse. Spassky renunció."
+    }
+   ],
+   "narration": "El negro tiene dos peones colgando en el centro. Observa cómo Fischer los mueve y luego ataca en el otro lado.",
+   "guesses": [
+    {
+     "prompt": "El centro está cerrado. ¿A dónde deberían ir ahora los peones blancos?",
+     "hint": "El blanco tiene más peones en el flanco de rey. Empuja uno.",
+     "why": "21.f4 inicia el avance de los peones del flanco de rey: e5 y f5 vienen después. Con el centro cerrado, los peones del flanco de dama del negro son demasiado lentos para ser importantes."
+    },
+    {
+     "prompt": "Tu peón de e puede dar un gran paso. ¿Debería hacerlo?",
+     "hint": "Un peón pasado protegido por un alfil es un monstruo.",
+     "why": "31.e6!: El peón está protegido por el alfil y divide la posición del negro en dos. Los alfiles negros pierden las casillas d7 y f7."
+    },
+    {
+     "prompt": "El caballo negro en f6 es el último defensor del rey. ¡Elimínalo!",
+     "hint": "Una torre puede capturar un caballo cuando el rey detrás de él se desmorona.",
+     "why": "38.Rxf6! da una torre por el caballo. Después de ...gxf6 39.Rxf6, la dama y la torre se abaten sobre el rey al descubierto."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "El plan",
+   "question": "Después de 20...d4, el centro se cerró. ¿Cuál era el plan de Fischer?",
+   "options": [
+    {
+     "text": "Empuja sus peones del flanco de rey, donde tenía más, y abre líneas hacia el rey.",
+     "why": "Sí. f4, e5 y f5 abrieron la columna f, y las torres hicieron el resto."
+    },
+    {
+     "text": "Gana el peón d4 con todas tus piezas.",
+     "why": "El peón d4 estaba seguro y no importaba. Fischer jugó en el otro flanco."
+    },
+    {
+     "text": "Intercambia todas las piezas y acuerda un empate.",
+     "why": "Fischer quería ganar, y la mayoría de peones en el flanco de rey le dio el camino."
+    }
+   ],
+   "narration": "El centro se cerró. ¿Cuál era el plan de Fischer?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Juega donde tienes más.",
+   "text": "Cuando el centro se bloquea, mira dónde tienes más peones y más espacio, y juega ahí. Los peones de e y f de Fischer avanzaron, abrieron la columna f, y sus torres y dama se precipitaron. Las piezas de Spassky estaban atascadas defendiendo, y solo podía esperar.",
+   "narration": "Cuando el centro está cerrado, juega en el lado donde tienes más peones. Fischer lo hizo a la perfección."
+  }
+ ]
+}

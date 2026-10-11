@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "title": "King and pawn against king",
+  "summary": "The most basic endgame of all: when one pawn wins, when it only draws, and why the rook pawn is special.",
+  "category": "endgames",
+  "level": "beginner",
+  "minutes": 7,
+  "requires": ["opposition"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "king-in-front",
+      "kind": "explain",
+      "title": "The king goes first",
+      "fen": "4k3/8/4K3/8/4P3/8/8/8 w - - 0 1",
+      "marks": [["e6"], ["d7"], ["e7"], ["f7"]],
+      "text": "With a single pawn, the king does the work and the pawn follows. Here White's king stands on the sixth rank, right in front of its pawn, and controls the squares the pawn must cross. This wins whoever is to move. A pawn pushed ahead of its king is easy for the defending king to stop.",
+      "narration": "One pawn against a lone king. The golden rule: the king leads and the pawn follows. With White's king planted in front of its pawn on the sixth rank, this is a win no matter whose turn it is.",
+      "pose": "present"
+    },
+    {
+      "id": "step-in-front",
+      "kind": "play",
+      "title": "Get in front",
+      "fen": "8/4k3/8/5K2/4P3/8/8/8 w - - 0 1",
+      "prompt": "Only one move wins. Put your king in front of the pawn.",
+      "hint": "The square directly in front of the pawn is free, and taking it also gives you the opposition.",
+      "line": ["f5e5"],
+      "success": "King to e5. Your king stands in front of the pawn and faces Black's king, so Black must give way and your king walks up to the sixth rank. Pushing the pawn instead lets Black's king block it, and the game is drawn.",
+      "narration": "Your turn. One move wins, everything else draws. Step your king in front of the pawn, facing Black's king, and Black has to give way.",
+      "pose": "detective"
+    },
+    {
+      "id": "rook-pawn",
+      "kind": "explain",
+      "title": "The rook pawn is different",
+      "fen": "k7/8/1K6/P7/8/8/8/8 w - - 0 1",
+      "demo": ["a5a6", "a8b8", "a6a7", "b8a8", "b6a6"],
+      "text": "A pawn on the a- or h-file is called a rook pawn, and it has a flaw: the corner. Once the defending king reaches the corner in front of the pawn, there is no way to push it out, because the attacking king has no square beside the pawn to go round. Step through the demo: it ends in stalemate.",
+      "narration": "Now meet the exception. A pawn on the edge of the board is called a rook pawn. If the defending king gets into the corner in front of it, it can never be pushed out. The pawn steps up. [move] The king waits on b8. [move] The pawn gives check. [move] Back into the corner. [move] And king to a6 leaves Black no move at all. [move] Stalemate.",
+      "pose": "alarm"
+    },
+    {
+      "id": "run-to-the-corner",
+      "kind": "play",
+      "title": "Run to the corner",
+      "fen": "8/8/4k3/1K6/P7/8/8/8 b - - 0 1",
+      "prompt": "You are Black. Save the game by heading for the corner.",
+      "hint": "The corner is a8. Your king needs to reach the c8 square before White's king can stop it.",
+      "line": ["e6d7", "b5b6", "d7c8"],
+      "success": "King to d7 and then c8. Your king slips into the corner area, and from there White can never force it out. Every other first move was too slow.",
+      "narration": "You are the defender now. A draw is waiting for you in the corner, but only one route gets there in time. Head for c8, and you are safe.",
+      "pose": "shield"
+    },
+    {
+      "id": "shut-the-door",
+      "kind": "play",
+      "title": "Shut the door",
+      "fen": "8/3k4/1K6/8/P7/8/8/8 w - - 0 1",
+      "prompt": "Now you are White. Keep Black's king away from the corner.",
+      "hint": "Black's king wants c8. Which king move takes that square away?",
+      "line": ["b6b7"],
+      "success": "King to b7 guards c8 and c7, so Black's king is shut out of the corner and the pawn walks home. Any other move lets Black reach c8 and draw.",
+      "narration": "Switch sides. Black's king is racing for the corner. Use your king like a door and slam it shut.",
+      "pose": "determined"
+    },
+    {
+      "id": "which-draws",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "Black's king has reached the corner in front of White's rook pawn. What is the result with best play?",
+      "options": [
+        { "text": "A draw", "correct": true, "why": "The defending king cannot be driven out of the corner. White either lets it out or stalemates it." },
+        { "text": "White wins by bringing the king closer", "why": "White's king has no way round the pawn on the edge, so it can only take away squares until it is stalemate." },
+        { "text": "White wins by pushing the pawn at once", "why": "The pawn reaches the seventh rank and gets stuck in front of Black's king, or the position is stalemate." }
+      ],
+      "narration": "Last question. The defender's king has reached the corner in front of a rook pawn. What's the result? Remember this one, it will save you half points for years. Well played today!",
+      "pose": "trophy"
+    }
+  ]
+}

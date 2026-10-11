@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "title": "The dovetail mate",
+  "summary": "A protected queen right next to the king, on a diagonal, mates when the king's own pieces block the squares behind it.",
+  "category": "checkmates",
+  "unit": "Mating patterns",
+  "order": 6,
+  "level": "intermediate",
+  "minutes": 5,
+  "practice": "mate-in-2",
+  "steps": [
+    {
+      "id": "the-shape",
+      "kind": "explain",
+      "title": "The dovetail shape",
+      "fen": "4r3/pp2kp1p/6p1/4P3/8/8/PP3PPP/3Q2K1 w - - 0 1",
+      "marks": [["d1", "d6"], ["e5", "d6"], ["e8"], ["f7"]],
+      "text": "A queen on d6 would sit diagonally next to Black's king, protected by the pawn on e5. From there she covers every square around the king except two: e8 and f7. Both are filled by Black's own rook and pawn. The shape of the queen and the two blocked squares looks like the tail of a dove, which gives the mate its name.",
+      "narration": "Here's a sneaky one. If your queen lands right next to the king on a diagonal, and something protects her, she covers almost every square. The two squares she misses, e8 and f7, are blocked by Black's own pieces.",
+      "pose": "present"
+    },
+    {
+      "id": "queen-to-d6",
+      "kind": "play",
+      "title": "Land the queen",
+      "fen": "4r3/pp2kp1p/6p1/4P3/8/8/PP3PPP/3Q2K1 w - - 0 1",
+      "prompt": "Checkmate in one move.",
+      "hint": "Your pawn on e5 protects one square diagonally next to the king.",
+      "line": ["d1d6"],
+      "success": "Queen to d6 is mate. The pawn on e5 protects her, she covers d7, d8, e6, f6 and f8, and Black's rook and pawn block e8 and f7.",
+      "narration": "Your move. Slide the queen up the d-file to d6. The pawn protects her, and Black's own rook and pawn do the rest.",
+      "pose": "detective"
+    },
+    {
+      "id": "drive-it-out",
+      "kind": "play",
+      "title": "Drive the king into the dovetail",
+      "fen": "4rk2/pp3p1p/2Q3p1/4P3/8/8/PP3PPP/2B3K1 w - - 0 1",
+      "prompt": "Mate in two. Check with the bishop first.",
+      "hint": "The bishop can check from h6. If the king steps to e7, the queen has a square next to it.",
+      "line": ["c1h6", "f8e7", "c6d6"],
+      "success": "Bishop to h6 check pushes the king to e7, and queen to d6 is the dovetail mate.",
+      "narration": "Start with a bishop check from h6. The king walks out to e7, right into the dovetail, and your queen lands on d6 for mate.",
+      "pose": "playing"
+    },
+    {
+      "id": "what-blocks",
+      "kind": "choose",
+      "title": "What makes it mate?",
+      "question": "In the dovetail mate, what stops the king from escaping to the two squares the queen does not cover?",
+      "options": [
+        { "text": "The king's own pieces stand on them", "correct": true, "why": "The queen covers everything else. The defender's own pieces close the last two doors." },
+        { "text": "The queen covers them from a distance", "why": "From a diagonal next to the king, the queen misses two squares. Something else has to fill them." },
+        { "text": "The pawn protecting the queen covers them", "why": "That pawn's job is to protect the queen so the king cannot take her." }
+      ],
+      "narration": "Last question. The queen misses two squares in this mate. What closes them? Answer this, and you've finished the mating patterns. Wonderful work!",
+      "pose": "trophy"
+    }
+  ]
+}

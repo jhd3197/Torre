@@ -1,0 +1,93 @@
+{
+ "title": "El enfrentamiento Morphy contra Paulsen",
+ "summary": "Nueva York, 1857: el Morphy de veinte años sacrifica su dama por un alfil y persigue al rey blanco con una torre y un alfil.",
+ "unit": "Paul Morphy",
+ "steps": [
+  {
+   "id": "new-york-1857",
+   "title": "Nueva York, 1857",
+   "text": "En 1857, los mejores jugadores de América se reunieron en Nueva York para el primer Congreso de Ajedrez Estadounidense. Paul Morphy, de veinte años y oriundo de Nueva Orleans, resultó ganador. Esta partida proviene de su encuentro final contra Louis Paulsen, un jugador cauteloso y paciente. Tú juegas del lado de las negras, como Morphy.",
+   "narration": "Nueva York, 1857. El joven Paul Morphy se enfrenta a Louis Paulsen en la final del primer Congreso de Ajedrez Estadounidense. Tú juegas con negras, como Morphy. Vigila su dama: no permanecerá en el tablero mucho tiempo."
+  },
+  {
+   "id": "the-game",
+   "title": "Paulsen – Morphy, Nueva York 1857",
+   "text": "Morphy permite que un peón se vaya para sacar sus piezas rápidamente, luego estaciona su dama en el campo blanco. Cuando Paulsen intenta cambiarla, Morphy tiene una idea mucho más grande. El juego se detiene en los movimientos clave de Morphy: encuéntralos.",
+   "notes": [
+    {
+     "text": "6...Re8: Morphy deja ir el peón e5 y pone su torre en el abierto archivo e. Él quiere tiempo y líneas abiertas, no peones."
+    },
+    {
+     "text": "10...Rxe4: el peón está de vuelta, y cada pieza negra está activa."
+    },
+    {
+     "text": "12...Qd3!: La dama se asienta en d3. Bloquea el peón d blanco, por lo que el alfil en c1 y la torre en a1 no pueden salir fácilmente."
+    },
+    {
+     "text": "17.Qa6: La dama de Paulsen ataca a la dama de Morphy en d3. La mayoría de los jugadores intercambiarían damas o retrocederían."
+    },
+    {
+     "text": "18.gxf3: Paulsen tiene que tomar, y su rey pierde el peón en g2 que lo resguardaba."
+    },
+    {
+     "text": "22...Bg2+: El alfil baila alrededor del rey, jaque tras jaque, mientras la dama y las torres blancas observan desde el flanco de dama."
+    },
+    {
+     "text": "24...Bxf2: El otro alfil se une, y ahora la dama blanca debe retroceder para defender."
+    },
+    {
+     "text": "25...Bxf1: Morphy toma la dama. Ha recuperado más de lo que dio."
+    }
+   ],
+   "narration": "Morphy desarrolla rápido y pone su dama justo en medio de la posición de Blanco. Cuando Paulsen intenta alejarla, prepárate. Encontrarás los movimientos clave de Morphy.",
+   "guesses": [
+    {
+     "prompt": "La dama de Paulsen ataca la tuya. Morphy ni cambia ni retrocede. ¿Qué juega?",
+     "hint": "El alfil en f3 es la única pieza que protege al rey de Blanco. ¿Qué pasa si desaparece?",
+     "why": "17...Qxf3!! Morphy da su dama por un alfil. Después de 18.gxf3 el rey blanco no tiene un peón delante en la columna g, y la torre y el alfil de Negro pueden atacarlo con jaque tras jaque."
+    },
+    {
+     "prompt": "Paulsen tomó la dama. Comienza el ataque sobre el rey al descubierto.",
+     "hint": "La columna g acaba de abrirse. ¿Qué pieza puede usarla con jaque?",
+     "why": "18...Rg6+ utiliza la columna g abierta de inmediato. El rey tiene que esconderse en la esquina en h1."
+    },
+    {
+     "prompt": "El rey está en la esquina. Trae otra pieza con una amenaza.",
+     "hint": "Tu alfil de casillas claras puede alcanzar una casilla al lado del rey blanco.",
+     "why": "1. \"1. \"19...Bh3! El alfil se dirige a g2. Desde allí, el rey está en jaque, y cuando se mueve, descubre un jaque del la torre en g6. La dama y las torres de las blancas están demasiado lejos para ayudar.\""
+    },
+    {
+     "prompt": "2. \"El d4 de Paulsen permite que su alfil en c1 ataque a tu la torre en h6. Morphy no mueve la torre. ¿Qué juega?",
+     "hint": "El alfil ataca h6 a lo largo de una diagonal. ¿Puede una de tus piezas interponerse?",
+     "why": "4. \"4. \"28...Be3! El alfil bloquea la diagonal, así que la torre en h6 está a salvo, y las torres amenazan con abrirse paso en h2. Paulsen renunció.\""
+    }
+   ]
+  },
+  {
+   "id": "the-lesson",
+   "title": "5. \"Una dama por un rey expuesto",
+   "text": "6. \"Morphy dio su dama por un alfil, pero Paulsen nunca pudo disfrutar del material extra. El cambio abrió el rey blanco, y la torre y el alfil dejaron atrás hicieron el trabajo de todo un ejército. El material extra solo ayuda si esas piezas pueden llegar a la lucha; la dama y las torres de Paulsen estaban atrapadas en el flanco de dama.",
+   "narration": "7. \"El sacrificio de la dama nunca fue sobre material. Abrió el rey blanco, y la torre y el alfil de Morphy terminaron el trabajo mientras las piezas extra de las blancas estaban demasiado lejos."
+  },
+  {
+   "id": "quiz",
+   "title": "Por qué funcionó",
+   "question": "9. \"¿Por qué Morphy podía permitirse dar su dama por un alfil?",
+   "options": [
+    {
+     "text": "10. \"El rey de las blancas perdió su protección de peones, y la dama y las torres de las blancas estaban demasiado lejos para ayudar.",
+     "why": "11. \"Exactamente. La torre y el alfil de Morphy llegaron al rey mucho antes de que las piezas grandes de las blancas pudieran volver."
+    },
+    {
+     "text": "La dama de Paulsen iba a quedar atrapada de todos modos",
+     "why": "No es así. La dama de Paulsen en a6 estaba perfectamente segura. Morphy sacrificó su propia dama a propósito."
+    },
+    {
+     "text": "Un alfil vale tanto como una dama en el medio juego.",
+     "why": "Una dama vale alrededor de tres alfiles. Morphy era pagado en ataque, no en material."
+    }
+   ],
+   "narration": "Una pregunta: ¿por qué Morphy podía permitirse dar su dama?"
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "title": "Doubled and backward pawns",
+  "summary": "Two pawns on one file, and a pawn left behind by its neighbours. Learn why these are weak and how to attack them.",
+  "category": "strategy",
+  "level": "intermediate",
+  "minutes": 7,
+  "unit": "Pawn structure",
+  "order": 3,
+  "requires": ["passed-pawns"],
+  "practice": "pawn-endgame",
+  "steps": [
+    {
+      "id": "doubled",
+      "kind": "explain",
+      "title": "Doubled pawns",
+      "fen": "r1bqkb1r/p1pp1ppp/2p2n2/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 5",
+      "marks": [["c7"], ["c6"]],
+      "text": "White's bishop took the knight on c6 and Black recaptured with the b-pawn, so Black now has two pawns on the c-file: doubled pawns. They cannot protect each other, the back one is stuck behind the front one, and together they are worth less than two healthy pawns. Doubled pawns are not always bad: here Black got the bishop pair and a half-open b-file in return. But in an endgame, the weakness usually shows.",
+      "narration": "See the two black pawns stacked on the c-file? Those are doubled pawns. They can't defend each other and the back one is stuck behind the front one. Black got the two bishops in return, but in an endgame, doubled pawns usually cost you.",
+      "pose": "pointer"
+    },
+    {
+      "id": "doubled-ending",
+      "kind": "play",
+      "title": "Two healthy pawns beat two doubled ones",
+      "fen": "8/6p1/4k1p1/8/4K3/8/6PP/8 w - - 0 1",
+      "prompt": "Pawns are equal, but Black's are doubled. Find the only winning plan.",
+      "hint": "Use your h-pawn to freeze both of Black's g-pawns before they can get organised.",
+      "line": ["h2h4", "g6g5", "h4h5"],
+      "success": "With the pawn on h5, Black's doubled pair is frozen: neither g-pawn can make progress, and White's king is free to go after them. Any slower move lets Black set up and hold.",
+      "narration": "Pawns are equal, two each, but Black's are doubled. Push your h-pawn forward to clamp down on both of them. Once they're frozen, Black's pair is worth less than your healthy two.",
+      "pose": "detective"
+    },
+    {
+      "id": "backward",
+      "kind": "explain",
+      "title": "The backward pawn",
+      "fen": "6k1/pp1r1ppp/3p1b2/4p3/4P3/2N5/PPPR1PPP/6K1 w - - 0 1",
+      "marks": [["d6"], ["d5"], ["c3", "d5"], ["d2", "d6"]],
+      "text": "Black's pawn on d6 is backward. Its neighbour on e5 has moved ahead and there is no c-pawn, so no pawn can ever defend it. It cannot safely step to d5 either, because White's knight and e4 pawn control that square. It also sits on a half-open file, right in front of White's rook. The square d5 in front of it is a hole that White's pieces can use.",
+      "narration": "Now meet the backward pawn on d6. Its neighbours have left it behind, so no pawn can protect it, and it can't move forward because White controls d5. It's stuck on an open file, right in the rook's sights.",
+      "pose": "alarm"
+    },
+    {
+      "id": "hit-the-backward-pawn",
+      "kind": "play",
+      "title": "Pile up on it",
+      "fen": "6k1/pp1r1ppp/3p1b2/4p3/4P3/2N5/PPPR1PPP/6K1 w - - 0 1",
+      "prompt": "Add an attacker to the backward pawn and win it.",
+      "hint": "The rook already attacks d6. Which knight jump attacks it a second time, and a7 as well?",
+      "line": ["c3b5", "d7d8", "b5d6"],
+      "success": "The knight on b5 hit d6 and a7 at once. The d6 pawn had only one defender against two attackers, so it fell.",
+      "narration": "The rook is already staring at the backward pawn. Bring the knight in so the pawn is attacked twice, and since no pawn can come to its rescue, it falls.",
+      "pose": "determined"
+    },
+    {
+      "id": "why-weak",
+      "kind": "choose",
+      "title": "Check yourself",
+      "question": "What makes a backward pawn a good target?",
+      "options": [
+        { "text": "No pawn can defend it, and the square in front of it is a safe post for enemy pieces", "correct": true, "why": "So the defender must tie pieces to it, while the attacker gets a fine square to occupy." },
+        { "text": "It is far from its own king", "why": "Distance from the king has nothing to do with it. The problem is the pawn structure around it." },
+        { "text": "It can be captured en passant", "why": "En passant is only possible right after a two-square pawn move. It is not what makes a pawn backward." }
+      ],
+      "narration": "Last question. Why do strong players love to attack backward pawns? Think about who can defend it, and who can use the square in front of it. Well done!",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+ "title": "Carlsen ataca a los trece años",
+ "summary": "Wijk aan Zee, 2004: un Magnus Carlsen de trece años sacrifica un caballo, un alfil y una torre y da mate.",
+ "unit": "Magnus Carlsen",
+ "steps": [
+  {
+   "id": "the-setting",
+   "title": "Wijk aan Zee, 2004",
+   "text": "Magnus Carlsen, de Noruega, más tarde se convirtió en campeón del mundo y en el jugador con la clasificación más alta de la historia. En enero de 2004 tenía trece años y jugaba en el tercer grupo del gran torneo de Wijk aan Zee en los Países Bajos. Contra el jugador holandés Sipke Ernst, jugó un ataque que lo hizo destacar.",
+   "narration": "Wijk aan Zee, 2004. Magnus Carlsen tiene trece años. Observa lo que le hace a su rey oponente."
+  },
+  {
+   "id": "the-game",
+   "title": "Carlsen – Ernst, Wijk aan Zee 2004",
+   "text": "Una Defensa Caro-Kann. Carlsen empuja su peón de h hasta h5 y enroca largo. Después comienzan los sacrificios: un caballo, un alfil y una torre, uno tras otro.",
+   "notes": [
+    {
+     "text": "8.h5: El peón de h toma espacio en el flanco de rey y restringe a las negras."
+    },
+    {
+     "text": "12.O-O-O: Las blancas enrocan largo. Las negras enrocarán corto."
+    },
+    {
+     "text": "16.Ne5: El caballo ocupa una fuerte casilla central."
+    },
+    {
+     "text": "19.Qxe6+: La dama recupera con jaque. El rey negro corre a h8."
+    },
+    {
+     "text": "23.Qxe7, después del sacrificio de la torre, la dama captura al alfil. El rey negro está expuesto."
+    },
+    {
+     "text": "24.gxf7: el peón en f7 protege el ataque de las blancas y amenaza con coronar."
+    }
+   ],
+   "narration": "Carlsen gana espacio con su peón de h y enroca largo. Luego empieza a regalar piezas. Encuentra sus movimientos.",
+   "guesses": [
+    {
+     "prompt": "Carlsen sacrifica un caballo. ¿Dónde?",
+     "hint": "Un caballo en g6 ataca e7 y f8. Si el peón f7 lo captura, se abre algo.",
+     "why": "18.Ng6! fxg6 19.Qxe6+: capturar abre la diagonal al rey negro, y el peón h5 también ataca g6."
+    },
+    {
+     "prompt": "El rey negro corrió a h8. Captura con el peón.",
+     "hint": "Tu peón de h puede capturar en g6.",
+     "why": "20.hxg6 pone un peón en g6, justo al lado del rey negro, y abre la columna h para la torre en h1."
+    },
+    {
+     "prompt": "Rompe la protección del rey. Sacrifica un alfil.",
+     "hint": "El peón h6 es el último peón escudo.",
+     "why": "21.Bxh6! gxh6 22.Rxh6+: el alfil elimina un peón escudo, y la torre sigue con jaque."
+    },
+    {
+     "prompt": "Sigue adelante: la columna h está abierta.",
+     "hint": "La torre puede dar jaque en h6.",
+     "why": "22.Rxh6+ Nxh6 23.Qxe7: la torre también se va, pero la dama captura al alfil y el rey negro ya no tiene cobertura."
+    },
+    {
+     "prompt": "Termínalo. Mate en uno.",
+     "hint": "La dama puede dar jaque a lo largo de la séptima fila. ¿Qué casillas cubre la torre en g3?",
+     "why": "29.Qd7#: la dama da jaque a lo largo de la séptima fila, cubre e8 y e6, y la torre en g3 guarda la columna g."
+    }
+   ]
+  },
+  {
+   "id": "the-quiz",
+   "title": "Abrir el rey",
+   "question": "¿Por qué Carlsen dio un caballo, un alfil y una torre?",
+   "options": [
+    {
+     "text": "Cada sacrificio eliminó un peón o pieza que protegía al rey negro.",
+     "why": "Sí. Después de los sacrificios, el rey negro estaba al descubierto con la dama y los peones blancos a su lado."
+    },
+    {
+     "text": "Quería simplificar a un final.",
+     "why": "Nada de este juego fue un final. Terminó en jaque mate."
+    },
+    {
+     "text": "Calculó que tu oponente cometería un error.",
+     "why": "Los sacrificios funcionaron incluso contra la mejor defensa; tu oponente estaba demasiado expuesto."
+    }
+   ],
+   "narration": "Tres piezas regaladas. ¿Qué obtuviste a cambio?"
+  },
+  {
+   "id": "the-lesson",
+   "title": "Elimina el escudo.",
+   "text": "Un rey enrocado está seguro gracias a los peones que lo protegen. Carlsen sacrificó un caballo, un alfil y una torre para eliminar esos peones uno por uno, y luego su dama y peones terminaron el trabajo. Cuando el rey enemigo pierde su escudo, cuenta los atacantes, no el material.",
+   "narration": "Un rey es tan seguro como los peones que lo protegen. Carlsen los eliminó con sacrificios uno a la vez."
+  }
+ ]
+}

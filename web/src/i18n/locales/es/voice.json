@@ -1,0 +1,91 @@
+{
+  "capture": [
+    "¡Ñam! Qué rico.",
+    "¡Para la caja!",
+    "Gracias por el regalito.",
+    "Come, come, come.",
+    "Una menos.",
+    "Adiós, piecita.",
+    "Esa ya no vuelve.",
+    "¡Otro que muerde el polvo!",
+    "Botín asegurado.",
+    "¡Es gratis, y te la comiste!"
+  ],
+  "check": [
+    "¡Jaque! Toc, toc.",
+    "Su majestad, muévase.",
+    "El rey está sudando.",
+    "¡Jaque y a correr!",
+    "Presión, presión.",
+    "Ojo, rey.",
+    "Ding dong, jaque.",
+    "Se le acaban las casillas."
+  ],
+  "mate": [
+    "¡Jaque mate! Se acabó.",
+    "¡Y se apagan las luces!",
+    "Mate de libro.",
+    "Fin de la historia.",
+    "El rey ya no tiene adónde ir.",
+    "¡Golazo!",
+    "Bien jugado, crack.",
+    "Telón."
+  ],
+  "wrong": [
+    "Casi, pero no.",
+    "Mmm, esa deja algo colgado.",
+    "El tablero dice que no.",
+    "Buen intento, pillo.",
+    "Mira otra vez: jaques, capturas, amenazas.",
+    "Esa jugada se fue de vacaciones.",
+    "Frío, frío.",
+    "Plot twist: no era esa.",
+    "¿Sacrificio o se te resbaló?",
+    "¡Gambito Botez en vivo!"
+  ],
+  "great": [
+    "¡Jugadón!",
+    "¡Brillante, con dos signos de admiración!",
+    "Eso es de crack.",
+    "Magnus lo aprobaría.",
+    "La tenías desde el principio.",
+    "¡Golazo de media cancha!",
+    "Nivel gran maestro.",
+    "¡Ah, presumido!"
+  ],
+  "fast": [
+    "¡Récord!",
+    "¿Eso fue premove?",
+    "Manos de rayo.",
+    "Modo bullet activado.",
+    "Más rápido que el reloj.",
+    "¡Fiu! Ya está.",
+    "Velocidad luz.",
+    "Alguien desayunó bien hoy."
+  ],
+  "hint": [
+    "Una ayudita no le hace daño a nadie.",
+    "Hasta los campeones tienen entrenador.",
+    "Pista desbloqueada. ¿Ya lo ves?",
+    "Llamada a un amigo: yo.",
+    "Pedir ayuda es de sabios.",
+    "Un empujoncito y listo.",
+    "La próxima, sin espiar."
+  ],
+  "streak": [
+    "¡Estás que ardes!",
+    "¡Racha imparable!",
+    "¡Combo por tres!",
+    "Sigue así, que vas volando.",
+    "Esto ya es leyenda.",
+    "¡Que alguien lo pare!"
+  ],
+  "lostPiece": [
+    "Auch. Se llevaron una.",
+    "¡Oye, esa la necesitaba!",
+    "Esa dolió.",
+    "Te mordieron. Muerde de vuelta.",
+    "Una pieza menos. Hora de ser astuto.",
+    "Respira y busca el contraataque."
+  ]
+}

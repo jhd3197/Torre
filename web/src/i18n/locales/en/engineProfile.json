@@ -1,0 +1,17 @@
+{
+  "title": "Config profile",
+  "note": "Saved UCI options, applied every time {{engine}} starts: analysis, play and the Arena. A bot's rating still sets its own strength.",
+  "unreported": "The engine could not be asked for its options, so these values are saved without being checked.",
+  "loading": "Loading options…",
+  "valueOf": "{{name}} value",
+  "default": "default {{value}}",
+  "engineDefault": "engine default",
+  "range": "{{min}}–{{max}}",
+  "on": "on",
+  "off": "off",
+  "add": "Add an option…",
+  "save": "Save profile",
+  "saving": "Saving…",
+  "saved": "Profile saved. It applies the next time the engine starts.",
+  "clear": "Clear profile"
+}

@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "title": "The Noah's Ark Trap",
+  "summary": "In the Ruy Lopez, Black's queenside pawns shut White's bishop in on b3 and win it.",
+  "category": "openings",
+  "level": "intermediate",
+  "minutes": 6,
+  "unit": "Opening traps",
+  "order": 8,
+  "orientation": "black",
+  "practice": "trapped-piece",
+  "steps": [
+    {
+      "id": "chasing-the-bishop",
+      "kind": "explain",
+      "title": "Chasing the bishop",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3",
+      "marks": [
+        [
+          "b3"
+        ]
+      ],
+      "text": "In the Ruy Lopez, Black often chases White's bishop with pawn to a6 and pawn to b5. The bishop settles on b3, where it aims at f7, but its escape squares are getting few. The trap is so old that it is named after Noah's Ark.",
+      "demo": [
+        "a7a6",
+        "b5a4",
+        "d7d6",
+        "d2d4",
+        "b7b5",
+        "a4b3"
+      ],
+      "narration": "Here's the Ruy Lopez. Black kicks the bishop with the a-pawn. [move] It drops back to a4. [move] Pawn to d6. [move] Pawn to d4. [move] Then the b-pawn chases the bishop again. [move] And it settles on b3. [move] It looks happy there, but it's running out of exits.",
+      "pose": "present"
+    },
+    {
+      "id": "the-bait",
+      "kind": "explain",
+      "title": "The queen recaptures",
+      "fen": "r1bqkbnr/2p2ppp/p1np4/1p2p3/3PP3/1B3N2/PPP2PPP/RNBQK2R b KQkq - 1 6",
+      "text": "Black trades on d4, and White recaptures the last pawn with the queen. It seems natural, but now the queen sits on d4, in reach of Black's c-pawn, and the bishop on b3 has no way out if a black pawn lands on c4.",
+      "demo": [
+        "c6d4",
+        "f3d4",
+        "e5d4",
+        "d1d4"
+      ],
+      "narration": "Black swaps knights on d4. [move] White takes back. [move] Black takes that knight with the pawn. [move] And White takes the pawn with the queen. [move] That queen is about to be kicked, and the bishop behind it is in danger.",
+      "pose": "alarm"
+    },
+    {
+      "id": "spring-it",
+      "kind": "play",
+      "title": "Trap the bishop",
+      "fen": "r1bqkbnr/2p2ppp/p2p4/1p6/3QP3/1B6/PPP2PPP/RNB1K2R b KQkq - 0 8",
+      "prompt": "White's queen took on d4. Trap the bishop on b3.",
+      "hint": "A pawn can kick the queen now and close the door on the bishop next move.",
+      "line": [
+        "c7c5",
+        "d4c3",
+        "c5c4"
+      ],
+      "success": "Pawn to c5 chases the queen, then pawn to c4 shuts the bishop in. Its exits on a4 and c4 are covered by your pawns, and a2 and c2 hold White's own pawns. The best White can get for it is a pawn or two.",
+      "narration": "White's queen took back on d4. Now kick it with a pawn, then use the same pawn to slam the door on that bishop.",
+      "pose": "magnify"
+    },
+    {
+      "id": "if-queen-d5",
+      "kind": "play",
+      "title": "If the queen goes to d5",
+      "fen": "r1bqkbnr/5ppp/p2p4/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R b KQkq - 1 9",
+      "prompt": "This time the queen jumps to d5 and attacks your rook on a8. Find the reply.",
+      "hint": "Defend with tempo: develop a piece that attacks the queen.",
+      "line": [
+        "c8e6"
+      ],
+      "success": "Bishop to e6 hits the queen. After queen to c6 check, bishop to d7 hits her again, and once she leaves you push pawn to c4 and the bishop is trapped anyway.",
+      "narration": "Sneaky queen. She hits your rook in the corner from d5. Find a developing move that attacks her back.",
+      "pose": "detective"
+    },
+    {
+      "id": "if-they-dont-fall",
+      "kind": "play",
+      "title": "If they don't fall for it",
+      "fen": "r1bqkbnr/2p2ppp/p2p4/1p2p3/3NP3/1B6/PPP2PPP/RNBQK2R b KQkq - 0 7",
+      "prompt": "Take back on d4. If White does not recapture with the queen, find the best reply.",
+      "nudge": "Recapture first. Then look at what White's move threatens or offers.",
+      "hint": "If White offers a pawn with c3, take it. If the bishop jumps to d5, save your rook. If the a-pawn hits b5, develop a piece that guards the rook.",
+      "line": [
+        "e5d4",
+        "c2c3",
+        "d4c3|d4d3|g8f6|c7c5"
+      ],
+      "success": "White offered a pawn with c3, and you took it. Pawn to d3 or knight to f6 are fine too. White gets quick development in return, so bring out your pieces and castle soon.",
+      "narration": "A careful player won't take back with the queen. Recapture on d4 and see what White does. Then answer calmly, and don't leave your rook in the corner hanging.",
+      "pose": "thinking",
+      "branches": [
+        {
+          "line": [
+            "e5d4",
+            "a2a4",
+            "c8b7|a8b8|c8d7"
+          ],
+          "success": "White hit your b5 pawn with pawn to a4. Bishop to b7 develops and guards the rook on a8, so the trade on b5 costs you nothing. Rook to b8 also works."
+        },
+        {
+          "line": [
+            "e5d4",
+            "b3d5",
+            "a8b8"
+          ],
+          "success": "The bishop jumped to d5 to attack your rook. Rook to b8 steps out of the way. No trap today, but your position is fine: develop and castle."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "kind": "choose",
+      "title": "Check yourself",
+      "fen": "r1bqkbnr/2p2ppp/p2p4/1p6/3QP3/1B6/PPP2PPP/RNB1K2R b KQkq - 0 8",
+      "orientation": "black",
+      "question": "After queen takes d4, why is the bishop on b3 in danger?",
+      "options": [
+        {
+          "text": "Black can kick the queen with pawn to c5 and then shut the bishop in with pawn to c4",
+          "why": "Right. Your pawns on b5 and c4 cover its exits, and White's own pawns block a2 and c2.",
+          "correct": true
+        },
+        {
+          "text": "Black's queen can attack it on b6",
+          "why": "That is slow, and the bishop could simply step away. The pawns do the trapping."
+        },
+        {
+          "text": "The bishop is pinned to White's king",
+          "why": "Nothing pins it. The problem is that it has no safe square to go to."
+        }
+      ],
+      "narration": "Last question. White took back with the queen. Why is the bishop on b3 suddenly in danger?",
+      "pose": "trophy"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+ "title": "La Trampa del Gambito Englund",
+ "summary": "Contra 1.d4, las negras ofrecen un peón y esperan que el alfil blanco caiga en c3. Entonces una clavada gana la torre, o incluso da mate.",
+ "unit": "Trampas de apertura",
+ "steps": [
+  {
+   "id": "the-gambit",
+   "title": "Un gambito arriesgado",
+   "text": "El Gambito Englund responde a peón a d4 con peón a e5, regalando un peón. Objetivamente es una apertura dudosa: un jugador blanco bien preparado se queda con el peón y está mejor. Sobrevive porque sus trampas atrapan a muchos jugadores.",
+   "narration": "El Gambito Englund regala un peón en la primera jugada. Peón a d4. [move] Las negras responden e5! [move] El blanco lo toma. [move] Caballo a c6. [move] Caballo a f3. [move] Dama a e7. [move] Sinceramente, no es una buena apertura contra un jugador cuidadoso. Pero sus trampas vale la pena conocerlas, desde cualquier lado."
+  },
+  {
+   "id": "the-check",
+   "title": "¡Jaque y captura!",
+   "text": "Después de que el alfil se mueve a f4 protegiendo el peón e5, la dama negra da jaque en b4 y ataca el peón en b2 al mismo tiempo. El blanco bloquea con el alfil, y la dama captura b2, ahora atacando la torre en a1. Aquí, el caballo a c3 sería la mejor respuesta para el blanco, y la dama negra podría meterse en problemas.",
+   "narration": "El alfil protege el peón extra. [move] Entonces la dama negra da un jaque en b4. [move] El alfil bloquea. [move] Y la dama captura el peón en b2. [move] Ahora la torre en la esquina está atacada."
+  },
+  {
+   "id": "the-pin",
+   "title": "El alfil que no puede moverse",
+   "prompt": "El alfil saltó a c3 para atacar a tu dama. Encuentra la respuesta aplastante.",
+   "hint": "¿El alfil en c3 está realmente libre para moverse? Mira la diagonal desde tu alfil en f8 hacia el rey blanco.",
+   "success": "El alfil a b4 clava la alfila en c3 al rey blanco, así que ya no puede tomar a tu dama. El blanco retrocede, y la dama toma a1 gana la torre.",
+   "narration": "El alfil blanco vino a c3 para perseguir a tu dama. Pero está sobre una diagonal peligrosa. Encuentra la jugada que lo fije en su lugar."
+  },
+  {
+   "id": "mate-on-c1",
+   "title": "Mate en la última fila",
+   "prompt": "El blanco defendió el alfil con la dama. Termina la partida.",
+   "hint": "Elimina el alfil clavado y luego mira los cuadrados alrededor del rey blanco en la primera fila.",
+   "success": "El alfil captura c3, y si la dama captura atrás, dama a c1 es mate. Si el caballo captura atrás en cambio, la dama captura a1 jaque aún gana la torre.",
+   "narration": "El blanco protegió el alfil con la dama. Eso deja la última fila muy delgada. Captura el alfil y busca un mate."
+  },
+  {
+   "id": "if-they-dont-fall",
+   "title": "Si no cae en la trampa",
+   "prompt": "Las blancas no jugaron alfil a c3. Caballo a c3 es la respuesta fuerte, y una torre en b1 cazaría tu dama. Sácala a salvo.",
+   "nudge": "Tu dama tiene pocas casillas. Impide que el caballo blanco se sume a la cacería.",
+   "hint": "Alfil a b4 clava el caballo de c3 al alfil de d2. Si la torre va a b1, la dama escapa a a3.",
+   "success": "Alfil a b4 clava el caballo, y después de torre a b1 tu dama se escapa a a3. Sigues un poco peor, así que deja de buscar trucos: desarrolla, enroca y lucha por el peón de e5.",
+   "narration": "Un jugador cuidadoso responde con caballo a c3, y ahora la que está en peligro es tu dama. Clava ese caballo y luego huye. Cuando un gambito falla, juega jugadas seguras, no más trucos."
+  },
+  {
+   "id": "quiz",
+   "title": "¡Revísate!",
+   "question": "Después de que la dama de las negras captura b2, ¿qué debería jugar el blanco en lugar del alfil a c3?",
+   "options": [
+    {
+     "text": "Alfil a c3, atacando a la dama",
+     "why": "Esa es exactamente la jugada que cae en la clavada."
+    },
+    {
+     "text": "Caballo a c3, desarrollando y preparándose para atrapar a la dama con la torre",
+     "why": "Bien. El caballo se desarrolla de forma segura, y la torre a b1 luego puede perseguir o atrapar a la dama codiciosa."
+    },
+    {
+     "text": "Peón a e4, ganando espacio",
+     "why": "La torre en a1 sigue siendo una pieza colgada, así que la dama captura a1 y ganas material."
+    }
+   ],
+   "narration": "Última pregunta, esta vez desde el lado de las blancas. La dama negra acaba de capturar en b2. ¿Cuál es la mejor respuesta de las blancas?"
+  }
+ ]
+}

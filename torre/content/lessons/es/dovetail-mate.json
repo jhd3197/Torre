@@ -1,0 +1,49 @@
+{
+ "title": "El mate de encaixe",
+ "summary": "Una dama protegida justo al lado del rey, en una diagonal, da mate cuando las propias piezas del rey bloquean los cuadrados detrás de ella.",
+ "unit": "Patrones de mate",
+ "steps": [
+  {
+   "id": "the-shape",
+   "title": "La forma de encaixe",
+   "text": "Una dama en d6 estaría diagonalmente al lado del rey negro, protegida por el peón en e5. Desde allí, ella cubre cada cuadrado alrededor del rey excepto dos: e8 y f7. Ambos están llenos por el propio alfil y peón negros. La forma de la dama y los dos cuadrados bloqueados se parece a la cola de una paloma, lo que le da a este mate su nombre.",
+   "narration": "Aquí tienes una jugada astuta. Si tu dama aterriza justo al lado del rey en una diagonal, y algo la protege, ella cubre casi todos los cuadrados. Los dos cuadrados que no cubre son e8 y f7, y están bloqueados por las propias piezas negras."
+  },
+  {
+   "id": "queen-to-d6",
+   "title": "Coloca la dama",
+   "prompt": "Jaque mate en un movimiento.",
+   "hint": "Tu peón en e5 protege un cuadrado diagonalmente al lado del rey.",
+   "success": "La dama a d6 da mate. El peón en e5 la protege, ella cubre d7, d8, e6, f6 y f8, y el alfil y peón negros bloquean e8 y f7.",
+   "narration": "Tu turno. Mueve la dama hacia arriba por el archivo d a d6. El peón la protege, y el alfil y peón negros hacen el resto."
+  },
+  {
+   "id": "drive-it-out",
+   "title": "Empuja al rey hacia el encaixe",
+   "prompt": "Mate en dos. Primero da jaque con el alfil.",
+   "hint": "El alfil puede dar jaque desde h6. Si el rey se mueve a e7, la dama tendrá un cuadrado al lado de él.",
+   "success": "El alfil a h6 da jaque, empuja al rey a e7, y la dama a d6 es el mate de encauste.",
+   "narration": "Comienza con un jaque de alfil desde h6. El rey sale a e7, justo al mate de encauste, y tu dama aterriza en d6 para mate."
+  },
+  {
+   "id": "what-blocks",
+   "title": "¿Qué lo hace mate?",
+   "question": "En el mate de encauste, ¿qué impide que el rey escape a los dos cuadrados que la dama no cubre?",
+   "options": [
+    {
+     "text": "Sus propias piezas están ahí.",
+     "why": "La dama cubre todo lo demás. Las piezas propias del defensor cierran las últimas dos puertas."
+    },
+    {
+     "text": "La dama los cubre desde la distancia.",
+     "why": "Desde una diagonal al lado del rey, la dama pierde dos cuadrados. Algo más tiene que cubrirlos."
+    },
+    {
+     "text": "El peón que protege a la dama la cubre.",
+     "why": "El trabajo de ese peón es proteger a la dama para que el rey no pueda tomarla."
+    }
+   ],
+   "narration": "Última pregunta. La dama pierde dos cuadrados en este mate. ¿Qué las cierra? Responde esto, y habrás terminado los patrones de mate. ¡Excelente trabajo!"
+  }
+ ]
+}

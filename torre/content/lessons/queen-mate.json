@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "King and queen mate",
+  "summary": "Checkmate a lone king with your king and queen: shrink the box, bring your king, and never leave the defender without a move.",
+  "category": "checkmates",
+  "unit": "Basic mates",
+  "order": 1,
+  "level": "beginner",
+  "minutes": 6,
+  "practice": "mate-in-2",
+  "steps": [
+    {
+      "id": "the-box",
+      "kind": "explain",
+      "title": "Draw a box",
+      "fen": "8/8/8/6k1/4Q3/8/8/4K3 w - - 0 1",
+      "marks": [["e4", "e8"], ["e4", "h4"], ["g5"]],
+      "text": "Black's king cannot cross the e-file or the fourth rank, because the queen guards both lines. Think of them as the walls of a box. Your plan is to make the box smaller until the king is stuck on the edge of the board, then walk your own king over to help.",
+      "narration": "A queen on her own can't checkmate, but she can build a fence. Here she guards the whole e-file and the whole fourth rank, so Black's king is locked in the top right corner. We keep shrinking that box until the king is pinned to the edge.",
+      "pose": "present"
+    },
+    {
+      "id": "lock-the-edge",
+      "kind": "play",
+      "title": "Lock it on the edge",
+      "fen": "3k4/8/8/1K6/8/8/5Q2/8 w - - 0 1",
+      "prompt": "Trap the king on the back rank with one queen move, walk your king up, then mate.",
+      "hint": "A queen on the seventh rank keeps the king on the eighth. Pick a square the king cannot reach.",
+      "line": ["f2f7", "d8c8", "b5c6", "c8d8", "f7d7"],
+      "success": "Queen to f7 builds a wall on the seventh rank. Your king comes up to c6 to guard the squares next to Black's king, and the queen gives mate.",
+      "narration": "The king is already on the edge, so lock the door. Put your queen on the seventh rank, far enough away that the king can't touch her. Then march your own king up and finish it with the queen.",
+      "pose": "detective"
+    },
+    {
+      "id": "king-comes-up",
+      "kind": "play",
+      "title": "The king does the last job",
+      "fen": "4k3/8/8/4K3/7Q/8/8/8 w - - 0 1",
+      "prompt": "Mate in two: first bring your king closer, then mate with the queen.",
+      "hint": "Put your king where it guards the squares in front of Black's king. A queen check alone only chases the king around.",
+      "line": ["e5e6", "e8f8", "h4h8"],
+      "success": "King to e6 covers d7, e7 and f7. Black's king can only shuffle to f8, and queen to h8 is mate along the back rank.",
+      "narration": "Checks won't do it on their own here. Step your king up to e6 so it guards the squares in front of Black's king. Black can only slide sideways, and your queen finishes it on the back rank.",
+      "pose": "playing"
+    },
+    {
+      "id": "stalemate-trap",
+      "kind": "explain",
+      "title": "Do not stalemate",
+      "fen": "k7/2K5/4Q3/8/8/8/8/8 w - - 0 1",
+      "demo": ["e6b6"],
+      "marks": [["a7"], ["b7"], ["b8"]],
+      "text": "Step through the demo. Queen to b6 looks crushing, but Black's king is not in check and has no legal move. That is stalemate, and the game is a draw. When the king is almost out of squares, make sure your move either gives check or leaves it at least one square.",
+      "narration": "Careful now, this is the classic blunder. Queen to b6. [move] It takes away every square, but it isn't check. Black has no legal move, and that's stalemate, a draw. Always leave the king a square, or give check.",
+      "pose": "alarm"
+    },
+    {
+      "id": "find-the-mate",
+      "kind": "choose",
+      "title": "Mate, not stalemate",
+      "fen": "k7/2K5/4Q3/8/8/8/8/8 w - - 0 1",
+      "question": "White to move. Which queen move is checkmate?",
+      "options": [
+        { "text": "Queen to a6", "correct": true, "why": "It checks down the a-file, and your king guards b7 and b8. The king has nowhere to go: checkmate." },
+        { "text": "Queen to b6", "why": "No check, and no legal move for Black. That is stalemate, a draw." },
+        { "text": "Queen to c6, check", "why": "It is check, but the king escapes to a7. You still win, just not in one move." }
+      ],
+      "narration": "Same position, your move. One of these is checkmate, one is the stalemate trap we just saw, and one lets the king slip away. Pick the mate, and you've got the king and queen ending down. Nice work!",
+      "pose": "trophy"
+    }
+  ]
+}

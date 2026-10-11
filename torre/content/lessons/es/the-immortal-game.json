@@ -1,0 +1,79 @@
+{
+ "title": "El Juego Inmortal",
+ "summary": "Londres, 1851: Adolf Anderssen sacrifica su dama, sus dos torres y un alfil, para luego dar jaque mate de todos modos.",
+ "unit": "La Era Romántica",
+ "steps": [
+  {
+   "id": "london-1851",
+   "title": "Londres, 1851",
+   "text": "El año es 1851 y los mejores jugadores del mundo se han reunido en Londres para el primer torneo internacional de ajedrez. Durante un descanso, el maestro alemán Adolf Anderssen se sienta para una partida amistosa contra Lionel Kieseritzky. Lo que sigue se convierte en la partida más famosa de todos los tiempos: El Juego Inmortal. Presiona play y mira cómo sucede.",
+   "narration": "Londres, 1851. El primer torneo internacional de ajedrez en la historia. En una sala lateral, Adolf Anderssen juega una partida amistosa que se convertirá en la más famosa de todas. Presiona play y mira."
+  },
+  {
+   "id": "the-game",
+   "title": "Anderssen – Kieseritzky, Londres 1851",
+   "text": "Anderssen juega el Gambito de Rey, el arma favorita de la era romántica del ajedrez, cuando el ataque era lo único importante y el material era solo un precio a pagar. Los subtítulos cuentan la historia mientras avanza la partida.",
+   "notes": [
+    {
+     "text": "El Gambito de Rey: Las blancas ofrecen un peón por una ventaja en el desarrollo. Las negras aceptan."
+    },
+    {
+     "text": "5.Bxb5: Kieseritzky intentó alejar el alfil con ...b5. Anderssen simplemente toma el peón."
+    },
+    {
+     "text": "11.Rg1!: La torre se une al ataque. En esta era, el material no significaba nada: solo importaba el rey enemigo."
+    },
+    {
+     "text": "17.Nd5!: Anderssen está en desventaja en material, pero cada una de sus piezas está cazando al rey negro."
+    },
+    {
+     "text": "1. '18.Bd6!! El movimiento famoso. Anderssen sacrifica AMBAS de sus torres.'"
+    },
+    {
+     "text": "18...Bxg1: Las negras toman la primera torre…"
+    },
+    {
+     "text": "19...Qxa1+: …y luego el segundo. Pero la dama negra está ahora lejos de su propio rey."
+    },
+    {
+     "text": "21.Nxg7+ Kd8: el rey negro está atrapado en medio del tablero."
+    },
+    {
+     "text": "22.Qf6+!! Un sacrificio de dama, forzando mate. Si el caballo captura, el alfil aterriza en e7."
+    },
+    {
+     "text": "23.Be7# ¡Jaque mate! Pierdes una dama, dos torres y un alfil, Anderssen matea con sus tres piezas pequeñas. ¡El Juego Inmortal!"
+    }
+   ],
+   "narration": "Anderssen abre con el Gambito de Rey, el arma descarada de la era romántica. Observa lo que hace con él."
+  },
+  {
+   "id": "the-finish",
+   "title": "Sé tú Anderssen",
+   "prompt": "El rey negro está acorralado y su dama está en una esquina del tablero. Encuentra el remate inmortal de Anderssen.",
+   "hint": "La dama puede sacrificarse: si despeja el camino a e7 para el alfil en d6.",
+   "success": "Qf6+!! Nxf6 Be7#: ¡el jaque mate más famoso del siglo diecinueve! Encontraste el final inmortal.",
+   "narration": "Ahora te toca a ti. Este es el punto exacto donde Anderssen dejó boquiabierto al mundo del ajedrez. Encuentra el final."
+  },
+  {
+   "id": "the-era",
+   "title": "La era romántica",
+   "question": "El Juego del Immortal es el símbolo de la era romántica del ajedrez. ¿Qué valoraba ese estilo por encima de todo?",
+   "options": [
+    {
+     "text": "Sacrificios audaces y ataques directos al rey",
+     "why": "Exacto. Jugadores como Anderssen estaban felices de sacrificar torres y damas enteras si esto llevaba al rey enemigo."
+    },
+    {
+     "text": "Maniobras lentas de peones y una defensa cuidadosa",
+     "why": "Ese estilo llegó más tarde, con Steinitz. Los románticos querían fuegos artificiales, no seguridad."
+    },
+    {
+     "text": "La técnica de final de partida y pequeñas ventajas",
+     "why": "La ciencia del final de partida apenas había nacido en 1851: estas partidas se decidían por ataques mucho antes de un final de partida."
+    }
+   ],
+   "narration": "Una última pregunta sobre la era que creó este juego."
+  }
+ ]
+}

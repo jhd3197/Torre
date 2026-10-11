@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "title": "Removing the defender",
+  "summary": "If a piece is held by one guard, take the guard. Then the piece it was protecting falls.",
+  "category": "tactics",
+  "level": "intermediate",
+  "minutes": 6,
+  "requires": ["hanging-pieces"],
+  "practice": "capturing-defender",
+  "steps": [
+    {
+      "id": "one-guard",
+      "kind": "explain",
+      "title": "One guard",
+      "fen": "4k3/pp4pp/6n1/4b3/8/3B4/PPP3PP/4R1K1 w - - 0 1",
+      "marks": [["e1", "e5"], ["g6", "e5"], ["d3", "g6"]],
+      "text": "Black's bishop on e5 is pinned to the king by the rook on e1, so it cannot run away. Only the knight on g6 protects it. Take that guard away and the bishop is just a loose piece. When you cannot win a piece directly, look at what defends it.",
+      "narration": "The bishop on e5 can't move, because your rook pins it to the king. The only thing keeping it alive is the knight on g6. So the plan is simple: get rid of the knight, and the bishop falls.",
+      "pose": "point"
+    },
+    {
+      "id": "take-the-guard",
+      "kind": "play",
+      "title": "Capture the guard",
+      "fen": "4k3/pp4pp/6n1/4b3/8/3B4/PPP3PP/4R1K1 w - - 0 1",
+      "prompt": "Remove the bishop's only defender, then win the bishop.",
+      "hint": "Your bishop can take the knight, and it even gives check.",
+      "line": ["d3g6", "h7g6", "e1e5"],
+      "success": "Bxg6+ hxg6 trades bishop for knight, and Rxe5+ wins the pinned bishop with nobody left to defend it.",
+      "narration": "Take the knight with your bishop. It's check, so Black has to recapture or move the king. Either way the bishop on e5 is left with no guard, and your rook scoops it up.",
+      "pose": "detective"
+    },
+    {
+      "id": "back-rank-guard",
+      "kind": "play",
+      "title": "The guard of the back rank",
+      "fen": "6k1/ppp2ppp/1b1n4/8/8/8/PPP2PPP/3RR1K1 w - - 0 1",
+      "prompt": "The knight on d6 keeps your rook out of e8. Remove it.",
+      "hint": "The knight is protected by a pawn, but what happens if that pawn recaptures?",
+      "line": ["d1d6", "c7d6", "e1e8"],
+      "success": "Rxd6! If cxd6, Re8 is checkmate: the knight was the only piece covering e8. If Black does not recapture, you are simply a knight up.",
+      "narration": "The knight on d6 is doing one important job: it covers the e8 square. Take it with your rook. If Black takes back, your other rook lands on e8 with checkmate.",
+      "pose": "excited"
+    },
+    {
+      "id": "what-to-target",
+      "kind": "choose",
+      "title": "What to target",
+      "question": "An enemy rook is attacked once and defended once, by a knight. What does removing the defender mean here?",
+      "options": [
+        { "text": "Capture or chase away the knight, so the rook is left undefended", "correct": true, "why": "Once its only guard is gone, the rook is loose and you can take it for free." },
+        { "text": "Capture the rook right away", "why": "With one attacker and one defender, taking the rook just trades pieces back. Deal with the defender first." },
+        { "text": "Defend your own pieces first", "why": "Safety matters, but this question is about winning the rook: go after what protects it." }
+      ],
+      "narration": "Final question. A rook is protected by just one knight. What does removing the defender mean in that position? Get this and you'll start seeing these everywhere. Great work!",
+      "pose": "trophy"
+    }
+  ]
+}

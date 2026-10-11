@@ -1,0 +1,106 @@
+{
+  "brand": "Torre",
+  "titles": {
+    "Home": "Inicio",
+    "Play": "Jugar",
+    "Bots": "Bots",
+    "Games": "Partidas",
+    "Explore": "Explorar",
+    "Train": "Entrenar",
+    "Puzzles": "Problemas",
+    "Story": "Historia",
+    "Profile": "Perfil",
+    "Lessons": "Lecciones",
+    "Awards": "Premios",
+    "Settings": "Ajustes",
+    "Insights": "Conocimientos",
+    "Import": "Importar",
+    "Arena": "Arena",
+    "Openings": "Aperturas",
+    "Endgames": "Finales",
+    "Coach": "Entrenador"
+  },
+  "rail": {
+    "home": "Inicio",
+    "story": "Historia",
+    "play": "Jugar",
+    "puzzles": "Problemas",
+    "profile": "Perfil",
+    "settings": "Ajustes",
+    "arena": "Arena",
+    "closeMenu": "Cerrar menú",
+    "fold": "Ocultar navegación",
+    "expand": "Mostrar navegación",
+    "brandHome": "Torre inicio",
+    "sections": "Secciones del estudio",
+    "closeNavigation": "Cerrar navegación",
+    "openMenu": "Abrir menú",
+    "coach": "Entrenador",
+    "games": "Partidas",
+    "explore": "Explorar",
+    "train": "Entrenar",
+    "openings": "Aperturas",
+    "endgames": "Finales",
+    "insights": "Conocimientos",
+    "awards": "Premios",
+    "import": "Importar",
+    "signOut": "Cerrar sesión",
+    "admin": "Administración"
+  },
+  "workspace": {
+    "label": "Espacio de trabajo",
+    "labelFor": "Espacio de trabajo: {{name}}"
+  },
+  "xp": {
+    "title": "Nivel {{level}} · {{xp}} de {{goal}} XP para el siguiente nivel",
+    "total": "{{xp}} XP"
+  },
+  "actions": {
+    "newGame": "Nueva partida"
+  },
+  "import": {
+    "title": "Importar partidas"
+  },
+  "help": {
+    "title": "Controles del tablero",
+    "close": "Cerrar ayuda",
+    "items": {
+      "move": {
+        "term": "Mover",
+        "text": "Haz clic o arrastra una pieza."
+      },
+      "castle": {
+        "term": "Enrocar",
+        "text": "Mueve el rey dos casillas, o deja caer al rey y la torre el uno sobre el otro."
+      },
+      "plan": {
+        "term": "Plan",
+        "text": "Mueve el cursor para mostrar posibles movimientos; los caballos se curvan en forma de L. Cada flecha describe la posición actual, no una secuencia. Haz clic derecho para resaltar una casilla. El modo libre te permite agregar notas desde casillas vacías. En dispositivos móviles, usa la herramienta Dibujar flechas."
+      },
+      "squareControl": {
+        "term": "Control de casillas",
+        "text": "En Explorar, el verde indica que Blancas ataca una casilla, el coral que Negras la atacan y el dorado que ambos la atacan. Las casillas sin color no están atacadas. Los conteos incluyen piezas clavadas y piezas amigas defendidas; el control no garantiza un movimiento seguro."
+      },
+      "analysis": {
+        "term": "Análisis",
+        "text": "En Juegos y Explorar, Stockfish analiza cada posición automáticamente: la barra muestra la evaluación y la flecha su mejor movimiento. Puedes desactivar cualquiera de estas opciones en el panel de Stockfish. Los valores positivos favorecen a Blancas; una puntuación es una estimación, no un resultado garantizado."
+      },
+      "moveMarks": {
+        "term": "Marcas de movimiento",
+        "text": "Calificaciones: !! Brillante, ! Gran jugada, estrella Mejor, marca Buena, libro De libro, ?! Imprecisión, ? Error, ?? Error grave. Cada jugada analizada cuenta una vez."
+      },
+      "clear": {
+        "term": "Borrar dibujos",
+        "text": "Presiona Esc o haz clic en Borrar."
+      },
+      "navigate": {
+        "term": "Navegar",
+        "text": "Las teclas de flecha izquierda y derecha te permiten avanzar o retroceder en los movimientos. F voltea el tablero."
+      },
+      "links": {
+        "term": "Enlaces",
+        "text": "Cada pantalla tiene su propia dirección, incluyendo el movimiento en el que te encuentras. Guárdala en tus marcadores o usa el botón de atrás del navegador."
+      }
+    }
+  }
+}

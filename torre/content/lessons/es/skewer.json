@@ -1,0 +1,48 @@
+{
+ "title": "Pinches",
+ "summary": "Ataca una pieza valiosa para que, cuando se aparte, la pieza detrás de ella caiga. Una clavada al revés.",
+ "steps": [
+  {
+   "id": "what-is-a-skewer",
+   "title": "Qué es un pincho",
+   "text": "Un pincho ataca a dos piezas en la misma línea, con la más valiosa al frente. Aquí, el alfil da jaque al rey desde g2, y la torre está detrás de él en a8. El rey tiene que apartarse de la línea, y el alfil captura la torre. En una clavada, la pieza más grande se esconde detrás; en un pincho, está al frente y se ve obligada a moverse.",
+   "narration": "Un pincho es una clavada al revés. La pieza valiosa está al frente, y algo jugoso está detrás en la misma línea. Da jaque al rey desde g2. [move] El rey tiene que apartarse. [move] Y el alfil se desliza hasta capturar la torre. [move]"
+  },
+  {
+   "id": "rook-skewer",
+   "title": "Pincha a lo largo de la fila",
+   "prompt": "El rey y las dama de las negras están en la misma fila. Pínchalos.",
+   "hint": "Da jaque en la quinta fila desde un lado, donde nada puede tomar tu torre.",
+   "success": "Ra5+ fuerza al rey a apartarse de la quinta fila, y la torre captura a la dama en g5. Una torre a cambio de nada sería bueno; una dama es aún mejor.",
+   "narration": "Mira el rey y las dama de las negras, uno al lado del otro en la quinta fila. Pon tu torre en esa fila con jaque. El rey debe apartarse, y tu torre barre para agarrar a la dama."
+  },
+  {
+   "id": "bishop-skewer",
+   "title": "Pincha por la diagonal",
+   "prompt": "Encuentra un jaque del alfil que gane la dama de las negras.",
+   "hint": "El rey en d5 y la dama en f7 comparten una diagonal. Da jaque desde el otro extremo de ella.",
+   "success": "Bb3+ da jaque al rey, el rey abandona la diagonal, y Bxf7 gana la dama.",
+   "narration": "Esta vez la línea es diagonal. El rey negro está en d5 y la dama en f7, alineados. Encuentra la casilla donde tu alfil da jaque al rey desde el lado opuesto, y la dama detrás caerá."
+  },
+  {
+   "id": "skewer-or-pin",
+   "title": "¿Pincho o clavada?",
+   "question": "Una torre blanca ataca a la dama negra, y la torre negra está detrás de la dama en la misma columna. ¿Qué es esto?",
+   "options": [
+    {
+     "text": "Un pincho: la dama, más valiosa, debe moverse, y la torre detrás cae.",
+     "why": "La pieza más valiosa está al frente, así que es un pincho. Cuando la dama se aparta, la torre detrás queda expuesta."
+    },
+    {
+     "text": "Una clavada: la dama no puede moverse.",
+     "why": "En una clavada la pieza más valiosa está detrás. Aquí, la dama está al frente y es libre de moverse, lo cual es exactamente lo que pierde la torre."
+    },
+    {
+     "text": "Una horquilla.",
+     "why": "Una horquilla ataca a dos piezas en direcciones diferentes. Dos piezas en una línea es una clavada o un pincho."
+    }
+   ],
+   "narration": "Pregunta final. Tu torre ataca a una dama, y un rook se esconde detrás de ella en la misma línea. ¿Clavada, pincho o horquilla? ¡Aciértala y los pinchos son tuyos! ¡Buen trabajo!"
+  }
+ ]
+}

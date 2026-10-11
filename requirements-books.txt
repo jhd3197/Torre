@@ -1,0 +1,2 @@
+# Optional: only needed for download_books.py
+requests>=2.32,<3

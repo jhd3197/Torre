@@ -1,0 +1,862 @@
+{
+  "_domains": {
+    "percent": [
+      0,
+      100
+    ],
+    "mate": [
+      1,
+      15
+    ],
+    "seconds": [
+      2,
+      59
+    ],
+    "minutes": [
+      2,
+      60
+    ],
+    "move": [
+      1,
+      80
+    ],
+    "count": [
+      2,
+      20
+    ]
+  },
+  "grade": {
+    "brilliant": [
+      "Brilliant!",
+      "Wow. That's a brilliant move.",
+      "Two exclamation marks for that one!",
+      "What a find. Brilliant!",
+      "That's a brilliancy.",
+      "Incredible move.",
+      "Pure genius.",
+      "Now that's chess!",
+      "A move to remember.",
+      "That's the kind of move that wins games.",
+      "Spectacular!",
+      "Nobody saw that coming."
+    ],
+    "great": [
+      "Great move!",
+      "Great find.",
+      "The only good move, well found.",
+      "Only move. Well spotted.",
+      "Very precise.",
+      "Sharp and strong.",
+      "Excellent.",
+      "That was the move to play.",
+      "Found the only move.",
+      "Exactly right.",
+      "That's a strong one.",
+      "Top-notch move."
+    ],
+    "inaccuracy": [
+      "Inaccuracy.",
+      "Not the most precise.",
+      "A small slip.",
+      "Slightly off.",
+      "There was something better.",
+      "Not quite the best.",
+      "A little loose.",
+      "Hmm, an inaccuracy.",
+      "That gives a bit back.",
+      "Close, but not the best.",
+      "Not ideal.",
+      "A bit slow.",
+      "That misses a chance.",
+      "There was more in the position."
+    ],
+    "mistake": [
+      "Mistake.",
+      "That one costs something.",
+      "Hmm, a mistake.",
+      "That's a real mistake.",
+      "Ouch, that hurts the position.",
+      "A clear mistake.",
+      "That lets the advantage slip.",
+      "Not like that.",
+      "That's going to hurt.",
+      "Things just got harder.",
+      "Wrong direction.",
+      "That one's a real slip."
+    ],
+    "blunder": [
+      "Blunder!",
+      "Ouch, a blunder.",
+      "Oh no, that's a blunder.",
+      "That's a big one. Blunder.",
+      "Disaster! A blunder.",
+      "Oof. That's a blunder.",
+      "That throws it away.",
+      "A painful blunder.",
+      "Huge blunder!",
+      "That changes everything.",
+      "Big mistake. Really big.",
+      "That changes the game, and not in a good way."
+    ]
+  },
+  "describe": {
+    "castleShort": [
+      "Castles short. The king is safe.",
+      "Short castle, king tucked away.",
+      "Castling kingside.",
+      "King to safety.",
+      "Castles. Time to connect the rooks.",
+      "Tucking the king away."
+    ],
+    "castleLong": [
+      "Castles long.",
+      "Long castle, the king goes queenside.",
+      "Castling queenside. Bold.",
+      "Castling long, the rook jumps to the center.",
+      "Queenside castle. Things could get sharp."
+    ],
+    "promote": {
+      "queen": [
+        "A new queen!",
+        "Promotes to a queen!"
+      ],
+      "rook": [
+        "Promotes to a rook."
+      ],
+      "bishop": [
+        "Promotes to a bishop."
+      ],
+      "knight": [
+        "Promotes to a knight. Sneaky!"
+      ]
+    },
+    "mate": [
+      "Checkmate!",
+      "And that's mate.",
+      "Mate on the board!",
+      "Checkmate. Game over.",
+      "That's the end of the game."
+    ],
+    "recapture": [
+      "Recaptures.",
+      "Takes back.",
+      "And takes back.",
+      "Takes back right away.",
+      "The recapture.",
+      "Material is level again."
+    ],
+    "trade": {
+      "pawn": [
+        "Trading pawns.",
+        "Pawns come off.",
+        "A pawn trade.",
+        "Swapping pawns."
+      ],
+      "knight": [
+        "Trading knights.",
+        "The knights come off.",
+        "Knight for knight.",
+        "Swapping knights."
+      ],
+      "bishop": [
+        "Trading bishops.",
+        "The bishops come off.",
+        "Bishop for bishop.",
+        "Swapping bishops."
+      ],
+      "rook": [
+        "Trading rooks.",
+        "The rooks come off.",
+        "Rook for rook.",
+        "Swapping rooks."
+      ],
+      "queen": [
+        "Queens are off!",
+        "Trading queens.",
+        "The queens come off. Calmer now.",
+        "Queen trade. Into a quieter game."
+      ]
+    },
+    "takes": {
+      "pawn": [
+        "Takes a pawn.",
+        "Grabs a pawn.",
+        "Picks up a pawn.",
+        "Snaps off a pawn."
+      ],
+      "knight": [
+        "Takes the knight.",
+        "Captures the knight.",
+        "There goes the knight."
+      ],
+      "bishop": [
+        "Takes the bishop.",
+        "Captures the bishop.",
+        "There goes the bishop."
+      ],
+      "rook": [
+        "Takes the rook!",
+        "Captures the rook!",
+        "Wins the rook."
+      ],
+      "queen": [
+        "Takes the queen!",
+        "Captures the queen!",
+        "The queen is gone!"
+      ]
+    },
+    "check": {
+      "pawn": [
+        "Check with the pawn.",
+        "A pawn check!"
+      ],
+      "knight": [
+        "Knight check!",
+        "Check with the knight.",
+        "A knight check."
+      ],
+      "bishop": [
+        "Bishop check.",
+        "Check from the bishop.",
+        "Check on the diagonal."
+      ],
+      "rook": [
+        "Rook check.",
+        "Check with the rook.",
+        "Check down the file."
+      ],
+      "queen": [
+        "Queen check.",
+        "Check with the queen.",
+        "Checking with the queen."
+      ],
+      "king": [
+        "Discovered check!",
+        "A discovered check!"
+      ]
+    },
+    "develop": {
+      "knight": [
+        "Developing the knight.",
+        "Knight out.",
+        "The knight joins the game.",
+        "Another piece in the game.",
+        "The knight comes out.",
+        "Knight into play."
+      ],
+      "bishop": [
+        "Developing the bishop.",
+        "Bishop out.",
+        "The bishop joins the game.",
+        "The bishop comes out.",
+        "Bishop into play.",
+        "Another piece developed."
+      ]
+    },
+    "openFile": [
+      "Rook to the open file.",
+      "The rook takes the open file.",
+      "Grabbing the open file.",
+      "Rook onto the open file.",
+      "The rook finds an open file."
+    ],
+    "passedPawn": [
+      "Pushing the passed pawn.",
+      "The passed pawn marches on.",
+      "That pawn is running.",
+      "The passed pawn keeps going.",
+      "One step closer to a new queen."
+    ],
+    "center": [
+      "Taking the center.",
+      "A pawn in the center.",
+      "Claiming the center.",
+      "Grabbing space in the center.",
+      "A central pawn move."
+    ],
+    "fork": [
+      "A fork!",
+      "Double attack!",
+      "That's a fork.",
+      "Two pieces attacked at once.",
+      "Forking two pieces."
+    ],
+    "forkKing": {
+      "queen": [
+        "Fork! The king and the queen.",
+        "A royal fork, king and queen!",
+        "Check, and the queen is attacked too."
+      ],
+      "rook": [
+        "Fork! The king and the rook.",
+        "Check, and the rook is attacked too.",
+        "King and rook, both attacked."
+      ],
+      "bishop": [
+        "Fork! The king and the bishop.",
+        "Check, and the bishop is attacked too.",
+        "King and bishop, both attacked."
+      ],
+      "knight": [
+        "Fork! The king and the knight.",
+        "Check, and the knight is attacked too.",
+        "King and knight, both attacked."
+      ]
+    },
+    "attacks": {
+      "knight": [
+        "Attacking the knight.",
+        "The knight is under attack.",
+        "Going after the knight."
+      ],
+      "bishop": [
+        "Attacking the bishop.",
+        "The bishop is under attack.",
+        "Going after the bishop."
+      ],
+      "rook": [
+        "Attacking the rook.",
+        "The rook is under attack.",
+        "Going after the rook.",
+        "Hitting the rook."
+      ],
+      "queen": [
+        "Attacking the queen.",
+        "The queen is under attack!",
+        "Going after the queen.",
+        "Hitting the queen. She has to move."
+      ]
+    },
+    "tempo": {
+      "knight": [
+        "Developing with tempo.",
+        "The knight comes out and attacks.",
+        "Development with a threat."
+      ],
+      "bishop": [
+        "Developing with tempo.",
+        "The bishop comes out and attacks.",
+        "Development with a threat."
+      ]
+    },
+    "earlyQueen": [
+      "Bringing the queen out early.",
+      "The queen is out early. Careful.",
+      "An early queen move.",
+      "The queen comes out early. She can become a target."
+    ],
+    "kingWalk": [
+      "The king steps out. Risky.",
+      "A king walk!",
+      "The king is on the move.",
+      "The king leaves its shelter."
+    ],
+    "kingCenter": [
+      "The king is still in the center.",
+      "Still no castling, the king is in the middle.",
+      "The king hasn't castled yet."
+    ],
+    "sacrifice": {
+      "pawn": [
+        "A pawn sacrifice!",
+        "Giving up a pawn for activity.",
+        "The pawn is offered."
+      ],
+      "knight": [
+        "A knight sacrifice!",
+        "Giving up the knight!",
+        "The knight is offered."
+      ],
+      "bishop": [
+        "A bishop sacrifice!",
+        "Giving up the bishop!",
+        "The bishop is offered."
+      ],
+      "rook": [
+        "A rook sacrifice!",
+        "Giving up the rook!",
+        "The rook is offered. Bold!"
+      ],
+      "queen": [
+        "A queen sacrifice!",
+        "Giving up the queen!",
+        "The queen is offered. Wow!"
+      ]
+    },
+    "pin": {
+      "knight": [
+        "Pinning the knight.",
+        "The knight is pinned.",
+        "A pin on the knight."
+      ],
+      "bishop": [
+        "Pinning the bishop.",
+        "The bishop is pinned.",
+        "A pin on the bishop."
+      ],
+      "rook": [
+        "Pinning the rook.",
+        "The rook is pinned.",
+        "A pin on the rook."
+      ],
+      "queen": [
+        "Pinning the queen!",
+        "The queen is pinned!",
+        "A pin on the queen!"
+      ]
+    },
+    "pinKing": {
+      "knight": [
+        "The knight is pinned to the king.",
+        "An absolute pin on the knight.",
+        "The knight can't move, it's pinned to the king."
+      ],
+      "bishop": [
+        "The bishop is pinned to the king.",
+        "An absolute pin on the bishop.",
+        "The bishop can't move, it's pinned to the king."
+      ],
+      "rook": [
+        "The rook is pinned to the king.",
+        "An absolute pin on the rook.",
+        "The rook can't move, it's pinned to the king."
+      ],
+      "queen": [
+        "The queen is pinned to the king!",
+        "An absolute pin on the queen!",
+        "The queen can't move, it's pinned to the king!"
+      ]
+    },
+    "checkAgain": [
+      "Another check!",
+      "Check after check.",
+      "The checks keep coming.",
+      "Keeping up the pressure with another check."
+    ],
+    "exchangeSac": [
+      "An exchange sacrifice!",
+      "Giving up the exchange.",
+      "Rook for a minor piece. An exchange sacrifice!"
+    ]
+  },
+  "reason": {
+    "hangs": {
+      "knight": [
+        "That leaves the knight hanging.",
+        "Now the knight is hanging.",
+        "The knight is left undefended."
+      ],
+      "bishop": [
+        "That leaves the bishop hanging.",
+        "Now the bishop is hanging.",
+        "The bishop is left undefended."
+      ],
+      "rook": [
+        "That leaves the rook hanging.",
+        "Now the rook is hanging.",
+        "The rook is left undefended."
+      ],
+      "queen": [
+        "That leaves the queen hanging!",
+        "Now the queen is hanging!",
+        "The queen is left undefended!"
+      ]
+    }
+  },
+  "eval": {
+    "winning": {
+      "white": [
+        "White is winning now.",
+        "White is in full control now.",
+        "This should be winning for White.",
+        "White has a big advantage now."
+      ],
+      "black": [
+        "Black is winning now.",
+        "Black is in full control now.",
+        "This should be winning for Black.",
+        "Black has a big advantage now."
+      ]
+    },
+    "better": {
+      "white": [
+        "White is a bit better now.",
+        "A slight edge for White.",
+        "White is pressing.",
+        "The position favors White."
+      ],
+      "black": [
+        "Black is a bit better now.",
+        "A slight edge for Black.",
+        "Black is pressing.",
+        "The position favors Black."
+      ]
+    },
+    "flipped": {
+      "white": [
+        "The tables have turned! White is better now.",
+        "What a swing, now it's White on top.",
+        "Completely turned around. White is better."
+      ],
+      "black": [
+        "The tables have turned! Black is better now.",
+        "What a swing, now it's Black on top.",
+        "Completely turned around. Black is better."
+      ]
+    },
+    "mate": {
+      "white": [
+        "White can force mate now.",
+        "There's a forced mate for White.",
+        "White has mate on the board."
+      ],
+      "black": [
+        "Black can force mate now.",
+        "There's a forced mate for Black.",
+        "Black has mate on the board."
+      ]
+    },
+    "equal": [
+      "Equal again.",
+      "Back to level.",
+      "The balance is restored.",
+      "It's even now."
+    ],
+    "slipAway": [
+      "That lets the win slip away.",
+      "The winning advantage is gone.",
+      "The advantage evaporates."
+    ]
+  },
+  "momentum": {
+    "blunderBack": [
+      "And it's handed right back!",
+      "Returning the favor!",
+      "A blunder right back!",
+      "Both sides are slipping now.",
+      "The mistake is returned at once."
+    ],
+    "firstCapture": [
+      "The first capture of the game.",
+      "First blood!",
+      "Finally, the first capture.",
+      "The first piece comes off the board."
+    ],
+    "repeat": [
+      "The same position again.",
+      "Repeating moves.",
+      "Back where we were."
+    ],
+    "threefold": [
+      "Threefold repetition. That's a draw.",
+      "Repetition, and the game is drawn.",
+      "The position repeats a third time."
+    ]
+  },
+  "end": {
+    "white": [
+      "And that's the game. White wins.",
+      "White takes the game.",
+      "Game over, a win for White."
+    ],
+    "black": [
+      "And that's the game. Black wins.",
+      "Black takes the game.",
+      "Game over, a win for Black."
+    ],
+    "draw": [
+      "And it ends in a draw.",
+      "The game is drawn.",
+      "A draw. Honors even."
+    ]
+  },
+  "free": {
+    "pawn": [
+      "Free pawn!",
+      "A free pawn.",
+      "That pawn was just hanging.",
+      "Pawn grabbed for free."
+    ],
+    "knight": [
+      "Free knight! Thanks for that.",
+      "A free knight!",
+      "That knight was just hanging.",
+      "Knight picked up for free."
+    ],
+    "bishop": [
+      "Free bishop! Thanks for that.",
+      "A free bishop!",
+      "That bishop was just hanging.",
+      "Bishop picked up for free."
+    ],
+    "rook": [
+      "A whole rook, for free!",
+      "Free rook!",
+      "That rook was just hanging.",
+      "Rook collected for free."
+    ],
+    "queen": [
+      "The queen, for free! Wow.",
+      "A free queen!",
+      "The queen was just hanging!",
+      "Queen picked up for free!"
+    ]
+  },
+  "poisoned": {
+    "pawn": [
+      "Careful, that pawn was poisoned.",
+      "That pawn was bait.",
+      "Taking the pawn walks into a trap."
+    ],
+    "knight": [
+      "That knight looked free, but it was a trap.",
+      "That knight was bait.",
+      "Taking the knight walks into a trap."
+    ],
+    "bishop": [
+      "That bishop looked free, but it was a trap.",
+      "That bishop was bait.",
+      "Taking the bishop walks into a trap."
+    ],
+    "rook": [
+      "That rook looked free, but it was a trap.",
+      "That rook was bait.",
+      "Taking the rook walks into a trap."
+    ],
+    "queen": [
+      "The queen looked free, but it was a trap.",
+      "That queen was bait.",
+      "Taking the queen walks into a trap."
+    ]
+  },
+  "live": {
+    "free": {
+      "pawn": [
+        "Free pawn! Thank you.",
+        "A pawn, on the house.",
+        "Thanks for the pawn!"
+      ],
+      "knight": [
+        "Free knight! Om nom nom.",
+        "A knight, on the house!",
+        "Thanks for the knight!"
+      ],
+      "bishop": [
+        "Free bishop! Delicious.",
+        "A bishop, on the house!",
+        "Thanks for the bishop!"
+      ],
+      "rook": [
+        "A free rook! What a gift.",
+        "A rook, on the house!",
+        "Thanks for the rook!"
+      ],
+      "queen": [
+        "The queen! For free!",
+        "A queen, on the house!",
+        "Thanks for the queen!"
+      ]
+    },
+    "took": {
+      "pawn": [
+        "Pawn snack.",
+        "One pawn down for them.",
+        "Pawn collected."
+      ],
+      "knight": [
+        "Got the knight.",
+        "Knight collected.",
+        "The knight is ours."
+      ],
+      "bishop": [
+        "Bishop collected.",
+        "Got the bishop.",
+        "The bishop is ours."
+      ],
+      "rook": [
+        "Rook in the box.",
+        "Got the rook!",
+        "The rook is ours!"
+      ],
+      "queen": [
+        "Queen down! Into the box she goes.",
+        "Got the queen!",
+        "The queen is ours!"
+      ]
+    },
+    "hung": {
+      "pawn": [
+        "Oops, that pawn was hanging.",
+        "That pawn wasn't protected.",
+        "Careful, that pawn was loose."
+      ],
+      "knight": [
+        "Ouch, you left your knight hanging.",
+        "Your knight wasn't protected.",
+        "Careful, your knight was loose."
+      ],
+      "bishop": [
+        "Ouch, you left your bishop hanging.",
+        "Your bishop wasn't protected.",
+        "Careful, your bishop was loose."
+      ],
+      "rook": [
+        "Your rook was hanging! Ouch.",
+        "Your rook wasn't protected.",
+        "Careful, your rook was loose."
+      ],
+      "queen": [
+        "Your queen was hanging! Oh no.",
+        "Your queen wasn't protected!",
+        "Oh no, the queen was loose!"
+      ]
+    },
+    "lost": {
+      "pawn": [
+        "They took a pawn.",
+        "A pawn is gone.",
+        "They grabbed a pawn."
+      ],
+      "knight": [
+        "There goes your knight.",
+        "They took your knight.",
+        "Your knight is gone."
+      ],
+      "bishop": [
+        "There goes your bishop.",
+        "They took your bishop.",
+        "Your bishop is gone."
+      ],
+      "rook": [
+        "There goes your rook.",
+        "They took your rook.",
+        "Your rook is gone."
+      ],
+      "queen": [
+        "There goes your queen.",
+        "They took your queen.",
+        "Your queen is gone."
+      ]
+    }
+  },
+  "better": [
+    "The best move was",
+    "The engine wanted",
+    "The right move was",
+    "The engine preferred",
+    "The engine liked"
+  ],
+  "move": {
+    "to": {
+      "pawn": "pawn to {{square}}",
+      "knight": "knight to {{square}}",
+      "bishop": "bishop to {{square}}",
+      "rook": "rook to {{square}}",
+      "queen": "queen to {{square}}",
+      "king": "king to {{square}}"
+    },
+    "takes": {
+      "pawn": "pawn takes on {{square}}",
+      "knight": "knight takes on {{square}}",
+      "bishop": "bishop takes on {{square}}",
+      "rook": "rook takes on {{square}}",
+      "queen": "queen takes on {{square}}",
+      "king": "king takes on {{square}}"
+    },
+    "castleShort": "castling short",
+    "castleLong": "castling long",
+    "promote": {
+      "queen": "promoting to a queen",
+      "rook": "promoting to a rook",
+      "bishop": "promoting to a bishop",
+      "knight": "promoting to a knight"
+    },
+    "check": "with check",
+    "mate": "checkmate"
+  },
+  "missedMate": {
+    "1": "There was mate in one here.",
+    "other": "There was mate in {{mate}} here."
+  },
+  "opening": [
+    "This is the {{opening}}.",
+    "We're in the {{opening}}."
+  ],
+  "outOfBook": [
+    "And now we're out of the book.",
+    "That's the end of theory.",
+    "Now we're on our own.",
+    "Out of the opening book now."
+  ],
+  "clock": {
+    "tookYou": [
+      "That took",
+      "A think of",
+      "That one took"
+    ],
+    "seconds": {
+      "1": "one second",
+      "other": "{{seconds}} seconds"
+    },
+    "minutes": {
+      "1": "a minute",
+      "other": "{{minutes}} minutes"
+    },
+    "worthIt": [
+      "Worth it.",
+      "Time well spent.",
+      "And it paid off.",
+      "Good use of the clock."
+    ],
+    "stillWrong": [
+      "And it still went wrong.",
+      "All that time, and still a slip.",
+      "The long think didn't help.",
+      "Time spent, but the wrong choice."
+    ],
+    "fastWrong": [
+      "Fast and wrong. Slow down on moves like this.",
+      "Too quick. That one needed more time.",
+      "Played fast, and it cost something.",
+      "A quick move, and a costly one."
+    ],
+    "lowMinute": [
+      "Under a minute on the clock.",
+      "Less than a minute left.",
+      "The clock is getting low."
+    ],
+    "lowSeconds": [
+      "Only seconds left!",
+      "Time scramble!",
+      "The clock is almost out!"
+    ]
+  },
+  "recap": {
+    "won": "You won!",
+    "lost": "You lost this one.",
+    "drew": "It's a draw.",
+    "comeback": "You were losing badly on move {{move}}, and still turned it around.",
+    "collapse": "You were winning on move {{move}}, but it slipped away.",
+    "slippedToDraw": "You were winning on move {{move}}, but it slipped to a draw.",
+    "saved": "You were in trouble on move {{move}}, and saved the draw.",
+    "control": "You were in control from start to finish.",
+    "accuracy": "{{percent}} percent accuracy.",
+    "brilliant": {
+      "1": "One brilliant move.",
+      "other": "{{count}} brilliant moves."
+    },
+    "blunder": {
+      "1": "One blunder.",
+      "other": "{{count}} blunders."
+    },
+    "mistake": {
+      "1": "One mistake.",
+      "other": "{{count}} mistakes."
+    },
+    "noBlunders": "And not a single blunder.",
+    "longestThink": "Your longest think was",
+    "onMove": "on move {{move}}",
+    "paidOff": "and it paid off.",
+    "didNotPayOff": "and it still went wrong."
+  }
+}
