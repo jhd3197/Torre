@@ -57,6 +57,9 @@ export interface BoardWorkspaceProps {
   movesTop?: ReactNode;
   /** Your side in a replay: the verdict labels your moves "You" and the other side's "Played". */
   you?: Color;
+  /** Beside and under the review's verdict on the current move (the game page's share and celebration). */
+  verdictAction?: ReactNode;
+  verdictNote?: ReactNode;
   /** While set (the opening review running), the panel shows this in place of the verdict, moves and the rest. */
   loading?: ReactNode;
   boardFooter?: ReactNode;
@@ -111,7 +114,7 @@ function materialOf(fen: string): number {
 export function BoardWorkspace(props: BoardWorkspaceProps) {
   const { mode, initialFen, moves, cursor, onGo, flipped, onFlip, players, movable, onMove, busy = false, busyText,
     headerActions, heading = true, context, panelTop, panelBottom, summary, showSummary, startTab, movesTop, boardFooter, judgments, bestMoves, resultText, onTryBest, tryLabel: tryLabelProp,
-    autoplay = false, onBoard, opening, thinkTimes, longThink, startClock, loading, you, coachMarks, hidePieces, phoneHead, phoneSay, phoneActions } = props;
+    autoplay = false, onBoard, opening, thinkTimes, longThink, startClock, loading, you, verdictAction, verdictNote, coachMarks, hidePieces, phoneHead, phoneSay, phoneActions } = props;
   const phone = usePhone() && !!phoneHead;
   const { t } = useTranslation('board');
   const tryLabel = tryLabelProp ?? t('engine.tryMove');
@@ -263,7 +266,7 @@ export function BoardWorkspace(props: BoardWorkspaceProps) {
   );
   const verdict = judged && !busy ? <MoveVerdict initialFen={initialFen} moves={moves} cursor={cursor} judged={judged}
     bestUci={bestMoves?.[cursor - 1]} engineId={engineId} onPreview={setPreview} onGo={ply => { setPlaying(false); onGo(ply); }}
-    voice={{ on: voice.on, onToggle: voice.toggle }} you={you} />
+    voice={{ on: voice.on, onToggle: voice.toggle }} you={you} action={verdictAction} note={verdictNote} />
     : mode === 'replay' && !!judgments?.size && (cursor === 0
       ? <EmptyVerdict title={t('verdict.startTitle')} hint={t('verdict.startHint')} />
       : <EmptyVerdict title={t('verdict.pendingTitle')} hint={t('verdict.pendingHint')} pose="magnify" />);

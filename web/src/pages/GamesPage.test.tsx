@@ -335,3 +335,28 @@ test('stepping through from the summary starts at the first move on the Moves ta
   expect(screen.getByRole('button', { name: 'Pause replay' })).toBeInTheDocument();
   await waitFor(() => expect(location().pathname).toBe('/games/137/1'), { timeout: 3000 });
 });
+
+test('on torre.sh the game and the current move share as links', async () => {
+  const server = serve(192);
+  server.on('auth/me', () => ({ name: 'Ana', email: 'ana@example.com', admin: false }));
+  server.on('auth/share', body => ({ url: `https://torre.sh/g/${body?.game}-${body?.ply ?? 'all'}` }));
+  const writeText = vi.fn(async () => {});
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+  renderAt('/games/192/3');
+  await reviewed();
+  fireEvent.click(await screen.findByRole('button', { name: 'Share' }));
+  await waitFor(() => expect(writeText).toHaveBeenCalledWith('https://torre.sh/g/192-all'));
+  expect(screen.queryByRole('button', { name: 'Copy PGN' })).toBeNull();
+  fireEvent.click(await screen.findByRole('button', { name: 'Share this move' }));
+  await waitFor(() => expect(writeText).toHaveBeenCalledWith('https://torre.sh/g/192-3'));
+  expect(server.calls.filter(c => c.path === 'auth/share').map(c => c.body)).toEqual([{ game: '192', ply: null }, { game: '192', ply: 3 }]);
+});
+
+test('on your own computer there is no share link, only the PGN copy', async () => {
+  serve(193);
+  renderAt('/games/193/3');
+  await reviewed();
+  expect(await screen.findByRole('button', { name: 'Copy PGN' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Share' })).toBeNull();
+  expect(screen.queryByRole('button', { name: 'Share this move' })).toBeNull();
+});

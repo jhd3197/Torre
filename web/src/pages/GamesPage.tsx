@@ -16,13 +16,15 @@ import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
 import { longThink, recapLines, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
-import { emptyGrades, gradeLine, gradeOf, type Grade } from '../lib/grades';
+import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, type Grade } from '../lib/grades';
 import { analysisEngine, autoAnalysis as autoAnalysisSetting } from '../lib/settings';
 import { api } from '../lib/api';
 import { explorePath, gamePath, mistakesPath } from '../lib/routes';
 import { useGameData, useToast } from '../state/AppData';
 import { lastVisited } from '../state/lastVisited';
 import { usePhone } from '../hooks/usePhone';
+import { useShare } from '../hooks/useShare';
+import { ShareButton, ShareIcon } from '../components/ShareButton';
 import type { AnalyzedMove, Color, GameDetail } from '../types';
 
 const SCORING_VERSION = 3;
@@ -154,6 +156,17 @@ export function GamePage() {
   const bestMoves = analysis?.best_moves ?? evals.map(e => e?.best ?? null);
   const thinkTimes = useMemo(() => (game ? clockTimes(game.moves, game.headers.TimeControl) : undefined), [game]);
   const opening = useMemo(() => (game?.opening ? { ply: game.opening.ply, name: game.opening.name } : null), [game]);
+  const gameId = String(game?.record?.id ?? id);
+  const copyPgn = useCallback(async () => {
+    try {
+      const response = await fetch(`api/games/${encodeURIComponent(gameId)}/pgn`);
+      if (!response.ok) throw new Error(response.statusText);
+      await navigator.clipboard.writeText(await response.text());
+      toast(t('game.pgnCopied'));
+    } catch { toast(t('game.pgnCopyFailed')); }
+  }, [gameId, toast, t]);
+  // On torre.sh a share is a public link to the game or a move; on your own computer, the PGN copied.
+  const sharer = useShare(copyPgn);
 
   if (error) return <div className="page-empty"><h2>{t('game.unavailable')}</h2><p>{error}</p><Link className="button" to="/games">{t('game.openGames')}</Link></div>;
   if (!game) return <p className="page-status" role="status">{t('game.loading')}</p>;
@@ -228,22 +241,22 @@ export function GamePage() {
   const ending = game.headers.Termination || (finalBoard?.result ? finalBoard.termination : '') || t('summary.moves', { count: moveNumber(total) });
   const winner = game.headers.Result === '1-0' ? whiteName : game.headers.Result === '0-1' ? blackName : null;
 
-  async function copyPgn() {
-    try {
-      const response = await fetch(`api/games/${encodeURIComponent(String(record?.id ?? id))}/pgn`);
-      if (!response.ok) throw new Error(response.statusText);
-      await navigator.clipboard.writeText(await response.text());
-      toast(t('game.pgnCopied'));
-    } catch { toast(t('game.pgnCopyFailed')); }
-  }
-
   const title = record?.user_color ? t('game.youVs', { name: oppName }) : t('game.versus', { white: whiteName, black: blackName });
+  // The current move as the share sheet names it: "23. Nxe5 (Brilliant) in You vs Duke-BOT".
+  const shareMove = (ply: number) => () => {
+    const judged = judgments.get(ply), san = game.moves[ply - 1]?.san ?? '';
+    const move = `${moveNumber(ply)}${byWhite(ply) ? '.' : '…'} ${san}`;
+    return { game: gameId, ply, title,
+      text: judged ? t('common:share.moveText', { move, grade: GRADE_INFO[gradeOf(judged)].label, game: title }) : t('common:share.plainMoveText', { move, game: title }) };
+  };
+  const shareGameRequest = () => ({ game: gameId, ply: null, title, text: title });
   const more = (
     <MoreMenu label={t('game.more')}>
       <Link role="menuitem" id="explore-position" to={explore()}>{t('game.explorePosition')}</Link>
       {record && analysis && counts && counts.mistake + counts.blunder > 0 && (
         <Link role="menuitem" id="learn-mistakes" to={mistakesPath(record.id)} title={t('trainer:entry.buttonTitle')}>{t('trainer:entry.button')}</Link>
       )}
+      {record && phone && sharer.hosted && <button type="button" role="menuitem" disabled={sharer.busy} onClick={() => void sharer.share(shareGameRequest())}>{t('common:share.game')}</button>}
       {record && phone && <button type="button" role="menuitem" onClick={() => void copyPgn()}>{t('game.copyPgn')}</button>}
       {record && (
         <a role="menuitem" id="export-pgn" download href={`api/games/${encodeURIComponent(String(record.id))}/pgn`}
@@ -263,7 +276,9 @@ export function GamePage() {
       <TopbarSlot slot="tools">
         <button className="icon-button" id="flip" type="button" title={t('board:workspace.flipTitle')} aria-label={t('board:workspace.flip')}
           onClick={() => setFlipped(!isFlipped)}>⇅</button>
-        {record && <button className="button" id="copy-pgn" type="button" onClick={() => void copyPgn()}>{t('game.copyPgn')}</button>}
+        {record && (sharer.hosted
+          ? <ShareButton sharer={sharer} id="share-game" request={shareGameRequest} title={t('common:share.gameTitle')}>{t('common:share.game')}</ShareButton>
+          : <button className="button" id="copy-pgn" type="button" onClick={() => void copyPgn()}>{t('game.copyPgn')}</button>)}
         {more}
       </TopbarSlot>
       {!phone && <header className="review-head">
@@ -292,6 +307,10 @@ export function GamePage() {
           black: { name: blackName, detail: [game.headers.BlackElo, t('game.blackPieces')].filter(Boolean).join(' · ') },
         }}
         movable="turn" onMove={uci => navigate(explore([uci]))}
+        verdictAction={record && sharer.hosted && cursor > 0 ? (
+          <ShareButton sharer={sharer} className="icon-button verdict-share" id="share-move" request={shareMove(cursor)}
+            title={t('common:share.moveTitle')} label={t('common:share.move')}><ShareIcon /></ShareButton>
+        ) : undefined}
         resultText={game.headers.Result} judgments={judgments} bestMoves={bestMoves} autoplay opening={opening} thinkTimes={thinkTimes} you={record?.user_color ? userColor : undefined}
         longThink={longThink(game.headers.TimeControl)} startClock={Number(game.headers.TimeControl?.split('+')[0]) || null}
         onTryBest={uci => navigate(explore([uci]))} tryLabel={t('game.exploreBest')}
