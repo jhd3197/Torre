@@ -12,10 +12,11 @@ import unicodedata
 from urllib.parse import quote
 
 import requests
+from torre import paths
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "books")
+ROOT = os.path.join(str(paths.REPO), "books")
 PER_DIR = os.path.join(ROOT, "periodicals")
 GUT_DIR = os.path.join(ROOT, "gutenberg")
 PLAN_PATH = os.path.join(ROOT, "_plan.json")

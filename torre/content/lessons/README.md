@@ -47,7 +47,7 @@ optional `title`. Squares in `marks` are `["e4"]` for a circle and
 `["e2", "e4"]` for an arrow.
 
 No em dashes ("—") anywhere in lesson wording: use a comma, a colon or a full stop.
-`scripts/clean_wording.py` rewrites them, and `tests/test_lessons.py` fails if one slips in.
+`torre/tools/clean_wording.py` rewrites them, and `tests/test_lessons.py` fails if one slips in.
 
 Two optional fields turn the mascot into a teacher on any step:
 
@@ -55,7 +55,7 @@ Two optional fields turn the mascot into a teacher on any step:
   markdown, no UCI squares; say "knight to f3", not "g1f3". The recorded voice
   comes from the voice packs: `narrate.py` records every line the app speaks with
   a local Kokoro TTS server (one mp3 per sentence, named by a hash of its text),
-  and `scripts/build_packs.py` zips them for download. Changing a line only means
+  and `torre/tools/build_packs.py` zips them for download. Changing a line only means
   re-running `.\dev.ps1 narrate`; nothing is tied to step ids.
 - `pose`: one of the mascot poses listed in `POSES` in `lessons.py`
   (`thumbs-up`, `detective`, `thinking`, `trophy`, ...). Pick one that fits

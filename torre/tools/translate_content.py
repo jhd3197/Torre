@@ -17,7 +17,7 @@ Every translation is checked before it is kept: the [move] cues, {{placeholders}
 names and move notation must survive, and no em dash may appear. A batch that fails is retried line
 by line; a line that still fails keeps its English text and is reported. Results are cached in
 translations/<lang>.json by a hash of the English text and the glossary, so a re-run only sends
-what changed. The glossary and style rules are in scripts/glossary_es.json. Lines that need a
+what changed. The glossary and style rules are in torre/tools/glossary_es.json. Lines that need a
 hand-written translation (puns, song lines) go in translations/overrides/<lang>.json, keyed by the
 English text; they always win over the model.
 """
@@ -28,17 +28,16 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-from torre.learning import achievements  # noqa: E402
-from torre.learning import lessons  # noqa: E402
-from torre.learning import puzzles  # noqa: E402
 from torre import paths
+from torre.learning import achievements
+from torre.learning import lessons
+from torre.learning import puzzles
+
+ROOT = paths.REPO
 
 UI_DIR = ROOT / 'web' / 'src' / 'i18n' / 'locales'
 CONTENT_DIR = paths.CONTENT
-CACHE_DIR = ROOT / 'scripts' / 'translations'
+CACHE_DIR = Path(__file__).resolve().parent / 'translations'
 DEFAULT_MODEL = 'ollama/gemma3:12b'  # fits beside other GPU work and runs ~80 tok/s with good Spanish
 LANGUAGE_NAMES = {'es': 'Spanish'}
 BATCH_ITEMS = 12
@@ -385,7 +384,7 @@ def main():
     parser.add_argument('--proofread', action='store_true', help='fix gender agreement in cached translations, then rewrite the overlays')
     args = parser.parse_args()
 
-    glossary = json.loads((ROOT / 'scripts' / f'glossary_{args.lang}.json').read_text(encoding='utf-8'))
+    glossary = json.loads((Path(__file__).resolve().parent / f'glossary_{args.lang}.json').read_text(encoding='utf-8'))
     cache_path = CACHE_DIR / f'{args.lang}.json'
     cache = json.loads(cache_path.read_text(encoding='utf-8')) if cache_path.exists() else {}
     stamp = f'{glossary["version"]}:'

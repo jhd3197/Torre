@@ -27,7 +27,7 @@ import chess.pgn
 from torre.analysis.engine_service import ENGINE_PATH
 from torre import paths
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = paths.REPO
 MASTERS = ROOT / 'games' / 'masters'
 LESSONS = paths.LESSONS
 MATE = 100_000

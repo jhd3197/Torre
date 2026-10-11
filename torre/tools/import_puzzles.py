@@ -19,7 +19,8 @@ import urllib.request
 from pathlib import Path
 
 from torre.learning import puzzles
-ROOT = Path(__file__).resolve().parents[1]
+from torre import paths
+ROOT = paths.REPO
 URL = 'https://database.lichess.org/lichess_db_puzzle.csv.zst'
 CACHE = ROOT / 'data' / 'lichess_db_puzzle.csv.zst'
 BANDS = range(400, 2800, 200)  # 400-599, 600-799, ... 2600-2799

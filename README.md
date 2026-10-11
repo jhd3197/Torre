@@ -50,7 +50,7 @@ Open **http://127.0.0.1:1886** (the year of the first World Championship). If th
   with the wrong moves you tried, per-theme first-try rates show your weakest
   themes, and missed puzzles wait in a retry list until you solve them cleanly.
   Progress is saved in `data/puzzles.json`. To rebuild the packs from a newer
-  database: `pip install zstandard`, then `python -m scripts.import_puzzles` (downloads
+  database: `pip install zstandard`, then `python -m torre.tools.import_puzzles` (downloads
   ~300 MB once into `data/`).
 - **Game library:** search and filter your saved games, click a game to replay it,
   step through its moves, or use autoplay. Moves in analyzed games are marked
@@ -67,7 +67,7 @@ Open **http://127.0.0.1:1886** (the year of the first World Championship). If th
   receives that opening context and general family ideas to discuss the player's
   choices before the turning points. Unrecognized positions are left unnamed;
   recognition alone never labels a move good, bad or a theoretical novelty.
-  Rebuild the pinned index with `.venv/Scripts/python -m scripts.build_opening_book`.
+  Rebuild the pinned index with `.venv/Scripts/python -m torre.tools.build_opening_book`.
   **Export PGN** downloads the game annotated in the format Lichess and chess.com
   import: a `[%eval]` comment on every move, `?!` / `?` / `??` / `!!` marks, and the
   engine's move as a variation for each mistake. Clock comments are kept.
@@ -220,7 +220,7 @@ every check and builds the interface before packaging.
 - **Stockfish:** it isn't bundled by default because it is ~110 MB. The app
   checks `STOCKFISH_PATH`, then a packaged `engine/` folder, then
   `stockfish_dist/`, then `stockfish` on PATH. To bundle it, run
-  `python -m scripts.release_vela --stockfish PATH-TO-BINARY`.
+  `python -m torre.tools.release_vela --stockfish PATH-TO-BINARY`.
 - **Manifest:** `vela-app/app.json` and `vela-app/icon.svg`. Bump `version`
   there for each release.
 
@@ -276,7 +276,7 @@ card (such as `openai/gpt-4o-mini`) with your own API key.
 
 The optional literature downloader uses `requirements-books.txt`; install it with
 `pip install -r requirements-books.txt` inside your environment before running
-`scripts/download_books.py`.
+`torre/tools/download_books.py`.
 
 ## What is kept local
 
@@ -297,7 +297,6 @@ GitHub Pages alone cannot run its chess and Stockfish APIs.
 | `torre/` | the Python app, one package (see below); `torre/content/` holds its data: lessons, puzzle packs, catalogs and the Spanish text |
 | `web/` | the React interface (pages in `web/src/pages`, the board in `web/src/components`), built into `studio/ui/` |
 | `tests/` | the Python tests: `.\dev.ps1 test`, or `.\dev.ps1 test tests.test_coach` for one file |
-| `scripts/` | one-off tools run from the repo root with `python -m scripts.<name>`: puzzle import, books, translations, voice packs, the Vela release |
 | `vela-app/` | the Vela app manifest and icon |
 | `docs/` | reference: the game export format |
 
@@ -311,6 +310,7 @@ Inside `torre/`:
 | `learning/` | lessons, puzzles, drills, openings, endgames, the story, awards and voice packs |
 | `games/` | imports from chess.com and Lichess, the legends' games, the engine arena |
 | `content/` | the data the app ships with |
+| `tools/` | maintainer tools, `python -m torre.tools.<name>`: puzzle import, the opening book, translations, voice packs, the Vela release |
 | `cli.py` | the command line: `python -m torre` or `.\torre.cmd` (serve, import, analyze, report, coach, doctor) |
 
 The images are not in git: `.\dev.ps1 art fetch` downloads them from the art release.

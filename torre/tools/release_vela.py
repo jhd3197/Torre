@@ -1,6 +1,6 @@
 """Build a Vela app package: dist/chess-<version>.zip (plus a .sha256).
 
-  .venv/Scripts/python -m scripts.release_vela [--stockfish PATH]
+  .venv/Scripts/python -m torre.tools.release_vela [--stockfish PATH]
 
 The package bundles python-chess and fsrs under vendor/ so Vela only needs Python.
 Stockfish is large, so it is included only when --stockfish is given;
@@ -17,7 +17,7 @@ import fsrs
 import typing_extensions
 from torre import paths
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = paths.REPO
 STAMP = (2026, 1, 1, 0, 0, 0)
 
 
@@ -29,7 +29,7 @@ def add(archive, source, name, mode=0o100644):
 
 
 def runtime_modules(root=ROOT):
-    """Every Python file of the torre package: the app is the package, tests and scripts live outside it."""
+    """Every Python file of the torre package: the app is the package, its tests live outside it."""
     package = root / 'torre'
     return {f'torre/{f.relative_to(package).as_posix()}': f for f in sorted(package.rglob('*.py'))
             if '__pycache__' not in f.parts}

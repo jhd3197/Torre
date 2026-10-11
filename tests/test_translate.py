@@ -1,7 +1,7 @@
 """The translation checks and clean-ups (translate_content.py) that stand between a model and the app."""
 import unittest
 
-from scripts import translate_content as tc
+from torre.tools import translate_content as tc
 
 
 class CheckTests(unittest.TestCase):

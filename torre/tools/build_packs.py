@@ -1,6 +1,6 @@
 """Zip the recorded voice packs for download and list them in packs.json.
 
-    python -m scripts.build_packs            # dist/voice/<folder>/ -> dist/packs/voice-<folder>.zip + packs.json
+    python -m torre.tools.build_packs            # dist/voice/<folder>/ -> dist/packs/voice-<folder>.zip + packs.json
 
 <folder> is narrate.pack_folder(): "en" for the female voice, "en-male" for the male one.
 
@@ -13,8 +13,9 @@ import sys
 import time
 import zipfile
 from pathlib import Path
+from torre import paths
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = paths.REPO
 VOICE = ROOT / 'dist' / 'voice'
 OUT = ROOT / 'dist' / 'packs'
 TITLES = {

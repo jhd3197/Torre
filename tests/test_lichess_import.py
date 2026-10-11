@@ -10,7 +10,7 @@ from unittest import mock
 import chess.pgn
 
 from torre.games import importer
-from scripts import lichess_import
+from torre.tools import lichess_import
 
 PGN = '''[Event "Rated Blitz game"]
 [Site "https://lichess.org/{id}"]

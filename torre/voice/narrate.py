@@ -24,7 +24,7 @@ quips); from coachlines.json, Rooky's coaching (coach_lessons.py), its placehold
 and from commentary.json, the game-review commentary, whose {{placeholders}} are expanded over
 every value they can take (each square, percent, move number, opening name...) so every sentence the
 review can build out of its lines finds a recording. Every file is trimmed of silence and normalized to -16 LUFS so all lines
-sound equally loud. scripts/build_packs.py zips a pack for download.
+sound equally loud. torre/tools/build_packs.py zips a pack for download.
 
 Start Kokoro first (docker run -d --gpus all -p 8880:8880 ghcr.io/remsky/kokoro-fastapi-gpu).
 """

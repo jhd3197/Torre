@@ -15,20 +15,20 @@
 #   .\dev.ps1 check          everything: Python tests, type-check, lint, UI tests, build
 #   .\dev.ps1 setup          create .venv, install Python + Node dependencies, build the UI
 #   .\dev.ps1 analyze <args> run torre/analysis/analyze.py (e.g. .\dev.ps1 analyze --limit 20)
-#   .\dev.ps1 lessons [slugs] check the chess in lessons/ with Stockfish (scripts/verify_lessons.py)
+#   .\dev.ps1 lessons [slugs] check the chess in lessons/ with Stockfish (torre/tools/verify_lessons.py)
 #   .\dev.ps1 masters [names] download the legends' games (torre/games/download_masters.py)
-#   .\dev.ps1 story <args>   build a game-story lesson (scripts/game_story.py find|moments|skeleton ...)
+#   .\dev.ps1 story <args>   build a game-story lesson (torre/tools/game_story.py find|moments|skeleton ...)
 #   .\dev.ps1 art fetch [built|sources]   download the art from its GitHub release: the cut images the
 #                            app shows (web/public/art, art-built.zip) and the source sheets (art/source,
 #                            art-sources.zip); both by default. Neither is in git.
 #   .\dev.ps1 art publish [built|sources] zip them and replace the zips on that release (both by default)
 #   .\dev.ps1 art [stages]   cut art/source into web/public/art (e.g. .\dev.ps1 art pieces grades);
 #                            needs rembg in the system Python: pip install "rembg[cpu]" opencv-python-headless
-#   .\dev.ps1 translate [args] translate the app text (scripts/translate_content.py; --check lists what is missing);
+#   .\dev.ps1 translate [args] translate the app text (torre/tools/translate_content.py; --check lists what is missing);
 #                            needs a model (default: local Ollama qwen3.8); Prompture comes with setup
 #   .\dev.ps1 narrate [en|es] record the coach voice packs, female and male, with Kokoro (starts its Docker container if needed)
-#   .\dev.ps1 packs [publish] zip the voice packs (scripts/build_packs.py); publish uploads them to the voice-packs release
-#   .\dev.ps1 release        check, then package the Vela app (scripts/release_vela.py)
+#   .\dev.ps1 packs [publish] zip the voice packs (torre/tools/build_packs.py); publish uploads them to the voice-packs release
+#   .\dev.ps1 release        check, then package the Vela app (torre/tools/release_vela.py)
 #
 # Options: -Port 1886 (studio), -UiPort 5173 (Vite), -Open (serve: open the browser)
 
@@ -294,7 +294,7 @@ switch ($Command) {
         Watch-Project -OnChange { param($sides) Invoke-Validate ([bool]$sides["python"]) ([bool]$sides["ui"]) }
     }
     "lessons" {
-        & $Python -m scripts.verify_lessons @Rest
+        & $Python -m torre.tools.verify_lessons @Rest
         exit $LASTEXITCODE
     }
     "masters" {
@@ -302,7 +302,7 @@ switch ($Command) {
         exit $LASTEXITCODE
     }
     "story" {
-        & $Python -m scripts.game_story @Rest
+        & $Python -m torre.tools.game_story @Rest
         exit $LASTEXITCODE
     }
     "test" {
@@ -377,7 +377,7 @@ switch ($Command) {
         exit $LASTEXITCODE
     }
     "translate" {
-        & $Python -m scripts.translate_content @Rest
+        & $Python -m torre.tools.translate_content @Rest
         exit $LASTEXITCODE
     }
     "narrate" {
@@ -399,7 +399,7 @@ switch ($Command) {
         }
     }
     "packs" {
-        Invoke-Step "zip the voice packs" { & $Python -m scripts.build_packs }
+        Invoke-Step "zip the voice packs" { & $Python -m torre.tools.build_packs }
         if ($Rest -and $Rest[0] -eq "publish") {
             $files = @(Get-ChildItem (Join-Path $Root "dist/packs") -File | ForEach-Object { $_.FullName })
             # "release not found" on stderr is the expected answer before the first publish, not a failure.
@@ -416,7 +416,7 @@ switch ($Command) {
     "release" {
         & $PSCommandPath check
         if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-        Invoke-Step "package Vela app" { & $Python -m scripts.release_vela @Rest }
+        Invoke-Step "package Vela app" { & $Python -m torre.tools.release_vela @Rest }
     }
     default {
         Get-Content $PSCommandPath -TotalCount 21

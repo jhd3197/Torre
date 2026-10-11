@@ -1,7 +1,7 @@
 """Replace em dashes in lesson wording with plain punctuation.
 
-    python -m scripts.clean_wording           # show every change
-    python -m scripts.clean_wording --write   # apply them
+    python -m torre.tools.clean_wording           # show every change
+    python -m torre.tools.clean_wording --write   # apply them
 
 Em dashes read as machine-written, so lesson text uses ordinary punctuation:
 - a pair of dashes around an aside becomes a pair of commas;
@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 from torre import paths
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = paths.REPO
 LESSONS = paths.LESSONS
 DASH = re.compile(r'\s*—\s*')
 JOINERS = {'and', 'but', 'so', 'or', 'then', 'which', 'because', 'while', 'yet', 'though', 'although', 'until',

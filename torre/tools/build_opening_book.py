@@ -1,6 +1,6 @@
 """Build the offline opening-name index from a pinned Lichess CC0 dataset.
 
-Run from the repository root: .venv/Scripts/python -m scripts.build_opening_book
+Run from the repository root: .venv/Scripts/python -m torre.tools.build_opening_book
 """
 import csv
 import io
@@ -14,7 +14,7 @@ from torre import paths
 
 REVISION = 'a6189a30dc273ccb21fc2536a9a2fefd5592a67a'
 SOURCE = 'https://github.com/lichess-org/chess-openings'
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = paths.REPO
 
 
 def main():

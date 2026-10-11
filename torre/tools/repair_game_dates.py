@@ -1,6 +1,6 @@
 """Give saved games their real date where the importer kept a placeholder ("1970.01.01", "????.??.??").
 
-    python -m scripts.repair_game_dates
+    python -m torre.tools.repair_game_dates
 
 chess.com's bot and coach games carry Date "1970.01.01"; the real day is in the PGN's EndDate or the end
 time (chesscom_common.real_date, which the importers now use). Rewrites data/games.jsonl and the matching
@@ -12,8 +12,7 @@ import shutil
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from torre.games.chesscom_common import real_date  # noqa: E402
+from torre.games.chesscom_common import real_date
 
 DATA = Path(__file__).resolve().parents[1] / 'data'
 HEADER = re.compile(r'\[(\w+) "([^"]*)"\]')
