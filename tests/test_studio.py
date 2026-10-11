@@ -292,3 +292,13 @@ class BackgroundAnalysisTests(unittest.TestCase):
             self.job.stopped_by_user = True
             self.assertFalse(api_games.auto_analyze())
             self.assertEqual(start.call_count, 1)
+
+    def test_host_can_turn_automatic_analysis_off(self):
+        import os
+        from unittest import mock
+        with mock.patch.object(api_games, 'ANALYSIS_JOB', self.job), mock.patch.object(self.job, 'start') as start,                 mock.patch.object(engine_service, 'ENGINE_PATH', mock.Mock(exists=lambda: True)),                 mock.patch.dict(os.environ, {'TORRE_BACKGROUND_ANALYSIS': '0'}):
+            self.assertFalse(api_games.auto_analyze())
+            self.assertFalse(api_games.auto_enabled())
+            self.assertEqual(start.call_count, 0)
+            api_games.analysis_start(None)  # "Analyze all" still runs
+            self.assertEqual(start.call_count, 1)

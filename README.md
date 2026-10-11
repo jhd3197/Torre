@@ -188,6 +188,12 @@ paths resolve from your terminal's current directory. Stockfish uses the app's
 existing discovery, including `STOCKFISH_PATH`. Coaching uses the same
 `settings.json`, `CHESS_COACH_MODEL`, and local-model fallback as the app.
 
+On a server that runs many studios side by side, three variables keep each one
+small. `TORRE_ENGINE_THREADS` caps the search threads of every engine and of the
+studio as a whole (default: all cores). `TORRE_ENGINE_HASH_MB` caps each engine's
+hash memory. `TORRE_BACKGROUND_ANALYSIS=0` stops new games from being analyzed on
+their own; **Analyze all** still works.
+
 ```powershell
 .\torre.cmd import "games.pgn" --username YourPlayerName --dry-run
 .\torre.cmd analyze --data-dir "D:\Chess Archive" --depth 14 --no-mine

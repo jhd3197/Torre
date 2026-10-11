@@ -4,7 +4,6 @@ import contextlib
 import io
 import json
 import logging
-import os
 
 import chess
 import chess.pgn
@@ -16,6 +15,7 @@ from torre.analysis import board_view
 from torre.analysis import bot_report
 from torre.coaching import coach_home
 from torre.analysis import engine_service
+from torre.analysis import limits
 from torre.analysis import game_export
 from torre.games import importer
 from torre.server import jobs
@@ -30,7 +30,7 @@ IMPORT_JOB = importer.JOB
 MINE_EVERY = 10  # games analyzed between two mining passes
 # The background analysis asks for half the cores (the engine budget may give it fewer while
 # the board's own engines are busy), leaving the rest for them and the browser.
-BACKGROUND_THREADS = max(1, (os.cpu_count() or 2) // 2)
+BACKGROUND_THREADS = max(1, limits.total_threads() // 2)
 SUMMARY_FIELDS = ('id', 'date', 'opponent', 'user_color', 'user_result', 'user_rating', 'opp_rating', 'plies', 'user_accuracy', 'type')
 
 
@@ -191,10 +191,16 @@ class AnalysisJob(jobs.BackgroundJob):
 ANALYSIS_JOB = AnalysisJob()
 
 
+def auto_enabled():
+    """Whether new games are analyzed without a click: the host allows it and the player's
+    setting is on. "Analyze all" works either way."""
+    return limits.background_analysis() and appdata.read_settings().get('auto_analyze') is not False
+
+
 def auto_analyze():
-    """Start analyzing unanalyzed games in the background, unless turned off in settings, already
-    running, stopped by the user this session, or without Stockfish. True when it started."""
-    if appdata.read_settings().get('auto_analyze') is False or ANALYSIS_JOB.stopped_by_user or not engine_service.ENGINE_PATH.exists():
+    """Start analyzing unanalyzed games in the background, unless turned off in settings or by
+    TORRE_BACKGROUND_ANALYSIS=0 (a shared host), already running, stopped by the user this session, or without Stockfish. True when it started."""
+    if not auto_enabled() or ANALYSIS_JOB.stopped_by_user or not engine_service.ENGINE_PATH.exists():
         return False
     if ANALYSIS_JOB.busy() or not analyze.pending(*_archive())[0]:
         return False
@@ -273,7 +279,7 @@ def import_cancel(req):
 
 @ROUTES.get('/api/analysis')
 def analysis_status(req):
-    return {**ANALYSIS_JOB.status(), 'auto': appdata.read_settings().get('auto_analyze') is not False}
+    return {**ANALYSIS_JOB.status(), 'auto': auto_enabled()}
 
 
 @ROUTES.post('/api/analysis/start')
@@ -295,7 +301,7 @@ def auto_analyze_setting(req):
     appdata.update_settings(lambda s: s.__setitem__('auto_analyze', bool(enabled)))
     if enabled:
         auto_analyze()
-    return {**ANALYSIS_JOB.status(), 'auto': bool(enabled)}
+    return {**ANALYSIS_JOB.status(), 'auto': auto_enabled()}
 
 
 @ROUTES.get('/api/setup')

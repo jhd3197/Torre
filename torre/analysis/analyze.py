@@ -29,6 +29,7 @@ import chess.pgn
 
 from torre.analysis import scoring
 from torre.analysis import engines
+from torre.analysis import limits
 from torre import jsonio
 GAMES_FILE = Path("data/games.jsonl")
 ANALYSIS_FILE = Path("data/analysis.jsonl")
@@ -265,7 +266,7 @@ def run(games, engine_path, analysis_file: Path = ANALYSIS_FILE, depth=DEFAULT_D
     """Analyze `games`, appending each record as it finishes. `progress` is
     called as progress(index, game, result_or_None, error_or_None)."""
     engine = chess.engine.SimpleEngine.popen_uci(str(engine_path))
-    engine.configure({"Threads": threads, "Hash": 512})
+    engine.configure(limits.cap({"Threads": threads, "Hash": 512}))
     try:
         for i, rec in enumerate(games, 1):
             if should_stop():
