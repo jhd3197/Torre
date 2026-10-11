@@ -25,6 +25,7 @@ import { lastVisited } from '../state/lastVisited';
 import { usePhone } from '../hooks/usePhone';
 import { useShare } from '../hooks/useShare';
 import { ShareButton, ShareIcon } from '../components/ShareButton';
+import { celebrated, MoveCelebration } from '../components/workspace/MoveCelebration';
 import type { AnalyzedMove, Color, GameDetail } from '../types';
 
 const SCORING_VERSION = 3;
@@ -167,6 +168,8 @@ export function GamePage() {
   }, [gameId, toast, t]);
   // On torre.sh a share is a public link to the game or a move; on your own computer, the PGN copied.
   const sharer = useShare(copyPgn);
+  // The brilliant and great moves already celebrated this visit, as "<game>:<ply>".
+  const [seen] = useState(() => new Set<string>());
 
   if (error) return <div className="page-empty"><h2>{t('game.unavailable')}</h2><p>{error}</p><Link className="button" to="/games">{t('game.openGames')}</Link></div>;
   if (!game) return <p className="page-status" role="status">{t('game.loading')}</p>;
@@ -250,6 +253,13 @@ export function GamePage() {
       text: judged ? t('common:share.moveText', { move, grade: GRADE_INFO[gradeOf(judged)].label, game: title }) : t('common:share.plainMoveText', { move, game: title }) };
   };
   const shareGameRequest = () => ({ game: gameId, ply: null, title, text: title });
+  // A brilliant or great move of yours, once the review has graded it, gets its celebration.
+  const nowJudged = !reviewing && cursor > 0 ? judgments.get(cursor) : undefined;
+  const nowGrade = nowJudged ? gradeOf(nowJudged) : null;
+  const celebration = celebrated(nowGrade) && yours(cursor) ? (
+    <MoveCelebration key={`${gameId}:${cursor}`} moveKey={`${gameId}:${cursor}`} grade={nowGrade} seen={seen}
+      sharer={record ? sharer : undefined} request={shareMove(cursor)} />
+  ) : undefined;
   const more = (
     <MoreMenu label={t('game.more')}>
       <Link role="menuitem" id="explore-position" to={explore()}>{t('game.explorePosition')}</Link>
@@ -307,7 +317,8 @@ export function GamePage() {
           black: { name: blackName, detail: [game.headers.BlackElo, t('game.blackPieces')].filter(Boolean).join(' · ') },
         }}
         movable="turn" onMove={uci => navigate(explore([uci]))}
-        verdictAction={record && sharer.hosted && cursor > 0 ? (
+        verdictNote={celebration}
+        verdictAction={record && sharer.hosted && cursor > 0 && !celebration ? (
           <ShareButton sharer={sharer} className="icon-button verdict-share" id="share-move" request={shareMove(cursor)}
             title={t('common:share.moveTitle')} label={t('common:share.move')}><ShareIcon /></ShareButton>
         ) : undefined}

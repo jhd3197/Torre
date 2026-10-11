@@ -43,5 +43,9 @@
   "great": "Compartir esta gran jugada",
   "moveText": "{{move}} ({{grade}}) en {{game}}",
   "plainMoveText": "{{move}} en {{game}}"
+ },
+ "celebrate": {
+  "brilliant": "¡Jugada brillante!",
+  "great": "¡Gran jugada!"
  }
 }

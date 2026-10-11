@@ -360,3 +360,40 @@ test('on your own computer there is no share link, only the PGN copy', async () 
   expect(screen.queryByRole('button', { name: 'Share' })).toBeNull();
   expect(screen.queryByRole('button', { name: 'Share this move' })).toBeNull();
 });
+
+function brilliantGame(id: number) {
+  const detail = game(id);
+  detail.analysis!.moves = [
+    { ply: 2, san: 'e5', class: null, best: true, brilliant: true, accuracy: 100 },
+    { ply: 3, san: 'Nf3', class: null, best: true, brilliant: true, accuracy: 100 },
+  ];
+  return detail;
+}
+
+test('a brilliant move of yours is celebrated once per visit, and can be shared', async () => {
+  serve(194, brilliantGame(194));
+  const { router, container } = renderAt('/games/194/3');
+  await reviewed();
+  expect(await screen.findByText('Brilliant move!')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Share this brilliant move' })).toBeInTheDocument();
+  expect(screen.getByTestId('move-celebration')).toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).not.toBeNull();
+
+  // The opponent's brilliant move is not yours to celebrate.
+  await act(() => router.navigate('/games/194/2', { replace: true }));
+  await waitFor(() => expect(screen.queryByTestId('move-celebration')).toBeNull());
+
+  // Back on it, the badge and the button stay, but the burst does not play again.
+  await act(() => router.navigate('/games/194/3', { replace: true }));
+  expect(await screen.findByTestId('move-celebration')).not.toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).toBeNull();
+});
+
+test('with reduced motion a brilliant move gets no falling paper', async () => {
+  localStorage.setItem('chess-jd-motion', 'reduce');
+  serve(195, brilliantGame(195));
+  const { container } = renderAt('/games/195/3');
+  await reviewed();
+  expect(await screen.findByTestId('move-celebration')).toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).toBeNull();
+});

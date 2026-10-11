@@ -43,5 +43,9 @@
     "great": "Share this great move",
     "moveText": "{{move}} ({{grade}}) in {{game}}",
     "plainMoveText": "{{move}} in {{game}}"
+  },
+  "celebrate": {
+    "brilliant": "Brilliant move!",
+    "great": "Great move!"
   }
 }
