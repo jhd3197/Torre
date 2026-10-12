@@ -14,7 +14,8 @@ import re
 MEDIA_TYPES = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
                '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp',
                '.woff2': 'font/woff2', '.ico': 'image/x-icon', '.json': 'application/json',
-               '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wav': 'audio/wav', '.m4a': 'audio/mp4'}
+               '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wav': 'audio/wav', '.m4a': 'audio/mp4',
+               '.webmanifest': 'application/manifest+json'}
 
 
 class ApiError(Exception):

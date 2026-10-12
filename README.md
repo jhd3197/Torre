@@ -225,6 +225,17 @@ through `dev.ps1`; nothing needs building or restarting by hand:
 
 Options: `-Port 1886`, `-UiPort 5173`.
 
+## Install it on a phone
+
+The browser build includes a web app manifest, 192/512-pixel icons and a service
+worker scoped to Torre's own address. On `torre.sh` that address is the public
+domain; inside Vela it is `/apps/chess/`. On an iPhone, open the address in
+Safari and choose **Share → Add to Home Screen**. On Android, choose **Install
+app** or **Add to Home Screen** in the browser menu. The shortcut still needs a
+connection to the server holding your games; it does not copy the server or
+your data onto the phone. The hosted account at `torre.sh` is separate from a
+local Torre installed in Vela.
+
 ## Run it in Vela
 
 Torre also ships as a [Vela](https://github.com/jhd3197/vela) app, the
