@@ -23,14 +23,19 @@ app (in `web/`), served ready-built by the Python server.
 
 Captured from a fresh local installation with no personal game data.
 
-| Learn the game | Practice puzzles |
-| :---: | :---: |
-| ![Torre's Story screen, showing the first chapter and lesson progress](docs/screenshots/story.png) | ![Torre's Puzzles screen, showing the rating and checkmate themes](docs/screenshots/puzzles.png) |
-| Follow the Story chapters from your first moves onward. | Pick a rated puzzle or practice a theme. |
+**Story:** follow the chapters from your first moves onward.
+
+![Torre's Story screen, showing the first chapter and its lesson path](docs/screenshots/story.png)
+
+**Puzzles:** pick a rated puzzle or practice a theme.
+
+![Torre's Puzzles screen, showing the rating and checkmate themes](docs/screenshots/puzzles.png)
 
 ## Install
 
-The quickest way to play is at [torre.sh](https://torre.sh); that uses a hosted account.
+The quickest way to play is at [torre.sh](https://torre.sh). Visit the
+[install page](https://torre.sh/download) to add it as an app on iPhone, iPad,
+Mac, Android, Windows or Linux. That uses a hosted account and needs internet.
 To keep games on your own computer, install Docker Desktop (or Docker Engine) and run:
 
 ```bash
