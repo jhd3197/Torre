@@ -1,6 +1,6 @@
 services:
   torre:
-    image: jhd3197/torre:latest
+    image: ghcr.io/jhd3197/torre:latest
     build: .
     ports:
       - "127.0.0.1:1886:1886"

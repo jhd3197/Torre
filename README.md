@@ -39,13 +39,13 @@ Mac, Android, Windows or Linux. That uses a hosted account and needs internet.
 To keep games on your own computer, install Docker Desktop (or Docker Engine) and run:
 
 ```bash
-docker run -d --name torre --restart unless-stopped -p 127.0.0.1:1886:1886 -v torre-data:/data jhd3197/torre:latest
+docker run -d --name torre --restart unless-stopped -p 127.0.0.1:1886:1886 -v torre-data:/data ghcr.io/jhd3197/torre:latest
 ```
 
 Open [http://127.0.0.1:1886](http://127.0.0.1:1886). The container includes
 Stockfish and the interface; the `torre-data` volume keeps your games and progress
 when the container is replaced. The image is published for Linux AMD64 and ARM64
-on each release to [Docker Hub](https://hub.docker.com/r/jhd3197/torre).
+on each release to [GitHub Container Registry](https://github.com/jhd3197/Torre/pkgs/container/torre).
 If you have cloned this repository, `docker compose up --build -d` also works
 without a published image.
 To update a container installed with `docker run`, pull the new image, stop and
@@ -65,15 +65,12 @@ move them). `torre doctor` checks everything.
 
 ### Publishing the Docker image
 
-The `main` release workflow publishes the tested image to Docker Hub as
-`jhd3197/torre:<version>` and `jhd3197/torre:latest` after the PyPI and GitHub
-releases succeed. Set the `DOCKERHUB_USERNAME` repository secret to `jhd3197`
-and `DOCKERHUB_TOKEN` to a Docker Hub access token with permission to push that
-repository. These secrets are scoped to this GitHub repository, even if they
-already exist in another project. To retry a release image without bumping the
-package version, run the **Publish Docker image** workflow with that release's
-version number. Make sure the `jhd3197/torre` Docker Hub repository is public
-before directing users to its install command.
+The `main` release workflow publishes the tested image to GitHub Container Registry
+as `ghcr.io/jhd3197/torre:<version>` and `ghcr.io/jhd3197/torre:latest` after the
+PyPI and GitHub releases succeed. It uses the workflow's GitHub token. To retry a
+release image without bumping the package version, run the **Publish Docker image**
+workflow with that release's version number. The workflow checks that the image is
+publicly readable after publishing.
 
 `art-built.zip` contains the public images used by the app. Original source
 sheets stay in the private art pipeline. `./dev.ps1 art publish built` updates

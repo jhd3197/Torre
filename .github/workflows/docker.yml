@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   docker:
@@ -23,22 +24,12 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: v${{ inputs.version }}
-      - name: Check Docker Hub credentials
+      - name: Validate release version
         env:
           TORRE_VERSION: ${{ inputs.version }}
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           if [[ ! "$TORRE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo 'The Docker version must be a stable version such as 0.3.6.' >&2
-            exit 1
-          fi
-          if [[ -z "$DOCKERHUB_USERNAME" || -z "$DOCKERHUB_TOKEN" ]]; then
-            echo 'Set DOCKERHUB_USERNAME and DOCKERHUB_TOKEN repository secrets.' >&2
-            exit 1
-          fi
-          if [[ "$DOCKERHUB_USERNAME" != 'jhd3197' ]]; then
-            echo 'DOCKERHUB_USERNAME must be jhd3197 to match the published install command.' >&2
             exit 1
           fi
       - uses: docker/setup-qemu-action@v3
@@ -68,11 +59,12 @@ jobs:
           curl --fail --silent --output /dev/null http://127.0.0.1:1886/
           curl --fail --silent --output /dev/null http://127.0.0.1:1886/art/logo/app-icon-64.png
           test "$(docker exec torre-smoke python -c 'import torre; print(torre.__version__)')" = "$TORRE_VERSION"
-      - name: Sign in to Docker Hub
+      - name: Sign in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and publish amd64 and arm64 images
         uses: docker/build-push-action@v6
         with:
@@ -80,8 +72,18 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/torre:${{ inputs.version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/torre:latest
+            ghcr.io/jhd3197/torre:${{ inputs.version }}
+            ghcr.io/jhd3197/torre:latest
           build-args: TORRE_VERSION=${{ inputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Verify public pull access
+        shell: bash
+        env:
+          TORRE_VERSION: ${{ inputs.version }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/anonymous-docker"
+          if ! DOCKER_CONFIG="$RUNNER_TEMP/anonymous-docker" docker manifest inspect "ghcr.io/jhd3197/torre:$TORRE_VERSION" > /dev/null; then
+            echo 'The image was published but is not publicly readable. Set the torre package visibility to Public in GitHub package settings.' >&2
+            exit 1
+          fi
