@@ -1,0 +1,1643 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// The lesson screen (Torre Lesson / Torre Mobile Lesson designs): a full-window page of its own
+// with a header of step bars, the board beside the coach, and a sticky footer holding the hint
+// and the one primary action. While it is open the app's rail, top bar and tab bar step aside.
+
+body:has(.lesson-screen) :is(.rail-shell, .rail-backdrop, .rail-menubar, .topbar, .tabbar) {
+  display: none;
+}
+// The page behind the lesson keeps still: only the lesson scrolls.
+body:has(.lesson-screen) {
+  overflow: hidden;
+}
+body[data-focus] #toast {
+  left: 50%;
+  z-index: 70;
+}
+
+.lesson-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: $lesson-page;
+  color: $lobby-ink;
+  font-family: $font-sans;
+  > .lessons-empty {
+    margin: auto;
+    padding: 24px;
+  }
+}
+
+/* ── Header: exit · unit and title · one bar per step · where you are ── */
+.lesson-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px clamp(20px, 3vw, 40px);
+  border-bottom: 1.5px solid $lobby-line;
+}
+.lesson-exit {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: $lobby-muted;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  &:hover {
+    background: $lobby-track;
+    color: $lobby-ink;
+  }
+  @include focus-ring;
+}
+.lesson-top-name {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 260px;
+  span {
+    font-size: $fs-xs;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $lesson-faint;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  strong {
+    font-size: $fs-2xl;
+    font-weight: 900;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.lesson-bars {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+  max-width: 720px;
+  margin: 0 auto;
+  > * {
+    flex: 1;
+    height: 12px;
+    border-radius: 999px;
+    background: $lesson-track;
+    transition: background 0.3s;
+  }
+  > .done {
+    background: $lobby-green;
+  }
+  > .current {
+    background: $lesson-bar-now;
+  }
+  > a:hover {
+    filter: brightness(0.94);
+  }
+}
+.lesson-top .lesson-transport {
+  flex: none;
+}
+.lesson-top-count {
+  flex: none;
+  min-width: 48px;
+  text-align: right;
+  font: 500 #{$fs-md} $font-mono;
+  color: $lobby-muted;
+}
+
+/* ── Section chips: Learn · Watch · Try it · Quiz ── */
+.lesson-chip {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-learn {
+  --section-bg: #{$lesson-good-bg};
+  --section-ink: #{$lesson-good-ink};
+}
+.section-watch {
+  --section-bg: #{$lesson-watch-bg};
+  --section-ink: #{$lesson-watch-ink};
+}
+.section-try {
+  --section-bg: #{$lesson-bad-bg};
+  --section-ink: #{$lobby-warm};
+}
+.section-quiz {
+  --section-bg: #{$lesson-quiz-bg};
+  --section-ink: #{$lesson-quiz-ink};
+}
+.lesson-chip {
+  background: var(--section-bg);
+  color: var(--section-ink);
+}
+
+/* ── The coach: a tile with the rook, and its speech bubble ── */
+.coach-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.coach-avatar {
+  flex: none;
+  display: grid;
+  place-items: end center;
+  width: 64px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: $white;
+  box-shadow: 0 3px 0 $lobby-line;
+  .mascot {
+    width: 112%;
+    height: auto;
+    margin-bottom: -6px;
+  }
+}
+.coach-bubble {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 96px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 48px 14px 16px;
+  border-radius: 6px 20px 20px 20px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  font-size: $fs-lg;
+  line-height: 1.5;
+  font-weight: 700;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  .teacher-listen {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    border: 1.5px solid $lobby-line;
+  }
+}
+.bubble-tag {
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $lobby-muted;
+}
+.coach-bubble.tone-good {
+  background: $lesson-good-bg;
+  border-color: $lesson-good-edge;
+  .bubble-tag {
+    color: $lesson-good-ink;
+  }
+}
+.coach-bubble.tone-bad {
+  background: $lesson-bad-bg;
+  border-color: $lesson-bad-line;
+  .bubble-tag {
+    color: $lesson-bad-ink;
+  }
+}
+.coach-bubble.tone-hint {
+  background: $lesson-hint-bg;
+  border-color: $lesson-hint-line;
+  .bubble-tag {
+    color: $lobby-warm;
+  }
+}
+.coach-bubble.tone-good,
+.coach-bubble.tone-bad {
+  animation: bubble-in 0.28s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes bubble-in {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@include reduced-motion {
+  .coach-bubble.tone-good,
+  .coach-bubble.tone-bad {
+    animation: none;
+  }
+}
+
+/* ── Step outline ── */
+.lesson-outline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 18px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  overflow: hidden;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+  li + li {
+    border-top: 1.5px solid $lesson-row-line;
+  }
+}
+.outline-title {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.outline-intro {
+  border-radius: 20px;
+  li {
+    padding: 11px 16px;
+  }
+  .lesson-chip {
+    flex: none;
+    justify-content: center;
+    width: 84px;
+    padding: 3px 9px;
+    font-size: $fs-2xs;
+    letter-spacing: 0.04em;
+  }
+  .outline-title {
+    font-size: $fs-base;
+    font-weight: 800;
+  }
+  li.done .outline-title {
+    color: $lesson-faint;
+  }
+  li.done .outline-title::after {
+    content: " ✓";
+    color: $lobby-green;
+  }
+  li.current {
+    background: $lesson-row-current;
+  }
+}
+.outline-aside {
+  .outline-title {
+    font-size: $fs-md;
+    font-weight: 700;
+  }
+  .outline-dot {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 2px solid $lesson-board-shade;
+    background: $white;
+    color: $white;
+    font-size: $fs-2xs;
+    font-weight: 900;
+  }
+  .outline-section {
+    flex: none;
+    font-size: $fs-2xs;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--section-ink);
+  }
+  li.done .outline-dot {
+    border-color: $lobby-green;
+    background: $lobby-green;
+  }
+  li.current {
+    background: $lesson-row-current;
+    .outline-dot {
+      border-color: $lesson-ink;
+    }
+    .outline-title {
+      font-weight: 900;
+    }
+  }
+  li.ahead .outline-title {
+    color: $lesson-faint;
+  }
+}
+
+/* ── A step: the board, and the coach's column beside it ── */
+.lesson-stage {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
+  padding: 28px clamp(20px, 3vw, 40px);
+}
+.lesson-board {
+  flex: 0 1 auto;
+  width: min(100%, calc(100dvh - 230px), 640px);
+  min-width: 320px;
+  .board-wrap {
+    padding-left: 0;
+  }
+  .board-wrap > svg {
+    left: 0;
+    width: 100%;
+  }
+  .board {
+    border-radius: 16px;
+    box-shadow: 0 6px 0 $lesson-board-shade;
+  }
+}
+.lesson-aside {
+  flex: 1 1 360px;
+  max-width: 440px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.lesson-stage.no-board .lesson-aside {
+  max-width: 620px;
+}
+.lesson-step-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h3 {
+    margin: 0;
+    font-size: $fs-5xl;
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+}
+.lesson-in-this {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+  h4 {
+    margin: 0;
+    padding: 0 4px;
+    font-size: $fs-xs;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: $lesson-faint;
+  }
+}
+.lesson-aside {
+  .lesson-text,
+  .lesson-prompt {
+    font-size: $fs-base;
+    line-height: 1.6;
+  }
+  .lesson-hint {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: $lesson-hint-bg;
+    border: 1.5px solid $lesson-hint-line;
+    color: $lesson-hint-ink;
+    font-size: $fs-base;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .lesson-hint.hard-mode {
+    background: $white;
+    border-color: $lobby-line;
+    color: $lobby-muted;
+  }
+  .lesson-verdict {
+    border-radius: 14px;
+  }
+}
+.lesson-screen .lesson-options {
+  display: grid;
+  gap: 10px;
+}
+.lesson-screen .lesson-option {
+  min-height: 56px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: 2px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  box-shadow: 0 4px 0 $lobby-line-strong;
+  font: 800 #{$fs-base}/ 1.35 $font-sans;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s,
+    background 0.15s,
+    border-color 0.15s;
+  &:hover:not(:disabled) {
+    background: $lesson-row-current;
+  }
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 $lobby-line-strong;
+  }
+  &.picked {
+    border-color: $lesson-ink;
+    box-shadow: 0 4px 0 $lesson-ink;
+    background: $lesson-row-current;
+  }
+  &.correct {
+    border-color: $moss-300;
+    box-shadow: 0 4px 0 $moss-300;
+    background: $lesson-good-bg;
+    color: $lesson-good-ink;
+  }
+  &.wrong {
+    border-color: $lesson-bad-option-line;
+    box-shadow: 0 4px 0 $lesson-bad-option-line;
+    background: $lesson-bad-option;
+    color: $lesson-bad-ink;
+  }
+  &:disabled {
+    cursor: default;
+  }
+  @include focus-ring;
+}
+
+/* ── Footer: hint · helpers · the primary action ── */
+.lesson-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  // Undo the app's plain `footer` (a centred, letter-spaced credits row).
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  letter-spacing: normal;
+  color: inherit;
+  background: $lesson-page;
+  border-top: 1.5px solid $lobby-line;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  &.tone-correct {
+    background: $lesson-good-bg;
+    border-color: $lesson-good-line;
+  }
+  &.tone-wrong {
+    background: $lesson-bad-bg;
+    border-color: $lesson-bad-line;
+  }
+}
+.lesson-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 16px clamp(20px, 3vw, 40px) calc(16px + env(safe-area-inset-bottom));
+}
+.lesson-footer-gap {
+  flex: 1;
+}
+.lesson-key {
+  padding: 1px 6px;
+  border-radius: 6px;
+  font: 500 #{$fs-2xs} $font-mono;
+}
+%lesson-chunky {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 18px;
+  border-radius: 16px;
+  font: 900 #{$fs-lg} $font-sans;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s,
+    background 0.15s;
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+  }
+  &:disabled {
+    cursor: default;
+  }
+  @include focus-ring;
+}
+.lesson-hint-button {
+  @extend %lesson-chunky;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  color: $lesson-hint-ink;
+  box-shadow: 0 4px 0 $lobby-line-strong;
+  &.used {
+    border-color: $lesson-hint-line;
+    background: $lesson-hint-bg;
+    box-shadow: 0 4px 0 $lesson-hint-line;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+  .hint-word {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hint-pips {
+    display: inline-flex;
+    gap: 4px;
+    i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $lesson-hint-pip-off;
+    }
+    i.on {
+      background: $lesson-hint-pip;
+    }
+  }
+  .lesson-key {
+    border: 1.5px solid $lesson-hint-pip-off;
+    color: $lesson-hint-key;
+  }
+}
+.lesson-soft-button {
+  @extend %lesson-chunky;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  box-shadow: 0 4px 0 $lobby-line-strong;
+  font-size: $fs-base;
+  &:hover:not(:disabled) {
+    background: $lesson-row-current;
+  }
+  &:hover {
+    color: $lobby-ink;
+  }
+}
+.lesson-go {
+  @extend %lesson-chunky;
+  gap: 12px;
+  min-width: 240px;
+  padding: 0 24px;
+  border: 0;
+  background: $lesson-ink;
+  color: $white;
+  box-shadow: 0 4px 0 $lobby-button-shade;
+  font-size: $fs-lg;
+  &:hover {
+    color: $white;
+    filter: brightness(1.08);
+  }
+  &:disabled {
+    background: $lesson-track;
+    color: $lesson-faint;
+    box-shadow: 0 4px 0 $lesson-track-shade;
+    filter: none;
+  }
+  .lesson-key {
+    border: 1.5px solid rgba($white, 0.35);
+    color: $lesson-good-line;
+  }
+}
+
+/* ── The get-ready screen ── */
+.lesson-intro {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 5vw, 72px);
+  padding: 40px clamp(20px, 4vw, 64px);
+}
+.lesson-intro-art {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 280px;
+  height: 280px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: $lesson-good-bg;
+  border: 8px solid $lesson-good-chip;
+  box-shadow: 0 8px 0 $sage-200;
+  img {
+    width: 66%;
+    height: auto;
+  }
+}
+.lesson-intro-body {
+  flex: 1 1 420px;
+  min-width: 0;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  h2 {
+    margin: 0;
+    font-size: $fs-display;
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .coach-bubble {
+    min-height: 0;
+  }
+}
+.lesson-pill {
+  width: fit-content;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: $lesson-good-bg;
+  color: $lesson-ink;
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.lesson-intro-sound {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 4px;
+  font-size: $fs-sm;
+  font-weight: 700;
+  color: $lobby-muted;
+}
+.lesson-intro-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  font: 800 #{$fs-sm} $font-sans;
+  cursor: pointer;
+  &.speaking {
+    animation: listen-pulse 1.2s ease-in-out infinite;
+  }
+  @include focus-ring;
+}
+.lesson-intro-meta {
+  margin: 0;
+  font-size: $fs-sm;
+  color: $lobby-muted;
+}
+// The listen button sits in the sound row on the intro, not in the bubble's corner.
+.lesson-intro .coach-bubble {
+  padding-right: 16px;
+}
+
+/* ── The finish screen ── */
+.lesson-done {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 24px;
+  text-align: center;
+  h2 {
+    margin: 0;
+    font-size: $fs-8xl;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+}
+.done-stars {
+  min-height: 92px;
+  display: grid;
+  place-items: end center;
+  .stars img:nth-child(2) {
+    transform: translateY(-14px) scale(1.2);
+  }
+}
+.done-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 460px;
+  margin: 0;
+  font-size: $fs-xl;
+  line-height: 1.5;
+  font-weight: 700;
+  color: $lobby-muted;
+  .teacher-listen {
+    position: static;
+    flex: none;
+    border: 1.5px solid $lobby-line;
+  }
+}
+.done-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+}
+.done-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 10px;
+  border-radius: 18px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  span {
+    font-size: $fs-xs;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $lesson-faint;
+  }
+  b {
+    font-size: $fs-4xl;
+    font-weight: 900;
+  }
+  b.mono {
+    font: 500 #{$fs-3xl} $font-mono;
+    line-height: 1.2;
+  }
+  &.xp b {
+    color: $lobby-warm;
+  }
+}
+.done-next {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: $lesson-good-bg;
+  border: 1.5px solid $lesson-good-line;
+  text-align: left;
+  img {
+    flex: none;
+    width: 54px;
+    height: 54px;
+    box-sizing: border-box;
+    padding: 6px;
+    border-radius: 50%;
+    border: 4px solid $lesson-unlock-ring;
+    background: $lesson-hint-bg;
+    object-fit: contain;
+  }
+  > span {
+    display: flex;
+    flex-direction: column;
+  }
+  strong {
+    font-size: $fs-xl;
+    font-weight: 900;
+  }
+}
+.done-next-kicker {
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $moss-600;
+}
+.done-review {
+  max-width: 480px;
+  margin: 0;
+  font-size: $fs-sm;
+  line-height: 1.5;
+  color: $lobby-muted;
+}
+.done-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  .text-button {
+    font-size: $fs-sm;
+    font-weight: 800;
+  }
+}
+.lesson-done .placement-result {
+  width: 100%;
+  max-width: 480px;
+  text-align: left;
+}
+
+/* ── Phones (Torre Mobile Lesson): bars only up top, the title over a full-width board, the
+   coach under it, and a thumb-sized footer ── */
+@include down(md) {
+  .lesson-top {
+    gap: 12px;
+    padding: 14px 18px 8px 14px;
+    border-bottom: 0;
+  }
+  .lesson-top-name,
+  .lesson-top-count {
+    display: none;
+  }
+  .lesson-bars {
+    gap: 5px;
+    > * {
+      height: 10px;
+    }
+  }
+  .lesson-top .transport-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .lesson-stage {
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 12px;
+    padding: 4px 0 12px;
+  }
+  // The column's parts join the stage so the title can sit above the board.
+  .lesson-aside {
+    display: contents;
+  }
+  .lesson-step-head {
+    order: -1;
+    gap: 6px;
+    padding: 0 18px;
+    h3 {
+      font-size: $fs-3xl;
+      line-height: 1.12;
+    }
+  }
+  .lesson-board {
+    width: auto;
+    min-width: 0;
+    padding: 0 8px;
+    .board {
+      border-radius: 14px;
+      box-shadow: 0 4px 0 $lesson-board-shade;
+    }
+  }
+  .lesson-aside > :not(.lesson-step-head, .lesson-in-this) {
+    margin: 0 14px;
+  }
+  .lesson-in-this {
+    display: none;
+  }
+  .coach-avatar {
+    width: 48px;
+    height: 52px;
+    border-radius: 14px;
+  }
+  .coach-bubble {
+    min-height: 42px;
+    padding: 11px 44px 11px 14px;
+    border-radius: 6px 18px 18px 18px;
+    font-size: $fs-md;
+    line-height: 1.45;
+  }
+  .bubble-tag {
+    font-size: $fs-2xs;
+  }
+
+  .lesson-footer-inner {
+    gap: 8px;
+    padding: 12px 14px calc(18px + env(safe-area-inset-bottom));
+  }
+  .lesson-footer-gap {
+    display: none;
+  }
+  .lesson-hint-button {
+    flex: none;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 84px;
+    padding: 0 12px;
+    font-size: $fs-base;
+    .lesson-key {
+      display: none;
+    }
+  }
+  .lesson-soft-button {
+    flex: 1 1 auto;
+    min-height: 46px;
+    padding: 0 14px;
+    font-size: $fs-sm;
+  }
+  .lesson-go {
+    flex: 1 1 100%;
+    min-width: 0;
+    .lesson-key {
+      display: none;
+    }
+  }
+  // Beside the hint button the primary takes what is left of the row.
+  .lesson-hint-button + .lesson-footer-gap + .lesson-go {
+    flex-basis: 0;
+  }
+
+  .lesson-intro {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 18px;
+    padding: 20px 22px;
+    text-align: center;
+  }
+  .lesson-intro-art {
+    width: 190px;
+    height: 190px;
+    border-width: 6px;
+    box-shadow: none;
+  }
+  .lesson-intro-body {
+    flex: none;
+    width: 100%;
+    align-items: center;
+    h2 {
+      font-size: $fs-6xl;
+      line-height: 1;
+    }
+    .coach-row {
+      text-align: left;
+    }
+    .lesson-outline {
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  .lesson-done {
+    gap: 16px;
+    padding: 20px 24px;
+    h2 {
+      font-size: $fs-5xl;
+      line-height: 1.05;
+    }
+  }
+  .done-sub {
+    font-size: $fs-base;
+  }
+  .done-stats {
+    gap: 8px;
+    max-width: 360px;
+  }
+  .done-stat {
+    padding: 12px 8px;
+    border-radius: 16px;
+    b {
+      font-size: $fs-3xl;
+    }
+    b.mono {
+      font-size: $fs-2xl;
+    }
+  }
+  .done-next {
+    max-width: 360px;
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+}
+
+/* ── Drills: the bare board with stars, a flag and move dots ── */
+.drill-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 0 $lesson-board-shade;
+  user-select: none;
+}
+.drill-square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  cursor: default;
+  transition: background 0.2s;
+  &.light {
+    background: var(--light-square);
+  }
+  &.dark {
+    background: var(--dark-square);
+  }
+  &.last.light {
+    background: $drill-last-light;
+  }
+  &.last.dark {
+    background: $drill-last-dark;
+  }
+  &.active.light {
+    background: $drill-active-light;
+  }
+  &.active.dark {
+    background: $drill-active-dark;
+  }
+  // The finish and a refused tap win over the move tints.
+  &.solved:is(.light, .dark) {
+    background: $lobby-green;
+  }
+  &.wrong:is(.light, .dark) {
+    background: $drill-wrong;
+  }
+  &:focus-visible {
+    outline: 3px solid $gold-400;
+    outline-offset: -3px;
+    z-index: 2;
+  }
+}
+.drill-board.interactive .drill-square {
+  cursor: pointer;
+}
+.drill-rank,
+.drill-file {
+  position: absolute;
+  font: 800 #{$fs-2xs} $font-sans;
+  pointer-events: none;
+}
+.drill-rank {
+  top: 3px;
+  left: 5px;
+}
+.drill-file {
+  bottom: 2px;
+  right: 5px;
+}
+.drill-square.light :is(.drill-rank, .drill-file) {
+  color: var(--dark-square);
+}
+.drill-square.dark :is(.drill-rank, .drill-file) {
+  color: var(--light-square);
+}
+.drill-piece {
+  position: relative;
+  z-index: 1;
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.drill-glow {
+  position: absolute;
+  inset: 0;
+  background: rgba($drill-glow, 0.45);
+  animation: drill-pulse 1.4s ease-in-out infinite;
+}
+.drill-star {
+  position: absolute;
+  inset: 8%;
+  z-index: 1;
+  animation: drill-bob 2.6s ease-in-out infinite;
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+}
+.drill-star-glow {
+  fill: rgba($drill-star-glow, 0.55);
+}
+.drill-star-shade {
+  fill: $drill-star-edge;
+}
+.drill-star-face {
+  fill: $drill-star-mid;
+  stroke: $drill-star-edge;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+.drill-star-shine {
+  fill: none;
+  stroke: $drill-star-shine;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.drill-flag {
+  position: absolute;
+  inset: 16%;
+  z-index: 1;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $lobby-warm;
+    stroke: $lobby-ink;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+.drill-burst {
+  position: absolute;
+  inset: 4%;
+  z-index: 2;
+  border-radius: 50%;
+  border: 5px solid $drill-star-mid;
+  animation: drill-burst 0.6s ease-out forwards;
+}
+.drill-dot {
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: rgba($lesson-ink, 0.3);
+}
+.drill-ring {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 4px rgba($lesson-ink, 0.45);
+}
+.drill-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.drill-arrow {
+  stroke-width: 0.2;
+  stroke-linecap: round;
+  opacity: 0.9;
+  &.hint {
+    stroke: $lesson-hint-pip;
+  }
+  &.watch {
+    stroke: $lesson-watch-ink;
+  }
+}
+.drill-head.hint {
+  fill: $lesson-hint-pip;
+}
+.drill-head.watch {
+  fill: $lesson-watch-ink;
+}
+@keyframes drill-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-7%) rotate(4deg);
+  }
+}
+@keyframes drill-burst {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes drill-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes drill-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@include reduced-motion {
+  .drill-star,
+  .drill-glow,
+  .drill-burst {
+    animation: none;
+  }
+}
+
+/* The star tray and move count beside a stars drill. */
+.drill-tray {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.drill-tray-stars {
+  display: inline-flex;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 16px;
+  background: $white;
+  border: 1.5px solid $lobby-line;
+  > span {
+    width: 28px;
+    height: 28px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+  > span:not(.got) {
+    .drill-star-glow,
+    .drill-star-shine,
+    .drill-star-shade {
+      display: none;
+    }
+    .drill-star-face {
+      fill: $lobby-track;
+      stroke: $lesson-board-shade;
+    }
+  }
+  > span.got {
+    animation: drill-pop 0.45s both;
+  }
+}
+.drill-moves {
+  font: 500 #{$fs-md} $font-mono;
+  color: $lobby-muted;
+}
+
+/* The count drill's answers: three big numbers. */
+.drill-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.drill-option {
+  min-height: 72px;
+  border-radius: 18px;
+  border: 2px solid $lobby-line-strong;
+  background: $white;
+  color: $lobby-ink;
+  box-shadow: 0 4px 0 $lobby-line-strong;
+  font: 900 #{$fs-4xl} $font-sans;
+  cursor: pointer;
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+  }
+  &.correct {
+    border-color: $moss-300;
+    box-shadow: 0 4px 0 $moss-300;
+    background: $lesson-good-bg;
+    color: $lesson-good-ink;
+  }
+  &.wrong {
+    border-color: $lesson-bad-option-line;
+    box-shadow: 0 4px 0 $lesson-bad-option-line;
+    background: $lesson-bad-option;
+    color: $lesson-bad-ink;
+  }
+  &:disabled {
+    cursor: default;
+  }
+  @include focus-ring;
+}
+
+@include down(md) {
+  .drill-board {
+    border-radius: 14px;
+    box-shadow: 0 4px 0 $lesson-board-shade;
+  }
+  .drill-rank,
+  .drill-file {
+    font-size: $fs-2xs;
+  }
+  .drill-option {
+    min-height: 56px;
+    font-size: $fs-3xl;
+  }
+  .drill-tray-stars > span {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ── Concept card: the idea, then its points as icon tiles ── */
+.card-text {
+  margin: 0;
+  font-size: $fs-xl;
+  line-height: 1.55;
+  font-weight: 700;
+  strong {
+    color: $lesson-bad-ink;
+  }
+}
+.card-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 8px;
+    border-radius: 18px;
+    background: $white;
+    border: 1.5px solid $lobby-line;
+    box-shadow: 0 3px 0 $lobby-line;
+    font-size: $fs-base;
+    font-weight: 900;
+  }
+}
+.card-point-icon,
+.recap-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: $lesson-good-bg;
+  color: $lesson-ink;
+  font-size: $fs-3xl;
+  font-weight: 900;
+  img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+  }
+}
+
+/* ── Choose: short answers side by side, and "pick the board" ── */
+.lesson-screen .lesson-options.short {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  .lesson-option {
+    min-height: 72px;
+    text-align: center;
+    font-size: $fs-4xl;
+    font-weight: 900;
+  }
+}
+.choose-boards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.choose-board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 18px;
+  border: 2px solid $lobby-line-strong;
+  background: $white;
+  box-shadow: 0 4px 0 $lobby-line-strong;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    border-color 0.15s;
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+  }
+  &.correct {
+    border-color: $lobby-green;
+    box-shadow: 0 4px 0 $lobby-green;
+    background: $lesson-good-bg;
+  }
+  &.wrong {
+    border-color: $drill-wrong;
+    box-shadow: 0 4px 0 $lesson-bad-option-line;
+    background: $lesson-bad-option;
+  }
+  &:disabled {
+    cursor: default;
+  }
+  .insight-board {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  @include focus-ring;
+}
+.choose-board-label {
+  font: 900 #{$fs-lg} $font-sans;
+  color: $lobby-ink;
+}
+
+/* ── Recap: the lesson's rules, how each went, and practice for the weak ones ── */
+.recap-board {
+  align-self: stretch;
+}
+.recap-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: $white;
+    border: 1.5px solid $lobby-line;
+  }
+  li.weak {
+    background: $lesson-hint-bg;
+    border-color: $lesson-hint-line;
+  }
+}
+.recap-rule {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: $fs-md;
+  color: $lobby-muted;
+  strong {
+    font-size: $fs-lg;
+    font-weight: 900;
+    color: $lobby-ink;
+  }
+}
+.recap-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: $lobby-green;
+  color: $white;
+  font-weight: 900;
+}
+.weak .recap-mark {
+  background: $lesson-hint-pip;
+}
+.recap-second-look {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: $lesson-hint-bg;
+  border: 1.5px solid $lesson-hint-line;
+}
+.recap-second-kicker {
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $lobby-warm;
+}
+.recap-second-rule {
+  font-size: $fs-base;
+  font-weight: 800;
+}
+.recap-practise {
+  margin-top: 6px;
+  min-height: 44px;
+}
+
+/* ── Hint panel: every rung listed once a hint is used ── */
+.hint-panel {
+  border-radius: 18px;
+  background: $white;
+  border: 1.5px solid $lesson-hint-line;
+  overflow: hidden;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 14px;
+    background: $lesson-hint-bg;
+    font-size: $fs-sm;
+    strong {
+      font-size: $fs-xs;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: $lobby-warm;
+    }
+    span {
+      font-weight: 800;
+      color: $lesson-hint-key;
+    }
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-top: 1.5px solid $lesson-row-line;
+    font-size: $fs-md;
+    font-weight: 700;
+  }
+  li b {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: $lesson-hint-pip;
+    color: $white;
+    font-size: $fs-2xs;
+  }
+  li span {
+    flex: 1;
+  }
+  li.waiting,
+  li.reveal {
+    color: $lesson-faint;
+    b {
+      background: $lesson-track;
+      color: $lesson-faint;
+    }
+  }
+  li.reveal span {
+    color: $lobby-ink;
+    font-weight: 900;
+  }
+  li em {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: $lesson-bad-bg;
+    color: $lesson-bad-ink;
+    font-style: normal;
+    font-size: $fs-2xs;
+    font-weight: 900;
+  }
+}
+
+@include down(md) {
+  .card-text {
+    font-size: $fs-lg;
+  }
+  .choose-boards {
+    gap: 8px;
+    padding: 0 8px;
+  }
+  .recap-board {
+    padding: 0 14px;
+  }
+}
+
+// Once answered, the picked answer stays at full strength; the others step back.
+.lesson-screen :is(.choose-board, .lesson-option, .drill-option):disabled {
+  opacity: 1;
+  &:not(.correct, .wrong) {
+    opacity: 0.55;
+  }
+}

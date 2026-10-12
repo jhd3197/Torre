@@ -10,10 +10,20 @@
    "narration": "Este es el alfil. Se desliza por las diagonales, de esquina a esquina, tan lejos como le guste. No puede saltar nada, pero puede capturar una pieza enemiga que esté en su camino."
   },
   {
+   "id": "collect-the-stars",
+   "title": "Recoge las estrellas",
+   "narration": "Recoge las estrellas con el alfil. Solo en diagonal, tan lejos como quieras."
+  },
+  {
    "id": "light-and-dark",
    "title": "Un color para siempre",
    "text": "Un alfil que se mueve diagonalmente siempre aterriza en una casilla del mismo color. El alfil que comienza en c1 vive en casillas oscuras durante todo el juego, y el que está en f1 vive en casillas claras. Es por eso que cada bando obtiene uno de cada: juntos cubren todo el tablero.",
    "narration": "Aquí tienes un dato curioso. Un alfil nunca cambia de color. El que empieza en c1 se queda en casillas oscuras para siempre, y el que está en f1 se queda en casillas claras. Por eso tienes uno de cada."
+  },
+  {
+   "id": "count-the-squares",
+   "title": "¿A cuántas casillas puede llegar este alfil?",
+   "narration": "Cuenta las diagonales una a una, y para al chocar con una pieza."
   },
   {
    "id": "win-the-rook",

@@ -4,7 +4,7 @@
   "summary": "The queen moves like a rook and a bishop combined. Learn how strong she is, and how to use her to attack two things at once.",
   "category": "basics",
   "level": "beginner",
-  "minutes": 5,
+  "minutes": 6,
   "unit": "Rules of the game",
   "order": 3,
   "requires": ["the-rook", "the-bishop"],
@@ -20,6 +20,16 @@
       "pose": "starry"
     },
     {
+      "id": "collect-the-stars",
+      "kind": "stars",
+      "piece": "Q",
+      "stars": 4,
+      "blockers": 2,
+      "title": "Collect the stars",
+      "narration": "The queen goes straight and diagonal. Grab every star in as few moves as you can.",
+      "pose": "detective"
+    },
+    {
       "id": "not-too-early",
       "kind": "explain",
       "title": "Patience with the queen",
@@ -28,6 +38,16 @@
       "text": "Because she is so valuable, the queen has to run whenever a cheaper piece attacks her. Don't bring her out too early: in the demo, Black develops a knight with an attack on her, and White has to waste another move.",
       "narration": "One warning: don't rush your queen out. Say White jumps her out to g4 on move two. [move] Black just develops a knight, and it attacks her. [move] So the queen has to run again. [move] See? Black got a piece out for free, and White wasted a move.",
       "pose": "alarm"
+    },
+    {
+      "id": "capture-drill",
+      "kind": "capture",
+      "piece": "Q",
+      "enemies": 4,
+      "blockers": 2,
+      "title": "Capture!",
+      "narration": "Lots of targets, but only one has a clear path. Find it and take it.",
+      "pose": "magnify"
     },
     {
       "id": "long-diagonal-grab",

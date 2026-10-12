@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Confetti } from '../../components/Confetti';
 import { Mascot, Stars } from '../../components/Reward';
-import { FlameIcon } from '../../components/story/Streak';
-import { useProfile } from '../../hooks/useProfile';
 import { useSounds } from '../../hooks/useSounds';
 import { api } from '../../lib/api';
 import { lessonArt } from '../../lib/art';
@@ -12,17 +10,20 @@ import { gamePath, lessonPath, puzzlePath } from '../../lib/routes';
 import { storyLessonFocus } from '../../lib/story';
 import type { Lesson } from '../../types';
 import type { Cinema } from './cinema';
+import { LessonFooter } from './LessonChrome';
 import { useCatalog } from './useCatalog';
 import { useToast } from '../../state/AppData';
 
-const SCORED_KINDS = new Set(['play', 'choose', 'guess']);
+/** m:ss for the time a lesson took. */
+const clock = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
-/** The finish screen: stars, XP, streak, and the next lesson. */
-export function Finished({ lesson, cinema, xp }: { lesson: Lesson; cinema: Cinema; xp: number }) {
+/** The finish screen: stars, what the run cost and earned, and the next lesson. */
+export function Finished({ lesson, cinema, xp, startedAt }: { lesson: Lesson; cinema: Cinema; xp: number; startedAt: number | null }) {
   const { t } = useTranslation('lessons');
   const { catalog } = useCatalog();
-  const profile = useProfile();
   const [result, setResult] = useState<Lesson | null>(null);
+  // The time stops when the screen arrives.
+  const [seconds] = useState(() => (startedAt ? Math.round((Date.now() - startedAt) / 1000) : null));
   const sounds = useSounds('lesson');
   // Inside Story, "next" stays in the chapter (the lesson's category) and opens through the story entrance.
   const inStory = storyLessonFocus(lesson.slug);
@@ -35,7 +36,7 @@ export function Finished({ lesson, cinema, xp }: { lesson: Lesson; cinema: Cinem
   // The completion fanfare plays once, when the screen arrives.
   useEffect(() => sounds.complete(), [sounds]);
 
-  // Stars and first-try answers are derived from the step ledger; refetch so this run is counted.
+  // Stars and hints are derived from the step ledger; refetch so this run is counted.
   useEffect(() => {
     let live = true;
     api<Lesson>(`api/lessons/${encodeURIComponent(lesson.slug)}`)
@@ -45,82 +46,62 @@ export function Finished({ lesson, cinema, xp }: { lesson: Lesson; cinema: Cinem
   }, [lesson.slug]);
 
   const stars = typeof result?.stars === 'number' ? result.stars : null;
-  const scored = lesson.steps.filter(step => SCORED_KINDS.has(step.kind));
-  const firstTry = scored.filter(step => result?.stepResults?.[step.id]?.firstTry).length;
-  const streak = profile?.streak;
+  const scored = lesson.steps.filter(step => step.scored);
+  const hints = scored.reduce((sum, step) => {
+    const run = result?.stepResults?.[step.id];
+    return sum + (run ? run.hintsUsed + run.revealsUsed : 0);
+  }, 0);
   const closing = t('finished.closing', { title: lesson.title });
+  const back = inStory ? { label: t('finished.backToMap'), to: '/story' } : { label: t('finished.backToPath'), to: lessonPath() };
+  const primary = lesson.coach?.kind === 'placement' ? undefined
+    : lesson.coach ? { label: t('finished.backToCoach'), to: '/coach' }
+    : next ? { label: t('finished.next', { title: next.title }), to: nextPath(next.slug) }
+    : back;
   return (
-    <div className="lesson-finished">
-      <Confetti />
-      <div className="finished-card">
-        <div className="finished-hero">
-          <span className="finished-glow" aria-hidden="true" />
-          <Mascot pose="confetti" size={150} />
+    <>
+      <div className="lesson-done">
+        <Confetti />
+        <div className="done-stars">
+          {stars !== null ? <Stars count={stars} size={76} animate /> : <Mascot pose="confetti" size={120} />}
         </div>
-        <span className="finished-kicker">{t('finished.kicker')}</span>
-        <h2>{t('finished.title')}</h2>
-        <p className="finished-sub">
+        <h2>{stars === 3 ? t('finished.perfect') : t('finished.title')}</h2>
+        <p className="done-sub">
           <span><Trans t={t} i18nKey="finished.youFinished" values={{ title: lesson.title }} components={{ strong: <strong /> }} /></span>
           <button type="button" className={`teacher-listen${cinema.speaking ? ' speaking' : ''}`} aria-label={t('teacher.listen')}
             title={t('teacher.listen')} onClick={() => cinema.speak({ narration: closing })}>
             <img src="art/ui3d/sound.webp" alt="" width="16" height="16" />
           </button>
         </p>
-        {stars !== null && <Stars count={stars} size={56} animate />}
 
-        <div className="finished-stats">
-          {xp > 0 && (
-            <span className="finished-stat xp">
-              <img src="art/stars/star-gold.png" alt="" width="28" height="28" />
-              <b>+{xp}</b>{t('finished.xpEarned')}
-            </span>
-          )}
-          {scored.length > 0 && (
-            <span className="finished-stat">
-              <img src="art/ui3d/level-complete.webp" alt="" width="28" height="28" />
-              <b>{result ? `${firstTry}/${scored.length}` : '–'}</b>{t('finished.firstTry')}
-            </span>
-          )}
-          {streak && (
-            <span className={`finished-stat streak${streak.count > 0 ? ' lit' : ''}`}>
-              <FlameIcon lit={streak.count > 0} size={28} />
-              <b>{streak.count}</b>{t('finished.dayStreak')}
-            </span>
-          )}
+        <div className="done-stats">
+          <div className="done-stat xp"><span>{t('finished.xp')}</span><b>+{xp}</b></div>
+          <div className="done-stat"><span>{t('finished.hints')}</span><b>{scored.length && result ? hints : '–'}</b></div>
+          <div className="done-stat"><span>{t('finished.time')}</span><b className="mono">{seconds !== null ? clock(seconds) : '–'}</b></div>
         </div>
 
         {lesson.coach?.kind === 'placement' ? (
           <PlacementResult lesson={lesson} result={result} titles={Object.fromEntries((catalog?.lessons ?? []).map(l => [l.slug, l.title]))} />
-        ) : lesson.coach ? (
-          <Link className="button primary squishy finished-go" to="/coach">{t('finished.backToCoach')}</Link>
-        ) : next ? (
-          <div className="finished-next">
-            <span className="finished-next-kicker">{t('finished.upNext')}</span>
-            <div className="finished-next-lesson">
-              <img src={lessonArt(next.slug, next.unit)} alt="" width="56" height="56" />
-              <div>
-                <strong>{next.title}</strong>
-                <span>{t('meta.stepsAbout', { count: next.steps, minutes: next.minutes })}</span>
-              </div>
-            </div>
-            <Link className="button primary squishy finished-go" to={nextPath(next.slug)}>{t('finished.next', { title: next.title })}</Link>
+        ) : !lesson.coach && next ? (
+          <div className="done-next">
+            <img src={lessonArt(next.slug, next.unit)} alt="" width="54" height="54" />
+            <span>
+              <span className="done-next-kicker">{t('finished.upNext')}</span>
+              <strong>{next.title}</strong>
+            </span>
           </div>
-        ) : (
-          <Link className="button primary squishy finished-go" to={inStory ? '/story' : lessonPath()}>
-            {inStory ? t('finished.backToMap') : t('finished.backToPath')}
-          </Link>
-        )}
+        ) : null}
 
-        {!lesson.coach && lesson.steps.some(step => step.kind === 'play') && <p className="finished-review">{t('finished.reviewLater')}</p>}
+        {!lesson.coach && lesson.steps.some(step => step.kind === 'play') && <p className="done-review">{t('finished.reviewLater')}</p>}
 
-        <div className="finished-links">
+        <div className="done-links">
           {inStory && next && !lesson.coach && <Link className="text-button" to="/story">{t('finished.backToMap')}</Link>}
           {lesson.coach?.game && <Link className="text-button" to={gamePath(lesson.coach.game)}>{t('finished.backToGame')}</Link>}
           {lesson.practice && <Link className="text-button" to={puzzlePath(lesson.practice)}>{t('finished.practise')}</Link>}
-          <Link className="text-button" to={lessonPath(lesson.slug, 0)}>{t('finished.again')}</Link>
         </div>
       </div>
-    </div>
+      <LessonFooter tone="correct" primary={primary}
+        secondary={[{ label: t('finished.again'), to: lessonPath(lesson.slug, 0) }]} />
+    </>
   );
 }
 

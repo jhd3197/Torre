@@ -10,6 +10,11 @@
    "narration": "Este es el rey. Es lento, solo una casilla a la vez, pero puede ir en cualquier dirección. Protégelo a toda costa, porque si se atrapa, el juego se acabó."
   },
   {
+   "id": "collect-the-stars",
+   "title": "Recoge las estrellas",
+   "narration": "El rey da un paso cada vez. Llévalo a las dos estrellas."
+  },
+  {
    "id": "kings-never-touch",
    "title": "Nunca en jaque",
    "text": "Un rey nunca puede moverse a una casilla que una pieza enemiga ataca. Eso se llama moverse al jaque, y no está permitido. Los reyes también atacan las casillas a su alrededor, así que los dos reyes nunca pueden estar uno al lado del otro: aquí ni uno de los reyes puede pisar c5, d5 o e5.",

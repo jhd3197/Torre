@@ -43,7 +43,21 @@ under `problems` in `GET /api/lessons`, and `tests/test_lessons.py` fails on it.
   show the side to move at the bottom.
 
 Every step has a unique `id` (lowercase, dash-separated), a `kind` and an
-optional `title`. Squares in `marks` are `["e4"]` for a circle and
+optional `title`. Progress is kept by step id, so steps can be added, removed
+or reordered without moving anyone mid-lesson.
+
+### Rules and the recap
+
+`rules` (optional) lists what the lesson teaches, one line each; a step's
+`rule` names the one it practises. A lesson with rules ends on a recap: each
+rule with a tick, or amber when one of its steps took a miss, a hint or a
+reveal, and a **Practise** button that replays up to three of those steps
+(drills come back with new boards). `icon` is a piece letter or a short symbol.
+
+```json
+"rules": [{ "id": "no-jumping", "title": "No jumping.", "text": "Any piece in the way stops the rook.", "icon": "P" }],
+"steps": [{ "id": "count", "kind": "count", "piece": "R", "rule": "no-jumping" }]
+``` Squares in `marks` are `["e4"]` for a circle and
 `["e2", "e4"]` for an arrow.
 
 No em dashes ("—") anywhere in lesson wording: use a comma, a colon or a full stop.
@@ -103,6 +117,20 @@ between them.
   "marks": [["h7"]], "demo": ["d1d8", "g8h7"] }
 ```
 
+### `card`
+
+A concept card: the idea in a sentence or two (`**word**` sets the term in
+bold), two to four `points` with an icon each, and an optional diagram (`fen`,
+`marks`, `highlight` squares). Back and Next page through the lesson, and so
+do the arrow keys. Not scored.
+
+```json
+{ "id": "what-is-check", "kind": "card", "fen": "4k3/8/8/8/4R3/8/8/6K1 b - - 0 1",
+  "marks": [["e4", "e8"]], "highlight": ["e7", "e6", "e5"],
+  "text": "When a piece attacks the king, the king is in **check**.",
+  "points": [{ "icon": "k", "label": "Move" }, { "icon": "b", "label": "Block" }, { "icon": "✕", "label": "Capture" }] }
+```
+
 ### `play`
 
 The reader finds the moves. `line` alternates the reader's moves and the
@@ -142,6 +170,13 @@ lesson's last `play` step, so make that one the exercise that proves the idea.
 A multiple-choice question, with an optional position. Exactly one option is
 `"correct": true`; `why` explains each choice once it is picked.
 
+- Short answers ("Yes", "No", "2": six characters or fewer) sit side by side
+  as big buttons and answer on the tap; longer ones are picked, then checked.
+- `reveal`: marks that appear on the board once the question is answered
+  (the attacked square, the route, the escape squares).
+- **Pick the board**: give every option a `fen` and the options become small
+  boards to tap, with `text` as their label ("A", "B").
+
 ```json
 { "id": "quiz", "kind": "choose", "question": "...",
   "options": [{ "text": "...", "correct": true, "why": "..." }, { "text": "...", "why": "..." }] }
@@ -177,6 +212,42 @@ arrow shows the game move. Takes everything a `reel` takes, plus:
 
 `ply` is the move to guess (moves 1 to ply-1 are on the board). `also` lists other
 moves good enough to count as found; the game move is still the one played on.
+
+### Drills: `stars`, `reach`, `capture`, `count`
+
+Little games for one piece on a bare board. A drill step is a recipe, not a
+position: the page makes a fresh layout from it every time the step opens
+(`web/src/lib/drills.ts`) and checks it can be solved, so taking the lesson again
+gives a new board with the same goal. That also makes drills easy to generate:
+the coach (or a model writing a lesson) only picks the piece and the numbers.
+
+`piece` is `R`, `B`, `Q`, `N` or `K` (your piece, always White). Every drill takes
+the optional `prompt`, `nudge` and `success` to replace the page's own wording,
+plus `narration` and `pose`. Leave `prompt` out unless the wording must be
+special: the page's default fits whatever board it made. Write `narration`
+that is true for any layout ("Collect all three stars"), never one position
+("the star on c5").
+
+| kind | the reader... | fields (default, range) |
+| --- | --- | --- |
+| `stars` | lands on every star, as few moves as possible (the page shows the best count) | `stars` (3, 1-5), `blockers` (0, 0-8), `watch` |
+| `reach` | gets the piece to the flag around their own pawns | `blockers` (3, 0-10), `distance` (2, 2-4): the fewest moves the flag takes |
+| `capture` | takes the one black piece that is in reach; the others are blocked or off its lines | `enemies` (3, 2-4), `blockers` (1, 0-6) |
+| `count` | counts the squares the piece reaches in one move, from three choices | `blockers` (1, 0-4), `enemies` (1, 0-3) |
+
+`"watch": true` on a `stars` step makes it a demonstration: the coach collects
+the stars by the shortest route while the reader watches. It is not scored.
+
+Hints climb three rungs: words (`nudge`, or the page's own), then the line to
+follow glows, then an arrow shows the move. The count drill uncovers half the
+squares, then all of them. Wrong taps say why: your own piece, the way the piece
+does not move, or something in the way.
+
+```json
+{ "id": "collect-the-stars", "kind": "stars", "piece": "R", "stars": 3,
+  "title": "Collect the stars", "narration": "Your turn! Collect all three stars." }
+{ "id": "find-a-way-around", "kind": "reach", "piece": "R", "blockers": 4, "distance": 2 }
+```
 
 ## Game stories
 

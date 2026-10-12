@@ -162,6 +162,12 @@ class RecordStepTests(unittest.TestCase):
             story.record_step(self.item, self.item["steps"][0], self.story, self.profile, {"firstTry": True}, NOW)
         self.assertEqual(self.story["steps"], {})
 
+    def test_drills_are_scored_but_a_watched_one_is_not(self):
+        drill = {"id": "stars", "kind": "stars", "piece": "R", "stars": 3, "blockers": 0}
+        self.assertEqual(self.record(drill)["xpGained"], 10)
+        with self.assertRaisesRegex(ValueError, "not scored"):
+            self.record({**drill, "id": "watch", "watch": True})
+
     def test_bad_bodies_are_refused(self):
         bad = [{}, {"firstTry": "yes"}, {"firstTry": True, "hintsUsed": -1}, {"firstTry": True, "revealsUsed": 1.5},
                {"firstTry": True, "attempts": True}]

@@ -141,6 +141,49 @@ $lobby-button: #275238;
 $lobby-button-shade: #173726;
 $lobby-warm: #b5651d;
 
+// The lesson screen (Torre Lesson design): page, step bars, the coach's moods and the step sections.
+$lesson-page: #f9f7f0;
+$lesson-ink: #1f4a33;
+$lesson-faint: #8a938a;
+$lesson-track: #e3dfd0;
+$lesson-track-shade: #d1ccbb;
+$lesson-board-shade: #d8d3c2;
+$lesson-row-line: #f0ede2;
+$lesson-row-current: #fbfaf4;
+$lesson-bar-now: #a9c99a;
+$lesson-good-bg: #eef4ea;
+$lesson-good-line: #cfe0c4;
+$lesson-good-edge: #bcd5ab;
+$lesson-good-ink: #2f7a46;
+$lesson-good-chip: #6a9a5f;
+$lesson-bad-bg: #fbf3df;
+$lesson-bad-line: #efdcae;
+$lesson-bad-ink: #a3402b;
+$lesson-bad-option: #fbe9e4;
+$lesson-bad-option-line: #e8b4a6;
+$lesson-hint-bg: #fff6e3;
+$lesson-hint-line: #f0d69a;
+$lesson-hint-pip: #e2943a;
+$lesson-hint-pip-off: #ead9b3;
+$lesson-hint-ink: #7a4a14;
+$lesson-hint-key: #9a7a4a;
+$lesson-watch-bg: #e4edf3;
+$lesson-watch-ink: #3d6b8f;
+$lesson-quiz-bg: #f0e7f3;
+$lesson-quiz-ink: #8a5a9e;
+$lesson-unlock-ring: #f0b54a;
+// Drills: the gold star, and the board's move tints (last move, your piece, a refused tap).
+$drill-star-mid: #f5bd3a;
+$drill-star-edge: #c4861c;
+$drill-star-shine: #fff6d6;
+$drill-star-glow: #ffe7a3;
+$drill-glow: #f0b54a;
+$drill-last-light: #f3e39a;
+$drill-last-dark: #c4c25a;
+$drill-active-light: #e9cf76;
+$drill-active-dark: #b3ad45;
+$drill-wrong: #d0453a;
+
 // Board themes are content the player picks, so they keep their exact colours.
 $board-forest-light: #ececdb;
 $board-forest-dark: #79917b;

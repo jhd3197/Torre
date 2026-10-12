@@ -175,6 +175,36 @@ class ParseTests(unittest.TestCase):
         lessons._merge_text(raw, {"steps": [{"id": "b", "nudge": "Horquilla.", "branches": [{"success": "Esquina."}]}]})
         self.assertEqual((raw["steps"][0]["nudge"], raw["steps"][0]["branches"][0]["success"]), ("Horquilla.", "Esquina."))
 
+    def test_a_drill_is_a_recipe_with_defaults(self):
+        item = lessons.parse(lesson(steps=[
+            {"id": "watch", "kind": "stars", "piece": "R", "watch": True, "narration": "Watch me."},
+            {"id": "reach", "kind": "reach", "piece": "N", "blockers": 6, "distance": 3, "prompt": "Jump to the flag."},
+            {"id": "take", "kind": "capture", "piece": "Q"},
+            {"id": "count", "kind": "count", "piece": "B", "enemies": 0},
+        ]), "drills")
+        watch, reach, take, count = item["steps"]
+        self.assertEqual(watch, {"id": "watch", "kind": "stars", "title": None, "orientation": "white", "piece": "R",
+                                 "stars": 3, "blockers": 0, "watch": True, "narration": "Watch me.", "scored": False})
+        self.assertEqual((reach["blockers"], reach["distance"], reach["prompt"]), (6, 3, "Jump to the flag."))
+        self.assertEqual((take["enemies"], take["blockers"]), (3, 1))
+        self.assertEqual((count["blockers"], count["enemies"]), (1, 0))
+        # Answered kinds are scored, a watched drill is not: the page reads the flag.
+        self.assertEqual([s["scored"] for s in item["steps"]], [False, True, True, True])
+
+    def test_card_choose_boards_and_rules(self):
+        item = lessons.parse(lesson(rules=[{"id": "check", "title": "Check.", "text": "The king is attacked.", "icon": "k"}], steps=[
+            {"id": "card", "kind": "card", "fen": FORK, "text": "Check means the king is attacked.", "rule": "check",
+             "points": [{"icon": "k", "label": "Move"}, {"icon": "✕", "label": "Capture"}], "highlight": ["g8"]},
+            {"id": "pick", "kind": "choose", "question": "Which is mate?", "reveal": [["e8"]], "options": [
+                {"text": "A", "fen": FORK, "correct": True}, {"text": "B", "fen": FORK}]},
+        ]), "cards")
+        card, pick = item["steps"]
+        self.assertEqual(item["rules"], [{"id": "check", "title": "Check.", "text": "The king is attacked.", "icon": "k"}])
+        self.assertEqual((card["kind"], card["scored"], card["rule"], card["highlight"]), ("card", False, "check", ["g8"]))
+        self.assertEqual(card["points"][1], {"icon": "✕", "label": "Capture"})
+        self.assertEqual(pick["reveal"], [{"from": "e8", "to": "e8"}])
+        self.assertEqual(pick["options"][0]["fen"], chess.Board(FORK).fen())
+
     def test_problems_are_reported_not_raised(self):
         cases = {
             "unknown kind": {"id": "x", "kind": "video", "fen": FORK},
@@ -186,6 +216,14 @@ class ParseTests(unittest.TestCase):
             "non-empty list of UCI": {"id": "x", "kind": "reel", "text": "x", "moves": []},
             "not legal after e4": {"id": "x", "kind": "reel", "text": "x", "moves": ["e2e4", "e2e5"]},
             "a move number from 1 to 1": {"id": "x", "kind": "reel", "text": "x", "moves": ["e2e4"], "notes": [{"ply": 2, "text": "x"}]},
+            '"piece" must be one of': {"id": "x", "kind": "stars", "piece": "P"},
+            '"stars" must be a whole number from 1 to 5': {"id": "x", "kind": "stars", "piece": "R", "stars": 9},
+            '"distance" must be a whole number from 2 to 4': {"id": "x", "kind": "reach", "piece": "N", "distance": 1},
+            "only a stars step can be watched": {"id": "x", "kind": "reach", "piece": "R", "watch": True},
+            "every option a \"fen\", or none": {"id": "x", "kind": "choose", "question": "?",
+                                                 "options": [{"text": "a", "fen": FORK, "correct": True}, {"text": "b"}]},
+            "needs an \"icon\"": {"id": "x", "kind": "card", "text": "x", "points": [{"label": "Move"}]},
+            "one of the lesson's \"rules\"": {"id": "x", "kind": "explain", "fen": FORK, "text": "x", "rule": "nope"},
         }
         for message, step in cases.items():
             with self.subTest(message=message), tempfile.TemporaryDirectory() as tmp:
@@ -226,6 +264,22 @@ class ProgressTests(unittest.TestCase):
                     lessons.record(loaded, state, "fork", bad, NOW)
             with self.assertRaises(ValueError):
                 lessons.record(loaded, state, "nope", 0, NOW)
+
+
+class PositionTests(unittest.TestCase):
+    def test_progress_follows_the_step_id_when_steps_move(self):
+        steps = [{"id": i} for i in ("a", "b", "c")]
+        state = {"lessons": {}}
+        entry = lessons.record({"x": {"steps": steps}}, state, "x", 1, NOW)
+        self.assertEqual(entry["at"], "b")
+        # A step is added in front: the reader is still on "b".
+        self.assertEqual(lessons.position({"steps": [{"id": "new"}, *steps]}, entry), 2)
+        # "b" was removed: fall back to the saved index.
+        self.assertEqual(lessons.position({"steps": [steps[0], steps[2]]}, entry), 1)
+        finished = lessons.record({"x": {"steps": steps}}, state, "x", 3, NOW)
+        self.assertEqual(lessons.position({"steps": [*steps, {"id": "d"}]}, finished), 4)
+        # Progress saved before ids were kept uses its index.
+        self.assertEqual(lessons.position({"steps": steps}, {"step": 2}), 2)
 
 
 class SkipTests(unittest.TestCase):

@@ -1,25 +1,30 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNarration, setLessonSoundOn, useLessonSoundOn } from '../../hooks/useNarration';
 import { refreshProfile } from '../../hooks/useProfile';
-import { usePageTitle } from '../../hooks/usePageTitle';
 import { api } from '../../lib/api';
-import { lessonArt } from '../../lib/art';
 import { lessonPath } from '../../lib/routes';
-import { storyLessonFocus } from '../../lib/story';
 import { useToast } from '../../state/AppData';
 import { LessonIntro } from '../../components/LessonIntro';
-import type { Lesson, StepReport, StepScore } from '../../types';
+import type { Lesson, LessonStep, StepReport, StepScore } from '../../types';
 import type { Cinema } from './cinema';
-import { ChooseView } from './ChooseView';
-import { ExplainView } from './ExplainView';
 import { Finished } from './Finished';
-import { GuessView } from './GuessView';
-import { PlayView } from './PlayView';
-import { ReelView } from './ReelView';
+import { StepView } from './kinds';
+import { Recap } from './Recap';
+import { LessonHeader, LessonPlaceContext } from './LessonChrome';
 
 const DONE = 'done';
+
+/** The lesson's own full-window screen: the app's rail and top bar step aside while it is open. */
+function LessonScreen({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const body = document.body;
+    if (!body.dataset.focus) body.dataset.focus = 'lesson';
+    return () => { if (body.dataset.focus === 'lesson') delete body.dataset.focus; };
+  }, []);
+  return <div className="lesson-screen">{children}</div>;
+}
 
 /** One lesson: the get-ready screen, a step, or the finish screen, by the URL's step. */
 export function LessonView({ slug, stepParam }: { slug: string; stepParam?: string }) {
@@ -30,12 +35,16 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
   const [error, setError] = useState<string | null>(null);
   const [autoplay, setAutoplay] = useState(false);
   const [sessionXp, setSessionXp] = useState(0);
+  // When this visit opened its first step: the finish screen shows how long the lesson took.
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  // This visit's answers, by step: the recap judges each rule on them.
+  const [runs, setRuns] = useState<Record<string, StepReport>>({});
+  // On the done screen: the recap first (when the lesson lists rules), any practice it starts, then the finish.
+  const [recapDone, setRecapDone] = useState(false);
+  const [practice, setPractice] = useState<{ steps: LessonStep[]; at: number } | null>(null);
   const soundOn = useLessonSoundOn();
   const narration = useNarration();
   const { speaking, speak, stop } = narration;
-  // The top bar names the lesson; inside Story's focus mode there is no top bar, so the step header does.
-  const focused = storyLessonFocus(slug);
-  usePageTitle(lesson && !focused ? { title: lesson.title, art: lessonArt(lesson.slug, lesson.unit) } : null);
   const finished = stepParam === DONE;
   const cinema = useMemo<Cinema>(() => ({ slug, autoplay: autoplay && !finished, speaking, speak, stop }),
     [slug, autoplay, finished, speaking, speak, stop]);
@@ -48,8 +57,14 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
     return () => { live = false; };
   }, [slug]);
 
+  const onStep = stepParam !== undefined && !finished;
+  useEffect(() => { if (onStep) setStartedAt(at => at ?? Date.now()); }, [onStep]);
+  // Leaving the done screen (taking the lesson again) brings the recap back next time.
+  useEffect(() => { if (!finished) { setRecapDone(false); setPractice(null); } }, [finished]);
+
   // A scored step was completed: post its result, bank the XP, refresh the header chip.
   const reportScore = useCallback((stepId: string, result: StepReport) => {
+    setRuns(r => ({ ...r, [stepId]: result }));
     api<StepScore>(`api/lessons/${encodeURIComponent(slug)}/steps/${encodeURIComponent(stepId)}`, result)
       .then(score => {
         if (score.xpGained > 0) setSessionXp(xp => xp + score.xpGained);
@@ -58,8 +73,8 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
       .catch(e => toast((e as Error).message));
   }, [slug, toast]);
 
-  if (error) return <p className="lessons-empty" role="alert">{error} <Link className="text-button" to={lessonPath()}>{t('view.allLessons')}</Link></p>;
-  if (!lesson) return <p className="lessons-empty" role="status">{t('view.loading')}</p>;
+  if (error) return <LessonScreen><p className="lessons-empty" role="alert">{error} <Link className="text-button" to={lessonPath()}>{t('view.allLessons')}</Link></p></LessonScreen>;
+  if (!lesson) return <LessonScreen><p className="lessons-empty" role="status">{t('view.loading')}</p></LessonScreen>;
 
   const count = lesson.steps.length;
   // No step in the URL: the get-ready screen, whose Start resumes where the reader left off
@@ -67,18 +82,21 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
   if (stepParam === undefined) {
     const resumeAt = lesson.step >= count ? 0 : lesson.step;
     return (
-      <LessonIntro lesson={lesson} resumeAt={resumeAt} speaking={speaking} speak={speak} soundOn={soundOn}
-        onStart={withSound => {
-          stop();
-          setLessonSoundOn(withSound);
-          setAutoplay(withSound);
-          navigate(lessonPath(slug, resumeAt));
-        }}
-        onSkip={lesson.coach ? undefined : () => {
-          api('api/lessons/skip', { slugs: [slug] })
-            .then(() => navigate(lessonPath()))
-            .catch(e => toast((e as Error).message));
-        }} />
+      <LessonScreen>
+        <LessonHeader lesson={lesson} index={null} reached={resumeAt} />
+        <LessonIntro lesson={lesson} resumeAt={resumeAt} speaking={speaking} speak={speak} soundOn={soundOn}
+          onStart={withSound => {
+            stop();
+            setLessonSoundOn(withSound);
+            setAutoplay(withSound);
+            navigate(lessonPath(slug, resumeAt));
+          }}
+          onSkip={lesson.coach ? undefined : () => {
+            api('api/lessons/skip', { slugs: [slug] })
+              .then(() => navigate(lessonPath()))
+              .catch(e => toast((e as Error).message));
+          }} />
+      </LessonScreen>
     );
   }
   if (finished && lesson.step < count) return <Navigate to={lessonPath(slug, lesson.step)} replace />;
@@ -97,41 +115,37 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
     navigate(next === count ? `${lessonPath(slug)}/${DONE}` : lessonPath(slug, next));
   };
 
-  const step = lesson.steps[index];
+  const drilling = finished && practice ? practice.steps[practice.at] : null;
+  const step = drilling ?? lesson.steps[index];
   const report = (result: StepReport) => reportScore(step.id, result);
   const last = index === count - 1;
+  const tools = !finished && (
+    <div className="lesson-transport" role="group" aria-label={t('view.playback')}>
+      <button type="button" className="transport-button" aria-label={autoplay ? t('view.pauseLesson') : t('view.playLesson')} aria-pressed={autoplay}
+        title={autoplay ? t('view.pauseAutoplay') : t('view.autoplay')}
+        onClick={() => { if (autoplay) stop(); setAutoplay(on => !on); }}>
+        <img src={`art/ui3d/${autoplay ? 'pause' : 'play'}.webp`} alt="" width="20" height="20" />
+      </button>
+      <button type="button" className={`transport-button${speaking ? ' speaking' : ''}`} aria-pressed={soundOn}
+        aria-label={soundOn ? t('view.mute') : t('view.unmute')} title={soundOn ? t('view.mute') : t('view.unmute')}
+        onClick={() => { if (soundOn) stop(); setLessonSoundOn(!soundOn); }}>
+        <img src={`art/ui3d/${soundOn ? 'sound' : 'mute'}.webp`} alt="" width="20" height="20" />
+      </button>
+    </div>
+  );
   return (
-    <>
-      {/* The finish screen is its own summary: no step strip above it outside Story's focus mode. */}
-      {(!finished || focused) && <header className="lesson-header">
-        {focused && <h2 className="icon-text"><img src={lessonArt(lesson.slug, lesson.unit)} alt="" width="36" height="36" />{lesson.title}</h2>}
-        {!finished && <div className="lesson-transport" role="group" aria-label={t('view.playback')}>
-          <button type="button" className="transport-button" aria-label={autoplay ? t('view.pauseLesson') : t('view.playLesson')} aria-pressed={autoplay}
-            title={autoplay ? t('view.pauseAutoplay') : t('view.autoplay')}
-            onClick={() => { if (autoplay) stop(); setAutoplay(on => !on); }}>
-            <img src={`art/ui3d/${autoplay ? 'pause' : 'play'}.webp`} alt="" width="20" height="20" />
-          </button>
-          <button type="button" className={`transport-button${speaking ? ' speaking' : ''}`} aria-pressed={soundOn}
-            aria-label={soundOn ? t('view.mute') : t('view.unmute')} title={soundOn ? t('view.mute') : t('view.unmute')}
-            onClick={() => { if (soundOn) stop(); setLessonSoundOn(!soundOn); }}>
-            <img src={`art/ui3d/${soundOn ? 'sound' : 'mute'}.webp`} alt="" width="20" height="20" />
-          </button>
-        </div>}
-        <nav className="lesson-steps" aria-label={t('view.steps')}>
-          {lesson.steps.map((s, i) => i <= reached
-            ? <Link key={s.id} to={lessonPath(slug, i)} className={i === index ? 'current' : i < reached || lesson.completed ? 'done' : ''}
-                onClick={() => stop()}
-                aria-current={i === index ? 'step' : undefined} aria-label={s.title ? t('view.stepTitled', { number: i + 1, title: s.title }) : t('view.step', { number: i + 1 })} />
-            : <span key={s.id} aria-label={t('view.stepNotReached', { number: i + 1 })} />)}
-        </nav>
-        <span className="lesson-count">{finished ? t('view.complete') : t('view.stepOf', { number: index + 1, count })}</span>
-      </header>}
-      {finished ? <Finished lesson={lesson} cinema={cinema} xp={sessionXp} />
-        : step.kind === 'explain' ? <ExplainView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} />
-        : step.kind === 'play' ? <PlayView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />
-        : step.kind === 'reel' ? <ReelView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} />
-        : step.kind === 'guess' ? <GuessView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />
-        : <ChooseView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />}
-    </>
+    <LessonScreen>
+      <LessonHeader lesson={lesson} index={index} reached={reached} onNavigate={stop} tools={tools} />
+      <LessonPlaceContext.Provider value={{ lesson, index: drilling ? lesson.steps.indexOf(drilling) : index, reached,
+        back: index > 0 && !finished ? () => { stop(); navigate(lessonPath(slug, index - 1)); } : undefined }}>
+        {drilling && practice
+          ? <StepView key={`practice-${practice.at}`} step={drilling} last={false} cinema={cinema} report={report}
+              onContinue={() => { stop(); setPractice(p => p && p.at + 1 < p.steps.length ? { ...p, at: p.at + 1 } : null); }} />
+          : finished && lesson.rules?.length && !recapDone
+            ? <Recap lesson={lesson} runs={runs} cinema={cinema} onPractise={steps => setPractice({ steps, at: 0 })} onFinish={() => setRecapDone(true)} />
+          : finished ? <Finished lesson={lesson} cinema={cinema} xp={sessionXp} startedAt={startedAt} />
+          : <StepView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />}
+      </LessonPlaceContext.Provider>
+    </LessonScreen>
   );
 }

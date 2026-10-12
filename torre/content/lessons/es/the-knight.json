@@ -10,10 +10,20 @@
    "narration": "El caballo es el diferente. Se mueve en forma de L: dos casillas en una dirección, luego una casilla hacia el lado. Desde el medio del tablero tiene ocho lugares a los que puede llegar."
   },
   {
+   "id": "collect-the-stars",
+   "title": "Recoge las estrellas",
+   "narration": "Salta con el caballo a cada estrella. Recuerda la L: dos casillas en una dirección y una hacia el lado."
+  },
+  {
    "id": "jumping-over",
    "title": "Saltando sobre piezas",
    "text": "El caballo es la única pieza que puede saltar. Las piezas de por medio no lo bloquean; solo importa la casilla de destino. Es por eso que un caballo puede moverse en el primer turno, saltando directamente sobre sus propios peones.",
    "narration": "Aquí está el superpoder del caballo: puede saltar. Al comienzo del juego, salta directamente sobre los peones. [move] Nada de por medio puede bloquearlo."
+  },
+  {
+   "id": "reach-the-flag",
+   "title": "Salta hasta la bandera",
+   "narration": "¿Peones por todas partes? Para el caballo no es problema. Salta hasta la bandera."
   },
   {
    "id": "knight-in-the-corner",

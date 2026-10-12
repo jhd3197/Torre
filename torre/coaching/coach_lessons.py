@@ -256,6 +256,17 @@ def _puzzle_pool(packs, skill):
     return pool
 
 
+# Warm-ups: a skill that rests on seeing where a piece can go gets a drill before its puzzles. The
+# plan stores only the recipe; the page makes the board, so every session's drill is a new one.
+SKILL_DRILLS = {
+    'hanging-piece': {'kind': 'capture', 'enemies': 3, 'blockers': 2},
+    'defence': {'kind': 'count', 'blockers': 1, 'enemies': 2},
+    'pawn-endgame': {'kind': 'reach', 'piece': 'K', 'blockers': 3, 'distance': 4},
+    'piece-endgame': {'kind': 'stars', 'stars': 3, 'blockers': 2},
+}
+DRILL_PIECES = ('R', 'B', 'Q', 'N')
+
+
 def plan_session(data_dir, skill, day, ledger_row=None, used_moments=(), used_lessons=()):
     """The plan for a day's session on one skill."""
     from torre.learning import puzzles
@@ -277,6 +288,10 @@ def plan_session(data_dir, skill, day, ledger_row=None, used_moments=(), used_le
         slug, explain_id, play_id = teach
         steps += [{'id': 'teach-explain', 'type': 'teach', 'lesson': slug, 'step': explain_id, 'skill': skill},
                   {'id': 'teach-play', 'type': 'teach', 'lesson': slug, 'step': play_id, 'skill': skill}]
+    if skill in SKILL_DRILLS:
+        recipe = SKILL_DRILLS[skill]
+        steps.append({'id': 'warm-up', 'type': 'drill', 'skill': skill,
+                      'drill': {'piece': rng.choice(DRILL_PIECES), **recipe}})
     try:
         packs = puzzles.load_packs()
     except puzzles.PuzzleError:
@@ -460,9 +475,13 @@ def _render_step(step, plan, lines, cache):
     if kind == 'session-outro':
         line = lines.t('lesson.sessionOutro', seed)
         return {'kind': 'explain', 'fen': cache['_last_fen'], 'text': line, 'narration': line, 'pose': 'clap'}
+    if kind == 'drill':
+        # The page words the drill in the reader's language from its kind and piece.
+        return dict(step['drill'])
     if kind == 'teach':
         raw = _raw_lesson_step(step['lesson'], step['step'], lines.lang)
-        return raw and {**raw, 'id': step['id']}
+        # The step's rule belongs to its own lesson's recap, not to this one.
+        return raw and {**{k: v for k, v in raw.items() if k != 'rule'}, 'id': step['id']}
     if kind == 'puzzle':
         from torre.learning import puzzles
         raw = cache['_packs']['by_id'].get(step['puzzle']) if cache.get('_packs') else None

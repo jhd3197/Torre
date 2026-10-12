@@ -269,30 +269,17 @@ export function StoryLessonEntry() {
 /** The lessons route element: the normal page, or — while a story lesson holds
  *  the focus flag — the same page in focus mode (no rail, no header). */
 export function LessonFocusGate() {
-  const { slug, step } = useParams();
+  const { slug } = useParams();
   const { t } = useTranslation('story');
   const focused = storyLessonFocus(slug);
-  const [progress, setProgress] = useState<number | undefined>(undefined);
 
   // Another lesson (or the library list) opens: the story run is over.
   useEffect(() => { if (slug && !focused) leaveStoryLesson(); }, [slug, focused]);
 
-  useEffect(() => {
-    if (!focused || !slug) { setProgress(undefined); return; }
-    let live = true;
-    api<Lesson>(`api/lessons/${encodeURIComponent(slug)}`)
-      .then(lesson => {
-        if (!live) return;
-        const reached = step === 'done' ? lesson.steps.length : step ? Number(step) : lesson.step;
-        setProgress(lesson.steps.length ? Math.min(1, reached / lesson.steps.length) : 0);
-      })
-      .catch(() => { if (live) setProgress(undefined); });
-    return () => { live = false; };
-  }, [focused, slug, step]);
-
   if (!focused) return <LessonsPage />;
+  // The lesson draws its own header (exit, step bars); the gate adds the exit modal around it.
   return (
-    <FocusMode label={t('focus.lesson')} progress={progress} onExit={() => { leaveStoryLesson(); }}>
+    <FocusMode bare label={t('focus.lesson')} onExit={() => { leaveStoryLesson(); }}>
       <LessonsPage />
     </FocusMode>
   );

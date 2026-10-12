@@ -4,11 +4,20 @@ Each lesson is a JSON file in lessons/ (see lessons/README.md). A lesson is a
 list of steps, and every step has a kind:
 
     explain   a position with text, arrows and an optional demo line to step through
+    card      a concept card: an idea in a sentence, two to four points with icons, an optional diagram
     play      the user finds the move (or moves) of a line; the replies are played for them, and
               `branches` give the opponent other replies to pick from
     choose    a multiple-choice question, optionally beside a position
     reel      a game that plays itself like a video, with caption notes as subtitles
     guess     a game that plays itself and stops at key moments for the reader to guess the move
+    stars     collect the stars with one piece (or, with "watch", see the coach collect them)
+    reach     get one piece to the flag around your own pawns
+    capture   of several enemy pieces, take the one the piece can reach
+    count     how many squares can the piece reach?
+
+The last four are drills: the step holds a recipe (the piece, how many stars or blockers), and
+the page makes a fresh solvable layout from it each time, so a repeat is a new position with the
+same goal (web/src/lib/drills.ts).
 
 Lessons are checked when they load: an unknown kind, a missing field or an
 illegal move makes the lesson unavailable (listed under `problems`) instead
@@ -87,12 +96,12 @@ def _mascot(step, where):
     return out
 
 
-def _marks(step, where):
+def _marks(step, where, key='marks'):
     """Arrows ["e2", "e4"] and circled squares ["e4"]."""
-    marks = step.get('marks', [])
+    marks = step.get(key, [])
     if not isinstance(marks, list) or not all(
             isinstance(m, list) and len(m) in (1, 2) and all(isinstance(s, str) and SQUARE.match(s) for s in m) for m in marks):
-        raise LessonError(f'{where}: "marks" must be a list of [square] circles or [from, to] arrows.')
+        raise LessonError(f'{where}: "{key}" must be a list of [square] circles or [from, to] arrows.')
     return [{'from': m[0], 'to': m[-1]} for m in marks]
 
 
@@ -186,11 +195,41 @@ def _choose(step, where):
         _text(option, 'text', f'{where}, option {i + 1}')
     if sum(1 for o in options if o.get('correct') is True) != 1:
         raise LessonError(f'{where}: exactly one option must be "correct": true.')
+    # "Pick the board": every option is a position of its own, shown as a small board.
+    boards = [o.get('fen') for o in options]
+    if any(boards) and not all(boards):
+        raise LessonError(f'{where}: give every option a "fen", or none of them.')
     fen = step.get('fen')
     return {'fen': _board(fen, where).fen() if fen else None, 'question': _text(step, 'question', where),
-            'marks': _marks(step, where),
-            'options': [{'text': o['text'], 'correct': o.get('correct') is True, 'why': o.get('why')} for o in options],
+            'marks': _marks(step, where), 'reveal': _marks(step, where, 'reveal'),
+            'options': [{'text': o['text'], 'correct': o.get('correct') is True, 'why': o.get('why'),
+                         **({'fen': _board(o['fen'], f'{where}, option {i + 1}').fen()} if o.get('fen') else {})}
+                        for i, o in enumerate(options)],
             **_mascot(step, where)}
+
+
+# A concept card's points: a piece (FEN letter) or a short symbol, and a word or two.
+CARD_POINTS = 4
+
+
+def _card(step, where):
+    """A concept card: an idea in a sentence or two, two to four points with an icon each, and an
+    optional diagram (`fen`, `marks`, `highlight`)."""
+    points = step.get('points', [])
+    if not isinstance(points, list) or len(points) > CARD_POINTS:
+        raise LessonError(f'{where}: "points" must be a list of at most {CARD_POINTS} {{"icon", "label"}} items.')
+    for i, point in enumerate(points):
+        icon = point.get('icon') if isinstance(point, dict) else None
+        if not isinstance(icon, str) or not 1 <= len(icon) <= 2:
+            raise LessonError(f'{where}: point {i + 1} needs an "icon": a piece letter like "k", or a symbol like "✕".')
+        _text(point, 'label', f'{where}, point {i + 1}')
+    highlight = step.get('highlight', [])
+    if not isinstance(highlight, list) or not all(isinstance(q, str) and SQUARE.match(q) for q in highlight):
+        raise LessonError(f'{where}: "highlight" must be a list of squares.')
+    fen = step.get('fen')
+    return {'fen': _board(fen, where).fen() if fen else None, 'text': _text(step, 'text', where),
+            'points': [{'icon': p['icon'], 'label': p['label']} for p in points],
+            'marks': _marks(step, where), 'highlight': highlight, **_mascot(step, where)}
 
 
 def _reel(step, where):
@@ -254,9 +293,70 @@ def _guess(step, where):
     return {**reel, 'guesses': sorted(stops, key=lambda g: g['ply'])}
 
 
+# Drills: the recipe fields each kind takes, as (default, lowest, highest).
+DRILL_PIECES = ('R', 'B', 'Q', 'N', 'K')
+DRILL_FIELDS = {
+    'stars': {'stars': (3, 1, 5), 'blockers': (0, 0, 8)},
+    'reach': {'blockers': (3, 0, 10), 'distance': (2, 2, 4)},
+    'capture': {'enemies': (3, 2, 4), 'blockers': (1, 0, 6)},
+    'count': {'blockers': (1, 0, 4), 'enemies': (1, 0, 3)},
+}
+
+
+def _drill(kind):
+    def parse_drill(step, where):
+        piece = step.get('piece')
+        if piece not in DRILL_PIECES:
+            raise LessonError(f'{where}: "piece" must be one of {", ".join(DRILL_PIECES)} (rook, bishop, queen, knight, king).')
+        out = {'piece': piece}
+        for key, (default, low, high) in DRILL_FIELDS[kind].items():
+            value = step.get(key, default)
+            if not isinstance(value, int) or isinstance(value, bool) or not low <= value <= high:
+                raise LessonError(f'{where}: "{key}" must be a whole number from {low} to {high}.')
+            out[key] = value
+        watch = step.get('watch', False)
+        if not isinstance(watch, bool) or (watch and kind != 'stars'):
+            raise LessonError(f'{where}: "watch" is true or false, and only a stars step can be watched.')
+        if watch:
+            out['watch'] = True
+        for key in ('prompt', 'nudge', 'success'):
+            text = _text(step, key, where, False)
+            if text is not None:
+                out[key] = text
+        return {**out, **_mascot(step, where)}
+    return parse_drill
+
+
 # The step kinds a lesson may use. A kind missing here is refused at load time,
 # so a lesson can never reach a step the page cannot show.
-KINDS = {'explain': _explain, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess}
+KINDS = {'explain': _explain, 'card': _card, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess,
+         **{kind: _drill(kind) for kind in DRILL_FIELDS}}
+# Kinds the reader only watches or reads; every other kind is answered and scored (story.py).
+WATCHED = ('explain', 'card', 'reel')
+
+
+def is_scored(step):
+    """Whether finishing the step posts a result: answered kinds, except a drill shown with "watch"."""
+    return step['kind'] in KINDS and step['kind'] not in WATCHED and not step.get('watch')
+
+
+def _rules(raw, slug):
+    """The lesson's rules, for its recap: [{"id", "title", "text", "icon"}]. A step's "rule" names
+    the one it practises, so the recap can say which rule needs another look."""
+    rules = raw.get('rules', [])
+    if not isinstance(rules, list):
+        raise LessonError(f'{slug}: "rules" must be a list of {{"id", "title", "text"}} items.')
+    out, seen = [], set()
+    for i, rule in enumerate(rules):
+        where = f'{slug}, rule {i + 1}'
+        if not isinstance(rule, dict) or not isinstance(rule.get('id'), str) or not SLUG.match(rule['id']) or rule['id'] in seen:
+            raise LessonError(f'{where}: every rule needs a unique "id" in lowercase-dash form.')
+        seen.add(rule['id'])
+        icon = rule.get('icon')
+        if icon is not None and (not isinstance(icon, str) or not 1 <= len(icon) <= 2):
+            raise LessonError(f'{where}: "icon" is a piece letter like "r", or a symbol like "✕".')
+        out.append({'id': rule['id'], 'title': _text(rule, 'title', where), 'text': _text(rule, 'text', where), 'icon': icon})
+    return out
 
 
 def parse(raw, slug):
@@ -287,6 +387,7 @@ def parse(raw, slug):
     practice = raw.get('practice')
     if practice is not None and (not isinstance(practice, str) or not SLUG.match(practice)):
         raise LessonError(f'{slug}: "practice" must be a puzzle theme slug, like "fork".')
+    rules = _rules(raw, slug)
     steps = raw.get('steps')
     if not isinstance(steps, list) or not steps:
         raise LessonError(f'{slug}: a lesson needs at least one step.')
@@ -304,12 +405,20 @@ def parse(raw, slug):
             raise LessonError(f'{where}: unknown kind "{kind}". Known kinds: {", ".join(KINDS)}.')
         if step.get('orientation', orientation) not in ('white', 'black'):
             raise LessonError(f'{where}: "orientation" must be white or black.')
-        parsed.append({'id': step_id, 'kind': kind, 'title': _text(step, 'title', where, False),
-                       'orientation': step.get('orientation', orientation), **KINDS[kind](step, where)})
+        item = {'id': step_id, 'kind': kind, 'title': _text(step, 'title', where, False),
+                'orientation': step.get('orientation', orientation), **KINDS[kind](step, where)}
+        # The page reads this instead of keeping its own list of answered kinds.
+        item['scored'] = is_scored(item)
+        rule = step.get('rule')
+        if rule is not None:
+            if rule not in {r['id'] for r in rules}:
+                raise LessonError(f'{where}: "rule" must be the id of one of the lesson\'s "rules".')
+            item['rule'] = rule
+        parsed.append(item)
     return {'slug': slug, 'title': _text(raw, 'title', slug), 'summary': _text(raw, 'summary', slug),
             'category': raw['category'], 'level': raw['level'], 'minutes': minutes, 'requires': requires,
             'unit': unit, 'order': position, 'practice': practice, 'video': None,
-            'orientation': orientation, 'steps': parsed}
+            'orientation': orientation, 'rules': rules, 'steps': parsed}
 
 
 UNITS_FILE = 'units.json'
@@ -401,7 +510,7 @@ def _load_all(folder, videos=None):
 
 # The text a translation overlay may replace (lessons/<lang>/<slug>.json); everything else in a
 # lesson (ids, positions, moves, ply numbers) always comes from the English file.
-TEXT_FIELDS = {'title', 'summary', 'text', 'narration', 'prompt', 'nudge', 'hint', 'success', 'question', 'why'}
+TEXT_FIELDS = {'title', 'summary', 'text', 'narration', 'prompt', 'nudge', 'hint', 'success', 'question', 'why', 'label'}
 
 
 def _merge_text(target, overlay):
@@ -452,13 +561,31 @@ def save_state(path, state):
     jsonio.write_json(path, state, indent=1)
 
 
+DONE = 'done'
+
+
+def position(lesson, entry):
+    """The step to resume at, as an index. Progress keeps the id of that step (`at`), so adding,
+    removing or reordering steps in the lesson file keeps the reader where they were; an entry
+    saved before ids were kept falls back to its index."""
+    count = len(lesson['steps'])
+    at = (entry or {}).get('at')
+    if at == DONE:
+        return count
+    if at:
+        found = next((i for i, step in enumerate(lesson['steps']) if step['id'] == at), None)
+        if found is not None:
+            return found
+    return min((entry or {}).get('step', 0), count)
+
+
 def catalog(lessons, problems, state):
     """Cards for the lesson list: no steps, plus each lesson's progress."""
     cards = []
     for slug, lesson in lessons.items():
         progress = state['lessons'].get(slug, {})
         cards.append({**{k: lesson.get(k) for k in ('slug', 'title', 'summary', 'category', 'level', 'minutes', 'requires', 'unit', 'unitTitle', 'practice', 'video')},
-                      'steps': len(lesson['steps']), 'step': min(progress.get('step', 0), len(lesson['steps'])),
+                      'steps': len(lesson['steps']), 'step': position(lesson, progress),
                       'completed': progress.get('completed'), 'skipped': bool(progress.get('skipped'))})
     return {'lessons': cards, 'problems': problems}
 
@@ -472,6 +599,7 @@ def record(lessons, state, slug, step, now):
         raise ValueError('That step is not part of this lesson.')
     entry = state['lessons'].setdefault(slug, {'step': 0, 'completed': None})
     entry['step'] = step
+    entry['at'] = lesson['steps'][step]['id'] if step < len(lesson['steps']) else DONE
     entry['updated'] = now.isoformat()
     if step == len(lesson['steps']) and (not entry.get('completed') or entry.get('skipped')):
         # Taking a lesson marked known makes it a lesson taken, stars and all.

@@ -244,6 +244,17 @@ class GeneratedLessonTests(unittest.TestCase):
         self.assertEqual([(e['skill'], e['ok'], e['w']) for e in found], [('mate-in-one', True, coach_ledger.W_COACH_LESSON)])
 
 
+    def test_a_skill_with_a_warm_up_gets_a_drill_recipe(self):
+        plan = coach_lessons.plan_session(self.data, 'hanging-piece', NOW.date())
+        drill = next(s for s in plan['steps'] if s['type'] == 'drill')
+        self.assertEqual(drill['drill']['kind'], 'capture')
+        self.assertIn(drill['drill']['piece'], coach_lessons.DRILL_PIECES)
+        lesson = coach_lessons.render(self.data, 'session-x', 'en', plan)
+        step = next(s for s in lesson['steps'] if s['id'] == 'warm-up')
+        self.assertEqual((step['kind'], step['piece'], step['enemies'], step['skill']),
+                         ('capture', drill['drill']['piece'], 3, 'hanging-piece'))
+
+
 class HomeTests(unittest.TestCase):
     def test_the_briefing_names_the_focus_and_the_session(self):
         with tempfile.TemporaryDirectory() as folder:

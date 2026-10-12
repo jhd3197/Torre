@@ -1,6 +1,6 @@
 """The per-step result ledger and the XP profile.
 
-Every scored step (see SCORED) the user finishes posts its run here: story.json
+Every scored step (see lessons.is_scored) the user finishes posts its run here: story.json
 keeps one entry per lesson step — the user's best run — and profile.json keeps
 the lifetime XP total, the daily-goal streak and a per-day XP history. Stars,
 level and progress bars are all derived from these files, never stored. Lesson completion itself still lives in lessons.json
@@ -9,10 +9,11 @@ level and progress bars are all derived from these files, never stored. Lesson c
 
 import json
 from torre import jsonio
+from torre.learning import lessons
 from datetime import date
 
-# Step kinds the user answers and can be graded on; explain and reel are watched, not scored.
-SCORED = ('play', 'choose', 'guess')
+# Which steps are graded is the lesson format's call (lessons.WATCHED lists the rest).
+is_scored = lessons.is_scored
 XP_PER_STEP = 10
 XP_PER_PUZZLE = 5   # a puzzle solved cleanly on the first attempt
 XP_PER_REVIEW = 5   # a drill card graded Good
@@ -147,7 +148,7 @@ def record_step(lesson, step, story, profile, run, now):
     a first-try solve. The completion date stays the first one. XP is for the
     first completion only — repeating a step can improve the entry but pays nothing.
     """
-    if step['kind'] not in SCORED:
+    if not is_scored(step):
         raise ValueError(f'A "{step["kind"]}" step is watched, not scored.')
     first_try = run.get('firstTry')
     if not isinstance(first_try, bool):
@@ -174,7 +175,7 @@ def step_results(lesson, story):
     """Ledger entries for the lesson's scored steps, keyed by step id."""
     slug = lesson['slug']
     return {s['id']: story['steps'][f'{slug}/{s["id"]}'] for s in lesson['steps']
-            if s['kind'] in SCORED and f'{slug}/{s["id"]}' in story['steps']}
+            if is_scored(s) and f'{slug}/{s["id"]}' in story['steps']}
 
 
 def stars(lesson, story, completed):
@@ -189,7 +190,7 @@ def stars(lesson, story, completed):
     results = step_results(lesson, story)
     if not results:
         return 1
-    scored = [s for s in lesson['steps'] if s['kind'] in SCORED]
+    scored = [s for s in lesson['steps'] if is_scored(s)]
     if all(s['id'] in results and results[s['id']].get('firstTry') is True
            and not results[s['id']].get('hintsUsed') and not results[s['id']].get('revealsUsed')
            for s in scored):

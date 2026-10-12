@@ -1,8 +1,10 @@
+import { onTestFinished } from 'vitest';
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { boardAfter, fakeServer, renderAt, START, playMove } from '../test/harness';
 import { setLessonSoundOn } from '../hooks/useNarration';
 import { moveLabel, narrationBeats } from './LessonsPage';
 import { enterStoryLesson, leaveStoryLesson } from '../lib/story';
+import { makeDrill, reach, squareName } from '../lib/drills';
 import type { Lesson, LessonCatalog } from '../types';
 
 /** A stub WebAudio context that records every sound started: an oscillator's type, or 'noise' for a click. */
@@ -29,7 +31,7 @@ function fakeAudioContext() {
 }
 
 /** The coach's mascot in the current step view. */
-const coach = () => document.querySelector('.lesson-teacher .mascot');
+const coach = () => document.querySelector('.coach-row .mascot');
 
 const card = (extra: Partial<LessonCatalog['lessons'][number]> = {}): LessonCatalog['lessons'][number] => ({
   slug: 'italian', title: 'Italian basics', summary: 'Develop and castle.', category: 'openings', level: 'beginner', minutes: 4,
@@ -40,10 +42,10 @@ const lesson = (extra: Partial<Lesson> = {}): Lesson => ({
   slug: 'italian', title: 'Italian basics', summary: 'Develop and castle.', category: 'openings', level: 'beginner', minutes: 4,
   requires: [], unit: null, practice: null, step: 0, completed: null, orientation: 'white',
   steps: [
-    { id: 'develop', kind: 'play', title: 'Develop', orientation: 'white', marks: [], fen: START, prompt: 'Open with the king pawn, then the knight.',
+    { id: 'develop', kind: 'play', title: 'Develop', orientation: 'white', marks: [], scored: true, fen: START, prompt: 'Open with the king pawn, then the knight.',
       hint: 'Start with e4.', success: 'Nicely developed.', alternatives: [], mate: false,
       moves: [{ uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }, { uci: 'g1f3', san: 'Nf3' }] },
-    { id: 'quiz', kind: 'choose', title: null, orientation: 'white', marks: [], fen: null, question: 'Where does the king go?',
+    { id: 'quiz', kind: 'choose', title: null, orientation: 'white', marks: [], scored: true, fen: null, question: 'Where does the king go?',
       options: [{ text: 'Castled', correct: true, why: 'Safe behind its pawns.' }, { text: 'The center', correct: false, why: 'Too exposed.' }] },
   ],
   ...extra,
@@ -111,12 +113,13 @@ describe('Lessons', () => {
     expect(screen.queryByRole('button', { name: 'Watch the video' })).toBeNull();
   });
 
-  test('a lesson is named once, in the top bar after its section, which links back', async () => {
+  test('a lesson opens full-window: its header names it and the exit goes back to the library', async () => {
     fakeServer().on('api/lessons/italian', () => lesson());
     renderAt('/lessons/italian/1');
-    const title = await screen.findByRole('heading', { level: 1, name: /Italian basics/ });
-    expect(within(title).getByRole('link', { name: 'Lessons' })).toHaveAttribute('href', '/lessons');
-    expect(screen.getAllByText('Italian basics')).toHaveLength(1);
+    const header = (await screen.findByRole('link', { name: 'Leave the lesson' })).closest('header')!;
+    expect(within(header).getByText('Italian basics')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Leave the lesson' })).toHaveAttribute('href', '/lessons');
+    expect(within(header).getByText('1 / 2')).toBeInTheDocument();
   });
 
   test('starting without sound mutes the coach and leaves autoplay off', async () => {
@@ -146,7 +149,7 @@ describe('Lessons', () => {
     // A miss never forces a hint: the reader climbs the ladder when they want, a rung at a time.
     expect(screen.queryByText('Start with e4.')).not.toBeInTheDocument();
     // The verdict locks the board until the reader acknowledges it.
-    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     fireEvent.click(screen.getByRole('button', { name: 'Show a hint' }));
     expect(screen.getByText(/Look at every check, capture and threat/)).toBeInTheDocument();
     expect(screen.queryByText('Start with e4.')).not.toBeInTheDocument();
@@ -251,7 +254,7 @@ describe('Lessons', () => {
     await move('d2', 'd4');
     expect(await screen.findByText(/is not the move here/)).toBeInTheDocument();
     expect(screen.getByText(/Black answers/)).toHaveTextContent('Black answers exd4, and after Qxd4 comes Nc6.');
-    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
 
     await move('e2', 'e4');
     await screen.findByRole('button', { name: 'Black pawn on e5' }, { timeout: 3000 });
@@ -276,14 +279,14 @@ describe('Lessons', () => {
     expect(await screen.findByText(/is not the move here/)).toBeInTheDocument();
     expect(started).toEqual([]);
     expect(coach()).toHaveAttribute('src', 'art/mascot/confused.webp');
-    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
 
     // Sound on: the same miss buzzes (a low sawtooth).
     await act(async () => { setLessonSoundOn(true); });
     await move('d2', 'd4');
     await screen.findByText(/is not the move here/);
     expect(started).toContain('sawtooth');
-    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
 
     // Solving the line knocks for each move (a wooden click of noise) and chimes on the verdict (sine).
     await move('e2', 'e4');
@@ -293,8 +296,8 @@ describe('Lessons', () => {
     expect(started).toContain('noise');
     expect(started).toContain('sine');
     expect(coach()).toHaveAttribute('src', 'art/mascot/excited.webp');
-    // The committed verdict keeps its polite announcement.
-    expect(document.querySelector('.verdict-bar')).toHaveAttribute('role', 'status');
+    // The committed verdict keeps its polite announcement, in the coach's bubble.
+    expect(document.querySelector('.coach-bubble')).toHaveAttribute('role', 'status');
   });
 
   test('a choose step explains each answer and finishing shows the next lesson', async () => {
@@ -310,19 +313,19 @@ describe('Lessons', () => {
     expect(screen.getByText('Too exposed.')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /Finish lesson/ })).toBeNull();
     // A wrong answer: the verdict is announced and the coach looks confused.
-    expect(document.querySelector('.verdict-bar')).toHaveAttribute('role', 'status');
+    expect(document.querySelector('.coach-bubble')).toHaveAttribute('role', 'status');
     expect(coach()).toHaveAttribute('src', 'art/mascot/confused.webp');
-    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     fireEvent.click(screen.getByRole('button', { name: 'Castled' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
     // A right answer cheers the coach up.
     expect(coach()).toHaveAttribute('src', 'art/mascot/excited.webp');
     fireEvent.click(screen.getByRole('button', { name: /Finish lesson/ }));
     await waitFor(() => expect(location().pathname).toBe('/lessons/italian/done'));
-    // The completion moment: a confetti burst and the celebrating coach.
+    // The completion moment: a confetti burst, and the celebrating coach until the stars arrive.
     expect(document.querySelector('.confetti')).toBeInTheDocument();
     expect(document.querySelectorAll('.confetti-piece').length).toBe(60);
-    expect(document.querySelector('.finished-hero .mascot')).toHaveAttribute('src', 'art/mascot/confetti.webp');
+    expect(document.querySelector('.done-stars .mascot')).toHaveAttribute('src', 'art/mascot/confetti.webp');
     expect(await screen.findByRole('link', { name: /Next: Pins/ })).toHaveAttribute('href', '/lessons/pins');
     expect(server.calls.find(c => c.path === 'api/lessons/progress')?.body).toEqual({ slug: 'italian', step: 2 });
     // Two committed checks, the first one wrong.
@@ -330,14 +333,14 @@ describe('Lessons', () => {
       .toEqual({ firstTry: false, hintsUsed: 0, revealsUsed: 0, attempts: 2 });
   });
 
-  test('the finish screen counts first-try answers and, inside Story, keeps "next" in the chapter', async () => {
+  test('the finish screen counts the hints used and, inside Story, keeps "next" in the chapter', async () => {
     enterStoryLesson('italian');
     try {
       const server = fakeServer();
       const done = lesson({
         step: 2, completed: '2026-10-04', stars: 2,
         stepResults: {
-          develop: { firstTry: true, hintsUsed: 0, revealsUsed: 0, attempts: 1, completedAt: '2026-10-04' },
+          develop: { firstTry: true, hintsUsed: 2, revealsUsed: 1, attempts: 1, completedAt: '2026-10-04' },
           quiz: { firstTry: false, hintsUsed: 0, revealsUsed: 0, attempts: 2, completedAt: '2026-10-04' },
         },
       });
@@ -348,8 +351,10 @@ describe('Lessons', () => {
         problems: [],
       }));
       renderAt('/lessons/italian/done');
-      // One of the two scored steps was right first time.
-      expect(await screen.findByText('1/2')).toBeInTheDocument();
+      // Two hints and one shown answer across the scored steps.
+      const hints = (await screen.findByText('Hints')).closest('.done-stat')!;
+      await waitFor(() => expect(within(hints as HTMLElement).getByText('3')).toBeInTheDocument());
+      expect(await screen.findByRole('img', { name: /2/ })).toBeInTheDocument();
       // Pins is next in the library, but Story stays in the openings chapter.
       expect(await screen.findByRole('link', { name: 'Next: London System' })).toHaveAttribute('href', '/story/lesson/london');
       expect(screen.getByRole('link', { name: 'Back to the map' })).toHaveAttribute('href', '/story');
@@ -527,5 +532,89 @@ describe('Lessons', () => {
     expect(moveLabel(START, 1, 'e5')).toBe('e5');
     expect(moveLabel('8/8/8/8/8/8/8/8 b - - 0 12', 0, 'Kf7')).toBe('12... Kf7');
     expect(moveLabel('8/8/8/8/8/8/8/8 b - - 0 12', 1, 'Ke2')).toBe('13. Ke2');
+  });
+  test('a drill makes its own board: a wrong count is explained, the right one is scored', async () => {
+    // A fixed random source fixes the layout, so the test knows the answer.
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0.25);
+    onTestFinished(() => random.mockRestore());
+    const recipe = { kind: 'count' as const, piece: 'R' as const, blockers: 1, enemies: 1 };
+    const layout = makeDrill(recipe, Math.floor(0.25 * 2 ** 31));
+    const server = fakeServer();
+    server.on('api/lessons/italian', () => lesson({
+      steps: [{ id: 'count', title: 'Count the squares', orientation: 'white', ...recipe }],
+    }));
+    server.on('api/lessons/italian/steps/count', () => ({ ok: true, xpGained: 10, xp: 10, level: 1 }));
+    renderAt('/lessons/italian/1');
+    expect(await screen.findByRole('button', { name: `White rook ${squareName(layout.from)}` })).toBeInTheDocument();
+    expect(layout.answer).toBe(reach('R', layout.from, { own: new Set(layout.own), enemies: layout.enemies }).length);
+    const wrong = layout.options!.find(n => n !== layout.answer)!;
+    fireEvent.click(screen.getByRole('button', { name: String(wrong) }));
+    expect(screen.getByText(wrong > layout.answer! ? /Too many/ : /Not enough/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: String(layout.answer) }));
+    expect(await screen.findByText(new RegExp(`Right, ${layout.answer} squares`))).toBeInTheDocument();
+    await waitFor(() => expect(server.calls.find(c => c.path === 'api/lessons/italian/steps/count')?.body)
+      .toEqual({ firstTry: false, hintsUsed: 0, revealsUsed: 0, attempts: 2 }));
+    expect(screen.getByRole('button', { name: /Finish lesson/ })).toBeEnabled();
+  });
+  test('a concept card pages with Back and Next, and pick-the-board answers on the tap', async () => {
+    const server = fakeServer();
+    server.on('api/lessons/italian', () => lesson({
+      steps: [
+        { id: 'intro', kind: 'explain', title: 'Intro', orientation: 'white', marks: [], fen: START, text: 'Welcome.', demo: [] },
+        { id: 'card', kind: 'card', title: 'What is check?', orientation: 'white', marks: [], fen: START, highlight: [],
+          text: 'The king is in **check**.', points: [{ icon: 'k', label: 'Move' }, { icon: '✕', label: 'Capture' }] },
+        { id: 'pick', kind: 'choose', title: 'Pick the board', orientation: 'white', marks: [], scored: true, fen: null,
+          question: 'Which one is checkmate?', options: [
+            { text: 'A', fen: START, correct: true, why: 'Mate.' }, { text: 'B', fen: START, correct: false, why: 'Only check.' }] },
+      ],
+    }));
+    server.on('api/lessons/progress', body => ({ step: body?.step }));
+    server.on('api/lessons/italian/steps/pick', () => ({ ok: true, xpGained: 10, xp: 10, level: 1 }));
+    const { location } = renderAt('/lessons/italian/2');
+    expect(await screen.findByText('check', { selector: 'strong' })).toBeInTheDocument();
+    expect(screen.getByText('Capture')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Back' }));
+    await waitFor(() => expect(location().pathname).toBe('/lessons/italian/1'));
+    fireEvent.click(await screen.findByRole('button', { name: /Continue/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /Next/ }));
+    // Boards answer on the tap: no Check step.
+    fireEvent.click(await screen.findByRole('button', { name: 'B' }));
+    expect(screen.getByText('Only check.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+    fireEvent.click(screen.getByRole('button', { name: 'A' }));
+    expect(screen.getByText('Mate.')).toBeInTheDocument();
+  });
+
+  test('a lesson with rules ends on a recap: the weak rule offers practice, then the finish', async () => {
+    const server = fakeServer();
+    const rules = [{ id: 'develop', title: 'Develop.', text: 'Knights before bishops.', icon: 'N' },
+      { id: 'castle', title: 'Castle.', text: 'Tuck the king away.', icon: 'K' }];
+    const tagged = lesson({ step: 2, completed: '2026-10-04', rules });
+    tagged.steps[0].rule = 'develop';
+    tagged.steps[1].rule = 'castle';
+    tagged.stepResults = {
+      develop: { firstTry: false, hintsUsed: 1, revealsUsed: 0, attempts: 2, completedAt: '2026-10-04' },
+      quiz: { firstTry: true, hintsUsed: 0, revealsUsed: 0, attempts: 1, completedAt: '2026-10-04' },
+    };
+    server.on('api/lessons/italian', () => tagged);
+    server.on('api/lessons', () => ({ lessons: [card({ completed: '2026-10-04' })], problems: [] }));
+    renderAt('/lessons/italian/done');
+    expect(await screen.findByRole('heading', { name: 'What you learned' })).toBeInTheDocument();
+    expect(screen.getByText('Develop: 2 slips')).toBeInTheDocument();
+    expect(screen.getByLabelText('Worth another look')).toBeInTheDocument();
+    expect(screen.getByLabelText('Got it')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Finish lesson' }));
+    expect(await screen.findByRole('link', { name: 'Go through it again' })).toBeInTheDocument();
+  });
+
+  test('practice from the recap replays the steps of the weak rule', async () => {
+    const tagged = lesson({ step: 2, completed: '2026-10-04', rules: [{ id: 'develop', title: 'Develop.', text: 'Knights first.', icon: 'N' }] });
+    tagged.steps[0].rule = 'develop';
+    tagged.stepResults = { develop: { firstTry: false, hintsUsed: 0, revealsUsed: 0, attempts: 3, completedAt: '2026-10-04' } };
+    fakeServer().on('api/lessons/italian', () => tagged);
+    renderAt('/lessons/italian/done');
+    fireEvent.click(await screen.findByRole('button', { name: 'Practise 1' }));
+    expect(await screen.findByRole('heading', { name: 'Develop' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'What you learned' })).toBeNull();
   });
 });

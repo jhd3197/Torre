@@ -20,6 +20,9 @@ export interface HintLadder {
   hintsUsed: number;
   revealed: boolean;
   hard: boolean;
+  /** Rungs on this ladder, in order. */
+  rungs: Rung[];
+  total: number;
 }
 
 /** The ladder for one question: `nudge` and `hint` are the step's own words; the last two rungs
@@ -31,7 +34,7 @@ export function useHintLadder(hint: string | null | undefined): HintLadder {
   const rungs: Rung[] = ['nudge', ...(hint ? ['hint' as const] : []), 'piece', 'arrow'];
   const next = hard ? null : rungs.find(rung => !shown.includes(rung)) ?? null;
   return {
-    shown, next, hard,
+    shown, next, hard, rungs, total: rungs.length,
     climb: () => {
       if (!next) return;
       setShown(s => [...s, next]);
@@ -49,3 +52,9 @@ export const ladderLabel = (t: TFunction, next: Rung | null) =>
   next === 'arrow' ? t('step.showMove') : next === 'piece' ? t('hints.whichPiece') : t('step.showHint');
 
 export { whyItFails } from '../../lib/whyItFails';
+
+/** The footer's Hint button for a ladder: one pip per rung, filled as they show. None in hard mode
+ *  (or when `show` is false); greyed out at the top of the ladder. */
+export const hintButton = (t: TFunction, ladder: HintLadder, show = true) => (!show || ladder.hard ? undefined : {
+  label: ladderLabel(t, ladder.next), used: ladder.shown.length, total: ladder.total, onClick: ladder.climb, disabled: !ladder.next,
+});

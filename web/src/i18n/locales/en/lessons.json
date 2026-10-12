@@ -68,7 +68,10 @@
     "stepTitled": "Step {{number}}: {{title}}",
     "stepNotReached": "Step {{number}} (not reached yet)",
     "complete": "Complete",
-    "stepOf": "Step {{number}} of {{count}}"
+    "stepOf": "Step {{number}} of {{count}}",
+    "intro": "Intro",
+    "leave": "Leave the lesson",
+    "inThisLesson": "In this lesson"
   },
   "step": {
     "finish": "Finish lesson",
@@ -79,11 +82,11 @@
     "replayTitle": "Play line",
     "movesSoFar": "Moves so far",
     "check": "Check",
-    "retry": "Retry",
+    "retry": "Try again",
     "showMove": "Show the move",
     "showHint": "Show a hint",
     "nicelyDone": "Nicely done!",
-    "tryAgain": "Try again.",
+    "tryAgain": "Not quite",
     "hint": "<strong>Hint:</strong> {{hint}}"
   },
   "reel": {
@@ -106,7 +109,8 @@
     "findPlayed": "<strong>{{toMove}}</strong> Find the move that was played.",
     "notGameMove": "<strong>✗ {{san}}</strong> was not the game move.",
     "notGameMoveTryAgain": "<strong>✗ {{san}}</strong> was not the game move. Try again.",
-    "arrow": "The arrow shows the game move: <strong>{{san}}</strong>. Play it on the board."
+    "arrow": "The arrow shows the game move: <strong>{{san}}</strong>. Play it on the board.",
+    "watching": "Watching…"
   },
   "play": {
     "wellDone": "Well done.",
@@ -122,16 +126,18 @@
     "startOver": "Start the line over",
     "arrow": "The arrow shows the move: <strong>{{san}}</strong>. Play it on the board.",
     "otherDefence": "Try the other defence",
-    "showMe": "Show me on the board",
+    "showMe": "Show me why",
     "showingWhy": "Why {{san}} does not work",
     "backToPosition": "Back to the position",
     "watchAgain": "Watch again",
-    "backOne": "Take back one move"
+    "backOne": "Take back one move",
+    "makeMove": "Make your move"
   },
   "choose": {
     "right": "Right.",
     "tryAnother": "Try another answer.",
-    "answers": "Answers"
+    "answers": "Answers",
+    "pick": "Pick an answer"
   },
   "finished": {
     "closing": "Nicely done! You finished {{title}}.",
@@ -149,7 +155,11 @@
     "backToGame": "Back to the game",
     "practise": "Practise it on puzzles",
     "again": "Go through it again",
-    "reviewLater": "Its exercises come back for review in Train after a day or two, then less and less often as you keep solving them."
+    "reviewLater": "Its exercises come back for review in Train after a day or two, then less and less often as you keep solving them.",
+    "perfect": "Perfect lesson!",
+    "xp": "XP",
+    "hints": "Hints",
+    "time": "Time"
   },
   "intro": {
     "kinds": {
@@ -157,7 +167,12 @@
       "play": "Your move",
       "choose": "Quiz",
       "reel": "Watch",
-      "guess": "Guess the move"
+      "guess": "Guess the move",
+      "stars": "Collect the stars",
+      "reach": "Reach the flag",
+      "capture": "Capture!",
+      "count": "Count the squares",
+      "card": "Concept"
     },
     "kicker": "Lesson",
     "soundCheck": "Hi! If you can hear me, you are all set. Let’s learn some chess.",
@@ -182,7 +197,11 @@
     "nudge": "Look at every check, capture and threat before you move.",
     "whichPiece": "Which piece?",
     "pieceCircled": "The circled piece is the one to move.",
-    "hardMode": "Hard mode: no hints and no answers. You can turn it off in Settings."
+    "hardMode": "Hard mode: no hints and no answers. You can turn it off in Settings.",
+    "title": "Hints",
+    "used": "{{used}} of {{total}} used",
+    "waiting": "Press Hint when you want it",
+    "revealCost": "Reveal · −1 ★"
   },
   "why": {
     "mate": "That lets {{opponent}} give checkmate.",
@@ -203,5 +222,98 @@
     "marked_one": "Marked as known. It stays open if you want to take it.",
     "marked_other": "{{count}} lessons marked as known. They stay open if you want to take them.",
     "toTake": "Worth taking:"
+  },
+  "section": {
+    "learn": "Learn",
+    "watch": "Watch",
+    "try": "Try it",
+    "quiz": "Quiz"
+  },
+  "footer": {
+    "hint": "Hint",
+    "enter": "Enter"
+  },
+  "drill": {
+    "board": "Drill board",
+    "side": {
+      "white": "White",
+      "black": "Black"
+    },
+    "piece": {
+      "R": "rook",
+      "B": "bishop",
+      "Q": "queen",
+      "N": "knight",
+      "K": "king",
+      "P": "pawn"
+    },
+    "starOn": "Star on {{square}}",
+    "flagOn": "Flag on {{square}}",
+    "prompt": {
+      "stars": "Your turn! Collect all {{count}} stars with your {{piece}}. Tap a dot to move.",
+      "watch": "Watch me grab the stars. A {{piece}} only moves its own way.",
+      "reach": "Get your {{piece}} to the flag. Your own pawns are in the way, and only a knight can jump.",
+      "capture": "One of these pieces is yours for the taking. Which one can your {{piece}} capture right now?",
+      "count": "How many squares can this {{piece}} reach in one move?"
+    },
+    "nudge": {
+      "stars": "Look for a star you can land on in one move, then plan the next one from there.",
+      "reach": "The quick route is blocked. Take a small step first so a clear line opens up.",
+      "capture": "Check each black piece: is there a clear path to it, with nothing in between?"
+    },
+    "hintLine": "Look along the glowing squares: that is the way to go.",
+    "hintArrow": "Follow the arrow.",
+    "hintTag": "Hint {{rung}} of {{total}}",
+    "countHint1": "Count one direction at a time, and stop when you hit a piece.",
+    "countHint2": "Here are some of the squares. Now add the rest.",
+    "countHint3": "Every dot is a square it can reach. Count them!",
+    "notQuite": "Not quite",
+    "greatJob": "Great job",
+    "own": "That is your own pawn. You can never land on your own pieces.",
+    "blocked": "Something is in the way. Only the knight can jump over pieces.",
+    "noCapture": "That move is legal, but it captures nothing. Which piece can you take right now?",
+    "rule": {
+      "R": "A rook moves in straight lines: up, down, left or right.",
+      "B": "A bishop moves only on diagonals.",
+      "Q": "The queen moves in straight lines and diagonals, never in an L.",
+      "N": "A knight moves in an L: two squares one way, then one to the side.",
+      "K": "The king moves just one square, in any direction."
+    },
+    "gotStar": "Got one! {{count}} to go.",
+    "lineUp": "Good move. Now line up with a star.",
+    "keepGoing": "Good. Keep heading for the flag.",
+    "starsDone": "All {{count}} stars in {{moves}} moves. That is the fastest way!",
+    "starsOverPar": "All stars in {{moves}} moves! The fastest way takes {{par}}. Try a new board to beat it.",
+    "reachDone": "You found the way around in {{moves}} moves.",
+    "captureDone": "Captured! Nothing stood between you and that {{target}}.",
+    "countRight": "Right, {{count}} squares. Pieces in the way cut a line short, and an enemy piece counts because you can capture it.",
+    "countHigh": "Too many. Remember it stops before your own pieces.",
+    "countLow": "Not enough. Do not forget the squares where it can capture.",
+    "watchMove": "The {{piece}} goes to {{square}}.",
+    "watchDone": "{{count}} stars in {{moves}} moves. Your turn next!",
+    "watchAgain": "Watch again",
+    "newBoard": "New board",
+    "completeTask": "Complete the task",
+    "collected": "{{count}} of {{total}} stars collected",
+    "moves_one": "{{count}} move · best {{par}}",
+    "moves_other": "{{count}} moves · best {{par}}"
+  },
+  "card": {
+    "next": "Next",
+    "back": "Back"
+  },
+  "recap": {
+    "chip": "Recap",
+    "title": "What you learned",
+    "secondLook": "Worth a second look",
+    "slips_one": "{{rule}}: one slip",
+    "slips_other": "{{rule}}: {{count}} slips",
+    "practise_one": "Practise 1",
+    "practise_other": "Practise {{count}}",
+    "tricky_one": "Nice work! {{rule}} was the tricky bit. One quick one and you will have it.",
+    "tricky_other": "Nice work! {{rule}} was the tricky bit. {{count}} quick ones and you will have it.",
+    "clean": "Clean sweep! You have every rule in this lesson.",
+    "weak": "Worth another look",
+    "good": "Got it"
   }
 }
