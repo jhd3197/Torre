@@ -363,7 +363,8 @@ function PhoneHome({ catalog }: { catalog: CatalogState }) {
   return (
     <section id="home" className="phone-home" aria-label={t('label')}>
       <header className="phone-home-head">
-        <img src="art/logo/mark.png" alt="" width="34" height="34" />
+        {/* The green tile, as on torre.sh: the cream mark alone is drawn for the dark rail. */}
+        <img src="art/logo/app-icon-64.png" alt="" width="34" height="34" />
         <span className="phone-home-brand">TORRE</span>
         <Link className={`phone-streak${streak ? '' : ' cold'}`} to="/profile" aria-label={t('today.streak', { count: streak })}>
           <FlameIcon lit={streak > 0} size={15} />{t('phone.days', { count: streak })}
