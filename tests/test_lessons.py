@@ -184,10 +184,12 @@ class ParseTests(unittest.TestCase):
         ]), "drills")
         watch, reach, take, count = item["steps"]
         self.assertEqual(watch, {"id": "watch", "kind": "stars", "title": None, "orientation": "white", "piece": "R",
-                                 "stars": 3, "blockers": 0, "watch": True, "narration": "Watch me."})
+                                 "stars": 3, "blockers": 0, "watch": True, "narration": "Watch me.", "scored": False})
         self.assertEqual((reach["blockers"], reach["distance"], reach["prompt"]), (6, 3, "Jump to the flag."))
         self.assertEqual((take["enemies"], take["blockers"]), (3, 1))
         self.assertEqual((count["blockers"], count["enemies"]), (1, 0))
+        # Answered kinds are scored, a watched drill is not: the page reads the flag.
+        self.assertEqual([s["scored"] for s in item["steps"]], [False, True, True, True])
 
     def test_problems_are_reported_not_raised(self):
         cases = {
@@ -244,6 +246,22 @@ class ProgressTests(unittest.TestCase):
                     lessons.record(loaded, state, "fork", bad, NOW)
             with self.assertRaises(ValueError):
                 lessons.record(loaded, state, "nope", 0, NOW)
+
+
+class PositionTests(unittest.TestCase):
+    def test_progress_follows_the_step_id_when_steps_move(self):
+        steps = [{"id": i} for i in ("a", "b", "c")]
+        state = {"lessons": {}}
+        entry = lessons.record({"x": {"steps": steps}}, state, "x", 1, NOW)
+        self.assertEqual(entry["at"], "b")
+        # A step is added in front: the reader is still on "b".
+        self.assertEqual(lessons.position({"steps": [{"id": "new"}, *steps]}, entry), 2)
+        # "b" was removed: fall back to the saved index.
+        self.assertEqual(lessons.position({"steps": [steps[0], steps[2]]}, entry), 1)
+        finished = lessons.record({"x": {"steps": steps}}, state, "x", 3, NOW)
+        self.assertEqual(lessons.position({"steps": [*steps, {"id": "d"}]}, finished), 4)
+        # Progress saved before ids were kept uses its index.
+        self.assertEqual(lessons.position({"steps": steps}, {"step": 2}), 2)
 
 
 class SkipTests(unittest.TestCase):

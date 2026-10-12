@@ -238,7 +238,7 @@ def lesson(req):
     with lessons.LOCK:
         progress = lessons.load_state(appdata.DATA_DIR / 'lessons.json')['lessons'].get(slug, {})
         ledger = story.load(appdata.DATA_DIR / 'story.json')
-    return {**found, 'step': min(progress.get('step', 0), len(found['steps'])), 'completed': progress.get('completed'),
+    return {**found, 'step': lessons.position(found, progress), 'completed': progress.get('completed'),
             'skipped': bool(progress.get('skipped')), 'stepResults': story.step_results(found, ledger),
             'stars': story.stars(found, ledger, None if progress.get('skipped') else progress.get('completed'))}
 

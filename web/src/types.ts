@@ -274,7 +274,11 @@ export type LessonLevel = 'beginner' | 'intermediate' | 'advanced';
 /** A circle when `from` equals `to`, otherwise an arrow. */
 export interface LessonMark { from: string; to: string }
 
-interface StepBase { id: string; title: string | null; orientation: Color; marks: LessonMark[] }
+interface StepBase {
+  id: string; title: string | null; orientation: Color; marks: LessonMark[];
+  /** Finishing it posts a result (lessons.py is_scored); explain, reel and watched drills do not. */
+  scored?: boolean;
+}
 export interface ExplainStep extends StepBase {
   kind: 'explain'; fen: string; text: string; demo: Move[];
   /** Spoken coach line for the step (audio at /art/audio/lessons/<slug>/<id>.mp3). */

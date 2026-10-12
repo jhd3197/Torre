@@ -300,6 +300,13 @@ def _drill(kind):
 # so a lesson can never reach a step the page cannot show.
 KINDS = {'explain': _explain, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess,
          **{kind: _drill(kind) for kind in DRILL_FIELDS}}
+# Kinds the reader only watches or reads; every other kind is answered and scored (story.py).
+WATCHED = ('explain', 'reel')
+
+
+def is_scored(step):
+    """Whether finishing the step posts a result: answered kinds, except a drill shown with "watch"."""
+    return step['kind'] in KINDS and step['kind'] not in WATCHED and not step.get('watch')
 
 
 def parse(raw, slug):
@@ -347,8 +354,11 @@ def parse(raw, slug):
             raise LessonError(f'{where}: unknown kind "{kind}". Known kinds: {", ".join(KINDS)}.')
         if step.get('orientation', orientation) not in ('white', 'black'):
             raise LessonError(f'{where}: "orientation" must be white or black.')
-        parsed.append({'id': step_id, 'kind': kind, 'title': _text(step, 'title', where, False),
-                       'orientation': step.get('orientation', orientation), **KINDS[kind](step, where)})
+        item = {'id': step_id, 'kind': kind, 'title': _text(step, 'title', where, False),
+                'orientation': step.get('orientation', orientation), **KINDS[kind](step, where)}
+        # The page reads this instead of keeping its own list of answered kinds.
+        item['scored'] = is_scored(item)
+        parsed.append(item)
     return {'slug': slug, 'title': _text(raw, 'title', slug), 'summary': _text(raw, 'summary', slug),
             'category': raw['category'], 'level': raw['level'], 'minutes': minutes, 'requires': requires,
             'unit': unit, 'order': position, 'practice': practice, 'video': None,
@@ -495,13 +505,31 @@ def save_state(path, state):
     jsonio.write_json(path, state, indent=1)
 
 
+DONE = 'done'
+
+
+def position(lesson, entry):
+    """The step to resume at, as an index. Progress keeps the id of that step (`at`), so adding,
+    removing or reordering steps in the lesson file keeps the reader where they were; an entry
+    saved before ids were kept falls back to its index."""
+    count = len(lesson['steps'])
+    at = (entry or {}).get('at')
+    if at == DONE:
+        return count
+    if at:
+        found = next((i for i, step in enumerate(lesson['steps']) if step['id'] == at), None)
+        if found is not None:
+            return found
+    return min((entry or {}).get('step', 0), count)
+
+
 def catalog(lessons, problems, state):
     """Cards for the lesson list: no steps, plus each lesson's progress."""
     cards = []
     for slug, lesson in lessons.items():
         progress = state['lessons'].get(slug, {})
         cards.append({**{k: lesson.get(k) for k in ('slug', 'title', 'summary', 'category', 'level', 'minutes', 'requires', 'unit', 'unitTitle', 'practice', 'video')},
-                      'steps': len(lesson['steps']), 'step': min(progress.get('step', 0), len(lesson['steps'])),
+                      'steps': len(lesson['steps']), 'step': position(lesson, progress),
                       'completed': progress.get('completed'), 'skipped': bool(progress.get('skipped'))})
     return {'lessons': cards, 'problems': problems}
 
@@ -515,6 +543,7 @@ def record(lessons, state, slug, step, now):
         raise ValueError('That step is not part of this lesson.')
     entry = state['lessons'].setdefault(slug, {'step': 0, 'completed': None})
     entry['step'] = step
+    entry['at'] = lesson['steps'][step]['id'] if step < len(lesson['steps']) else DONE
     entry['updated'] = now.isoformat()
     if step == len(lesson['steps']) and (not entry.get('completed') or entry.get('skipped')):
         # Taking a lesson marked known makes it a lesson taken, stars and all.

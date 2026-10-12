@@ -7,14 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useFocusExit } from '../../components/story/FocusMode';
 import { lessonPath } from '../../lib/routes';
 import type { Lesson, LessonStep } from '../../types';
-
-export type Section = 'learn' | 'watch' | 'try' | 'quiz';
-
-/** What kind of moment a step is: read, watch, do, or answer. */
-export const sectionOf = (step: LessonStep): Section =>
-  step.kind === 'explain' ? 'learn'
-    : step.kind === 'reel' || (step.kind === 'stars' && step.watch) ? 'watch'
-    : step.kind === 'choose' || step.kind === 'count' ? 'quiz' : 'try';
+import { sectionOf, type Section } from './kinds';
 
 const SECTION_ICONS: Record<Section, string> = {
   learn: 'M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z',

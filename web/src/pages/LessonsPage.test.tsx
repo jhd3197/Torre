@@ -42,10 +42,10 @@ const lesson = (extra: Partial<Lesson> = {}): Lesson => ({
   slug: 'italian', title: 'Italian basics', summary: 'Develop and castle.', category: 'openings', level: 'beginner', minutes: 4,
   requires: [], unit: null, practice: null, step: 0, completed: null, orientation: 'white',
   steps: [
-    { id: 'develop', kind: 'play', title: 'Develop', orientation: 'white', marks: [], fen: START, prompt: 'Open with the king pawn, then the knight.',
+    { id: 'develop', kind: 'play', title: 'Develop', orientation: 'white', marks: [], scored: true, fen: START, prompt: 'Open with the king pawn, then the knight.',
       hint: 'Start with e4.', success: 'Nicely developed.', alternatives: [], mate: false,
       moves: [{ uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }, { uci: 'g1f3', san: 'Nf3' }] },
-    { id: 'quiz', kind: 'choose', title: null, orientation: 'white', marks: [], fen: null, question: 'Where does the king go?',
+    { id: 'quiz', kind: 'choose', title: null, orientation: 'white', marks: [], scored: true, fen: null, question: 'Where does the king go?',
       options: [{ text: 'Castled', correct: true, why: 'Safe behind its pawns.' }, { text: 'The center', correct: false, why: 'Too exposed.' }] },
   ],
   ...extra,

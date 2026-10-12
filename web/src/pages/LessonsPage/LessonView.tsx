@@ -9,14 +9,9 @@ import { useToast } from '../../state/AppData';
 import { LessonIntro } from '../../components/LessonIntro';
 import type { Lesson, StepReport, StepScore } from '../../types';
 import type { Cinema } from './cinema';
-import { ChooseView } from './ChooseView';
-import { DrillView } from './DrillView';
-import { ExplainView } from './ExplainView';
 import { Finished } from './Finished';
-import { GuessView } from './GuessView';
+import { StepView } from './kinds';
 import { LessonHeader, LessonPlaceContext } from './LessonChrome';
-import { PlayView } from './PlayView';
-import { ReelView } from './ReelView';
 
 const DONE = 'done';
 
@@ -133,12 +128,7 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
       <LessonHeader lesson={lesson} index={index} reached={reached} onNavigate={stop} tools={tools} />
       <LessonPlaceContext.Provider value={{ lesson, index, reached }}>
         {finished ? <Finished lesson={lesson} cinema={cinema} xp={sessionXp} startedAt={startedAt} />
-          : step.kind === 'explain' ? <ExplainView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} />
-          : step.kind === 'play' ? <PlayView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />
-          : step.kind === 'reel' ? <ReelView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} />
-          : step.kind === 'guess' ? <GuessView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />
-          : step.kind === 'choose' ? <ChooseView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />
-          : <DrillView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />}
+          : <StepView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />}
       </LessonPlaceContext.Provider>
     </LessonScreen>
   );

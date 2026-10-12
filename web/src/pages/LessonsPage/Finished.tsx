@@ -14,8 +14,6 @@ import { LessonFooter } from './LessonChrome';
 import { useCatalog } from './useCatalog';
 import { useToast } from '../../state/AppData';
 
-const SCORED_KINDS = new Set(['play', 'choose', 'guess', 'stars', 'reach', 'capture', 'count']);
-
 /** m:ss for the time a lesson took. */
 const clock = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
@@ -48,7 +46,7 @@ export function Finished({ lesson, cinema, xp, startedAt }: { lesson: Lesson; ci
   }, [lesson.slug]);
 
   const stars = typeof result?.stars === 'number' ? result.stars : null;
-  const scored = lesson.steps.filter(step => SCORED_KINDS.has(step.kind) && !(step.kind === 'stars' && step.watch));
+  const scored = lesson.steps.filter(step => step.scored);
   const hints = scored.reduce((sum, step) => {
     const run = result?.stepResults?.[step.id];
     return sum + (run ? run.hintsUsed + run.revealsUsed : 0);

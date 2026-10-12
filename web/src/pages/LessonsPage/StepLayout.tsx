@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import type { MascotPose } from '../../components/Reward';
 import type { LessonStep, StepReport } from '../../types';
 import type { Cinema } from './cinema';
-import { LessonFooter, SectionChip, StepOutline, sectionOf, useLessonPlace, type FooterAction, type FooterHint, type Tone } from './LessonChrome';
+import { sectionOf } from './kinds';
+import { LessonFooter, SectionChip, StepOutline, useLessonPlace, type FooterAction, type FooterHint, type Tone } from './LessonChrome';
 import { TeacherRow, type BubbleTone } from './TeacherRow';
 
 export interface StepProps<T> { step: T; onContinue: () => void; last: boolean; cinema: Cinema }
