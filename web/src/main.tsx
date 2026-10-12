@@ -4,6 +4,7 @@ import { App } from './App';
 import { applySavedSettings } from './lib/settings';
 import { initMusic } from './lib/music';
 import { i18nReady } from './i18n';
+import './lib/splash';
 import './styles/main.scss';
 
 // Vela serves Torre below /apps/chess/, while torre.sh serves it at /. The
