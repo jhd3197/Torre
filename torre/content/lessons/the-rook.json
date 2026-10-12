@@ -7,10 +7,16 @@
   "minutes": 6,
   "unit": "Rules of the game",
   "order": 1,
+  "rules": [
+    {"id": "straight-lines", "title": "Straight lines.", "text": "Any distance, up, down or sideways.", "icon": "R"},
+    {"id": "no-jumping", "title": "No jumping.", "text": "Any piece in the way stops the rook.", "icon": "P"},
+    {"id": "capture-by-landing", "title": "Capture by landing.", "text": "Only on enemy pieces.", "icon": "✕"}
+  ],
   "steps": [
     {
       "id": "straight-lines",
       "kind": "explain",
+      "rule": "straight-lines",
       "title": "Straight lines",
       "fen": "4k3/8/8/8/3R4/8/8/4K3 w - - 0 1",
       "marks": [["d4", "d8"], ["d4", "d1"], ["d4", "a4"], ["d4", "h4"]],
@@ -21,6 +27,7 @@
     {
       "id": "watch-the-stars",
       "kind": "stars",
+      "rule": "straight-lines",
       "piece": "R",
       "stars": 3,
       "watch": true,
@@ -31,6 +38,7 @@
     {
       "id": "collect-the-stars",
       "kind": "stars",
+      "rule": "straight-lines",
       "piece": "R",
       "stars": 3,
       "title": "Collect the stars",
@@ -38,8 +46,22 @@
       "pose": "detective"
     },
     {
+      "id": "one-move-or-two",
+      "kind": "choose",
+      "title": "One move?",
+      "rule": "straight-lines",
+      "fen": "7k/8/8/8/3R4/8/8/4K3 w - - 0 1",
+      "marks": [["f6"]],
+      "reveal": [["d4", "d6"], ["d6", "f6"]],
+      "question": "Can this rook reach the circled square in one move?",
+      "options": [{"text": "Yes", "why": "f6 is not on the rook’s file or rank, so it takes two moves: up to d6, then across."}, {"text": "No", "correct": true, "why": "Right. f6 is on neither the d-file nor the fourth rank: two moves, d6 then f6."}],
+      "narration": "Quick one. Can I get to the circled square in a single move?",
+      "pose": "thinking"
+    },
+    {
       "id": "blocked-lines",
       "kind": "explain",
+      "rule": "no-jumping",
       "title": "What stops a rook",
       "fen": "4k3/8/3p4/8/1P1R2n1/8/8/4K3 w - - 0 1",
       "marks": [["d4", "d6"], ["d4", "g4"], ["c4"]],
@@ -51,6 +73,7 @@
     {
       "id": "count-the-squares",
       "kind": "count",
+      "rule": "no-jumping",
       "piece": "R",
       "blockers": 1,
       "enemies": 1,
@@ -61,6 +84,7 @@
     {
       "id": "find-a-way-around",
       "kind": "reach",
+      "rule": "no-jumping",
       "piece": "R",
       "blockers": 4,
       "distance": 2,
@@ -71,6 +95,7 @@
     {
       "id": "capture-drill",
       "kind": "capture",
+      "rule": "capture-by-landing",
       "piece": "R",
       "enemies": 3,
       "blockers": 1,
@@ -81,6 +106,7 @@
     {
       "id": "grab-the-bishop",
       "kind": "play",
+      "rule": "capture-by-landing",
       "title": "Grab the free bishop",
       "fen": "6k1/5pp1/b6p/8/8/8/5PPP/R5K1 w - - 0 1",
       "prompt": "Black's bishop has nobody guarding it. Capture it with your rook.",
@@ -93,6 +119,7 @@
     {
       "id": "pick-the-safe-capture",
       "kind": "play",
+      "rule": "capture-by-landing",
       "title": "Which capture is safe?",
       "fen": "4k3/3n4/8/8/3R3b/8/6PP/6K1 w - - 0 1",
       "prompt": "Your rook can capture two pieces. Only one of them is safe to take. Which?",
@@ -105,6 +132,7 @@
     {
       "id": "rook-quiz",
       "kind": "choose",
+      "rule": "no-jumping",
       "title": "Quick check",
       "fen": "4k3/8/8/8/2PR4/8/8/4K3 w - - 0 1",
       "marks": [["c4"]],

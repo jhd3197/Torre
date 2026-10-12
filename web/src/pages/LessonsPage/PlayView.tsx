@@ -8,7 +8,7 @@ import { useSounds, useVerdictSound } from '../../hooks/useSounds';
 import { useToast } from '../../state/AppData';
 import type { Move, PlayLine, PlayStep } from '../../types';
 import { DEMO_PLY_DELAY, REPLY_DELAY, useAutoplayStart, useSpeakThenContinue } from './cinema';
-import { hintButton, useHintLadder, whyItFails } from './hints';
+import { hintButton, useHintLadder, whyItFails, type Rung } from './hints';
 import { StepLayout, type ScoredProps, type StepBar } from './StepLayout';
 import { moveLabel } from './text';
 
@@ -209,20 +209,37 @@ export function PlayView({ step, onContinue, last, cinema, report }: ScoredProps
           {played.map((m, i) => <li key={i} className={i % 2 ? 'reply' : ''}>{moveLabel(step.fen, i, m.san)}</li>)}
         </ol>
       )}
-      {!done && <HintRungs shown={ladder.shown} nudge={step.nudge} hint={step.hint} san={expected?.san} />}
+      {!done && <HintRungs rungs={ladder.rungs} shown={ladder.shown} nudge={step.nudge} hint={step.hint} san={expected?.san} />}
       {ladder.hard && !done && <p className="lesson-hint hard-mode">{t('hints.hardMode')}</p>}
     </StepLayout>
   );
 }
 
-/** The rungs climbed so far, as lines under the prompt. */
-export function HintRungs({ shown, nudge, hint, san }: { shown: string[]; nudge?: string | null; hint?: string | null; san?: string }) {
+/** The hint panel (Torre Lesson Screens, "Hint ladder"): once a hint is used, every rung stays
+ *  listed beside the board, the used ones with their words, the rest waiting; the last one shows the
+ *  move and costs a star. */
+export function HintRungs({ rungs, shown, nudge, hint, san }: { rungs: Rung[]; shown: Rung[]; nudge?: string | null; hint?: string | null; san?: string }) {
   const { t } = useTranslation('lessons');
-  const strong = { strong: <strong /> };
-  return <>
-    {shown.includes('nudge') && <p className="lesson-hint"><Trans t={t} i18nKey="step.hint" values={{ hint: nudge || t('hints.nudge') }} components={strong} /></p>}
-    {shown.includes('hint') && hint && <p className="lesson-hint"><Trans t={t} i18nKey="step.hint" values={{ hint }} components={strong} /></p>}
-    {shown.includes('piece') && <p className="lesson-hint">{t('hints.pieceCircled')}</p>}
-    {shown.includes('arrow') && san && <p className="lesson-hint"><Trans t={t} i18nKey="play.arrow" values={{ san }} components={strong} /></p>}
-  </>;
+  if (!shown.length) return null;
+  const words = (rung: Rung) => rung === 'nudge' ? nudge || t('hints.nudge')
+    : rung === 'hint' ? hint
+    : rung === 'piece' ? t('hints.pieceCircled')
+    : san ? <Trans t={t} i18nKey="play.arrow" values={{ san }} components={{ strong: <strong /> }} /> : t('step.showMove');
+  return (
+    <section className="hint-panel" aria-label={t('hints.title')}>
+      <header><strong>{t('hints.title')}</strong><span>{t('hints.used', { used: shown.length, total: rungs.length })}</span></header>
+      <ol>
+        {rungs.map((rung, i) => {
+          const used = shown.includes(rung);
+          return (
+            <li key={rung} className={used ? 'used' : rung === 'arrow' ? 'reveal' : 'waiting'}>
+              <b>{i + 1}</b>
+              <span>{used ? words(rung) : rung === 'arrow' ? t('step.showMove') : t('hints.waiting')}</span>
+              {!used && rung === 'arrow' && <em>{t('hints.revealCost')}</em>}
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
 }

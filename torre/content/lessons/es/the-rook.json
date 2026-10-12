@@ -2,6 +2,20 @@
  "title": "La torre",
  "summary": "Las torres se mueven en línea recta a lo largo de las filas y columnas. Aprende cómo se mueven, qué las detiene y cómo obtener una pieza gratis.",
  "unit": "Reglas del juego",
+ "rules": [
+  {
+   "title": "Líneas rectas.",
+   "text": "Cualquier distancia, arriba, abajo o de lado."
+  },
+  {
+   "title": "Sin saltos.",
+   "text": "Cualquier pieza en medio detiene a la torre."
+  },
+  {
+   "title": "Captura cayendo encima.",
+   "text": "Solo sobre piezas enemigas."
+  }
+ ],
  "steps": [
   {
    "id": "straight-lines",
@@ -18,6 +32,22 @@
    "id": "collect-the-stars",
    "title": "Recoge las estrellas",
    "narration": "¡Tu turno! Recoge las tres estrellas. Cada punto es una casilla a la que llego en una jugada."
+  },
+  {
+   "id": "one-move-or-two",
+   "title": "¿Una jugada?",
+   "question": "¿Puede esta torre llegar a la casilla marcada en una jugada?",
+   "options": [
+    {
+     "text": "Sí",
+     "why": "f6 no está en la columna ni en la fila de la torre: hacen falta dos jugadas, subir a d6 y luego cruzar."
+    },
+    {
+     "text": "No",
+     "why": "Correcto. f6 no está ni en la columna d ni en la cuarta fila: dos jugadas, d6 y luego f6."
+    }
+   ],
+   "narration": "Una rápida. ¿Puedo llegar a la casilla marcada en una sola jugada?"
   },
   {
    "id": "blocked-lines",

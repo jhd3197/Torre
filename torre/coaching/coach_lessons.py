@@ -480,7 +480,8 @@ def _render_step(step, plan, lines, cache):
         return dict(step['drill'])
     if kind == 'teach':
         raw = _raw_lesson_step(step['lesson'], step['step'], lines.lang)
-        return raw and {**raw, 'id': step['id']}
+        # The step's rule belongs to its own lesson's recap, not to this one.
+        return raw and {**{k: v for k, v in raw.items() if k != 'rule'}, 'id': step['id']}
     if kind == 'puzzle':
         from torre.learning import puzzles
         raw = cache['_packs']['by_id'].get(step['puzzle']) if cache.get('_packs') else None

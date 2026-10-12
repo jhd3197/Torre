@@ -20,7 +20,8 @@ export interface HintLadder {
   hintsUsed: number;
   revealed: boolean;
   hard: boolean;
-  /** Rungs on this ladder. */
+  /** Rungs on this ladder, in order. */
+  rungs: Rung[];
   total: number;
 }
 
@@ -33,7 +34,7 @@ export function useHintLadder(hint: string | null | undefined): HintLadder {
   const rungs: Rung[] = ['nudge', ...(hint ? ['hint' as const] : []), 'piece', 'arrow'];
   const next = hard ? null : rungs.find(rung => !shown.includes(rung)) ?? null;
   return {
-    shown, next, hard, total: rungs.length,
+    shown, next, hard, rungs, total: rungs.length,
     climb: () => {
       if (!next) return;
       setShown(s => [...s, next]);

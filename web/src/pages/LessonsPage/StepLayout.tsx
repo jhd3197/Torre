@@ -34,7 +34,8 @@ export interface Teacher { pose: MascotPose; line: ReactNode; listen: () => void
 export function StepLayout({ step, cinema, teacher, board, bar, hint, children }: {
   step: LessonStep;
   cinema: Cinema;
-  teacher: Teacher;
+  /** The coach's bubble; a concept card has none. */
+  teacher?: Teacher;
   board: ReactNode;
   bar: StepBar;
   hint?: FooterHint;
@@ -54,9 +55,11 @@ export function StepLayout({ step, cinema, teacher, board, bar, hint, children }
             <SectionChip section={sectionOf(step)} />
             {step.title && <h3>{step.title}</h3>}
           </div>
-          <TeacherRow pose={teacher.pose} speaking={cinema.speaking} onListen={teacher.listen} tone={tone} tag={bar.title}>
-            {committed && bar.explanation ? bar.explanation : teacher.line}
-          </TeacherRow>
+          {teacher && (
+            <TeacherRow pose={teacher.pose} speaking={cinema.speaking} onListen={teacher.listen} tone={tone} tag={bar.title}>
+              {committed && bar.explanation ? bar.explanation : teacher.line}
+            </TeacherRow>
+          )}
           {children}
           {place && (
             <section className="lesson-in-this">

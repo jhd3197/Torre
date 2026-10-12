@@ -2,12 +2,43 @@
  "title": "Jaque y jaque mate",
  "summary": "Cuando tu rey está atacado, debes salvarlo. Aprende las tres formas de salir de jaque, y cómo dar un jaque mate que termina el juego.",
  "unit": "Reglas del juego",
+ "rules": [
+  {
+   "title": "Jaque.",
+   "text": "Una pieza ataca al rey."
+  },
+  {
+   "title": "Tres salidas.",
+   "text": "Mover el rey, tapar el ataque o capturar al atacante."
+  },
+  {
+   "title": "Jaque mate.",
+   "text": "En jaque y sin salida: la partida termina."
+  }
+ ],
  "steps": [
   {
    "id": "what-is-check",
    "title": "Qué significa jaque",
    "text": "Cuando una pieza ataca al rey, el rey está en jaque. El jugador en jaque debe salir de él en el siguiente movimiento: no se permite nada más. Aquí la torre de las blancas da jaque por la octava fila.",
    "narration": "Cuando tu rey está atacado, eso se llama jaque. Debes arreglarlo de inmediato. No puedes ignorarlo y hacer otra cosa."
+  },
+  {
+   "id": "three-ways-card",
+   "title": "¿Qué es el jaque?",
+   "text": "Cuando una pieza ataca al rey, el rey está en **jaque**. Tienes que salir de él enseguida, de una de estas tres formas:",
+   "points": [
+    {
+     "label": "Mover"
+    },
+    {
+     "label": "Tapar"
+    },
+    {
+     "label": "Capturar"
+    }
+   ],
+   "narration": "Jaque significa que el rey está atacado. Solo hay tres salidas: mover el rey, tapar el ataque o capturar al atacante."
   },
   {
    "id": "three-ways-out",
@@ -22,6 +53,30 @@
    "title": "Jaque mate",
    "text": "Jaque mate es un jaque sin forma de salir. El rey no puede moverse a una casilla segura, nada puede bloquear, y el atacante no puede ser capturado. Aquí los propios peones de las negras encierran al rey, y el jaque de una torre no puede ser detenido. El jaque mate termina el juego.",
    "narration": "Jaque mate es jaque sin escapatoria. El rey no puede huir, nadie puede bloquear, y el atacante no puede ser tomado. Ese es el objetivo de todo el juego."
+  },
+  {
+   "id": "which-is-mate",
+   "title": "Elige el tablero",
+   "question": "¿Cuál es jaque mate?",
+   "options": [
+    {
+     "text": "A",
+     "why": "¡Sí! El rey está en jaque y sus propios peones le tapan todas las casillas de escape."
+    },
+    {
+     "text": "B",
+     "why": "Es jaque, pero el rey puede escapar a h7."
+    },
+    {
+     "text": "C",
+     "why": "¡Ni siquiera es jaque! Las negras no tienen jugadas legales: es ahogado, tablas."
+    },
+    {
+     "text": "D",
+     "why": "Es jaque, pero nadie protege a la dama, así que el rey se la come."
+    }
+   ],
+   "narration": "Mira los cuatro tableros. Solo uno es jaque mate. ¿Cuál?"
   },
   {
    "id": "back-rank-mate",

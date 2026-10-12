@@ -9,10 +9,16 @@
   "order": 7,
   "requires": ["the-king"],
   "practice": "mate-in-1",
+  "rules": [
+    {"id": "check", "title": "Check.", "text": "A piece attacks the king.", "icon": "R"},
+    {"id": "three-ways", "title": "Three ways out.", "text": "Move the king, block the attack, or capture the attacker.", "icon": "k"},
+    {"id": "checkmate", "title": "Checkmate.", "text": "In check with no way out: the game is over.", "icon": "#"}
+  ],
   "steps": [
     {
       "id": "what-is-check",
       "kind": "explain",
+      "rule": "check",
       "title": "What check means",
       "fen": "R3k3/8/8/8/8/8/8/4K3 b - - 0 1",
       "marks": [["a8", "e8"]],
@@ -21,8 +27,22 @@
       "pose": "check"
     },
     {
+      "id": "three-ways-card",
+      "kind": "card",
+      "title": "What is check?",
+      "rule": "three-ways",
+      "fen": "4k3/3p1p2/8/8/4R3/8/8/6K1 b - - 0 1",
+      "marks": [["e4", "e8"]],
+      "highlight": ["e7", "e6", "e5"],
+      "text": "When a piece attacks the king, the king is in **check**. You must get out of it right away, in one of three ways:",
+      "points": [{"icon": "k", "label": "Move"}, {"icon": "b", "label": "Block"}, {"icon": "✕", "label": "Capture"}],
+      "narration": "Check means the king is attacked. There are only three ways out: move the king, block the attack, or capture the attacker.",
+      "pose": "point"
+    },
+    {
       "id": "three-ways-out",
       "kind": "play",
+      "rule": "three-ways",
       "title": "Three ways out",
       "fen": "6k1/5ppp/8/8/8/3B4/5PP1/R3r1K1 w - - 0 1",
       "marks": [["e1"]],
@@ -36,6 +56,7 @@
     {
       "id": "what-is-checkmate",
       "kind": "explain",
+      "rule": "checkmate",
       "title": "Checkmate",
       "fen": "R5k1/5ppp/8/8/8/8/8/6K1 b - - 0 1",
       "marks": [["a8", "g8"], ["f7"], ["g7"], ["h7"]],
@@ -44,8 +65,19 @@
       "pose": "trophy"
     },
     {
+      "id": "which-is-mate",
+      "kind": "choose",
+      "title": "Pick the board",
+      "rule": "checkmate",
+      "question": "Which one is checkmate?",
+      "options": [{"text": "A", "fen": "4R1k1/5ppp/8/8/8/8/8/6K1 b - - 0 1", "correct": true, "why": "Yes! The king is in check and its own pawns block every escape square."}, {"text": "B", "fen": "4R1k1/5pp1/8/8/8/8/8/6K1 b - - 0 1", "why": "Check, but the king can slip out to h7."}, {"text": "C", "fen": "7k/5Q2/5K2/8/8/8/8/8 b - - 0 1", "why": "Not even check! Black has no legal moves, so this is stalemate: a draw."}, {"text": "D", "fen": "7k/6Q1/8/8/8/8/8/K7 b - - 0 1", "why": "Check, but nothing protects the queen, so the king simply takes it."}],
+      "narration": "Look at all four boards. Only one of them is checkmate. Which one?",
+      "pose": "magnify"
+    },
+    {
       "id": "back-rank-mate",
       "kind": "play",
+      "rule": "checkmate",
       "title": "Your first checkmate",
       "fen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
       "prompt": "Checkmate in one move.",
@@ -58,6 +90,7 @@
     {
       "id": "queen-and-king-mate",
       "kind": "play",
+      "rule": "checkmate",
       "title": "Queen and king together",
       "fen": "7k/8/6K1/8/8/8/8/1Q6 w - - 0 1",
       "prompt": "Checkmate in one move.",
@@ -70,6 +103,7 @@
     {
       "id": "check-quiz",
       "kind": "choose",
+      "rule": "three-ways",
       "title": "Quick check",
       "question": "Your king is in check. Which of these is NOT a way out?",
       "options": [

@@ -7,10 +7,11 @@ import { api } from '../../lib/api';
 import { lessonPath } from '../../lib/routes';
 import { useToast } from '../../state/AppData';
 import { LessonIntro } from '../../components/LessonIntro';
-import type { Lesson, StepReport, StepScore } from '../../types';
+import type { Lesson, LessonStep, StepReport, StepScore } from '../../types';
 import type { Cinema } from './cinema';
 import { Finished } from './Finished';
 import { StepView } from './kinds';
+import { Recap } from './Recap';
 import { LessonHeader, LessonPlaceContext } from './LessonChrome';
 
 const DONE = 'done';
@@ -36,6 +37,11 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
   const [sessionXp, setSessionXp] = useState(0);
   // When this visit opened its first step: the finish screen shows how long the lesson took.
   const [startedAt, setStartedAt] = useState<number | null>(null);
+  // This visit's answers, by step: the recap judges each rule on them.
+  const [runs, setRuns] = useState<Record<string, StepReport>>({});
+  // On the done screen: the recap first (when the lesson lists rules), any practice it starts, then the finish.
+  const [recapDone, setRecapDone] = useState(false);
+  const [practice, setPractice] = useState<{ steps: LessonStep[]; at: number } | null>(null);
   const soundOn = useLessonSoundOn();
   const narration = useNarration();
   const { speaking, speak, stop } = narration;
@@ -53,9 +59,12 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
 
   const onStep = stepParam !== undefined && !finished;
   useEffect(() => { if (onStep) setStartedAt(at => at ?? Date.now()); }, [onStep]);
+  // Leaving the done screen (taking the lesson again) brings the recap back next time.
+  useEffect(() => { if (!finished) { setRecapDone(false); setPractice(null); } }, [finished]);
 
   // A scored step was completed: post its result, bank the XP, refresh the header chip.
   const reportScore = useCallback((stepId: string, result: StepReport) => {
+    setRuns(r => ({ ...r, [stepId]: result }));
     api<StepScore>(`api/lessons/${encodeURIComponent(slug)}/steps/${encodeURIComponent(stepId)}`, result)
       .then(score => {
         if (score.xpGained > 0) setSessionXp(xp => xp + score.xpGained);
@@ -106,7 +115,8 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
     navigate(next === count ? `${lessonPath(slug)}/${DONE}` : lessonPath(slug, next));
   };
 
-  const step = lesson.steps[index];
+  const drilling = finished && practice ? practice.steps[practice.at] : null;
+  const step = drilling ?? lesson.steps[index];
   const report = (result: StepReport) => reportScore(step.id, result);
   const last = index === count - 1;
   const tools = !finished && (
@@ -126,8 +136,14 @@ export function LessonView({ slug, stepParam }: { slug: string; stepParam?: stri
   return (
     <LessonScreen>
       <LessonHeader lesson={lesson} index={index} reached={reached} onNavigate={stop} tools={tools} />
-      <LessonPlaceContext.Provider value={{ lesson, index, reached }}>
-        {finished ? <Finished lesson={lesson} cinema={cinema} xp={sessionXp} startedAt={startedAt} />
+      <LessonPlaceContext.Provider value={{ lesson, index: drilling ? lesson.steps.indexOf(drilling) : index, reached,
+        back: index > 0 && !finished ? () => { stop(); navigate(lessonPath(slug, index - 1)); } : undefined }}>
+        {drilling && practice
+          ? <StepView key={`practice-${practice.at}`} step={drilling} last={false} cinema={cinema} report={report}
+              onContinue={() => { stop(); setPractice(p => p && p.at + 1 < p.steps.length ? { ...p, at: p.at + 1 } : null); }} />
+          : finished && lesson.rules?.length && !recapDone
+            ? <Recap lesson={lesson} runs={runs} cinema={cinema} onPractise={steps => setPractice({ steps, at: 0 })} onFinish={() => setRecapDone(true)} />
+          : finished ? <Finished lesson={lesson} cinema={cinema} xp={sessionXp} startedAt={startedAt} />
           : <StepView key={step.id} step={step} onContinue={advance} last={last} cinema={cinema} report={report} />}
       </LessonPlaceContext.Provider>
     </LessonScreen>

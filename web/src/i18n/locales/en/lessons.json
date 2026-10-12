@@ -82,11 +82,11 @@
     "replayTitle": "Play line",
     "movesSoFar": "Moves so far",
     "check": "Check",
-    "retry": "Retry",
+    "retry": "Try again",
     "showMove": "Show the move",
     "showHint": "Show a hint",
     "nicelyDone": "Nicely done!",
-    "tryAgain": "Try again.",
+    "tryAgain": "Not quite",
     "hint": "<strong>Hint:</strong> {{hint}}"
   },
   "reel": {
@@ -126,7 +126,7 @@
     "startOver": "Start the line over",
     "arrow": "The arrow shows the move: <strong>{{san}}</strong>. Play it on the board.",
     "otherDefence": "Try the other defence",
-    "showMe": "Show me on the board",
+    "showMe": "Show me why",
     "showingWhy": "Why {{san}} does not work",
     "backToPosition": "Back to the position",
     "watchAgain": "Watch again",
@@ -171,7 +171,8 @@
       "stars": "Collect the stars",
       "reach": "Reach the flag",
       "capture": "Capture!",
-      "count": "Count the squares"
+      "count": "Count the squares",
+      "card": "Concept"
     },
     "kicker": "Lesson",
     "soundCheck": "Hi! If you can hear me, you are all set. Let’s learn some chess.",
@@ -196,7 +197,11 @@
     "nudge": "Look at every check, capture and threat before you move.",
     "whichPiece": "Which piece?",
     "pieceCircled": "The circled piece is the one to move.",
-    "hardMode": "Hard mode: no hints and no answers. You can turn it off in Settings."
+    "hardMode": "Hard mode: no hints and no answers. You can turn it off in Settings.",
+    "title": "Hints",
+    "used": "{{used}} of {{total}} used",
+    "waiting": "Press Hint when you want it",
+    "revealCost": "Reveal · −1 ★"
   },
   "why": {
     "mate": "That lets {{opponent}} give checkmate.",
@@ -292,5 +297,23 @@
     "collected": "{{count}} of {{total}} stars collected",
     "moves_one": "{{count}} move · best {{par}}",
     "moves_other": "{{count}} moves · best {{par}}"
+  },
+  "card": {
+    "next": "Next",
+    "back": "Back"
+  },
+  "recap": {
+    "chip": "Recap",
+    "title": "What you learned",
+    "secondLook": "Worth a second look",
+    "slips_one": "{{rule}}: one slip",
+    "slips_other": "{{rule}}: {{count}} slips",
+    "practise_one": "Practise 1",
+    "practise_other": "Practise {{count}}",
+    "tricky_one": "Nice work! {{rule}} was the tricky bit. One quick one and you will have it.",
+    "tricky_other": "Nice work! {{rule}} was the tricky bit. {{count}} quick ones and you will have it.",
+    "clean": "Clean sweep! You have every rule in this lesson.",
+    "weak": "Worth another look",
+    "good": "Got it"
   }
 }

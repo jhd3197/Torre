@@ -82,11 +82,11 @@
   "replayTitle": "Juega la línea",
   "movesSoFar": "Movimientos hasta ahora",
   "check": "Jaque",
-  "retry": "Reintentar",
+  "retry": "Inténtalo de nuevo",
   "showMove": "Muestra el movimiento",
   "showHint": "Muestra una pista",
   "nicelyDone": "¡Muy bien!",
-  "tryAgain": "Inténtalo de nuevo.",
+  "tryAgain": "Casi",
   "hint": "<strong>Pista:</strong> {{hint}}"
  },
  "reel": {
@@ -126,7 +126,7 @@
   "startOver": "Comienza la línea de nuevo",
   "arrow": "La flecha te muestra la jugada: <strong>{{san}}</strong>. Juega esa jugada en el tablero.",
   "otherDefence": "Prueba la otra defensa",
-  "showMe": "Muéstramelo en el tablero",
+  "showMe": "Muéstrame por qué",
   "showingWhy": "Por qué {{san}} no funciona",
   "backToPosition": "Volver a la posición",
   "watchAgain": "Verlo otra vez",
@@ -171,7 +171,8 @@
    "stars": "Recoge las estrellas",
    "reach": "Llega a la bandera",
    "capture": "¡Captura!",
-   "count": "Cuenta las casillas"
+   "count": "Cuenta las casillas",
+   "card": "Concepto"
   },
   "kicker": "Lección",
   "soundCheck": "¡Hola! Si me puedes escuchar, todo está listo. ¡Aprendamos ajedrez!",
@@ -196,7 +197,11 @@
   "nudge": "Mira cada jaque, cada captura y cada amenaza antes de mover.",
   "whichPiece": "¿Qué pieza?",
   "pieceCircled": "La pieza marcada con un círculo es la que debes mover.",
-  "hardMode": "Modo difícil: sin pistas ni respuestas. Puedes desactivarlo en Ajustes."
+  "hardMode": "Modo difícil: sin pistas ni respuestas. Puedes desactivarlo en Ajustes.",
+  "title": "Pistas",
+  "used": "{{used}} de {{total}} usadas",
+  "waiting": "Pulsa Pista cuando la necesites",
+  "revealCost": "Revelar · −1 ★"
  },
  "why": {
   "mate": "Eso le permite a {{opponent}} dar jaque mate.",
@@ -292,5 +297,23 @@
   "collected": "{{count}} de {{total}} estrellas recogidas",
   "moves_one": "{{count}} jugada · mejor {{par}}",
   "moves_other": "{{count}} jugadas · mejor {{par}}"
+ },
+ "card": {
+  "next": "Siguiente",
+  "back": "Atrás"
+ },
+ "recap": {
+  "chip": "Repaso",
+  "title": "Lo que aprendiste",
+  "secondLook": "Merece otro vistazo",
+  "slips_one": "{{rule}}: un fallo",
+  "slips_other": "{{rule}}: {{count}} fallos",
+  "practise_one": "Practicar 1",
+  "practise_other": "Practicar {{count}}",
+  "tricky_one": "¡Buen trabajo! {{rule}} fue lo más difícil. Uno rápido y lo tendrás.",
+  "tricky_other": "¡Buen trabajo! {{rule}} fue lo más difícil. {{count}} rápidos y lo tendrás.",
+  "clean": "¡Pleno! Dominas todas las reglas de esta lección.",
+  "weak": "Merece otro vistazo",
+  "good": "Dominado"
  }
 }

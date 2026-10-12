@@ -160,7 +160,7 @@ export function GuessView({ step, onContinue, last, cinema, report }: ScoredProp
         {tries.length > 0 && (
           <p className="lesson-verdict missed"><Trans t={t} i18nKey={revealed ? 'guess.notGameMove' : 'guess.notGameMoveTryAgain'} values={{ san: tries.at(-1) }} components={{ strong: <strong /> }} /></p>
         )}
-        <HintRungs shown={ladder.shown.filter(rung => rung !== 'arrow')} nudge={target?.nudge} hint={target?.hint} />
+        <HintRungs rungs={ladder.rungs} shown={ladder.shown.filter(rung => rung !== 'arrow')} nudge={target?.nudge} hint={target?.hint} />
         {tries.length > 0 && target?.hint && !revealed && !ladder.shown.includes('hint') && !ladder.hard && <p className="lesson-hint"><Trans t={t} i18nKey="step.hint" values={{ hint: target.hint }} components={{ strong: <strong /> }} /></p>}
         {revealed && expected && <p className="lesson-hint"><Trans t={t} i18nKey="guess.arrow" values={{ san: expected.san }} components={{ strong: <strong /> }} /></p>}
       </>}

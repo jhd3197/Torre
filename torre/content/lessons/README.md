@@ -43,7 +43,21 @@ under `problems` in `GET /api/lessons`, and `tests/test_lessons.py` fails on it.
   show the side to move at the bottom.
 
 Every step has a unique `id` (lowercase, dash-separated), a `kind` and an
-optional `title`. Squares in `marks` are `["e4"]` for a circle and
+optional `title`. Progress is kept by step id, so steps can be added, removed
+or reordered without moving anyone mid-lesson.
+
+### Rules and the recap
+
+`rules` (optional) lists what the lesson teaches, one line each; a step's
+`rule` names the one it practises. A lesson with rules ends on a recap: each
+rule with a tick, or amber when one of its steps took a miss, a hint or a
+reveal, and a **Practise** button that replays up to three of those steps
+(drills come back with new boards). `icon` is a piece letter or a short symbol.
+
+```json
+"rules": [{ "id": "no-jumping", "title": "No jumping.", "text": "Any piece in the way stops the rook.", "icon": "P" }],
+"steps": [{ "id": "count", "kind": "count", "piece": "R", "rule": "no-jumping" }]
+``` Squares in `marks` are `["e4"]` for a circle and
 `["e2", "e4"]` for an arrow.
 
 No em dashes ("—") anywhere in lesson wording: use a comma, a colon or a full stop.
@@ -103,6 +117,20 @@ between them.
   "marks": [["h7"]], "demo": ["d1d8", "g8h7"] }
 ```
 
+### `card`
+
+A concept card: the idea in a sentence or two (`**word**` sets the term in
+bold), two to four `points` with an icon each, and an optional diagram (`fen`,
+`marks`, `highlight` squares). Back and Next page through the lesson, and so
+do the arrow keys. Not scored.
+
+```json
+{ "id": "what-is-check", "kind": "card", "fen": "4k3/8/8/8/4R3/8/8/6K1 b - - 0 1",
+  "marks": [["e4", "e8"]], "highlight": ["e7", "e6", "e5"],
+  "text": "When a piece attacks the king, the king is in **check**.",
+  "points": [{ "icon": "k", "label": "Move" }, { "icon": "b", "label": "Block" }, { "icon": "✕", "label": "Capture" }] }
+```
+
 ### `play`
 
 The reader finds the moves. `line` alternates the reader's moves and the
@@ -141,6 +169,13 @@ lesson's last `play` step, so make that one the exercise that proves the idea.
 
 A multiple-choice question, with an optional position. Exactly one option is
 `"correct": true`; `why` explains each choice once it is picked.
+
+- Short answers ("Yes", "No", "2": six characters or fewer) sit side by side
+  as big buttons and answer on the tap; longer ones are picked, then checked.
+- `reveal`: marks that appear on the board once the question is answered
+  (the attacked square, the route, the escape squares).
+- **Pick the board**: give every option a `fen` and the options become small
+  boards to tap, with `text` as their label ("A", "B").
 
 ```json
 { "id": "quiz", "kind": "choose", "question": "...",

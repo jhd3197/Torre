@@ -191,6 +191,20 @@ class ParseTests(unittest.TestCase):
         # Answered kinds are scored, a watched drill is not: the page reads the flag.
         self.assertEqual([s["scored"] for s in item["steps"]], [False, True, True, True])
 
+    def test_card_choose_boards_and_rules(self):
+        item = lessons.parse(lesson(rules=[{"id": "check", "title": "Check.", "text": "The king is attacked.", "icon": "k"}], steps=[
+            {"id": "card", "kind": "card", "fen": FORK, "text": "Check means the king is attacked.", "rule": "check",
+             "points": [{"icon": "k", "label": "Move"}, {"icon": "✕", "label": "Capture"}], "highlight": ["g8"]},
+            {"id": "pick", "kind": "choose", "question": "Which is mate?", "reveal": [["e8"]], "options": [
+                {"text": "A", "fen": FORK, "correct": True}, {"text": "B", "fen": FORK}]},
+        ]), "cards")
+        card, pick = item["steps"]
+        self.assertEqual(item["rules"], [{"id": "check", "title": "Check.", "text": "The king is attacked.", "icon": "k"}])
+        self.assertEqual((card["kind"], card["scored"], card["rule"], card["highlight"]), ("card", False, "check", ["g8"]))
+        self.assertEqual(card["points"][1], {"icon": "✕", "label": "Capture"})
+        self.assertEqual(pick["reveal"], [{"from": "e8", "to": "e8"}])
+        self.assertEqual(pick["options"][0]["fen"], chess.Board(FORK).fen())
+
     def test_problems_are_reported_not_raised(self):
         cases = {
             "unknown kind": {"id": "x", "kind": "video", "fen": FORK},
@@ -206,6 +220,10 @@ class ParseTests(unittest.TestCase):
             '"stars" must be a whole number from 1 to 5': {"id": "x", "kind": "stars", "piece": "R", "stars": 9},
             '"distance" must be a whole number from 2 to 4': {"id": "x", "kind": "reach", "piece": "N", "distance": 1},
             "only a stars step can be watched": {"id": "x", "kind": "reach", "piece": "R", "watch": True},
+            "every option a \"fen\", or none": {"id": "x", "kind": "choose", "question": "?",
+                                                 "options": [{"text": "a", "fen": FORK, "correct": True}, {"text": "b"}]},
+            "needs an \"icon\"": {"id": "x", "kind": "card", "text": "x", "points": [{"label": "Move"}]},
+            "one of the lesson's \"rules\"": {"id": "x", "kind": "explain", "fen": FORK, "text": "x", "rule": "nope"},
         }
         for message, step in cases.items():
             with self.subTest(message=message), tempfile.TemporaryDirectory() as tmp:

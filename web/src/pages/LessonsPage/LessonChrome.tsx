@@ -17,17 +17,21 @@ const SECTION_ICONS: Record<Section, string> = {
 };
 
 /** The lesson the screen shows and where the reader is in it, for the parts that list its steps. */
-export interface LessonPlace { lesson: Lesson; index: number; reached: number }
+export interface LessonPlace {
+  lesson: Lesson; index: number; reached: number;
+  /** Go back a step (none on the first). */
+  back?: () => void;
+}
 export const LessonPlaceContext = createContext<LessonPlace | null>(null);
 export const useLessonPlace = () => useContext(LessonPlaceContext);
 
-export function SectionChip({ section, icon = true }: { section: Section; icon?: boolean }) {
+export function SectionChip({ section, icon = true, label }: { section: Section; icon?: boolean; label?: string }) {
   const { t } = useTranslation('lessons');
   return (
     <span className={`lesson-chip section-${section}`}>
       {icon && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6"
         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SECTION_ICONS[section]} /></svg>}
-      {t(`section.${section}`)}
+      {label ?? t(`section.${section}`)}
     </span>
   );
 }

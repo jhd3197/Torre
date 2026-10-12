@@ -4,6 +4,7 @@ Each lesson is a JSON file in lessons/ (see lessons/README.md). A lesson is a
 list of steps, and every step has a kind:
 
     explain   a position with text, arrows and an optional demo line to step through
+    card      a concept card: an idea in a sentence, two to four points with icons, an optional diagram
     play      the user finds the move (or moves) of a line; the replies are played for them, and
               `branches` give the opponent other replies to pick from
     choose    a multiple-choice question, optionally beside a position
@@ -95,12 +96,12 @@ def _mascot(step, where):
     return out
 
 
-def _marks(step, where):
+def _marks(step, where, key='marks'):
     """Arrows ["e2", "e4"] and circled squares ["e4"]."""
-    marks = step.get('marks', [])
+    marks = step.get(key, [])
     if not isinstance(marks, list) or not all(
             isinstance(m, list) and len(m) in (1, 2) and all(isinstance(s, str) and SQUARE.match(s) for s in m) for m in marks):
-        raise LessonError(f'{where}: "marks" must be a list of [square] circles or [from, to] arrows.')
+        raise LessonError(f'{where}: "{key}" must be a list of [square] circles or [from, to] arrows.')
     return [{'from': m[0], 'to': m[-1]} for m in marks]
 
 
@@ -194,11 +195,41 @@ def _choose(step, where):
         _text(option, 'text', f'{where}, option {i + 1}')
     if sum(1 for o in options if o.get('correct') is True) != 1:
         raise LessonError(f'{where}: exactly one option must be "correct": true.')
+    # "Pick the board": every option is a position of its own, shown as a small board.
+    boards = [o.get('fen') for o in options]
+    if any(boards) and not all(boards):
+        raise LessonError(f'{where}: give every option a "fen", or none of them.')
     fen = step.get('fen')
     return {'fen': _board(fen, where).fen() if fen else None, 'question': _text(step, 'question', where),
-            'marks': _marks(step, where),
-            'options': [{'text': o['text'], 'correct': o.get('correct') is True, 'why': o.get('why')} for o in options],
+            'marks': _marks(step, where), 'reveal': _marks(step, where, 'reveal'),
+            'options': [{'text': o['text'], 'correct': o.get('correct') is True, 'why': o.get('why'),
+                         **({'fen': _board(o['fen'], f'{where}, option {i + 1}').fen()} if o.get('fen') else {})}
+                        for i, o in enumerate(options)],
             **_mascot(step, where)}
+
+
+# A concept card's points: a piece (FEN letter) or a short symbol, and a word or two.
+CARD_POINTS = 4
+
+
+def _card(step, where):
+    """A concept card: an idea in a sentence or two, two to four points with an icon each, and an
+    optional diagram (`fen`, `marks`, `highlight`)."""
+    points = step.get('points', [])
+    if not isinstance(points, list) or len(points) > CARD_POINTS:
+        raise LessonError(f'{where}: "points" must be a list of at most {CARD_POINTS} {{"icon", "label"}} items.')
+    for i, point in enumerate(points):
+        icon = point.get('icon') if isinstance(point, dict) else None
+        if not isinstance(icon, str) or not 1 <= len(icon) <= 2:
+            raise LessonError(f'{where}: point {i + 1} needs an "icon": a piece letter like "k", or a symbol like "✕".')
+        _text(point, 'label', f'{where}, point {i + 1}')
+    highlight = step.get('highlight', [])
+    if not isinstance(highlight, list) or not all(isinstance(q, str) and SQUARE.match(q) for q in highlight):
+        raise LessonError(f'{where}: "highlight" must be a list of squares.')
+    fen = step.get('fen')
+    return {'fen': _board(fen, where).fen() if fen else None, 'text': _text(step, 'text', where),
+            'points': [{'icon': p['icon'], 'label': p['label']} for p in points],
+            'marks': _marks(step, where), 'highlight': highlight, **_mascot(step, where)}
 
 
 def _reel(step, where):
@@ -298,15 +329,34 @@ def _drill(kind):
 
 # The step kinds a lesson may use. A kind missing here is refused at load time,
 # so a lesson can never reach a step the page cannot show.
-KINDS = {'explain': _explain, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess,
+KINDS = {'explain': _explain, 'card': _card, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess,
          **{kind: _drill(kind) for kind in DRILL_FIELDS}}
 # Kinds the reader only watches or reads; every other kind is answered and scored (story.py).
-WATCHED = ('explain', 'reel')
+WATCHED = ('explain', 'card', 'reel')
 
 
 def is_scored(step):
     """Whether finishing the step posts a result: answered kinds, except a drill shown with "watch"."""
     return step['kind'] in KINDS and step['kind'] not in WATCHED and not step.get('watch')
+
+
+def _rules(raw, slug):
+    """The lesson's rules, for its recap: [{"id", "title", "text", "icon"}]. A step's "rule" names
+    the one it practises, so the recap can say which rule needs another look."""
+    rules = raw.get('rules', [])
+    if not isinstance(rules, list):
+        raise LessonError(f'{slug}: "rules" must be a list of {{"id", "title", "text"}} items.')
+    out, seen = [], set()
+    for i, rule in enumerate(rules):
+        where = f'{slug}, rule {i + 1}'
+        if not isinstance(rule, dict) or not isinstance(rule.get('id'), str) or not SLUG.match(rule['id']) or rule['id'] in seen:
+            raise LessonError(f'{where}: every rule needs a unique "id" in lowercase-dash form.')
+        seen.add(rule['id'])
+        icon = rule.get('icon')
+        if icon is not None and (not isinstance(icon, str) or not 1 <= len(icon) <= 2):
+            raise LessonError(f'{where}: "icon" is a piece letter like "r", or a symbol like "✕".')
+        out.append({'id': rule['id'], 'title': _text(rule, 'title', where), 'text': _text(rule, 'text', where), 'icon': icon})
+    return out
 
 
 def parse(raw, slug):
@@ -337,6 +387,7 @@ def parse(raw, slug):
     practice = raw.get('practice')
     if practice is not None and (not isinstance(practice, str) or not SLUG.match(practice)):
         raise LessonError(f'{slug}: "practice" must be a puzzle theme slug, like "fork".')
+    rules = _rules(raw, slug)
     steps = raw.get('steps')
     if not isinstance(steps, list) or not steps:
         raise LessonError(f'{slug}: a lesson needs at least one step.')
@@ -358,11 +409,16 @@ def parse(raw, slug):
                 'orientation': step.get('orientation', orientation), **KINDS[kind](step, where)}
         # The page reads this instead of keeping its own list of answered kinds.
         item['scored'] = is_scored(item)
+        rule = step.get('rule')
+        if rule is not None:
+            if rule not in {r['id'] for r in rules}:
+                raise LessonError(f'{where}: "rule" must be the id of one of the lesson\'s "rules".')
+            item['rule'] = rule
         parsed.append(item)
     return {'slug': slug, 'title': _text(raw, 'title', slug), 'summary': _text(raw, 'summary', slug),
             'category': raw['category'], 'level': raw['level'], 'minutes': minutes, 'requires': requires,
             'unit': unit, 'order': position, 'practice': practice, 'video': None,
-            'orientation': orientation, 'steps': parsed}
+            'orientation': orientation, 'rules': rules, 'steps': parsed}
 
 
 UNITS_FILE = 'units.json'
@@ -454,7 +510,7 @@ def _load_all(folder, videos=None):
 
 # The text a translation overlay may replace (lessons/<lang>/<slug>.json); everything else in a
 # lesson (ids, positions, moves, ply numbers) always comes from the English file.
-TEXT_FIELDS = {'title', 'summary', 'text', 'narration', 'prompt', 'nudge', 'hint', 'success', 'question', 'why'}
+TEXT_FIELDS = {'title', 'summary', 'text', 'narration', 'prompt', 'nudge', 'hint', 'success', 'question', 'why', 'label'}
 
 
 def _merge_text(target, overlay):

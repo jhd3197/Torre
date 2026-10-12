@@ -276,8 +276,10 @@ export interface LessonMark { from: string; to: string }
 
 interface StepBase {
   id: string; title: string | null; orientation: Color; marks: LessonMark[];
-  /** Finishing it posts a result (lessons.py is_scored); explain, reel and watched drills do not. */
+  /** Finishing it posts a result (lessons.py is_scored); explain, card, reel and watched drills do not. */
   scored?: boolean;
+  /** The lesson rule (Lesson.rules) this step practises, for the recap. */
+  rule?: string;
 }
 export interface ExplainStep extends StepBase {
   kind: 'explain'; fen: string; text: string; demo: Move[];
@@ -303,9 +305,21 @@ export interface PlayStep extends StepBase, PlayLine {
   narration?: string;
   pose?: string;
 }
+/** A concept card: the idea in a sentence or two, a few points with icons, an optional diagram. */
+export interface CardStep extends StepBase {
+  kind: 'card'; fen: string | null; text: string;
+  /** `icon` is a piece letter ("k", "B") or a short symbol ("✕"). */
+  points: { icon: string; label: string }[];
+  highlight: string[];
+  narration?: string;
+  pose?: string;
+}
 export interface ChooseStep extends StepBase {
   kind: 'choose'; fen: string | null; question: string;
-  options: { text: string; correct: boolean; why: string | null }[];
+  /** "Pick the board": each option is its own position. */
+  options: { text: string; correct: boolean; why: string | null; fen?: string }[];
+  /** Marks shown on the board once the question is answered (the attacked square, the escape squares). */
+  reveal?: LessonMark[];
   narration?: string;
   pose?: string;
 }
@@ -344,7 +358,7 @@ export interface DrillStep extends Omit<StepBase, 'marks'> {
   narration?: string;
   pose?: string;
 }
-export type LessonStep = ExplainStep | PlayStep | ChooseStep | ReelStep | GuessStep | DrillStep;
+export type LessonStep = ExplainStep | CardStep | PlayStep | ChooseStep | ReelStep | GuessStep | DrillStep;
 
 interface LessonInfo {
   slug: string; title: string; summary: string; category: LessonCategory; level: LessonLevel; minutes: number;
@@ -365,8 +379,12 @@ interface LessonInfo {
 }
 export interface LessonVideo { youtube: string }
 export interface LessonCard extends LessonInfo { steps: number }
+/** One thing the lesson teaches, in a line; the recap shows each with how it went. */
+export interface LessonRule { id: string; title: string; text: string; icon: string | null }
 export interface Lesson extends LessonInfo {
   orientation: Color; steps: LessonStep[];
+  /** What the lesson teaches, for the recap at its end (empty: no recap). */
+  rules?: LessonRule[];
   /** Per-step result ledger, keyed by step id (stars and XP are derived from these). */
   stepResults?: Record<string, StepResult>;
   /** 0–3 stars for the lesson, derived server-side from the step ledger. */

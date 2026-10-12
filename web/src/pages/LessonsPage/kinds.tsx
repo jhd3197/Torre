@@ -5,6 +5,7 @@
 // Adding a kind: its parser in lessons.py, its type in types.ts, one entry here.
 import type { ComponentType } from 'react';
 import type { LessonStep } from '../../types';
+import { CardView } from './CardView';
 import { ChooseView } from './ChooseView';
 import { DrillView } from './DrillView';
 import { ExplainView } from './ExplainView';
@@ -26,6 +27,7 @@ interface KindEntry<K extends Kind> {
 
 const STEP_KINDS: { [K in Kind]: KindEntry<K> } = {
   explain: { view: ExplainView, section: 'learn' },
+  card: { view: CardView, section: 'learn' },
   reel: { view: ReelView, section: 'watch' },
   play: { view: PlayView, section: 'try' },
   guess: { view: GuessView, section: 'try' },
