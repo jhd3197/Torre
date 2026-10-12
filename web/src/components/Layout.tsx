@@ -25,10 +25,11 @@ export interface RouteHandle {
   phone?: { topbar?: boolean; tabbar?: boolean };
 }
 
-/** The phone's tab bar: the four places a thumb goes most. The rest are a tap away from Home and Profile. */
+/** The phone's tab bar: the five places a thumb goes most. The rest are a tap away from Home and Profile. */
 const TABS: NavItem[] = [
   { to: '/', key: 'home', icon: 'art/nav/home.png', end: true },
   { to: '/play/bots', key: 'play', icon: 'art/nav/play.png', match: '/play' },
+  { to: '/story', key: 'story', icon: 'art/nav/explore.png', match: '/story' },
   { to: '/puzzles', key: 'puzzles', icon: 'art/nav/puzzles.png', match: '/puzzles' },
   { to: '/profile', key: 'profile', icon: 'art/nav/awards.png', match: '/profile' },
 ];

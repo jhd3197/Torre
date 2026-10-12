@@ -39,7 +39,7 @@ $gutter: 14px;
   inset: auto 0 0;
   z-index: 50;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   padding: 6px 8px calc(8px + env(safe-area-inset-bottom));
   background: $white;
   border-top: 1.5px solid $lobby-line;
@@ -869,8 +869,8 @@ $gutter: 14px;
     min-height: 40px;
   }
 }
-// A review fills the screen, so its controls rest on the bottom edge even when the page is short.
-.shell main .phone-workspace[data-mode="replay"] {
+// A game or a review fills the screen, so its controls rest on the bottom edge even when the page is short.
+.shell main .phone-workspace {
   min-height: var(--app-vh, 100vh);
 }
 .phone-summary {
@@ -969,8 +969,8 @@ $gutter: 14px;
     font-size: $fs-lg;
   }
 }
-// A review has no tab bar: its controls stay at the bottom of the screen.
-.phone-workspace[data-mode="replay"] .phone-dock {
+// A game or a review has no tab bar: its controls stay at the bottom of the screen.
+.phone-workspace .phone-dock {
   position: sticky;
   bottom: 0;
   z-index: 5;

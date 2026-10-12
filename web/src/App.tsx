@@ -78,14 +78,16 @@ function HomeEntry() {
 const handle = (title: string, actions: RouteHandle['actions'] = []): RouteHandle => ({ title, actions });
 // Pages whose own hero or header already names them: no shared top bar.
 const bare = (title: string): RouteHandle => ({ title, topbar: false });
-// Board screens with a phone header of their own; a review also gives the tab bar's room to its controls.
+// Board screens with a phone header of their own. A game or a review also gives the tab bar's room to its controls.
 const phoneBoard = (base: RouteHandle, tabbar = true): RouteHandle => ({ ...base, phone: { topbar: false, tabbar } });
+// A lesson in progress keeps the whole phone screen: no tab bar to tap away by accident.
+const noTabbar = (base: RouteHandle): RouteHandle => ({ ...base, phone: { tabbar: false } });
 
 export const routes: RouteObject[] = [{
   element: <Layout />,
   children: [
     { index: true, element: <HomeEntry />, handle: bare('Home') },
-    { path: 'play', element: <PlayPage />, handle: phoneBoard(handle('Play', ['new-game'])) },
+    { path: 'play', element: <PlayPage />, handle: phoneBoard(handle('Play', ['new-game']), false) },
     { path: 'play/bots', element: <BotsHomePage />, handle: bare('Bots') },
     { path: 'play/bots/:id', element: <BotCollectionPage />, handle: bare('Bots') },
     { path: 'games', element: <GamesIndex />, handle: handle('Games', ['import']) },
@@ -106,7 +108,8 @@ export const routes: RouteObject[] = [{
     { path: 'story', element: <StoryPage />, handle: bare('Story') },
     { path: 'profile', element: <ProfilePage />, handle: bare('Profile') },
     // The gate keeps story lessons at their /lessons URLs but swaps in focus mode.
-    { path: 'lessons/:slug?/:step?', element: <LessonFocusGate />, handle: handle('Lessons') },
+    { path: 'lessons', element: <LessonFocusGate />, handle: handle('Lessons') },
+    { path: 'lessons/:slug/:step?', element: <LessonFocusGate />, handle: noTabbar(handle('Lessons')) },
     { path: 'awards', element: <AwardsPage />, handle: handle('Awards') },
     { path: 'settings/:section?', element: <SettingsPage />, handle: bare('Settings') },
     { path: 'coach', element: <CoachPage />, handle: bare('Coach') },
