@@ -14,8 +14,85 @@
   <link rel="icon" href="art/logo/app-icon-64.png" type="image/png">
   <link rel="apple-touch-icon" href="pwa/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
+  <!-- The launch sting (lib/splash.ts): the video ident's "ta-DUM", played once when Torre opens
+       as an installed app. Inline, so it is on screen before the app's code has downloaded. -->
+  <style>
+    html, body { background: #f8f6ee; }
+    #splash { display: none; }
+    html[data-splash] body { overflow: hidden; }
+    html[data-splash] #splash {
+      position: fixed; inset: 0; z-index: 2000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+      padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom);
+      background: radial-gradient(ellipse at 50% 46%, rgba(241, 227, 184, .9), transparent 62%), #f8f6ee;
+      font-family: Nunito, system-ui, sans-serif; color: #1f4a3e;
+      transition: opacity .35s ease;
+    }
+    #splash .splash-mark { position: relative; display: grid; place-items: center; }
+    #splash .splash-tile, #splash .splash-ring { grid-area: 1 / 1; width: 132px; height: 132px; }
+    #splash .splash-tile {
+      transform-origin: 50% 100%;
+      filter: drop-shadow(0 10px 18px rgba(31, 74, 62, .3));
+      animation: splash-drop .55s cubic-bezier(.5, 0, .75, 0) both, splash-punch .6s .95s cubic-bezier(.3, 1.6, .5, 1) both;
+    }
+    #splash .splash-ring {
+      box-sizing: border-box; border-radius: 28%; border: 5px solid #c9a552; opacity: 0;
+      animation: splash-ring .9s .95s ease-out forwards;
+    }
+    #splash .splash-name {
+      font-size: 46px; font-weight: 900; line-height: 1; letter-spacing: -.03em;
+      animation: splash-name .6s 1.15s cubic-bezier(.3, .7, .25, 1) both;
+    }
+    #splash .splash-name b { color: #c9a552; }
+    #splash .splash-status {
+      min-height: 20px; margin: 0; color: #5f6b5f; font-size: 15px; font-weight: 800;
+      opacity: 0; transition: opacity .3s ease;
+    }
+    #splash .splash-status.on { opacity: 1; }
+    #splash.leaving { opacity: 0; pointer-events: none; }
+    #splash.leaving .splash-tile { animation: splash-leave .35s ease-in both; }
+    @keyframes splash-drop {
+      0% { opacity: 0; transform: translateY(-46vh) scale(.92, 1.08); }
+      85% { opacity: 1; transform: translateY(0) scale(1.1, .88); }
+      100% { transform: none; }
+    }
+    @keyframes splash-punch { 0%, 100% { scale: 1; } 25% { scale: 1.18; } }
+    @keyframes splash-ring { from { opacity: .9; scale: 1; } to { opacity: 0; scale: 1.9; } }
+    @keyframes splash-name {
+      from { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-16px); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+    @keyframes splash-leave { to { scale: 1.25; opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      #splash .splash-tile, #splash .splash-ring, #splash .splash-name { animation: none; }
+      #splash .splash-ring { display: none; }
+    }
+  </style>
+  <script>
+    // Installed (home screen / standalone) and not yet played in this session: show the sting.
+    // ?splash=1 shows it in a normal tab too, to try it out.
+    (function () {
+      var installed = window.navigator.standalone === true ||
+        (window.matchMedia && window.matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches);
+      var forced = /[?&]splash=1\b/.test(location.search);
+      var played = false;
+      try { played = sessionStorage.getItem('torre-splash') === '1'; sessionStorage.setItem('torre-splash', '1'); } catch (e) { /* private mode */ }
+      if (!forced && !(installed && !played)) return;
+      document.documentElement.setAttribute('data-splash', '');
+      // If the app's code never arrives, the splash still gets out of the way.
+      setTimeout(function () { document.documentElement.removeAttribute('data-splash'); }, 8000);
+    })();
+  </script>
 </head>
 <body>
+  <div id="splash" aria-hidden="true">
+    <div class="splash-mark">
+      <i class="splash-ring"></i>
+      <img class="splash-tile" src="art/logo/app-icon-512.png" alt="" width="132" height="132">
+    </div>
+    <span class="splash-name">Torre<b>.sh</b></span>
+    <p class="splash-status"></p>
+  </div>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

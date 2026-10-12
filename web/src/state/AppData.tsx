@@ -6,7 +6,9 @@
 // - game data: games, engines, insights (change on load and when analysis finishes)
 // useAppData() still returns all of it merged, for components that genuinely need several.
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import i18n from 'i18next';
 import { api } from '../lib/api';
+import { splashDone, splashStep } from '../lib/splash';
 import { usePoll } from '../hooks/usePoll';
 import type { AnalysisStatus, EngineInfo, GameSummary, InsightsData } from '../types';
 
@@ -195,6 +197,12 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     refreshAnalysis();
     return () => clearTimeout(toastTimer.current);
   }, [reloadGames, loadEngines, refreshAnalysis]);
+
+  // The launch splash (installed app only) waits for the library, which Home opens on.
+  useEffect(() => {
+    if (gamesLoaded) splashDone();
+    else splashStep(i18n.t('nav:splash.games'));
+  }, [gamesLoaded]);
 
   const gameData = useMemo<GameData>(() => ({
     games, gamesLoaded, gamesError, engineAvailable, engines, enginesLoaded, refreshEngines: loadEngines, reloadGames,

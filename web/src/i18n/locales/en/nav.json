@@ -1,5 +1,8 @@
 {
   "brand": "Torre",
+  "splash": {
+    "games": "Getting your games ready"
+  },
   "titles": {
     "Home": "Home",
     "Play": "Play",
