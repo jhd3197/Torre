@@ -36,7 +36,7 @@ jobs:
       - name: Bump the version and push the tag
         id: bump
         if: steps.released.outputs.yes != 'true'
-        uses: mathieudutour/github-tag-action@v6.2
+        uses: mathieudutour/github-tag-action@v7
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
