@@ -30,3 +30,5 @@
 @use "rooky";
 @use "consistency";
 @use "phone";
+// The lesson screen: last, so its full-window page is not reshaped by the shell layers above.
+@use "lesson-screen";

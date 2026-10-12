@@ -178,6 +178,42 @@ arrow shows the game move. Takes everything a `reel` takes, plus:
 `ply` is the move to guess (moves 1 to ply-1 are on the board). `also` lists other
 moves good enough to count as found; the game move is still the one played on.
 
+### Drills: `stars`, `reach`, `capture`, `count`
+
+Little games for one piece on a bare board. A drill step is a recipe, not a
+position: the page makes a fresh layout from it every time the step opens
+(`web/src/lib/drills.ts`) and checks it can be solved, so taking the lesson again
+gives a new board with the same goal. That also makes drills easy to generate:
+the coach (or a model writing a lesson) only picks the piece and the numbers.
+
+`piece` is `R`, `B`, `Q`, `N` or `K` (your piece, always White). Every drill takes
+the optional `prompt`, `nudge` and `success` to replace the page's own wording,
+plus `narration` and `pose`. Leave `prompt` out unless the wording must be
+special: the page's default fits whatever board it made. Write `narration`
+that is true for any layout ("Collect all three stars"), never one position
+("the star on c5").
+
+| kind | the reader... | fields (default, range) |
+| --- | --- | --- |
+| `stars` | lands on every star, as few moves as possible (the page shows the best count) | `stars` (3, 1-5), `blockers` (0, 0-8), `watch` |
+| `reach` | gets the piece to the flag around their own pawns | `blockers` (3, 0-10), `distance` (2, 2-4): the fewest moves the flag takes |
+| `capture` | takes the one black piece that is in reach; the others are blocked or off its lines | `enemies` (3, 2-4), `blockers` (1, 0-6) |
+| `count` | counts the squares the piece reaches in one move, from three choices | `blockers` (1, 0-4), `enemies` (1, 0-3) |
+
+`"watch": true` on a `stars` step makes it a demonstration: the coach collects
+the stars by the shortest route while the reader watches. It is not scored.
+
+Hints climb three rungs: words (`nudge`, or the page's own), then the line to
+follow glows, then an arrow shows the move. The count drill uncovers half the
+squares, then all of them. Wrong taps say why: your own piece, the way the piece
+does not move, or something in the way.
+
+```json
+{ "id": "collect-the-stars", "kind": "stars", "piece": "R", "stars": 3,
+  "title": "Collect the stars", "narration": "Your turn! Collect all three stars." }
+{ "id": "find-a-way-around", "kind": "reach", "piece": "R", "blockers": 4, "distance": 2 }
+```
+
 ## Game stories
 
 `game_story.py` builds a guess lesson from a master game: `download_masters.py`

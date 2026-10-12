@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChessBoard } from '../../components/ChessBoard';
 import type { MascotPose } from '../../components/Reward';
-import { VerdictBar } from '../../components/VerdictBar';
 import { usePosition } from '../../hooks/useChess';
 import { usePlanning } from '../../hooks/usePlanning';
 import { useVerdictSound } from '../../hooks/useSounds';
 import type { ChooseStep, Move } from '../../types';
 import { useAutoplayStart, useSpeakThenContinue } from './cinema';
-import { StepLayout, type ScoredProps } from './StepLayout';
-import { TeacherRow } from './TeacherRow';
+import { StepLayout, type ScoredProps, type StepBar } from './StepLayout';
 
 const NO_MOVES: Move[] = [];
 
@@ -42,21 +40,22 @@ export function ChooseView({ step, onContinue, last, cinema, report }: ScoredPro
 
   function retry() { setCommitted(false); setSelected(null); }
 
-  const bar = solved
-    ? <VerdictBar verdict="correct" title={t('step.nicelyDone')} explanation={option?.why ?? undefined}
-        primary={{ label: last ? t('step.finish') : t('step.continue'), onClick: onContinue }} />
+  const bar: StepBar = solved
+    ? { verdict: 'correct', title: t('step.nicelyDone'), explanation: option?.why ?? undefined,
+        primary: { label: last ? t('step.finish') : t('step.continue'), onClick: onContinue } }
     : committed
-      ? <VerdictBar verdict="wrong" title={t('step.tryAgain')} explanation={option?.why ?? t('choose.tryAnother')}
-          primary={{ label: t('step.retry'), onClick: retry }} />
-      : <VerdictBar primary={{ label: t('step.check'), onClick: check, disabled: selected === null }} />;
+      ? { verdict: 'wrong', title: t('step.tryAgain'), explanation: option?.why ?? t('choose.tryAnother'),
+          primary: { label: t('step.retry'), onClick: retry } }
+      : { primary: { label: selected === null ? t('choose.pick') : t('step.check'), onClick: check, disabled: selected === null } };
 
   return (
-    <StepLayout bar={bar} board={step.fen && <ChessBoard board={board} flipped={step.orientation === 'black'} planning={planning} movable={false} annotations={step.marks} />}>
-      <TeacherRow pose={committed ? (solved ? 'excited' : 'confused') : (step.pose as MascotPose | undefined) ?? 'thinking'} speaking={cinema.speaking}
-        onListen={() => cinema.speak({ narration: step.narration ?? step.question })}>
-        {step.narration ?? step.question}
-      </TeacherRow>
-      {step.title && <h3>{step.title}</h3>}
+    <StepLayout step={step} cinema={cinema} bar={bar}
+      teacher={{
+        pose: committed ? (solved ? 'excited' : 'confused') : (step.pose as MascotPose | undefined) ?? 'thinking',
+        line: step.narration ?? step.question,
+        listen: () => cinema.speak({ narration: step.narration ?? step.question }),
+      }}
+      board={step.fen && <ChessBoard board={board} flipped={step.orientation === 'black'} planning={planning} movable={false} annotations={step.marks} />}>
       {step.narration && <p className="lesson-prompt">{step.question}</p>}
       <div className={`lesson-options${committed ? ' input-locked' : ''}`} role="group" aria-label={t('choose.answers')}>
         {step.options.map((o, i) => {

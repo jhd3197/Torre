@@ -1,3 +1,4 @@
+import type { DrillKind, DrillPiece } from './lib/drills';
 // Shapes returned by studio.py. Legal moves and game state always come from python-chess.
 
 export type Color = 'white' | 'black';
@@ -319,7 +320,27 @@ export interface GuessStep extends Omit<ReelStep, 'kind'> {
   kind: 'guess';
   guesses: GuessStop[];
 }
-export type LessonStep = ExplainStep | PlayStep | ChooseStep | ReelStep | GuessStep;
+/**
+ * A drill (lib/drills.ts): a little game for one piece on a bare board. The step is a recipe;
+ * the page makes a fresh solvable layout from it each time, so a repeat is a new position.
+ */
+export interface DrillStep extends Omit<StepBase, 'marks'> {
+  kind: DrillKind;
+  piece: DrillPiece;
+  stars?: number;
+  blockers?: number;
+  enemies?: number;
+  distance?: number;
+  /** stars only: the coach collects them while you watch. */
+  watch?: boolean;
+  /** Overrides for the page's own wording. */
+  prompt?: string;
+  nudge?: string;
+  success?: string;
+  narration?: string;
+  pose?: string;
+}
+export type LessonStep = ExplainStep | PlayStep | ChooseStep | ReelStep | GuessStep | DrillStep;
 
 interface LessonInfo {
   slug: string; title: string; summary: string; category: LessonCategory; level: LessonLevel; minutes: number;

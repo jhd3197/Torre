@@ -4,7 +4,7 @@
   "summary": "The knight jumps in an L-shape and is the only piece that can leap over others. Learn its move and why it hates the corner.",
   "category": "basics",
   "level": "beginner",
-  "minutes": 5,
+  "minutes": 7,
   "unit": "Rules of the game",
   "order": 4,
   "steps": [
@@ -19,6 +19,15 @@
       "pose": "puzzle"
     },
     {
+      "id": "collect-the-stars",
+      "kind": "stars",
+      "piece": "N",
+      "stars": 2,
+      "title": "Collect the stars",
+      "narration": "Hop the knight to every star. Remember the L: two squares one way, then one to the side.",
+      "pose": "detective"
+    },
+    {
       "id": "jumping-over",
       "kind": "explain",
       "title": "Jumping over pieces",
@@ -28,6 +37,16 @@
       "text": "The knight is the only piece that can jump. Pieces in between do not block it; only the landing square matters. That is why a knight can move on the very first turn, hopping right over its own pawns.",
       "narration": "Here's the knight's superpower: it can jump. At the very start of the game, it hops right over the pawns. [move] Nothing in between can block it.",
       "pose": "excited"
+    },
+    {
+      "id": "reach-the-flag",
+      "kind": "reach",
+      "piece": "N",
+      "blockers": 6,
+      "distance": 3,
+      "title": "Jump to the flag",
+      "narration": "Pawns everywhere? No problem for a knight. Jump your way to the flag.",
+      "pose": "determined"
     },
     {
       "id": "knight-in-the-corner",

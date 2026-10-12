@@ -10,10 +10,20 @@
    "narration": "Aquí viene la dama, la pieza más poderosa del ajedrez. Se mueve como una torre y un alfil combinados: líneas rectas y diagonales, a donde ella quiera."
   },
   {
+   "id": "collect-the-stars",
+   "title": "Recoge las estrellas",
+   "narration": "La dama va recta y en diagonal. Recoge todas las estrellas en las menos jugadas posibles."
+  },
+  {
    "id": "not-too-early",
    "title": "Paciencia con la dama",
    "text": "Como es tan valiosa, la dama tiene que correr cada vez que una pieza más barata la ataca. No la saques demasiado pronto: en el ejemplo, las negras desarrollan un caballo con un ataque contra ella, y las blancas tienen que desperdiciar otro movimiento.",
    "narration": "Una advertencia: no apresures a tu dama. Supongamos que las blancas la sacan a g4 en el segundo movimiento. [move] Las negras simplemente desarrollan un caballo, y la ataca. [move] Así que la dama tiene que correr de nuevo. [move] ¿Ves? Las negras obtuvieron una pieza gratis, y las blancas desperdiciaron un movimiento."
+  },
+  {
+   "id": "capture-drill",
+   "title": "¡Captura!",
+   "narration": "Muchos objetivos, pero solo uno tiene el camino libre. Encuéntralo y tómalo."
   },
   {
    "id": "long-diagonal-grab",

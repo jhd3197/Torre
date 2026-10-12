@@ -4,7 +4,7 @@
   "summary": "The king moves one square at a time and must never be left in check. Learn its moves and the rules that keep it safe.",
   "category": "basics",
   "level": "beginner",
-  "minutes": 4,
+  "minutes": 5,
   "unit": "Rules of the game",
   "order": 5,
   "steps": [
@@ -17,6 +17,15 @@
       "text": "The king moves one square in any direction: forward, backward, sideways or diagonally. It is not the strongest piece, but it is the most important one. If your king is trapped, you lose the game.",
       "narration": "This is the king. He's slow, only one square at a time, but he can go in any direction. Protect him at all costs, because if he gets trapped, the game is over.",
       "pose": "salute"
+    },
+    {
+      "id": "collect-the-stars",
+      "kind": "stars",
+      "piece": "K",
+      "stars": 2,
+      "title": "Collect the stars",
+      "narration": "The king takes one step at a time. Walk him to both stars.",
+      "pose": "detective"
     },
     {
       "id": "kings-never-touch",

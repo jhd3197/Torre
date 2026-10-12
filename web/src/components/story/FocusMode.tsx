@@ -1,7 +1,7 @@
 // Focus mode: entering a story node (lesson, gauntlet, boss) makes the app
 // shell disappear. The in-node header is the exit X, a progress bar, and the
 // streak/XP chips — and the X never exits directly: it opens the exit modal.
-import { useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Dialog } from '../Dialog';
@@ -35,14 +35,20 @@ export function ExitModal({ open, onStay, onLeave, streakAtRisk }: {
   );
 }
 
+/** Inside a bare focus screen: opens the exit modal. Null outside focus mode. */
+const FocusExit = createContext<(() => void) | null>(null);
+export const useFocusExit = () => useContext(FocusExit);
+
 /**
  * The shell-less node screen: a fixed header (exit X · progress · streak/XP chips)
  * and the node content below it. `progress` is 0..1; omit it for nodes without
  * a meaningful fill (the boss intro).
  */
-export function FocusMode({ label, progress, onExit, children }: {
+export function FocusMode({ label, progress, onExit, bare = false, children }: {
   label: string;
   progress?: number;
+  /** The node draws its own header (a lesson): no bar here, and its exit button asks `useFocusExit`. */
+  bare?: boolean;
   /** Extra cleanup when leaving; the exit itself always returns to /story. */
   onExit?: () => void;
   children: ReactNode;
@@ -64,6 +70,16 @@ export function FocusMode({ label, progress, onExit, children }: {
   const streak = profile?.streak;
   const streakAtRisk = streak && !streak.doneToday && streak.count > 0 ? streak.count : undefined;
 
+  const exitModal = <ExitModal open={exitOpen} onStay={() => setExitOpen(false)} onLeave={leave} streakAtRisk={streakAtRisk} />;
+  if (bare) {
+    return (
+      <FocusExit.Provider value={() => setExitOpen(true)}>
+        {children}
+        {exitModal}
+        <Toast />
+      </FocusExit.Provider>
+    );
+  }
   return (
     <div className="story-focus">
       <header className="story-focus-bar">
@@ -80,7 +96,7 @@ export function FocusMode({ label, progress, onExit, children }: {
         )}
       </header>
       <div className="story-focus-body">{children}</div>
-      <ExitModal open={exitOpen} onStay={() => setExitOpen(false)} onLeave={leave} streakAtRisk={streakAtRisk} />
+      {exitModal}
       <Toast />
     </div>
   );

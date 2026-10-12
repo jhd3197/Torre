@@ -175,6 +175,20 @@ class ParseTests(unittest.TestCase):
         lessons._merge_text(raw, {"steps": [{"id": "b", "nudge": "Horquilla.", "branches": [{"success": "Esquina."}]}]})
         self.assertEqual((raw["steps"][0]["nudge"], raw["steps"][0]["branches"][0]["success"]), ("Horquilla.", "Esquina."))
 
+    def test_a_drill_is_a_recipe_with_defaults(self):
+        item = lessons.parse(lesson(steps=[
+            {"id": "watch", "kind": "stars", "piece": "R", "watch": True, "narration": "Watch me."},
+            {"id": "reach", "kind": "reach", "piece": "N", "blockers": 6, "distance": 3, "prompt": "Jump to the flag."},
+            {"id": "take", "kind": "capture", "piece": "Q"},
+            {"id": "count", "kind": "count", "piece": "B", "enemies": 0},
+        ]), "drills")
+        watch, reach, take, count = item["steps"]
+        self.assertEqual(watch, {"id": "watch", "kind": "stars", "title": None, "orientation": "white", "piece": "R",
+                                 "stars": 3, "blockers": 0, "watch": True, "narration": "Watch me."})
+        self.assertEqual((reach["blockers"], reach["distance"], reach["prompt"]), (6, 3, "Jump to the flag."))
+        self.assertEqual((take["enemies"], take["blockers"]), (3, 1))
+        self.assertEqual((count["blockers"], count["enemies"]), (1, 0))
+
     def test_problems_are_reported_not_raised(self):
         cases = {
             "unknown kind": {"id": "x", "kind": "video", "fen": FORK},
@@ -186,6 +200,10 @@ class ParseTests(unittest.TestCase):
             "non-empty list of UCI": {"id": "x", "kind": "reel", "text": "x", "moves": []},
             "not legal after e4": {"id": "x", "kind": "reel", "text": "x", "moves": ["e2e4", "e2e5"]},
             "a move number from 1 to 1": {"id": "x", "kind": "reel", "text": "x", "moves": ["e2e4"], "notes": [{"ply": 2, "text": "x"}]},
+            '"piece" must be one of': {"id": "x", "kind": "stars", "piece": "P"},
+            '"stars" must be a whole number from 1 to 5': {"id": "x", "kind": "stars", "piece": "R", "stars": 9},
+            '"distance" must be a whole number from 2 to 4': {"id": "x", "kind": "reach", "piece": "N", "distance": 1},
+            "only a stars step can be watched": {"id": "x", "kind": "reach", "piece": "R", "watch": True},
         }
         for message, step in cases.items():
             with self.subTest(message=message), tempfile.TemporaryDirectory() as tmp:

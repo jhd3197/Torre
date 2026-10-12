@@ -2,17 +2,15 @@ import { useEffect, useEffectEvent, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { ChessBoard } from '../../components/ChessBoard';
 import type { MascotPose } from '../../components/Reward';
-import { VerdictBar } from '../../components/VerdictBar';
 import { playMove, usePosition } from '../../hooks/useChess';
 import { usePlanning } from '../../hooks/usePlanning';
 import { useSounds, useVerdictSound } from '../../hooks/useSounds';
 import { useToast } from '../../state/AppData';
 import type { GuessStep } from '../../types';
 import { DEMO_PLY_DELAY, useAutoplayStart, useContinueAfter } from './cinema';
-import { ladderLabel, useHintLadder } from './hints';
+import { hintButton, useHintLadder } from './hints';
 import { HintRungs } from './PlayView';
-import { StepLayout, type ScoredProps } from './StepLayout';
-import { TeacherRow } from './TeacherRow';
+import { StepLayout, type ScoredProps, type StepBar } from './StepLayout';
 import { moveLabel } from './text';
 
 /** Wrong tries before the arrow shows the game move (never in hard mode). */
@@ -128,18 +126,20 @@ export function GuessView({ step, onContinue, last, cinema, report }: ScoredProp
     : phase === 'done' ? t('guess.summary', { score, total: step.guesses.length })
     : step.narration ?? step.text;
 
-  const bar = phase === 'answered'
-    ? <VerdictBar verdict={lastFound ? 'correct' : 'wrong'} title={lastFound ? t('step.nicelyDone') : t('guess.itWas', { san: step.moves[ply - 1].san })}
-        explanation={target?.why ?? undefined} primary={{ label: t('guess.keepWatching'), onClick: keepWatching }} />
+  const bar: StepBar = phase === 'answered'
+    ? { verdict: lastFound ? 'correct' : 'wrong', title: lastFound ? t('step.nicelyDone') : t('guess.itWas', { san: step.moves[ply - 1].san }),
+        explanation: target?.why ?? undefined, primary: { label: t('guess.keepWatching'), onClick: keepWatching } }
     : phase === 'done'
-      ? <VerdictBar primary={{ label: last ? t('step.finish') : t('step.continue'), onClick: onContinue }} />
+      ? { primary: { label: last ? t('step.finish') : t('step.continue'), onClick: onContinue } }
       : phase === 'asking'
-        ? <VerdictBar primary={{ label: t('step.check'), onClick: () => undefined, disabled: true }}
-            secondary={revealed || !ladder.next ? [] : [{ label: ladderLabel(t, ladder.next), onClick: ladder.climb }]} />
-        : <VerdictBar secondary={[{ label: target ? t('guess.skipToNext') : t('guess.skipToEnd'), onClick: skipAhead }]} />;
+        ? { primary: { label: t('play.makeMove'), disabled: true } }
+        : { primary: { label: t('guess.watching'), disabled: true },
+            secondary: [{ label: target ? t('guess.skipToNext') : t('guess.skipToEnd'), onClick: skipAhead }] };
 
   return (
-    <StepLayout bar={bar} board={<>
+    <StepLayout step={step} cinema={cinema} bar={bar} hint={hintButton(t, ladder, phase === 'asking' && !revealed)}
+      teacher={{ pose, line: bubble, listen: () => cinema.speak({ narration: bubble }) }}
+      board={<>
       <div className={phase === 'answered' ? 'input-locked' : undefined}>
         <ChessBoard board={board} flipped={step.orientation === 'black'} planning={planning} busy={busy}
           movable={phase === 'asking' && current ? 'turn' : false} onMove={onMove}
@@ -148,8 +148,6 @@ export function GuessView({ step, onContinue, last, cinema, report }: ScoredProp
       </div>
       <p key={caption?.ply ?? 0} className={`reel-caption${caption ? '' : ' empty'}`} aria-live="polite">{caption?.text ?? ''}</p>
     </>}>
-      <TeacherRow pose={pose} speaking={cinema.speaking} onListen={() => cinema.speak({ narration: bubble })}>{bubble}</TeacherRow>
-      {step.title && <h3>{step.title}</h3>}
       {phase === 'rolling' && step.narration && <p className="lesson-text">{step.text}</p>}
       <p className="guess-score" aria-label={t('guess.score', { score, total: step.guesses.length })}>
         {step.guesses.map((g, i) => (

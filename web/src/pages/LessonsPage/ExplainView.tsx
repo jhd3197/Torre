@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ChessBoard } from '../../components/ChessBoard';
 import { NavIcon } from '../../components/NavIcon';
 import type { MascotPose } from '../../components/Reward';
-import { VerdictBar } from '../../components/VerdictBar';
 import { usePosition } from '../../hooks/useChess';
 import { usePlanning } from '../../hooks/usePlanning';
 import type { ExplainStep } from '../../types';
 import { AUTO_ADVANCE_DELAY, DEMO_PLY_DELAY, useAutoplayStart, useContinueAfter } from './cinema';
 import { StepLayout, type StepProps } from './StepLayout';
-import { TeacherRow } from './TeacherRow';
 import { listenText, moveLabel, narrationBeats, spokenText } from './text';
 
 // Autoplay pacing for explain steps: how long a cued move stays before the coach goes on
@@ -78,14 +76,14 @@ export function ExplainView({ step, onContinue, last, cinema }: StepProps<Explai
   const replay = () => { setPly(0); setAuto(true); };
 
   return (
-    <StepLayout bar={<VerdictBar primary={{ label: last ? t('step.finish') : t('step.continue'), onClick: onContinue }} />}
+    <StepLayout step={step} cinema={cinema} bar={{ primary: { label: last ? t('step.finish') : t('step.continue'), onClick: onContinue } }}
+      teacher={{
+        pose: (step.pose as MascotPose | undefined) ?? 'happy',
+        line: step.narration ? spokenText(step.narration) : step.text,
+        listen: () => cinema.speak({ narration: step.narration ? listenText(step.narration) : step.text }),
+      }}
       board={<ChessBoard board={board} flipped={step.orientation === 'black'} planning={planning} movable={false}
         annotations={ply === 0 ? step.marks : []} lastMove={shown?.uci ?? null} flash={captured} />}>
-      <TeacherRow pose={(step.pose as MascotPose | undefined) ?? 'happy'} speaking={cinema.speaking}
-        onListen={() => cinema.speak({ narration: step.narration ? listenText(step.narration) : step.text })}>
-        {step.narration ? spokenText(step.narration) : step.text}
-      </TeacherRow>
-      {step.title && <h3>{step.title}</h3>}
       {step.narration && step.text !== spokenText(step.narration) && <p className="lesson-text">{step.text}</p>}
       {step.demo.length > 0 && (
         <div className="lesson-demo">

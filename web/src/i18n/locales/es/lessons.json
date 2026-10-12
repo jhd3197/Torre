@@ -68,7 +68,10 @@
   "stepTitled": "Paso {{number}}: {{title}}",
   "stepNotReached": "Paso {{number}} (aún no alcanzado)",
   "complete": "Completado",
-  "stepOf": "Paso {{number}} de {{count}}"
+  "stepOf": "Paso {{number}} de {{count}}",
+  "intro": "Intro",
+  "leave": "Salir de la lección",
+  "inThisLesson": "En esta lección"
  },
  "step": {
   "finish": "Finaliza la lección",
@@ -106,7 +109,8 @@
   "findPlayed": "Fíjate en <strong>{{toMove}}</strong>. Encuentra la jugada que se jugó.",
   "notGameMove": "Falso, <strong>✗ {{san}}</strong> no fue la jugada correcta.",
   "notGameMoveTryAgain": "Falso, <strong>✗ {{san}}</strong> no fue la jugada correcta. Intenta de nuevo.",
-  "arrow": "La flecha indica la jugada correcta: <strong>{{san}}</strong>. Juega esa jugada en el tablero."
+  "arrow": "La flecha indica la jugada correcta: <strong>{{san}}</strong>. Juega esa jugada en el tablero.",
+  "watching": "Mirando…"
  },
  "play": {
   "wellDone": "¡Bien hecho!",
@@ -126,12 +130,14 @@
   "showingWhy": "Por qué {{san}} no funciona",
   "backToPosition": "Volver a la posición",
   "watchAgain": "Verlo otra vez",
-  "backOne": "Deshacer una jugada"
+  "backOne": "Deshacer una jugada",
+  "makeMove": "Haz tu jugada"
  },
  "choose": {
   "right": "Bien.",
   "tryAnother": "Intenta otra respuesta.",
-  "answers": "Respuestas"
+  "answers": "Respuestas",
+  "pick": "Elige una respuesta"
  },
  "finished": {
   "closing": "¡Muy bien! Terminaste {{title}}.",
@@ -149,7 +155,11 @@
   "backToGame": "Volver a la partida",
   "practise": "Practícalo con problemas",
   "again": "Repásalo de nuevo",
-  "reviewLater": "Sus ejercicios vuelven para repasar en Entrenar en uno o dos días, y luego cada vez con menos frecuencia mientras los sigas resolviendo."
+  "reviewLater": "Sus ejercicios vuelven para repasar en Entrenar en uno o dos días, y luego cada vez con menos frecuencia mientras los sigas resolviendo.",
+  "perfect": "¡Lección perfecta!",
+  "xp": "XP",
+  "hints": "Pistas",
+  "time": "Tiempo"
  },
  "intro": {
   "kinds": {
@@ -157,7 +167,11 @@
    "play": "Tu movimiento",
    "choose": "Prueba",
    "reel": "Mira",
-   "guess": "Adivina la jugada"
+   "guess": "Adivina la jugada",
+   "stars": "Recoge las estrellas",
+   "reach": "Llega a la bandera",
+   "capture": "¡Captura!",
+   "count": "Cuenta las casillas"
   },
   "kicker": "Lección",
   "soundCheck": "¡Hola! Si me puedes escuchar, todo está listo. ¡Aprendamos ajedrez!",
@@ -203,5 +217,80 @@
   "marked_one": "Marcada como sabida. Sigue disponible si quieres hacerla.",
   "marked_other": "{{count}} lecciones marcadas como sabidas. Siguen disponibles si quieres hacerlas.",
   "toTake": "Vale la pena hacer:"
+ },
+ "section": {
+  "learn": "Aprende",
+  "watch": "Mira",
+  "try": "Inténtalo",
+  "quiz": "Prueba"
+ },
+ "footer": {
+  "hint": "Pista",
+  "enter": "Enter"
+ },
+ "drill": {
+  "board": "Tablero del ejercicio",
+  "side": {
+   "white": "Blanco",
+   "black": "Negro"
+  },
+  "piece": {
+   "R": "torre",
+   "B": "alfil",
+   "Q": "dama",
+   "N": "caballo",
+   "K": "rey",
+   "P": "peón"
+  },
+  "starOn": "Estrella en {{square}}",
+  "flagOn": "Bandera en {{square}}",
+  "prompt": {
+   "stars": "¡Tu turno! Recoge las {{count}} estrellas con tu pieza ({{piece}}). Toca un punto para mover.",
+   "watch": "Mírame recoger las estrellas. Cada pieza se mueve a su manera: aquí, {{piece}}.",
+   "reach": "Lleva tu pieza ({{piece}}) hasta la bandera. Tus peones estorban y solo el caballo salta.",
+   "capture": "Una de estas piezas está a tu alcance. ¿Cuál puede capturar tu pieza ({{piece}}) ahora mismo?",
+   "count": "¿A cuántas casillas puede llegar esta pieza ({{piece}}) en una jugada?"
+  },
+  "nudge": {
+   "stars": "Busca una estrella a la que llegues en una jugada y planea la siguiente desde allí.",
+   "reach": "El camino rápido está bloqueado. Da un pasito primero para abrir una línea libre.",
+   "capture": "Revisa cada pieza negra: ¿hay un camino libre hasta ella, sin nada en medio?"
+  },
+  "hintLine": "Mira las casillas que brillan: ese es el camino.",
+  "hintArrow": "Sigue la flecha.",
+  "hintTag": "Pista {{rung}} de {{total}}",
+  "countHint1": "Cuenta una dirección cada vez y para al chocar con una pieza.",
+  "countHint2": "Aquí tienes algunas casillas. Ahora suma el resto.",
+  "countHint3": "Cada punto es una casilla a la que llega. ¡Cuéntalos!",
+  "notQuite": "Casi",
+  "greatJob": "¡Muy bien!",
+  "own": "Ese es tu propio peón. Nunca puedes caer sobre tus piezas.",
+  "blocked": "Hay algo en medio. Solo el caballo puede saltar piezas.",
+  "noCapture": "Esa jugada es legal, pero no captura nada. ¿Qué pieza puedes tomar ahora?",
+  "rule": {
+   "R": "La torre se mueve en línea recta: arriba, abajo, a la izquierda o a la derecha.",
+   "B": "El alfil solo se mueve en diagonal.",
+   "Q": "La dama se mueve en líneas rectas y diagonales, nunca en L.",
+   "N": "El caballo se mueve en L: dos casillas en una dirección y una hacia el lado.",
+   "K": "El rey se mueve solo una casilla, en cualquier dirección."
+  },
+  "gotStar": "¡Una más! Quedan {{count}}.",
+  "lineUp": "Buena jugada. Ahora alinéate con una estrella.",
+  "keepGoing": "Bien. Sigue hacia la bandera.",
+  "starsDone": "Las {{count}} estrellas en {{moves}} jugadas. ¡Es el camino más rápido!",
+  "starsOverPar": "¡Todas las estrellas en {{moves}} jugadas! Lo más rápido son {{par}}. Prueba otro tablero para superarlo.",
+  "reachDone": "Encontraste el rodeo en {{moves}} jugadas.",
+  "captureDone": "¡Capturado! No había nada entre tú y esa pieza ({{target}}).",
+  "countRight": "Correcto, {{count}} casillas. Las piezas en medio cortan la línea, y una pieza enemiga cuenta porque puedes capturarla.",
+  "countHigh": "Demasiadas. Recuerda que se detiene antes de tus propias piezas.",
+  "countLow": "Muy pocas. No olvides las casillas donde puede capturar.",
+  "watchMove": "La pieza ({{piece}}) va a {{square}}.",
+  "watchDone": "{{count}} estrellas en {{moves}} jugadas. ¡Ahora te toca!",
+  "watchAgain": "Ver otra vez",
+  "newBoard": "Otro tablero",
+  "completeTask": "Completa la tarea",
+  "collected": "{{count}} de {{total}} estrellas recogidas",
+  "moves_one": "{{count}} jugada · mejor {{par}}",
+  "moves_other": "{{count}} jugadas · mejor {{par}}"
  }
 }

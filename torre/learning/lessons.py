@@ -9,6 +9,14 @@ list of steps, and every step has a kind:
     choose    a multiple-choice question, optionally beside a position
     reel      a game that plays itself like a video, with caption notes as subtitles
     guess     a game that plays itself and stops at key moments for the reader to guess the move
+    stars     collect the stars with one piece (or, with "watch", see the coach collect them)
+    reach     get one piece to the flag around your own pawns
+    capture   of several enemy pieces, take the one the piece can reach
+    count     how many squares can the piece reach?
+
+The last four are drills: the step holds a recipe (the piece, how many stars or blockers), and
+the page makes a fresh solvable layout from it each time, so a repeat is a new position with the
+same goal (web/src/lib/drills.ts).
 
 Lessons are checked when they load: an unknown kind, a missing field or an
 illegal move makes the lesson unavailable (listed under `problems`) instead
@@ -254,9 +262,44 @@ def _guess(step, where):
     return {**reel, 'guesses': sorted(stops, key=lambda g: g['ply'])}
 
 
+# Drills: the recipe fields each kind takes, as (default, lowest, highest).
+DRILL_PIECES = ('R', 'B', 'Q', 'N', 'K')
+DRILL_FIELDS = {
+    'stars': {'stars': (3, 1, 5), 'blockers': (0, 0, 8)},
+    'reach': {'blockers': (3, 0, 10), 'distance': (2, 2, 4)},
+    'capture': {'enemies': (3, 2, 4), 'blockers': (1, 0, 6)},
+    'count': {'blockers': (1, 0, 4), 'enemies': (1, 0, 3)},
+}
+
+
+def _drill(kind):
+    def parse_drill(step, where):
+        piece = step.get('piece')
+        if piece not in DRILL_PIECES:
+            raise LessonError(f'{where}: "piece" must be one of {", ".join(DRILL_PIECES)} (rook, bishop, queen, knight, king).')
+        out = {'piece': piece}
+        for key, (default, low, high) in DRILL_FIELDS[kind].items():
+            value = step.get(key, default)
+            if not isinstance(value, int) or isinstance(value, bool) or not low <= value <= high:
+                raise LessonError(f'{where}: "{key}" must be a whole number from {low} to {high}.')
+            out[key] = value
+        watch = step.get('watch', False)
+        if not isinstance(watch, bool) or (watch and kind != 'stars'):
+            raise LessonError(f'{where}: "watch" is true or false, and only a stars step can be watched.')
+        if watch:
+            out['watch'] = True
+        for key in ('prompt', 'nudge', 'success'):
+            text = _text(step, key, where, False)
+            if text is not None:
+                out[key] = text
+        return {**out, **_mascot(step, where)}
+    return parse_drill
+
+
 # The step kinds a lesson may use. A kind missing here is refused at load time,
 # so a lesson can never reach a step the page cannot show.
-KINDS = {'explain': _explain, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess}
+KINDS = {'explain': _explain, 'play': _play, 'choose': _choose, 'reel': _reel, 'guess': _guess,
+         **{kind: _drill(kind) for kind in DRILL_FIELDS}}
 
 
 def parse(raw, slug):

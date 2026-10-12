@@ -4,7 +4,7 @@
   "summary": "Bishops slide along diagonals and stay on one color all game. Learn how they move and how to win a loose piece.",
   "category": "basics",
   "level": "beginner",
-  "minutes": 4,
+  "minutes": 6,
   "unit": "Rules of the game",
   "order": 2,
   "steps": [
@@ -19,6 +19,15 @@
       "pose": "present"
     },
     {
+      "id": "collect-the-stars",
+      "kind": "stars",
+      "piece": "B",
+      "stars": 3,
+      "title": "Collect the stars",
+      "narration": "Collect the stars with the bishop. Diagonals only, as far as you like.",
+      "pose": "detective"
+    },
+    {
       "id": "light-and-dark",
       "kind": "explain",
       "title": "One color forever",
@@ -27,6 +36,16 @@
       "text": "A bishop moving diagonally always lands on a square of the same color. The bishop that starts on c1 lives on dark squares for the whole game, and the one on f1 lives on light squares. That is why each side gets one of each: together they cover the whole board.",
       "narration": "Here's a neat fact. A bishop never changes color. The one starting on c1 stays on dark squares forever, and the one on f1 stays on light squares. That's why you get one of each.",
       "pose": "idea"
+    },
+    {
+      "id": "count-the-squares",
+      "kind": "count",
+      "piece": "B",
+      "blockers": 1,
+      "enemies": 1,
+      "title": "How many squares can this bishop reach?",
+      "narration": "Count the diagonals one at a time, and stop when you hit a piece.",
+      "pose": "thinking"
     },
     {
       "id": "win-the-rook",

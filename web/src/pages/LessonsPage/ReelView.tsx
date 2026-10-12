@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ChessBoard } from '../../components/ChessBoard';
 import { NavIcon } from '../../components/NavIcon';
 import type { MascotPose } from '../../components/Reward';
-import { VerdictBar } from '../../components/VerdictBar';
 import { usePosition } from '../../hooks/useChess';
 import { usePlanning } from '../../hooks/usePlanning';
 import type { ReelStep } from '../../types';
 import { DEMO_PLY_DELAY, useAutoplayStart, useContinueAfter } from './cinema';
 import { StepLayout, type StepProps } from './StepLayout';
-import { TeacherRow } from './TeacherRow';
 import { moveLabel } from './text';
 
 const REEL_SPEEDS = [1, 2, 4];
@@ -46,7 +44,12 @@ export function ReelView({ step, onContinue, last, cinema }: StepProps<ReelStep>
   const caption = ply ? step.notes.filter(n => n.ply <= ply).at(-1) : undefined;
 
   return (
-    <StepLayout bar={<VerdictBar primary={{ label: last ? t('step.finish') : t('step.continue'), onClick: onContinue }} />}
+    <StepLayout step={step} cinema={cinema} bar={{ primary: { label: last ? t('step.finish') : t('step.continue'), onClick: onContinue } }}
+      teacher={{
+        pose: (step.pose as MascotPose | undefined) ?? 'playing',
+        line: step.narration ?? step.text,
+        listen: () => cinema.speak({ narration: step.narration ?? step.text }),
+      }}
       board={<>
         <ChessBoard board={board} flipped={step.orientation === 'black'} planning={planning} movable={false}
           lastMove={ply ? step.moves[ply - 1].uci : null} />
@@ -67,11 +70,6 @@ export function ReelView({ step, onContinue, last, cinema }: StepProps<ReelStep>
           <span className="reel-ply">{ply} / {step.moves.length}</span>
         </div>
       </>}>
-      <TeacherRow pose={(step.pose as MascotPose | undefined) ?? 'playing'} speaking={cinema.speaking}
-        onListen={() => cinema.speak({ narration: step.narration ?? step.text })}>
-        {step.narration ?? step.text}
-      </TeacherRow>
-      {step.title && <h3>{step.title}</h3>}
       {step.narration && <p className="lesson-text">{step.text}</p>}
       <ol className="lesson-demo reel-moves" aria-label={t('reel.moves')}>
         {step.moves.map((m, i) => (
