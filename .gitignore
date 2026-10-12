@@ -64,3 +64,6 @@ test-results/
 
 # Master games for picking game stories (download_masters.py); never shipped
 /games/
+
+# PR descriptions written by the create-pr skill (.claude/skills/create-pr)
+/.pr/
