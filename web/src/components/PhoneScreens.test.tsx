@@ -22,15 +22,16 @@ function serveGame(server: ReturnType<typeof fakeServer>) {
   }));
 }
 
-test('on a phone the rail becomes a tab bar with the four main places', async () => {
+test('on a phone the rail becomes a tab bar with the five main places', async () => {
   phone();
   fakeServer();
   renderAt('/');
   await act(async () => {});
   expect(document.querySelector('.shell')).toHaveAttribute('data-rail', 'tabs');
   const tabs = screen.getByRole('navigation', { name: 'Studio sections' });
-  expect(within(tabs).getAllByRole('link').map(link => link.textContent)).toEqual(['Home', 'Play', 'Puzzles', 'Profile']);
+  expect(within(tabs).getAllByRole('link').map(link => link.textContent)).toEqual(['Home', 'Play', 'Story', 'Puzzles', 'Profile']);
   expect(within(tabs).getByRole('link', { name: 'Play' })).toHaveAttribute('href', '/play/bots');
+  expect(within(tabs).getByRole('link', { name: 'Story' })).toHaveAttribute('href', '/story');
   expect(screen.queryByRole('button', { name: 'Open menu' })).toBeNull();
 });
 
@@ -44,7 +45,7 @@ test('Home on a phone has settings at the top and your last games, each opening 
   expect(within(recent).getByRole('link', { name: 'See all' })).toHaveAttribute('href', '/games');
 });
 
-test('the phone lobby opens a bot in a sheet, and Start begins the game', async () => {
+test('the phone lobby opens a bot in a sheet, and Start begins the game without the tab bar', async () => {
   phone();
   fakeServer();
   const { location } = renderAt('/play/bots');
@@ -54,6 +55,8 @@ test('the phone lobby opens a bot in a sheet, and Start begins the game', async 
   const sheet = await screen.findByRole('dialog');
   fireEvent.click(within(sheet).getByRole('button', { name: 'Start game' }));
   await waitFor(() => expect(location().pathname).toBe('/play'));
+  // A game keeps the whole screen: no tab bar to tap away by accident.
+  expect(screen.queryByRole('navigation', { name: 'Studio sections' })).toBeNull();
   // Before your first move the game can still be left without counting.
   expect(await screen.findByRole('button', { name: /Leave game/ })).toBeInTheDocument();
   expect(screen.getByText('Moves appear here. Tap one to look back.')).toBeInTheDocument();
