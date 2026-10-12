@@ -47,7 +47,7 @@ jobs:
         if: steps.bump.outputs.new_version
         run: sed -i "s/^__version__ = .*/__version__ = '${{ steps.bump.outputs.new_version }}'/" torre/__init__.py
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.bump.outputs.new_version
         with:
           node-version: 22

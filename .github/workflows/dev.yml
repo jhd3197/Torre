@@ -55,7 +55,7 @@ jobs:
       - name: Set the version
         run: sed -i "s/^__version__ = .*/__version__ = '${{ steps.ver.outputs.new }}'/" torre/__init__.py
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
