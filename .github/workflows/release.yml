@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 concurrency: release
 
@@ -23,8 +24,10 @@ jobs:
   release:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump.outputs.new_version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
 
       - name: Skip a commit that is already released
@@ -36,7 +39,7 @@ jobs:
       - name: Bump the version and push the tag
         id: bump
         if: steps.released.outputs.yes != 'true'
-        uses: mathieudutour/github-tag-action@v6.2
+        uses: mathieudutour/github-tag-action@v7
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
@@ -47,13 +50,13 @@ jobs:
         if: steps.bump.outputs.new_version
         run: sed -i "s/^__version__ = .*/__version__ = '${{ steps.bump.outputs.new_version }}'/" torre/__init__.py
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.bump.outputs.new_version
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: web/package-lock.json
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.bump.outputs.new_version
         with:
           python-version: "3.12"
@@ -97,3 +100,11 @@ jobs:
           git add torre/__init__.py
           git commit -m "Release v${{ steps.bump.outputs.new_version }} [skip ci]" || exit 0
           git push origin HEAD:main
+
+  docker:
+    needs: release
+    if: needs.release.outputs.version != ''
+    uses: ./.github/workflows/docker.yml
+    with:
+      version: ${{ needs.release.outputs.version }}
+    secrets: inherit

@@ -18,10 +18,9 @@
 #   .\dev.ps1 lessons [slugs] check the chess in lessons/ with Stockfish (torre/tools/verify_lessons.py)
 #   .\dev.ps1 masters [names] download the legends' games (torre/games/download_masters.py)
 #   .\dev.ps1 story <args>   build a game-story lesson (torre/tools/game_story.py find|moments|skeleton ...)
-#   .\dev.ps1 art fetch [built|sources]   download the art from its GitHub release: the cut images the
-#                            app shows (web/public/art, art-built.zip) by default; "sources" (art/source)
-#                            only where the private art pipeline lives. Neither is in git.
-#   .\dev.ps1 art publish [built|sources] zip them and replace the zips on that release (both by default)
+#   .\dev.ps1 art fetch [built]   download the cut images the app shows (web/public/art);
+#                            the original source sheets stay in the private art pipeline.
+#   .\dev.ps1 art publish [built] zip and replace the built images on the public release
 #   .\dev.ps1 art [stages]   cut art/source into web/public/art (e.g. .\dev.ps1 art pieces grades);
 #                            needs rembg in the system Python: pip install "rembg[cpu]" opencv-python-headless
 #   .\dev.ps1 translate [args] translate the app text (torre/tools/translate_content.py; --check lists what is missing);
@@ -56,11 +55,10 @@ $Python = if (Test-Path $VenvPython) { $VenvPython } else { $SystemPython }
 $Npm = if ($OnWindows) { "npm.cmd" } else { "npm" }
 $Repo = "jhd3197/Torre"  # the GitHub repository whose releases hold the art
 $ArtRelease = "art-2026-10-06"  # GitHub release holding art-built.zip, the images the app shows
-# The two art zips: the cut images the app shows, and the sheets they are cut from. Each zip holds its
-# folder by name (art/..., source/...), so it expands into the folder's parent.
+$ArtDownload = "https://torre.sh/downloads/art/art-built-2026-10-06.zip"
+# The public zip holds art/... so it expands into web/public/.
 $ArtZips = [ordered]@{
     built   = @{ Asset = "art-built.zip"; Folder = (Join-Path $Root "web/public/art") }
-    sources = @{ Asset = "art-sources.zip"; Folder = (Join-Path $Root "art/source") }
 }
 $PacksRelease = "voice-packs"            # GitHub release holding the voice packs (packs.py reads it)
 $KokoroImage = "ghcr.io/remsky/kokoro-fastapi-gpu:latest"
@@ -110,16 +108,18 @@ function Test-UiStale {
     return [bool]($sources | Where-Object { $_ -and $_.LastWriteTimeUtc -gt $built } | Select-Object -First 1)
 }
 
-# Download art zips from the release and expand them in place: "built" (what the app shows), "sources", or both.
+# Download the built art zip from the release and expand it in place.
 function Get-Art([string[]]$Which) {
     foreach ($name in $Which) {
         $art = $ArtZips[$name]
         $zip = Join-Path ([IO.Path]::GetTempPath()) $art.Asset
-        if (Get-Command gh -ErrorAction SilentlyContinue) {
-            Invoke-Step "download $($art.Asset) ($ArtRelease)" { gh release download $ArtRelease --repo $Repo --pattern $art.Asset --output $zip --clobber }
-        } else {
-            # Without the GitHub CLI, the public release URL works the same.
-            Invoke-Step "download $($art.Asset) ($ArtRelease)" { Invoke-WebRequest "https://github.com/$Repo/releases/download/$ArtRelease/$($art.Asset)" -OutFile $zip }
+        Invoke-Step "download $($art.Asset) ($ArtRelease)" {
+            try {
+                Invoke-WebRequest $ArtDownload -OutFile $zip -ErrorAction Stop
+            } catch {
+                # The public GitHub release remains usable while torre.sh is unavailable.
+                Invoke-WebRequest "https://github.com/$Repo/releases/download/$ArtRelease/$($art.Asset)" -OutFile $zip -ErrorAction Stop
+            }
         }
         Expand-Archive -Path $zip -DestinationPath (Split-Path $art.Folder) -Force
         Remove-Item $zip
@@ -350,10 +350,9 @@ switch ($Command) {
     }
     "art" {
         if ($Rest -and $Rest[0] -in @("fetch", "publish")) {
-            # The cut images are not in git: they are a zip on the art release. The source sheets stay
-            # private (the art pipeline is not in this repo), so only "built" is fetched unless asked.
+            # Only the cut images are public. The source sheets stay in the private art pipeline.
             $which = if ($Rest.Count -gt 1) { @($Rest[1]) } else { @("built") }
-            foreach ($name in $which) { if (-not $ArtZips.Contains($name)) { throw "Unknown art zip '$name' (built or sources)" } }
+            foreach ($name in $which) { if (-not $ArtZips.Contains($name)) { throw "Only built art can be fetched or published here; source sheets stay private." } }
             if ($Rest[0] -eq "fetch") {
                 Get-Art $which
                 Write-Host "Restored $($which -join ' and ') art." -ForegroundColor Green
@@ -365,6 +364,13 @@ switch ($Command) {
                 if (Test-Path $zip) { Remove-Item $zip }
                 Invoke-Step "zip $($art.Folder)" { Compress-Archive -Path $art.Folder -DestinationPath $zip -ErrorAction Stop }
                 Invoke-Step "upload $($art.Asset) ($ArtRelease)" { gh release upload $ArtRelease $zip --repo $Repo --clobber }
+                $dockerfile = Join-Path $Root "Dockerfile"
+                $digest = (Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+                $old = [IO.File]::ReadAllText($dockerfile)
+                $updated = [regex]::Replace($old, '(?<=ADD --checksum=sha256:)[0-9a-f]{64}', $digest)
+                if ($updated -eq $old -and -not $old.Contains($digest)) { throw "Could not update the Dockerfile art checksum." }
+                [IO.File]::WriteAllText($dockerfile, $updated)
+                Write-Host "Updated Dockerfile art checksum; commit it with the new release asset." -ForegroundColor Yellow
                 Remove-Item $zip
             }
             exit 0

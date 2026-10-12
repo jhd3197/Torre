@@ -1,0 +1,12 @@
+services:
+  torre:
+    image: ghcr.io/jhd3197/torre:latest
+    build: .
+    ports:
+      - "127.0.0.1:1886:1886"
+    volumes:
+      - torre-data:/data
+    restart: unless-stopped
+
+volumes:
+  torre-data:

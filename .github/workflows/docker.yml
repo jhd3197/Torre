@@ -1,0 +1,89 @@
+name: Publish Docker image
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Published version to package, without the v prefix
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: v${{ inputs.version }}
+      - name: Validate release version
+        env:
+          TORRE_VERSION: ${{ inputs.version }}
+        run: |
+          if [[ ! "$TORRE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo 'The Docker version must be a stable version such as 0.3.6.' >&2
+            exit 1
+          fi
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Build local image for smoke test
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          tags: torre:smoke
+          build-args: TORRE_VERSION=${{ inputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Boot and check the image
+        shell: bash
+        env:
+          TORRE_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          docker run -d --rm --name torre-smoke -p 127.0.0.1:1886:1886 torre:smoke
+          trap 'docker logs torre-smoke; docker stop torre-smoke' EXIT
+          for _ in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:1886/; then break; fi
+            sleep 2
+          done
+          curl --fail --silent --output /dev/null http://127.0.0.1:1886/
+          curl --fail --silent --output /dev/null http://127.0.0.1:1886/art/logo/app-icon-64.png
+          test "$(docker exec torre-smoke python -c 'import torre; print(torre.__version__)')" = "$TORRE_VERSION"
+      - name: Sign in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and publish amd64 and arm64 images
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/jhd3197/torre:${{ inputs.version }}
+            ghcr.io/jhd3197/torre:latest
+          build-args: TORRE_VERSION=${{ inputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Verify public pull access
+        shell: bash
+        env:
+          TORRE_VERSION: ${{ inputs.version }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/anonymous-docker"
+          if ! DOCKER_CONFIG="$RUNNER_TEMP/anonymous-docker" docker manifest inspect "ghcr.io/jhd3197/torre:$TORRE_VERSION" > /dev/null; then
+            echo 'The image was published but is not publicly readable. Set the torre package visibility to Public in GitHub package settings.' >&2
+            exit 1
+          fi
