@@ -3,4 +3,4 @@
 Run the studio with `python -m torre.server.studio`, the command line with `python -m torre`.
 """
 
-__version__ = '0.4.2'
+__version__ = '0.4.3'
