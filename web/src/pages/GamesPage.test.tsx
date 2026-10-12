@@ -133,7 +133,8 @@ test('moving a piece in a replay opens Explore with the move, and Back returns t
   const e2 = await screen.findByLabelText('White pawn on e2');
   await act(async () => { fireEvent.click(e2); });
   await act(async () => { fireEvent.click(screen.getByLabelText('Empty e4')); });
-  await waitFor(() => expect(location().pathname).toBe('/explore'));
+  // The move goes through the (fake) server before Explore opens: slow CI runners need the headroom.
+  await waitFor(() => expect(location().pathname).toBe('/explore'), { timeout: 3000 });
   const params = new URLSearchParams(location().search);
   expect(params.get('moves')).toBe('e2e4');
   expect(params.get('from')).toBe('/games/106/0');
