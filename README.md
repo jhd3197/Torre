@@ -9,6 +9,7 @@
 <p align="center">
   <a href="https://pypi.org/project/torre/"><img src="https://img.shields.io/pypi/v/torre?color=2f5d50" alt="PyPI"></a>
   <a href="https://pypi.org/project/torre/"><img src="https://img.shields.io/pypi/pyversions/torre?color=2f5d50" alt="Python"></a>
+  <a href="https://github.com/jhd3197/Torre/releases"><img src="https://img.shields.io/github/downloads/jhd3197/Torre/total?color=2f5d50" alt="GitHub release downloads"></a>
   <a href="https://github.com/jhd3197/Torre/actions/workflows/test.yml"><img src="https://github.com/jhd3197/Torre/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-2f5d50" alt="License: GPL-3.0"></a>
   <a href="https://buymeacoffee.com/jhd3197"><img src="https://img.shields.io/badge/buy%20the%20rook%20a%20coffee-c9a552?logo=buymeacoffee&logoColor=1d2d27" alt="Buy me a coffee"></a>
@@ -18,16 +19,61 @@ Torre is a local Python web app for playing Stockfish, replaying games,
 exploring positions, and reviewing your chess history. Its interface is a React
 app (in `web/`), served ready-built by the Python server.
 
+## Screenshots
+
+Captured from a fresh local installation with no personal game data.
+
+| Learn the game | Practice puzzles |
+| :---: | :---: |
+| ![Torre's Story screen, showing the first chapter and lesson progress](docs/screenshots/story.png) | ![Torre's Puzzles screen, showing the rating and checkmate themes](docs/screenshots/puzzles.png) |
+| Follow the Story chapters from your first moves onward. | Pick a rated puzzle or practice a theme. |
+
 ## Install
+
+The quickest way to play is at [torre.sh](https://torre.sh); that uses a hosted account.
+To keep games on your own computer, install Docker Desktop (or Docker Engine) and run:
+
+```bash
+docker run -d --name torre --restart unless-stopped -p 127.0.0.1:1886:1886 -v torre-data:/data jhd3197/torre:latest
+```
+
+Open [http://127.0.0.1:1886](http://127.0.0.1:1886). The container includes
+Stockfish and the interface; the `torre-data` volume keeps your games and progress
+when the container is replaced. The image is published for Linux AMD64 and ARM64
+on each release to [Docker Hub](https://hub.docker.com/r/jhd3197/torre).
+If you have cloned this repository, `docker compose up --build -d` also works
+without a published image.
+To update a container installed with `docker run`, pull the new image, stop and
+remove the old container, then repeat the same `docker run` command. The named
+volume keeps the data. For Compose, use `docker compose pull && docker compose up -d`.
+
+For a direct Python installation instead:
 
 ```bash
 pip install torre              # or: pip install "torre[coach]" for the AI coach
 torre serve --open-browser
 ```
 
-Torre needs [Stockfish](https://stockfishchess.org/download/) for play and analysis: put it on
+The Python installation needs [Stockfish](https://stockfishchess.org/download/) for play and analysis: put it on
 your PATH or set `STOCKFISH_PATH`. Your games and progress live in `~/.torre` (set `TORRE_HOME` to
 move them). `torre doctor` checks everything.
+
+### Publishing the Docker image
+
+The `main` release workflow publishes the tested image to Docker Hub as
+`jhd3197/torre:<version>` and `jhd3197/torre:latest` after the PyPI and GitHub
+releases succeed. Set the `DOCKERHUB_USERNAME` repository secret to `jhd3197`
+and `DOCKERHUB_TOKEN` to a Docker Hub access token with permission to push that
+repository. These secrets are scoped to this GitHub repository, even if they
+already exist in another project. To retry a release image without bumping the
+package version, run the **Publish Docker image** workflow with that release's
+version number. Make sure the `jhd3197/torre` Docker Hub repository is public
+before directing users to its install command.
+
+`art-built.zip` contains the public images used by the app. Original source
+sheets stay in the private art pipeline. `./dev.ps1 art publish built` updates
+the pinned image checksum in `Dockerfile`; commit that change when replacing
+the art release. The public image and release ZIP remain downloadable by anyone.
 
 ## Run from source
 
@@ -63,7 +109,7 @@ Open **http://127.0.0.1:1886** (the year of the first World Championship). If th
   | `/coach/learn` | links to the app's learning centers |
   | `/insights/<section>` | legacy direct access to the same stats |
 
-- **Puzzles:** about 4,500 puzzles from the Lichess puzzle database (CC0) in 20
+- **Puzzles:** about 4,500 puzzles from the Lichess puzzle database (CC0) in 36
   themes: checkmates (mate in 1–3, back-rank, smothered), tactics (forks, pins,
   skewers, discovered attacks, deflection, sacrifices and more) and endgames. Your
   opponent's move sets each puzzle up, then you find the line. A wrong move, a hint
@@ -298,7 +344,7 @@ Without PowerShell, the same steps by hand:
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 npm --prefix web ci && npm --prefix web run build
-# the images: unzip art-built.zip from the art release into web/public/
+# the images: unzip https://torre.sh/downloads/art/art-built-2026-10-06.zip into web/public/
 .venv/bin/python -m torre.games.download_masters
 .venv/bin/python -m torre.server.studio --open-browser
 ```
