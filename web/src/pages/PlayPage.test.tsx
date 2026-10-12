@@ -1,6 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { loadPlay, savePlay } from '../lib/storage';
-import { engineEntry, fakeServer, renderAt, START, STOCKFISH } from '../test/harness';
+import { boardAfter, engineEntry, fakeServer, renderAt, START, STOCKFISH } from '../test/harness';
 
 // A collection lists its bots as cards; role queries across all of them are slow in jsdom.
 const botCard = (name: HTMLElement) => name.closest('button')!;
@@ -116,6 +116,19 @@ test('a won game awards three stars once and keeps the best per bot', async () =
   expect(screen.getByText(/Well played. That was clean./)).toBeInTheDocument();
   expect(JSON.parse(localStorage.getItem('chess-jd-stars-v1') ?? '{}')).toEqual({ 'marcus-moss': 3 });
   expect(loadPlay()?.rewarded).toBe(true);
+});
+
+test('a finished game offers a share once the server has saved it', async () => {
+  const server = serveMoves();
+  let save: (value: unknown) => void = () => {};
+  server.on('api/played', () => new Promise(resolve => { save = resolve; }));
+  savePlay({ initialFen: START, moves: [{ uci: 'e2e4', san: 'e4' }], playerColor: 'white', level: 4,
+    result: '1-0', resigned: true, botId: 'marcus-moss', elo: 1180 });
+  renderAt('/play');
+  expect(await screen.findByRole('heading', { name: 'You won!' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Share' })).not.toBeInTheDocument();
+  await act(async () => save({ recorded: true, improved: [] }));
+  expect(await screen.findByRole('button', { name: 'Share' })).toBeInTheDocument();
 });
 
 test('when you play Black, Stockfish moves first and the game is saved after its move', async () => {
@@ -285,6 +298,41 @@ test('the result offers your costliest mistake again, as a practice game with th
   fireEvent.click(await screen.findByRole('button', { name: /Try your mistake again \(2\. Qh5\)/ }));
   await waitFor(() => expect(loadPlay()).toMatchObject({ initialFen: fen, moves: [], coached: true, botId: 'marcus-moss', elo: 1180 }));
   expect(location().pathname).toBe('/play');
+});
+
+test('a regular in costume plays as the character: its name, opening line and mechanics', async () => {
+  const server = serveMoves();
+  // Iron Wall Ivo dressed as El Silbón for the Venezuelan legends keeps his id; the game keeps the costume.
+  savePlay({ initialFen: START, moves: [], playerColor: 'black', level: 4, result: null, botId: 'iron-wall-ivo', elo: 1655,
+    botName: 'El Silbón', costume: 'El Silbón', outfit: 'art/bots/seasonal/leyendas/08-6.webp' });
+  renderAt('/play');
+  expect(await screen.findByText('“Do, re, mi, fa, sol, la, si... did you hear that?”')).toBeInTheDocument();
+  expect(screen.getByText(/Fi-fi-fi/)).toBeInTheDocument();
+  // Under the costume Ivo still keeps his pawns home: his quirk goes with the move request.
+  await waitFor(() => expect(server.calls.find(c => c.path === 'api/engine')?.body?.style).toMatchObject({ quirk: 'fortress' }));
+  expect(screen.getAllByText('El Silbón').length).toBeGreaterThan(0);
+  expect(screen.queryByText('Iron Wall Ivo')).not.toBeInTheDocument();
+  expect(document.body.dataset.ambience).toBe('night');
+});
+
+test('a character bot speaks up in its own voice when your move hands it the game', async () => {
+  const server = serveMoves();
+  // Real move counters, so the page can tell whose move each board shows.
+  server.on('api/position', body => {
+    const moves = body?.moves as string[];
+    const board = boardAfter(moves);
+    return { ...board, fen: `${board.fen.split(' ')[0]} ${moves.length % 2 ? 'b' : 'w'} - - 0 ${Math.floor(moves.length / 2) + 1}` };
+  });
+  // Granny Rose read +0.20 after her first move, and +4.00 once you replied: a blunder.
+  server.on('api/engine', () => ({ best: 'g1f3', lines: [], slip: false, before: 400, after: 380 }));
+  savePlay({ initialFen: START, moves: [{ uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }], playerColor: 'black', level: 4, result: null,
+    botId: 'granny-rose', elo: 2600, botName: 'Granny Rose', botNotes: [{ ply: 1, slip: false, before: 30, after: 20 }] });
+  renderAt('/play');
+  expect(await screen.findByText('“Look again at what you just left.”')).toBeInTheDocument();
+  // Granny Rose has no quirk of her own and a calm style: no style is sent.
+  expect(server.calls.find(c => c.path === 'api/engine')?.body).toMatchObject({ play: true, read: true });
+  expect(server.calls.find(c => c.path === 'api/engine')?.body?.style).toBeUndefined();
+  expect(loadPlay()?.botNotes?.at(-1)).toMatchObject({ ply: 3, before: 400, after: 380 });
 });
 
 test('a bot with mechanics greets you with its line and sets the night board', async () => {

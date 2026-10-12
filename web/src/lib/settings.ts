@@ -186,6 +186,8 @@ export const showRatings = createFlag('chess-jd-show-ratings', true);
 export const hardMode = createFlag('chess-jd-hard-mode', false);
 /** The coach stays quiet while you play: no spoken quips, only what you ask for. */
 export const quietCoach = createFlag('chess-jd-quiet-coach', false);
+/** Character bots talk during a game: a line in their bubble at a check, a capture, a blunder. */
+export const botChatter = createFlag('chess-jd-bot-chatter', true);
 /** The rail folded ("1") or open ("0"); empty until somebody chooses, so the screen width decides. */
 export const railFolded = createSetting<'' | '1' | '0'>('chess-jd-rail-folded', '', ['1', '0'], undefined, ['studio.nav.collapsed']);
 /** The workspace analysis engine (an engines.py id); an uninstalled choice falls back to Stockfish where it is used. */

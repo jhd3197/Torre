@@ -335,3 +335,65 @@ test('stepping through from the summary starts at the first move on the Moves ta
   expect(screen.getByRole('button', { name: 'Pause replay' })).toBeInTheDocument();
   await waitFor(() => expect(location().pathname).toBe('/games/137/1'), { timeout: 3000 });
 });
+
+test('on torre.sh the game and the current move share as links', async () => {
+  const server = serve(192);
+  server.on('auth/me', () => ({ name: 'Ana', email: 'ana@example.com', admin: false }));
+  server.on('auth/share', body => ({ url: `https://torre.sh/g/${body?.game}-${body?.ply ?? 'all'}` }));
+  const writeText = vi.fn(async () => {});
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+  renderAt('/games/192/3');
+  await reviewed();
+  fireEvent.click(await screen.findByRole('button', { name: 'Share' }));
+  await waitFor(() => expect(writeText).toHaveBeenCalledWith('https://torre.sh/g/192-all'));
+  expect(screen.queryByRole('button', { name: 'Copy PGN' })).toBeNull();
+  fireEvent.click(await screen.findByRole('button', { name: 'Share this move' }));
+  await waitFor(() => expect(writeText).toHaveBeenCalledWith('https://torre.sh/g/192-3'));
+  expect(server.calls.filter(c => c.path === 'auth/share').map(c => c.body)).toEqual([{ game: '192', ply: null }, { game: '192', ply: 3 }]);
+});
+
+test('on your own computer there is no share link, only the PGN copy', async () => {
+  serve(193);
+  renderAt('/games/193/3');
+  await reviewed();
+  expect(await screen.findByRole('button', { name: 'Copy PGN' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Share' })).toBeNull();
+  expect(screen.queryByRole('button', { name: 'Share this move' })).toBeNull();
+});
+
+function brilliantGame(id: number) {
+  const detail = game(id);
+  detail.analysis!.moves = [
+    { ply: 2, san: 'e5', class: null, best: true, brilliant: true, accuracy: 100 },
+    { ply: 3, san: 'Nf3', class: null, best: true, brilliant: true, accuracy: 100 },
+  ];
+  return detail;
+}
+
+test('a brilliant move of yours is celebrated once per visit, and can be shared', async () => {
+  serve(194, brilliantGame(194));
+  const { router, container } = renderAt('/games/194/3');
+  await reviewed();
+  expect(await screen.findByText('Brilliant move!')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Share this brilliant move' })).toBeInTheDocument();
+  expect(screen.getByTestId('move-celebration')).toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).not.toBeNull();
+
+  // The opponent's brilliant move is not yours to celebrate.
+  await act(() => router.navigate('/games/194/2', { replace: true }));
+  await waitFor(() => expect(screen.queryByTestId('move-celebration')).toBeNull());
+
+  // Back on it, the badge and the button stay, but the burst does not play again.
+  await act(() => router.navigate('/games/194/3', { replace: true }));
+  expect(await screen.findByTestId('move-celebration')).not.toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).toBeNull();
+});
+
+test('with reduced motion a brilliant move gets no falling paper', async () => {
+  localStorage.setItem('chess-jd-motion', 'reduce');
+  serve(195, brilliantGame(195));
+  const { container } = renderAt('/games/195/3');
+  await reviewed();
+  expect(await screen.findByTestId('move-celebration')).toHaveClass('fresh');
+  expect(container.ownerDocument.querySelector('.confetti')).toBeNull();
+});

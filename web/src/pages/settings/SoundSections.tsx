@@ -8,7 +8,7 @@ import { captions } from '../../lib/captions';
 import { COACH_VOICES, coachVoice } from '../../lib/voice';
 import { rookyAutoplay } from '../../components/RookSpeaker';
 import { usePacks, VoicePackList } from '../../components/VoicePacks';
-import { quietCoach, reviewVoice } from '../../lib/settings';
+import { botChatter, quietCoach, reviewVoice } from '../../lib/settings';
 import { anchorId, ChoiceRow, Choices, FlagSwitch, LevelRow, Row, Subheading, Switch } from './controls';
 
 /** A small button that plays what a row changes. */
@@ -77,6 +77,7 @@ export function VoiceSection() {
         onChange={on => rookyAutoplay.set(on ? 'on' : 'off')} />
       <FlagSwitch setting={reviewVoice} text="voice.review" disabled={!speaks} />
       <FlagSwitch setting={quietCoach} text="voice.quiet" />
+      <FlagSwitch setting={botChatter} text="voice.chatter" />
       <div className="settings-packs">
         <Subheading id={anchorId('voice.heading')}>{t('voice.heading')}</Subheading>
         <p className="settings-packs-note">{t('voice.note')}</p>

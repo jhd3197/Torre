@@ -11,6 +11,7 @@ from torre.learning import achievements
 from torre.server import appdata
 from torre.analysis import board_view
 from torre.analysis import bot_report
+from torre.analysis import bot_style
 from torre.analysis import engine_service
 from torre.analysis import engines
 from torre.coaching import explain
@@ -194,9 +195,22 @@ def engine(req):
             strength, slip = engines.strength_options(entry, _number({'elo': elo}, 'elo'))
         elif entry.get('capabilities', {}).get('skill_level') and not (nodes or depth):
             strength = {'Skill Level': max(0, min(20, _number(payload, 'level', 4)))}
+        try:
+            style = bot_style.parse(payload.get('style'))
+        except ValueError as error:
+            raise BadRequest(str(error)) from None
         with engine_service.player(engine_id, strength=strength) as pooled:
             best, slipped = engine_service.bot_choice(pooled, board, slip, limit=limit)
-        return {'best': best.uci(), 'lines': [], 'phase': phase, 'slip': slipped,
+            # A character's quirk (bot_style): a move that fits it, when it costs little. A slip
+            # is the bot's mistake on purpose, and stays as it is.
+            styled = False
+            if style and not slipped:
+                best, styled = bot_style.styled_move(pooled, board, best, style, None if elo is None else _number({'elo': elo}, 'elo'))
+            # A character bot talks during the game: "read" asks for its view around the move
+            # (Stockfish only, a shallow look; see move_reading).
+            reading = engine_service.move_reading(pooled, board, best) if payload.get('read') and engine_id == 'stockfish' else {}
+        return {'best': best.uci(), 'lines': [], 'phase': phase, 'slip': slipped, **reading,
+                **({'styled': True} if styled else {}),
                 **({'elo': _number({'elo': elo}, 'elo')} if elo is not None else {})}
     # Analysis with a model searches by time like any engine: the
     # model's go_override (one node) is for playing, not for lines.

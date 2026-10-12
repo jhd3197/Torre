@@ -34,6 +34,7 @@ import chess.pgn
 
 from torre.analysis import analyze
 from torre.analysis import engines
+from torre.analysis import limits
 from torre.learning import puzzles
 from torre.analysis import scoring
 from torre import jsonio
@@ -294,7 +295,7 @@ def run(games_file=GAMES_FILE, analysis_file=ANALYSIS_FILE, pack_file=None, engi
     own = engine is None
     if own:
         engine = chess.engine.SimpleEngine.popen_uci(str(engine_path or engines.resolve_engine('stockfish')))
-        engine.configure({'Threads': threads, 'Hash': 256})
+        engine.configure(limits.cap({'Threads': threads, 'Hash': 256}))
     try:
         have = {p['id'] for p in pack['puzzles']}
         for n, (rec, analysis) in enumerate(todo, 1):

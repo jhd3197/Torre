@@ -1,11 +1,11 @@
 // /play — your game against a bot. It is saved in this browser after every move.
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BoardWorkspace } from '../components/BoardWorkspace';
 import { Dialog } from '../components/Dialog';
 import { brandIcon, Mascot, Stars } from '../components/Reward';
-import { botById, legendBots, mergeEngineBots, type Bot } from '../data/bots';
+import { botById, inCostume, legendBots, mergeEngineBots, type Bot } from '../data/bots';
 import { useMasters } from '../hooks/useMasters';
 import { figureSrc } from '../lib/pieces';
 import { botMove, coachCheck, playMove, type MoveJudgement } from '../hooks/useChess';
@@ -25,11 +25,18 @@ import { BotReport, DrawRule } from '../components/BotReport';
 import { whyItFails } from '../lib/whyItFails';
 import { useMoveTiming } from '../hooks/useMoveTiming';
 import { useNarration } from '../hooks/useNarration';
-import { playBlindfold, quietCoach } from '../lib/settings';
+import { botChatter, playBlindfold, quietCoach } from '../lib/settings';
 import { useBotMechanics } from '../hooks/useBotMechanics';
+import { chatLine } from '../data/botChatter';
+import { styleFor } from '../data/botQuirks';
 import { exportPlay } from '../lib/gameExport';
 import { playPgn } from '../lib/playPgn';
 import { PhoneAction } from '../components/workspace/PhoneParts';
+import { useShare } from '../hooks/useShare';
+import { ShareButton } from '../components/ShareButton';
+
+/** A finished game's id, when it was already sent to the server (reopened after it ended). */
+const savedGameId = (game: PlaySave | null) => (game?.rewarded && game.gameId ? game.gameId : null);
 
 /** How many of the moves were yours. */
 function yourMoveCount(game: PlaySave): number {
@@ -63,6 +70,8 @@ export function PlayPage() {
   const [improved, setImproved] = useState(false);
   const [kept, setKept] = useState<{ event: string; count: number; need: number; crest: boolean } | null>(null);
   const [gains, setGains] = useState<AwardGain[]>([]);
+  /** The finished game's id once the server has it (a game reopened after it was saved has it too). */
+  const [savedId, setSavedId] = useState<string | null>(() => savedGameId(game));
   const [exporting, setExporting] = useState(false);
   /** What the coach points at on the board while you play with it. */
   const [coachMarks, setCoachMarks] = useState<CoachMarks>({});
@@ -86,6 +95,7 @@ export function PlayPage() {
     setConfirmResign(false);
     setResultOpen(false);
     setGains([]);
+    setSavedId(savedGameId(saved));
     setBookNote(undefined);
     setHeld(null);
   }, [location.key]);
@@ -96,7 +106,9 @@ export function PlayPage() {
     ? botById(game.botId) ?? engineBots.find(candidate => candidate.id === game.botId) ?? legends.find(candidate => candidate.id === game.botId)
     : undefined;
   // A bot kept from an event plays in its costume, after the event too.
-  const bot = found && game?.outfit ? Object.assign(Object.create(found) as Bot, { avatar: game.outfit }, game.costume ? { name: game.costume } : {}) : found;
+  // In a character's costume (El Silbón) it is that character: its name, opening line and mechanics.
+  const bot = found && game?.costume ? inCostume(found, game.costume, game.outfit)
+    : found && game?.outfit ? Object.assign(Object.create(found) as Bot, { avatar: game.outfit }) : found;
   const total = game?.moves.length ?? 0;
   const atLive = cursor === total;
   const turn: Color | null = game ? ((sideToMove(game.initialFen) === 'white') === (total % 2 === 0) ? 'white' : 'black') : null;
@@ -130,12 +142,17 @@ export function PlayPage() {
       resigned: !!game.resigned, botId: game.botId ?? 'sf18', ...(game.elo ? { elo: game.elo } : {}), ...(game.engineId ? { engineId: game.engineId } : {}),
       ...(game.modelId ? { modelId: game.modelId } : {}), ...(game.masterId ? { masterId: game.masterId } : {}),
       ...(game.coached ? { coached: true } : {}),
-    }).then(data => setGains(data.improved ?? []), () => { /* awards are a bonus; the game is saved locally */ });
+    }).then(data => { setGains(data.improved ?? []); setSavedId(gameId); }, () => { /* awards are a bonus; the game is saved locally */ });
   }, [result, game, update]);
 
   // The bot replies whenever it is its turn on the live position. Leaving the
   // page cancels the reply, so it can never land on a game started meanwhile.
   const thinking = useRef(false);
+  // A character bot that talks asks for its read around each move, for its chatter.
+  const chatterOn = botChatter.use();
+  const talks = chatterOn && !!bot?.voice && !bot.coach;
+  // A character's quirk goes with each of its moves (data/botQuirks.ts).
+  const style = styleFor(bot);
   const pending = useRef<AbortController | null>(null);
   useEffect(() => () => pending.current?.abort(), []);
   useEffect(() => {
@@ -148,13 +165,14 @@ export function PlayPage() {
     (async () => {
       try {
         const reply = await botMove(game.initialFen, game.moves, game.level, controller.signal, game.elo, game.engineId, game.modelId,
-          game.masterId, game.nodes, game.phaseElo);
+          game.masterId, game.nodes, game.phaseElo, { read: talks, style });
         const { best, book } = reply;
         if (!best) return;
         if (game.masterId) setBookNote(book ?? null);
         const played = await playMove(game.initialFen, game.moves, best, controller.signal);
         // The bot's own record of the move, for the after-game card: its phase, rating and any slip.
-        const note = { ply: game.moves.length + 1, slip: !!reply.slip, ...(reply.phase ? { phase: reply.phase } : {}), ...(reply.elo ? { elo: reply.elo } : {}) };
+        const note = { ply: game.moves.length + 1, slip: !!reply.slip, ...(reply.phase ? { phase: reply.phase } : {}), ...(reply.elo ? { elo: reply.elo } : {}),
+          ...(Number.isFinite(reply.before) && Number.isFinite(reply.after) ? { before: reply.before, after: reply.after } : {}) };
         const next = { ...game, moves: [...game.moves, { uci: best, san: played.san }], result: played.result,
           botNotes: [...(game.botNotes ?? []), note] };
         update(next);
@@ -169,11 +187,25 @@ export function PlayPage() {
         if (!controller.signal.aborted) setBusy(false);
       }
     })();
-  }, [game, atLive, live, turn, engineError, update, toast]);
+  }, [game, atLive, live, turn, engineError, update, toast, talks, style]);
 
   // A custom bot's mechanics (data/botMechanics.ts): its sounds, its lines, the board's mood.
-  const mechanics = useBotMechanics({ botId: game?.botId, gameKey: location.key, initialFen: game?.initialFen ?? START_FEN,
-    moves: game?.moves ?? NO_MOVES, you: game?.playerColor ?? 'white', live: atLive ? live : null, result });
+  // Every character bot also talks (data/botChatter.ts); Rooky has the coach's own voice instead.
+  const mechanics = useBotMechanics({ botId: bot?.costumeId ?? game?.botId, bot: bot?.coach ? undefined : bot, gameKey: location.key,
+    initialFen: game?.initialFen ?? START_FEN, moves: game?.moves ?? NO_MOVES, notes: game?.botNotes, you: game?.playerColor ?? 'white',
+    live: atLive ? live : null, result });
+
+  const copyPgn = useCallback(async () => {
+    if (!game) return;
+    try {
+      await navigator.clipboard.writeText(playPgn(game, insights?.user || 'Player', bot?.name ?? game.botName ?? 'Stockfish 18'));
+      toast(t('game.pgnCopied'));
+    } catch {
+      toast(t('game.pgnCopyFailed'));
+    }
+  }, [game, insights, bot, toast, t]);
+  // On torre.sh a finished game shares as a public link; on your own computer, its PGN is copied.
+  const sharer = useShare(copyPgn);
 
   if (!game) return <Navigate to="/play/bots" replace />;
 
@@ -216,16 +248,6 @@ export function PlayPage() {
       ...(game.nodes ? { nodes: game.nodes } : {}), ...(game.botName ? { botName: game.botName } : {}),
       ...(game.phaseElo ? { phaseElo: game.phaseElo } : {}) });
     navigate('/play', { state: { started: Date.now() } });
-  }
-
-  async function copyPgn() {
-    if (!game) return;
-    try {
-      await navigator.clipboard.writeText(playPgn(game, you, botName));
-      toast(t('game.pgnCopied'));
-    } catch {
-      toast(t('game.pgnCopyFailed'));
-    }
   }
 
   /** With the coach: take back your last move and the bot's reply, and try that moment again. */
@@ -391,6 +413,8 @@ export function PlayPage() {
         <ResultDialog open={resultOpen} onClose={() => setResultOpen(false)} game={game} result={result} bot={bot} botName={botName}
           termination={game.resigned ? null : live?.termination ?? null}
           improved={improved} kept={kept} gains={gains} onRematch={rematch} onRetry={retryFrom} onCopyPgn={copyPgn} onLobby={() => navigate('/play/bots')}
+          share={savedId ? <ShareButton sharer={sharer} request={() => ({ game: savedId, ply: null, title: t('games:game.youVs', { name: botName }),
+            text: t('games:game.youVs', { name: botName }) })}>{t('common:share.game')}</ShareButton> : undefined}
           reviewTo={explorePath({ fen: game.initialFen, moves: game.moves.map(m => m.uci), base: game.moves.length, from: '/play', flipped })} />
       )}
     </>
@@ -410,17 +434,21 @@ function OpponentCard({ bot }: { bot: Bot }) {
   );
 }
 
-function ResultDialog({ open, onClose, game, result, bot, botName, termination, improved, kept, gains, onRematch, onRetry, onCopyPgn, onLobby, reviewTo }: {
+function ResultDialog({ open, onClose, game, result, bot, botName, termination, improved, kept, gains, onRematch, onRetry, onCopyPgn, onLobby, reviewTo, share }: {
   open: boolean; onClose: () => void; game: PlaySave; result: string; bot?: Bot; botName: string; termination: string | null;
   improved: boolean; kept: { event: string; count: number; need: number; crest: boolean } | null; gains: AwardGain[]; onRetry: (fen: string) => void; onCopyPgn: () => void;
   onRematch: () => void; onLobby: () => void; reviewTo: string;
+  /** Sharing the game, once it is saved. */
+  share?: ReactNode;
 }) {
   const { t } = useTranslation('play');
   const outcome = outcomeFor(result, game.playerColor);
   const goals = starGoals(result, game.playerColor, yourMoveCount(game));
   const stars = starCount(goals);
   const title = outcome === 'win' ? t('result.won') : outcome === 'draw' ? t('result.draw') : game.resigned ? t('result.resigned') : t('result.botWon', { name: botName });
-  const quote = outcome === 'win' ? bot?.lose : outcome === 'loss' ? bot?.win : undefined;
+  // A draw has no line of its own: the bot says one in its voice (data/botChatter.ts).
+  const quote = outcome === 'win' ? bot?.lose : outcome === 'loss' ? bot?.win
+    : bot?.voice && !bot.coach ? chatLine(bot.voice, 'draw', game.moves.length) : undefined;
   const coach = outcome === 'win' ? { pose: 'dancing' as const, line: t('result.coachWin') }
     : outcome === 'draw' ? { pose: 'relieved' as const, line: t('result.coachDraw') }
     : game.resigned ? { pose: 'sad' as const, line: t('result.coachResigned') }
@@ -465,6 +493,7 @@ function ResultDialog({ open, onClose, game, result, bot, botName, termination, 
           <button type="button" className="button primary" onClick={onRematch}>{t('result.rematch')}</button>
           <Link className="button" to={reviewTo} onClick={onClose}>{t('result.review')}</Link>
           <button type="button" className="button" onClick={onCopyPgn}>{t('game.copyPgn')}</button>
+          {share}
           <button type="button" className="button" onClick={onLobby}>{t('result.anotherOpponent')}</button>
         </div>
       </div>

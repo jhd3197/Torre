@@ -28,5 +28,24 @@
   },
   "page": {
     "loading": "Loading…"
+  },
+  "share": {
+    "copied": "Link copied",
+    "signedOut": "Sign in to share games",
+    "notFound": "This game can't be shared",
+    "tooMany": "Too many share links for now. Try again in a little while.",
+    "failed": "Couldn't make a share link",
+    "game": "Share",
+    "gameTitle": "Share a link to this game",
+    "move": "Share this move",
+    "moveTitle": "Share a link that opens on this move",
+    "brilliant": "Share this brilliant move",
+    "great": "Share this great move",
+    "moveText": "{{move}} ({{grade}}) in {{game}}",
+    "plainMoveText": "{{move}} in {{game}}"
+  },
+  "celebrate": {
+    "brilliant": "Brilliant move!",
+    "great": "Great move!"
   }
 }

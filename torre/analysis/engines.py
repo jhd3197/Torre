@@ -26,6 +26,7 @@ from pathlib import Path
 import chess
 import chess.engine
 
+from torre.analysis import limits
 from torre.server import jobs
 from torre import jsonio
 from torre import paths
@@ -726,7 +727,7 @@ def session_options(engine_id, model_id, options, profile=True):
 def _configure_supported(engine, options):
     """Set only the options the engine declares (Lc0 has no Hash, for instance) and that
     python-chess does not manage per search (MultiPV)."""
-    supported = {key: value for key, value in options.items()
+    supported = {key: value for key, value in limits.cap(options).items()
                  if key in engine.options and key.lower() not in MANAGED_OPTIONS}
     if supported:
         engine.configure(supported)
@@ -735,10 +736,10 @@ def _configure_supported(engine, options):
 class ThreadBudget:
     """Search threads shared out among the engines working at the same moment (the background
     analysis, a review, a bot's move...), so together they stay within the machine's cores
-    instead of each taking half of them."""
+    instead of each taking half of them. TORRE_ENGINE_THREADS shrinks it on a shared host."""
 
     def __init__(self, total=None):
-        self.total = max(1, total or os.cpu_count() or 2)
+        self.total = max(1, total or limits.total_threads())
         self._used = 0
         self._lock = threading.Lock()
 

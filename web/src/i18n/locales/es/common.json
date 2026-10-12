@@ -28,5 +28,24 @@
  },
  "page": {
   "loading": "Cargando…"
+ },
+ "share": {
+  "copied": "Enlace copiado",
+  "signedOut": "Inicia sesión para compartir partidas",
+  "notFound": "Esta partida no se puede compartir",
+  "tooMany": "Demasiados enlaces por ahora. Inténtalo de nuevo en un rato.",
+  "failed": "No se pudo crear el enlace",
+  "game": "Compartir",
+  "gameTitle": "Comparte un enlace a esta partida",
+  "move": "Compartir esta jugada",
+  "moveTitle": "Comparte un enlace que se abre en esta jugada",
+  "brilliant": "Compartir esta jugada brillante",
+  "great": "Compartir esta gran jugada",
+  "moveText": "{{move}} ({{grade}}) en {{game}}",
+  "plainMoveText": "{{move}} en {{game}}"
+ },
+ "celebrate": {
+  "brilliant": "¡Jugada brillante!",
+  "great": "¡Gran jugada!"
  }
 }

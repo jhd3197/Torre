@@ -1,7 +1,7 @@
 // The review's verdict on the move just played: its grade, the engine's top choices from the position
 // before it, and where the move played ranks among them ("3 better moves were there"). Hovering a row
 // shows the position before the move with that row's move drawn on it.
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { reviewedResult } from '../../hooks/useChess';
 import { Mascot, type MascotPose } from '../Reward';
@@ -45,7 +45,7 @@ const forMover = (line: EngineLine, white: boolean) =>
 const moverLabel = (line: EngineLine, white: boolean) =>
   scoreLabel(white ? line : { ...line, cp: -line.cp, mate: line.mate == null ? null : -line.mate });
 
-export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engineId, onGo, onPreview, voice, you }: {
+export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engineId, onGo, onPreview, voice, you, action, note }: {
   initialFen: string;
   moves: Move[];
   cursor: number;
@@ -61,6 +61,10 @@ export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engine
   voice?: { on: boolean; onToggle: () => void };
   /** Your side: the move played is labelled "You" on your moves and "Played" on theirs. */
   you?: Color;
+  /** A small button beside the grade (the game page's "Share this move"). */
+  action?: ReactNode;
+  /** A line under the grade (the game page's celebration of a brilliant move). */
+  note?: ReactNode;
 }) {
   const { t } = useTranslation('board');
   const grade = gradeOf(judged);
@@ -113,7 +117,9 @@ export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engine
             {voice.on ? '🔊' : '🔇'}
           </button>
         )}
+        {action}
       </div>
+      {note}
       <ol className="verdict-picks" onMouseLeave={() => onPreview?.(null)}>
         {picks.map((line, i) => (
           <li key={line.uci[0]}>

@@ -161,6 +161,8 @@
     "reviewNote": "Stepping through a reviewed game, the coach says what each move was.",
     "quiet": "Quiet coach",
     "quietNote": "While you play, the coach stays silent and only speaks when you ask: no quips after captures or checks.",
+    "chatter": "Bot chatter",
+    "chatterNote": "Character bots talk during a game: a line in their bubble when they give check, take a piece, or catch your blunder.",
     "heading": "Voice packs",
     "note": "Recorded coach voices sound natural and work offline, in a female or a male voice. Without the chosen voice's pack, the coach uses the other recorded voice, then your browser's.",
     "size_one": "{{mb}} MB · {{count}} line",
