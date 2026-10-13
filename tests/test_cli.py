@@ -188,6 +188,9 @@ class CliTests(unittest.TestCase):
             (ui / 'index.html').write_text('test')
             self.assertEqual(self.invoke('serve', '--port', '1887', '--open-browser', '--proxied')[0], 0)
             start.assert_called_once_with(['--data-dir', str(self.data), '--port', '1887', '--open-browser', '--proxied'])
+            start.reset_mock()
+            self.assertEqual(self.invoke('serve', '--until-stdin-closes')[0], 0)
+            start.assert_called_once_with(['--data-dir', str(self.data), '--port', '1886', '--until-stdin-closes'])
 
     def test_stockfish_import_analysis_report_pipeline(self):
         from torre.analysis import engines

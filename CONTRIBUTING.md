@@ -27,6 +27,8 @@ On macOS or Linux use PowerShell 7 (`pwsh ./dev.ps1 ...`), or the plain commands
 .\dev.ps1 check        # Python tests, type-check, lint, UI tests, build
 ```
 
+- Add a line to [CHANGELOG.md](CHANGELOG.md) under `## Unreleased` when players will notice the
+  change. It becomes the release notes.
 - Write the interface text in English in `web/src/i18n/locales/en/`; Spanish lives next to it in
   `es/`. Keep copy plain and short.
 - Styles are SCSS with tokens (`web/src/styles/_tokens.scss`): no raw colours or sizes.

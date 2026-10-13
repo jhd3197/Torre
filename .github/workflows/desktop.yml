@@ -1,8 +1,15 @@
-name: Build the Windows installer
+name: Build the desktop installers
 
-# The released wheel, installed into a standalone Python (desktop/scripts/build_runtime.py), in a
-# Tauri window: Torre_<version>_x64-setup.exe, attached to the GitHub release. The installer is
-# unsigned, so Windows SmartScreen asks once ("More info" → "Run anyway").
+# The released wheel (from PyPI), installed into a standalone Python with Stockfish next to it
+# (desktop/scripts/build_runtime.py), in a Tauri window. Each system builds on its own runner and
+# attaches its installers to the release (a draft while release.yml is still running):
+#   Windows  Torre_<version>_x64-setup.exe
+#   macOS    Torre_<version>_aarch64.dmg (Apple silicon), Torre_<version>_x64.dmg (Intel)
+#   Linux    Torre_<version>_amd64.AppImage, Torre_<version>_amd64.deb
+# The installers are unsigned; the release notes (torre/tools/changelog.py) show the one-time step
+# Windows SmartScreen and macOS Gatekeeper ask for.
+# A pull request that touches the desktop app builds every installer from the newest wheel on PyPI,
+# without attaching anything, so a merge never finds out on release day that one does not build.
 
 on:
   workflow_call:
@@ -16,17 +23,40 @@ on:
         description: Released version to package, without the v prefix
         required: true
         type: string
+  pull_request:
+    paths:
+      - desktop/**
+      - .github/workflows/desktop.yml
 
 permissions:
   contents: write
 
 jobs:
-  windows:
-    runs-on: windows-latest
+  build:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows
+            runner: windows-latest
+            bundles: nsis
+          - name: macOS (Apple silicon)
+            runner: macos-latest
+            bundles: dmg
+          - name: macOS (Intel)
+            runner: macos-15-intel
+            bundles: dmg
+          - name: Linux
+            runner: ubuntu-22.04
+            bundles: appimage,deb
+    runs-on: ${{ matrix.runner }}
+    env:
+      VERSION: ${{ inputs.version }}
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: v${{ inputs.version }}
+          ref: ${{ inputs.version && format('v{0}', inputs.version) || '' }}
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -39,23 +69,51 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: desktop/src-tauri
+          cache-on-failure: true
+
+      - name: Linux - install Tauri's system libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libfuse2 file
 
       - name: Download the released wheel
         shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release download "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" --pattern '*.whl' --dir "$RUNNER_TEMP/wheel"
+        run: |
+          # PyPI can take a moment to serve a file it just accepted.
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            python -m pip download "torre${VERSION:+==$VERSION}" --no-deps --only-binary :all: -d wheelhouse && exit 0
+            sleep 30
+          done
+          exit 1
 
       - name: Build the runtime and the installer
         shell: bash
         working-directory: desktop
         run: |
-          python scripts/build_runtime.py --wheel "$(ls "$RUNNER_TEMP"/wheel/*.whl)"
+          python scripts/build_runtime.py --wheel ../wheelhouse/torre-*.whl
           npm ci
-          npm run build
+          npm run build -- --bundles ${{ matrix.bundles }}
 
-      - name: Attach the installer to the release
+      - name: Check that the bundled Python and Stockfish run
+        shell: bash
+        working-directory: desktop/src-tauri/runtime
+        run: |
+          set -euo pipefail
+          python=python/python.exe; [ -f "$python" ] || python=python/bin/python3
+          "$python" -c "import torre, chess, fsrs; print('torre', torre.__version__)"
+          engine=stockfish/stockfish.exe; [ -f "$engine" ] || engine=stockfish/stockfish
+          echo quit | "$engine"
+
+      - name: Attach the installers to the release
+        if: inputs.version
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "v${{ inputs.version }}" desktop/src-tauri/target/release/bundle/nsis/*-setup.exe --repo "$GITHUB_REPOSITORY" --clobber
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          bundle=desktop/src-tauri/target/release/bundle
+          files=("$bundle"/nsis/*-setup.exe "$bundle"/dmg/*.dmg "$bundle"/appimage/*.AppImage "$bundle"/deb/*.deb)
+          if [ ${#files[@]} -eq 0 ]; then echo '::error::No installer was built'; exit 1; fi
+          gh release upload "v$VERSION" "${files[@]}" --repo "$GITHUB_REPOSITORY" --clobber
