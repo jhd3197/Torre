@@ -1,6 +1,7 @@
 // The app shell: the slimmed rail, folding, and the workspace menu.
 import { act, fireEvent, screen, within } from '@testing-library/react';
 import { fakeServer, renderAt } from '../test/harness';
+import { SNOOZE_KEY, STARRED_KEY } from '../lib/githubStar';
 
 const RAIL_KEY = 'chess-jd-rail-folded';
 
@@ -137,5 +138,38 @@ describe('Workspace menu', () => {
     fireEvent.click(within(screen.getByRole('menu')).getByRole('menuitem', { name: 'Import games' }));
     expect(screen.queryByRole('menu')).toBeNull();
     expect(location().pathname).toBe('/import');
+  });
+
+  test('the star beside the logo opens Torre on GitHub', async () => {
+    fakeServer();
+    renderAt('/');
+    await act(async () => {});
+    const star = screen.getByRole('link', { name: 'Star Torre on GitHub' });
+    expect(star).toHaveAttribute('href', 'https://github.com/jhd3197/Torre');
+    expect(star).toHaveAttribute('target', '_blank');
+    // A newcomer is not asked yet.
+    expect(screen.queryByRole('note')).toBeNull();
+  });
+
+  test('the star card, once due, goes away for good after a click through', async () => {
+    localStorage.setItem(SNOOZE_KEY, '1');
+    fakeServer();
+    renderAt('/');
+    await act(async () => {});
+    const card = screen.getByRole('note');
+    expect(within(card).getByText('Enjoying Torre?')).toBeInTheDocument();
+    fireEvent.click(within(card).getByRole('link', { name: 'Star on GitHub' }));
+    expect(screen.queryByRole('note')).toBeNull();
+    expect(localStorage.getItem(STARRED_KEY)).toBe('1');
+  });
+
+  test('"Not now" puts the star card away', async () => {
+    localStorage.setItem(SNOOZE_KEY, '1');
+    fakeServer();
+    renderAt('/');
+    await act(async () => {});
+    fireEvent.click(screen.getByRole('button', { name: 'Not now' }));
+    expect(screen.queryByRole('note')).toBeNull();
+    expect(Number(localStorage.getItem(SNOOZE_KEY))).toBeGreaterThan(Date.now());
   });
 });

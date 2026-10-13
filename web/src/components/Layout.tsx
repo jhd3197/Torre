@@ -14,6 +14,7 @@ import { TopbarSlotsContext, type TopbarSlots } from './TopbarSlot';
 import { useNavItems, type NavItem } from '../lib/nav';
 import { initials, useHostedAccount, type HostedAccount } from '../hooks/useHostedAccount';
 import { usePhone } from '../hooks/usePhone';
+import { cardDue, markStarred, REPO_URL, snooze } from '../lib/githubStar';
 
 /** `topbar: false` drops the shared top bar: the page's own hero or header is
  *  its title, so it owns the page's h1. `phone` does the same on a phone only, where
@@ -36,7 +37,7 @@ const TABS: NavItem[] = [
 
 
 // Anything a click on the rail should leave alone: links, controls, menus.
-const INTERACTIVE = 'a, button, input, select, textarea, label, [role="menu"], [role="menuitem"]';
+const INTERACTIVE = 'a, button, input, select, textarea, label, [role="menu"], [role="menuitem"], .rail-star-card';
 
 const chevronsRight = (
   <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 6 6 6-6 6" /><path d="m12 6 6 6-6 6" /></svg>
@@ -64,6 +65,37 @@ function usePopover() {
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
   return { open, setOpen, ref };
+}
+
+const starIcon = (
+  <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
+);
+
+/** The star beside the logo: Torre's page on GitHub, where a star helps others find it. */
+function GithubStar({ onStarred }: { onStarred: () => void }) {
+  const { t } = useTranslation('nav');
+  return (
+    <a className="rail-star" href={REPO_URL} target="_blank" rel="noopener noreferrer"
+      aria-label={t('star.label')} data-tip={t('star.tip')} onClick={onStarred}>
+      {starIcon}
+      <span className="rail-star-sparks" aria-hidden="true"><i /><i /><i /><i /><i /><i /></span>
+    </a>
+  );
+}
+
+/** Now and then, a card asking for that star (lib/githubStar.ts says when). */
+function GithubStarCard({ onStarred, onLater }: { onStarred: () => void; onLater: () => void }) {
+  const { t } = useTranslation('nav');
+  return (
+    <div className="rail-star-card" role="note">
+      <p className="rail-star-card-title"><span aria-hidden="true">★</span> {t('star.title')}</p>
+      <p className="rail-star-card-body">{t('star.body')}</p>
+      <div className="rail-star-card-actions">
+        <a className="rail-star-card-go" href={REPO_URL} target="_blank" rel="noopener noreferrer" onClick={onStarred}>{t('star.go')}</a>
+        <button type="button" className="rail-star-card-later" onClick={onLater}>{t('star.later')}</button>
+      </div>
+    </div>
+  );
 }
 
 /** The bottom of the rail: who you are, plus importing a game — everything
@@ -123,6 +155,8 @@ export function Layout() {
   const account = useHostedAccount();
   const name = account?.name || insights?.user || 'Player';
   const folded = collapsed && !narrow;
+  const [starCard, setStarCard] = useState(() => cardDue());
+  const starred = () => { markStarred(); setStarCard(false); };
   const [pageTitle, setPageTitle] = useState<PageTitle | null>(null);
   // Spots in the top bar a page can fill (TopbarSlot): a back link in the title's place, tools beside Help.
   const [slots, setSlots] = useState<TopbarSlots>({ lead: null, tools: null });
@@ -199,6 +233,7 @@ export function Layout() {
                   <span className="rail-brand-name">{t('brand')}</span>
                 </span>
               </Link>
+              <GithubStar onStarred={starred} />
               <button
                 type="button"
                 className="rail-head-btn"
@@ -213,6 +248,7 @@ export function Layout() {
           )}
         </div>
         <nav className="rail-nav" aria-label={t('rail.sections')}>{nav.map(navItem)}</nav>
+        {starCard && !folded && <GithubStarCard onStarred={starred} onLater={() => { snooze(); setStarCard(false); }} />}
         <div className="rail-foot">
           <WorkspaceMenu folded={folded} name={name} account={account} onImport={() => { if (narrow) closeDrawer(); navigate('/import'); }} />
         </div>
