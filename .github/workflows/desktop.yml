@@ -1,0 +1,61 @@
+name: Build the Windows installer
+
+# The released wheel, installed into a standalone Python (desktop/scripts/build_runtime.py), in a
+# Tauri window: Torre_<version>_x64-setup.exe, attached to the GitHub release. The installer is
+# unsigned, so Windows SmartScreen asks once ("More info" → "Run anyway").
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Released version to package, without the v prefix
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: v${{ inputs.version }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: desktop/src-tauri
+
+      - name: Download the released wheel
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" --pattern '*.whl' --dir "$RUNNER_TEMP/wheel"
+
+      - name: Build the runtime and the installer
+        shell: bash
+        working-directory: desktop
+        run: |
+          python scripts/build_runtime.py --wheel "$(ls "$RUNNER_TEMP"/wheel/*.whl)"
+          npm ci
+          npm run build
+
+      - name: Attach the installer to the release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "v${{ inputs.version }}" desktop/src-tauri/target/release/bundle/nsis/*-setup.exe --repo "$GITHUB_REPOSITORY" --clobber

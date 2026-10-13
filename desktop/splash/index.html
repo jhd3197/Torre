@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Torre</title>
+  <!-- Shown while the bundled Python starts the studio; src/main.rs then loads the studio here. -->
+  <style>
+    html, body { margin: 0; height: 100%; background: #f8f6ee; color: #1f4a3e; }
+    body {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+      font-family: Nunito, "Segoe UI", system-ui, sans-serif; text-align: center; padding: 0 24px;
+    }
+    img { width: 96px; height: 96px; border-radius: 22px; }
+    p { margin: 0; font-size: 15px; opacity: .75; }
+    #error { display: none; max-width: 560px; }
+    #error h1 { margin: 0 0 8px; font-size: 18px; }
+    #error pre {
+      margin: 12px 0 0; padding: 12px; max-height: 220px; overflow: auto; text-align: left;
+      background: #efe9da; border-radius: 8px; font-size: 12px; white-space: pre-wrap;
+    }
+    body.failed #status { display: none; }
+    body.failed #error { display: block; }
+  </style>
+</head>
+<body>
+  <img src="icon.png" alt="">
+  <p id="status">Starting Torre…</p>
+  <div id="error">
+    <h1>Torre could not start</h1>
+    <p id="message"></p>
+    <pre id="detail"></pre>
+  </div>
+  <script>
+    window.torreFailed = function (message, detail) {
+      document.getElementById('message').textContent = message;
+      document.getElementById('detail').textContent = detail || '';
+      document.getElementById('detail').style.display = detail ? '' : 'none';
+      document.body.classList.add('failed');
+    };
+  </script>
+</body>
+</html>

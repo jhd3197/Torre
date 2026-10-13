@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Torre",
+  "version": "0.0.0",
+  "identifier": "sh.torre.desktop",
+  "mainBinaryName": "Torre",
+  "build": {
+    "frontendDist": "../splash"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "category": "Game",
+    "shortDescription": "Learn chess step by step",
+    "longDescription": "Lessons, puzzles, bots to play and an honest review of every game with Stockfish.",
+    "copyright": "Juan Denis, GPL-3.0",
+    "license": "GPL-3.0-only",
+    "licenseFile": "../../LICENSE",
+    "resources": {
+      "runtime/python/": "python/",
+      "runtime/stockfish/": "stockfish/"
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  }
+}
