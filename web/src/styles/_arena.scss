@@ -117,6 +117,10 @@
   background: $lobby-pill;
   color: $brand-green;
 }
+.arena-kind.ai {
+  background: rgba($plum-600, 0.12);
+  color: $plum-700;
+}
 .arena-seat-rating {
   font: 500 #{$fs-md} $font-mono;
   color: $brand-green;
@@ -181,6 +185,21 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 6px;
+}
+/* Any other AI model, typed as Prompture names it ("ollama/llama3.2:3b"). */
+.arena-ai-model {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 10px;
+    border: 1.5px solid $lobby-line;
+    border-radius: 10px;
+    font: 500 #{$fs-sm} $font-mono;
+  }
 }
 .arena-pick {
   display: flex;
@@ -559,6 +578,20 @@
   font-size: $fs-sm;
   line-height: 1.45;
   color: $moss-700;
+}
+/* An AI player's reason for the move it just played, in its own words. */
+.arena-ai-line {
+  margin: 0;
+  font-size: $fs-sm;
+  line-height: 1.45;
+
+  strong { color: $plum-700; }
+  small { color: $lobby-muted; white-space: nowrap; }
+}
+.arena-cost {
+  margin: 0;
+  font: 500 #{$fs-sm} $font-mono;
+  color: $lobby-muted;
 }
 
 /* Who is winning: the judge's score as each player's chance, Player 1 (green) on the left. */

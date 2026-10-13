@@ -56,12 +56,39 @@
       "golden": "Golden Age",
       "cold-war": "Cold War",
       "modern": "Modern"
-    }
+    },
+    "aiModels": "AI models",
+    "aiModelLabel": "Any AI model",
+    "aiModelPlaceholder": "provider/model, e.g. ollama/llama3.2:3b",
+    "aiSeat": "Seat it",
+    "aiNote": "Picks from the legal moves it is shown, so it never plays an illegal move. Help: {{level}}.",
+    "aiLevel": "Help",
+    "aiLevels": {
+      "0": "None: every legal move",
+      "1": "Move facts (captures, checks)",
+      "2": "No blunders on the menu",
+      "3": "Stockfish's top 5, unranked",
+      "4": "Stockfish's top 3, with scores",
+      "5": "Only Stockfish's best move"
+    },
+    "aiEffort": "Thinking",
+    "aiEffortDefault": "The model's default",
+    "aiEfforts": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "xhigh": "Extra high",
+      "max": "Max"
+    },
+    "costCap": "Spending cap",
+    "costCapNone": "No cap",
+    "aiHint": "AI players use your API keys and can take minutes per move; the cap stops the match once they have spent that much."
   },
   "kinds": {
     "legend": "Legend",
     "engine": "Engine",
-    "model": "Human-like"
+    "model": "Human-like",
+    "ai": "AI model"
   },
   "predict": {
     "title": "Expected score",
@@ -88,7 +115,9 @@
     "finished_other": "Match over after {{count}} games",
     "stopped_one": "Stopped after {{count}} game",
     "stopped_other": "Stopped after {{count}} games",
-    "failed": "The match stopped: {{error}}"
+    "failed": "The match stopped: {{error}}",
+    "capped_one": "Stopped at the spending cap after {{count}} game",
+    "capped_other": "Stopped at the spending cap after {{count}} games"
   },
   "book": {
     "line": "{{name}} played this in {{count}} of {{total}} of their games from here, one of them against {{opponent}} ({{year}}).",
@@ -112,7 +141,8 @@
     "fivefold_repetition": "Fivefold repetition",
     "fifty_moves": "50-move rule",
     "threefold_repetition": "Threefold repetition",
-    "move_limit": "Move limit (draw)"
+    "move_limit": "Move limit (draw)",
+    "cost_cap": "spending cap"
   },
   "openings": {
     "italian": "Italian Game",
@@ -133,7 +163,8 @@
     "games_one": "{{count}} game",
     "games_other": "{{count}} games",
     "stopped": "stopped early",
-    "sprt": "decided early"
+    "sprt": "decided early",
+    "capped": "spending cap"
   },
   "sprt": {
     "H1": "SPRT: {{name}} is stronger (LLR {{llr}})",
@@ -176,5 +207,14 @@
     "good": "Good",
     "book": "Book"
   },
-  "moves": "Moves"
+  "moves": "Moves",
+  "ai": {
+    "thinking": "thinking…",
+    "noReason": "(no reason given)",
+    "turn": "{{seconds}} s · {{cost}}",
+    "rescued": "the harness picked for it",
+    "retried_one": "{{count}} reply refused",
+    "retried_other": "{{count}} replies refused",
+    "spent": "Spent: {{first}} {{a}} · {{second}} {{b}}"
+  }
 }
