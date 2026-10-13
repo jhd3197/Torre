@@ -426,10 +426,16 @@ class AiPlayerTests(unittest.TestCase):
         player = arena.make_player(self.ai())
         with self.assertRaisesRegex(RuntimeError, 'credit balance'):
             player.choose(broken, chess.Board(), 0.1, random.Random(1))
+        # A reply cut off before it said anything is no answer either.
+        silent = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
+            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={}, attempts=[types.SimpleNamespace(
+                reply=None, error='the reply was not valid JSON (the reply hit max_tokens before any answer was written)')] * 3))
+        with self.assertRaisesRegex(RuntimeError, 'max_tokens'):
+            player.choose(silent, chess.Board(), 0.1, random.Random(1))
         # A model that answers badly three times is still rescued: that is the harness doing its job.
         sloppy = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
             move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
-            attempts=[types.SimpleNamespace(error='"Qh9" is not one of the moves offered')] * 3))
+            attempts=[types.SimpleNamespace(reply='Qh9', error='"Qh9" is not one of the moves offered')] * 3))
         move, note = player.choose(sloppy, chess.Board(), 0.1, random.Random(1))
         self.assertTrue(note['ai']['rescued'])
 
