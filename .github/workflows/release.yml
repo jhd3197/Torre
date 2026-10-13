@@ -68,7 +68,7 @@ jobs:
       - name: Stamp the changelog with the version
         if: steps.bump.outputs.new_version
         run: python -m torre.tools.changelog stamp "${{ steps.bump.outputs.new_version }}"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: steps.bump.outputs.new_version
         with:
           name: changelog
