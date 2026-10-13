@@ -1,8 +1,8 @@
 name: Build the desktop installers
 
-# The released wheel (from PyPI), installed into a standalone Python with Stockfish next to it
-# (desktop/scripts/build_runtime.py), in a Tauri window. Each system builds on its own runner and
-# attaches its installers to the release (a draft while release.yml is still running):
+# The released wheel (from the GitHub release), installed into a standalone Python with Stockfish
+# next to it (desktop/scripts/build_runtime.py), in a Tauri window. Each system builds on its own
+# runner and attaches its installers to the release (a draft while release.yml is still running):
 #   Windows  Torre_<version>_x64-setup.exe
 #   macOS    Torre_<version>_aarch64.dmg (Apple silicon), Torre_<version>_x64.dmg (Intel)
 #   Linux    Torre_<version>_amd64.AppImage, Torre_<version>_amd64.deb
@@ -77,15 +77,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libfuse2 file
 
-      - name: Download the released wheel
+      - name: Download the wheel
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # PyPI can take a moment to serve a file it just accepted.
-          for attempt in 1 2 3 4 5 6 7 8 9 10; do
-            python -m pip download "torre${VERSION:+==$VERSION}" --no-deps --only-binary :all: -d wheelhouse && exit 0
-            sleep 30
-          done
-          exit 1
+          set -euo pipefail
+          if [ -n "$VERSION" ]; then
+            # From the release itself (a draft while release.yml runs): PyPI's mirrors can take
+            # minutes to list a version it just accepted.
+            gh release download "v$VERSION" --repo "$GITHUB_REPOSITORY" --pattern 'torre-*.whl' --dir wheelhouse
+          else
+            python -m pip download torre --no-deps --only-binary :all: -d wheelhouse
+          fi
 
       - name: Build the runtime and the installer
         shell: bash

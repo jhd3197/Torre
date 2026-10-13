@@ -275,6 +275,7 @@ class Player:
 AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
 AI_MAX_TOKENS = 16000           # the reply, reasoning included; more needs a streaming call
+AI_TIMEOUT_S = 900              # one model call; a reasoning model can think for minutes, a dead socket forever
 AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
 MODEL_CALL_FAILED = 'the model call failed'  # how prompture.games words a call that never got a reply
 
@@ -320,7 +321,7 @@ class AiPlayer:
 
     def options(self):
         """The model call's options: room to reason, and the effort in each provider's own word."""
-        options = {'max_tokens': AI_MAX_TOKENS}
+        options = {'max_tokens': AI_MAX_TOKENS, 'timeout': AI_TIMEOUT_S}
         if self.effort:
             provider = self.model.split('/', 1)[0]
             options['reasoning_effort' if provider in ('openai', 'azure') else 'effort'] = self.effort
@@ -448,6 +449,9 @@ class ArenaJob(jobs.BackgroundJob):
         seed = payload.get('seed')
         if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
             raise ValueError('"seed" must be a whole number.')
+        start_moves = self._start_moves(payload.get('startMoves'))
+        if start_moves and (games != 1 or openings != 'start'):
+            raise ValueError('"startMoves" continues one game: use games 1 and openings "start".')
         cost_cap = payload.get('costCap')
         if cost_cap is not None and (isinstance(cost_cap, bool) or not isinstance(cost_cap, (int, float)) or cost_cap <= 0):
             raise ValueError('"costCap" must be a positive number of dollars.')
@@ -457,11 +461,31 @@ class ArenaJob(jobs.BackgroundJob):
             'id': uuid.uuid4().hex[:12], 'date': utc_now().strftime('%Y-%m-%d %H:%M'),
             'players': [p.describe() for p in sides], 'phase': 'preparing',
             'settings': {'games': games, 'movetime': movetime, 'openings': openings, 'pace': pace, 'sprt': sprt, 'seed': seed,
-                         'costCap': cost_cap},
+                         'costCap': cost_cap, 'startMoves': start_moves},
             'cost': [0.0, 0.0], 'capped': False, 'score': [0.0, 0.0], 'wdl': [0, 0, 0], 'grades': [dict.fromkeys(GRADES, 0), dict.fromkeys(GRADES, 0)], 'games': [], 'current': None, 'error': None, 'stopped': False,
             'early': False, 'sprt': sprt_status((0, 0, 0), sprt) if sprt else None}},
-            sides, games, movetime, openings, pace, sprt, seed)
+            sides, games, movetime, openings, pace, sprt, seed, start_moves)
         return self.status()
+
+    @staticmethod
+    def _start_moves(moves):
+        """The UCI moves a game continues from (an AI game cut short), checked for legality; [] for none."""
+        if moves is None:
+            return []
+        if not isinstance(moves, list) or not all(isinstance(m, str) for m in moves):
+            raise ValueError('"startMoves" must be a list of UCI moves.')
+        board = chess.Board()
+        for uci in moves:
+            try:
+                move = chess.Move.from_uci(uci)
+            except ValueError:
+                move = None
+            if move is None or move not in board.legal_moves:
+                raise ValueError(f'"startMoves": {uci} is not legal after {len(board.move_stack)} moves.')
+            board.push(move)
+        if board.is_game_over(claim_draw=True):
+            raise ValueError('"startMoves" ends the game already.')
+        return list(moves)
 
     def _update(self, **changes):
         with self.lock:
@@ -479,11 +503,11 @@ class ArenaJob(jobs.BackgroundJob):
             return [(p['san'], p['moves'], {'eco': p['eco'], 'openingName': p['name']}) for p in picks]
         return []
 
-    def work(self, sides, games, movetime, openings, pace, sprt=None, seed=None):
+    def work(self, sides, games, movetime, openings, pace, sprt=None, seed=None, start_moves=None):
         rng = random.Random(seed)
         for side in sides:
             side.prepare()
-        lines = self._lines(openings, games, rng)
+        lines = [(None, start_moves, {'continued': len(start_moves)})] if start_moves else self._lines(openings, games, rng)
         self._update(phase='playing')
         with contextlib.ExitStack() as stack:
             processes = [stack.enter_context(side.process()) for side in sides]
@@ -547,10 +571,18 @@ class ArenaJob(jobs.BackgroundJob):
                 result, termination = '1/2-1/2', 'move limit'
                 break
             if self.stopping:
+                if self._ai_record(notes):  # an AI game is worth keeping (and continuing), even half played
+                    self._keep_unfinished(number, order, 'stopped', opening_id, extra, moves, notes, grades)
                 return False
             mover = order[0] if board.turn == chess.WHITE else order[1]
             started = time.monotonic()
-            move, note = sides[mover].choose(processes[mover], board, movetime, rng)
+            try:
+                move, note = sides[mover].choose(processes[mover], board, movetime, rng)
+            except Exception:
+                # A model call that failed for good (arena.AiPlayer): keep the game so far, then fail the match.
+                if self._ai_record(notes) or isinstance(sides[mover], AiPlayer):
+                    self._keep_unfinished(number, order, 'model error', opening_id, extra, moves, notes, grades)
+                raise
             moves.append({'uci': move.uci(), 'san': board.san(move)})
             played_from = board.copy()
             board.push(move)
@@ -573,12 +605,7 @@ class ArenaJob(jobs.BackgroundJob):
                 result, termination = '*', 'cost cap'
                 break
         if result == '*':
-            # Out of budget mid-game: the game is kept (an AI game is worth replaying) but not scored.
-            with self.lock:
-                self.state['match']['games'].append({
-                    'number': number + 1, 'white': order[0], 'result': result, 'termination': termination,
-                    'opening': opening_id, **extra, 'plies': len(moves), 'moves': [m['uci'] for m in moves],
-                    'book': self._book_counts(notes, order), 'grades': grades, **self._ai_record(notes)})
+            self._keep_unfinished(number, order, termination, opening_id, extra, moves, notes, grades)
             return False
         # Score from the first player's point of view.
         first = {'1-0': 1.0, '0-1': 0.0}.get(result, 0.5) if order[0] == 0 else {'1-0': 0.0, '0-1': 1.0}.get(result, 0.5)
@@ -597,6 +624,15 @@ class ArenaJob(jobs.BackgroundJob):
         if pace == 'watch' and not self.stopping:
             time.sleep(1.5)  # a moment to see how it ended
         return True
+
+    def _keep_unfinished(self, number, order, termination, opening_id, extra, moves, notes, grades):
+        """Record a game cut short (cost cap, a stop, a failed model call) as unfinished: kept for
+        replaying and continuing (startMoves), not scored."""
+        with self.lock:
+            self.state['match']['games'].append({
+                'number': number + 1, 'white': order[0], 'result': '*', 'termination': termination,
+                'opening': opening_id, **extra, 'plies': len(moves), 'moves': [m['uci'] for m in moves],
+                'book': self._book_counts(notes, order), 'grades': grades, **self._ai_record(notes)})
 
     def _spend(self, player, cost):
         """Add an AI turn's cost to its player; True (and the match stops) once the cap is reached."""

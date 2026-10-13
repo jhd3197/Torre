@@ -563,6 +563,8 @@ export interface ArenaGame {
   /** Moves each player made from their own games (legends). */
   book: [number, number];
   grades?: [ArenaTally, ArenaTally];
+  /** How many of `moves` were played before this match, when it continued a game. */
+  continued?: number;
   /** Per ply, what the AI player said and spent (null on the other player's moves); only in AI games. */
   ai?: (ArenaAiNote | null)[];
 }
@@ -576,6 +578,8 @@ export interface ArenaSettings {
   sprt?: boolean | { elo0?: number; elo1?: number; alpha?: number; beta?: number } | null;
   /** Stop the match once the AI players have spent this many dollars between them. */
   costCap?: number | null;
+  /** UCI moves the game continued from (an AI game cut short and picked up again). */
+  startMoves?: string[];
 }
 /** The sequential probability ratio test after the latest game; verdict H1 = the first player is stronger. */
 export interface ArenaSprt { llr: number; lower: number; upper: number; elo0: number; elo1: number; verdict: 'H1' | 'H0' | null }
