@@ -6,6 +6,8 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.4 - 2026-10-13
+
 ### Added
 
 - **Run Torre on Windows without installing it.** Each release now has a portable zip: unzip it
