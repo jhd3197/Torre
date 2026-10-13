@@ -21,9 +21,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      # A release builds the commit release.yml runs on (its tag only exists once it is
+      # published); rebuilding a published release by hand builds its tag.
       - uses: actions/checkout@v7
         with:
-          ref: v${{ inputs.version }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || '' }}
       - name: Validate release version
         env:
           TORRE_VERSION: ${{ inputs.version }}

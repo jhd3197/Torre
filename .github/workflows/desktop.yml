@@ -1,15 +1,17 @@
 name: Build the desktop installers
 
-# The released wheel (from the GitHub release), installed into a standalone Python with Stockfish
-# next to it (desktop/scripts/build_runtime.py), in a Tauri window. Each system builds on its own
-# runner and attaches its installers to the release (a draft while release.yml is still running):
-#   Windows  Torre_<version>_x64-setup.exe
+# The released wheel, installed into a standalone Python with Stockfish next to it
+# (desktop/scripts/build_runtime.py), in a Tauri window. Each system builds on its own runner and
+# attaches its downloads to the release (a draft while release.yml is still running):
+#   Windows  Torre_<version>_x64-setup.exe, Torre_<version>_x64_en-US.msi,
+#            Torre_<version>_x64-portable.zip (desktop/scripts/make_portable.py)
 #   macOS    Torre_<version>_aarch64.dmg (Apple silicon), Torre_<version>_x64.dmg (Intel)
-#   Linux    Torre_<version>_amd64.AppImage, Torre_<version>_amd64.deb
-# The installers are unsigned; the release notes (torre/tools/changelog.py) show the one-time step
-# Windows SmartScreen and macOS Gatekeeper ask for.
-# A pull request that touches the desktop app builds every installer from the newest wheel on PyPI,
-# without attaching anything, so a merge never finds out on release day that one does not build.
+#   Linux    Torre_<version>_amd64.AppImage, Torre_<version>_amd64.deb, Torre-<version>-1.x86_64.rpm
+# They are unsigned; the release notes (torre/tools/changelog.py) show the one-time step Windows
+# SmartScreen and macOS Gatekeeper ask for.
+# A push to dev, or a pull request into it, that touches the desktop app builds everything from
+# the newest wheel on PyPI without attaching it, so a release never finds out that one does not
+# build. The dev -> main pull request does not build again: dev already did, for those commits.
 
 on:
   workflow_call:
@@ -23,7 +25,13 @@ on:
         description: Released version to package, without the v prefix
         required: true
         type: string
+  push:
+    branches: [dev]
+    paths:
+      - desktop/**
+      - .github/workflows/desktop.yml
   pull_request:
+    branches: [dev]
     paths:
       - desktop/**
       - .github/workflows/desktop.yml
@@ -40,7 +48,7 @@ jobs:
         include:
           - name: Windows
             runner: windows-latest
-            bundles: nsis
+            bundles: nsis,msi
           - name: macOS (Apple silicon)
             runner: macos-latest
             bundles: dmg
@@ -49,14 +57,16 @@ jobs:
             bundles: dmg
           - name: Linux
             runner: ubuntu-22.04
-            bundles: appimage,deb
+            bundles: appimage,deb,rpm
     runs-on: ${{ matrix.runner }}
     env:
       VERSION: ${{ inputs.version }}
     steps:
+      # A release builds the commit release.yml runs on (its tag only exists once it is
+      # published); rebuilding a published release by hand builds its tag.
       - uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.version && format('v{0}', inputs.version) || '' }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || '' }}
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -77,27 +87,38 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libfuse2 file
 
+      # In a release, the wheel release.yml just built; PyPI does not have it yet, since it is
+      # published only once every download is built.
+      - uses: actions/download-artifact@v8
+        if: github.event_name != 'workflow_dispatch' && inputs.version
+        with:
+          name: dist
+          path: wheelhouse
       - name: Download the wheel
+        if: github.event_name == 'workflow_dispatch' || !inputs.version
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if [ -n "$VERSION" ]; then
-            # From the release itself (a draft while release.yml runs): PyPI's mirrors can take
-            # minutes to list a version it just accepted.
             gh release download "v$VERSION" --repo "$GITHUB_REPOSITORY" --pattern 'torre-*.whl' --dir wheelhouse
           else
             python -m pip download torre --no-deps --only-binary :all: -d wheelhouse
           fi
 
-      - name: Build the runtime and the installer
+      - name: Build the runtime and the installers
         shell: bash
         working-directory: desktop
         run: |
           python scripts/build_runtime.py --wheel ../wheelhouse/torre-*.whl
           npm ci
           npm run build -- --bundles ${{ matrix.bundles }}
+
+      - name: Windows - zip the portable copy
+        if: runner.os == 'Windows'
+        working-directory: desktop
+        run: python scripts/make_portable.py
 
       - name: Check that the bundled Python and Stockfish run
         shell: bash
@@ -109,7 +130,7 @@ jobs:
           engine=stockfish/stockfish.exe; [ -f "$engine" ] || engine=stockfish/stockfish
           echo quit | "$engine"
 
-      - name: Attach the installers to the release
+      - name: Attach the downloads to the release
         if: inputs.version
         shell: bash
         env:
@@ -118,6 +139,13 @@ jobs:
           set -euo pipefail
           shopt -s nullglob
           bundle=desktop/src-tauri/target/release/bundle
-          files=("$bundle"/nsis/*-setup.exe "$bundle"/dmg/*.dmg "$bundle"/appimage/*.AppImage "$bundle"/deb/*.deb)
-          if [ ${#files[@]} -eq 0 ]; then echo '::error::No installer was built'; exit 1; fi
-          gh release upload "v$VERSION" "${files[@]}" --repo "$GITHUB_REPOSITORY" --clobber
+          files=("$bundle"/nsis/*-setup.exe "$bundle"/msi/*.msi desktop/dist/*-portable.zip "$bundle"/dmg/*.dmg
+                 "$bundle"/appimage/*.AppImage "$bundle"/deb/*.deb "$bundle"/rpm/*.rpm)
+          if [ ${#files[@]} -eq 0 ]; then echo '::error::Nothing was built'; exit 1; fi
+          for file in "${files[@]}"; do
+            for try in 1 2 3; do
+              gh release upload "v$VERSION" "$file" --repo "$GITHUB_REPOSITORY" --clobber && break
+              if [ "$try" = 3 ]; then echo "::error::Could not upload $file"; exit 1; fi
+              echo "Upload of $file failed; trying again"; sleep $((try * 15))
+            done
+          done

@@ -1,12 +1,18 @@
 name: Publish to PyPI and GitHub Release
 
-# Every push to main (a merge from dev), once the tests pass: bump the version (a patch by default;
-# "feat:" in a commit makes it a minor, "BREAKING CHANGE" a major), tag it, stamp CHANGELOG.md's
-# Unreleased notes with it, build the interface into the package, publish the wheel and sdist to
-# PyPI, and open a draft GitHub release with the wheel. The desktop installers (desktop.yml) and
-# the Docker image build from that version; then the release gets checksums and its notes (that
-# version's changelog section, then the downloads for each system) and is published. The new
-# version and the stamped changelog are written back to main.
+# Every push to main (a merge from dev) releases, Faro's way: decide the version, build everything
+# side by side, and make it public only once every piece is there.
+#   prepare  the next version (a patch by default; "feat:" in a commit makes it a minor,
+#            "BREAKING CHANGE" a major), CHANGELOG.md's Unreleased notes stamped with it, the
+#            interface built into the wheel and sdist, and a draft GitHub release with the wheel.
+#   then, in parallel: the tests, the desktop downloads for every system (desktop.yml) and the
+#            Docker image (docker.yml, which pushes as soon as it is built and checked).
+#   publish  checks that every download is on the draft, tags the commit, publishes to PyPI,
+#            writes the version and the stamped changelog back to main, adds checksums, writes the
+#            notes (that version's changelog section, then the downloads for each system) and
+#            publishes the release.
+# If any of it fails, nothing reaches PyPI or the releases page: rerun the failed jobs. Each step
+# of publish is safe to repeat.
 # Needs the repository secret PYPI_TOKEN (a PyPI token scoped to the torre project).
 
 on:
@@ -20,12 +26,8 @@ permissions:
 concurrency: release
 
 jobs:
-  test:
+  prepare:
     if: github.actor != 'github-actions[bot]'
-    uses: ./.github/workflows/test.yml
-
-  release:
-    needs: test
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump.outputs.new_version }}
@@ -40,7 +42,8 @@ jobs:
           git fetch --tags --prune
           if git tag --points-at HEAD | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$'; then echo "yes=true" >> "$GITHUB_OUTPUT"; fi
 
-      - name: Bump the version and push the tag
+      # Only works the version out: the tag is made by publish, once the release is complete.
+      - name: Work out the next version
         id: bump
         if: steps.released.outputs.yes != 'true'
         uses: mathieudutour/github-tag-action@v7
@@ -49,6 +52,7 @@ jobs:
           release_branches: main
           default_bump: patch
           tag_prefix: v
+          dry_run: true
 
       - name: Set the version
         if: steps.bump.outputs.new_version
@@ -87,69 +91,97 @@ jobs:
       - name: Build the wheel and sdist
         if: steps.bump.outputs.new_version
         run: |
-          python -m pip install build twine
+          python -m pip install build
           python -m build
-
-      - name: Publish to PyPI
+      - uses: actions/upload-artifact@v7
         if: steps.bump.outputs.new_version
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: python -m twine upload dist/* --non-interactive
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
 
       - name: Open a draft GitHub release
         if: steps.bump.outputs.new_version
         env:
           GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.bump.outputs.new_version }}
         run: |
-          gh release create "v${{ steps.bump.outputs.new_version }}" dist/*.whl --draft \
-            --title "v${{ steps.bump.outputs.new_version }}" \
-            --notes "The installers are being built; this release is published when they are ready."
+          set -euo pipefail
+          # A draft left by an earlier run that never published is replaced.
+          if [ "$(gh release view "v$VERSION" --json isDraft --jq .isDraft 2>/dev/null)" = true ]; then
+            gh release delete "v$VERSION" --yes
+          fi
+          gh release create "v$VERSION" dist/*.whl --draft --target "$GITHUB_SHA" --title "v$VERSION" \
+            --notes "The downloads are being built; this release is published when they are all ready."
 
-      - name: Write the version and the changelog back to main
-        if: steps.bump.outputs.new_version
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add torre/__init__.py CHANGELOG.md
-          git commit -m "Release v${{ steps.bump.outputs.new_version }} [skip ci]" || exit 0
-          git push origin HEAD:main
-
-  docker:
-    needs: release
-    if: needs.release.outputs.version != ''
-    uses: ./.github/workflows/docker.yml
-    with:
-      version: ${{ needs.release.outputs.version }}
-    secrets: inherit
+  test:
+    if: github.actor != 'github-actions[bot]'
+    uses: ./.github/workflows/test.yml
 
   desktop:
-    needs: release
-    if: needs.release.outputs.version != ''
+    needs: prepare
+    if: needs.prepare.outputs.version != ''
     uses: ./.github/workflows/desktop.yml
     with:
-      version: ${{ needs.release.outputs.version }}
+      version: ${{ needs.prepare.outputs.version }}
+    secrets: inherit
+
+  docker:
+    needs: [prepare, test]
+    if: needs.prepare.outputs.version != ''
+    uses: ./.github/workflows/docker.yml
+    with:
+      version: ${{ needs.prepare.outputs.version }}
     secrets: inherit
 
   publish:
-    needs: [release, desktop]
-    # Publish even when one system's installer failed: PyPI already has this version, and the
-    # notes list only the downloads that exist. Rerun desktop.yml by hand to add the rest.
-    if: ${{ !cancelled() && needs.release.outputs.version != '' }}
+    needs: [prepare, test, desktop, docker]
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      VERSION: ${{ needs.release.outputs.version }}
+      VERSION: ${{ needs.prepare.outputs.version }}
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: v${{ needs.release.outputs.version }}
       - uses: actions/download-artifact@v8
         with:
-          name: changelog  # the stamped CHANGELOG.md, over the tag's copy
+          name: changelog  # the stamped CHANGELOG.md, over the commit's copy
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+
+      - name: Check that every download is on the release
+        run: |
+          gh release view "v$VERSION" --repo "$GITHUB_REPOSITORY" --json assets > assets.json
+          python -m torre.tools.changelog check "$VERSION" --assets assets.json
+
+      # Through the API: a git push of the tag is refused whenever the commit changes a workflow,
+      # which the job's token may not do.
+      - name: Tag the release
+        run: |
+          if ! gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v$VERSION" --silent 2>/dev/null; then
+            gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/v$VERSION" -f sha="$GITHUB_SHA" --silent
+          fi
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          python -m pip install twine
+          python -m twine upload dist/* --non-interactive --skip-existing
+
+      - name: Write the version and the changelog back to main
+        run: |
+          sed -i "s/^__version__ = .*/__version__ = '$VERSION'/" torre/__init__.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add torre/__init__.py CHANGELOG.md
+          git commit -m "Release v$VERSION [skip ci]" || exit 0
+          git push origin HEAD:main
 
       - name: Add checksums for every download
         run: |
@@ -164,5 +196,5 @@ jobs:
           set -euo pipefail
           gh release view "v$VERSION" --repo "$GITHUB_REPOSITORY" --json assets > assets.json
           python -m torre.tools.changelog notes "$VERSION" --assets assets.json --repo "$GITHUB_REPOSITORY" \
-            --previous "${{ needs.release.outputs.previous }}" > notes.md
+            --previous "${{ needs.prepare.outputs.previous }}" > notes.md
           gh release edit "v$VERSION" --repo "$GITHUB_REPOSITORY" --notes-file notes.md --draft=false --latest
