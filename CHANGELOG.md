@@ -6,6 +6,8 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.5 - 2026-10-13
+
 ### Added
 
 - **A star beside the Torre logo takes you to Torre on GitHub.** Starring it is free and helps
