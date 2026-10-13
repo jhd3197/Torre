@@ -487,6 +487,19 @@ export interface BookHit {
 /** How hard an AI player thinks: the provider's reasoning effort. */
 export type ArenaAiEffort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
 
+/** /api/arena/models: one model the Arena offers ("claude/claude-fable-5-1"), from Prompture's catalogue. */
+export interface ArenaAiModel {
+  id: string;
+  name: string;
+  released: string;
+  /** The efforts it takes; empty when it does not reason (or the catalogue does not say). */
+  efforts: ArenaAiEffort[];
+  /** Dollars per million tokens. */
+  cost: { input: number; output: number | null } | null;
+}
+
+export interface ArenaAiProvider { id: string; name: string; local: boolean; has_key: boolean; models: ArenaAiModel[] }
+
 /** An AI player (arena.AiPlayer): a model through Prompture's chess harness. */
 export interface ArenaAiSpec {
   /** Provider and model, as Prompture names them: "claude/claude-fable-5-1". */
@@ -674,6 +687,8 @@ export interface MotifStats { errors: number; games?: number; missed: MotifRow[]
 export interface ArenaLadderData {
   players: { id: string; name: string; nominal: number | null; rating: number; ci_low: number; ci_high: number;
     games: number; points: number; score: number; wins: number; draws: number; losses: number;
-    group: number; placed_by: 'anchor' | 'nominal' | 'average' }[];
+    group: number; placed_by: 'anchor' | 'nominal' | 'average';
+    /** An AI player: its model, help level and effort, and its spend over cost_games games. */
+    ai: { model: string; level: number; effort: ArenaAiEffort | null } | null; cost?: number; cost_games?: number }[];
   groups: number; games: number; anchor: string | null;
 }

@@ -6,6 +6,22 @@ the GitHub release's notes.
 
 ## Unreleased
 
+### Added
+
+- **AI models have their own ladder in the Arena.** Every model you pit against another, or
+  against an engine, gets a rating with its 95% range, its record and what a game costs it. The
+  same model at another help level or thinking setting is rated as a separate player. Play a
+  model against Stockfish held to a rating to put it on the same scale as the engines.
+- **Pick from the latest AI models of each provider.** The Arena's player picker now lists the
+  newest Claude, GPT, Gemini, DeepSeek and Groq models, with their price, plus the models your
+  Ollama runs. It says which providers still need a key, and only offers the thinking settings
+  a model supports. You can still type any other model.
+
+### Fixed
+
+- **Matches between AI models count in the ladder.** They used to be filed as Stockfish against
+  itself and left out.
+
 ## 0.5.5 - 2026-10-13
 
 ### Added

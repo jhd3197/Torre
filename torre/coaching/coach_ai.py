@@ -8,6 +8,7 @@ the key straight to Prompture (coach.ask_model), so nothing goes into the enviro
 import importlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 
@@ -34,6 +35,12 @@ BY_ID = {p['id']: p for p in PROVIDERS}
 NOT_CHAT = ('embed', 'whisper', 'tts', 'dall-e', 'image', 'audio', 'moderation', 'realtime', 'transcribe', 'search')
 
 _models_cache = {}
+_featured_cache = {}
+# The Arena's model picker: per provider, the newest current chat model of each family.
+ARENA_PROVIDERS = ('claude', 'openai', 'google', 'deepseek', 'groq')
+ARENA_PER_PROVIDER = 5
+EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')  # what arena.AI_EFFORTS takes
+_SNAPSHOT = re.compile(r'-(\d{8}|\d{4}-\d{2}-\d{2})$|-latest$|preview|-exp')
 
 
 def hosted():
@@ -129,4 +136,58 @@ def providers(data_dir, local_models):
         key = keys.get(p['id'])
         out.append({'id': p['id'], 'name': p['name'], 'local': False, 'key_url': p['key_url'],
                     'has_key': bool(key), 'key_hint': hint(key) if key else None, 'suggested': p['suggested']})
+    return out
+
+
+def _catalogue_entry(rates, provider, model_id):
+    """One model from Prompture's catalogue (models.dev) as the Arena offers it, or None when it
+    is not a current chat model: an image, speech or embedding model, a guard, a preview, an
+    alias or dated snapshot, or a model past its prime."""
+    if _SNAPSHOT.search(model_id) or any(word in model_id.lower() for word in NOT_CHAT):
+        return None
+    info = rates.get_model_info(provider, model_id) or {}
+    life = rates.get_model_lifecycle(provider, model_id) or {}
+    if (info.get('modalities') or {}).get('output') != ['text'] or not info.get('tool_call'):
+        return None
+    if life.get('status') != 'current' or info.get('status') in ('deprecated', 'beta', 'alpha'):
+        return None
+    efforts = next((o.get('values') or [] for o in info.get('reasoning_options') or [] if o.get('type') == 'effort'), [])
+    cost = info.get('cost') or {}
+    return {'id': f'{provider}/{model_id}', 'name': info.get('name') or model_id,
+            'family': life.get('family') or info.get('family') or model_id, 'released': info.get('release_date') or '',
+            'efforts': [e for e in EFFORTS if e in efforts] if info.get('reasoning') else [],
+            'cost': {'input': cost.get('input'), 'output': cost.get('output')} if cost.get('input') is not None else None}
+
+
+def featured_models(provider, per_provider=ARENA_PER_PROVIDER):
+    """The newest current chat model of each family a provider has, newest first, at most
+    per_provider, kept for MODELS_TTL_S. Empty when Prompture has no catalogue. Tests replace this."""
+    cached = _featured_cache.get((provider, per_provider))
+    if cached and time.monotonic() - cached[0] < MODELS_TTL_S:
+        return [dict(e) for e in cached[1]]
+    try:
+        rates = importlib.import_module('prompture.infra.model_rates')
+        entries = [e for e in (_catalogue_entry(rates, provider, m) for m in rates.get_all_provider_models(provider)) if e]
+    except Exception:  # an older Prompture, or a catalogue that will not load
+        return []
+    newest = {}
+    for entry in sorted(entries, key=lambda e: (e['released'], e['id']), reverse=True):
+        newest.setdefault(entry['family'], entry)
+    picked = [{k: v for k, v in e.items() if k != 'family'} for e in list(newest.values())[:per_provider]]
+    _featured_cache[(provider, per_provider)] = (time.monotonic(), picked)
+    return [dict(e) for e in picked]
+
+
+def arena_models(data_dir, local_models):
+    """The Arena's AI picker: for each provider, whether a key is saved and a short list of its
+    current models (the local Ollama models for Ollama, unless the coach runs hosted)."""
+    keys = saved_keys(data_dir)
+    out = []
+    for provider in ARENA_PROVIDERS:
+        models = featured_models(provider) or [{'id': f'{provider}/{m}', 'name': m, 'released': '', 'efforts': [], 'cost': None}
+                                                for m in BY_ID[provider]['suggested']]
+        out.append({'id': provider, 'name': BY_ID[provider]['name'], 'local': False, 'has_key': provider in keys, 'models': models})
+    if not hosted() and local_models:
+        out.append({'id': 'ollama', 'name': BY_ID['ollama']['name'], 'local': True, 'has_key': True,
+                    'models': [{'id': m, 'name': m.split('/', 1)[1], 'released': '', 'efforts': [], 'cost': None} for m in local_models]})
     return out

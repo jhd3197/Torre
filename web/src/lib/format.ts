@@ -8,6 +8,9 @@ export const displayDate = (value?: string | null) => value && !value.startsWith
 export const formatNumber = (value: number | null | undefined) =>
   Number.isFinite(value) ? new Intl.NumberFormat(i18n.language || 'en').format(value as number) : '–';
 
+/** What an AI player spent: a tenth of a cent under a dollar, cents above. */
+export const dollars = (amount: number) => `$${amount < 1 ? amount.toFixed(3) : amount.toFixed(2)}`;
+
 type Score = Pick<EngineLine, 'cp' | 'mate'>;
 
 export function scoreLabel(line: Score): string {

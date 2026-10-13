@@ -6,6 +6,7 @@ from torre.server import appdata
 from torre.games import arena
 from torre.analysis import engines
 from torre.learning import ladder
+from torre.coaching import coach, coach_ai
 from torre.games import masters
 from torre.server.access import admin
 from torre.server.routes import BadRequest, Conflict, NotFound, Routes
@@ -135,6 +136,12 @@ def arena_view(req):
 @ROUTES.get('/api/arena/ladder')
 def arena_ladder(req):
     return ladder.load_ladder(appdata.DATA_DIR)
+
+
+@ROUTES.get('/api/arena/models')
+def arena_models(req):
+    """The AI models the Arena offers, by provider (coach_ai.arena_models)."""
+    return {'providers': coach_ai.arena_models(appdata.DATA_DIR, coach.local_models())}
 
 
 @ROUTES.get('/api/arena/matches/(?P<rest>.*)')

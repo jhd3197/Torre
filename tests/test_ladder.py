@@ -19,6 +19,12 @@ def maia(level):
     return {'name': f'Maia {level}', 'engineId': 'lc0', 'modelId': f'maia-{level}', 'masterId': None, 'elo': None}
 
 
+def ai(model, level=0, effort=None):
+    """An AI seat as arena.AiPlayer.describe() saves it: no engine, model or legend of its own."""
+    return {'name': model.split('/', 1)[1], 'engineId': None, 'modelId': None, 'masterId': None, 'elo': None,
+            'ai': {'model': model, 'level': level, 'effort': effort}}
+
+
 def match(a, b, wins=0, draws=0, losses=0):
     """A record like arena.py saves: wins/draws/losses are the first player's, colors alternate."""
     results = ['W'] * wins + ['D'] * draws + ['L'] * losses
@@ -134,6 +140,26 @@ class LadderTests(unittest.TestCase):
         self.assertEqual([row['id'] for row in board['players']], ['engine:stockfish@2500', 'engine:stockfish@2000', 'engine:stockfish@1500'])
         self.assertEqual(board['players'][1]['games'], 20)
         self.assertEqual(ladder.load_ladder(folder / 'missing')['players'], [])
+
+    def test_ai_players_are_rated_by_model_level_and_effort(self):
+        claude, gpt = ai('claude/claude-fable-5-1', effort='high'), ai('openai/gpt-6-astra', effort='high')
+        self.assertEqual(ladder.player_id(claude), 'ai:claude/claude-fable-5-1@L0/high')
+        self.assertEqual(ladder.player_id(ai('claude/claude-fable-5-1', level=3)), 'ai:claude/claude-fable-5-1@L3')
+        self.assertIsNone(ladder.nominal(claude))
+        # Not Stockfish: two models used to share its id, and their match was dropped as self-play.
+        duel = {**match(claude, gpt, wins=1, losses=1), 'cost': [3.5, 1.25]}
+        stockfish = {**match(ai('claude/claude-fable-5-1', effort='max'), sf(1500), losses=2), 'cost': [4.0, 0.0]}
+        board = by_id(ladder.build_ladder([duel, stockfish, match(claude, gpt, wins=1, draws=1)]))
+        mine = board['ai:claude/claude-fable-5-1@L0/high']
+        self.assertEqual(mine['ai'], {'model': 'claude/claude-fable-5-1', 'level': 0, 'effort': 'high'})
+        self.assertEqual((mine['games'], mine['wins'], mine['draws'], mine['losses']), (4, 2, 1, 1))
+        self.assertEqual((mine['cost'], mine['cost_games']), (3.5, 2))  # the match without a cost adds no games
+        self.assertEqual(board['ai:openai/gpt-6-astra@L0/high']['cost'], 1.25)
+        maxed = board['ai:claude/claude-fable-5-1@L0/max']
+        self.assertEqual((maxed['placed_by'], maxed['cost'], maxed['cost_games']), ('nominal', 4.0, 2))
+        self.assertLess(maxed['rating'], 1500)
+        self.assertIsNone(board['engine:stockfish@1500']['ai'])
+        self.assertNotIn('cost', board['engine:stockfish@1500'])
 
 
 if __name__ == '__main__':
