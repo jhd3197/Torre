@@ -1,16 +1,17 @@
-//! Torre for Windows: the studio (`python -m torre serve`) in its own window.
+//! Torre on the desktop: the studio (`python -m torre serve`) in its own window.
 //!
 //! The installer ships a standalone Python with Torre installed into it (built by
 //! scripts/build_runtime.py). On launch the window shows the splash page, starts that
-//! Python on a fixed local port, and loads the studio once it answers. Closing the window
-//! stops the server; a Windows job object stops it even if this process crashes.
+//! Python on a fixed local port, and loads the studio once it answers. The server stops when
+//! its standard input closes, which happens when Torre quits or crashes; on Windows a job
+//! object also stops it (and the engines it runs) if it does not.
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use std::fs::File;
 use std::net::{SocketAddr, TcpStream};
 use std::path::{Path, PathBuf};
-use std::process::{Child, Command, Stdio};
+use std::process::{Child, ChildStdin, Command, Stdio};
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
@@ -23,8 +24,11 @@ use tauri_plugin_opener::OpenerExt;
 const PORT: u16 = 1851;
 /// The first launch migrates data and starts background jobs before the server listens.
 const START_TIMEOUT: Duration = Duration::from_secs(90);
+/// How long a quitting server gets to close its engines before it is killed.
+const STOP_TIMEOUT: Duration = Duration::from_secs(5);
 
-struct Server(Mutex<Option<Child>>);
+/// The server and the pipe to its standard input; closing the pipe asks it to stop.
+struct Server(Mutex<Option<(Child, ChildStdin)>>);
 
 fn main() {
     tauri::Builder::default()
@@ -82,9 +86,9 @@ fn main() {
         .expect("Torre could not start")
         .run(|app, event| {
             if let RunEvent::Exit = event {
-                if let Some(mut child) = app.state::<Server>().0.lock().unwrap().take() {
-                    let _ = child.kill();
-                    let _ = child.wait();
+                if let Some((child, stdin)) = app.state::<Server>().0.lock().unwrap().take() {
+                    drop(stdin);
+                    stop(child);
                 }
             }
         });
@@ -126,13 +130,13 @@ fn start(app: &AppHandle) -> Result<(), (String, String)> {
 
     let mut command = Command::new(&python);
     command
-        .args(["-m", "torre", "serve", "--port", &PORT.to_string()])
+        .args(["-m", "torre", "serve", "--port", &PORT.to_string(), "--until-stdin-closes"])
         .env_remove("PYTHONHOME")
         .env_remove("PYTHONPATH")
         .env("PYTHONNOUSERSITE", "1")
         .env("PYTHONUTF8", "1")
         .env("PATH", path)
-        .stdin(Stdio::null())
+        .stdin(Stdio::piped())
         .stdout(out)
         .stderr(err);
     #[cfg(windows)]
@@ -141,20 +145,21 @@ fn start(app: &AppHandle) -> Result<(), (String, String)> {
         const CREATE_NO_WINDOW: u32 = 0x0800_0000;
         command.creation_flags(CREATE_NO_WINDOW);
     }
-    let child = command
+    let mut child = command
         .spawn()
         .map_err(|e| (format!("Cannot start {}: {e}", python.display()), String::new()))?;
     #[cfg(windows)]
     stop_with_app(&child);
+    let stdin = child.stdin.take().expect("stdin is piped");
     let server = &app.state::<Server>().0;
-    *server.lock().unwrap() = Some(child);
+    *server.lock().unwrap() = Some((child, stdin));
 
     let started = Instant::now();
     loop {
         if answers(&address) {
             return Ok(());
         }
-        if let Some(child) = server.lock().unwrap().as_mut() {
+        if let Some((child, _)) = server.lock().unwrap().as_mut() {
             if let Ok(Some(status)) = child.try_wait() {
                 return Err((format!("The studio stopped ({status})."), tail(&log)));
             }
@@ -166,13 +171,26 @@ fn start(app: &AppHandle) -> Result<(), (String, String)> {
     }
 }
 
+/// Wait for a server whose stdin was closed to stop, and kill it if it takes too long.
+fn stop(mut child: Child) {
+    let asked = Instant::now();
+    while asked.elapsed() < STOP_TIMEOUT {
+        if !matches!(child.try_wait(), Ok(None)) {
+            return;
+        }
+        std::thread::sleep(Duration::from_millis(100));
+    }
+    let _ = child.kill();
+    let _ = child.wait();
+}
+
 fn answers(address: &SocketAddr) -> bool {
     TcpStream::connect_timeout(address, Duration::from_millis(200)).is_ok()
 }
 
 const PYTHON: &str = if cfg!(windows) { "python.exe" } else { "bin/python3" };
 
-/// The folder holding python/ and stockfish/: next to Torre.exe once installed, or what
+/// The folder holding python/ and stockfish/: the app's resources once installed, or what
 /// build_runtime.py made (tauri dev).
 fn runtime_dir(app: &AppHandle) -> Option<PathBuf> {
     let mut candidates = Vec::new();

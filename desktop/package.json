@@ -1,7 +1,7 @@
 {
   "name": "torre-desktop",
   "private": true,
-  "description": "Torre for Windows: the studio in its own window, with its own Python.",
+  "description": "Torre on the desktop: the studio in its own window, with its own Python and Stockfish.",
   "scripts": {
     "runtime": "python scripts/build_runtime.py",
     "dev": "tauri dev --config src-tauri/version.json",

@@ -1,7 +1,7 @@
 [package]
 name = "torre-desktop"
 version = "0.0.0"  # the installer takes Torre's version from version.json
-description = "Torre for Windows"
+description = "Torre on the desktop"
 authors = ["Juan Denis"]
 license = "GPL-3.0-only"
 edition = "2021"
