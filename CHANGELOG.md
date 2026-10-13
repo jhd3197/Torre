@@ -6,6 +6,12 @@ the GitHub release's notes.
 
 ## Unreleased
 
+### Added
+
+- **A star beside the Torre logo takes you to Torre on GitHub.** Starring it is free and helps
+  more players find Torre. After a few days of play, a small card in the sidebar asks once;
+  "Not now" puts it away for two weeks.
+
 ## 0.5.4 - 2026-10-13
 
 ### Added

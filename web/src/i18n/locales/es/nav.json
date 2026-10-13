@@ -105,5 +105,13 @@
         "text": "Cada pantalla tiene su propia dirección, incluyendo el movimiento en el que te encuentras. Guárdala en tus marcadores o usa el botón de atrás del navegador."
       }
     }
+  },
+  "star": {
+    "label": "Dale una estrella a Torre en GitHub",
+    "tip": "Dar una estrella en GitHub",
+    "title": "¿Te gusta Torre?",
+    "body": "Torre es gratis y de código abierto. Una estrella en GitHub ayuda a que más jugadores la encuentren.",
+    "go": "Dar una estrella",
+    "later": "Ahora no"
   }
 }

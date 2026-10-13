@@ -105,5 +105,13 @@
         "text": "Every screen has its own address, including the move you are on. Bookmark it or use the browser’s back button."
       }
     }
+  },
+  "star": {
+    "label": "Star Torre on GitHub",
+    "tip": "Star on GitHub",
+    "title": "Enjoying Torre?",
+    "body": "Torre is free and open source. A star on GitHub helps more players find it.",
+    "go": "Star on GitHub",
+    "later": "Not now"
   }
 }
