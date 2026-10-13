@@ -19,6 +19,14 @@ Torre is a local Python web app for playing Stockfish, replaying games,
 exploring positions, and reviewing your chess history. Its interface is a React
 app (in `web/`), served ready-built by the Python server.
 
+<p align="center">
+  <a href="https://youtu.be/ZNmb1jVPeIk">
+    <img src="docs/screenshots/video.jpg" alt="Watch on YouTube: I built my own chess game review" width="640">
+  </a>
+  <br>
+  <sub><b>▶ <a href="https://youtu.be/ZNmb1jVPeIk">Watch on YouTube</a></b>: how Torre grades your moves, and why it says Tal's most famous sacrifice was a mistake</sub>
+</p>
+
 ## Screenshots
 
 Captured from a fresh local installation with no personal game data.
