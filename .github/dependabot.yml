@@ -19,3 +19,16 @@ updates:
     target-branch: dev
     schedule:
       interval: monthly
+  - package-ecosystem: cargo
+    directory: /desktop/src-tauri
+    target-branch: dev
+    schedule:
+      interval: monthly
+    groups:
+      desktop-cargo:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /desktop
+    target-branch: dev
+    schedule:
+      interval: monthly

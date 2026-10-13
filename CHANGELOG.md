@@ -8,7 +8,7 @@ the GitHub release's notes.
 
 ### Added
 
-- **Install Torre on Windows, macOS and Linux with one download.** Each release now has a
+- **Install Torre on macOS and Linux too, with one download.** Each release now has a
   Windows installer, macOS disk images for Apple silicon and Intel, and a Linux AppImage and
   `.deb`. They include their own Python and Stockfish, so there is nothing else to set up, and
   Torre opens in its own window and works offline. Your games stay in `~/.torre`, the same
@@ -21,5 +21,3 @@ the GitHub release's notes.
 
 - **Release notes come from this changelog.** Each GitHub release shows its section here,
   followed by the downloads for each system and their checksums.
-- **The README opens with Torre's motto,** "Think. Observe. React. Review. Evolve.", and explains
-  the name.
