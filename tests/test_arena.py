@@ -371,12 +371,12 @@ class AiPlayerTests(unittest.TestCase):
                 arena.make_player({'ai': spec})
 
     def test_effort_goes_by_each_providers_name_for_it(self):
-        self.assertEqual(arena.make_player(self.ai(effort='xhigh')).options(), {'max_tokens': arena.AI_MAX_TOKENS, 'effort': 'xhigh'})
-        self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra', effort='high')).options(),
-                         {'max_tokens': arena.AI_MAX_TOKENS, 'reasoning_effort': 'high'})
+        base = {'max_tokens': arena.AI_MAX_TOKENS, 'timeout': arena.AI_TIMEOUT_S}
+        self.assertEqual(arena.make_player(self.ai(effort='xhigh')).options(), {**base, 'effort': 'xhigh'})
+        self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra', effort='high')).options(), {**base, 'reasoning_effort': 'high'})
         self.assertNotIn('effort', arena.make_player(self.ai()).options())
 
-    def play(self, cost_cap=None, cost=0.25):
+    def play(self, cost_cap=None, cost=0.25, harness=None, **payload):
         job = arena.ArenaJob()
         folder = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, folder, True)
@@ -386,10 +386,10 @@ class AiPlayerTests(unittest.TestCase):
 
         @contextlib.contextmanager
         def process(player):
-            yield FakeHarness(cost)
+            yield harness or FakeHarness(cost)
         with mock.patch.object(arena.AiPlayer, 'process', process):
             job.start({'players': [self.ai(name='A'), self.ai('openai/gpt-6-astra', name='B')], 'games': 1,
-                       'movetime': 0.05, 'openings': 'start', 'pace': 'fast', 'costCap': cost_cap}, folder)
+                       'movetime': 0.05, 'openings': 'start', 'pace': 'fast', 'costCap': cost_cap, **payload}, folder)
             deadline = time.time() + 60
             while job.status()['running'] and time.time() < deadline:
                 time.sleep(.05)
@@ -432,6 +432,32 @@ class AiPlayerTests(unittest.TestCase):
             attempts=[types.SimpleNamespace(error='"Qh9" is not one of the moves offered')] * 3))
         move, note = player.choose(sloppy, chess.Board(), 0.1, random.Random(1))
         self.assertTrue(note['ai']['rescued'])
+
+    def test_a_game_continues_from_the_moves_it_was_cut_short_at(self):
+        line = ['e2e4', 'c7c5', 'g1f3']
+        job, match = self.play(startMoves=line)
+        game = match['games'][0]
+        self.assertEqual(game['moves'][:3], line)
+        self.assertEqual((game['continued'], match['settings']['startMoves']), (3, line))
+        self.assertIsNone(game['ai'][0])  # the moves it started from were played before this match
+        self.assertIsNotNone(game['ai'][3])
+
+    def test_continuing_needs_legal_moves_and_one_game(self):
+        for payload in ({'startMoves': ['e2e5']}, {'startMoves': 'e2e4'}, {'startMoves': ['e2e4'], 'games': 2}):
+            with self.assertRaises(ValueError):
+                arena.ArenaJob().start({'players': [self.ai(), self.ai()], 'games': 1, 'openings': 'start', **payload}, tempfile.gettempdir())
+
+    def test_a_failed_model_call_keeps_the_game_played_so_far(self):
+        class Dies(FakeHarness):
+            def choose(self, board):
+                if len(board.move_stack) == 4:
+                    raise RuntimeError('B: the model call failed (timed out)')
+                return super().choose(board)
+        job, match = self.play(harness=Dies())
+        self.assertIn('timed out', match['error'])
+        game = match['games'][0]
+        self.assertEqual((game['result'], game['termination'], game['plies']), ('*', 'model error', 4))
+        self.assertEqual(job.saved(match['id'])['games'][0]['moves'], game['moves'])
 
     def test_the_cap_refuses_nonsense(self):
         for cap in (0, -1, 'ten', True):

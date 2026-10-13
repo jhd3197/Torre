@@ -142,7 +142,9 @@
     "fifty_moves": "50-move rule",
     "threefold_repetition": "Threefold repetition",
     "move_limit": "Move limit (draw)",
-    "cost_cap": "spending cap"
+    "cost_cap": "spending cap",
+    "model_error": "AI model error",
+    "stopped": "stopped"
   },
   "openings": {
     "italian": "Italian Game",

@@ -142,7 +142,9 @@
     "fifty_moves": "Regla de 50 jugadas",
     "threefold_repetition": "Triple repetición",
     "move_limit": "Límite de jugadas (tablas)",
-    "cost_cap": "límite de gasto"
+    "cost_cap": "límite de gasto",
+    "model_error": "error del modelo de IA",
+    "stopped": "detenida"
   },
   "openings": {
     "italian": "Apertura italiana",
