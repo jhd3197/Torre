@@ -54,16 +54,28 @@ The quickest way to play is at [torre.sh](https://torre.sh). Visit the
 [install page](https://torre.sh/download) to add it as an app on iPhone, iPad,
 Mac, Android, Windows or Linux. That uses a hosted account and needs internet.
 
-### Windows
+### Windows, macOS and Linux
 
-To keep games on your own computer, download `Torre_<version>_x64-setup.exe` from the
-[latest release](https://github.com/jhd3197/Torre/releases/latest) and run it. It installs
-for your user only (no administrator rights), and includes its own Python and Stockfish,
-so there is nothing else to set up. Torre opens in its own window and works offline.
-Your games and progress live in `~/.torre`, the same folder a `pip install` uses.
+To keep games on your own computer, download Torre from the
+[latest release](https://github.com/jhd3197/Torre/releases/latest):
 
-The installer is not code-signed yet, so Windows SmartScreen may say it is from an
-unknown publisher: click **More info**, then **Run anyway**.
+| System | File |
+|---|---|
+| Windows (x64) | `Torre_<version>_x64-setup.exe` |
+| macOS, Apple silicon (M1 and later) | `Torre_<version>_aarch64.dmg` |
+| macOS, Intel | `Torre_<version>_x64.dmg` |
+| Linux (x64) | `Torre_<version>_amd64.AppImage`, or `Torre_<version>_amd64.deb` for Debian and Ubuntu |
+
+Each one includes its own Python and Stockfish, so there is nothing else to set up. Torre opens
+in its own window and works offline. Your games and progress live in `~/.torre`, the same folder
+a `pip install` uses. On Windows it installs for your user only, with no administrator rights.
+
+The installers are not signed yet, so the first launch needs one extra step:
+
+- **Windows:** SmartScreen may say "Windows protected your PC". Click **More info**, then **Run anyway**.
+- **macOS:** drag Torre into Applications. macOS says it "is damaged" until you run
+  `xattr -cr /Applications/Torre.app` once in Terminal.
+- **Linux:** `chmod +x` the AppImage and run it, or `sudo apt install ./Torre_<version>_amd64.deb`.
 
 ### Docker
 
@@ -96,20 +108,29 @@ The Python installation needs [Stockfish](https://stockfishchess.org/download/) 
 your PATH or set `STOCKFISH_PATH`. Your games and progress live in `~/.torre` (set `TORRE_HOME` to
 move them). `torre doctor` checks everything.
 
-### Building the Windows installer
+### Building the desktop installers
 
-The `main` release workflow also builds the installer (`.github/workflows/desktop.yml`) and
-attaches it to the GitHub release. To build it locally, you need Node, Python and Rust (1.90 or newer):
+Each merge to `main` builds the installers on Windows, macOS (Apple silicon and Intel) and Linux
+(`.github/workflows/desktop.yml`) and attaches them to the GitHub release. To build one locally
+for the system you are on, you need Node, Python and Rust (1.90 or newer):
 
 ```powershell
 .\dev.ps1 build                                # the interface, into torre/ui
-python desktop\scriptsuild_runtime.py        # a standalone Python with Torre in it, and Stockfish
-cd desktop; npm install; npm run build         # src-tauri	argeteleaseundle
-sis\Torre_<version>_x64-setup.exe
+python desktop/scripts/build_runtime.py        # a standalone Python with Torre in it, and Stockfish
+cd desktop; npm install; npm run build         # Windows: src-tauri/target/release/bundle/nsis/
+npm run build -- --bundles dmg                 # macOS (appimage,deb on Linux)
 ```
 
-The window (`desktop/src-tauri/src/main.rs`) starts `python -m torre serve` on port 1851
-and loads the studio from it; closing the window stops the server.
+The window (`desktop/src-tauri/src/main.rs`) starts `python -m torre serve --until-stdin-closes`
+on port 1851 and loads the studio from it. Closing the window, or a crash, closes the server's
+standard input, so the server and its engines stop with it.
+
+### Release notes
+
+Every change people will notice goes in [CHANGELOG.md](CHANGELOG.md) under `## Unreleased`, in
+the same pull request. A release stamps that section with the version and date
+(`python -m torre.tools.changelog stamp`), and the GitHub release shows it, followed by the
+downloads for each system and their checksums.
 
 ### Publishing the Docker image
 
