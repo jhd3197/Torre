@@ -276,6 +276,14 @@ class Handler(BaseHTTPRequestHandler):
 
 
 
+def stop_when_stdin_closes(server):
+    """Read until the parent closes the pipe (it quit, or crashed), then stop the server, which
+    closes the engines on the way out."""
+    sys.stdin.buffer.read()
+    log.info('Standard input closed; stopping')
+    server.shutdown()
+
+
 def main(argv=None):
     global PROXIED, ALLOWED_HOSTS
     parser = argparse.ArgumentParser(description=__doc__)
@@ -289,6 +297,8 @@ def main(argv=None):
                         help='served behind a same-origin proxy such as Vela')
     parser.add_argument('--allow-host', action='append', default=[], metavar='NAME',
                         help='also answer requests for this host name (".example.com" allows its subdomains)')
+    parser.add_argument('--until-stdin-closes', action='store_true',
+                        help='stop when standard input closes: the desktop app holds it open while it runs')
     args = parser.parse_args(argv)
     use_data_dir(args.data_dir)
     log_file = applog.setup(appdata.DATA_DIR)
@@ -301,6 +311,8 @@ def main(argv=None):
     log.info('Torre is ready at http://%s:%s (log: %s)', args.host, args.port, log_file)
     if args.open_browser:
         threading.Timer(.5, lambda: webbrowser.open(f'http://127.0.0.1:{args.port}')).start()
+    if args.until_stdin_closes:
+        threading.Thread(target=stop_when_stdin_closes, args=(server,), daemon=True).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:

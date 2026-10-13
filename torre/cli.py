@@ -52,6 +52,8 @@ def parser():
     serve.add_argument('--proxied', action='store_true', help='serve behind a same-origin proxy such as Vela')
     serve.add_argument('--allow-host', action='append', default=[], metavar='NAME',
                        help="also answer requests for this host name (a proxy's domain)")
+    serve.add_argument('--until-stdin-closes', action='store_true',
+                       help='stop when standard input closes (how the desktop app says it quit)')
     serve.set_defaults(handler=run_serve)
 
     imp = commands.add_parser('import', parents=[common], help='import a PGN file')
@@ -111,6 +113,8 @@ def run_serve(args):
         argv.append('--proxied')
     for name in args.allow_host:
         argv += ['--allow-host', name]
+    if args.until_stdin_closes:
+        argv.append('--until-stdin-closes')
     studio.main(argv)
     return 0
 
