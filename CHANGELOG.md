@@ -6,6 +6,8 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.2 - 2026-10-13
+
 ### Added
 
 - **Install Torre on macOS and Linux too, with one download.** Each release now has a
@@ -21,3 +23,4 @@ the GitHub release's notes.
 
 - **Release notes come from this changelog.** Each GitHub release shows its section here,
   followed by the downloads for each system and their checksums.
+
