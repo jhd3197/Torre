@@ -8,6 +8,7 @@ import { captions } from '../../lib/captions';
 import { COACH_VOICES, coachVoice } from '../../lib/voice';
 import { rookyAutoplay } from '../../components/RookSpeaker';
 import { usePacks, VoicePackList } from '../../components/VoicePacks';
+import { useHostedAccount } from '../../hooks/useHostedAccount';
 import { botChatter, quietCoach, reviewVoice } from '../../lib/settings';
 import { anchorId, ChoiceRow, Choices, FlagSwitch, LevelRow, Row, Subheading, Switch } from './controls';
 
@@ -54,6 +55,8 @@ export function VoiceSection() {
   const { t: lines } = useTranslation('voice');
   const narrator = useNarration();
   const packs = usePacks();
+  // torre.sh installs every pack for all its players, so there is nothing to download there.
+  const hosted = useHostedAccount() !== null;
   const speaks = lessonSound.use() === 'on';
   const coach = coachVoice.use();
   const sample = () => narrator.speak({ narration: (lines('great', { returnObjects: true }) as string[])[0] });
@@ -78,11 +81,13 @@ export function VoiceSection() {
       <FlagSwitch setting={reviewVoice} text="voice.review" disabled={!speaks} />
       <FlagSwitch setting={quietCoach} text="voice.quiet" />
       <FlagSwitch setting={botChatter} text="voice.chatter" />
-      <div className="settings-packs">
-        <Subheading id={anchorId('voice.heading')}>{t('voice.heading')}</Subheading>
-        <p className="settings-packs-note">{t('voice.note')}</p>
-        <VoicePackList packs={packs} />
-      </div>
+      {!hosted && (
+        <div className="settings-packs">
+          <Subheading id={anchorId('voice.heading')}>{t('voice.heading')}</Subheading>
+          <p className="settings-packs-note">{t('voice.note')}</p>
+          <VoicePackList packs={packs} />
+        </div>
+      )}
     </>
   );
 }

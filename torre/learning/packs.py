@@ -89,6 +89,61 @@ def remove(data_dir, pack_id):
     shutil.rmtree(folder, ignore_errors=True)
 
 
+def install(data_dir, pack, progress=None, stopping=lambda: False):
+    """Download `pack` from the source, check its sha256 and unpack it into <data_dir>/packs/<id>/,
+    replacing the old copy only once the new one is complete. False when `stopping` cancelled it."""
+    packs_dir = Path(data_dir) / 'packs'
+    packs_dir.mkdir(parents=True, exist_ok=True)
+    download = packs_dir / f'{pack["id"]}.zip.part'
+    staging = packs_dir / f'{pack["id"]}.new'
+    try:
+        digest = hashlib.sha256()
+        stream, size = _open(source(), pack['file'])
+        total, done = size or pack.get('bytes', 0), 0
+        with stream, download.open('wb') as out:
+            while chunk := stream.read(CHUNK):
+                if stopping():
+                    return False
+                out.write(chunk)
+                digest.update(chunk)
+                done += len(chunk)
+                if progress:
+                    progress(done, total)
+        if digest.hexdigest() != pack['sha256']:
+            raise ValueError('The download was damaged. Please try again.')
+        shutil.rmtree(staging, ignore_errors=True)
+        with zipfile.ZipFile(download) as archive:
+            for member in archive.namelist():
+                if member.startswith(('/', '\\')) or '..' in Path(member).parts:
+                    raise ValueError('The voice pack has an unsafe file name.')
+            archive.extractall(staging)
+        (staging / 'pack.json').write_text(json.dumps({k: pack[k] for k in pack if k != 'file'}), encoding='utf-8')
+        target = packs_dir / pack['id']
+        shutil.rmtree(target, ignore_errors=True)
+        staging.replace(target)
+        return True
+    finally:
+        download.unlink(missing_ok=True)
+        shutil.rmtree(staging, ignore_errors=True)
+
+
+def install_missing(data_dir):
+    """Install every published pack that is missing or out of date in `data_dir` (torre.sh keeps
+    one shared copy for all its players this way). The ids installed; a pack that fails is logged
+    and left as it was."""
+    have = installed(data_dir)
+    done = []
+    for pack in available():
+        if have.get(pack.get('id'), {}).get('sha256') == pack.get('sha256'):
+            continue
+        try:
+            install(data_dir, pack)
+            done.append(pack['id'])
+        except (OSError, ValueError, zipfile.BadZipFile):
+            log.warning('Could not install the voice pack %s', pack.get('id'), exc_info=True)
+    return done
+
+
 class PackJob(jobs.BackgroundJob):
     """Downloads and installs one pack at a time; the UI polls status()."""
     busy_message = 'A voice pack is already downloading.'
@@ -105,38 +160,10 @@ class PackJob(jobs.BackgroundJob):
                     Path(data_dir), pack)
 
     def work(self, data_dir, pack):
-        packs_dir = data_dir / 'packs'
-        packs_dir.mkdir(parents=True, exist_ok=True)
-        download = packs_dir / f'{pack["id"]}.zip.part'
-        staging = packs_dir / f'{pack["id"]}.new'
-        try:
-            digest = hashlib.sha256()
-            stream, size = _open(source(), pack['file'])
-            self.update(total=size or pack.get('bytes', 0))
-            with stream, download.open('wb') as out:
-                while chunk := stream.read(CHUNK):
-                    if self.stopping:  # cancelled: no error, nothing downloaded
-                        self.update(done=0)
-                        return
-                    out.write(chunk)
-                    digest.update(chunk)
-                    with self.lock:
-                        self.state['done'] += len(chunk)
-            if digest.hexdigest() != pack['sha256']:
-                raise ValueError('The download was damaged. Please try again.')
-            shutil.rmtree(staging, ignore_errors=True)
-            with zipfile.ZipFile(download) as archive:
-                for member in archive.namelist():
-                    if member.startswith(('/', '\\')) or '..' in Path(member).parts:
-                        raise ValueError('The voice pack has an unsafe file name.')
-                archive.extractall(staging)
-            (staging / 'pack.json').write_text(json.dumps({k: pack[k] for k in pack if k != 'file'}), encoding='utf-8')
-            target = packs_dir / pack['id']
-            shutil.rmtree(target, ignore_errors=True)
-            staging.replace(target)
-        finally:
-            download.unlink(missing_ok=True)
-            shutil.rmtree(staging, ignore_errors=True)
+        def progress(done, total):
+            self.update(done=done, total=total)
+        if not install(data_dir, pack, progress, lambda: self.stopping):
+            self.update(done=0)  # cancelled: no error, nothing downloaded
 
     def failed(self, exc):
         log.warning('The voice pack download failed', exc_info=exc)
