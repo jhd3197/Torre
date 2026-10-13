@@ -4,7 +4,9 @@
 
 <h1 align="center">Torre</h1>
 
-<p align="center"><a href="https://torre.sh"><b>torre.sh</b></a>: learn chess step by step, play, replay and explore.</p>
+<p align="center"><b>Think. Observe. React. Review. Evolve.</b></p>
+
+<p align="center">The open chess study hub · <a href="https://torre.sh"><b>torre.sh</b></a></p>
 
 <p align="center">
   <a href="https://pypi.org/project/torre/"><img src="https://img.shields.io/pypi/v/torre?color=2f5d50" alt="PyPI"></a>
@@ -18,6 +20,13 @@
 Torre is a local Python web app for playing Stockfish, replaying games,
 exploring positions, and reviewing your chess history. Its interface is a React
 app (in `web/`), served ready-built by the Python server.
+
+The name has three meanings:
+
+- **Torre** is Spanish for the rook.
+- **T·O·R·R·E**: Think, Observe, React, Review, Evolve. It is a way to get better at
+  chess, not a list of features.
+- **.sh**: a study hub for players, and a shell for developers.
 
 <p align="center">
   <a href="https://youtu.be/ZNmb1jVPeIk">
@@ -44,7 +53,21 @@ Captured from a fresh local installation with no personal game data.
 The quickest way to play is at [torre.sh](https://torre.sh). Visit the
 [install page](https://torre.sh/download) to add it as an app on iPhone, iPad,
 Mac, Android, Windows or Linux. That uses a hosted account and needs internet.
-To keep games on your own computer, install Docker Desktop (or Docker Engine) and run:
+
+### Windows
+
+To keep games on your own computer, download `Torre_<version>_x64-setup.exe` from the
+[latest release](https://github.com/jhd3197/Torre/releases/latest) and run it. It installs
+for your user only (no administrator rights), and includes its own Python and Stockfish,
+so there is nothing else to set up. Torre opens in its own window and works offline.
+Your games and progress live in `~/.torre`, the same folder a `pip install` uses.
+
+The installer is not code-signed yet, so Windows SmartScreen may say it is from an
+unknown publisher: click **More info**, then **Run anyway**.
+
+### Docker
+
+To keep games on your own computer on any system, install Docker Desktop (or Docker Engine) and run:
 
 ```bash
 docker run -d --name torre --restart unless-stopped -p 127.0.0.1:1886:1886 -v torre-data:/data ghcr.io/jhd3197/torre:latest
@@ -60,6 +83,8 @@ To update a container installed with `docker run`, pull the new image, stop and
 remove the old container, then repeat the same `docker run` command. The named
 volume keeps the data. For Compose, use `docker compose pull && docker compose up -d`.
 
+### Python
+
 For a direct Python installation instead:
 
 ```bash
@@ -70,6 +95,21 @@ torre serve --open-browser
 The Python installation needs [Stockfish](https://stockfishchess.org/download/) for play and analysis: put it on
 your PATH or set `STOCKFISH_PATH`. Your games and progress live in `~/.torre` (set `TORRE_HOME` to
 move them). `torre doctor` checks everything.
+
+### Building the Windows installer
+
+The `main` release workflow also builds the installer (`.github/workflows/desktop.yml`) and
+attaches it to the GitHub release. To build it locally, you need Node, Python and Rust (1.90 or newer):
+
+```powershell
+.\dev.ps1 build                                # the interface, into torre/ui
+python desktop\scriptsuild_runtime.py        # a standalone Python with Torre in it, and Stockfish
+cd desktop; npm install; npm run build         # src-tauri	argeteleaseundle
+sis\Torre_<version>_x64-setup.exe
+```
+
+The window (`desktop/src-tauri/src/main.rs`) starts `python -m torre serve` on port 1851
+and loads the studio from it; closing the window stops the server.
 
 ### Publishing the Docker image
 

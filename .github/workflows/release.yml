@@ -108,3 +108,11 @@ jobs:
     with:
       version: ${{ needs.release.outputs.version }}
     secrets: inherit
+
+  desktop:
+    needs: release
+    if: needs.release.outputs.version != ''
+    uses: ./.github/workflows/desktop.yml
+    with:
+      version: ${{ needs.release.outputs.version }}
+    secrets: inherit

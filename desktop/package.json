@@ -1,0 +1,14 @@
+{
+  "name": "torre-desktop",
+  "private": true,
+  "description": "Torre for Windows: the studio in its own window, with its own Python.",
+  "scripts": {
+    "runtime": "python scripts/build_runtime.py",
+    "dev": "tauri dev --config src-tauri/version.json",
+    "build": "tauri build --config src-tauri/version.json",
+    "icons": "tauri icon ../web/public/pwa/icon-512.png"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.11.5"
+  }
+}
