@@ -419,6 +419,20 @@ class AiPlayerTests(unittest.TestCase):
         self.assertIsNone(match['elo_diff'])
         self.assertEqual(job.saved(match['id'])['games'][0]['result'], '*')
 
+    def test_a_model_the_provider_refuses_stops_the_match_instead_of_playing_random_moves(self):
+        broken = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
+            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
+            attempts=[types.SimpleNamespace(error='the model call failed (Error code: 400 - credit balance is too low)')] * 3))
+        player = arena.make_player(self.ai())
+        with self.assertRaisesRegex(RuntimeError, 'credit balance'):
+            player.choose(broken, chess.Board(), 0.1, random.Random(1))
+        # A model that answers badly three times is still rescued: that is the harness doing its job.
+        sloppy = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
+            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
+            attempts=[types.SimpleNamespace(error='"Qh9" is not one of the moves offered')] * 3))
+        move, note = player.choose(sloppy, chess.Board(), 0.1, random.Random(1))
+        self.assertTrue(note['ai']['rescued'])
+
     def test_the_cap_refuses_nonsense(self):
         for cap in (0, -1, 'ten', True):
             with self.assertRaises(ValueError):

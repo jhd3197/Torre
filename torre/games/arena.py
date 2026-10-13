@@ -276,6 +276,7 @@ AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
 AI_MAX_TOKENS = 16000           # the reply, reasoning included; more needs a streaming call
 AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
+MODEL_CALL_FAILED = 'the model call failed'  # how prompture.games words a call that never got a reply
 
 
 class AiPlayer:
@@ -341,6 +342,10 @@ class AiPlayer:
         started = time.monotonic()
         decision = harness.choose(board)
         errors = [a.error for a in decision.attempts if a.error]
+        # Every call failed (no credit, a bad key, the provider down): the harness would play a
+        # random move for it, and the game would no longer be the model's. Stop the match instead.
+        if decision.rescued and errors and all(e.startswith(MODEL_CALL_FAILED) for e in errors):
+            raise RuntimeError(f'{self.name}: {errors[-1]}')
         note = {'ai': {'reason': decision.reason, 'tries': len(decision.attempts), 'rescued': decision.rescued,
                        'cost': round(decision.usage.get('cost') or 0.0, 6),
                        'tokens': int(decision.usage.get('total_tokens') or 0),
