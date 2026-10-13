@@ -115,6 +115,18 @@ class PackInstallTests(unittest.TestCase):
         self.assertIn('damaged', status['error'])
         self.assertEqual(packs.installed(self.data), {})
 
+    def test_install_missing_installs_once(self):
+        # torre.sh fills one shared folder this way when it starts.
+        self.assertEqual(packs.install_missing(self.data), ['voice-es'])
+        self.assertEqual(packs.audio_file(self.data, 'es', 'abc.mp3').read_bytes(), b'ID3fake')
+        self.assertEqual(packs.install_missing(self.data), [])
+
+    def test_install_missing_skips_a_damaged_pack(self):
+        (self.source / 'voice-es.zip').write_bytes(b'not the published zip')
+        with self.assertLogs('torre.learning.packs', 'WARNING'):
+            self.assertEqual(packs.install_missing(self.data), [])
+        self.assertEqual(packs.installed(self.data), {})
+
 
 if __name__ == '__main__':
     unittest.main()

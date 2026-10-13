@@ -91,6 +91,7 @@ test('the move is part of the URL, and stepping replaces it without piling up hi
 test('without a move in the URL a game opens at the starting position', async () => {
   serve(102);
   renderAt('/games/102');
+  await reviewed();
   fireEvent.click(await screen.findByRole('button', { name: 'Moves' }));
   await screen.findByRole('button', { name: /Go to move 1, e4/ });
   expect(document.querySelector('[aria-current="step"]')).toBeNull();

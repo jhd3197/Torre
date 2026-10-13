@@ -56,12 +56,39 @@
       "golden": "Edad de Oro",
       "cold-war": "Guerra Fría",
       "modern": "Moderna"
-    }
+    },
+    "aiModels": "Modelos de IA",
+    "aiModelLabel": "Cualquier modelo de IA",
+    "aiModelPlaceholder": "proveedor/modelo, p. ej. ollama/llama3.2:3b",
+    "aiSeat": "Sentarlo",
+    "aiNote": "Elige entre las jugadas legales que se le muestran, así que nunca juega una ilegal. Ayuda: {{level}}.",
+    "aiLevel": "Ayuda",
+    "aiLevels": {
+      "0": "Ninguna: todas las jugadas legales",
+      "1": "Datos de cada jugada (capturas, jaques)",
+      "2": "Sin errores graves en el menú",
+      "3": "Las 5 mejores de Stockfish, sin orden",
+      "4": "Las 3 mejores de Stockfish, con evaluación",
+      "5": "Solo la mejor de Stockfish"
+    },
+    "aiEffort": "Razonamiento",
+    "aiEffortDefault": "El del modelo",
+    "aiEfforts": {
+      "low": "Bajo",
+      "medium": "Medio",
+      "high": "Alto",
+      "xhigh": "Muy alto",
+      "max": "Máximo"
+    },
+    "costCap": "Límite de gasto",
+    "costCapNone": "Sin límite",
+    "aiHint": "Los jugadores de IA usan tus claves de API y pueden tardar minutos por jugada; el límite detiene el match cuando hayan gastado esa cantidad."
   },
   "kinds": {
     "legend": "Leyenda",
     "engine": "Motor",
-    "model": "Humano"
+    "model": "Humano",
+    "ai": "Modelo de IA"
   },
   "predict": {
     "title": "Puntuación esperada",
@@ -88,7 +115,9 @@
     "finished_other": "Match terminado tras {{count}} partidas",
     "stopped_one": "Detenido tras {{count}} partida",
     "stopped_other": "Detenido tras {{count}} partidas",
-    "failed": "El match se detuvo: {{error}}"
+    "failed": "El match se detuvo: {{error}}",
+    "capped_one": "Detenido por el límite de gasto tras {{count}} partida",
+    "capped_other": "Detenido por el límite de gasto tras {{count}} partidas"
   },
   "book": {
     "line": "{{name}} jugó esto en {{count}} de {{total}} de sus partidas desde aquí, una de ellas contra {{opponent}} ({{year}}).",
@@ -112,7 +141,8 @@
     "fivefold_repetition": "Quíntuple repetición",
     "fifty_moves": "Regla de 50 jugadas",
     "threefold_repetition": "Triple repetición",
-    "move_limit": "Límite de jugadas (tablas)"
+    "move_limit": "Límite de jugadas (tablas)",
+    "cost_cap": "límite de gasto"
   },
   "openings": {
     "italian": "Apertura italiana",
@@ -133,7 +163,8 @@
     "games_one": "{{count}} partida",
     "games_other": "{{count}} partidas",
     "stopped": "detenido antes",
-    "sprt": "decidido antes"
+    "sprt": "decidido antes",
+    "capped": "límite de gasto"
   },
   "sprt": {
     "H1": "SPRT: {{name}} es más fuerte (LLR {{llr}})",
@@ -176,5 +207,14 @@
     "good": "Buenas",
     "book": "De libro"
   },
-  "moves": "Jugadas"
+  "moves": "Jugadas",
+  "ai": {
+    "thinking": "pensando…",
+    "noReason": "(sin explicación)",
+    "turn": "{{seconds}} s · {{cost}}",
+    "rescued": "el arnés eligió por él",
+    "retried_one": "{{count}} respuesta rechazada",
+    "retried_other": "{{count}} respuestas rechazadas",
+    "spent": "Gasto: {{first}} {{a}} · {{second}} {{b}}"
+  }
 }

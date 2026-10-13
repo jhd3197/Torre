@@ -272,6 +272,96 @@ class Player:
         return result.move, note
 
 
+AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
+AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
+AI_MAX_TOKENS = 16000           # the reply, reasoning included; more needs a streaming call
+AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
+MODEL_CALL_FAILED = 'the model call failed'  # how prompture.games words a call that never got a reply
+
+
+class AiPlayer:
+    """A language model through Prompture's chess harness. Each turn the model is shown the
+    position and a menu of legal moves and must pick one, so it never plays an illegal move;
+    `level` is how much the harness helps (0: every legal move, nothing else; 2 and up lean on
+    Stockfish, see prompture.games). The model's key is the one saved for the coach, if any."""
+
+    def __init__(self, spec, data_dir=None):
+        model = str(spec.get('model') or '')
+        if '/' not in model:
+            raise ValueError('An AI player needs a model such as "claude/claude-fable-5-1".')
+        level = spec.get('level', 0)
+        if level not in AI_LEVELS or isinstance(level, bool):
+            raise ValueError('"level" must be a whole number from 0 to 5.')
+        effort = spec.get('effort')
+        if effort is not None and effort not in AI_EFFORTS:
+            raise ValueError(f'"effort" must be one of {", ".join(AI_EFFORTS)}.')
+        try:
+            from prompture.games.chess import ChessHarness  # noqa: F401 (checked before the match starts)
+        except ImportError as error:
+            raise ValueError('AI players need a Prompture with the chess harness (prompture.games).') from error
+        if level >= 2 and not engines.installed('stockfish'):
+            raise ValueError(f'Level {level} needs Stockfish, and it is not installed.')
+        from torre.coaching import coach_ai
+        self.model, self.level, self.effort = model, level, effort
+        self.key = coach_ai.key_for(data_dir, model) if data_dir else None
+        self.label = str(spec.get('name') or model.split('/', 1)[1])
+
+    @property
+    def name(self):
+        return self.label
+
+    def describe(self):
+        return {'name': self.name, 'engineId': None, 'modelId': None, 'masterId': None, 'elo': None,
+                'nodes': None, 'depth': None, 'engine': self.model, 'rating': None,
+                'ai': {'model': self.model, 'level': self.level, 'effort': self.effort}}
+
+    def prepare(self):
+        pass
+
+    def options(self):
+        """The model call's options: room to reason, and the effort in each provider's own word."""
+        options = {'max_tokens': AI_MAX_TOKENS}
+        if self.effort:
+            provider = self.model.split('/', 1)[0]
+            options['reasoning_effort' if provider in ('openai', 'azure') else 'effort'] = self.effort
+        return options
+
+    @contextlib.contextmanager
+    def process(self):
+        from prompture.drivers import get_driver_for_model
+        from prompture.games.chess import ChessHarness
+        with contextlib.ExitStack() as stack:
+            engine = (stack.enter_context(engines.POOL.session('stockfish', options=ENGINE_OPTIONS, profile=False))
+                      if self.level >= 2 else None)
+            driver = get_driver_for_model(self.model, api_key=self.key) if self.key else None
+            yield ChessHarness(self.model, driver=driver, level=self.level, engine=engine,
+                               engine_limit=AI_ENGINE_LIMIT if engine else None, options=self.options())
+
+    def choose(self, harness, board, movetime, rng):
+        """(move, note): the note keeps the model's reason, its rejected tries, and what the turn cost."""
+        started = time.monotonic()
+        decision = harness.choose(board)
+        errors = [a.error for a in decision.attempts if a.error]
+        # Every call failed (no credit, a bad key, the provider down): the harness would play a
+        # random move for it, and the game would no longer be the model's. Stop the match instead.
+        if decision.rescued and errors and all(e.startswith(MODEL_CALL_FAILED) for e in errors):
+            raise RuntimeError(f'{self.name}: {errors[-1]}')
+        note = {'ai': {'reason': decision.reason, 'tries': len(decision.attempts), 'rescued': decision.rescued,
+                       'cost': round(decision.usage.get('cost') or 0.0, 6),
+                       'tokens': int(decision.usage.get('total_tokens') or 0),
+                       'seconds': round(time.monotonic() - started, 1)}}
+        if errors:
+            note['ai']['errors'] = errors
+        return decision.move, note
+
+
+def make_player(spec, data_dir=None):
+    """An Arena side from the request: an AI model ({"ai": {...}}), or an engine or a legend."""
+    if isinstance(spec, dict) and isinstance(spec.get('ai'), dict):
+        return AiPlayer(spec['ai'], data_dir)
+    return Player(spec)
+
+
 def judge(engine, board):
     """White's score for the eval bar ({cp, mate}) and the judge's best move, or None once the game is over."""
     if engine is None or board.is_game_over(claim_draw=True):
@@ -330,7 +420,7 @@ class ArenaJob(jobs.BackgroundJob):
 
     def recent(self, limit=12):
         """The last finished matches, newest first, without their move lists."""
-        keys = ('id', 'date', 'players', 'score', 'games_played', 'elo_diff', 'stopped', 'settings', 'wdl', 'early', 'sprt')
+        keys = ('id', 'date', 'players', 'score', 'games_played', 'elo_diff', 'stopped', 'settings', 'wdl', 'early', 'sprt', 'cost', 'capped')
         return [{k: row.get(k) for k in keys} for row in self._matches()[-limit:][::-1]]
 
     def saved(self, match_id):
@@ -358,13 +448,17 @@ class ArenaJob(jobs.BackgroundJob):
         seed = payload.get('seed')
         if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
             raise ValueError('"seed" must be a whole number.')
-        sides = [Player(spec) for spec in players]
+        cost_cap = payload.get('costCap')
+        if cost_cap is not None and (isinstance(cost_cap, bool) or not isinstance(cost_cap, (int, float)) or cost_cap <= 0):
+            raise ValueError('"costCap" must be a positive number of dollars.')
+        sides = [make_player(spec, data_dir) for spec in players]
         self.data_dir = data_dir
         self.launch({'running': True, 'match': {
             'id': uuid.uuid4().hex[:12], 'date': utc_now().strftime('%Y-%m-%d %H:%M'),
             'players': [p.describe() for p in sides], 'phase': 'preparing',
-            'settings': {'games': games, 'movetime': movetime, 'openings': openings, 'pace': pace, 'sprt': sprt, 'seed': seed},
-            'score': [0.0, 0.0], 'wdl': [0, 0, 0], 'grades': [dict.fromkeys(GRADES, 0), dict.fromkeys(GRADES, 0)], 'games': [], 'current': None, 'error': None, 'stopped': False,
+            'settings': {'games': games, 'movetime': movetime, 'openings': openings, 'pace': pace, 'sprt': sprt, 'seed': seed,
+                         'costCap': cost_cap},
+            'cost': [0.0, 0.0], 'capped': False, 'score': [0.0, 0.0], 'wdl': [0, 0, 0], 'grades': [dict.fromkeys(GRADES, 0), dict.fromkeys(GRADES, 0)], 'games': [], 'current': None, 'error': None, 'stopped': False,
             'early': False, 'sprt': sprt_status((0, 0, 0), sprt) if sprt else None}},
             sides, games, movetime, openings, pace, sprt, seed)
         return self.status()
@@ -418,7 +512,7 @@ class ArenaJob(jobs.BackgroundJob):
             match['phase'] = 'done'
             match['stopped'] = self.stopping
             match['current'] = None
-            match['elo_diff'] = elo_difference(match['score'][0], len(match['games']))
+            match['elo_diff'] = elo_difference(match['score'][0], sum(g.get('result') != '*' for g in match['games']))
             snapshot = copy.deepcopy(match)
         if snapshot['games']:
             self._save(snapshot)
@@ -467,13 +561,25 @@ class ArenaJob(jobs.BackgroundJob):
                 if grade_name(grade):
                     grades[mover][grade_name(grade)] += 1
             notes.append(note)
-            if pace == 'watch':
+            capped = 'ai' in note and self._spend(mover, note['ai']['cost'])
+            if pace == 'watch' and not capped:
                 time.sleep(max(0.0, WATCH_SECONDS - (time.monotonic() - started)))
             with self.lock:
                 current = self.state['match']['current']
                 current.update(moves=list(moves), notes=list(notes), board=board_view(board), lastMove=move.uci(), judge=verdict)
                 if 'eval' in note:
                     current['evals'][mover] = note['eval']
+            if capped:
+                result, termination = '*', 'cost cap'
+                break
+        if result == '*':
+            # Out of budget mid-game: the game is kept (an AI game is worth replaying) but not scored.
+            with self.lock:
+                self.state['match']['games'].append({
+                    'number': number + 1, 'white': order[0], 'result': result, 'termination': termination,
+                    'opening': opening_id, **extra, 'plies': len(moves), 'moves': [m['uci'] for m in moves],
+                    'book': self._book_counts(notes, order), 'grades': grades, **self._ai_record(notes)})
+            return False
         # Score from the first player's point of view.
         first = {'1-0': 1.0, '0-1': 0.0}.get(result, 0.5) if order[0] == 0 else {'1-0': 0.0, '0-1': 1.0}.get(result, 0.5)
         with self.lock:
@@ -483,13 +589,33 @@ class ArenaJob(jobs.BackgroundJob):
             match['wdl'][{1.0: 0, 0.5: 1, 0.0: 2}[first]] += 1
             match['games'].append({'number': number + 1, 'white': order[0], 'result': result, 'termination': termination,
                                    'opening': opening_id, **extra, 'plies': len(moves), 'moves': [m['uci'] for m in moves],
-                                   'book': self._book_counts(notes, order), 'grades': grades})
+                                   'book': self._book_counts(notes, order), 'grades': grades,
+                                   **self._ai_record(notes)})
             for player in (0, 1):
                 for name, count in grades[player].items():
                     match['grades'][player][name] += count
         if pace == 'watch' and not self.stopping:
             time.sleep(1.5)  # a moment to see how it ended
         return True
+
+    def _spend(self, player, cost):
+        """Add an AI turn's cost to its player; True (and the match stops) once the cap is reached."""
+        with self.lock:
+            match = self.state['match']
+            match['cost'][player] = round(match['cost'][player] + cost, 6)
+            cap = match['settings'].get('costCap')
+            if not cap or sum(match['cost']) < cap:
+                return False
+            match['capped'] = True
+        self.stop()
+        return True
+
+    @staticmethod
+    def _ai_record(notes):
+        """What the AI players said and spent on each of their moves, for the saved game (none without AI)."""
+        if not any('ai' in note for note in notes):
+            return {}
+        return {'ai': [note.get('ai') for note in notes]}
 
     @staticmethod
     def _book_counts(notes, order):
@@ -502,7 +628,7 @@ class ArenaJob(jobs.BackgroundJob):
 
     def _save(self, match):
         path = Path(self.data_dir) / 'arena.jsonl'
-        record = {k: match.get(k) for k in ('id', 'date', 'players', 'settings', 'score', 'wdl', 'grades', 'games', 'elo_diff', 'stopped', 'early', 'sprt')}
+        record = {k: match.get(k) for k in ('id', 'date', 'players', 'settings', 'score', 'wdl', 'grades', 'games', 'elo_diff', 'stopped', 'early', 'sprt', 'cost', 'capped')}
         record['games_played'] = len(match['games'])
         with path.open('a', encoding='utf-8') as handle:
             handle.write(json.dumps(record) + '\n')

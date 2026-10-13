@@ -1,5 +1,6 @@
-// /arena — the Arena: two players fight a match while you watch. Engines, Maia models and
-// legends (a master's own opening moves, then Stockfish at their peak) can all take a seat.
+// /arena — the Arena: two players fight a match while you watch. Engines, Maia models,
+// legends (a master's own opening moves, then Stockfish at their peak) and AI language models
+// (through Prompture's chess harness, which only lets them pick legal moves) can all take a seat.
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +19,7 @@ import { explorePath } from '../lib/routes';
 import { GRADES, emptyGrades, gradeIcon, gradeOf } from '../lib/grades';
 import { useEngines } from '../state/AppData';
 import { eloForNodes, NODE_LEVELS } from '../lib/nodeStrength';
-import type { AnalyzedMove, ArenaGame, ArenaPlayer, ArenaTally, BoardState, EngineLine, ArenaMatch, ArenaMoveNote, ArenaPlayerSpec, ArenaSettings, ArenaStatus, ArenaSummary, EngineInfo, MasterInfo } from '../types';
+import type { AnalyzedMove, ArenaAiEffort, ArenaGame, ArenaPlayer, ArenaTally, BoardState, EngineLine, ArenaMatch, ArenaMoveNote, ArenaPlayerSpec, ArenaSettings, ArenaStatus, ArenaSummary, EngineInfo, MasterInfo } from '../types';
 import { Segments } from '../components/Segments';
 
 /** A watched match shows each move as it lands; the first check after a start comes a little sooner. */
@@ -28,6 +29,13 @@ const GAME_COUNTS = [2, 4, 10, 20, 100] as const;
 const MOVETIMES = [0.1, 0.3, 1, 3] as const;
 /** Ratings an engine with strength options can be held to; 0 is full strength. */
 const RATINGS = [0, 800, 1200, 1500, 1800, 2000, 2200, 2500, 2800] as const;
+/** AI models offered first in the picker; any Prompture "provider/model" can be typed in. */
+const AI_FEATURED = ['claude/claude-fable-5-1', 'openai/gpt-6-astra'] as const;
+/** The harness's help levels (arena.AI_LEVELS) and the reasoning efforts a provider takes. */
+const AI_LEVELS = [0, 1, 2, 3, 4, 5] as const;
+const AI_EFFORTS: ArenaAiEffort[] = ['low', 'medium', 'high', 'xhigh', 'max'];
+/** Dollar caps on what the AI players may spend in a match; 0 is no cap. */
+const COST_CAPS = [5, 20, 50, 0] as const;
 
 /** A game's opening: a named book line ("Ruy Lopez (C84)") or one of the varied set's own names. */
 function openingLabel(game: { opening: string | null; openingName?: string; eco?: string }, t: (key: string) => string) {
@@ -35,10 +43,18 @@ function openingLabel(game: { opening: string | null; openingName?: string; eco?
   return game.opening ? t(`openings.${game.opening}`) : '';
 }
 
-/** A seat choice: what the select holds ("engine:stockfish", "model:lc0:maia-1500", "master:Carlsen"). */
-interface Seat { key: string; elo: number; nodes?: number }
+/** A seat choice: what the select holds ("engine:stockfish", "model:lc0:maia-1500", "master:Carlsen",
+ *  "ai:claude/claude-fable-5-1"). An AI seat also has the harness's help level and a reasoning effort. */
+interface Seat { key: string; elo: number; nodes?: number; level?: number; effort?: ArenaAiEffort }
+
+/** The model of an AI seat ("ai:ollama/llama3.2:3b" holds colons of its own), or null. */
+const aiModel = (key: string) => (key.startsWith('ai:') ? key.slice(3) : null);
+/** An AI player's figure: a robot of its own per provider. */
+const aiFigure = (model: string) => engineFigure(`ai-${model.split('/')[0]}`);
 
 function specOf(seat: Seat): ArenaPlayerSpec {
+  const model = aiModel(seat.key);
+  if (model) return { ai: { model, level: seat.level ?? 0, ...(seat.effort ? { effort: seat.effort } : {}) } };
   const [kind, a, b] = seat.key.split(':');
   if (kind === 'master') return { masterId: a };
   if (kind === 'model') return { engineId: a, modelId: b };
@@ -48,14 +64,16 @@ function specOf(seat: Seat): ArenaPlayerSpec {
 /** Engines that can be held to a rating (Stockfish always can). */
 const ratable = (engine: EngineInfo | undefined) => !!engine && (engine.id === 'stockfish' || engine.capabilities.limit_strength || engine.capabilities.skill_level);
 
-/** A result from the first player's point of view: 1, ½ or 0. */
+/** A result from the first player's point of view: 1, ½ or 0 (– for a game the cost cap cut short). */
 function pointsFor(game: ArenaGame, player: 0 | 1): string {
+  if (game.result === '*') return '–';
   if (game.result === '1/2-1/2') return '½';
   const whiteWon = game.result === '1-0';
   return (game.white === player) === whiteWon ? '1' : '0';
 }
 
 const half = (score: number) => Number.isInteger(score) ? String(score) : `${Math.floor(score) || ''}½`;
+const dollars = (amount: number) => `$${amount < 1 ? amount.toFixed(3) : amount.toFixed(2)}`;
 
 /** The judge's score as an engine line, which is what EvalBar reads. */
 function judgeLine(judge: { cp: number | null; mate: number | null } | null | undefined): EngineLine | null {
@@ -85,7 +103,7 @@ export function ArenaPage() {
   const [status, setStatus] = useState<ArenaStatus | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [seats, setSeats] = useState<[Seat, Seat]>([{ key: '', elo: 0 }, { key: '', elo: 0 }]);
-  const [settings, setSettings] = useState<ArenaSettings>({ games: 2, movetime: 0.3, openings: 'start', pace: 'watch' });
+  const [settings, setSettings] = useState<ArenaSettings>({ games: 2, movetime: 0.3, openings: 'start', pace: 'watch', costCap: 20 });
   const [starting, setStarting] = useState(false);
   const [opened, setOpened] = useState<ArenaMatch | null>(null);
   // After a match, its result stays up until you ask for a new one.
@@ -122,7 +140,9 @@ export function ArenaPage() {
     setOpened(null);
     setSetupOpen(false);
     try {
-      setStatus(await api<ArenaStatus>('api/arena/start', { players: seats.map(specOf), ...settings }));
+      // The spending cap only means something with an AI player at the board.
+      const { costCap, ...rest } = settings;
+      setStatus(await api<ArenaStatus>('api/arena/start', { players: seats.map(specOf), ...rest, ...(hasAi ? { costCap: costCap || null } : {}) }));
       schedule(refresh, ARENA_FIRST_POLL_MS);
     } catch (problem) {
       setError((problem as Error).message);
@@ -143,6 +163,7 @@ export function ArenaPage() {
   const running = !!status?.running;
   const match = opened ?? status?.match ?? null;
   const ready = seats.every(seat => seat.key);
+  const hasAi = seats.some(seat => aiModel(seat.key));
   // Three screens: setting a match up, watching one, and its result.
   const stage = running && !opened ? 'live' : !match || setupOpen ? 'setup' : match.current ? 'live' : 'result';
   const views = [describeSeat(seats[0], roster, t), describeSeat(seats[1], roster, t)] as const;
@@ -177,9 +198,13 @@ export function ArenaPage() {
                 onChange={pace => setSettings({ ...settings, pace })} />
               <Choice label={t('setup.sprt')} options={[['off', t('setup.sprtOff')], ['on', t('setup.sprtOn')]]} value={settings.sprt ? 'on' : 'off'} disabled={running}
                 onChange={sprt => setSettings({ ...settings, sprt: sprt === 'on' })} />
+              {hasAi && (
+                <Choice label={t('setup.costCap')} options={COST_CAPS.map(cap => [cap, cap ? `$${cap}` : t('setup.costCapNone')])} value={settings.costCap ?? 0} disabled={running}
+                  onChange={costCap => setSettings({ ...settings, costCap })} />
+              )}
             </div>
             <div className="arena-go">
-              <p className="arena-hint">{t({ start: 'setup.startHint', varied: 'setup.variedHint', book: 'setup.bookHint' }[settings.openings])}{settings.sprt ? ` ${t('setup.sprtHint')}` : ''}</p>
+              <p className="arena-hint">{t({ start: 'setup.startHint', varied: 'setup.variedHint', book: 'setup.bookHint' }[settings.openings])}{settings.sprt ? ` ${t('setup.sprtHint')}` : ''}{hasAi ? ` ${t('setup.aiHint')}` : ''}</p>
               {match && <button type="button" className="button" onClick={() => setSetupOpen(false)}>{t('result.back')}</button>}
               <button type="button" className="button primary arena-start" disabled={!ready || starting} onClick={() => void start()}>{starting ? t('starting') : t('start')}</button>
             </div>
@@ -212,7 +237,7 @@ export function ArenaPage() {
                             <b>{half(row.score[0])}–{half(row.score[1])}</b>
                             <span className={row.score[1] > row.score[0] ? 'won' : undefined}>{b.name}</span>
                           </span>
-                          <small>{row.date} · {t('recent.games', { count: row.games_played })}{row.elo_diff !== null ? ` · ${t('eloGap', { name: row.players[row.elo_diff >= 0 ? 0 : 1].name, elo: Math.abs(row.elo_diff) })}` : ''}{row.stopped ? ` · ${t('recent.stopped')}` : ''}{row.early && row.sprt?.verdict ? ` · ${t('recent.sprt')}` : ''}</small>
+                          <small>{row.date} · {t('recent.games', { count: row.games_played })}{row.elo_diff !== null ? ` · ${t('eloGap', { name: row.players[row.elo_diff >= 0 ? 0 : 1].name, elo: Math.abs(row.elo_diff) })}` : ''}{row.capped ? ` · ${t('recent.capped')}` : row.stopped ? ` · ${t('recent.stopped')}` : ''}{row.cost && row.cost[0] + row.cost[1] > 0 ? ` · ${dollars(row.cost[0] + row.cost[1])}` : ''}{row.early && row.sprt?.verdict ? ` · ${t('recent.sprt')}` : ''}</small>
                         </span>
                         <img className="arena-tile" src={playerFigure(b)} alt="" />
                       </button>
@@ -249,11 +274,17 @@ type Model = NonNullable<EngineInfo['models']>[number];
 /** Everyone who can take a seat: installed engines, their installed models, and the legends on disk. */
 interface Roster { engines: EngineInfo[]; models: { engine: EngineInfo; model: Model }[]; masters: MasterInfo[] }
 /** What a seat card shows: who sits there, what kind of player they are, and the rating the prediction uses. */
-interface SeatView { name: string; kind: 'legend' | 'engine' | 'model' | null; figure?: string; initials: string; rating: number | null; ratingText: string; blurb: string }
+interface SeatView { name: string; kind: 'legend' | 'engine' | 'model' | 'ai' | null; figure?: string; initials: string; rating: number | null; ratingText: string; blurb: string }
 
 const initialsOf = (name: string) => name.split(/\s+/).filter(Boolean).map(word => word[0]).slice(0, 2).join('').toUpperCase();
 
 function describeSeat(seat: Seat, roster: Roster, t: (key: string, options?: Record<string, unknown>) => string): SeatView {
+  const model = aiModel(seat.key);
+  if (model) {
+    const name = model.slice(model.indexOf('/') + 1);
+    return { name, kind: 'ai', figure: aiFigure(model), initials: initialsOf(name), rating: null, ratingText: model.split('/')[0],
+      blurb: t('setup.aiNote', { level: t(`setup.aiLevels.${seat.level ?? 0}`) }) };
+  }
   const [kind, id, modelId] = seat.key.split(':');
   if (kind === 'master') {
     const master = roster.masters.find(m => m.id === id);
@@ -326,6 +357,21 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
           </select>
         </label>
       )}
+      {aiModel(seat.key) && (
+        <>
+          <label className="arena-strength">{t('setup.aiLevel')}
+            <select value={seat.level ?? 0} disabled={disabled} onChange={e => onChange({ ...seat, level: Number(e.target.value) })}>
+              {AI_LEVELS.map(level => <option key={level} value={level}>{t(`setup.aiLevels.${level}`)}</option>)}
+            </select>
+          </label>
+          <label className="arena-strength">{t('setup.aiEffort')}
+            <select value={seat.effort ?? ''} disabled={disabled} onChange={e => onChange({ ...seat, effort: (e.target.value || undefined) as ArenaAiEffort | undefined })}>
+              <option value="">{t('setup.aiEffortDefault')}</option>
+              {AI_EFFORTS.map(effort => <option key={effort} value={effort}>{t(`setup.aiEfforts.${effort}`)}</option>)}
+            </select>
+          </label>
+        </>
+      )}
       <button type="button" className="button arena-change" disabled={disabled} aria-expanded={picking} onClick={() => setPicking(!picking)}>
         {t('setup.change')}
       </button>
@@ -333,7 +379,8 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
         <PlayerPicker label={label} current={seat.key} roster={roster} onClose={() => setPicking(false)}
           onPick={key => {
             const picked = roster.engines.find(x => `engine:${x.id}` === key);
-            onChange({ key, elo: ratable(picked) ? seat.elo : 0, nodes: picked ? seat.nodes : undefined });
+            onChange(aiModel(key) ? { key, elo: 0, level: seat.level ?? 0, effort: seat.effort ?? 'high' }
+              : { key, elo: ratable(picked) ? seat.elo : 0, nodes: picked ? seat.nodes : undefined });
             setPicking(false);
           }} />
       )}
@@ -381,6 +428,18 @@ function PlayerPicker({ label, current, roster, onPick, onClose }: {
             <div>{roster.models.map(({ engine, model }) => tile(`model:${engine.id}:${model.id}`, model.name, engineFigure(engine.id, model.id), model.rating_target ? `~${model.rating_target}` : ''))}</div>
           </section>
         )}
+        <section>
+          <h3>{t('setup.aiModels')}</h3>
+          <div>{AI_FEATURED.map(model => tile(`ai:${model}`, model.slice(model.indexOf('/') + 1), aiFigure(model), model.split('/')[0]))}</div>
+          <form className="arena-ai-model" onSubmit={e => {
+            e.preventDefault();
+            const model = String(new FormData(e.currentTarget).get('model') ?? '').trim();
+            if (model.includes('/')) onPick(`ai:${model}`);
+          }}>
+            <input name="model" aria-label={t('setup.aiModelLabel')} placeholder={t('setup.aiModelPlaceholder')} defaultValue={aiModel(current) ?? ''} />
+            <button type="submit" className="button">{t('setup.aiSeat')}</button>
+          </form>
+        </section>
       </div>
     </>
   );
@@ -438,7 +497,8 @@ function MoreLegends({ missing, onAdded }: { missing: { id: string; name: string
 
 /** A seat's figure: a legend's own, an engine's, or a robot. */
 function playerFigure(player: ArenaPlayer): string {
-  return (player.masterId && legendFigure(player.masterId)) || engineFigure(player.engineId, player.modelId);
+  if (player.ai) return aiFigure(player.ai.model);
+  return (player.masterId && legendFigure(player.masterId)) || engineFigure(player.engineId ?? '', player.modelId);
 }
 
 /** A seat's figure on the result screen: a legend celebrates a win or takes a loss in character. */
@@ -453,7 +513,7 @@ function progressText(match: ArenaMatch, running: boolean, t: (key: string, opti
   const main = match.phase === 'preparing' ? t('score.preparing')
     : running && current ? t('score.game', { number: current.number, total: match.settings.games }) + (current.opening ? ` · ${openingLabel(current, t)}` : '')
     : match.error ? t('score.failed', { error: match.error })
-    : t(match.stopped ? 'score.stopped' : 'score.finished', { count: played });
+    : t(match.capped ? 'score.capped' : match.stopped ? 'score.stopped' : 'score.finished', { count: played });
   const gap = played > 0 && match.elo_diff !== undefined && match.elo_diff !== null && !running
     ? ` · ${t('eloGap', { name: match.players[match.elo_diff >= 0 ? 0 : 1].name, elo: Math.abs(match.elo_diff) })}` : '';
   const sprt = match.sprt ? ` · ${t(match.sprt.verdict ? `sprt.${match.sprt.verdict}` : 'sprt.open', { name: a.name, llr: match.sprt.llr.toFixed(2), lower: match.sprt.lower.toFixed(2), upper: match.sprt.upper.toFixed(2), elo1: match.sprt.elo1 })}` : '';
@@ -545,6 +605,7 @@ function MatchView({ match, running, onStop, onClose }: { match: ArenaMatch; run
   const [a, b] = match.players;
   const lastNote = current?.notes.at(-1);
   const lastBook = lastNote?.book ? lastNote : null;
+  const spent = match.cost && match.cost[0] + match.cost[1] > 0 ? match.cost : null;
   const lastMover = current ? (current.moves.length % 2 === 1 ? current.white : (1 - current.white) as 0 | 1) : null;
   // The judge's grades as the move list's judgments, so the list marks best moves, brilliancies and slips.
   const judgments = useMemo(() => new Map<number, AnalyzedMove>((current?.notes ?? []).flatMap((note, ply) => note.grade
@@ -558,7 +619,8 @@ function MatchView({ match, running, onStop, onClose }: { match: ArenaMatch; run
       <div className={`arena-player${current && current.board.turn === color && running ? ' to-move' : ''}`}>
         <img className="arena-player-figure" src={playerFigure(info)} alt="" />
         <div><strong>{info.name}</strong>
-          <small>{info.masterId ? t('player.legend', { engine: info.engine, elo: info.elo }) : info.rating ? `${info.engine} · ${info.rating}` : info.engine}</small></div>
+          <small>{info.masterId ? t('player.legend', { engine: info.engine, elo: info.elo }) : info.rating ? `${info.engine} · ${info.rating}` : info.engine}
+            {info.ai && current?.board.turn === color && running ? ` · ${t('ai.thinking')}` : ''}</small></div>
         {evaluation && <span className="arena-eval" title={t('player.evalTitle')}>{evaluation}</span>}
         {color && <span className={`arena-color ${color}`}>{t(`games.${color}`)}</span>}
       </div>
@@ -584,6 +646,7 @@ function MatchView({ match, running, onStop, onClose }: { match: ArenaMatch; run
       <aside className="arena-panel">
         <Scoreboard match={match} />
         <p className="arena-progress" role="status">{progressText(match, running, t)}</p>
+        {spent && <p className="arena-cost">{t('ai.spent', { first: a.name, a: dollars(spent[0]), second: b.name, b: dollars(spent[1]) })}</p>}
         {current && (
           <div className="arena-chance" role="img" aria-label={firstChance === null ? t('chance.pending')
             : t('chance.label', { first: a.name, firstChance, second: b.name, secondChance: 100 - firstChance })}>
@@ -599,6 +662,13 @@ function MatchView({ match, running, onStop, onClose }: { match: ArenaMatch; run
                 ? t('book.line', { name: match.players[lastMover].name, count: lastBook.book.count, total: lastBook.book.total, opponent: lastBook.book.game.opponent, year: lastBook.book.game.year ?? '?' })
                 : lastNote?.opening ? t('book.opening') : ' '}
             </p>
+            {lastNote?.ai && lastMover !== null && (
+              <p className="arena-ai-line" aria-live="polite">
+                <strong>{match.players[lastMover].name}</strong> “{lastNote.ai.reason || t('ai.noReason')}”
+                <small> {t('ai.turn', { seconds: lastNote.ai.seconds, cost: dollars(lastNote.ai.cost) })}
+                  {lastNote.ai.rescued ? ` · ${t('ai.rescued')}` : lastNote.ai.tries > 1 ? ` · ${t('ai.retried', { count: lastNote.ai.tries - 1 })}` : ''}</small>
+              </p>
+            )}
             <div className="moves-heading"><span>{t('moves')}</span></div>
             <MoveList initialFen={START_FEN} moves={current.moves} cursor={current.moves.length} onSelect={() => {}} judgments={judgments} />
             <Tally match={match} extra={liveTally(current)} />

@@ -94,6 +94,30 @@ test('a legend is seated against Stockfish by default and the match starts with 
   expect(document.querySelector('#eval-value')).toHaveTextContent('+1.0');
 });
 
+test('AI models take a seat with a help level and an effort, under a spending cap, and say why they moved', async () => {
+  const server = serveArena();
+  const fable = { name: 'claude-fable-5-1', engineId: null, modelId: null, masterId: null, elo: null, engine: 'claude/claude-fable-5-1', rating: null,
+    ai: { model: 'claude/claude-fable-5-1', level: 0, effort: 'high' } };
+  server.on('api/arena/start', () => ({ running: true, recent: [], match: { ...liveMatch(), players: [fable, PLAYERS[1]], cost: [0.42, 0],
+    current: { ...liveMatch().current, white: 0, notes: [{ ai: { reason: 'Center first.', tries: 1, rescued: false, cost: 0.42, tokens: 900, seconds: 31.5 } }] } } }));
+  renderAt('/arena');
+  const setup = await screen.findByRole('region', { name: 'Match setup' });
+  await waitFor(() => expect(seat(setup, 'Player 1').getByText('Magnus Carlsen')).toBeInTheDocument());
+  fireEvent.click(seat(setup, 'Player 1').getByRole('button', { name: 'Change player' }));
+  fireEvent.click(await screen.findByRole('button', { name: /claude-fable-5-1/ }));
+  expect(seat(setup, 'Player 1').getByText('AI model')).toBeInTheDocument();
+  fireEvent.change(seat(setup, 'Player 1').getByLabelText('Help'), { target: { value: '1' } });
+  // An AI at the board brings the spending cap; $20 unless changed.
+  fireEvent.click(within(setup).getByRole('button', { name: '$5' }));
+  fireEvent.click(within(setup).getByRole('button', { name: 'Start match' }));
+  await waitFor(() => expect(server.calls.find(c => c.path === 'api/arena/start')?.body).toEqual({
+    players: [{ ai: { model: 'claude/claude-fable-5-1', level: 1, effort: 'high' } }, { engineId: 'stockfish', elo: 2500 }],
+    games: 2, movetime: 0.3, openings: 'start', pace: 'watch', costCap: 5,
+  }));
+  expect(await screen.findByText('“Center first.”', { exact: false })).toBeInTheDocument();
+  expect(screen.getByText('Spent: claude-fable-5-1 $0.420 · Stockfish 2500 $0.000')).toBeInTheDocument();
+});
+
 test('missing champions can be downloaded as legends', async () => {
   const server = serveArena();
   server.on('api/masters/download', () => ({ masters: [CARLSEN, { ...CARLSEN, id: 'Tal', name: 'Mikhail Tal', peak: 2705, elo: 2705 }], missing: [] }));

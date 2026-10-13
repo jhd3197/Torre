@@ -484,8 +484,22 @@ export interface BookHit {
   game: { opponent: string; year: number | null; result: string; event: string };
 }
 
+/** How hard an AI player thinks: the provider's reasoning effort. */
+export type ArenaAiEffort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+
+/** An AI player (arena.AiPlayer): a model through Prompture's chess harness. */
+export interface ArenaAiSpec {
+  /** Provider and model, as Prompture names them: "claude/claude-fable-5-1". */
+  model: string;
+  /** How much the harness helps: 0 shows every legal move and nothing else; 2 and up lean on Stockfish. */
+  level?: number;
+  effort?: ArenaAiEffort;
+  name?: string;
+}
+
 /** One side of an Arena match, as POST /api/arena/start takes it. */
 export interface ArenaPlayerSpec {
+  ai?: ArenaAiSpec;
   engineId?: string;
   modelId?: string;
   masterId?: string;
@@ -498,7 +512,8 @@ export interface ArenaPlayerSpec {
 
 export interface ArenaPlayer {
   name: string;
-  engineId: string;
+  /** Null for an AI player. */
+  engineId: string | null;
   modelId: string | null;
   masterId: string | null;
   elo: number | null;
@@ -506,6 +521,20 @@ export interface ArenaPlayer {
   depth?: number | null;
   engine: string;
   rating: number | null;
+  ai?: { model: string; level: number; effort: ArenaAiEffort | null } | null;
+}
+
+/** What an AI player's turn came to: its reason, the replies the harness refused, and the cost. */
+export interface ArenaAiNote {
+  reason: string;
+  tries: number;
+  /** The harness picked a move for it after too many refused replies. */
+  rescued: boolean;
+  /** US dollars. */
+  cost: number;
+  tokens: number;
+  seconds: number;
+  errors?: string[];
 }
 
 export interface ArenaMoveNote {
@@ -515,6 +544,7 @@ export interface ArenaMoveNote {
   eval?: { cp: number | null; mate: number | null };
   /** The judge's grade for the move, as game analysis grades (arena.grade_move). */
   grade?: Omit<MoveGrade, 'accuracy'> & { accuracy?: number };
+  ai?: ArenaAiNote;
 }
 
 /** Graded moves per player: arena.GRADES. */
@@ -533,6 +563,8 @@ export interface ArenaGame {
   /** Moves each player made from their own games (legends). */
   book: [number, number];
   grades?: [ArenaTally, ArenaTally];
+  /** Per ply, what the AI player said and spent (null on the other player's moves); only in AI games. */
+  ai?: (ArenaAiNote | null)[];
 }
 
 export interface ArenaSettings {
@@ -542,6 +574,8 @@ export interface ArenaSettings {
   pace: 'watch' | 'fast';
   /** Stop as soon as the result is statistically decided (arena.sprt_llr); true uses the defaults. */
   sprt?: boolean | { elo0?: number; elo1?: number; alpha?: number; beta?: number } | null;
+  /** Stop the match once the AI players have spent this many dollars between them. */
+  costCap?: number | null;
 }
 /** The sequential probability ratio test after the latest game; verdict H1 = the first player is stronger. */
 export interface ArenaSprt { llr: number; lower: number; upper: number; elo0: number; elo1: number; verdict: 'H1' | 'H0' | null }
@@ -577,6 +611,10 @@ export interface ArenaMatch {
   /** True when the SPRT ended the match before its last game. */
   early?: boolean;
   sprt?: ArenaSprt | null;
+  /** Dollars each AI player has spent (0 for an engine or a legend). */
+  cost?: [number, number];
+  /** True when the cost cap ended the match. */
+  capped?: boolean;
 }
 
 export interface ArenaSummary {
@@ -590,6 +628,8 @@ export interface ArenaSummary {
   early?: boolean;
   sprt?: ArenaSprt | null;
   settings: ArenaSettings;
+  cost?: [number, number];
+  capped?: boolean;
 }
 
 /** GET /api/arena */

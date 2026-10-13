@@ -3,8 +3,10 @@ import contextlib
 import json
 import random
 import shutil
+import sys
 import tempfile
 import time
+import types
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -325,6 +327,116 @@ class ArenaTests(unittest.TestCase):
         self.assertEqual(json.loads(rows[0])['games_played'], 2)
         self.assertEqual(job.recent()[0]['id'], match['id'])
         self.assertEqual(len(job.saved(match['id'])['games'][0]['moves']), match['games'][0]['plies'])
+
+
+class FakeHarness:
+    """Prompture's ChessHarness without a model: the first legal move (in SAN order), a reason and a cost."""
+
+    def __init__(self, cost=0.25):
+        self.cost = cost
+
+    def choose(self, board):
+        move = sorted(board.legal_moves, key=board.san)[0]
+        return types.SimpleNamespace(move=move, reason=f'{board.san(move)} looks fine', rescued=False,
+                                     attempts=[types.SimpleNamespace(error='not a legal move'), types.SimpleNamespace(error=None)],
+                                     usage={'cost': self.cost, 'total_tokens': 1200})
+
+
+class AiPlayerTests(unittest.TestCase):
+    """AI players through Prompture's harness, with the model replaced by FakeHarness."""
+
+    def setUp(self):
+        # The installed Prompture may predate prompture.games: the import check only needs the module.
+        harness_module = types.ModuleType('prompture.games.chess')
+        harness_module.ChessHarness = object
+        patcher = mock.patch.dict(sys.modules, {'prompture.games': types.ModuleType('prompture.games'),
+                                                'prompture.games.chess': harness_module})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def ai(self, model='claude/claude-fable-5-1', **spec):
+        return {'ai': {'model': model, **spec}}
+
+    def test_a_player_is_an_ai_when_the_request_says_so(self):
+        player = arena.make_player(self.ai(effort='high', name='Fable'))
+        self.assertIsInstance(player, arena.AiPlayer)
+        self.assertEqual(player.describe()['ai'], {'model': 'claude/claude-fable-5-1', 'level': 0, 'effort': 'high'})
+        self.assertEqual(player.name, 'Fable')
+        self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra')).name, 'gpt-6-astra')
+
+    def test_bad_ai_players_are_refused(self):
+        for spec in ({'model': 'gpt-6-astra'}, {'model': 'openai/gpt-6-astra', 'level': 6},
+                     {'model': 'openai/gpt-6-astra', 'level': True}, {'model': 'openai/gpt-6-astra', 'effort': 'huge'}):
+            with self.assertRaises(ValueError):
+                arena.make_player({'ai': spec})
+
+    def test_effort_goes_by_each_providers_name_for_it(self):
+        self.assertEqual(arena.make_player(self.ai(effort='xhigh')).options(), {'max_tokens': arena.AI_MAX_TOKENS, 'effort': 'xhigh'})
+        self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra', effort='high')).options(),
+                         {'max_tokens': arena.AI_MAX_TOKENS, 'reasoning_effort': 'high'})
+        self.assertNotIn('effort', arena.make_player(self.ai()).options())
+
+    def play(self, cost_cap=None, cost=0.25):
+        job = arena.ArenaJob()
+        folder = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, folder, True)
+        saved_max = arena.MAX_PLIES
+        arena.MAX_PLIES = 20
+        self.addCleanup(setattr, arena, 'MAX_PLIES', saved_max)
+
+        @contextlib.contextmanager
+        def process(player):
+            yield FakeHarness(cost)
+        with mock.patch.object(arena.AiPlayer, 'process', process):
+            job.start({'players': [self.ai(name='A'), self.ai('openai/gpt-6-astra', name='B')], 'games': 1,
+                       'movetime': 0.05, 'openings': 'start', 'pace': 'fast', 'costCap': cost_cap}, folder)
+            deadline = time.time() + 60
+            while job.status()['running'] and time.time() < deadline:
+                time.sleep(.05)
+        return job, job.status()['match']
+
+    def test_an_ai_game_keeps_what_each_model_said_and_spent(self):
+        job, match = self.play()
+        self.assertIsNone(match['error'])
+        game = match['games'][0]
+        self.assertEqual(game['result'], '1/2-1/2')  # the fake model repeats itself into a draw
+        plies = game['plies']
+        self.assertEqual(len(game['ai']), plies)
+        first = game['ai'][0]
+        self.assertEqual((first['tries'], first['errors'], first['tokens']), (2, ['not a legal move'], 1200))
+        self.assertTrue(first['reason'].endswith('looks fine'))
+        self.assertEqual(match['cost'], [0.25 * ((plies + 1) // 2), 0.25 * (plies // 2)])
+        saved = job.saved(match['id'])
+        self.assertEqual((saved['cost'], saved['capped'], len(saved['games'][0]['ai'])), (match['cost'], False, plies))
+
+    def test_the_cost_cap_ends_the_match_and_keeps_the_unfinished_game(self):
+        job, match = self.play(cost_cap=1.0)
+        self.assertTrue(match['capped'])
+        self.assertTrue(match['stopped'])
+        game = match['games'][0]
+        self.assertEqual((game['result'], game['termination'], game['plies']), ('*', 'cost cap', 4))
+        self.assertEqual(match['score'], [0.0, 0.0])  # an unfinished game is not scored
+        self.assertIsNone(match['elo_diff'])
+        self.assertEqual(job.saved(match['id'])['games'][0]['result'], '*')
+
+    def test_a_model_the_provider_refuses_stops_the_match_instead_of_playing_random_moves(self):
+        broken = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
+            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
+            attempts=[types.SimpleNamespace(error='the model call failed (Error code: 400 - credit balance is too low)')] * 3))
+        player = arena.make_player(self.ai())
+        with self.assertRaisesRegex(RuntimeError, 'credit balance'):
+            player.choose(broken, chess.Board(), 0.1, random.Random(1))
+        # A model that answers badly three times is still rescued: that is the harness doing its job.
+        sloppy = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
+            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
+            attempts=[types.SimpleNamespace(error='"Qh9" is not one of the moves offered')] * 3))
+        move, note = player.choose(sloppy, chess.Board(), 0.1, random.Random(1))
+        self.assertTrue(note['ai']['rescued'])
+
+    def test_the_cap_refuses_nonsense(self):
+        for cap in (0, -1, 'ten', True):
+            with self.assertRaises(ValueError):
+                arena.ArenaJob().start({'players': [self.ai(), self.ai()], 'games': 1, 'costCap': cap}, tempfile.gettempdir())
 
 
 if __name__ == '__main__':
