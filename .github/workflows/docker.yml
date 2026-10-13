@@ -60,7 +60,7 @@ jobs:
           curl --fail --silent --output /dev/null http://127.0.0.1:1886/art/logo/app-icon-64.png
           test "$(docker exec torre-smoke python -c 'import torre; print(torre.__version__)')" = "$TORRE_VERSION"
       - name: Sign in to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
