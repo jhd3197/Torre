@@ -14,12 +14,12 @@ import { usePlanning } from '../hooks/usePlanning';
 import { usePoll } from '../hooks/usePoll';
 import { ArenaLadder } from '../components/ArenaLadder';
 import { api } from '../lib/api';
-import { START_FEN } from '../lib/format';
+import { dollars, START_FEN } from '../lib/format';
 import { explorePath } from '../lib/routes';
 import { GRADES, emptyGrades, gradeIcon, gradeOf } from '../lib/grades';
 import { useEngines } from '../state/AppData';
 import { eloForNodes, NODE_LEVELS } from '../lib/nodeStrength';
-import type { AnalyzedMove, ArenaAiEffort, ArenaGame, ArenaPlayer, ArenaTally, BoardState, EngineLine, ArenaMatch, ArenaMoveNote, ArenaPlayerSpec, ArenaSettings, ArenaStatus, ArenaSummary, EngineInfo, MasterInfo } from '../types';
+import type { AnalyzedMove, ArenaAiEffort, ArenaAiModel, ArenaAiProvider, ArenaGame, ArenaPlayer, ArenaTally, BoardState, EngineLine, ArenaMatch, ArenaMoveNote, ArenaPlayerSpec, ArenaSettings, ArenaStatus, ArenaSummary, EngineInfo, MasterInfo } from '../types';
 import { Segments } from '../components/Segments';
 
 /** A watched match shows each move as it lands; the first check after a start comes a little sooner. */
@@ -29,7 +29,7 @@ const GAME_COUNTS = [2, 4, 10, 20, 100] as const;
 const MOVETIMES = [0.1, 0.3, 1, 3] as const;
 /** Ratings an engine with strength options can be held to; 0 is full strength. */
 const RATINGS = [0, 800, 1200, 1500, 1800, 2000, 2200, 2500, 2800] as const;
-/** AI models offered first in the picker; any Prompture "provider/model" can be typed in. */
+/** AI models offered when Prompture's catalogue does not answer; any "provider/model" can be typed in. */
 const AI_FEATURED = ['claude/claude-fable-5-1', 'openai/gpt-6-astra'] as const;
 /** The harness's help levels (arena.AI_LEVELS) and the reasoning efforts a provider takes. */
 const AI_LEVELS = [0, 1, 2, 3, 4, 5] as const;
@@ -73,7 +73,6 @@ function pointsFor(game: ArenaGame, player: 0 | 1): string {
 }
 
 const half = (score: number) => Number.isInteger(score) ? String(score) : `${Math.floor(score) || ''}½`;
-const dollars = (amount: number) => `$${amount < 1 ? amount.toFixed(3) : amount.toFixed(2)}`;
 
 /** The judge's score as an engine line, which is what EvalBar reads. */
 function judgeLine(judge: { cp: number | null; mate: number | null } | null | undefined): EngineLine | null {
@@ -112,7 +111,15 @@ export function ArenaPage() {
 
   const installed = useMemo(() => engines.filter(engine => engine.installed), [engines]);
   const models = useMemo(() => installed.flatMap(engine => (engine.models ?? []).filter(model => model.installed).map(model => ({ engine, model }))), [installed]);
-  const roster: Roster = { engines: installed, models, masters };
+  // The AI models on offer, by provider (Prompture's catalogue); null until it answers, or if it cannot.
+  const [aiProviders, setAiProviders] = useState<ArenaAiProvider[] | null>(null);
+  useEffect(() => {
+    const controller = new AbortController();
+    api<{ providers: ArenaAiProvider[] }>('api/arena/models', undefined, controller.signal)
+      .then(data => setAiProviders(data.providers)).catch(() => { /* the featured pair stands in */ });
+    return () => controller.abort();
+  }, []);
+  const roster: Roster = { engines: installed, models, masters, ai: aiProviders };
 
   // Fill the seats with something sensible once the lists arrive: a legend against Stockfish if there is one.
   useEffect(() => {
@@ -271,8 +278,17 @@ function Choice<T extends string | number>({ label, options, value, disabled, on
 }
 
 type Model = NonNullable<EngineInfo['models']>[number];
-/** Everyone who can take a seat: installed engines, their installed models, and the legends on disk. */
-interface Roster { engines: EngineInfo[]; models: { engine: EngineInfo; model: Model }[]; masters: MasterInfo[] }
+/** Everyone who can take a seat: installed engines, their installed models, the legends on disk,
+ *  and the AI models on offer (null: only the featured pair). */
+interface Roster { engines: EngineInfo[]; models: { engine: EngineInfo; model: Model }[]; masters: MasterInfo[]; ai: ArenaAiProvider[] | null }
+
+/** What the catalogue knows about an AI model, if it offers it. */
+const aiInfo = (roster: Roster, model: string): ArenaAiModel | undefined =>
+  roster.ai?.flatMap(provider => provider.models).find(m => m.id === model);
+/** The efforts a seat may pick: the model's own, or every effort when the catalogue does not know it. */
+const effortsFor = (info: ArenaAiModel | undefined) => (info ? info.efforts : AI_EFFORTS);
+/** A model's price per million tokens, in and out. */
+const priceOf = (info: ArenaAiModel) => (info.cost ? `$${info.cost.input}/$${info.cost.output ?? '?'}` : '');
 /** What a seat card shows: who sits there, what kind of player they are, and the rating the prediction uses. */
 interface SeatView { name: string; kind: 'legend' | 'engine' | 'model' | 'ai' | null; figure?: string; initials: string; rating: number | null; ratingText: string; blurb: string }
 
@@ -281,7 +297,7 @@ const initialsOf = (name: string) => name.split(/\s+/).filter(Boolean).map(word 
 function describeSeat(seat: Seat, roster: Roster, t: (key: string, options?: Record<string, unknown>) => string): SeatView {
   const model = aiModel(seat.key);
   if (model) {
-    const name = model.slice(model.indexOf('/') + 1);
+    const name = aiInfo(roster, model)?.name ?? model.slice(model.indexOf('/') + 1);
     return { name, kind: 'ai', figure: aiFigure(model), initials: initialsOf(name), rating: null, ratingText: model.split('/')[0],
       blurb: t('setup.aiNote', { level: t(`setup.aiLevels.${seat.level ?? 0}`) }) };
   }
@@ -323,6 +339,8 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
   const { t } = useTranslation('arena');
   const [picking, setPicking] = useState(false);
   const engine = seat.key.startsWith('engine:') ? roster.engines.find(e => e.id === seat.key.split(':')[1]) : undefined;
+  const ai = aiModel(seat.key);
+  const efforts = ai ? effortsFor(aiInfo(roster, ai)) : [];
   return (
     <section className="arena-seat" aria-label={label}>
       <span className="arena-seat-slot">{label}</span>
@@ -357,19 +375,21 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
           </select>
         </label>
       )}
-      {aiModel(seat.key) && (
+      {ai && (
         <>
           <label className="arena-strength">{t('setup.aiLevel')}
             <select value={seat.level ?? 0} disabled={disabled} onChange={e => onChange({ ...seat, level: Number(e.target.value) })}>
               {AI_LEVELS.map(level => <option key={level} value={level}>{t(`setup.aiLevels.${level}`)}</option>)}
             </select>
           </label>
-          <label className="arena-strength">{t('setup.aiEffort')}
-            <select value={seat.effort ?? ''} disabled={disabled} onChange={e => onChange({ ...seat, effort: (e.target.value || undefined) as ArenaAiEffort | undefined })}>
-              <option value="">{t('setup.aiEffortDefault')}</option>
-              {AI_EFFORTS.map(effort => <option key={effort} value={effort}>{t(`setup.aiEfforts.${effort}`)}</option>)}
-            </select>
-          </label>
+          {efforts.length > 0 && (
+            <label className="arena-strength">{t('setup.aiEffort')}
+              <select value={seat.effort ?? ''} disabled={disabled} onChange={e => onChange({ ...seat, effort: (e.target.value || undefined) as ArenaAiEffort | undefined })}>
+                <option value="">{t('setup.aiEffortDefault')}</option>
+                {efforts.map(effort => <option key={effort} value={effort}>{t(`setup.aiEfforts.${effort}`)}</option>)}
+              </select>
+            </label>
+          )}
         </>
       )}
       <button type="button" className="button arena-change" disabled={disabled} aria-expanded={picking} onClick={() => setPicking(!picking)}>
@@ -379,7 +399,11 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
         <PlayerPicker label={label} current={seat.key} roster={roster} onClose={() => setPicking(false)}
           onPick={key => {
             const picked = roster.engines.find(x => `engine:${x.id}` === key);
-            onChange(aiModel(key) ? { key, elo: 0, level: seat.level ?? 0, effort: seat.effort ?? 'high' }
+            const pickedAi = aiModel(key);
+            // Keep the effort when the new model takes it; else high, or none for a model that does not reason.
+            const allowed = pickedAi ? effortsFor(aiInfo(roster, pickedAi)) : [];
+            const effort = [seat.effort ?? 'high', 'high'].find(e => allowed.includes(e as ArenaAiEffort)) as ArenaAiEffort | undefined ?? allowed.at(-1);
+            onChange(pickedAi ? { key, elo: 0, level: seat.level ?? 0, effort }
               : { key, elo: ratable(picked) ? seat.elo : 0, nodes: picked ? seat.nodes : undefined });
             setPicking(false);
           }} />
@@ -428,9 +452,20 @@ function PlayerPicker({ label, current, roster, onPick, onClose }: {
             <div>{roster.models.map(({ engine, model }) => tile(`model:${engine.id}:${model.id}`, model.name, engineFigure(engine.id, model.id), model.rating_target ? `~${model.rating_target}` : ''))}</div>
           </section>
         )}
+        {/* The newest models of each provider (prices per million tokens in and out), or the featured pair. */}
+        {roster.ai ? roster.ai.filter(provider => provider.models.length).map(provider => (
+          <section key={provider.id}>
+            <h3>{t('setup.aiProvider', { provider: provider.name })}{provider.has_key ? '' : ` · ${t('setup.aiNoKey')}`}</h3>
+            <div>{provider.models.map(m => tile(`ai:${m.id}`, m.name, aiFigure(m.id), priceOf(m)))}</div>
+          </section>
+        )) : (
+          <section>
+            <h3>{t('setup.aiModels')}</h3>
+            <div>{AI_FEATURED.map(model => tile(`ai:${model}`, model.slice(model.indexOf('/') + 1), aiFigure(model), model.split('/')[0]))}</div>
+          </section>
+        )}
         <section>
-          <h3>{t('setup.aiModels')}</h3>
-          <div>{AI_FEATURED.map(model => tile(`ai:${model}`, model.slice(model.indexOf('/') + 1), aiFigure(model), model.split('/')[0]))}</div>
+          <h3>{t('setup.aiModelLabel')}</h3>
           <form className="arena-ai-model" onSubmit={e => {
             e.preventDefault();
             const model = String(new FormData(e.currentTarget).get('model') ?? '').trim();

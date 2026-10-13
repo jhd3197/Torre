@@ -118,6 +118,41 @@ test('AI models take a seat with a help level and an effort, under a spending ca
   expect(screen.getByText('Spent: claude-fable-5-1 $0.420 · Stockfish 2500 $0.000')).toBeInTheDocument();
 });
 
+test('the picker offers the newest models of each provider, with prices and only the efforts a model takes', async () => {
+  const server = serveArena();
+  server.on('api/arena/models', () => ({ providers: [
+    { id: 'claude', name: 'Anthropic Claude', local: false, has_key: true, models: [
+      { id: 'claude/claude-haiku-5-5', name: 'Claude Haiku 5.5', released: '2026-10-07', efforts: ['low', 'high'], cost: { input: 0.1, output: 0.5 } },
+    ] },
+    { id: 'openai', name: 'OpenAI', local: false, has_key: false, models: [
+      { id: 'openai/gpt-6-luna', name: 'GPT-6 Luna', released: '2026-09-22', efforts: ['low', 'medium', 'high', 'max'], cost: { input: 0.1, output: 0.5 } },
+    ] },
+    { id: 'ollama', name: 'Ollama', local: true, has_key: true, models: [
+      { id: 'ollama/qwen3:8b', name: 'qwen3:8b', released: '', efforts: [], cost: null },
+    ] },
+  ] }));
+  renderAt('/arena');
+  const setup = await screen.findByRole('region', { name: 'Match setup' });
+  await waitFor(() => expect(seat(setup, 'Player 1').getByText('Magnus Carlsen')).toBeInTheDocument());
+  fireEvent.click(seat(setup, 'Player 1').getByRole('button', { name: 'Change player' }));
+  const picker = await screen.findByRole('group', { name: /Player 1/ });
+  expect(within(picker).getByText('AI · Anthropic Claude')).toBeInTheDocument();
+  expect(within(picker).getByText('AI · OpenAI · no key saved yet')).toBeInTheDocument();
+  expect(within(picker).getByRole('button', { name: /GPT-6 Luna\s*\$0\.1\/\$0\.5/ })).toBeInTheDocument();
+  fireEvent.click(within(picker).getByRole('button', { name: /Claude Haiku 5.5/ }));
+  expect(seat(setup, 'Player 1').getByText('Claude Haiku 5.5')).toBeInTheDocument();
+  const efforts = within(seat(setup, 'Player 1').getByLabelText('Thinking')).getAllByRole('option').map(o => o.textContent);
+  expect(efforts).toEqual(["The model's default", 'Low', 'High']);
+  // A local model that does not reason has no effort to set.
+  fireEvent.click(seat(setup, 'Player 2').getByRole('button', { name: 'Change player' }));
+  fireEvent.click(await screen.findByRole('button', { name: /qwen3:8b/ }));
+  expect(seat(setup, 'Player 2').queryByLabelText('Thinking')).not.toBeInTheDocument();
+  fireEvent.click(within(setup).getByRole('button', { name: 'Start match' }));
+  await waitFor(() => expect(server.calls.find(c => c.path === 'api/arena/start')?.body).toMatchObject({
+    players: [{ ai: { model: 'claude/claude-haiku-5-5', level: 0, effort: 'high' } }, { ai: { model: 'ollama/qwen3:8b', level: 0 } }],
+  }));
+});
+
 test('missing champions can be downloaded as legends', async () => {
   const server = serveArena();
   server.on('api/masters/download', () => ({ masters: [CARLSEN, { ...CARLSEN, id: 'Tal', name: 'Mikhail Tal', peak: 2705, elo: 2705 }], missing: [] }));
@@ -219,4 +254,25 @@ test('a match can stop early by SPRT from book openings, and the ladder ranks ev
   expect(within(ladder).getByText('2780')).toBeInTheDocument();
   expect(within(ladder).getByText(/95% range 2600–2960/)).toBeInTheDocument();
   expect(within(ladder).getByText(/set at 2500/)).toBeInTheDocument();
+});
+
+test('AI models get a ladder of their own, with level, thinking and cost a game', async () => {
+  const server = serveArena();
+  const model = (id: string, name: string, rating: number, wins: number, losses: number, cost: number) => ({
+    id: `ai:${id}@L0/high`, name, nominal: null, rating, ci_low: rating - 200, ci_high: rating + 200, games: 4,
+    points: wins, score: (100 * wins) / 4, wins, draws: 0, losses, group: 0, placed_by: 'average',
+    ai: { model: id, level: 0, effort: 'high' }, cost, cost_games: 4,
+  });
+  server.on('api/arena/ladder', () => ({
+    groups: 1, games: 4, anchor: null,
+    players: [model('openai/gpt-6-astra', 'GPT-6 Astra', 1560, 3, 1, 6), model('claude/claude-fable-5-1', 'Claude Fable 5.1', 1440, 1, 3, 10)],
+  }));
+  renderAt('/arena');
+  const ladder = await screen.findByRole('region', { name: 'AI ladder' });
+  expect(within(ladder).getByText('GPT-6 Astra')).toBeInTheDocument();
+  expect(within(ladder).getByText(/openai · level 0 · High · \$1\.50 a game/)).toBeInTheDocument();
+  expect(within(ladder).getByText(/claude · level 0 · High · \$2\.50 a game/)).toBeInTheDocument();
+  expect(within(ladder).getByText(/only played each other/)).toBeInTheDocument();
+  // With no engine or legend rated, the chess ladder stays hidden.
+  expect(screen.queryByRole('region', { name: 'Ladder' })).not.toBeInTheDocument();
 });

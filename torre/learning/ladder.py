@@ -22,7 +22,12 @@ Z95 = 1.96
 
 
 def player_id(spec):
-    """A stable key for one Arena player: a legend, a model, or an engine at a rating."""
+    """A stable key for one Arena player: an AI model at a help level and effort, a legend,
+    a model on an engine, or an engine at a rating."""
+    ai = spec.get('ai')
+    if isinstance(ai, dict):
+        key = f"ai:{ai.get('model')}@L{ai.get('level') or 0}"
+        return f"{key}/{ai['effort']}" if ai.get('effort') else key
     if spec.get('masterId'):
         key = f"master:{spec['masterId']}"
     elif spec.get('modelId'):
@@ -34,7 +39,7 @@ def player_id(spec):
 
 def nominal(spec):
     """The rating a player is set to play at, when it can anchor the ladder, else None."""
-    if spec.get('masterId') or spec.get('modelId') or spec.get('elo') is None:
+    if spec.get('ai') or spec.get('masterId') or spec.get('modelId') or spec.get('elo') is None:
         return None
     return spec['elo'] if (spec.get('engineId') or 'stockfish') in NOMINAL_ENGINES else None
 
@@ -48,7 +53,8 @@ def game_score(game):
 
 
 def collect(records):
-    """(players, pairs): who played, and every pair's record from both sides."""
+    """(players, pairs): who played, and every pair's record from both sides. An AI player
+    also adds up what its turns cost, over the matches that kept a cost."""
     players, pairs = {}, {}
     for record in records:
         sides = record.get('players') or []
@@ -57,9 +63,19 @@ def collect(records):
         ids = [player_id(s) for s in sides]
         if ids[0] == ids[1]:
             continue  # a player against itself says nothing about its rating
-        for pid, spec in zip(ids, sides):
-            info = players.setdefault(pid, {'id': pid, 'nominal': nominal(spec)})
+        costs = record.get('cost') if isinstance(record.get('cost'), list) and len(record['cost']) == 2 else None
+        played = sum(1 for game in record.get('games') or [] if game_score(game) is not None)
+        for side, (pid, spec) in enumerate(zip(ids, sides)):
+            ai = spec.get('ai') if isinstance(spec.get('ai'), dict) else None
+            info = players.setdefault(pid, {'id': pid, 'nominal': nominal(spec), 'ai': None})
             info['name'] = spec.get('name') or pid  # the latest name wins
+            if ai:
+                info['ai'] = {'model': ai.get('model'), 'level': ai.get('level') or 0, 'effort': ai.get('effort')}
+                info.setdefault('cost', 0.0)
+                info.setdefault('cost_games', 0)
+                if costs is not None and played:
+                    info['cost'] += float(costs[side] or 0.0)
+                    info['cost_games'] += played
         for game in record.get('games') or []:
             score = game_score(game)
             if score is None:
@@ -161,7 +177,8 @@ def build_ladder(records, anchor=None, anchor_rating=None, base=BASE, prior=PRIO
 
     anchor: a player id (see player_id) whose rating is pinned to anchor_rating, else to
     its nominal rating, else to base. Returns {'players': [...] best first, 'pairs':
-    {id: {opponent id: {...}}}, 'groups', 'games', 'anchor'}.
+    {id: {opponent id: {...}}}, 'groups', 'games', 'anchor'}. An AI player's row also has
+    'ai' {model, level, effort} and 'cost', its spend in dollars over 'cost_games' games.
     """
     players, pairs = collect(records)
     order = list(players)
@@ -190,6 +207,8 @@ def build_ladder(records, anchor=None, anchor_rating=None, base=BASE, prior=PRIO
             record = pairs[pid].values()
             games = sum(c['games'] for c in record)
             points = sum(c['points'] for c in record)
+            if 'cost' in players[pid]:
+                players[pid]['cost'] = round(players[pid]['cost'], 6)
             rows.append({**players[pid], 'rating': round(rating), 'ci_low': round(rating - spread),
                          'ci_high': round(rating + spread), 'games': games, 'points': points,
                          'score': round(100 * points / games, 1),

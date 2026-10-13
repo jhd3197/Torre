@@ -58,6 +58,8 @@
       "modern": "Moderna"
     },
     "aiModels": "Modelos de IA",
+    "aiProvider": "IA · {{provider}}",
+    "aiNoKey": "aún sin clave",
     "aiModelLabel": "Cualquier modelo de IA",
     "aiModelPlaceholder": "proveedor/modelo, p. ej. ollama/llama3.2:3b",
     "aiSeat": "Sentarlo",
@@ -183,7 +185,12 @@
     "hint_one": "Calculado con {{count}} partida del Arena. Los motores con Elo fijo anclan la escala; más partidas estrechan el rango.",
     "hint_other": "Calculado con {{count}} partidas del Arena. Los motores con Elo fijo anclan la escala; más partidas estrechan el rango.",
     "groups_one": "",
-    "groups_other": "{{count}} grupos nunca han jugado entre sí, así que compara el Elo solo dentro de cada grupo."
+    "groups_other": "{{count}} grupos nunca han jugado entre sí, así que compara el Elo solo dentro de cada grupo.",
+    "aiTitle": "Clasificación de IA",
+    "aiLevel": "nivel {{level}}",
+    "aiCost": "{{cost}} por partida",
+    "aiHint": "Cada modelo, con un nivel de ayuda y un ajuste de razonamiento, tiene su propio Elo. Las partidas contra Stockfish con Elo fijo ponen a los modelos en la escala del ajedrez.",
+    "aiRelative": "Estos modelos solo han jugado entre sí, así que su Elo solo sirve para compararlos. Enfrenta uno a Stockfish con Elo fijo para ponerlos en la escala del ajedrez."
   },
   "chance": {
     "label": "{{first}} {{firstChance}}% · {{second}} {{secondChance}}%",

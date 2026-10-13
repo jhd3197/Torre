@@ -58,6 +58,8 @@
       "modern": "Modern"
     },
     "aiModels": "AI models",
+    "aiProvider": "AI · {{provider}}",
+    "aiNoKey": "no key saved yet",
     "aiModelLabel": "Any AI model",
     "aiModelPlaceholder": "provider/model, e.g. ollama/llama3.2:3b",
     "aiSeat": "Seat it",
@@ -183,7 +185,12 @@
     "hint_one": "Fitted over {{count}} Arena game. Engines held to a rating anchor the scale; more games narrow the range.",
     "hint_other": "Fitted over {{count}} Arena games. Engines held to a rating anchor the scale; more games narrow the range.",
     "groups_one": "",
-    "groups_other": "{{count}} groups have never played each other, so compare ratings only within a group."
+    "groups_other": "{{count}} groups have never played each other, so compare ratings only within a group.",
+    "aiTitle": "AI ladder",
+    "aiLevel": "level {{level}}",
+    "aiCost": "{{cost}} a game",
+    "aiHint": "Each model at one help level and thinking setting is rated on its own. Matches against Stockfish held to a rating put the models on the chess scale.",
+    "aiRelative": "These models have only played each other, so the ratings only compare them. Play one against Stockfish held to a rating to put them on the chess scale."
   },
   "chance": {
     "label": "{{first}} {{firstChance}}% · {{second}} {{secondChance}}%",
