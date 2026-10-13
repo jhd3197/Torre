@@ -6,6 +6,10 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.3 - 2026-10-13
+
+Maintenance release: no changes you will notice.
+
 ## 0.5.2 - 2026-10-13
 
 ### Added
