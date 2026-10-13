@@ -61,21 +61,26 @@ To keep games on your own computer, download Torre from the
 
 | System | File |
 |---|---|
-| Windows (x64) | `Torre_<version>_x64-setup.exe` |
+| Windows (x64) | `Torre_<version>_x64-setup.exe`; `Torre_<version>_x64-portable.zip` to run without installing; `Torre_<version>_x64_en-US.msi` for managed computers |
 | macOS, Apple silicon (M1 and later) | `Torre_<version>_aarch64.dmg` |
 | macOS, Intel | `Torre_<version>_x64.dmg` |
-| Linux (x64) | `Torre_<version>_amd64.AppImage`, or `Torre_<version>_amd64.deb` for Debian and Ubuntu |
+| Linux (x64) | `Torre_<version>_amd64.AppImage`, which runs without installing; `.deb` for Debian and Ubuntu; `.rpm` for Fedora and openSUSE |
 
 Each one includes its own Python and Stockfish, so there is nothing else to set up. Torre opens
 in its own window and works offline. Your games and progress live in `~/.torre`, the same folder
 a `pip install` uses. On Windows it installs for your user only, with no administrator rights.
+
+The Windows portable zip needs no install: unzip it anywhere, even on a USB stick, and run
+`Torre.exe`. It keeps your games and settings in the `home` folder next to it, so the folder
+carries everything with it. It needs Microsoft Edge WebView2, which Windows 11 includes.
 
 The installers are not signed yet, so the first launch needs one extra step:
 
 - **Windows:** SmartScreen may say "Windows protected your PC". Click **More info**, then **Run anyway**.
 - **macOS:** drag Torre into Applications. macOS says it "is damaged" until you run
   `xattr -cr /Applications/Torre.app` once in Terminal.
-- **Linux:** `chmod +x` the AppImage and run it, or `sudo apt install ./Torre_<version>_amd64.deb`.
+- **Linux:** `chmod +x` the AppImage and run it, `sudo apt install ./Torre_<version>_amd64.deb`, or
+  `sudo dnf install ./Torre-<version>-1.x86_64.rpm`.
 
 ### Docker
 
@@ -118,7 +123,8 @@ for the system you are on, you need Node, Python and Rust (1.90 or newer):
 .\dev.ps1 build                                # the interface, into torre/ui
 python desktop/scripts/build_runtime.py        # a standalone Python with Torre in it, and Stockfish
 cd desktop; npm install; npm run build         # Windows: src-tauri/target/release/bundle/nsis/
-npm run build -- --bundles dmg                 # macOS (appimage,deb on Linux)
+python scripts/make_portable.py                # Windows: the portable zip, in desktop/dist/
+npm run build -- --bundles dmg                 # macOS (appimage,deb,rpm on Linux)
 ```
 
 The window (`desktop/src-tauri/src/main.rs`) starts `python -m torre serve --until-stdin-closes`

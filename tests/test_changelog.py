@@ -56,6 +56,21 @@ class NotesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             changelog.notes(TEXT, '0.4.0', [], 'jhd3197/Torre')
 
+    def test_lists_the_portable_copy_with_windows(self):
+        text = changelog.stamp(TEXT, '0.4.0', '2026-10-13')
+        notes = changelog.notes(text, '0.4.0', [{'name': 'Torre_0.4.0_x64-portable.zip', 'size': 140 << 20}], 'jhd3197/Torre')
+        self.assertIn('| Portable, no install (x64) | [`Torre_0.4.0_x64-portable.zip`]', notes)
+
+
+class CheckTests(unittest.TestCase):
+    def test_names_the_missing_downloads(self):
+        assets = [{'name': name, 'size': 1} for name in changelog.expected('0.4.0') if not name.endswith('.dmg')]
+        self.assertEqual(changelog.missing('0.4.0', assets), ['Torre_0.4.0_aarch64.dmg', 'Torre_0.4.0_x64.dmg'])
+
+    def test_a_complete_release_passes(self):
+        assets = [{'name': name, 'size': 1} for name in changelog.expected('0.4.0')]
+        self.assertEqual(changelog.missing('0.4.0', assets + [{'name': 'SHA256SUMS.txt', 'size': 1}]), [])
+
 
 if __name__ == '__main__':
     unittest.main()
