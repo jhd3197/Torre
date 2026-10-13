@@ -5,6 +5,9 @@
 //! Python on a fixed local port, and loads the studio once it answers. The server stops when
 //! its standard input closes, which happens when Torre quits or crashes; on Windows a job
 //! object also stops it (and the engines it runs) if it does not.
+//!
+//! The portable copy (a zip for Windows) has portable.txt next to Torre.exe; it then keeps
+//! everything it writes, games and the window's own storage alike, in home/ beside it.
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
@@ -44,7 +47,7 @@ fn main() {
         .setup(|app| {
             let opener = app.handle().clone();
             let new_window = app.handle().clone();
-            WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
+            let mut window = WebviewWindowBuilder::new(app, "main", WebviewUrl::App("index.html".into()))
                 .title("Torre")
                 .inner_size(1280.0, 840.0)
                 .min_inner_size(900.0, 600.0)
@@ -60,8 +63,11 @@ fn main() {
                     // target="_blank" links (engine sources, API key pages, YouTube) go to the browser.
                     let _ = new_window.opener().open_url(url.as_str(), None::<&str>);
                     NewWindowResponse::Deny
-                })
-                .build()?;
+                });
+            if let Some(home) = portable_home() {
+                window = window.data_directory(home.join("webview"));
+            }
+            window.build()?;
 
             let handle = app.handle().clone();
             std::thread::spawn(move || {
@@ -119,11 +125,13 @@ fn start(app: &AppHandle) -> Result<(), (String, String)> {
     let mut path = vec![runtime.join("stockfish")];
     path.extend(std::env::var_os("PATH").iter().flat_map(std::env::split_paths));
     let path = std::env::join_paths(path).map_err(|e| (e.to_string(), String::new()))?;
-    let log = app
-        .path()
-        .app_log_dir()
-        .map(|dir| dir.join("server.log"))
-        .map_err(|e| (format!("No folder for the log: {e}"), String::new()))?;
+    let home = portable_home();
+    let log = match &home {
+        Some(home) => Ok(home.join("logs")),
+        None => app.path().app_log_dir(),
+    }
+    .map(|dir| dir.join("server.log"))
+    .map_err(|e| (format!("No folder for the log: {e}"), String::new()))?;
     let _ = std::fs::create_dir_all(log.parent().unwrap());
     let out = File::create(&log).map_err(|e| (format!("Cannot write {}: {e}", log.display()), String::new()))?;
     let err = out.try_clone().map_err(|e| (e.to_string(), String::new()))?;
@@ -139,6 +147,9 @@ fn start(app: &AppHandle) -> Result<(), (String, String)> {
         .stdin(Stdio::piped())
         .stdout(out)
         .stderr(err);
+    if let Some(home) = &home {
+        command.env("TORRE_HOME", home);
+    }
     #[cfg(windows)]
     {
         use std::os::windows::process::CommandExt;
@@ -199,6 +210,12 @@ fn runtime_dir(app: &AppHandle) -> Option<PathBuf> {
     }
     candidates.push(Path::new(env!("CARGO_MANIFEST_DIR")).join("runtime"));
     candidates.into_iter().find(|dir| dir.join("python").join(PYTHON).is_file())
+}
+
+/// The portable copy's home folder, next to the program, when portable.txt is there.
+fn portable_home() -> Option<PathBuf> {
+    let dir = std::env::current_exe().ok()?.parent()?.to_path_buf();
+    dir.join("portable.txt").is_file().then(|| dir.join("home"))
 }
 
 /// The last lines of the server's log, for the error page.

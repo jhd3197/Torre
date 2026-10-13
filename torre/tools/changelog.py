@@ -3,10 +3,12 @@ GitHub release's text from them.
 
     python -m torre.tools.changelog stamp 0.4.0 [--date 2026-10-13]
     python -m torre.tools.changelog notes 0.4.0 --assets assets.json --repo jhd3197/Torre [--previous v0.3.9]
+    python -m torre.tools.changelog check 0.4.0 --assets assets.json
 
 `stamp` turns "## Unreleased" into "## 0.4.0 - <date>" under a fresh, empty Unreleased.
 `notes` prints that version's section, then the downloads (from `gh release view --json assets`)
 grouped by system, with the steps an unsigned installer needs.
+`check` fails, naming them, when any of the downloads a release must have is missing.
 """
 import argparse
 import datetime
@@ -52,16 +54,34 @@ def size(n):
 
 # (heading, [(file pattern, label)], what to do after downloading)
 SYSTEMS = [
-    ('Windows', [(r'_x64-setup\.exe$', 'Installer (x64)')],
+    ('Windows', [(r'_x64-setup\.exe$', 'Installer (x64)'), (r'_x64-portable\.zip$', 'Portable, no install (x64)'),
+                 (r'_x64_en-US\.msi$', 'MSI, for managed computers (x64)')],
      'The installer is not signed yet, so Windows SmartScreen may say "Windows protected your PC". '
-     'Click **More info**, then **Run anyway**.'),
+     'Click **More info**, then **Run anyway**.\n\n'
+     'Portable: unzip it anywhere, even a USB stick, and run `Torre.exe`. Your games stay in the `home` folder '
+     'next to it. It needs Microsoft Edge WebView2, which Windows 11 includes.'),
     ('macOS', [(r'_aarch64\.dmg$', 'Apple silicon (M1 and later)'), (r'_x64\.dmg$', 'Intel')],
      'Open the disk image and drag **Torre** into **Applications**. Apple has not notarized it yet, '
      'so macOS says it "is damaged" the first time. Run this once in Terminal, then open it normally:\n\n'
      '```bash\nxattr -cr /Applications/Torre.app\n```'),
-    ('Linux', [(r'\.AppImage$', 'AppImage (x64)'), (r'\.deb$', 'Debian and Ubuntu (x64)')],
-     'AppImage: `chmod +x` the file and run it. Debian or Ubuntu: `sudo apt install ./<file>.deb`.'),
+    ('Linux', [(r'\.AppImage$', 'AppImage, no install (x64)'), (r'\.deb$', 'Debian and Ubuntu (x64)'),
+               (r'\.rpm$', 'Fedora and openSUSE (x64)')],
+     'AppImage: `chmod +x` the file and run it. Debian or Ubuntu: `sudo apt install ./<file>.deb`. '
+     'Fedora: `sudo dnf install ./<file>.rpm`.'),
 ]
+
+
+def expected(version):
+    """Every download a release of this version must have, by file name."""
+    return [f'torre-{version}-py3-none-any.whl',
+            f'Torre_{version}_x64-setup.exe', f'Torre_{version}_x64_en-US.msi', f'Torre_{version}_x64-portable.zip',
+            f'Torre_{version}_aarch64.dmg', f'Torre_{version}_x64.dmg',
+            f'Torre_{version}_amd64.AppImage', f'Torre_{version}_amd64.deb', f'Torre-{version}-1.x86_64.rpm']
+
+
+def missing(version, assets):
+    names = {a['name'] for a in assets}
+    return [name for name in expected(version) if name not in names]
 
 
 def downloads(assets, base):
@@ -105,6 +125,9 @@ def main(argv=None):
     notes_cmd.add_argument('--assets', type=Path, help='`gh release view --json assets` output')
     notes_cmd.add_argument('--repo', required=True, help='owner/name')
     notes_cmd.add_argument('--previous', help='the previous release tag, for the compare link')
+    check_cmd = commands.add_parser('check', help='fail when a download is missing from the release')
+    check_cmd.add_argument('version')
+    check_cmd.add_argument('--assets', type=Path, required=True, help='`gh release view --json assets` output')
     args = parser.parse_args(argv)
 
     text = CHANGELOG.read_text(encoding='utf-8')
@@ -113,6 +136,10 @@ def main(argv=None):
             if section(text, args.version) is None and not unreleased(text)[1]:
                 print('warning: no Unreleased notes; the release says it is maintenance only', file=sys.stderr)
             CHANGELOG.write_text(stamp(text, args.version, args.date), encoding='utf-8')
+        elif args.command == 'check':
+            gone = missing(args.version, json.loads(args.assets.read_text(encoding='utf-8'))['assets'])
+            if gone:
+                raise ValueError('the release is missing ' + ', '.join(gone))
         else:
             assets = json.loads(args.assets.read_text(encoding='utf-8'))['assets'] if args.assets else []
             sys.stdout.write(notes(text, args.version, assets, args.repo, args.previous))

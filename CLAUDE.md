@@ -32,3 +32,8 @@ A merge to `main` publishes to PyPI, the Docker image, and the desktop installer
 macOS (Apple silicon and Intel) and Linux (`.github/workflows/desktop.yml`), then publishes the
 GitHub release. The installers bundle a standalone Python and Stockfish
 (`desktop/scripts/build_runtime.py`, pinned by checksum); bump those pins there.
+
+The release builds everything in parallel and publishes only when every download is there
+(`changelog check` lists them; add a new kind of download there and in `SYSTEMS`). Each commit
+is tested once: on its push to `dev`, or on its pull request into `dev`. The dev -> main pull
+request reuses those checks, so do not add `pull_request` triggers for `main`.

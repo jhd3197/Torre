@@ -274,10 +274,9 @@ class Player:
 
 AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
-AI_MAX_TOKENS = 16000           # the reply, reasoning included; more needs a streaming call
+AI_MAX_TOKENS = 32000           # the reply, reasoning included; Fable at max effort can think past 16k
 AI_TIMEOUT_S = 900              # one model call; a reasoning model can think for minutes, a dead socket forever
 AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
-MODEL_CALL_FAILED = 'the model call failed'  # how prompture.games words a call that never got a reply
 
 
 class AiPlayer:
@@ -343,9 +342,11 @@ class AiPlayer:
         started = time.monotonic()
         decision = harness.choose(board)
         errors = [a.error for a in decision.attempts if a.error]
-        # Every call failed (no credit, a bad key, the provider down): the harness would play a
-        # random move for it, and the game would no longer be the model's. Stop the match instead.
-        if decision.rescued and errors and all(e.startswith(MODEL_CALL_FAILED) for e in errors):
+        # No try produced an answer (no credit, the provider down, a reply cut off at max_tokens
+        # or not JSON): the harness would play a random move for it, and the game would no
+        # longer be the model's. Stop the match instead, so it can be continued. A model that
+        # answered with moves it was not offered is still rescued; that is its own mistake.
+        if decision.rescued and errors and all(getattr(a, 'reply', None) is None for a in decision.attempts):
             raise RuntimeError(f'{self.name}: {errors[-1]}')
         note = {'ai': {'reason': decision.reason, 'tries': len(decision.attempts), 'rescued': decision.rescued,
                        'cost': round(decision.usage.get('cost') or 0.0, 6),

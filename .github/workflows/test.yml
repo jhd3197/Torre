@@ -1,8 +1,12 @@
 name: Tests
 
-# Run on pull requests, and by dev.yml and release.yml before they publish.
+# Each commit is checked once. dev.yml runs this for every push to dev and release.yml for every
+# merge to main, before they publish; pull requests into dev (Dependabot, contributors) run it
+# directly. The dev -> main pull request needs no run of its own: its commits were checked when
+# they reached dev, and those checks show on the pull request.
 on:
   pull_request:
+    branches: [dev]
   workflow_call:
   workflow_dispatch:
 
@@ -53,3 +57,23 @@ jobs:
           npm --prefix web test
       - name: Build the interface
         run: npm --prefix web run build
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install bandit
+        run: pip install bandit
+      # Medium and high findings fail the build; requests go through torre/net.py (http and https only).
+      - name: Run bandit
+        run: bandit -r torre -ll -q
+
+  workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check the GitHub workflows
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -shellcheck=

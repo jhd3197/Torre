@@ -6,6 +6,20 @@ the GitHub release's notes.
 
 ## Unreleased
 
+### Added
+
+- **Run Torre on Windows without installing it.** Each release now has a portable zip: unzip it
+  anywhere, even on a USB stick, and run `Torre.exe`. It keeps your games and settings in the
+  `home` folder beside it, so they travel with the folder. Releases also add an MSI for managed
+  Windows computers and an `.rpm` for Fedora and openSUSE.
+
+### Fixed
+
+- **An AI match stops instead of playing a random move for a model that gave no answer.** When
+  every try was cut off or unreadable, the arena used to move for it at random, which could
+  decide the game. The match now stops so you can continue it, and models get twice the room
+  to think before they answer.
+
 ## 0.5.3 - 2026-10-13
 
 Maintenance release: no changes you will notice.
