@@ -1,9 +1,12 @@
 name: Publish to PyPI and GitHub Release
 
 # Every push to main (a merge from dev), once the tests pass: bump the version (a patch by default;
-# "feat:" in a commit makes it a minor, "BREAKING CHANGE" a major), tag it, build the interface
-# into the package, publish the wheel and sdist to PyPI, create the GitHub release with notes and
-# the wheel attached, and write the new version back to torre/__init__.py on main.
+# "feat:" in a commit makes it a minor, "BREAKING CHANGE" a major), tag it, stamp CHANGELOG.md's
+# Unreleased notes with it, build the interface into the package, publish the wheel and sdist to
+# PyPI, and open a draft GitHub release with the wheel. The desktop installers (desktop.yml) and
+# the Docker image build from that version; then the release gets checksums and its notes (that
+# version's changelog section, then the downloads for each system) and is published. The new
+# version and the stamped changelog are written back to main.
 # Needs the repository secret PYPI_TOKEN (a PyPI token scoped to the torre project).
 
 on:
@@ -26,6 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump.outputs.new_version }}
+      previous: ${{ steps.bump.outputs.previous_tag }}
     steps:
       - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
@@ -61,6 +65,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Stamp the changelog with the version
+        if: steps.bump.outputs.new_version
+        run: python -m torre.tools.changelog stamp "${{ steps.bump.outputs.new_version }}"
+      - uses: actions/upload-artifact@v4
+        if: steps.bump.outputs.new_version
+        with:
+          name: changelog
+          path: CHANGELOG.md
+
       - name: Fetch the art and build the interface into torre/ui
         if: steps.bump.outputs.new_version
         env:
@@ -84,20 +97,21 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: python -m twine upload dist/* --non-interactive
 
-      - name: Create the GitHub release
+      - name: Open a draft GitHub release
         if: steps.bump.outputs.new_version
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v${{ steps.bump.outputs.new_version }}" dist/*.whl \
-            --title "v${{ steps.bump.outputs.new_version }}" --generate-notes --latest
+          gh release create "v${{ steps.bump.outputs.new_version }}" dist/*.whl --draft \
+            --title "v${{ steps.bump.outputs.new_version }}" \
+            --notes "The installers are being built; this release is published when they are ready."
 
-      - name: Write the version back to main
+      - name: Write the version and the changelog back to main
         if: steps.bump.outputs.new_version
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add torre/__init__.py
+          git add torre/__init__.py CHANGELOG.md
           git commit -m "Release v${{ steps.bump.outputs.new_version }} [skip ci]" || exit 0
           git push origin HEAD:main
 
@@ -116,3 +130,39 @@ jobs:
     with:
       version: ${{ needs.release.outputs.version }}
     secrets: inherit
+
+  publish:
+    needs: [release, desktop]
+    # Publish even when one system's installer failed: PyPI already has this version, and the
+    # notes list only the downloads that exist. Rerun desktop.yml by hand to add the rest.
+    if: ${{ !cancelled() && needs.release.outputs.version != '' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: v${{ needs.release.outputs.version }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: changelog  # the stamped CHANGELOG.md, over the tag's copy
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Add checksums for every download
+        run: |
+          set -euo pipefail
+          gh release download "v$VERSION" --repo "$GITHUB_REPOSITORY" --dir assets --clobber
+          rm -f assets/SHA256SUMS.txt
+          (cd assets && sha256sum -- * > ../SHA256SUMS.txt)
+          gh release upload "v$VERSION" SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --clobber
+
+      - name: Write the notes and publish the release
+        run: |
+          set -euo pipefail
+          gh release view "v$VERSION" --repo "$GITHUB_REPOSITORY" --json assets > assets.json
+          python -m torre.tools.changelog notes "$VERSION" --assets assets.json --repo "$GITHUB_REPOSITORY" \
+            --previous "${{ needs.release.outputs.previous }}" > notes.md
+          gh release edit "v$VERSION" --repo "$GITHUB_REPOSITORY" --notes-file notes.md --draft=false --latest

@@ -1,0 +1,25 @@
+# Changelog
+
+Notable changes to Torre. Changes stay under Unreleased until a merge to `main` releases them:
+the release workflow then stamps them with the version and date, and publishes that section as
+the GitHub release's notes.
+
+## Unreleased
+
+### Added
+
+- **Install Torre on Windows, macOS and Linux with one download.** Each release now has a
+  Windows installer, macOS disk images for Apple silicon and Intel, and a Linux AppImage and
+  `.deb`. They include their own Python and Stockfish, so there is nothing else to set up, and
+  Torre opens in its own window and works offline. Your games stay in `~/.torre`, the same
+  folder a `pip install` uses. The installers are not signed yet; the release notes show the
+  one-time step Windows and macOS ask for.
+- **`torre serve --until-stdin-closes`** stops the studio when its standard input closes. The
+  desktop app uses it so the server and its engines never outlive the window.
+
+### Changed
+
+- **Release notes come from this changelog.** Each GitHub release shows its section here,
+  followed by the downloads for each system and their checksums.
+- **The README opens with Torre's motto,** "Think. Observe. React. Review. Evolve.", and explains
+  the name.
