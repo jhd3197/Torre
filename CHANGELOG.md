@@ -6,6 +6,8 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.7 - 2026-10-14
+
 ### Added
 
 - **AI players get engine-free tactical help by default.** Arena starts at Help level 1,
