@@ -91,8 +91,13 @@ export interface GameAnalysis {
   key_moments?: import('./components/KeyMoments').KeyMoment[];
 }
 
+/** How strongly each side played one game, in rating points (game_rating.py); null when too short to say. */
+export interface GameRating { user: number | null; opp: number | null; speed: string | null }
+
 export interface GameDetail extends Line {
   headers: Record<string, string>;
+  /** Present once the game is analysed. */
+  rating?: GameRating | null;
   opening?: {
     name: string; eco: string; ply: number; move_number: number; move: string;
     played_by: Color; line: string; moves: string[]; transposed: boolean;

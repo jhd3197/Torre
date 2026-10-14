@@ -9,6 +9,7 @@ import chess
 import chess.pgn
 
 from torre.analysis import analyze
+from torre.analysis import game_rating
 from torre.analysis import pgn_export
 from torre.analysis import scoring
 def milliseconds(seconds):
@@ -151,6 +152,10 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             'scoring_version': analyze.SCORING_VERSION if analyzed else None,
             'evaluation_pov': 'white', 'loss_pov': 'mover',
             'moves': decisions, 'summary': quality_summary,
+            # How strongly each side played, in rating points (game_rating.py): an estimate, None when too short.
+            'estimated_rating': game_rating.game_ratings(
+                evals, game.board(), [node.move for node in nodes], game.headers.get('TimeControl'),
+                {'white': game.headers.get('WhiteElo'), 'black': game.headers.get('BlackElo')}) if analyzed else None,
         },
     }
 

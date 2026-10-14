@@ -188,7 +188,9 @@ def commentary_lines(lang):
     """Every line the review commentary can say: each template expanded over its placeholders' domains."""
     english, translated = _ui(lang, 'commentary')
     tree = _merged(english, translated)
-    domains = {name: [str(n) for n in range(low, high + 1)] for name, (low, high) in tree.pop('_domains').items()}
+    # A domain is [low, high] or [low, high, step] (ratings go by 50).
+    domains = {name: [str(n) for n in range(span[0], span[1] + 1, span[2] if len(span) > 2 else 1)]
+               for name, span in tree.pop('_domains').items()}
     domains.update(square=SQUARES, opening=opening_families())
     for _, template in _strings(tree):
         names = sorted(set(re.findall(r'\{\{\s*(\w+)\s*\}\}', template)))

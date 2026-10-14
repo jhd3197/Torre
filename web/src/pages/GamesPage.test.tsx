@@ -129,6 +129,13 @@ test('analysis judgments are marked in the move list', async () => {
   expect(document.querySelector('.accuracy-card.yours b')).toHaveTextContent('91.4%');
 });
 
+test('the accuracy cards say how each side played in rating points, or why not', async () => {
+  serve(147, game(147, { rating: { user: 1650, opp: null, speed: 'blitz' } }));
+  renderAt('/games/147/0');
+  expect(await screen.findByText('Played like ~1650')).toHaveAttribute('title', 'An estimate from this game alone, rounded to 50.');
+  expect(screen.getByText('Rating: –')).toHaveAttribute('title', 'Too short to estimate a rating.');
+});
+
 test('moving a piece in a replay opens Explore with the move, and Back returns to the same move', async () => {
   serve(106);
   const { location } = renderAt('/games/106/0');

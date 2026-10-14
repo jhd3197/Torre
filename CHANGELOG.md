@@ -25,6 +25,11 @@ the GitHub release's notes.
   opponent you did not punish. Misses go into your drills, puzzles and blind spots like
   mistakes. Forced is the only legal move, and it is never judged. Your games are graded again
   the next time they are analysed.
+- **See how strongly each side played a game, in rating points.** An analysed game's review
+  shows "Played like ~1650" under each side's accuracy, the after-game card against a bot says
+  it for you and the bot, and the spoken recap says it too. It is an estimate from that one
+  game, rounded to 50; when the game shows your rating it starts from there. Games shorter than
+  15 moves that ended without a mate show "–".
 
 ### Changed
 

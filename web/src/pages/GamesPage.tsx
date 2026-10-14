@@ -211,6 +211,7 @@ export function GamePage() {
     outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl),
     swing: outcome && record?.user_color ? swingOf(analysis?.evals ?? evals, userColor, outcome, game.initialFen) : null,
     accuracy: analysis?.accuracy ?? record?.user_accuracy ?? null,
+    rating: game.rating ? { you: game.rating.user, opp: game.rating.opp } : null,
   });
 
   // The evaluation graph: the saved analysis's scores, or the in-page review's as it fills in.
@@ -331,8 +332,8 @@ export function GamePage() {
           {game.headers.Result && <ResultBanner outcome={record?.user_color ? outcome : null} result={game.headers.Result} winner={winner} ending={ending} />}
           {!reviewing && (
             <AccuracyCards cards={record?.user_color ? [
-              { name: t('summary.you'), accuracy: analysis?.accuracy ?? record.user_accuracy ?? null, you: true },
-              { name: oppName, accuracy: analysis?.opp_accuracy ?? null, you: false },
+              { name: t('summary.you'), accuracy: analysis?.accuracy ?? record.user_accuracy ?? null, you: true, rating: game.rating?.user },
+              { name: oppName, accuracy: analysis?.opp_accuracy ?? null, you: false, rating: game.rating?.opp },
             ] : []} />
           )}
           {counts && !reviewing && <GradeChips counts={counts} title={record?.user_color ? t('summary.yourMoves') : t('summary.allMoves')} />}

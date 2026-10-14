@@ -17,6 +17,7 @@ from torre.coaching import coach_home
 from torre.analysis import engine_service
 from torre.analysis import limits
 from torre.analysis import game_export
+from torre.analysis import game_rating
 from torre.games import importer
 from torre.server import jobs
 from torre import jsonio
@@ -78,7 +79,8 @@ def game_detail(req):
     game = _game(game_id)
     analysis = appdata.analysis_record(game_id)
     detail = board_view.with_clocks(board_view.parse_pgn(game['pgn']), game)
-    return {**detail, 'record': game, 'analysis': analysis, 'phases': _phases(detail, game, analysis)}
+    return {**detail, 'record': game, 'analysis': analysis, 'phases': _phases(detail, game, analysis),
+            'rating': game_rating.for_game(game, analysis) if analysis else None}
 
 
 def _phases(detail, game, analysis):

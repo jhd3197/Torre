@@ -258,6 +258,8 @@
     "phase": "Phase",
     "you": "You",
     "setTo": "Bot set to",
+    "rating": "You played like ~{{you}}, {{name}} like ~{{bot}}.",
+    "ratingNote": "An estimate from this game alone, rounded to 50.",
     "phases": {
       "opening": "Opening",
       "middlegame": "Middlegame",

@@ -328,6 +328,13 @@ describe('the game recap', () => {
     ]);
   });
 
+  test('says the estimated ratings when they were recorded', () => {
+    expect(recapLines({ outcome: null, rating: { you: 1650, opp: 1400 } })).toEqual(['You played like 1650.', 'Your opponent played like 1400.']);
+    // A refused estimate, or one off the recorded steps of 50, is left out.
+    expect(recapLines({ outcome: null, rating: { you: null, opp: 1425 } })).toEqual([]);
+    expect(DOMAINS.rating).toEqual([400, 3000, 50]);
+  });
+
   test('clock times come from the clocks left and the increment', () => {
     const moves = [{ uci: 'e2e4', san: 'e4', clock: 178 }, { uci: 'e7e5', san: 'e5', clock: 170 }, { uci: 'g1f3', san: 'Nf3', clock: 150 }, { uci: 'b8c6', san: 'Nc6' }];
     expect(thinkTimes(moves, '180+2')).toEqual([4, 12, 30, null]);

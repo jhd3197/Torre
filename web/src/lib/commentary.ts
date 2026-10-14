@@ -17,7 +17,9 @@ const PIECES: Record<string, PieceName> = { p: 'pawn', n: 'knight', b: 'bishop',
 export const DOMAINS: Record<string, number[]> = english._domains;
 
 const t = (key: string, values?: Record<string, string | number>) => i18n.t(`commentary:${key}`, values ?? {});
-const inDomain = (name: string, n: number) => Number.isInteger(n) && n >= DOMAINS[name][0] && n <= DOMAINS[name][1];
+/** A domain is [low, high] or [low, high, step]: only those values were recorded. */
+const inDomain = (name: string, n: number) => Number.isInteger(n) && n >= DOMAINS[name][0] && n <= DOMAINS[name][1]
+  && (n - DOMAINS[name][0]) % (DOMAINS[name][2] ?? 1) === 0;
 // Lines are drawn like cards from a shuffled deck: none comes back until the rest of its pool has
 // been said, and a fresh deck never starts with the line said last.
 const decks = new Map<string, number[]>();
@@ -489,6 +491,8 @@ export interface GameRecap {
   longestThink?: { seconds: number; move: number; good: boolean } | null;
   /** Seconds that count as a long think in this game (longThink()). */
   longThink?: number;
+  /** The game's estimated ratings (game_rating.py), yours and your opponent's. */
+  rating?: { you: number | null; opp: number | null } | null;
 }
 
 /** The spoken summary of a finished game, as recorded lines in speaking order. */
@@ -510,6 +514,11 @@ export function recapLines(recap: GameRecap): string[] {
     const blunders = counts.blunder ?? 0;
     const line = blunders ? counted('recap.blunder', 'count', blunders) : t('recap.noBlunders');
     if (line) lines.push(line);
+  }
+  // "You played like 1650. Your opponent played like 1400." (game_rating.py's estimate, rounded to 50).
+  for (const [side, key] of [['you', 'recap.rating'], ['opp', 'recap.oppRating']] as const) {
+    const rating = recap.rating?.[side];
+    if (rating != null && inDomain('rating', rating)) lines.push(t(key, { rating }));
   }
   const think = recap.longestThink;
   const took = think && think.seconds >= (recap.longThink ?? LONG_THINK) ? durationWords(think.seconds) : null;

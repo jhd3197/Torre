@@ -977,6 +977,11 @@ $replay: 'body[data-mode="replay"]';
   font-size: $fs-lg;
   color: $lobby-muted;
 }
+.accuracy-card > .game-rating {
+  margin-top: 2px;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-ink;
+}
 #{$replay} .summary-block {
   display: flex;
   flex-direction: column;

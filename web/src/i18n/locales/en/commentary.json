@@ -23,6 +23,11 @@
     "count": [
       2,
       20
+    ],
+    "rating": [
+      400,
+      3000,
+      50
     ]
   },
   "grade": {
@@ -867,6 +872,8 @@
       "other": "{{count}} mistakes."
     },
     "noBlunders": "And not a single blunder.",
+    "rating": "You played like {{rating}}.",
+    "oppRating": "Your opponent played like {{rating}}.",
     "longestThink": "Your longest think was",
     "onMove": "on move {{move}}",
     "paidOff": "and it paid off.",

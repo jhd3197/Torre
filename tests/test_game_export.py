@@ -112,6 +112,16 @@ class ExportRouteTests(unittest.TestCase):
             self.assertEqual(report['game']['id'], 42)
             self.assertEqual(self.request('/api/games/404/export')[0], 404)
 
+    def test_game_page_carries_the_estimated_rating_once_analysed(self):
+        record = {'id': 42, 'pgn': '1. e4 e5 *', 'user_color': 'white', 'type': 'live'}
+        evals = {'scoring_version': analyze.SCORING_VERSION, 'evals': [[20, None]] * 3}
+        with patch.object(appdata, 'game_record', return_value=record), patch.object(appdata, 'analysis_record', return_value=evals):
+            status, _, detail = self.request('/api/games/42')
+            self.assertEqual(status, 200)
+            self.assertEqual(detail['rating'], {'user': None, 'opp': None, 'speed': None})  # too short to judge
+        with patch.object(appdata, 'game_record', return_value=record), patch.object(appdata, 'analysis_record', return_value=None):
+            self.assertIsNone(self.request('/api/games/42')[2]['rating'])
+
     def test_live_export_round_trips_position_and_timing(self):
         status, _, response = self.request('/api/export', {
             'initialFen': chess.STARTING_FEN, 'moves': ['e2e4'], 'playerColor': 'white',

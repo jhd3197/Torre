@@ -11,12 +11,14 @@ on that, from the engine's review of the finished game:
     slips    the bot's deliberate weaker moves and how each turned out: one can land on a
              good move by chance, which is why a weak bot sometimes looks strong
     ratings  the rating the bot was set to in each phase it played
+    rating   how strongly you and the bot played the whole game, in rating points (game_rating)
     retry    your costliest mistake, with the position before it, to play again from there
 
 All evals are White-POV [cp, mate] pairs, one per position (the start and after every move).
 """
 import chess
 
+from torre.analysis import game_rating
 from torre.analysis import game_stats
 from torre.analysis import scoring
 SIDES = ('you', 'bot')
@@ -68,6 +70,8 @@ def report(initial_fen, ucis, player_color, evals, notes=()):
                 **{e: sum(m['class'] == e for m in moves) for e in game_stats.ERRORS}}
 
     overall = {side: summary([m for phase in game_stats.PHASES for m in rows[phase][side]]) for side in SIDES}
+    played = game_rating.game_ratings(evals, chess.Board(initial_fen), [chess.Move.from_uci(u) for u in ucis])
+    bot = 'black' if you == chess.WHITE else 'white'
     return {
         'phases': {phase: {side: summary(rows[phase][side]) for side in SIDES} for phase in game_stats.PHASES},
         'overall': overall,
@@ -75,5 +79,6 @@ def report(initial_fen, ucis, player_color, evals, notes=()):
         # A slip that came out fine (no error by the judgment rules) is luck, not a stronger bot.
         'luckySlips': sum(1 for s in slips if s['class'] is None),
         'ratings': {phase: sorted(values) for phase, values in ratings.items()},
+        'rating': {'you': played['white' if you == chess.WHITE else 'black'], 'bot': played[bot]},
         'retry': {k: v for k, v in worst.items() if k != 'drop'} if worst else None,
     }

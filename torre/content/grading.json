@@ -12,5 +12,22 @@
     [50, 1200], [100, 1350], [200, 1500], [400, 1650], [800, 1800], [1600, 1950],
     [3200, 2100], [6400, 2250], [12800, 2400], [25600, 2550], [51200, 2700],
     [102400, 2850], [204800, 3000], [409600, 3150]
-  ]
+  ],
+  "gameRating": {
+    "about": "game_rating.py: per speed, the score b*logit(accuracy) + c*ln(1+ACPL) that players rated R reach on average, p + q*R, inverted. Fitted by torre.tools.fit_rating on 59,441 rated sides of Lichess games with evals (June 2014).",
+    "speeds": [[180, "bullet"], [480, "blitz"], [1500, "rapid"]],
+    "unknown": "rapid",
+    "anchor": { "weight": 0.5, "clamp": 400 },
+    "range": [400, 3000],
+    "round": 50,
+    "minMoves": 10,
+    "minFullMoves": 15,
+    "curves": {
+      "bullet": {"b": 0.0, "c": -64.794, "p": -301.9177, "q": 0.0259418},
+      "blitz": {"b": 4.764, "c": -79.3, "p": -401.1, "q": 0.0661748},
+      "rapid": {"b": 12.092, "c": -84.312, "p": -449.8849, "q": 0.0896765},
+      "classical": {"b": 0.0, "c": -132.627, "p": -714.825, "q": 0.1298949},
+      "unknown": {"b": 12.092, "c": -84.312, "p": -449.8849, "q": 0.0896765}
+    }
+  }
 }

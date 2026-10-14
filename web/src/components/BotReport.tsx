@@ -15,6 +15,8 @@ export interface BotReportData {
   slips: { ply: number; san: string; phase: Phase; class: string | null }[];
   luckySlips: number;
   ratings: Partial<Record<Phase, number[]>>;
+  /** How strongly you and the bot played the whole game, in rating points; null when too short to say. */
+  rating?: { you: number | null; bot: number | null };
   /** Your costliest mistake and the position before it, to play again from there. */
   retry: { ply: number; san: string; class: string; fen: string } | null;
 }
@@ -46,6 +48,9 @@ export function BotReport({ game, botName, onRetry }: { game: PlaySave; botName:
     <section className="bot-report" aria-label={t('report.title', { name: botName })}>
       <h3>{t('report.title', { name: botName })}</h3>
       <PhaseTable phases={report.phases} other={botName} ratings={set.length ? ratings : undefined} />
+      {report.rating?.you != null && report.rating.bot != null && (
+        <p className="game-rating-line" title={t('report.ratingNote')}>{t('report.rating', { you: report.rating.you, name: botName, bot: report.rating.bot })}</p>
+      )}
       {set.length > 0 && <p>{steady
         ? t('report.steady', { name: botName, elo: set[0] })
         : t('report.byPhase', { name: botName })}</p>}

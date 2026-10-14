@@ -258,6 +258,8 @@
     "phase": "Fase",
     "you": "Tú",
     "setTo": "Rating del bot",
+    "rating": "Jugaste como ~{{you}} y {{name}} como ~{{bot}}.",
+    "ratingNote": "Una estimación con solo esta partida, redondeada a 50.",
     "phases": {
       "opening": "Apertura",
       "middlegame": "Medio juego",

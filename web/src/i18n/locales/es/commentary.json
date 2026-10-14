@@ -23,6 +23,11 @@
     "count": [
       2,
       20
+    ],
+    "rating": [
+      400,
+      3000,
+      50
     ]
   },
   "grade": {
@@ -895,6 +900,8 @@
       "other": "{{count}} errores."
     },
     "noBlunders": "Y ni un solo error grave.",
+    "rating": "Jugaste como un {{rating}}.",
+    "oppRating": "Tu rival jugó como un {{rating}}.",
     "longestThink": "Tu pensada más larga fue de",
     "onMove": "en la jugada {{move}}",
     "paidOff": "y valió la pena.",
