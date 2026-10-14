@@ -8,6 +8,11 @@ the GitHub release's notes.
 
 ### Added
 
+- **AI players get engine-free tactical help by default.** Arena starts at Help level 1,
+  with warnings about hanging pieces and replies that allow a fork or winning capture.
+  Prompts include a board diagram, material balance, repetition notes and the player's
+  previous reason and plan. Thinking defaults to High; streamed calls keep active long
+  replies from spending the whole timeout waiting for a single response.
 - **AI models have their own ladder in the Arena.** Every model you pit against another, or
   against an engine, gets a rating with its 95% range, its record and what a game costs it. The
   same model at another help level or thinking setting is rated as a separate player. Play a

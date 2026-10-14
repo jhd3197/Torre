@@ -506,7 +506,7 @@ export interface ArenaAiSpec {
   model: string;
   /** How much the harness helps: 0 shows every legal move and nothing else; 2 and up lean on Stockfish. */
   level?: number;
-  effort?: ArenaAiEffort;
+  effort?: ArenaAiEffort | null;
   name?: string;
 }
 
@@ -540,6 +540,7 @@ export interface ArenaPlayer {
 /** What an AI player's turn came to: its reason, the replies the harness refused, and the cost. */
 export interface ArenaAiNote {
   reason: string;
+  plan?: string;
   tries: number;
   /** The harness picked a move for it after too many refused replies. */
   rescued: boolean;

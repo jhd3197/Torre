@@ -275,7 +275,7 @@ class Player:
 AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
 AI_MAX_TOKENS = 32000           # the reply, reasoning included; Fable at max effort can think past 16k
-AI_TIMEOUT_S = 900              # one model call; a reasoning model can think for minutes, a dead socket forever
+AI_TIMEOUT_S = 900              # stream read timeout: active long thinks keep the connection alive
 AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
 
 
@@ -289,10 +289,10 @@ class AiPlayer:
         model = str(spec.get('model') or '')
         if '/' not in model:
             raise ValueError('An AI player needs a model such as "claude/claude-fable-5-1".')
-        level = spec.get('level', 0)
+        level = spec.get('level', 1)
         if level not in AI_LEVELS or isinstance(level, bool):
             raise ValueError('"level" must be a whole number from 0 to 5.')
-        effort = spec.get('effort')
+        effort = spec.get('effort', 'high')  # explicit None keeps the provider's default
         if effort is not None and effort not in AI_EFFORTS:
             raise ValueError(f'"effort" must be one of {", ".join(AI_EFFORTS)}.')
         try:
@@ -335,7 +335,8 @@ class AiPlayer:
                       if self.level >= 2 else None)
             driver = get_driver_for_model(self.model, api_key=self.key) if self.key else None
             yield ChessHarness(self.model, driver=driver, level=self.level, engine=engine,
-                               engine_limit=AI_ENGINE_LIMIT if engine else None, options=self.options())
+                               engine_limit=AI_ENGINE_LIMIT if engine else None, options=self.options(),
+                               concepts='all' if self.level >= 1 else (), stream=True)
 
     def choose(self, harness, board, movetime, rng):
         """(move, note): the note keeps the model's reason, its rejected tries, and what the turn cost."""
@@ -348,7 +349,8 @@ class AiPlayer:
         # answered with moves it was not offered is still rescued; that is its own mistake.
         if decision.rescued and errors and all(getattr(a, 'reply', None) is None for a in decision.attempts):
             raise RuntimeError(f'{self.name}: {errors[-1]}')
-        note = {'ai': {'reason': decision.reason, 'tries': len(decision.attempts), 'rescued': decision.rescued,
+        note = {'ai': {'reason': decision.reason, 'plan': decision.plan,
+                       'tries': len(decision.attempts), 'rescued': decision.rescued,
                        'cost': round(decision.usage.get('cost') or 0.0, 6),
                        'tokens': int(decision.usage.get('total_tokens') or 0),
                        'seconds': round(time.monotonic() - started, 1)}}
@@ -549,6 +551,9 @@ class ArenaJob(jobs.BackgroundJob):
         order = [white, 1 - white]  # order[0] plays White
         opening_id, line, extra = line
         board = chess.Board()
+        for side, process in zip(sides, processes):
+            if isinstance(side, AiPlayer):
+                process.reset()
         moves, notes = [], []
         for uci in line:
             move = chess.Move.from_uci(uci)

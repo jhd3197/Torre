@@ -67,7 +67,7 @@
     "aiLevel": "Ayuda",
     "aiLevels": {
       "0": "Ninguna: todas las jugadas legales",
-      "1": "Datos de cada jugada (capturas, jaques)",
+      "1": "Datos y avisos tácticos (sin motor)",
       "2": "Sin errores graves en el menú",
       "3": "Las 5 mejores de Stockfish, sin orden",
       "4": "Las 3 mejores de Stockfish, con evaluación",

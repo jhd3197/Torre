@@ -335,9 +335,12 @@ class FakeHarness:
     def __init__(self, cost=0.25):
         self.cost = cost
 
+    def reset(self):
+        pass
+
     def choose(self, board):
         move = sorted(board.legal_moves, key=board.san)[0]
-        return types.SimpleNamespace(move=move, reason=f'{board.san(move)} looks fine', rescued=False,
+        return types.SimpleNamespace(move=move, reason=f'{board.san(move)} looks fine', plan='Develop the pieces', rescued=False,
                                      attempts=[types.SimpleNamespace(error='not a legal move'), types.SimpleNamespace(error=None)],
                                      usage={'cost': self.cost, 'total_tokens': 1200})
 
@@ -360,7 +363,7 @@ class AiPlayerTests(unittest.TestCase):
     def test_a_player_is_an_ai_when_the_request_says_so(self):
         player = arena.make_player(self.ai(effort='high', name='Fable'))
         self.assertIsInstance(player, arena.AiPlayer)
-        self.assertEqual(player.describe()['ai'], {'model': 'claude/claude-fable-5-1', 'level': 0, 'effort': 'high'})
+        self.assertEqual(player.describe()['ai'], {'model': 'claude/claude-fable-5-1', 'level': 1, 'effort': 'high'})
         self.assertEqual(player.name, 'Fable')
         self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra')).name, 'gpt-6-astra')
 
@@ -374,7 +377,28 @@ class AiPlayerTests(unittest.TestCase):
         base = {'max_tokens': arena.AI_MAX_TOKENS, 'timeout': arena.AI_TIMEOUT_S}
         self.assertEqual(arena.make_player(self.ai(effort='xhigh')).options(), {**base, 'effort': 'xhigh'})
         self.assertEqual(arena.make_player(self.ai('openai/gpt-6-astra', effort='high')).options(), {**base, 'reasoning_effort': 'high'})
-        self.assertNotIn('effort', arena.make_player(self.ai()).options())
+        self.assertEqual(arena.make_player(self.ai()).options(), {**base, 'effort': 'high'})
+        self.assertNotIn('effort', arena.make_player(self.ai(effort=None)).options())
+
+    def test_help_enables_concepts_and_streams_without_an_engine(self):
+        for level in (0, 1):
+            with mock.patch('prompture.drivers.get_driver_for_model') as driver, \
+                    mock.patch('prompture.games.chess.ChessHarness') as harness, \
+                    mock.patch.object(arena.engines.POOL, 'session') as engine:
+                with arena.make_player(self.ai(level=level)).process():
+                    pass
+                self.assertEqual(harness.call_args.kwargs['concepts'], 'all' if level else ())
+                self.assertTrue(harness.call_args.kwargs['stream'])
+                self.assertIsNone(harness.call_args.kwargs['engine'])
+                engine.assert_not_called()
+                driver.assert_not_called()  # no saved key: ChessHarness resolves the driver
+
+    def test_memory_is_reset_before_each_game(self):
+        harness = FakeHarness()
+        harness.reset = mock.Mock()
+        _, match = self.play(harness=harness, games=2)
+        self.assertEqual(len(match['games']), 2)
+        self.assertEqual(harness.reset.call_count, 4)  # each side, each game
 
     def play(self, cost_cap=None, cost=0.25, harness=None, **payload):
         job = arena.ArenaJob()
@@ -405,6 +429,7 @@ class AiPlayerTests(unittest.TestCase):
         first = game['ai'][0]
         self.assertEqual((first['tries'], first['errors'], first['tokens']), (2, ['not a legal move'], 1200))
         self.assertTrue(first['reason'].endswith('looks fine'))
+        self.assertEqual(first['plan'], 'Develop the pieces')
         self.assertEqual(match['cost'], [0.25 * ((plies + 1) // 2), 0.25 * (plies // 2)])
         saved = job.saved(match['id'])
         self.assertEqual((saved['cost'], saved['capped'], len(saved['games'][0]['ai'])), (match['cost'], False, plies))
@@ -434,7 +459,7 @@ class AiPlayerTests(unittest.TestCase):
             player.choose(silent, chess.Board(), 0.1, random.Random(1))
         # A model that answers badly three times is still rescued: that is the harness doing its job.
         sloppy = types.SimpleNamespace(choose=lambda board: types.SimpleNamespace(
-            move=next(iter(board.legal_moves)), reason='', rescued=True, usage={},
+            move=next(iter(board.legal_moves)), reason='', plan='', rescued=True, usage={},
             attempts=[types.SimpleNamespace(reply='Qh9', error='"Qh9" is not one of the moves offered')] * 3))
         move, note = player.choose(sloppy, chess.Board(), 0.1, random.Random(1))
         self.assertTrue(note['ai']['rescued'])

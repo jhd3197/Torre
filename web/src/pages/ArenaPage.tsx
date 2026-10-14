@@ -54,7 +54,7 @@ const aiFigure = (model: string) => engineFigure(`ai-${model.split('/')[0]}`);
 
 function specOf(seat: Seat): ArenaPlayerSpec {
   const model = aiModel(seat.key);
-  if (model) return { ai: { model, level: seat.level ?? 0, ...(seat.effort ? { effort: seat.effort } : {}) } };
+  if (model) return { ai: { model, level: seat.level ?? 1, effort: seat.effort ?? null } };
   const [kind, a, b] = seat.key.split(':');
   if (kind === 'master') return { masterId: a };
   if (kind === 'model') return { engineId: a, modelId: b };
@@ -299,7 +299,7 @@ function describeSeat(seat: Seat, roster: Roster, t: (key: string, options?: Rec
   if (model) {
     const name = aiInfo(roster, model)?.name ?? model.slice(model.indexOf('/') + 1);
     return { name, kind: 'ai', figure: aiFigure(model), initials: initialsOf(name), rating: null, ratingText: model.split('/')[0],
-      blurb: t('setup.aiNote', { level: t(`setup.aiLevels.${seat.level ?? 0}`) }) };
+      blurb: t('setup.aiNote', { level: t(`setup.aiLevels.${seat.level ?? 1}`) }) };
   }
   const [kind, id, modelId] = seat.key.split(':');
   if (kind === 'master') {
@@ -378,7 +378,7 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
       {ai && (
         <>
           <label className="arena-strength">{t('setup.aiLevel')}
-            <select value={seat.level ?? 0} disabled={disabled} onChange={e => onChange({ ...seat, level: Number(e.target.value) })}>
+            <select value={seat.level ?? 1} disabled={disabled} onChange={e => onChange({ ...seat, level: Number(e.target.value) })}>
               {AI_LEVELS.map(level => <option key={level} value={level}>{t(`setup.aiLevels.${level}`)}</option>)}
             </select>
           </label>
@@ -403,7 +403,7 @@ function SeatCard({ label, seat, view, disabled, roster, onChange }: {
             // Keep the effort when the new model takes it; else high, or none for a model that does not reason.
             const allowed = pickedAi ? effortsFor(aiInfo(roster, pickedAi)) : [];
             const effort = [seat.effort ?? 'high', 'high'].find(e => allowed.includes(e as ArenaAiEffort)) as ArenaAiEffort | undefined ?? allowed.at(-1);
-            onChange(pickedAi ? { key, elo: 0, level: seat.level ?? 0, effort }
+            onChange(pickedAi ? { key, elo: 0, level: seat.level ?? 1, effort }
               : { key, elo: ratable(picked) ? seat.elo : 0, nodes: picked ? seat.nodes : undefined });
             setPicking(false);
           }} />
