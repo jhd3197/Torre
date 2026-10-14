@@ -10,6 +10,7 @@ import chess.pgn
 
 from torre.analysis import analyze
 from torre.analysis import game_rating
+from torre.analysis import phases
 from torre.analysis import pgn_export
 from torre.analysis import scoring
 def milliseconds(seconds):
@@ -49,10 +50,11 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
         measured[item['ply']] = item
 
     moves, times, decisions = [], [], []
+    phase = None
     for ply, node in enumerate(nodes, 1):
         move = node.move
         color = 'white' if board.turn else 'black'
-        phase = analyze.phase_of(board.fullmove_number)
+        phase = phases.position_phase(board, phase)
         moves.append({
             'ply': ply, 'move_number': board.fullmove_number, 'color': color,
             'uci': move.uci(), 'san': board.san(move), 'fen_before': board.fen(),
@@ -137,7 +139,8 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             'id': (record or {}).get('id'), 'user_color': (record or {}).get('user_color'),
             'headers': dict(game.headers), 'pgn': pgn, 'initial_fen': initial_fen,
             'final_fen': board.fen(), 'moves': moves,
-            'phase_method': 'fullmove_number: opening <= 10, middlegame <= 30, endgame > 30',
+            'phase_method': 'material: endgame at <= 6 pieces or queens off with <= 20 points, '
+                            'middlegame past move 12 or at <= 10 pieces, never going back',
         },
         'timing': {
             'unit': 'milliseconds', 'moves': times, 'summary': timing_summary,

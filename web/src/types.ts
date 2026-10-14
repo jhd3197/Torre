@@ -107,6 +107,8 @@ export interface GameDetail extends Line {
   analysis?: GameAnalysis | null;
   /** Accuracy by phase for you and your opponent, once analyzed (bot_report.report). */
   phases?: import('./components/BotReport').BotReportData['phases'] | null;
+  /** The ply of each phase's first move (with `phases`). */
+  phase_starts?: import('./components/BotReport').BotReportData['starts'] | null;
 }
 
 // The engine registry (engines.py), from GET /api/engines.

@@ -362,7 +362,8 @@ def played_report(req):
             evals.append([-10000 if ply['state']['turn'] == 'white' else 10000, None])
         else:
             evals.append([0, None])
-    return bot_report.report(payload.get('initialFen') or chess.STARTING_FEN, moves, payload['playerColor'], evals, notes)
+    return bot_report.report(payload.get('initialFen') or chess.STARTING_FEN, moves, payload['playerColor'], evals, notes,
+                             grades=[ply['grade'] for ply in plies[1:]])
 
 
 @ROUTES.post('/api/played')

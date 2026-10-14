@@ -32,6 +32,32 @@ class ReportTests(unittest.TestCase):
         self.assertEqual((card['retry']['ply'], card['retry']['san'], card['retry']['class']), (6, 'Nf6', 'blunder'))
         self.assertEqual(chess.Board(card['retry']['fen']).turn, chess.BLACK)
 
+    def test_each_phase_gets_a_grade_and_where_it_starts(self):
+        card = bot_report.report(chess.STARTING_FEN, MOVES, 'white', EVALS)
+        opening = card['phases']['opening']
+        self.assertEqual(opening['you']['grade'], bot_report.phase_grade(opening['you']['accuracy'], 4))
+        self.assertEqual(opening['bot']['grade'], bot_report.phase_grade(opening['bot']['accuracy'], 3))
+        self.assertIsNone(opening['you']['rating'])  # under 8 moves: no rating for the phase
+        self.assertEqual(card['starts'], {'opening': 1, 'middlegame': None, 'endgame': None})
+        # A brilliant move in a sharp phase lifts its grade; the flags come from the review's grades.
+        flags = [None] * len(MOVES)
+        flags[2] = {'brilliant': True, 'class': None}
+        lifted = bot_report.report(chess.STARTING_FEN, MOVES, 'white', EVALS, grades=flags)['phases']['opening']['you']
+        self.assertEqual(lifted['grade'], 'brilliant' if lifted['accuracy'] >= 85 else opening['you']['grade'])
+
+    def test_phase_grade_ladder(self):
+        grade = bot_report.phase_grade
+        self.assertIsNone(grade(95, 2))                      # fewer than 3 moves: "–"
+        self.assertEqual(grade(95, 5), 'best')
+        self.assertEqual(grade(85, 5), 'excellent')
+        self.assertEqual(grade(75, 5), 'good')
+        self.assertEqual(grade(65, 5), 'inaccuracy')
+        self.assertEqual(grade(55, 5), 'mistake')
+        self.assertEqual(grade(40, 5), 'blunder')
+        self.assertEqual(grade(86, 5, brilliant=1), 'brilliant')
+        self.assertEqual(grade(84, 5, brilliant=1), 'excellent')
+        self.assertEqual(grade(88, 5, great=1), 'great')
+
     def test_evals_must_cover_the_game(self):
         with self.assertRaises(ValueError):
             bot_report.report(chess.STARTING_FEN, MOVES, 'white', EVALS[:-1])

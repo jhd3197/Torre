@@ -260,6 +260,16 @@
     "setTo": "Bot set to",
     "rating": "You played like ~{{you}}, {{name}} like ~{{bot}}.",
     "ratingNote": "An estimate from this game alone, rounded to 50.",
+    "accuracyTip": "{{percent}}% accuracy",
+    "tooFew": "Too few moves to grade",
+    "slipCount": {
+      "inaccuracy_one": "{{count}} inaccuracy",
+      "inaccuracy_other": "{{count}} inaccuracies",
+      "mistake_one": "{{count}} mistake",
+      "mistake_other": "{{count}} mistakes",
+      "blunder_one": "{{count}} blunder",
+      "blunder_other": "{{count}} blunders"
+    },
     "phases": {
       "opening": "Opening",
       "middlegame": "Middlegame",

@@ -30,12 +30,18 @@ the GitHub release's notes.
   it for you and the bot, and the spoken recap says it too. It is an estimate from that one
   game, rounded to 50; when the game shows your rating it starts from there. Games shorter than
   15 moves that ended without a mate show "–".
+- **Every reviewed game gets a report card by phase.** The opening, middlegame and endgame each
+  get a grade for you and your opponent, with the accuracy and slips when you hover it. Tap a
+  phase to jump to its first move. A phase with fewer than 3 moves shows "–".
 
 ### Changed
 
 - **A move that leaves a won game still won is no longer a blunder.** If you were at 90% or more
   before and after the move (or 10% or less, in a lost game), it counts as an inaccuracy at
   most. Letting a long mate go while staying far ahead used to show as a blunder.
+- **Opening, middlegame and endgame now mean the same thing everywhere.** Insights and the game
+  export split a game by the pieces left on the board, as the phase card does, instead of by
+  move number. Your Insights by phase change once your games are analysed again.
 - **API keys are shared with your other Prompture apps.** Keys now live in Prompture's private
   key file on this computer, so a key saved in Torre works in any app built on Prompture, and
   keys already set in your environment show up on their own. Keys you saved before move there

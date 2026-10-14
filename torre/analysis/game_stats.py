@@ -17,12 +17,7 @@ accuracy keeps each move's weight from its own game's windows; accuracies
 over several games are the mean of the per-game values, as Lichess Insights
 does. ACPL uses the archive's capped centipawn loss (analyze.legacy_cp).
 
-Phases are judged on the position before each move and never go back:
-  endgame     at most 6 minor/major pieces left, or queens off with at most
-              20 points of non-pawn material (N/B 3, R 5, Q 9)
-  middlegame  past move 12, or at most 10 minor/major pieces left
-  opening     otherwise
-(analyze.phase_of, used by the stored phase_counts, splits by move number.)
+Phases are phases.py's: by the material left, judged on the position before each move.
 
 Move times, in order of preference: Play's observed `timings` (ui_active,
 partial turns dropped), PGN [%emt], deltas of PGN [%clk], deltas of
@@ -42,12 +37,14 @@ import chess
 from torre.analysis import analyze
 from torre import jsonio
 from torre.analysis import motifs
+from torre.analysis import phases
 from torre.analysis import scoring
 from torre.analysis.game_moves import parse_game
 from torre.analysis.insights import eco_name
 
 win_pct, move_accuracy = scoring.win_pct, scoring.move_accuracy
-PHASES = ("opening", "middlegame", "endgame")
+PHASES = phases.PHASES
+position_phase, line_phases = phases.position_phase, phases.line_phases
 ERRORS = (scoring.INACCURACY, scoring.MISTAKE, scoring.BLUNDER)
 PHASE_METHOD = ("position before the move, never going back: endgame when <= 6 minor/major pieces remain "
                 "or queens are off with <= 20 points of non-pawn material; middlegame after move 12 or "
@@ -92,29 +89,6 @@ def aggregate_accuracy(pairs):
         return None
     weighted = sum(a * w for a, w in pairs) / sum(w for _, w in pairs)
     return (weighted + scoring._harmonic_mean([a for a, _ in pairs])) / 2
-
-
-def position_phase(board, previous=None):
-    """Phase of `board` (see the module docstring); `previous` is the phase of
-    the position before, so a game never goes back a phase."""
-    pieces = [p.piece_type for p in board.piece_map().values() if p.piece_type not in (chess.PAWN, chess.KING)]
-    material = sum(scoring.PIECE_VALUES[p] for p in pieces)
-    if previous == "endgame" or len(pieces) <= 6 or (chess.QUEEN not in pieces and material <= 20):
-        return "endgame"
-    if previous == "middlegame" or board.fullmove_number > 12 or len(pieces) <= 10:
-        return "middlegame"
-    return "opening"
-
-
-def line_phases(board):
-    """The phase of every position in `board`'s game so far, from its root to now (one more than
-    its moves), each never going back; the last is the phase the next move is played in."""
-    replay = board.root()
-    phases = [position_phase(replay)]
-    for move in board.move_stack:
-        replay.push(move)
-        phases.append(position_phase(replay, phases[-1]))
-    return phases
 
 
 # ---- games -------------------------------------------------------------------

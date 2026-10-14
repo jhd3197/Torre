@@ -79,19 +79,20 @@ def game_detail(req):
     game = _game(game_id)
     analysis = appdata.analysis_record(game_id)
     detail = board_view.with_clocks(board_view.parse_pgn(game['pgn']), game)
-    return {**detail, 'record': game, 'analysis': analysis, 'phases': _phases(detail, game, analysis),
-            'rating': game_rating.for_game(game, analysis) if analysis else None}
+    card = _phase_card(detail, game, analysis)
+    return {**detail, 'record': game, 'analysis': analysis, 'phases': card and card['phases'],
+            'phase_starts': card and card['starts'], 'rating': game_rating.for_game(game, analysis) if analysis else None}
 
 
-def _phases(detail, game, analysis):
-    """Accuracy and errors by phase for you ('you') and your opponent ('bot'), from the stored
-    evals (bot_report.report); None until the game is analyzed."""
+def _phase_card(detail, game, analysis):
+    """Accuracy, errors and a grade by phase for you ('you') and your opponent ('bot'), and the
+    ply each phase starts at, from the stored evals (bot_report.report); None until analysed."""
     evals = (analysis or {}).get('evals') or []
     ucis = [m['uci'] for m in detail['moves']]
     if game.get('user_color') not in ('white', 'black') or len(evals) != len(ucis) + 1:
         return None
     try:
-        return bot_report.report(detail['initialFen'], ucis, game['user_color'], evals)['phases']
+        return bot_report.report(detail['initialFen'], ucis, game['user_color'], evals, grades=analysis.get('move_grades'))
     except (ValueError, TypeError):
         return None
 

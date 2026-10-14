@@ -356,7 +356,7 @@ export function GamePage() {
             </div>
           )}
           {!reviewing && game.phases && record?.user_color && (
-            <div className="game-phases summary-block"><h3>{t('game.byPhase')}</h3><PhaseTable phases={game.phases} other={oppName} /></div>
+            <div className="game-phases summary-block"><h3>{t('game.byPhase')}</h3><PhaseTable phases={game.phases} other={oppName} starts={game.phase_starts} onGo={go} /></div>
           )}
           {counts && !reviewing && record?.user_color && (
             <details className="summary-block grade-compare">

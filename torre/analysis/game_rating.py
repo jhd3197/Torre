@@ -44,6 +44,12 @@ def speed_of(time_control):
     return next((name for limit, name in RATING["speeds"] if seconds < limit), "classical")
 
 
+def centipawn_loss(before, after, mover_is_white):
+    """What one move cost the mover, in centipawns capped at +/-1000 (0 when it gained)."""
+    sign = 1 if mover_is_white else -1
+    return max(0, sign * (_capped(before) - _capped(after)))
+
+
 def side_stats(evals, white_starts=True, standard_start=True):
     """{"white": {"accuracy", "acpl", "moves"}, "black": {...}} from the evals of a whole game
     (len = plies + 1). A side that did not move has accuracy None."""
@@ -53,9 +59,7 @@ def side_stats(evals, white_starts=True, standard_start=True):
     losses = {"white": [], "black": []}
     for i in range(len(evals) - 1):
         white = (i % 2 == 0) == white_starts
-        sign = 1 if white else -1
-        loss = sign * (_capped(evals[i]) - _capped(evals[i + 1]))
-        losses["white" if white else "black"].append(max(0, loss))
+        losses["white" if white else "black"].append(centipawn_loss(evals[i], evals[i + 1], white))
     return {color: {"accuracy": accuracy[color], "moves": len(losses[color]),
                     "acpl": sum(losses[color]) / len(losses[color]) if losses[color] else None}
             for color in ("white", "black")}

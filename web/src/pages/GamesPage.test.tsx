@@ -1,7 +1,7 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { boardAfter, fakeServer, renderAt, START } from '../test/harness';
 import { SCORING_VERSION } from '../lib/grades';
-import type { GameDetail } from '../types';
+import type { GameDetail, Grade } from '../types';
 
 const MOVES = [
   { uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }, { uci: 'g1f3', san: 'Nf3' }, { uci: 'b8c6', san: 'Nc6' },
@@ -308,11 +308,12 @@ test('Rooky says the recap on its own once the review is in, then offers the les
   expect(JSON.parse(localStorage.getItem('chess-jd-rooky-heard') ?? '[]')).toContain('recap:193');
 });
 
-test('the summary lists your key moments, each jumping to the position before it, and accuracy by phase', async () => {
-  const row = (accuracy: number) => ({ moves: 2, accuracy, inaccuracy: 0, mistake: 0, blunder: 0 });
+test('the summary lists your key moments, each jumping to the position before it, and a grade by phase', async () => {
+  const row = (accuracy: number, grade: Grade | null, mistake = 0) => ({ moves: 2, accuracy, inaccuracy: 0, mistake, blunder: 0, grade });
   serve(135, game(135, {
     analysis: { ...game(135).analysis!, key_moments: [{ ply: 3, move_number: 2, san: 'Nf3', class: 'blunder', win_before: 55, win_after: 12 }] },
-    phases: { opening: { you: row(88), bot: row(71) }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
+    phases: { opening: { you: row(88, 'excellent'), bot: row(71, null, 1) }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
+    phase_starts: { opening: 1, middlegame: null, endgame: null },
   }));
   const { location } = renderAt('/games/135');
   await reviewed();
@@ -321,8 +322,11 @@ test('the summary lists your key moments, each jumping to the position before it
   // Stepping brings the moves forward; the summary is a tab away.
   expect(screen.getByRole('button', { name: 'Moves' })).toHaveAttribute('aria-pressed', 'true');
   fireEvent.click(screen.getByRole('button', { name: 'Summary' }));
-  expect(screen.getByText('88%')).toBeInTheDocument();
-  expect(screen.getByText('71%')).toBeInTheDocument();
+  const card = document.querySelector('.game-phases')!;
+  expect(within(card as HTMLElement).getByText('Excellent').closest('td')).toHaveAttribute('title', '88% accuracy');
+  expect(within(card as HTMLElement).getByTitle('71% accuracy · 1 mistake · Too few moves to grade')).toHaveTextContent('–');
+  fireEvent.click(within(card as HTMLElement).getByRole('button', { name: 'Opening' }));
+  await waitFor(() => expect(location().pathname).toBe('/games/135/1'));
 });
 
 test('the evaluation strip opens a graph of the whole game, and Escape puts it away', async () => {

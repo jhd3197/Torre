@@ -30,6 +30,7 @@ import chess.pgn
 from torre.analysis import scoring
 from torre.analysis import engines
 from torre.analysis import limits
+from torre.analysis import phases
 from torre import jsonio
 GAMES_FILE = Path("data/games.jsonl")
 ANALYSIS_FILE = Path("data/analysis.jsonl")
@@ -43,14 +44,6 @@ MATED_CP = 100_000  # stored cp for a checkmated side (White POV sign)
 # Appends to analysis files and their compaction take turns (within this process).
 ANALYSIS_LOCK = threading.Lock()
 log = logging.getLogger(__name__)
-
-
-def phase_of(fullmove: int) -> str:
-    if fullmove <= 10:
-        return "opening"
-    if fullmove <= 30:
-        return "middlegame"
-    return "endgame"
 
 
 def evaluate(engine, board: chess.Board, depth: int, alternatives=None):
@@ -124,8 +117,10 @@ def analyze_game(engine, rec: dict, depth: int) -> dict:
 
     user_moves, all_grades = [], []
     board = game.board()
+    phase = None
     for i, mv in enumerate(moves):
         mover = board.turn
+        phase = phases.position_phase(board, phase)
         graded = scoring.classify(board, mv,
             {'cp': evals[i][0], 'mate': evals[i][1], 'best': best_moves[i], 'alternative': alternatives[i]},
             {'cp': evals[i + 1][0], 'mate': evals[i + 1][1]},
@@ -140,7 +135,7 @@ def analyze_game(engine, rec: dict, depth: int) -> dict:
                 "move_number": board.fullmove_number,
                 "san": board.san(mv),
                 "fen": board.fen(),
-                "phase": phase_of(board.fullmove_number),
+                "phase": phase,
                 "eval_before": before,
                 "cpl": cpl,
                 "win_before": round(win_before, 1),
