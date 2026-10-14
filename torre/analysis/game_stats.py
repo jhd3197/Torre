@@ -52,7 +52,8 @@ PHASE_METHOD = ("position before the move, never going back: endgame when <= 6 m
 MOVE_BUCKET, MOVE_BUCKET_LAST = 5, 60
 THINK_BUCKETS = ((2, "<2s"), (5, "2-5s"), (10, "5-10s"), (30, "10-30s"), (60, "30-60s"), (math.inf, "60s+"))
 CLOCK_BUCKETS = ("time_trouble", "low", "medium", "plenty")
-TIME_TROUBLE_FRAC, TIME_TROUBLE_S = 0.10, 30
+# Shared with the review's clock chart (web/src/lib/clock.ts) through content/grading.json.
+TIME_TROUBLE_FRAC, TIME_TROUBLE_S = scoring.GRADING["clock"]["trouble"]["fraction"], scoring.GRADING["clock"]["trouble"]["seconds"]
 TIME_TROUBLE_RULE = "under 10% of the starting clock or under 30s before the move"
 RATING_BUCKETS = ("much_lower", "lower", "similar", "higher", "much_higher")
 SESSION_GAP_S = 45 * 60

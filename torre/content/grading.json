@@ -13,6 +13,11 @@
     [3200, 2100], [6400, 2250], [12800, 2400], [25600, 2550], [51200, 2700],
     [102400, 2850], [204800, 3000], [409600, 3150]
   ],
+  "clock": {
+    "about": "Time trouble (game_stats.py, the review's clock chart): under this share of the starting clock or these seconds before a move. Rushed: an error played this fast.",
+    "trouble": { "fraction": 0.1, "seconds": 30 },
+    "rushed": { "fraction": 0.03, "seconds": 5 }
+  },
   "phaseGrades": {
     "about": "bot_report.phase_grade: a grade for one player's phase from its accuracy; brilliant and great need such a move in the phase.",
     "minMoves": 3,

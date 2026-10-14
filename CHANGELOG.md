@@ -39,6 +39,10 @@ the GitHub release's notes.
   left it, also marked on the evaluation graph. Great, brilliant, miss, forced and excellent
   moves now say why: "Only good move: the next best loses 25%", "You had mate in 3", "Almost as
   good as Nf3".
+- **See how you used your clock in each game.** Games with clock times show a bar for every
+  move's think under the evaluation graph, with each side's clock running down. Errors played
+  in a rush and long thinks that still went wrong stand out, and the summary gives each side's
+  average time per move and the move where time trouble began.
 
 ### Changed
 

@@ -78,6 +78,28 @@ test('shows the recognized opening and actual move order without an AI coach', a
   await waitFor(() => expect(location().pathname).toBe('/games/191/3'));
 });
 
+test('a game with clocks shows the time per move and each side’s average', async () => {
+  const clocks = [25, 170, 20, 160];  // White spends 2 min 35 s on move 1, then plays short of time
+  serve(149, game(149, {
+    headers: { White: 'jhd3197', Black: 'Duke-BOT', Result: '1-0', TimeControl: '180+0' },
+    moves: MOVES.map((move, i) => ({ ...move, clock: clocks[i] })),
+  }));
+  const { location } = renderAt('/games/149/0');
+  const bar = await screen.findByRole('button', { name: '2… Nc6 · 10 s' });
+  fireEvent.click(bar);
+  await waitFor(() => expect(location().pathname).toBe('/games/149/4'));
+  fireEvent.click(screen.getByRole('button', { name: 'Summary' }));
+  expect(screen.getByText(/took 1 min 20 s a move · short of time from move 2/)).toBeInTheDocument();
+  expect(screen.getByText(/took 10 s a move · never short of time/)).toBeInTheDocument();
+});
+
+test('a game without clocks has no clock chart', async () => {
+  serve(150);
+  renderAt('/games/150/0');
+  await screen.findByRole('button', { name: /Go to move 1, e4/ });
+  expect(document.querySelector('.clock-graph')).toBeNull();
+});
+
 test('the summary says where the game left the book, and who left it', async () => {
   serve(148, game(148, { opening: {
     name: "King's Knight Opening", eco: 'C40', ply: 3, move_number: 2, move: 'Nf3',

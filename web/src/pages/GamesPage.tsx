@@ -12,6 +12,7 @@ import { GameRecap, recapKey, recapWillPlay } from '../components/GameRecap';
 import { GradeTable } from '../components/GradeTable';
 import { EvalGraph, type EvalMark, type EvalPoint } from '../components/EvalGraph';
 import { AccuracyCards, GradeChips, ResultBanner, WorthALook, type Moment } from '../components/ReviewSummary';
+import { ClockGraph, ClockNumbers } from '../components/ClockGraph';
 import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
@@ -223,6 +224,9 @@ export function GamePage() {
     ? analysis.evals.map(([cp, mate]) => (cp == null && mate == null ? null : { cp, mate }))
     : evals.map(e => (e ? { cp: e.cp, mate: e.mate } : null));
   const marks: EvalMark[] = [...judgments.values()].map(m => ({ ply: m.ply, grade: gradeOf(m), white: byWhite(m.ply), yours: yours(m.ply) }));
+  // The clock chart: each move's grade, and the starting clock from the time control.
+  const gradeByPly = new Map(marks.map(mark => [mark.ply, mark.grade]));
+  const startClock = Number(game.headers.TimeControl?.split('+')[0]) || null;
 
   // Worth another look: the saved key moments, or your slips from the review, each opening the position before.
   const moveNumber = (ply: number) => Math.floor((startPly(game.initialFen) + ply - 1) / 2) + 1;
@@ -327,12 +331,16 @@ export function GamePage() {
             title={t('common:share.moveTitle')} label={t('common:share.move')}><ShareIcon /></ShareButton>
         ) : undefined}
         resultText={game.headers.Result} judgments={judgments} bestMoves={bestMoves} autoplay opening={opening} thinkTimes={thinkTimes} you={record?.user_color ? userColor : undefined}
-        longThink={longThink(game.headers.TimeControl)} startClock={Number(game.headers.TimeControl?.split('+')[0]) || null}
+        longThink={longThink(game.headers.TimeControl)} startClock={startClock}
         onTryBest={uci => navigate(explore([uci]))} tryLabel={t('game.exploreBest')}
         heading={false} startTab={opened.current.whole ? 'summary' : 'moves'}
         showSummary={opened.current.whole && record && recap.length && recapWillPlay(record.id) ? recapKey(record.id) : null}
-        movesTop={!reviewing && <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go}
-          bookExit={game.opening?.exit?.ply} />}
+        movesTop={!reviewing && <>
+          <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go}
+            bookExit={game.opening?.exit?.ply} />
+          {thinkTimes && <ClockGraph moves={game.moves} thinkTimes={thinkTimes} startClock={startClock} grades={gradeByPly}
+            longThink={longThink(game.headers.TimeControl)} initialFen={game.initialFen} cursor={cursor} onGo={go} />}
+        </>}
         summary={<>
           {game.headers.Result && <ResultBanner outcome={record?.user_color ? outcome : null} result={game.headers.Result} winner={winner} ending={ending} />}
           {!reviewing && storyText && <p className="game-story">{storyText}</p>}
@@ -344,6 +352,8 @@ export function GamePage() {
           )}
           {counts && !reviewing && <GradeChips counts={counts} title={record?.user_color ? t('summary.yourMoves') : t('summary.allMoves')} />}
           {!reviewing && <WorthALook moments={moments} cursor={cursor} onGo={go} note={t('game.keyMomentsNote')} />}
+          {!reviewing && thinkTimes && <ClockNumbers moves={game.moves} thinkTimes={thinkTimes} startClock={startClock} initialFen={game.initialFen}
+            names={{ white: whiteName, black: blackName }} />}
           <GameRecap gameId={record?.id ?? null} recap={recap} analyzed={!!(record && analysis)} autoplay={opened.current.whole}
             pose={outcome === 'won' ? 'trophy' : outcome === 'lost' ? 'hug' : outcome === 'drew' ? 'nod' : 'notes'} />
           {record && analysis && <GameReview id={record.id} />}

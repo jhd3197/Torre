@@ -141,5 +141,15 @@
     "open": "Show the evaluation graph",
     "close": "Close",
     "start": "Start"
+  },
+  "clock": {
+    "title": "Time per move",
+    "seconds": "{{n}} s",
+    "minutes": "{{m}} min {{s}} s",
+    "rushed": "Rushed error",
+    "longWrong": "Long think, still wrong",
+    "average": "took {{time}} a move",
+    "troubleFrom": "short of time from move {{move}}",
+    "noTrouble": "never short of time"
   }
 }

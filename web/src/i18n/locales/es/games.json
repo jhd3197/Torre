@@ -141,5 +141,15 @@
   "open": "Mostrar el gráfico de evaluación",
   "close": "Cerrar",
   "start": "Inicio"
+ },
+ "clock": {
+  "title": "Tiempo por jugada",
+  "seconds": "{{n}} s",
+  "minutes": "{{m}} min {{s}} s",
+  "rushed": "Error con prisa",
+  "longWrong": "Pensó mucho y aun así falló",
+  "average": "tardó {{time}} por jugada",
+  "troubleFrom": "apurado de tiempo desde la jugada {{move}}",
+  "noTrouble": "nunca apurado de tiempo"
  }
 }
