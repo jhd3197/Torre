@@ -6,8 +6,6 @@ the GitHub release's notes.
 
 ## Unreleased
 
-## 0.5.6 - 2026-10-13
-
 ### Added
 
 - **AI players get engine-free tactical help by default.** Arena starts at Help level 1,
@@ -15,14 +13,6 @@ the GitHub release's notes.
   Prompts include a board diagram, material balance, repetition notes and the player's
   previous reason and plan. Thinking defaults to High; streamed calls keep active long
   replies from spending the whole timeout waiting for a single response.
-- **AI models have their own ladder in the Arena.** Every model you pit against another, or
-  against an engine, gets a rating with its 95% range, its record and what a game costs it. The
-  same model at another help level or thinking setting is rated as a separate player. Play a
-  model against Stockfish held to a rating to put it on the same scale as the engines.
-- **Pick from the latest AI models of each provider.** The Arena's player picker now lists the
-  newest Claude, GPT, Gemini, DeepSeek and Groq models, with their price, plus the models your
-  Ollama runs. It says which providers still need a key, and only offers the thinking settings
-  a model supports. You can still type any other model.
 - **Settings › AI is now one place for every AI model Torre can use.** It shows what is ready:
   your Claude Code and Codex logins, Ollama and LM Studio on this computer, and every cloud
   service with a key, with prices and a Test button. Pick one default model, and optionally a
@@ -37,6 +27,19 @@ the GitHub release's notes.
   key file on this computer, so a key saved in Torre works in any app built on Prompture, and
   keys already set in your environment show up on their own. Keys you saved before move there
   the first time Torre starts. The coach's model becomes Torre's default model.
+
+## 0.5.6 - 2026-10-13
+
+### Added
+
+- **AI models have their own ladder in the Arena.** Every model you pit against another, or
+  against an engine, gets a rating with its 95% range, its record and what a game costs it. The
+  same model at another help level or thinking setting is rated as a separate player. Play a
+  model against Stockfish held to a rating to put it on the same scale as the engines.
+- **Pick from the latest AI models of each provider.** The Arena's player picker now lists the
+  newest Claude, GPT, Gemini, DeepSeek and Groq models, with their price, plus the models your
+  Ollama runs. It says which providers still need a key, and only offers the thinking settings
+  a model supports. You can still type any other model.
 
 ### Fixed
 
