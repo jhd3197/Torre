@@ -10,7 +10,7 @@ import type { Grade } from '../lib/grades';
 export type EvalPoint = { cp: number | null; mate: number | null } | null;
 export interface EvalMark { ply: number; grade: Grade; white: boolean; yours: boolean }
 
-const SLIPS: Grade[] = ['inaccuracy', 'mistake', 'blunder'];
+const SLIPS: Grade[] = ['inaccuracy', 'miss', 'mistake', 'blunder'];
 const CAP = 5; // pawns: the graph's top and bottom
 
 /** Pawns for White, mates at the cap, a missing score carrying the last one forward. */

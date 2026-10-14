@@ -1,5 +1,6 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { boardAfter, fakeServer, renderAt, START } from '../test/harness';
+import { SCORING_VERSION } from '../lib/grades';
 import type { GameDetail } from '../types';
 
 const MOVES = [
@@ -11,7 +12,7 @@ function game(id: number, extra: Partial<GameDetail> = {}): GameDetail {
     initialFen: START, moves: MOVES, headers: { White: 'jhd3197', Black: 'Duke-BOT', Result: '1-0', Date: '2026.09.05' },
     record: { id, user_color: 'white', opponent: 'Duke-BOT' },
     analysis: {
-      id, scoring_version: 3, accuracy: 91.4,
+      id, scoring_version: SCORING_VERSION, accuracy: 91.4,
       moves: [
         { ply: 1, san: 'e4', class: null, best: true, brilliant: false, accuracy: 100 },
         { ply: 3, san: 'Nf3', class: 'blunder', best: false, brilliant: false, accuracy: 20 },

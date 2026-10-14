@@ -16,7 +16,7 @@ import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
 import { longThink, recapLines, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
-import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, type Grade } from '../lib/grades';
+import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, SCORING_VERSION, type Grade } from '../lib/grades';
 import { analysisEngine, autoAnalysis as autoAnalysisSetting } from '../lib/settings';
 import { api } from '../lib/api';
 import { explorePath, gamePath, mistakesPath } from '../lib/routes';
@@ -28,7 +28,6 @@ import { ShareButton, ShareIcon } from '../components/ShareButton';
 import { celebrated, MoveCelebration } from '../components/workspace/MoveCelebration';
 import type { AnalyzedMove, Color, GameDetail } from '../types';
 
-const SCORING_VERSION = 3;
 const gameCache = new Map<string, GameDetail>();
 
 function useGame(id: string) {
@@ -206,7 +205,7 @@ export function GamePage() {
     if (seconds == null || !yours(i + 1) || (longestThink && longestThink.seconds >= seconds)) return;
     const grade = judgments.get(i + 1);
     longestThink = { seconds, move: Math.floor((startPly(game.initialFen) + i) / 2) + 1,
-      good: !grade || !['mistake', 'blunder'].includes(gradeOf(grade)) };
+      good: !grade || !['miss', 'mistake', 'blunder'].includes(gradeOf(grade)) };
   });
   const recap = reviewing || !counts ? [] : recapLines({
     outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl),
@@ -228,13 +227,13 @@ export function GamePage() {
   };
   const moments: Moment[] = analysis?.key_moments?.length
     ? analysis.key_moments.map(moment => {
-      const grade = (moment.brilliant ? 'brilliant' : moment.class ?? 'good') as Grade;
+      const grade = (moment.brilliant ? 'brilliant' : moment.miss ? 'miss' : moment.class ?? 'good') as Grade;
       const swing = moment.win_before != null && moment.win_after != null
         ? t('game.keyMomentSwing', { before: Math.round(moment.win_before), after: Math.round(moment.win_after) }) : '';
       return { ply: moment.ply, target: moment.ply - 1, grade, title: t('game.keyMomentMove', { move: moment.move_number, san: moment.san }),
         detail: [t(`game.gradeTable.${grade}`), swing].filter(Boolean).join(' · ') };
     })
-    : [...judgments.values()].filter(m => yours(m.ply) && ['inaccuracy', 'mistake', 'blunder'].includes(gradeOf(m))).slice(0, 6).map(m => {
+    : [...judgments.values()].filter(m => yours(m.ply) && ['inaccuracy', 'miss', 'mistake', 'blunder'].includes(gradeOf(m))).slice(0, 6).map(m => {
       const grade = gradeOf(m), better = betterSan(m.ply);
       return { ply: m.ply, target: m.ply - 1, grade, title: t('game.keyMomentMove', { move: moveNumber(m.ply), san: m.san }),
         detail: [t(`game.gradeTable.${grade}`), better && t('summary.betterWas', { san: better })].filter(Boolean).join(' · ') };

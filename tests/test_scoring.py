@@ -76,16 +76,24 @@ class JudgmentTests(unittest.TestCase):
         self.assertIsNone(scoring.judge([900, None], [800, None], True))
 
     def test_walking_into_mate(self):
-        self.assertEqual(scoring.judge([0, None], [None, -2], True), BLUNDER)
-        self.assertEqual(scoring.judge([-800, None], [None, -2], True), MISTAKE)
-        self.assertEqual(scoring.judge([-1200, None], [None, -2], True), INACCURACY)
-        self.assertEqual(scoring.judge([0, None], [None, 2], False), BLUNDER)
+        self.assertEqual(scoring.lichess_judge([0, None], [None, -2], True), BLUNDER)
+        self.assertEqual(scoring.lichess_judge([-800, None], [None, -2], True), MISTAKE)
+        self.assertEqual(scoring.lichess_judge([-1200, None], [None, -2], True), INACCURACY)
+        self.assertEqual(scoring.lichess_judge([0, None], [None, 2], False), BLUNDER)
 
     def test_losing_a_forced_mate(self):
-        self.assertEqual(scoring.judge([None, 3], [1200, None], True), INACCURACY)
-        self.assertEqual(scoring.judge([None, 3], [800, None], True), MISTAKE)
-        self.assertEqual(scoring.judge([None, 3], [100, None], True), BLUNDER)
-        self.assertEqual(scoring.judge([None, 3], [None, -1], True), BLUNDER)
+        self.assertEqual(scoring.lichess_judge([None, 3], [1200, None], True), INACCURACY)
+        self.assertEqual(scoring.lichess_judge([None, 3], [800, None], True), MISTAKE)
+        self.assertEqual(scoring.lichess_judge([None, 3], [100, None], True), BLUNDER)
+        self.assertEqual(scoring.lichess_judge([None, 3], [None, -1], True), BLUNDER)
+
+    def test_a_game_left_as_decided_as_it_was_is_at_most_an_inaccuracy(self):
+        self.assertEqual(scoring.judge([-800, None], [None, -2], True), INACCURACY)  # lost before and after
+        self.assertEqual(scoring.judge([None, 8], [690, None], True), INACCURACY)    # still clearly winning
+        self.assertEqual(scoring.judge([None, -8], [-690, None], False), INACCURACY)
+        self.assertEqual(scoring.judge([None, 3], [500, None], True), BLUNDER)       # under 90% after
+        self.assertEqual(scoring.judge([0, None], [None, -2], True), BLUNDER)
+        self.assertEqual(scoring.judge([900, None], [200, None], True), BLUNDER)
 
     def test_mate_delayed_or_still_lost(self):
         self.assertIsNone(scoring.judge([None, 3], [None, 5], True))

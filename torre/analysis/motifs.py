@@ -76,10 +76,12 @@ def game_motifs(rec, analysis):
     user = chess.WHITE if rec['user_color'] == 'white' else chess.BLACK
     board, found = parsed['board'].copy(), []
     for i, move in enumerate(parsed['moves']):
-        # Mistakes and blunders, and forced mates let go (graded as no worse than an inaccuracy
-        # while the game stays won, but a mate missed all the same).
-        if board.turn == user and (scoring.judge(evals[i], evals[i + 1], user == chess.WHITE) in ERRORS
-                                   or scoring.missed_mate(evals[i], evals[i + 1], user == chess.WHITE)):
+        # Mistakes and blunders, and misses: forced mates let go and slips the opponent left
+        # unpunished (graded as no worse than an inaccuracy while the game stays won, but missed
+        # all the same).
+        white = user == chess.WHITE
+        if board.turn == user and (scoring.judge(evals[i], evals[i + 1], white) in ERRORS
+                                   or scoring.is_miss(evals[i - 1] if i else None, evals[i], evals[i + 1], white)):
             example = {'game_id': rec.get('id'), 'ply': i + 1, 'fen': board.fen(), 'date': rec.get('date'),
                        'opponent': rec.get('opponent')}
             if i < len(best) and best[i] != move.uci():

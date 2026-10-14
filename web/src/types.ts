@@ -26,13 +26,20 @@ export interface Line { initialFen: string; moves: Move[] }
 export interface EngineLine { cp: number; mate: number | null; moves: string[]; uci: string[]; depth?: number }
 export interface EngineResult { lines: EngineLine[]; best: string | null; grade?: MoveGrade | null }
 
-export type Grade = 'brilliant' | 'great' | 'best' | 'good' | 'book' | 'inaccuracy' | 'mistake' | 'blunder';
+export type Grade = 'brilliant' | 'great' | 'best' | 'excellent' | 'good' | 'book' | 'forced'
+  | 'inaccuracy' | 'miss' | 'mistake' | 'blunder';
 export interface MoveGrade {
   class: Judgment | null;
   best: boolean;
   brilliant: boolean;
   great?: boolean;
   book?: boolean;
+  /** Not the engine's move, but within 0.02 winning chances of it. */
+  excellent?: boolean;
+  /** A chance let go: a forced mate, or the opponent's slip left unpunished (scoring.is_miss). */
+  miss?: boolean;
+  /** The only legal move: never judged. */
+  forced?: boolean;
   accuracy: number;
 }
 

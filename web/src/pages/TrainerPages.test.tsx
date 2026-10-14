@@ -1,5 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { fakeServer, renderAt, START, playMove } from '../test/harness';
+import { SCORING_VERSION } from '../lib/grades';
 import type { GameDetail } from '../types';
 
 const SLOW = { timeout: 10000 };
@@ -61,7 +62,7 @@ test('an analyzed game with errors links to the walkthrough', async () => {
   const detail: GameDetail = {
     initialFen: START, moves: WALK.moves, headers: { White: 'me', Black: 'Duke-BOT', Result: '0-1' },
     record: { id: 77, user_color: 'white', opponent: 'Duke-BOT' },
-    analysis: { id: 77, scoring_version: 3, moves: [{ ply: 3, san: 'd4', class: 'mistake', best: false, brilliant: false, accuracy: 40 }], worst_moves: [] },
+    analysis: { id: 77, scoring_version: SCORING_VERSION, moves: [{ ply: 3, san: 'd4', class: 'mistake', best: false, brilliant: false, accuracy: 40 }], worst_moves: [] },
   } as unknown as GameDetail;
   server.on('api/games/77', () => detail);
   renderAt('/games/77');

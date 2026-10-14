@@ -269,10 +269,12 @@ export function themeOf(san: string, uci: string, before: BoardState, after: Boa
 /** The line for a theme, drawn from its pool. */
 const describe = (theme: Theme) => pick('piece' in theme ? `describe.${theme.kind}.${theme.piece}` : `describe.${theme.kind}`);
 
-const SLIPS: Grade[] = ['inaccuracy', 'mistake', 'blunder'];
-const COSTLY: Grade[] = ['mistake', 'blunder'];
-/** Grades said out loud on their own; good, best and book moves speak only through what they did. */
-const SPOKEN: Grade[] = ['brilliant', 'great', 'inaccuracy', 'mistake', 'blunder'];
+const SLIPS: Grade[] = ['inaccuracy', 'miss', 'mistake', 'blunder'];
+/** A miss costs like a mistake: the better move is said, even in the highlights. */
+const COSTLY: Grade[] = ['miss', 'mistake', 'blunder'];
+/** Grades said out loud on their own; good, excellent, best and book moves speak only through what they did.
+ *  A forced move is named outside the highlights, before what it did. */
+const SPOKEN: Grade[] = ['brilliant', 'great', 'inaccuracy', 'miss', 'mistake', 'blunder'];
 const LONG_THINK = 30; // seconds: a think worth remarking on, when the time control is unknown
 const FAST_MOVE = 3; // seconds: too quick for a move that loses something
 const SEEABLE_MATE = 5; // a missed mate longer than this is the engine's find, not the player's miss
@@ -335,7 +337,7 @@ export function reviewLines(move: MoveReview, brief = false): string[] {
   const full = !brief;
   if (move.opening) lines.push(pick('opening', { opening: move.opening }));
   if (full && move.outOfBook) lines.push(pick('outOfBook'));
-  if (named.includes(move.grade)) lines.push(pick(`grade.${move.grade}`));
+  if (named.includes(move.grade) || (full && move.grade === 'forced')) lines.push(pick(`grade.${move.grade}`));
   if (costly && move.answersSlip) lines.push(pick('momentum.blunderBack'));
   if (full && move.firstCapture) lines.push(pick('momentum.firstCapture'));
   // A sound move that gives up material is a sacrifice, named even after "Brilliant!".

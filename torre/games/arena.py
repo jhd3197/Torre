@@ -381,15 +381,16 @@ def judge(engine, board):
 GRADES = scoring.GRADES
 
 
-def grade_move(board, move, before, after):
-    """Shared move flags from the judge, including exact terminal outcomes."""
+def grade_move(board, move, before, after, earlier=None):
+    """Shared move flags from the judge, including exact terminal outcomes. `earlier` is the
+    judge's verdict before the opponent's last move (for a miss)."""
     if before is None:
         return None
     if after is None:
         following = board.copy()
         following.push(move)
         after = scoring.verdict(following, None)
-    return scoring.classify(board, move, before, after)
+    return scoring.classify(board, move, before, after, earlier)
 
 
 def grade_name(grade):
@@ -565,7 +566,7 @@ class ArenaJob(jobs.BackgroundJob):
                    'judge': judge(judge_engine, board)}
         self._update(current=current)
         # The judge's verdict on the position to move, carried from one move to the next to grade each one.
-        verdict = current['judge']
+        verdict, before = current['judge'], None
         grades = [dict.fromkeys(GRADES, 0), dict.fromkeys(GRADES, 0)]
         result, termination = None, None
         while True:
@@ -592,8 +593,8 @@ class ArenaJob(jobs.BackgroundJob):
             moves.append({'uci': move.uci(), 'san': board.san(move)})
             played_from = board.copy()
             board.push(move)
-            before, verdict = verdict, judge(judge_engine, board)
-            grade = grade_move(played_from, move, before, verdict)
+            earlier, before, verdict = before, verdict, judge(judge_engine, board)
+            grade = grade_move(played_from, move, before, verdict, earlier)
             if grade:
                 note['grade'] = grade
                 if grade_name(grade):

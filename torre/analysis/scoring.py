@@ -12,12 +12,17 @@ Everything except `is_brilliant` follows Lichess's published method:
                 of the per-move accuracies.
   judgments     drop in winning chances (-1..1 scale) of >= 0.1 inaccuracy,
                 >= 0.2 mistake, >= 0.3 blunder; finding or losing a forced
-                mate is judged by Lichess's mate rules instead.
+                mate is judged by Lichess's mate rules instead. Unlike
+                Lichess, a move that leaves the game as decided as it was
+                (the mover at 90%+ before and after, or 10% or less) is at
+                most an inaccuracy: from mate in 8 to +7 is not a blunder.
 
 Evaluations are (cp, mate) pairs from White's point of view: exactly one of
 the two is set. `mate` is signed, positive when White mates.
 
-Brilliant has no Lichess equivalent, so it is defined here (see is_brilliant).
+Brilliant has no Lichess equivalent, so it is defined here (see is_brilliant), and so are
+excellent (a near-best move), miss (a chance let go, see is_miss) and forced (the only
+legal move).
 """
 
 import json
@@ -36,6 +41,9 @@ STANDARD_START_CP = 15  # Lichess prepends this eval for the initial position
 INACCURACY, MISTAKE, BLUNDER = "inaccuracy", "mistake", "blunder"
 CP_THRESHOLDS = tuple((threshold, label) for threshold, label in GRADING["judgments"])
 MATE_LOSS_CP = GRADING["mateLossCp"]
+STILL_DECIDED = GRADING["stillDecided"]
+EXCELLENT_MAX_DROP = GRADING["excellentMaxDrop"]
+MISS = GRADING["miss"]
 
 PIECE_VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
                 chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 100}
@@ -110,11 +118,38 @@ def game_accuracy(white_win_pcts, white_starts=True):
     return result
 
 
+def chances_drop(before, after, mover_is_white):
+    """How much the mover's winning chances (-1..1 scale) fell with the move, mates as the ceiling.
+    `before` / `after` are White-POV (cp, mate) evals around the move."""
+    sign = 1 if mover_is_white else -1
+    def pov(ev):
+        cp, mate = ev
+        return forced_cp(None if cp is None else cp * sign, None if mate is None else mate * sign)
+    return winning_chances(pov(before)) - winning_chances(pov(after))
+
+
+def mover_win(ev, mover_is_white):
+    """The mover's win% for a White-POV (cp, mate) eval."""
+    win = win_pct(*ev)
+    return win if mover_is_white else 100 - win
+
+
 def judge(before, after, mover_is_white):
-    """Lichess judgment of one move, or None.
+    """Judgment of one move, or None: Lichess's, with mistakes and blunders that leave the game
+    as decided as it was capped at an inaccuracy (STILL_DECIDED).
 
     `before` / `after` are White-POV (cp, mate) evals around the move.
     """
+    label = lichess_judge(before, after, mover_is_white)
+    if label in (MISTAKE, BLUNDER):
+        wins = mover_win(before, mover_is_white), mover_win(after, mover_is_white)
+        if min(wins) >= STILL_DECIDED["winning"] or max(wins) <= STILL_DECIDED["lost"]:
+            return INACCURACY
+    return label
+
+
+def lichess_judge(before, after, mover_is_white):
+    """Lichess's judgment of one move, or None. `before` / `after` are White-POV (cp, mate) evals."""
     sign = 1 if mover_is_white else -1
     prev_cp, prev_mate = before
     next_cp, next_mate = after
@@ -139,7 +174,7 @@ def judge(before, after, mover_is_white):
     if prev_mate is not None or next_mate is not None:
         return None
 
-    drop = winning_chances(prev_pov) - winning_chances(next_pov)
+    drop = chances_drop(before, after, mover_is_white)
     for threshold, label in CP_THRESHOLDS:
         if drop >= threshold:
             return label
@@ -166,6 +201,31 @@ def missed_mate(before, after, mover_is_white, longest=MISSED_MATE_MAX):
         return None
     kept = after[1] * sign if after[1] is not None else None
     return had if kept is None or kept < 0 else None
+
+
+def is_miss(earlier, before, after, mover_is_white):
+    """A chance let go while the game stays playable: a forced mate let go (missed_mate), or the
+    opponent's last move was judged an error, the mover stood at 70% or more and dropped an
+    inaccuracy or a mistake. Falling below 45% keeps the move's own judgment.
+
+    `earlier`, `before` and `after` are White-POV (cp, mate) evals before the opponent's last
+    move, before this move and after it; `earlier` may be None (the first move)."""
+    sign = 1 if mover_is_white else -1
+    if after[1] == 0 or (after[1] is None and after[0] is not None and after[0] * sign >= MATED_SCORE):
+        return False  # the move gave mate
+    judgment = judge(before, after, mover_is_white)
+    if judgment is None or mover_win(after, mover_is_white) < MISS["minAfter"]:
+        return False
+    if missed_mate(before, after, mover_is_white):
+        return True
+    return (judgment in MISS["replaces"] and earlier is not None
+            and mover_win(before, mover_is_white) >= MISS["minBefore"]
+            and judge(earlier, before, not mover_is_white) is not None)
+
+
+def counts_as_error(move):
+    """Moves the drills, puzzles and blind spots learn from: mistakes, blunders and misses."""
+    return bool(move.get("miss")) or move.get("class") in (MISTAKE, BLUNDER)
 
 
 def see(board, square):
@@ -234,13 +294,18 @@ def is_brilliant(board, move, win_before, win_after):
     return material_offered(board, move) >= BRILLIANT_MIN_OFFER
 
 
-GRADES = ("brilliant", "great", "best", "good", "book", "inaccuracy", "mistake", "blunder")
+GRADES = ("brilliant", "great", "best", "excellent", "good", "book", "forced",
+          "inaccuracy", "miss", "mistake", "blunder")
 
 
 def grade(move):
     """One exclusive display/count category. Book provenance never hides an error."""
+    if move.get("forced"):
+        return "forced"
     if move.get("brilliant"):
         return "brilliant"
+    if move.get("miss"):
+        return "miss"
     if move.get("class"):
         return move["class"]
     if move.get("book"):
@@ -249,6 +314,8 @@ def grade(move):
         return "great"
     if move.get("best"):
         return "best"
+    if move.get("excellent"):
+        return "excellent"
     return "good"
 
 
@@ -268,13 +335,16 @@ def verdict(board, result):
     return out
 
 
-def classify(board, move, before, after):
+def classify(board, move, before, after, earlier=None):
     """Shared grading for saved analysis, interactive review, Arena and exports.
 
     Great is our conservative definition: the engine's best move preserves winning
     chances >=70% where the runner-up has <=55%, or >=45% where the runner-up
     has <=30%. It must lose <=2 percentage points, and not be a forced legal move.
     Without a second engine line, Great is unknown and is never guessed.
+    Excellent is a move other than the engine's that loses under 0.02 winning chances,
+    miss is is_miss (`earlier` is the eval before the opponent's last move, if known), and
+    forced is the only legal move: it is never judged and loses nothing.
     """
     if before is None or after is None:
         return None
@@ -290,6 +360,12 @@ def classify(board, move, before, after):
     cls = None if mating else judge((before['cp'], before.get('mate')), (after['cp'], after.get('mate')), board.turn)
     best = mating or before.get('best') == move.uci()
     brilliant = not mating and cls is None and is_brilliant(board, move, prev, nxt)
+    pair = lambda ev: (ev['cp'], ev.get('mate'))
+    if board.legal_moves.count() == 1:
+        return {'class': None, 'best': best, 'brilliant': False, 'great': False, 'book': False,
+                'excellent': False, 'miss': False, 'forced': True, 'accuracy': 100.0}
+    miss = not mating and is_miss(None if earlier is None else pair(earlier), pair(before), pair(after), board.turn)
+    excellent = not best and cls is None and chances_drop(pair(before), pair(after), board.turn) < EXCELLENT_MAX_DROP
     alternative = before.get('alternative')
     great = False
     if best and cls is None and alternative is not None and board.legal_moves.count() > 1 and prev - nxt <= 2:
@@ -297,7 +373,8 @@ def classify(board, move, before, after):
         runner = runner if sign == 1 else 100 - runner
         great = (min(prev, nxt) >= 70 and runner <= 55) or (min(prev, nxt) >= 45 and runner <= 30)
     return {'class': cls, 'best': best, 'brilliant': brilliant, 'great': great,
-            'book': not mating and opening_book.is_book_move(board, move), 'accuracy': round(move_accuracy(prev, nxt), 1)}
+            'book': not mating and opening_book.is_book_move(board, move),
+            'excellent': excellent, 'miss': miss, 'forced': False, 'accuracy': round(move_accuracy(prev, nxt), 1)}
 
 
 def key_moments(moves, limit=5):

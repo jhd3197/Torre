@@ -56,6 +56,9 @@
       "best": "Best",
       "good": "Good",
       "book": "Book",
+      "excellent": "Excellent",
+      "miss": "Miss",
+      "forced": "Forced",
       "inaccuracy": "Inaccuracy",
       "mistake": "Mistake",
       "blunder": "Blunder"

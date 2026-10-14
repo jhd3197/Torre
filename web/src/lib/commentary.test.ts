@@ -105,6 +105,14 @@ describe('reviewLines', () => {
     expect(reviewLines({ san: 'h3', grade: 'good', outOfBook: true })).toEqual([english.outOfBook[0]]);
   });
 
+  test('a miss is named with the better move, even in the highlights; a forced move only in full', () => {
+    expect(reviewLines({ san: 'Qd2', grade: 'miss', bestSan: 'Nf3' }, true))
+      .toEqual([english.grade.miss[0], 'The best move was', 'knight to f3']);
+    expect(reviewLines({ san: 'Kh1', grade: 'forced' })).toEqual([english.grade.forced[0]]);
+    expect(reviewLines({ san: 'Kh1', grade: 'forced' }, true)).toEqual([]);
+    expect(reviewLines({ san: 'a3', grade: 'excellent' })).toEqual([]);
+  });
+
   test('a pool is used up before any line comes back, and never twice in a row', () => {
     resetVariety();
     const said = Array.from({ length: english.grade.blunder.length }, () => reviewLines({ san: 'Qh5', grade: 'blunder' })[0]);

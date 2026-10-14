@@ -97,6 +97,19 @@
       "That changes everything.",
       "Big mistake. Really big.",
       "That changes the game, and not in a good way."
+    ],
+    "miss": [
+      "A missed chance.",
+      "That lets the chance go.",
+      "There was more here.",
+      "The chance slips by.",
+      "Missed it.",
+      "That was the moment to strike."
+    ],
+    "forced": [
+      "Only move.",
+      "The only legal move.",
+      "Forced."
     ]
   },
   "describe": {

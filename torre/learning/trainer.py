@@ -74,7 +74,7 @@ def mistakes(pgn, analysis, inaccuracies=False):
     if game is None:
         raise ValueError('This game could not be read.')
     wanted = set(ERRORS) | ({'inaccuracy'} if inaccuracies else set())
-    labeled = {m['ply']: m['class'] for m in analysis.get('moves', []) if m.get('class') in wanted}
+    labeled = {m['ply']: m['class'] for m in analysis.get('moves', []) if m.get('class') in wanted or m.get('miss')}
     best_moves, evals = analysis.get('best_moves') or [], analysis.get('evals') or []
     board = game.board()
     initial = board.fen()

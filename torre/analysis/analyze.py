@@ -35,7 +35,8 @@ GAMES_FILE = Path("data/games.jsonl")
 ANALYSIS_FILE = Path("data/analysis.jsonl")
 
 # v3: shared eight-grade classification, opening provenance and runner-up evaluations.
-SCORING_VERSION = 3
+# v4: excellent, miss and forced.
+SCORING_VERSION = 4
 EVAL_CAP = 1500
 DEFAULT_DEPTH = 12
 MATED_CP = 100_000  # stored cp for a checkmated side (White POV sign)
@@ -127,7 +128,8 @@ def analyze_game(engine, rec: dict, depth: int) -> dict:
         mover = board.turn
         graded = scoring.classify(board, mv,
             {'cp': evals[i][0], 'mate': evals[i][1], 'best': best_moves[i], 'alternative': alternatives[i]},
-            {'cp': evals[i + 1][0], 'mate': evals[i + 1][1]})
+            {'cp': evals[i + 1][0], 'mate': evals[i + 1][1]},
+            {'cp': evals[i - 1][0], 'mate': evals[i - 1][1]} if i > 0 else None)
         all_grades.append(graded)
         if mover == user_color:
             win_before, win_after, cls, brilliant = judge_ply(board, mv, evals[i], evals[i + 1])
@@ -188,7 +190,8 @@ def analyze_game(engine, rec: dict, depth: int) -> dict:
         },
         "worst_moves": worst,
         "key_moments": scoring.key_moments(user_moves),
-        "moves": [{k: m[k] for k in ("ply", "san", "class", "best", "brilliant", "great", "book", "accuracy")} for m in user_moves],
+        "moves": [{k: m[k] for k in ("ply", "san", "class", "best", "brilliant", "great", "book",
+                                         "excellent", "miss", "forced", "accuracy")} for m in user_moves],
         "evals": evals,
         "best_moves": best_moves,
     }

@@ -77,7 +77,7 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
         decision = {'ply': ply, 'analyzed': analyzed, 'eval_before': None, 'eval_after': None,
                     'centipawn_loss': None, 'win_chance_loss': None, 'accuracy': None,
                     'judgment': None, 'brilliant': None, 'best_uci': None, 'played_best': None,
-                    'grade': None, 'great': None, 'book': None}
+                    'grade': None, 'great': None, 'book': None, 'excellent': None, 'miss': None, 'forced': None}
         if analyzed:
             before, after = evals[ply - 1], evals[ply]
             win_before, win_after, judgment, brilliant = analyze.judge_ply(board, move, before, after)
@@ -85,7 +85,8 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             graded = scoring.classify(board, move,
                 {'cp': before[0], 'mate': before[1], 'best': best,
                  'alternative': alternatives[ply - 1] if ply <= len(alternatives) else None},
-                {'cp': after[0], 'mate': after[1]})
+                {'cp': after[0], 'mate': after[1]},
+                {'cp': evals[ply - 2][0], 'mate': evals[ply - 2][1]} if ply > 1 else None)
             decision.update({
                 'eval_before': {'cp': before[0], 'mate': before[1]},
                 'eval_after': {'cp': after[0], 'mate': after[1]},
@@ -95,6 +96,7 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
                 'judgment': judgment, 'brilliant': brilliant, 'best_uci': best,
                 'played_best': move.uci() == best if best else None,
                 'grade': scoring.grade(graded), 'great': graded['great'], 'book': graded['book'],
+                'excellent': graded['excellent'], 'miss': graded['miss'], 'forced': graded['forced'],
             })
         decisions.append(decision)
         board.push(move)

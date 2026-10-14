@@ -1,4 +1,4 @@
-"""The eight grades agree across engines, reviews, tallies and portable exports."""
+"""The grades agree across engines, reviews, tallies and portable exports."""
 import unittest
 import json
 import threading
@@ -19,6 +19,69 @@ from torre.analysis import engine_service
 from torre.server import studio
 from tests import test_scoring
 from tests.test_scoring import FakeEngine
+
+
+class FinerGradeTests(unittest.TestCase):
+    ROOK = chess.Board('4k3/8/8/8/8/8/8/R3K3 w Q - 0 30')
+
+    def grade(self, before, after, uci='a1a2', best='a1a7', earlier=None, board=None):
+        board = board or self.ROOK
+        return scoring.classify(board, chess.Move.from_uci(uci), {'cp': before, 'mate': None, 'best': best},
+                                {'cp': after, 'mate': None}, earlier)
+
+    def test_excellent_is_near_best_and_good_is_the_rest(self):
+        self.assertEqual(scoring.grade(self.grade(300, 295)), 'excellent')
+        self.assertEqual(scoring.grade(self.grade(300, 280)), 'good')
+        self.assertEqual(scoring.grade(self.grade(300, 300, uci='a1a7')), 'best')
+        self.assertFalse(self.grade(300, 300, uci='a1a7')['excellent'])
+
+    def test_the_only_legal_move_is_forced_and_never_judged(self):
+        board = chess.Board('7k/8/8/8/8/8/6q1/7K w - - 0 1')
+        result = self.grade(-200, -900, uci='h1g2', best='h1g2', board=board)
+        self.assertTrue(result['forced'])
+        self.assertIsNone(result['class'])
+        self.assertEqual(result['accuracy'], 100.0)
+        self.assertEqual(scoring.grade(result), 'forced')
+
+    def test_a_slip_left_unpunished_is_a_miss(self):
+        punished = {'cp': 0, 'mate': None}  # the opponent's last move threw away 4 pawns
+        self.assertEqual(scoring.grade(self.grade(400, 250, earlier=punished)), 'miss')
+        self.assertTrue(self.grade(400, 250, earlier=punished)['miss'])
+        # The same drop after a sound move is an inaccuracy; a blunder stays a blunder.
+        self.assertEqual(scoring.grade(self.grade(400, 250, earlier={'cp': 380, 'mate': None})), 'inaccuracy')
+        self.assertEqual(scoring.grade(self.grade(400, 250)), 'inaccuracy')
+        self.assertEqual(scoring.grade(self.grade(400, 100, earlier=punished)), 'blunder')
+
+    def test_a_mate_let_go_is_a_miss_while_the_game_stays_playable(self):
+        board, move = self.ROOK, chess.Move.from_uci('a1a2')
+        let_go = scoring.classify(board, move, {'cp': None, 'mate': 3, 'best': 'a1a7'}, {'cp': 500, 'mate': None})
+        self.assertEqual(scoring.grade(let_go), 'miss')
+        self.assertEqual(let_go['class'], 'blunder')  # Lichess's judgment stays for the error counts
+        thrown = scoring.classify(board, move, {'cp': None, 'mate': 3, 'best': 'a1a7'}, {'cp': -100, 'mate': None})
+        self.assertEqual(scoring.grade(thrown), 'blunder')
+
+    def test_misses_count_as_errors_but_excellent_and_forced_are_clean(self):
+        self.assertTrue(scoring.counts_as_error({'class': 'inaccuracy', 'miss': True}))
+        self.assertTrue(scoring.counts_as_error({'class': 'mistake'}))
+        self.assertFalse(scoring.counts_as_error({'class': 'inaccuracy'}))
+        self.assertFalse(scoring.counts_as_error({'class': None, 'excellent': True}))
+        self.assertFalse(scoring.counts_as_error({'class': None, 'forced': True}))
+
+    def test_taking_a_repetition_from_a_slightly_better_position_is_not_an_error(self):
+        board = chess.Board()
+        for uci in ('g1f3', 'g8f6', 'f3g1', 'f6g8', 'g1f3', 'g8f6', 'f3g1', 'f6g8'):
+            board.push_uci(uci)
+        repeat = chess.Move.from_uci('g1f3')
+        following = board.copy()
+        following.push(repeat)
+        self.assertIsNone(following.outcome(claim_draw=True).winner)
+        for edge in (20, 40, 50):
+            before = {'cp': edge, 'mate': None, 'best': 'e2e4'}
+            result = scoring.classify(board, repeat, before, scoring.verdict(following, None),
+                                      {'cp': edge, 'mate': None})
+            self.assertIsNone(result['class'], edge)
+            self.assertFalse(result['miss'], edge)
+            self.assertNotIn(scoring.grade(result), ('inaccuracy', 'miss', 'mistake', 'blunder'))
 
 
 class MoveGradeTests(unittest.TestCase):
@@ -79,7 +142,7 @@ class MoveGradeTests(unittest.TestCase):
         self.assertEqual(scoring.grade(result), 'blunder')
         self.assertEqual(scoring.grade({'great': True, 'best': True}), 'great')
         self.assertEqual(scoring.grade({'brilliant': True, 'great': True, 'book': True}), 'brilliant')
-        self.assertEqual(len(set(scoring.GRADES)), 8)
+        self.assertEqual(len(set(scoring.GRADES)), 11)
 
     def test_great_requires_a_meaningful_alternative_for_both_colors(self):
         white = chess.Board('4k3/8/8/8/8/8/8/R3K3 w Q - 0 30')

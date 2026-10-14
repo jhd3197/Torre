@@ -214,7 +214,10 @@
     "blunder": "Blunders",
     "great": "Great",
     "good": "Good",
-    "book": "Book"
+    "book": "Book",
+    "excellent": "Excellent",
+    "miss": "Misses",
+    "forced": "Forced"
   },
   "moves": "Moves",
   "ai": {

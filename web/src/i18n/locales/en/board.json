@@ -39,6 +39,21 @@
       "label": "a book move",
       "message": "This move follows a line in the opening book.",
       "short": "book"
+    },
+    "excellent": {
+      "label": "an excellent move",
+      "message": "Almost as good as the engine’s move.",
+      "short": "excellent"
+    },
+    "miss": {
+      "label": "a miss",
+      "message": "There was a chance here, and it got away.",
+      "short": "miss"
+    },
+    "forced": {
+      "label": "a forced move",
+      "message": "The only legal move.",
+      "short": "forced"
     }
   },
   "plan": {

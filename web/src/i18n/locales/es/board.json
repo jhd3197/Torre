@@ -39,6 +39,21 @@
    "label": "una jugada de libro",
    "message": "Esta jugada sigue una línea del libro de aperturas.",
    "short": "de libro"
+  },
+  "excellent": {
+   "label": "una jugada excelente",
+   "message": "Casi tan buena como la del motor.",
+   "short": "excelente"
+  },
+  "miss": {
+   "label": "una ocasión perdida",
+   "message": "Aquí había una ocasión, y se escapó.",
+   "short": "ocasión perdida"
+  },
+  "forced": {
+   "label": "una jugada forzada",
+   "message": "La única jugada legal.",
+   "short": "forzada"
   }
  },
  "plan": {

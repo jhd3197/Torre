@@ -6,6 +6,7 @@ from unittest.mock import patch
 import chess
 import chess.pgn
 
+from torre.analysis import analyze
 from torre.analysis import game_export
 from torre.server import appdata
 from torre.server import studio
@@ -46,7 +47,7 @@ class GameExportTests(unittest.TestCase):
 
     def test_custom_black_start_uses_actual_side_and_move_number(self):
         pgn = '[SetUp "1"]\n[FEN "7k/8/8/8/8/8/8/KR6 b - - 0 32"]\n[TimeControl "60"]\n\n32... Kg7 {[%clk 0:00:58]} *'
-        report = game_export.game_report(pgn, {'scoring_version': 3, 'evals': [[300, None], [600, None]], 'best_moves': ['h8g7']})
+        report = game_export.game_report(pgn, {'scoring_version': analyze.SCORING_VERSION, 'evals': [[300, None], [600, None]], 'best_moves': ['h8g7']})
         self.assertEqual(report['game']['moves'][0]['color'], 'black')
         self.assertEqual(report['game']['moves'][0]['phase'], 'endgame')
         self.assertEqual(report['quality']['moves'][0]['centipawn_loss'], 300)
@@ -54,7 +55,7 @@ class GameExportTests(unittest.TestCase):
         self.assertIsNone(report['timing']['moves'][0]['elapsed_ms'])
 
     def test_analysis_covers_both_sides_and_fast_blunders_have_denominators(self):
-        analysis = {'scoring_version': 3, 'evals': [[0, None], [-300, None], [0, None]],
+        analysis = {'scoring_version': analyze.SCORING_VERSION, 'evals': [[0, None], [-300, None], [0, None]],
                     'best_moves': ['d2d4', 'c7c5']}
         report = game_export.game_report('1. e4 {[%emt 0:00:01]} e5 {[%emt 0:00:08]} *', analysis)
         self.assertEqual([d['judgment'] for d in report['quality']['moves']], ['blunder', 'blunder'])
@@ -65,7 +66,7 @@ class GameExportTests(unittest.TestCase):
             self.assertFalse(game_export.game_report('1. e4 e5 *', invalid)['quality']['available'])
 
     def test_mate_evaluation_remains_distinct_from_centipawns(self):
-        report = game_export.game_report('1. e4 *', {'scoring_version': 3, 'evals': [[0, None], [None, -3]]})
+        report = game_export.game_report('1. e4 *', {'scoring_version': analyze.SCORING_VERSION, 'evals': [[0, None], [None, -3]]})
         self.assertEqual(report['quality']['moves'][0]['eval_after'], {'cp': None, 'mate': -3})
         self.assertEqual(report['quality']['moves'][0]['judgment'], 'blunder')
 

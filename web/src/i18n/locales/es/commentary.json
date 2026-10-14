@@ -115,6 +115,19 @@
       "Se la ha colgado.",
       "¡Error tremendo!",
       "Eso es un regalo enorme."
+    ],
+    "miss": [
+      "Una ocasión perdida.",
+      "Se escapa la ocasión.",
+      "Aquí había más.",
+      "La oportunidad pasa de largo.",
+      "Se escapó.",
+      "Era el momento de atacar."
+    ],
+    "forced": [
+      "Jugada única.",
+      "La única jugada legal.",
+      "Forzada."
     ]
   },
   "describe": {

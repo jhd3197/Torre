@@ -110,18 +110,18 @@ describe('Analyze all', () => {
 });
 
 describe('Insights', () => {
-  test('Your moves shows all eight grades and identifies incomplete reanalysis', async () => {
+  test('Your moves shows every grade and identifies incomplete reanalysis', async () => {
     fakeServer().on('api/insights', () => insights({
-      grades: { brilliant: 1, great: 2, best: 3, good: 4, book: 5, inaccuracy: 6, mistake: 7, blunder: 8 },
-      gradeCoverage: { current: 20, total: 36 },
+      grades: { brilliant: 1, great: 2, best: 3, excellent: 1, good: 4, book: 5, forced: 1, inaccuracy: 6, miss: 1, mistake: 7, blunder: 8 },
+      gradeCoverage: { current: 20, total: 39 },
     }));
     renderAt('/insights');
     expect(await screen.findByRole('heading', { name: 'Your moves' })).toBeInTheDocument();
-    expect(screen.getByText('36 analyzed moves')).toBeInTheDocument();
-    expect(screen.getByText(/Updated ratings: 20 of 36 moves/)).toBeInTheDocument();
+    expect(screen.getByText('39 analyzed moves')).toBeInTheDocument();
+    expect(screen.getByText(/Updated ratings: 20 of 39 moves/)).toBeInTheDocument();
     const tiles = document.querySelectorAll('.quality-tile');
-    expect(tiles).toHaveLength(8);
-    expect([...tiles].reduce((sum, tile) => sum + Number(tile.querySelector('strong')!.textContent), 0)).toBe(36);
+    expect(tiles).toHaveLength(11);
+    expect([...tiles].reduce((sum, tile) => sum + Number(tile.querySelector('strong')!.textContent), 0)).toBe(39);
     expect(document.querySelector('.q-great img')).toHaveAttribute('src', 'art/grades/icon/great.webp');
     expect(document.querySelector('.q-book img')).toHaveAttribute('src', 'art/grades/icon/book.webp');
   });

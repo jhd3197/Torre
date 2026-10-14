@@ -20,9 +20,17 @@ the GitHub release's notes.
   a key right on its service's card, and see what models have cost.
 - **Use your Claude Code or Codex subscription as Torre's AI.** If either is installed and
   signed in, its models work with no API key and no extra bill.
+- **Game reviews have three new grades: excellent, miss and forced.** Excellent is a move almost
+  as good as the engine's. Miss means you let a chance go: a mate you had, or a slip by your
+  opponent you did not punish. Misses go into your drills, puzzles and blind spots like
+  mistakes. Forced is the only legal move, and it is never judged. Your games are graded again
+  the next time they are analysed.
 
 ### Changed
 
+- **A move that leaves a won game still won is no longer a blunder.** If you were at 90% or more
+  before and after the move (or 10% or less, in a lost game), it counts as an inaccuracy at
+  most. Letting a long mate go while staying far ahead used to show as a blunder.
 - **API keys are shared with your other Prompture apps.** Keys now live in Prompture's private
   key file on this computer, so a key saved in Torre works in any app built on Prompture, and
   keys already set in your environment show up on their own. Keys you saved before move there
