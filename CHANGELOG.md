@@ -6,6 +6,8 @@ the GitHub release's notes.
 
 ## Unreleased
 
+## 0.5.6 - 2026-10-13
+
 ### Added
 
 - **AI models have their own ladder in the Arena.** Every model you pit against another, or
