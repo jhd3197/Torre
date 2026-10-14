@@ -178,7 +178,16 @@
   "seeBefore": "Ver antes",
   "accuracy": "Precisión de la jugada {{value}}%",
   "voiceOn": "Decir cada jugada en voz alta",
-  "voiceOff": "Dejar de decir las jugadas en voz alta"
+  "voiceOff": "Dejar de decir las jugadas en voz alta",
+  "why": {
+   "great": "La única buena: la siguiente mejor pierde un {{n}}%.",
+   "brilliant": "Entrega el {{piece}} en {{square}}, y funciona.",
+   "missMate": "Tenías mate en {{n}}.",
+   "missHanging": "La última jugada de tu rival dejó colgado el {{piece}} en {{square}}.",
+   "missChance": "La última jugada de tu rival te dio una ocasión aquí.",
+   "forced": "La única jugada legal.",
+   "excellent": "Casi tan buena como {{san}}."
+  }
  },
  "players": {
   "white": "BLANCAS",

@@ -10,6 +10,13 @@
  },
  "game": {
   "openingPlayed": "Apertura jugada:",
+  "bookExit": "Salió del libro en la jugada {{move}} ({{who}})",
+  "bookExitBy": {
+   "you": "tú",
+   "opponent": "tu rival",
+   "white": "blancas",
+   "black": "negras"
+  },
   "openingTransposed": "Esta partida llegó a la apertura mediante un orden de jugadas distinto.",
   "openingMoves": "Cómo se llegó a esta apertura",
   "openingPosition": "Ir a la posición de la apertura",
@@ -129,6 +136,7 @@
  },
  "graph": {
   "title": "Evaluación",
+  "bookExit": "Fuera del libro",
   "expand": "Ampliar",
   "open": "Mostrar el gráfico de evaluación",
   "close": "Cerrar",

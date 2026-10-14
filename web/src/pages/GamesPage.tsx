@@ -15,7 +15,7 @@ import { AccuracyCards, GradeChips, ResultBanner, WorthALook, type Moment } from
 import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
-import { longThink, recapLines, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
+import { longThink, recapLines, storyLine, storyOf, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
 import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, SCORING_VERSION, type Grade } from '../lib/grades';
 import { analysisEngine, autoAnalysis as autoAnalysisSetting } from '../lib/settings';
 import { api } from '../lib/api';
@@ -207,8 +207,12 @@ export function GamePage() {
     longestThink = { seconds, move: Math.floor((startPly(game.initialFen) + i) / 2) + 1,
       good: !grade || !['miss', 'mistake', 'blunder'].includes(gradeOf(grade)) };
   });
+  // The game's story in one line, offline: one blunder, back and forth, in control, a close finish.
+  const winnerSide = game.headers.Result === '1-0' ? 'white' : game.headers.Result === '0-1' ? 'black' : game.headers.Result === '1/2-1/2' ? 'draw' : null;
+  const story = storyOf(analysis?.evals ?? evals, winnerSide);
+  const storyText = story ? storyLine(story, record?.user_color ? outcome : null, String(record?.id ?? game.headers.Date ?? '')) : null;
   const recap = reviewing || !counts ? [] : recapLines({
-    outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl),
+    outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl), story: storyText,
     swing: outcome && record?.user_color ? swingOf(analysis?.evals ?? evals, userColor, outcome, game.initialFen) : null,
     accuracy: analysis?.accuracy ?? record?.user_accuracy ?? null,
     rating: game.rating ? { you: game.rating.user, opp: game.rating.opp } : null,
@@ -327,9 +331,11 @@ export function GamePage() {
         onTryBest={uci => navigate(explore([uci]))} tryLabel={t('game.exploreBest')}
         heading={false} startTab={opened.current.whole ? 'summary' : 'moves'}
         showSummary={opened.current.whole && record && recap.length && recapWillPlay(record.id) ? recapKey(record.id) : null}
-        movesTop={!reviewing && <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go} />}
+        movesTop={!reviewing && <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go}
+          bookExit={game.opening?.exit?.ply} />}
         summary={<>
           {game.headers.Result && <ResultBanner outcome={record?.user_color ? outcome : null} result={game.headers.Result} winner={winner} ending={ending} />}
+          {!reviewing && storyText && <p className="game-story">{storyText}</p>}
           {!reviewing && (
             <AccuracyCards cards={record?.user_color ? [
               { name: t('summary.you'), accuracy: analysis?.accuracy ?? record.user_accuracy ?? null, you: true, rating: game.rating?.user },
@@ -346,6 +352,14 @@ export function GamePage() {
               <h3>{t('game.openingPlayed')}</h3>
               <p>{game.opening.name} · {game.opening.eco}</p>
               {game.opening.transposed && <p>{t('game.openingTransposed')}</p>}
+              {game.opening.exit && (
+                <p>
+                  <button type="button" className="text-button" onClick={() => go(game.opening!.exit!.ply)}>
+                    {t('game.bookExit', { move: game.opening.exit.move_number, who: t(`game.bookExitBy.${record?.user_color
+                      ? (game.opening.exit.played_by === record.user_color ? 'you' : 'opponent') : game.opening.exit.played_by}`) })}
+                  </button>
+                </p>
+              )}
               <details>
                 <summary>{t('game.openingMoves')}</summary>
                 <p>{game.opening.line}</p>

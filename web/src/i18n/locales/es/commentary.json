@@ -906,5 +906,97 @@
     "onMove": "en la jugada {{move}}",
     "paidOff": "y valió la pena.",
     "didNotPayOff": "y aun así salió mal."
+  },
+  "story": {
+    "oneBlunder": {
+      "won": [
+        "Un gran error decidió la partida, y no fue tuyo.",
+        "Un solo error grave la decidió, a tu favor."
+      ],
+      "lost": [
+        "Un gran error decidió la partida.",
+        "Un solo error grave la decidió."
+      ],
+      "drew": [
+        "Un gran vuelco, y aun así tablas.",
+        "Una jugada cambió la partida, pero terminó igualada."
+      ],
+      "none": [
+        "Un gran error decidió la partida.",
+        "Un solo error grave la decidió."
+      ]
+    },
+    "backAndForth": {
+      "won": [
+        "Una pelea de ida y vuelta, y saliste ganando.",
+        "La ventaja cambió de manos, y la tuviste al final."
+      ],
+      "lost": [
+        "Una pelea de ida y vuelta que se escapó al final.",
+        "La ventaja cambió de manos, y terminó con tu rival."
+      ],
+      "drew": [
+        "Una pelea de ida y vuelta que terminó igualada.",
+        "Los dos tuvieron sus ocasiones."
+      ],
+      "none": [
+        "Una pelea de ida y vuelta.",
+        "La ventaja cambió de manos más de una vez."
+      ]
+    },
+    "control": {
+      "won": [
+        "Tuviste el control casi toda la partida.",
+        "Tomaste la delantera pronto y no la soltaste."
+      ],
+      "lost": [
+        "Tu rival tuvo el control casi toda la partida.",
+        "Tu rival tomó la delantera pronto."
+      ],
+      "drew": [
+        "Un bando tuvo el control casi toda la partida.",
+        "Un bando fue por delante casi toda la partida."
+      ],
+      "none": [
+        "Un bando tuvo el control casi toda la partida.",
+        "Un bando tomó la delantera pronto."
+      ]
+    },
+    "closeFinish": {
+      "won": [
+        "Un final ajustado, y llegaste primero.",
+        "Estuvo igualada hasta el final, y la ganaste."
+      ],
+      "lost": [
+        "Un final ajustado que se fue para el otro lado.",
+        "Estuvo igualada hasta el final, y se escapó."
+      ],
+      "drew": [
+        "Una partida igualada de principio a fin.",
+        "Igualada hasta el final."
+      ],
+      "none": [
+        "Un final ajustado.",
+        "Estuvo igualada hasta el final."
+      ]
+    },
+    "balanced": {
+      "won": [
+        "Una partida tranquila, y una victoria.",
+        "Sin grandes vuelcos, solo una victoria."
+      ],
+      "lost": [
+        "Una partida tranquila que se fue para el otro lado.",
+        "Sin grandes vuelcos, pero no fue tu día."
+      ],
+      "drew": [
+        "Una partida tranquila, y unas tablas justas.",
+        "Sin grandes vuelcos, y tablas."
+      ],
+      "none": [
+        "Una partida tranquila, sin grandes vuelcos.",
+        "Sin grandes vuelcos en esta."
+      ]
+    }
   }
 }

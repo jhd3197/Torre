@@ -102,6 +102,8 @@ export interface GameDetail extends Line {
     name: string; eco: string; ply: number; move_number: number; move: string;
     played_by: Color; line: string; moves: string[]; transposed: boolean;
     family_idea: string | null; continuation: string[];
+    /** The first move out of the opening book (opening_book.recognize), null while the game stayed in it. */
+    exit?: { ply: number; move_number: number; move: string; played_by: Color } | null;
   } | null;
   record?: GameSummary & { pgn?: string };
   analysis?: GameAnalysis | null;

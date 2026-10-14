@@ -938,6 +938,11 @@ $replay: 'body[data-mode="replay"]';
   font: 700 #{$fs-md} $font-sans;
   color: $sage-50;
 }
+.game-story {
+  margin: 0;
+  font: 700 #{$fs-md}/ 1.4 $font-sans;
+  color: $sage-700;
+}
 .accuracy-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1170,6 +1175,19 @@ $replay: 'body[data-mode="replay"]';
 }
 .dot-inaccuracy {
   background: $lobby-star;
+}
+.eval-book {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  margin-left: -1px;
+  border-left: 2px dashed $wheat-700;
+}
+.legend-book {
+  border-radius: 0 !important;
+  border-left: 2px dashed $wheat-700;
+  background: none !important;
 }
 .dot-miss {
   background: $plum-600;

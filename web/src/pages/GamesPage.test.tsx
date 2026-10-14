@@ -78,6 +78,18 @@ test('shows the recognized opening and actual move order without an AI coach', a
   await waitFor(() => expect(location().pathname).toBe('/games/191/3'));
 });
 
+test('the summary says where the game left the book, and who left it', async () => {
+  serve(148, game(148, { opening: {
+    name: "King's Knight Opening", eco: 'C40', ply: 3, move_number: 2, move: 'Nf3',
+    played_by: 'white', line: '1. e4 1... e5 2. Nf3', moves: ['e4', 'e5', 'Nf3'],
+    transposed: false, family_idea: null, continuation: [], exit: { ply: 4, move_number: 2, move: 'Nc6', played_by: 'black' },
+  } }));
+  const { location } = renderAt('/games/148');
+  await reviewed();
+  fireEvent.click(await screen.findByRole('button', { name: 'Left the book on move 2 (your opponent)' }));
+  await waitFor(() => expect(location().pathname).toBe('/games/148/4'));
+});
+
 test('the move is part of the URL, and stepping replaces it without piling up history', async () => {
   serve(101);
   const { location, router } = renderAt('/games/101/2');

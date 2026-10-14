@@ -6,7 +6,7 @@
 import i18n from '../i18n';
 import english from '../i18n/locales/en/commentary.json';
 import { startPly } from './format';
-import { WIN_CEILING_CP } from './grades';
+import { WIN_CEILING_CP, winPct } from './grades';
 import type { BoardState, Color, Grade, Move } from '../types';
 
 export type PieceName = 'pawn' | 'knight' | 'bishop' | 'rook' | 'queen' | 'king';
@@ -199,16 +199,21 @@ const hanging = (board: BoardState, square: string, side: Color) => {
  * was not hanging before it: the reason a slip is a slip, when it is that simple.
  */
 export function hangsOf(before: BoardState, after: BoardState, uci: string): PieceName | null {
+  return hangsAt(before, after, uci)?.piece ?? null;
+}
+
+/** hangsOf, with the square the piece stands on. */
+export function hangsAt(before: BoardState, after: BoardState, uci: string): { piece: PieceName; square: string } | null {
   const from = uci.slice(0, 2), to = uci.slice(2, 4);
   const moving = before.pieces[from];
   if (!moving) return null;
   const side = colorOf(moving);
-  let worst: PieceName | null = null;
+  let worst: { piece: PieceName; square: string } | null = null;
   for (const [square, piece] of Object.entries(after.pieces)) {
     const name = PIECES[piece.toLowerCase()];
     if (colorOf(piece) !== side || name === 'pawn' || name === 'king' || !hanging(after, square, side)) continue;
     if (hanging(before, square === to ? from : square, side) && before.pieces[square === to ? from : square] === piece) continue;
-    if (!worst || VALUE[name] > VALUE[worst]) worst = name;
+    if (!worst || VALUE[name] > VALUE[worst.piece]) worst = { piece: name, square };
   }
   return worst;
 }
@@ -482,9 +487,48 @@ export function swingOf(evals: Eval[], you: Color, outcome: Outcome, initialFen:
   return low <= -SWING ? { kind: 'saved', move: moveAt(worst) } : null;
 }
 
+/** The game's shape in one label, from White's win% over the game (storyOf). */
+export type Story = 'oneBlunder' | 'backAndForth' | 'control' | 'closeFinish' | 'balanced';
+const STORY_MIN = 10; // positions: a shorter game has no story to tell
+const DECISIVE = 30; // win% points: one move that swings the game this much decides it
+const CHOPPY = 6; // win% points: an average swing this big is a back-and-forth game
+const AHEAD = 60; // win%: a side this far ahead is in front...
+const IN_CONTROL = 0.7; // ...and in control when it was there for this share of the game
+const CLOSE = 15; // win% points from even at the end: a close finish
+
+/**
+ * The story of a game from its evaluations, without AI: decided by one blunder (a single swing of 30
+ * win% or more), back and forth (several such swings, or a big average swing), in control (the
+ * winner ahead for more than 70% of the game), a close finish (ending near level), or balanced.
+ * `winner` is the side that won, 'draw', or null when unknown; control is only the winner's story.
+ */
+export function storyOf(evals: Eval[], winner: Color | 'draw' | null): Story | null {
+  const wins = evals.map(value => forSide(value, true)).filter((cp): cp is number => cp != null).map(winPct);
+  if (wins.length < STORY_MIN) return null;
+  const swings = wins.slice(1).map((win, i) => Math.abs(win - wins[i]));
+  const decisive = swings.filter(swing => swing >= DECISIVE).length;
+  if (decisive === 1) return 'oneBlunder';
+  if (decisive > 1 || swings.reduce((sum, swing) => sum + swing, 0) / swings.length >= CHOPPY) return 'backAndForth';
+  const share = (side: Color) => wins.filter(win => (side === 'white' ? win : 100 - win) >= AHEAD).length / wins.length;
+  const leader = (['white', 'black'] as const).find(side => share(side) > IN_CONTROL);
+  if (leader && (winner == null || winner === leader)) return 'control';
+  return Math.abs(wins[wins.length - 1] - 50) <= CLOSE ? 'closeFinish' : 'balanced';
+}
+
+/** The story's line for this game, one of a few phrasings picked the same way every time for the same `key` (the game). */
+export function storyLine(story: Story, outcome: Outcome | null, key: string): string {
+  const pool = i18n.t(`commentary:story.${story}.${outcome ?? 'none'}`, { returnObjects: true }) as unknown;
+  if (!Array.isArray(pool) || !pool.length) return typeof pool === 'string' ? pool : '';
+  let hash = 0;
+  for (const char of `${key}:${story}`) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return String(pool[hash % pool.length]);
+}
+
 export interface GameRecap {
   outcome: Outcome | null;
   swing?: Swing | null;
+  /** The game's story (storyOf) and the line for it (storyLine), said when no swing is. */
+  story?: string | null;
   accuracy?: number | null;
   counts?: Partial<Record<Grade, number>>;
   /** Your longest think: how long, on which move number, and whether the move held up. */
@@ -503,7 +547,7 @@ export function recapLines(recap: GameRecap): string[] {
   if (swing) {
     if (swing.kind === 'control') lines.push(t('recap.control'));
     else if (inDomain('move', swing.move)) lines.push(t(`recap.${swing.kind}`, { move: swing.move }));
-  }
+  } else if (recap.story) lines.push(recap.story);
   if (recap.accuracy != null && inDomain('percent', Math.round(recap.accuracy))) lines.push(t('recap.accuracy', { percent: Math.round(recap.accuracy) }));
   const counts = recap.counts;
   if (counts) {

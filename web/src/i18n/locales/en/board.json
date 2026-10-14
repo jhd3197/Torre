@@ -178,7 +178,16 @@
     "seeBefore": "See before",
     "accuracy": "Move accuracy {{value}}%",
     "voiceOn": "Say each move out loud",
-    "voiceOff": "Stop saying moves out loud"
+    "voiceOff": "Stop saying moves out loud",
+    "why": {
+      "great": "Only good move: the next best loses {{n}}%.",
+      "brilliant": "Gives up the {{piece}} on {{square}}, and it works.",
+      "missMate": "You had mate in {{n}}.",
+      "missHanging": "Your opponent’s last move left the {{piece}} on {{square}} hanging.",
+      "missChance": "Your opponent’s last move gave you a chance here.",
+      "forced": "The only legal move.",
+      "excellent": "Almost as good as {{san}}."
+    }
   },
   "players": {
     "white": "WHITE",

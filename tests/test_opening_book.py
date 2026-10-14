@@ -37,6 +37,12 @@ class OpeningBookTests(unittest.TestCase):
         self.assertIn('Najdorf', found['name'])
         self.assertIn('6... h5', found['continuation'])
 
+    def test_the_first_move_out_of_the_book_and_who_played_it(self):
+        found = recognize('1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. h4 h5 *')
+        self.assertEqual(found['exit'], {'ply': 11, 'move_number': 6, 'move': 'h4', 'played_by': 'white'})
+        self.assertEqual(recognize('1. e4 e5 2. Nf3 Nc6 3. Bb5 Ke7 *')['exit']['played_by'], 'black')
+        self.assertIsNone(recognize('1. e4 e5 2. Nf3 Nc6 3. Bb5 *')['exit'])  # still in the book at the end
+
     def test_no_guessed_names_for_empty_or_custom_games(self):
         self.assertIsNone(recognize('[Opening "Sicilian Defense"]\n\n*'))
         self.assertIsNone(recognize('[SetUp "1"]\n[FEN "7k/P7/8/8/8/8/8/7K w - - 0 12"]\n\n12. a8=Q+ *'))

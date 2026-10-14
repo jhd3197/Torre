@@ -878,5 +878,97 @@
     "onMove": "on move {{move}}",
     "paidOff": "and it paid off.",
     "didNotPayOff": "and it still went wrong."
+  },
+  "story": {
+    "oneBlunder": {
+      "won": [
+        "One big mistake decided this game, and it was not yours.",
+        "A single blunder settled it, in your favour."
+      ],
+      "lost": [
+        "One big mistake decided this game.",
+        "A single blunder settled it."
+      ],
+      "drew": [
+        "One big swing, and still a draw.",
+        "One move turned the game, but it ended level."
+      ],
+      "none": [
+        "One big mistake decided this game.",
+        "A single blunder settled it."
+      ]
+    },
+    "backAndForth": {
+      "won": [
+        "A back-and-forth fight, and you came out on top.",
+        "The lead changed hands, and you had it last."
+      ],
+      "lost": [
+        "A back-and-forth fight that slipped away at the end.",
+        "The lead changed hands, and it ended with your opponent."
+      ],
+      "drew": [
+        "A back-and-forth fight that ended level.",
+        "Both sides had their chances."
+      ],
+      "none": [
+        "A back-and-forth fight.",
+        "The lead changed hands more than once."
+      ]
+    },
+    "control": {
+      "won": [
+        "You were in control for most of the game.",
+        "You led from early on and never let go."
+      ],
+      "lost": [
+        "Your opponent was in control for most of the game.",
+        "Your opponent led from early on."
+      ],
+      "drew": [
+        "One side was in control for most of the game.",
+        "One side led for most of the game."
+      ],
+      "none": [
+        "One side was in control for most of the game.",
+        "One side led from early on."
+      ]
+    },
+    "closeFinish": {
+      "won": [
+        "A close finish, and you got there first.",
+        "It stayed close to the end, and you took it."
+      ],
+      "lost": [
+        "A close finish that went the other way.",
+        "It stayed close to the end, and slipped away."
+      ],
+      "drew": [
+        "A close game from start to finish.",
+        "Level to the end."
+      ],
+      "none": [
+        "A close finish.",
+        "It stayed close to the end."
+      ]
+    },
+    "balanced": {
+      "won": [
+        "A steady game, and a win.",
+        "No wild swings, just a win."
+      ],
+      "lost": [
+        "A steady game that went the other way.",
+        "No wild swings, but not your day."
+      ],
+      "drew": [
+        "A steady game, and a fair draw.",
+        "No wild swings, and a draw."
+      ],
+      "none": [
+        "A steady game, without wild swings.",
+        "No wild swings in this one."
+      ]
+    }
   }
 }

@@ -33,6 +33,12 @@ the GitHub release's notes.
 - **Every reviewed game gets a report card by phase.** The opening, middlegame and endgame each
   get a grade for you and your opponent, with the accuracy and slips when you hover it. Tap a
   phase to jump to its first move. A phase with fewer than 3 moves shows "–".
+- **The review tells the story of the game and why your good moves were good.** One line sums
+  up the game (decided by one blunder, back and forth, in control, a close finish), and the
+  coach says it in the recap. The summary shows where the game left the opening book and who
+  left it, also marked on the evaluation graph. Great, brilliant, miss, forced and excellent
+  moves now say why: "Only good move: the next best loses 25%", "You had mate in 3", "Almost as
+  good as Nf3".
 
 ### Changed
 

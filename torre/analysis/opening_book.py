@@ -68,15 +68,20 @@ def recognize(game):
 
     A match identifies an opening, not a sound move or a theoretical novelty.
     Custom starting positions and malformed games are deliberately not named.
+    `exit` is the first move out of the book (ply, move_number, move, played_by), None
+    when the game never left it within MAX_PLIES.
     """
     if game is None or game.errors or game.board().fen() != chess.STARTING_FEN:
         return None
     book = positions()
-    board, played, sans, labels, found = game.board(), [], [], [], None
+    board, played, sans, labels, found, exit = game.board(), [], [], [], None, None
     for ply, move in enumerate(game.mainline_moves(), 1):
         if ply > MAX_PLIES:
             break
         san = board.san(move)
+        if exit is None and not is_book_move(board, move):
+            exit = {'ply': ply, 'move_number': board.fullmove_number, 'move': san,
+                    'played_by': 'white' if board.turn else 'black'}
         labels.append(f'{board.fullmove_number}{"." if board.turn else "..."} {san}')
         sans.append(san)
         played.append(move.uci())
@@ -94,4 +99,6 @@ def recognize(game):
                      'continuation': []}
         elif found and len(found['continuation']) < 4:
             found['continuation'].append(labels[-1])
+    if found:
+        found['exit'] = exit
     return found
