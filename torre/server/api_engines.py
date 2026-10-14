@@ -6,7 +6,7 @@ from torre.server import appdata
 from torre.games import arena
 from torre.analysis import engines
 from torre.learning import ladder
-from torre.coaching import coach, coach_ai
+from torre.ai import catalogue
 from torre.games import masters
 from torre.server.access import admin
 from torre.server.routes import BadRequest, Conflict, NotFound, Routes
@@ -140,8 +140,10 @@ def arena_ladder(req):
 
 @ROUTES.get('/api/arena/models')
 def arena_models(req):
-    """The AI models the Arena offers, by provider (coach_ai.arena_models)."""
-    return {'providers': coach_ai.arena_models(appdata.DATA_DIR, coach.local_models())}
+    """The AI models the Arena offers, by provider: the ones ready to play (a key saved, a server
+    running, a CLI signed in) and the cloud ones still waiting for a key (catalogue.providers)."""
+    return {'providers': [{'id': p['id'], 'name': p['name'], 'local': p['kind'] != 'cloud', 'has_key': p['ready'], 'models': p['models']}
+                          for p in catalogue.providers(appdata.DATA_DIR) if p['models'] and (p['ready'] or p['kind'] == 'cloud')]}
 
 
 @ROUTES.get('/api/arena/matches/(?P<rest>.*)')

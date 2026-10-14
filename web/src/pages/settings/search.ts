@@ -18,7 +18,7 @@ export const SEARCH_INDEX: Record<SectionId, readonly Entry[]> = {
     ['voice.heading', 'voice.note']],
   learning: ['learning.hard', 'learning.help', 'learning.autoNext', 'learning.ratings', 'learning.blindfold', 'learning.playBlindfold'],
   analysis: ['analysis.background', 'analysis.auto', 'analysis.depth', 'analysis.lines', 'analysis.evalBar', 'analysis.best', 'analysis.next', 'analysis.control'],
-  ai: [['ai.provider', 'ai.providerNote'], ['ai.key', 'ai.keyNote'], ['ai.model', null]],
+  ai: [['ai.prompture', null], 'ai.default', 'ai.feature.coach', 'ai.feature.explain', 'ai.providers'],
   engines: [],
   accessibility: ['accessibility.size', 'accessibility.motion', 'accessibility.contrast', 'accessibility.palette', 'accessibility.announce', 'accessibility.typed'],
   data: [['progress.stars', null], 'data.reset', 'data.backup', 'data.restore', ['data.storage', null]],

@@ -18,6 +18,7 @@ if (ROOT / 'vendor').is_dir():
 
 import chess.engine
 from torre.server import access
+from torre.server import api_ai
 from torre.server import api_board
 from torre.server import api_coach
 from torre.server import api_engines
@@ -52,7 +53,7 @@ CHUNK_LINE = 65_537  # longest chunk-size line read from a chunked body
 SERVER_ERROR = 'Something went wrong on the server. The details are in the log.'
 
 ROUTES = Routes()
-for area in (api_games, api_coach, api_engines, api_board, api_training):
+for area in (api_games, api_coach, api_ai, api_engines, api_board, api_training):
     ROUTES.include(area.ROUTES)
 
 

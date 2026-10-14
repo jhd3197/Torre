@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react';
 import { useEngine } from '../hooks/useChess';
 import { savePlay } from '../lib/storage';
 import { appBasename } from '../lib/base';
-import { resetCoachReady } from '../components/CoachExplain';
+import { resetAiStatus } from '../lib/ai';
 import { fakeServer, renderAt, START } from '../test/harness';
 import { continueNode } from './HomePage';
 import { STORY_CHAPTERS } from '../data/story';
@@ -181,10 +181,10 @@ describe('Train', () => {
   });
 
   test('the coach explains the game move once the drill is answered', async () => {
-    resetCoachReady();
+    resetAiStatus();
     const server = fakeServer();
     server.on('api/drills', () => deck());
-    server.on('api/coach/status', () => ({ available: true }));
+    server.on('api/ai/status?feature=explain', () => ({ available: true }));
     server.on('api/explain', body => (body as { cachedOnly?: boolean }).cachedOnly ? { answer: null } : { answer: { text: 'Qh5 hangs the queen.' } });
     server.on('api/drills/answer', () => ({
       correct: false, verdict: 'blunder', san: 'd4', best_san: 'e4', best: 'e2e4', played: 'Qh5', game_id: 7, ply: 12,
@@ -198,7 +198,7 @@ describe('Train', () => {
     expect(await screen.findByText('Qh5 hangs the queen.', {}, { timeout: 4000 })).toBeInTheDocument();
     expect(server.calls.filter(c => c.path === 'api/explain').map(c => c.body)).toEqual([
       { fen: START, move: 'Qh5', cachedOnly: true }, { fen: START, move: 'Qh5' }]);
-    resetCoachReady();
+    resetAiStatus();
   });
 
   test('an empty deck explains how to build one', async () => {

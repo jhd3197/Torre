@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { fakeServer } from '../test/harness';
+import { aiView, fakeServer } from '../test/harness';
 import { CoachCard, ModelMenu, drillPath, useCoach, type CoachData } from './CoachCard';
 
 const coach = (extra: Partial<CoachData> = {}): CoachData => ({
@@ -53,65 +53,57 @@ describe('CoachCard', () => {
     expect(server.calls.filter(c => c.path === 'api/coach' && c.body).length).toBe(1);
   });
 
-  test('without a model the AI setup opens once on its own: provider, key, model', async () => {
+  test('without a model the AI setup opens once on its own, and a model from what is ready is one click', async () => {
     const server = fakeServer();
     let model: string | null = null;
-    const saved = { openai: false };
-    const providers = () => [
-      { id: 'ollama', name: 'Ollama', local: true, key_url: 'https://ollama.com/download', models: [] },
-      { id: 'openai', name: 'OpenAI', local: false, key_url: 'https://platform.openai.com/api-keys',
-        has_key: saved.openai, key_hint: saved.openai ? '…1234' : null, suggested: ['gpt-4o-mini'] },
-    ];
-    server.on('api/coach', () => model ? coach({ model, auto: false }) : coach({ available: false, model: null, reason: 'no_model', advice: null, setup_seen: false }));
-    server.on('api/coach/ai/seen', () => ({}));
-    server.on('api/coach/ai', () => ({ providers: providers(), model, auto: false, setup_seen: true, hosted: false }));
-    server.on('api/coach/ai/key', body => { saved.openai = !!(body as { key: string }).key; return { providers: providers(), model, auto: false, setup_seen: true, hosted: false }; });
-    server.on('api/coach/ai/models', () => ({ models: ['gpt-4o', 'gpt-4o-mini'] }));
-    server.on('api/coach/model', body => { model = (body as { model: string }).model; return coach({ model, auto: false }); });
+    server.on('api/coach', () => model ? coach({ model, source: 'default' }) : coach({ available: false, model: null, reason: 'no_model', advice: null, setup_seen: false }));
+    server.on('api/ai/seen', () => ({}));
+    server.on('api/ai/settings', body => {
+      model = (body as { model: string }).model;
+      return aiView({ settings: { model, features: {}, setup_seen: true }, model, source: 'default',
+        models: { [model]: { id: model, name: 'Claude Code · Opus', provider: 'claude-code', released: '', efforts: [], cost: null } } });
+    });
     show();
     expect(await screen.findByText('The coach needs an AI model to write its advice.')).toBeInTheDocument();
-    expect(await screen.findByRole('heading', { name: 'Set up the AI coach' })).toBeInTheDocument();
-    await waitFor(() => expect(server.calls.some(c => c.path === 'api/coach/ai/seen')).toBe(true));
-    // No free text for the model: a provider, then its key, then a model from its list.
-    fireEvent.click(await screen.findByRole('radio', { name: /OpenAI/ }));
-    expect(screen.getByRole('link', { name: 'Get a OpenAI key' })).toHaveAttribute('href', 'https://platform.openai.com/api-keys');
-    fireEvent.change(screen.getByLabelText('API key for OpenAI'), { target: { value: 'sk-test-1234' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Save key' }));
-    expect(await screen.findByText(/OpenAI key saved \(…1234\)/)).toBeInTheDocument();
-    expect(server.calls.find(c => c.path === 'api/coach/ai/key')?.body).toEqual({ provider: 'openai', key: 'sk-test-1234' });
-    const select = await screen.findByRole('combobox', { name: 'Model' });
-    fireEvent.change(select, { target: { value: 'gpt-4o-mini' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Use this model' }));
-    expect(await screen.findByText('Done: the coach now uses openai/gpt-4o-mini.')).toBeInTheDocument();
-    expect(server.calls.find(c => c.path === 'api/coach/model')?.body).toEqual({ model: 'openai/gpt-4o-mini' });
+    expect(await screen.findByRole('heading', { name: 'Set up AI' })).toBeInTheDocument();
+    await waitFor(() => expect(server.calls.some(c => c.path === 'api/ai/seen')).toBe(true));
+    // Only what is ready is offered at first: the Claude Code login and the Claude key, not OpenAI.
+    expect(await screen.findByRole('button', { name: /Claude Code · Opus/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Claude Fable 5.1, Thinks, $10 / $50 per M tokens' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /GPT-6 Luna/ })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Claude Code · Opus/ }));
+    expect(await screen.findByText('Done: Torre now uses Claude Code · Opus.')).toBeInTheDocument();
+    expect(server.calls.find(c => c.path === 'api/ai/settings')?.body).toEqual({ model: 'claude-code/opus' });
     fireEvent.click(screen.getByRole('button', { name: 'Done' }));
     // With a model chosen, the header chip names it.
-    expect(await screen.findByRole('button', { name: 'openai/gpt-4o-mini' })).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: 'opus' })).toBeInTheDocument();
   });
 
   test('once seen, the setup waits for its button', async () => {
     const server = fakeServer();
     server.on('api/coach', () => coach({ available: false, model: null, reason: 'no_model', advice: null, setup_seen: true }));
-    server.on('api/coach/ai', () => ({ providers: [], model: null, auto: false, setup_seen: true, hosted: true }));
     show();
     fireEvent.click(await screen.findByRole('button', { name: 'Set up the AI coach' }));
-    expect(await screen.findByRole('heading', { name: 'Set up the AI coach' })).toBeInTheDocument();
-    expect(server.calls.some(c => c.path === 'api/coach/ai/seen')).toBe(false);
+    expect(await screen.findByRole('heading', { name: 'Set up AI' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'More in Settings > AI' })).toHaveAttribute('href', '/settings/ai');
+    expect(server.calls.some(c => c.path === 'api/ai/seen')).toBe(false);
   });
 
-  test('the model chip says a local model was picked and switches to another', async () => {
+  test('the model chip says a local model was picked and switches the coach to another', async () => {
     const server = fakeServer();
-    const models = ['ollama/qwen3:8b', 'ollama/mistral:latest'];
-    server.on('api/coach', () => coach({ auto: true, models }));
-    server.on('api/coach/model', body => coach({ model: (body as { model: string }).model, auto: false, models }));
+    let model = 'ollama/qwen3:8b';
+    server.on('api/coach', () => coach({ model, source: model === 'ollama/qwen3:8b' ? 'auto' : 'feature' }));
+    const local = ['qwen3:8b', 'mistral:latest'].map(name => ({ id: `ollama/${name}`, name, provider: 'ollama', released: '', efforts: [], cost: null }));
+    server.on('api/ai', () => aiView({ providers: [{ id: 'ollama', name: 'Ollama', kind: 'local', ready: true, detail: 'running', url: null, key: null, models: local }] }));
+    server.on('api/ai/settings', body => { model = (body as { features: { coach: string } }).features.coach; return aiView(); });
     show();
     fireEvent.click(await screen.findByRole('button', { name: 'qwen3:8b · on this computer' }));
-    expect(screen.getByText(/Model: ollama\/qwen3:8b \(found on this computer\)/)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'qwen3:8b' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByText(/Model: qwen3:8b \(found on this computer\)/)).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: 'qwen3:8b, Free' })).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByRole('link', { name: 'AI settings →' })).toHaveAttribute('href', '/settings/ai');
-    fireEvent.click(screen.getByRole('button', { name: 'mistral:latest' }));
+    fireEvent.click(screen.getByRole('button', { name: 'mistral:latest, Free' }));
     expect(await screen.findByRole('button', { name: 'mistral:latest · on this computer' })).toHaveAttribute('aria-expanded', 'false');
-    expect(server.calls.find(c => c.path === 'api/coach/model')?.body).toEqual({ model: 'ollama/mistral:latest' });
+    expect(server.calls.find(c => c.path === 'api/ai/settings')?.body).toEqual({ features: { coach: 'ollama/mistral:latest' } });
   });
 
   test('installs Prompture from the card and surfaces model errors', async () => {
@@ -119,7 +111,7 @@ describe('CoachCard', () => {
     let installing = false;
     server.on('api/coach', () => coach({ available: false, reason: 'prompture_missing', advice: null,
       install: { running: installing, error: null, done: false } }));
-    server.on('api/coach/install', () => { installing = true; return coach({ available: false, reason: 'prompture_missing', advice: null, install: { running: true, error: null, done: false } }); });
+    server.on('api/ai/install', () => { installing = true; return aiView(); });
     const view = show();
     expect(await screen.findByText(/needs Prompture/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Install the AI coach' }));

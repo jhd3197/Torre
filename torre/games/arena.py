@@ -301,9 +301,9 @@ class AiPlayer:
             raise ValueError('AI players need a Prompture with the chess harness (prompture.games).') from error
         if level >= 2 and not engines.installed('stockfish'):
             raise ValueError(f'Level {level} needs Stockfish, and it is not installed.')
-        from torre.coaching import coach_ai
+        from torre.ai import keys
         self.model, self.level, self.effort = model, level, effort
-        self.key = coach_ai.key_for(data_dir, model) if data_dir else None
+        self.key = keys.key_for(data_dir, model) if data_dir else None
         self.label = str(spec.get('name') or model.split('/', 1)[1])
 
     @property

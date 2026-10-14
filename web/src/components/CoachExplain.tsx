@@ -1,26 +1,18 @@
 // The coach in plain words (explain.py): why a move was a mistake, and a review of a whole game. Both
-// are grounded in engine facts on the server, cached there, and only offered when the AI coach is set up.
+// are grounded in engine facts on the server, cached there, and only offered when Settings > AI has a
+// model for explanations.
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../lib/api';
+import { useAiStatus } from '../lib/ai';
 
 interface Answer<T> { answer: T | null; model: string | null; cached: boolean }
 interface GameReviewText { headline: string; summary: string; lesson: string }
 
-let ready: Promise<boolean> | null = null;
-/** Whether the AI coach can answer (Prompture and a model); asked once per page load. */
+/** Whether explanations and reviews can be asked (Prompture and a model; Settings > AI). */
 export function useCoachReady() {
-  const [ok, setOk] = useState(false);
-  useEffect(() => {
-    let live = true;
-    ready ??= api<{ available: boolean }>('api/coach/status').then(s => s.available, () => false);
-    void ready.then(v => { if (live) setOk(v); });
-    return () => { live = false; };
-  }, []);
-  return ok;
+  return !!useAiStatus('explain')?.available;
 }
-/** Tests reset the cached answer between cases. */
-export const resetCoachReady = () => { ready = null; };
 
 /** Ask `path` with `body`, showing a cached answer at once when there is one. */
 function useAsk<T>(path: string, body: object, enabled: boolean) {

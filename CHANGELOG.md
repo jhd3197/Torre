@@ -21,6 +21,20 @@ the GitHub release's notes.
   newest Claude, GPT, Gemini, DeepSeek and Groq models, with their price, plus the models your
   Ollama runs. It says which providers still need a key, and only offers the thinking settings
   a model supports. You can still type any other model.
+- **Settings › AI is now one place for every AI model Torre can use.** It shows what is ready:
+  your Claude Code and Codex logins, Ollama and LM Studio on this computer, and every cloud
+  service with a key, with prices and a Test button. Pick one default model, and optionally a
+  different one for the coach's advice or for explanations and reviews. You can paste and check
+  a key right on its service's card, and see what models have cost.
+- **Use your Claude Code or Codex subscription as Torre's AI.** If either is installed and
+  signed in, its models work with no API key and no extra bill.
+
+### Changed
+
+- **API keys are shared with your other Prompture apps.** Keys now live in Prompture's private
+  key file on this computer, so a key saved in Torre works in any app built on Prompture, and
+  keys already set in your environment show up on their own. Keys you saved before move there
+  the first time Torre starts. The coach's model becomes Torre's default model.
 
 ### Fixed
 

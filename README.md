@@ -308,8 +308,8 @@ Every command accepts `--data-dir PATH` before or after its name. The default is
 `CHESS_STUDIO_DATA` when set, otherwise this project's `data/`, matching the
 standalone web app. Input files, report output paths, and explicit relative data
 paths resolve from your terminal's current directory. Stockfish uses the app's
-existing discovery, including `STOCKFISH_PATH`. Coaching uses the same
-`settings.json`, `CHESS_COACH_MODEL`, and local-model fallback as the app.
+existing discovery, including `STOCKFISH_PATH`. Coaching uses the same model as the
+app (Settings > AI, `TORRE_AI_MODEL`, or a model served on this computer).
 
 On a server that runs many studios side by side, three variables keep each one
 small. `TORRE_ENGINE_THREADS` caps the search threads of every engine and of the
@@ -432,9 +432,10 @@ shows what it found. Replay, PGN import, lessons and board exploration work with
 it; engine play and analysis need it.
 
 A fresh clone has an empty game library. Import a PGN in **Games**, or follow the
-export workflow below to add your own history. The AI coach is optional: it uses a
-local [Ollama](https://ollama.com) model, or a hosted model you pick on the coach
-card (such as `openai/gpt-4o-mini`) with your own API key.
+export workflow below to add your own history. The AI features are optional and are set
+up in **Settings > AI**: a local [Ollama](https://ollama.com) or LM Studio model, your Claude
+Code or Codex login, or a cloud model with your own API key. Keys live in
+[Prompture](https://github.com/jhd3197/prompture)'s key file, shared with your other Prompture apps.
 
 The optional literature downloader uses `requirements-books.txt`; install it with
 `pip install -r requirements-books.txt` inside your environment before running
@@ -468,7 +469,8 @@ Inside `torre/`:
 |---|---|
 | `server/` | the studio's HTTP server (`python -m torre.server.studio`), its routes and API modules, the data folder, background jobs |
 | `analysis/` | Stockfish and other engines, per-move analysis and grades, motifs, stats, Insights, reports, PGN and game exports |
-| `coaching/` | the coach: its plan, the skills it tracks, the lessons it writes, and the AI it writes with (`coach_ai.py`) |
+| `ai/` | Torre's AI, through Prompture: providers, keys, which model each feature uses, and calling it |
+| `coaching/` | the coach: its plan, the skills it tracks, the lessons it writes, and its explanations |
 | `learning/` | lessons, puzzles, drills, openings, endgames, the story, awards and voice packs |
 | `games/` | imports from chess.com and Lichess, the legends' games, the engine arena |
 | `content/` | the data the app ships with |

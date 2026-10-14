@@ -1,7 +1,6 @@
 // /settings/:section: one section at a time, picked from the index on the left, or found with the
 // search box above it. /settings opens the first; /engines lands on Engines. The bigger sections
 // live in ./settings/, and ./settings/search.ts lists every row for the search.
-import { AiSetup } from '../components/AiSetup';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +20,7 @@ import { SoundSection, VoiceSection } from './settings/SoundSections';
 import { DataSection } from './settings/DataSection';
 import { SidebarSection } from './settings/SidebarSection';
 import { AboutSection } from './settings/AboutSection';
+import { AiSection } from './settings/AiSection';
 import { searchSettings, SETTINGS_SECTIONS, type SearchHit, type SectionId } from './settings/search';
 import { isPhoneSection, PhoneSettingsHome, PhoneSettingsSection } from './settings/PhoneSettings';
 import { usePhone } from '../hooks/usePhone';
@@ -40,7 +40,7 @@ const PANELS: Record<SectionId, () => ReactNode> = {
   voice: () => <VoiceSection />,
   learning: () => <LearningSection />,
   analysis: () => <AnalysisSection />,
-  ai: () => <AiSetup />,
+  ai: () => <AiSection />,
   engines: () => <EngineSettings />,
   accessibility: () => <AccessibilitySection />,
   data: () => <DataSection />,

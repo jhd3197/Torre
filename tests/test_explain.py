@@ -9,6 +9,7 @@ from unittest import mock
 import chess
 
 from torre.analysis import analyze
+from torre.ai import config, runtime
 from torre.coaching import coach
 from torre.coaching import explain
 from tests.test_training import BEFORE_NF6, PGN, record
@@ -35,7 +36,7 @@ class ExplainTests(unittest.TestCase):
 
     def test_answers_are_cached_and_facts_built_only_on_a_miss(self):
         facts = mock.Mock(return_value={'move_played': 'Nf6', 'engine_best_move': 'g6'})
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True), \
                 mock.patch.object(explain, '_ask', return_value={'text': ' It hangs mate. '}) as ask:
             first = explain.answer(self.data, 'mistake', {'fen': 'x', 'move': 'y'}, facts, 'es')
             again = explain.answer(self.data, 'mistake', {'fen': 'x', 'move': 'y'}, facts, 'es')
@@ -45,7 +46,7 @@ class ExplainTests(unittest.TestCase):
         self.assertIsNone(explain.answer(self.data, 'mistake', {'fen': 'other'}, facts, 'es', cached_only=True)['answer'])
 
     def test_unavailable_coach_raises(self):
-        with mock.patch.object(coach, 'prompture_installed', return_value=False):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=False):
             with self.assertRaises(RuntimeError):
                 explain.answer(self.data, 'mistake', {'a': 1}, dict)
 
@@ -90,7 +91,7 @@ class ServerTests(unittest.TestCase):
         (self.data / 'analysis.jsonl').write_text(json.dumps(record()) + '\n', encoding='utf-8')
         (self.data / 'settings.json').write_text(json.dumps({'coach_model': 'ollama/qwen3:8b'}), encoding='utf-8')
         studio.use_data_dir(self.data)
-        env = mock.patch.dict(os.environ, {coach.ENV_MODEL: ''})
+        env = mock.patch.dict(os.environ, {config.ENV_MODEL: '', config.LEGACY_ENV_MODEL: ''})
         env.start()
         self.addCleanup(env.stop)
         self.server = ThreadingHTTPServer(('127.0.0.1', 0), studio.Handler)
@@ -110,7 +111,7 @@ class ServerTests(unittest.TestCase):
             return {'status': exc.code, **json.loads(exc.read())}
 
     def test_explain_a_move_and_review_a_game(self):
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True), \
                 mock.patch.object(explain, '_ask', side_effect=[{'text': 'Nf6 allows Qxf7#.'},
                                                                 {'headline': 'h', 'summary': 's', 'lesson': 'l'}]) as ask:
             self.assertIsNone(self.post('/api/explain', {'fen': BEFORE_NF6, 'move': 'Nf6', 'cachedOnly': True})['answer'])
@@ -122,5 +123,5 @@ class ServerTests(unittest.TestCase):
             review = self.post('/api/coach/game', {'id': 1})
             self.assertEqual(review['answer'], {'headline': 'h', 'summary': 's', 'lesson': 'l'})
             self.assertEqual(self.post('/api/coach/game', {'id': 99})['status'], 404)
-        with mock.patch.object(coach, 'prompture_installed', return_value=False):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=False):
             self.assertEqual(self.post('/api/explain', {'fen': chess.STARTING_FEN, 'move': 'e4'})['status'], 503)

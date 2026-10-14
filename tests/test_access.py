@@ -26,7 +26,7 @@ ADMIN_ROUTES = {
     ('POST', '/api/engines/models/uninstall'),
     ('POST', '/api/engines/custom'),  # runs the program at any path on the server
     ('POST', '/api/engines/custom/delete'),
-    ('POST', '/api/coach/install'),  # pip-installs into the server's Python
+    ('POST', '/api/ai/install'),  # pip-installs into the server's Python
 }
 
 
