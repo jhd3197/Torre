@@ -258,6 +258,18 @@
     "phase": "Fase",
     "you": "Tú",
     "setTo": "Rating del bot",
+    "rating": "Jugaste como ~{{you}} y {{name}} como ~{{bot}}.",
+    "ratingNote": "Una estimación con solo esta partida, redondeada a 50.",
+    "accuracyTip": "{{percent}}% de precisión",
+    "tooFew": "Muy pocas jugadas para calificar",
+    "slipCount": {
+      "inaccuracy_one": "{{count}} imprecisión",
+      "inaccuracy_other": "{{count}} imprecisiones",
+      "mistake_one": "{{count}} error",
+      "mistake_other": "{{count}} errores",
+      "blunder_one": "{{count}} error grave",
+      "blunder_other": "{{count}} errores graves"
+    },
     "phases": {
       "opening": "Apertura",
       "middlegame": "Medio juego",

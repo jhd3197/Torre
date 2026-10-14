@@ -10,52 +10,33 @@ puzzle progress (rating trend, first-try rate per theme) and lesson and drill pr
 gets that brief and answers with a headline, strengths, three focus areas each tied to a drill
 (puzzles, lessons, openings or play), in the app's language. The app supplies tracked task goals.
 
-The model is a Prompture model string ("ollama/qwen3:8b", "openai/gpt-4o-mini", ...) from
-coach_model in data/settings.json or the CHESS_COACH_MODEL environment variable; without one, a
-chat model served by a local Ollama is picked automatically (local_models). The advice is cached
-in data/coach.json under a hash of the brief, the language and the model, so it is only asked
-again on request when your data changes. Without Prompture or a model, view() says so
-(available: false) instead of failing, and INSTALL can pip-install Prompture from the app: into
-the virtualenv the studio runs in, or into <data>/pylib for a plain Python such as Vela's.
+The model is the one Settings > AI picks for the coach (torre.ai.config: the coach's own
+choice, else the default, else a model served on this computer), asked through torre.ai.calls.
+The advice is cached in data/coach.json under a hash of the brief, the language and the model,
+so it is only asked again on request when your data changes. Without Prompture or a model,
+view() says so (available: false) instead of failing.
 """
 import argparse
 import contextlib
 import hashlib
-import importlib
-import importlib.util
-import inspect
 import json
-import os
-import subprocess
-import sys
 import threading
-import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from torre.coaching import coach_ai
+from torre.ai import calls, config, runtime
 from torre.learning import drills
 from torre.server import jobs
 from torre.analysis import game_stats
 from torre.learning import lessons
 from torre.learning import puzzles
 from torre import jsonio
-from torre import net
 CACHE_FILE = 'coach.json'
-ENV_MODEL = 'CHESS_COACH_MODEL'
 DRILL_KINDS = ('puzzles', 'lessons', 'openings', 'play')
 LANGUAGE_NAMES = {'en': 'English', 'es': 'Spanish'}
 FOCUS_AREAS = 3
 MIN_THEME_TRIES = 5  # a theme's first-try rate is only reported over at least this many puzzles
-TIMEOUT_S = 300
 LOCK = threading.Lock()
-PACKAGE = 'prompture>=1.13'
-PYLIB = 'pylib'  # Prompture's install folder in the data folder when the studio runs outside a virtualenv
-INSTALL_TIMEOUT_S = 900
-# An automatic pick prefers these model families, in order, then any other chat model.
-PREFERRED = ('qwen3', 'llama3', 'gemma3', 'mistral', 'phi4', 'gemma', 'llama')
-SPECIALIZED = ('-vl', 'coder', 'cline', 'tools', '-base', 'embed')  # picked only when nothing general is served
-MODELS_TTL_S = 30
 
 
 def _now():
@@ -177,135 +158,6 @@ def brief_key(data, lang, model):
     return hashlib.sha256(blob.encode('utf-8')).hexdigest()[:16]
 
 
-# ---- configuration -----------------------------------------------------------
-
-def configured_model(data_dir='data'):
-    model = _read_json(Path(data_dir) / 'settings.json').get('coach_model') or os.environ.get(ENV_MODEL)
-    return model.strip() if isinstance(model, str) and model.strip() else None
-
-
-def ollama_url():
-    host = (os.environ.get('OLLAMA_HOST') or '127.0.0.1:11434').strip().rstrip('/')
-    host = host if host.startswith(('http://', 'https://')) else 'http://' + host
-    return host.replace('://0.0.0.0', '://127.0.0.1')
-
-
-_models_cache = {'at': None, 'models': []}
-
-
-def _ollama_tags():
-    """The local Ollama's /api/tags models; [] when it is not running. Tests replace this."""
-    try:
-        with net.urlopen(ollama_url() + '/api/tags', timeout=1.5) as response:
-            return json.loads(response.read()).get('models') or []
-    except (OSError, ValueError):
-        return []
-
-
-def local_models():
-    """Prompture strings for the chat models a local Ollama serves, best automatic pick first."""
-    if _models_cache['at'] is not None and time.monotonic() - _models_cache['at'] < MODELS_TTL_S:
-        return list(_models_cache['models'])
-    found = []
-    for entry in _ollama_tags():
-        name = entry.get('name') if isinstance(entry, dict) else None
-        caps = entry.get('capabilities') or ['completion']
-        if not isinstance(name, str) or 'completion' not in caps:
-            continue
-        family = next((i for i, f in enumerate(PREFERRED) if name.startswith(f)), len(PREFERRED))
-        special = any(tag in name for tag in SPECIALIZED)
-        found.append(((special, family, name), f'ollama/{name}'))
-    models = [m for _, m in sorted(found)]
-    _models_cache.update(at=time.monotonic(), models=models)
-    return list(models)
-
-
-def choose_model(data_dir='data'):
-    """(model, auto): the configured model, else the best local Ollama model, else (None, False)."""
-    model = configured_model(data_dir)
-    if model:
-        return model, False
-    found = local_models()
-    return (found[0], True) if found else (None, False)
-
-
-def in_virtualenv():
-    return sys.prefix != sys.base_prefix
-
-
-DATA_DIR = Path('data')  # where the player's saved API keys are (coach_ai), set by use_data_dir
-
-
-def use_data_dir(data_dir):
-    """Remember the data folder, and put <data>/pylib on the import path when an earlier install put Prompture there."""
-    global DATA_DIR
-    DATA_DIR = Path(data_dir)
-    pylib = str(Path(data_dir) / PYLIB)
-    if Path(pylib).is_dir() and pylib not in sys.path:
-        sys.path.insert(0, pylib)
-        importlib.invalidate_caches()
-
-
-def prompture_installed():
-    return importlib.util.find_spec('prompture') is not None
-
-
-def availability(data_dir='data'):
-    """{available, model, auto, models, reason}: reason is 'prompture_missing' or 'no_model' when unavailable."""
-    model, auto = choose_model(data_dir)
-    reason = None if prompture_installed() else 'prompture_missing'
-    reason = reason or (None if model else 'no_model')
-    seen = bool(_read_json(Path(data_dir) / 'settings.json').get('coach_setup_seen'))
-    return {'available': reason is None, 'model': model, 'auto': auto, 'models': local_models(), 'reason': reason,
-            'setup_seen': seen, 'hosted': coach_ai.hosted()}
-
-
-def valid_model(model):
-    """A Prompture model string worth saving: provider/name, no spaces."""
-    return (isinstance(model, str) and 3 <= len(model) <= 200 and '/' in model.strip('/')
-            and not any(c.isspace() for c in model))
-
-
-class InstallJob(jobs.BackgroundJob):
-    """pip-installs Prompture, one install at a time."""
-    busy_message = 'The coach is already being installed.'
-    label = 'Installing the coach'
-
-    def __init__(self):
-        super().__init__({'running': False, 'error': None, 'done': False})
-
-    def start(self, data_dir):
-        self.launch({'running': True, 'error': None, 'done': False}, data_dir)
-
-    def command(self, data_dir):
-        cmd = [sys.executable, '-m', 'pip', 'install', '--disable-pip-version-check', '--no-input', PACKAGE]
-        return cmd if in_virtualenv() else cmd + ['--target', str(Path(data_dir) / PYLIB)]
-
-    def _run(self, cmd):
-        """Run a command without a console window; (returncode, the last lines it printed). Tests replace this."""
-        flags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
-        done = subprocess.run(cmd, capture_output=True, text=True, timeout=INSTALL_TIMEOUT_S, creationflags=flags)
-        return done.returncode, '\n'.join((done.stderr or done.stdout or '').strip().splitlines()[-3:])
-
-    def work(self, data_dir):
-        if importlib.util.find_spec('pip') is None:
-            self._run([sys.executable, '-m', 'ensurepip', '--default-pip'])
-        code, tail = self._run(self.command(data_dir))
-        if code:
-            raise RuntimeError(tail or f'pip exited with code {code}')
-        use_data_dir(data_dir)
-        importlib.invalidate_caches()
-        if not prompture_installed():
-            raise RuntimeError('Prompture was installed but cannot be imported. Restart the app.')
-        self.update(done=True)
-
-
-INSTALL = InstallJob()
-MISSING_PROMPTURE = 'Prompture is not installed. Install the AI coach from the Coach page.'
-NO_MODEL = 'No coach model is set. Set up the AI coach in Settings.'
-OLD_PROMPTURE = 'This Prompture cannot use a saved API key yet. Update it: pip install -U prompture.'
-
-
 # ---- asking the model ----------------------------------------------------------
 
 def prompt(data, lang):
@@ -350,24 +202,7 @@ def _extract(model, text):
         focus: list[Focus] = Field(default_factory=list)
         weekly_plan: list[str] = Field(default_factory=list)
 
-    return ask_model(Advice, model, text)
-
-
-def ask_model(schema, model, text, max_tokens=2000):
-    """Ask `model` through Prompture for a reply shaped like the pydantic `schema`; a dict."""
-    from prompture import extract_with_model
-    options = {'max_tokens': max_tokens}
-    if model.startswith('ollama/'):
-        options.update(think=False, timeout=TIMEOUT_S)  # a reasoning model is far faster without thinking
-    extra = {}
-    key = coach_ai.key_for(DATA_DIR, model)  # the player's own key for this provider, if they saved one
-    if key:
-        if 'api_key' not in inspect.signature(extract_with_model).parameters:
-            raise RuntimeError(OLD_PROMPTURE)
-        extra['api_key'] = key
-    result = extract_with_model(schema, text, model, options=options, max_retries=2, **extra)
-    out = result['model'] if isinstance(result, dict) else result
-    return out.model_dump()
+    return calls.ask(Advice, model, text)
 
 
 def clean_advice(raw):
@@ -432,11 +267,11 @@ def save_cache(data_dir, entry):
 def generate(data_dir='data', lang='en', model=None, data=None, force=False):
     """Ask the model unless the cache already answers this brief; returns the cache entry.
     Raises RuntimeError when the coach is unavailable."""
-    model = model or choose_model(data_dir)[0]
-    if not prompture_installed():
-        raise RuntimeError(MISSING_PROMPTURE)
+    model = model or config.choose_model(data_dir, 'coach')[0]
+    if not runtime.prompture_installed():
+        raise calls.AiError(runtime.MISSING_PROMPTURE)
     if not model:
-        raise RuntimeError(NO_MODEL)
+        raise calls.AiError(runtime.NO_MODEL)
     data = data if data is not None else brief(data_dir)
     key = brief_key(data, lang, model)
     cached = cached_entry(load_cache(data_dir), key, lang, model)
@@ -473,7 +308,7 @@ def view(data_dir='data', lang='en', stats=None, job=None, auto=False):
     background, unless the last try at this same brief failed."""
     job = job or JOB
     data = brief(data_dir, stats)
-    out = {**availability(data_dir), 'brief': data}
+    out = {**config.availability(data_dir, 'coach'), 'brief': data}
     key = brief_key(data, lang, out['model']) if out['model'] else None
     cached = cached_entry(load_cache(data_dir), key, lang, out['model'])
     out['advice'] = cached.get('advice')
@@ -486,20 +321,20 @@ def view(data_dir='data', lang='en', stats=None, job=None, auto=False):
             job.start(data_dir, lang, out['model'], data)
         status = job.status()
     out['job'] = status
-    out['install'] = INSTALL.status()
+    out['install'] = runtime.INSTALL.status()
     from torre.coaching import coach_focus
     from torre.coaching import coach_plan
     focus_skills = [f['skill'] for f in coach_focus.load(data_dir)['active']]
     out['tasks'] = coach_plan.view(data_dir, out['advice'], data, lang, focus_skills)
     if not out['available']:
-        out['error'] = MISSING_PROMPTURE if out['reason'] == 'prompture_missing' else NO_MODEL
+        out['error'] = runtime.MISSING_PROMPTURE if out['reason'] == 'prompture_missing' else runtime.NO_MODEL
     return out
 
 
 def regenerate(data_dir='data', lang='en', stats=None, job=None):
     """POST /api/coach: update only when the saved result no longer matches."""
     job = job or JOB
-    status = availability(data_dir)
+    status = config.availability(data_dir, 'coach')
     if status['available']:
         data = brief(data_dir, stats)
         key = brief_key(data, lang, status['model'])
@@ -514,8 +349,7 @@ if __name__ == '__main__':
     parser.add_argument('--data-dir', default='data')
     parser.add_argument('--ask', action='store_true', help='ask the model (otherwise print the brief)')
     parser.add_argument('--lang', default='en', choices=sorted(LANGUAGE_NAMES))
-    parser.add_argument('--model', help=f'Prompture model string (default: settings.json coach_model, {ENV_MODEL} '
-                                        'or the best local Ollama model)')
+    parser.add_argument('--model', help='Prompture model string (default: the model Settings > AI picks for the coach)')
     parser.add_argument('--force', action='store_true', help='ask even if the cached advice is current')
     args = parser.parse_args()
     if args.ask:

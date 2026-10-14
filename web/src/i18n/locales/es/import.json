@@ -1,5 +1,12 @@
 {
   "label": "Importar partidas",
+  "link": {
+    "title": "Revisa una partida desde su enlace",
+    "placeholder": "https://lichess.org/… o https://www.chess.com/game/…",
+    "open": "Abrir la revisión",
+    "busy": "Buscando la partida…",
+    "choose": "¿Qué jugador eras tú?"
+  },
   "sourceLabel": "Dónde están tus partidas",
   "sources": {
     "chesscom": {

@@ -26,13 +26,20 @@ export interface Line { initialFen: string; moves: Move[] }
 export interface EngineLine { cp: number; mate: number | null; moves: string[]; uci: string[]; depth?: number }
 export interface EngineResult { lines: EngineLine[]; best: string | null; grade?: MoveGrade | null }
 
-export type Grade = 'brilliant' | 'great' | 'best' | 'good' | 'book' | 'inaccuracy' | 'mistake' | 'blunder';
+export type Grade = 'brilliant' | 'great' | 'best' | 'excellent' | 'good' | 'book' | 'forced'
+  | 'inaccuracy' | 'miss' | 'mistake' | 'blunder';
 export interface MoveGrade {
   class: Judgment | null;
   best: boolean;
   brilliant: boolean;
   great?: boolean;
   book?: boolean;
+  /** Not the engine's move, but within 0.02 winning chances of it. */
+  excellent?: boolean;
+  /** A chance let go: a forced mate, or the opponent's slip left unpunished (scoring.is_miss). */
+  miss?: boolean;
+  /** The only legal move: never judged. */
+  forced?: boolean;
   accuracy: number;
 }
 
@@ -84,17 +91,26 @@ export interface GameAnalysis {
   key_moments?: import('./components/KeyMoments').KeyMoment[];
 }
 
+/** How strongly each side played one game, in rating points (game_rating.py); null when too short to say. */
+export interface GameRating { user: number | null; opp: number | null; speed: string | null }
+
 export interface GameDetail extends Line {
   headers: Record<string, string>;
+  /** Present once the game is analysed. */
+  rating?: GameRating | null;
   opening?: {
     name: string; eco: string; ply: number; move_number: number; move: string;
     played_by: Color; line: string; moves: string[]; transposed: boolean;
     family_idea: string | null; continuation: string[];
+    /** The first move out of the opening book (opening_book.recognize), null while the game stayed in it. */
+    exit?: { ply: number; move_number: number; move: string; played_by: Color } | null;
   } | null;
   record?: GameSummary & { pgn?: string };
   analysis?: GameAnalysis | null;
   /** Accuracy by phase for you and your opponent, once analyzed (bot_report.report). */
   phases?: import('./components/BotReport').BotReportData['phases'] | null;
+  /** The ply of each phase's first move (with `phases`). */
+  phase_starts?: import('./components/BotReport').BotReportData['starts'] | null;
 }
 
 // The engine registry (engines.py), from GET /api/engines.
@@ -506,7 +522,7 @@ export interface ArenaAiSpec {
   model: string;
   /** How much the harness helps: 0 shows every legal move and nothing else; 2 and up lean on Stockfish. */
   level?: number;
-  effort?: ArenaAiEffort;
+  effort?: ArenaAiEffort | null;
   name?: string;
 }
 
@@ -540,6 +556,7 @@ export interface ArenaPlayer {
 /** What an AI player's turn came to: its reason, the replies the harness refused, and the cost. */
 export interface ArenaAiNote {
   reason: string;
+  plan?: string;
   tries: number;
   /** The harness picked a move for it after too many refused replies. */
   rescued: boolean;

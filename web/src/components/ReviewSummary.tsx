@@ -24,7 +24,9 @@ export function ResultBanner({ outcome, result, winner, ending }: {
   );
 }
 
-export interface AccuracyCard { name: string; accuracy: number | null; you: boolean }
+/** `rating`: the game's estimated rating for that side; null when the game is too short to say,
+ *  undefined when there is no estimate at all (not analysed). */
+export interface AccuracyCard { name: string; accuracy: number | null; you: boolean; rating?: number | null }
 
 export function AccuracyCards({ cards }: { cards: AccuracyCard[] }) {
   const { t } = useTranslation('games');
@@ -36,6 +38,11 @@ export function AccuracyCards({ cards }: { cards: AccuracyCard[] }) {
           <span>{card.name}</span>
           <b>{card.accuracy ?? '–'}{card.accuracy != null && <small>%</small>}</b>
           <span>{t('summary.accuracy')}</span>
+          {card.rating !== undefined && (
+            <span className="game-rating" title={card.rating == null ? t('summary.ratingShort') : t('summary.ratingNote')}>
+              {card.rating == null ? t('summary.playedLikeNone') : t('summary.playedLike', { rating: card.rating })}
+            </span>
+          )}
         </div>
       ))}
     </div>

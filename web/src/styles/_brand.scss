@@ -825,6 +825,13 @@
 .move-verdict.grade-mistake strong {
   color: $orange-500;
 }
+.move-verdict.grade-miss {
+  background: $sand-50;
+  border-color: $peach-200;
+}
+.move-verdict.grade-miss strong {
+  color: $plum-700;
+}
 .move-verdict.grade-inaccuracy {
   background: $sage-50;
   border-color: $wheat-200;

@@ -3,12 +3,13 @@
 // shows the position before the move with that row's move drawn on it.
 import { useEffect, useState, type ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { reviewedResult } from '../../hooks/useChess';
+import { cachedBoard, reviewedResult } from '../../hooks/useChess';
 import { Mascot, type MascotPose } from '../Reward';
 import { CursorRook } from '../CursorRook';
 import { api } from '../../lib/api';
 import { GRADE_INFO, gradeIcon, gradeOf } from '../../lib/grades';
 import { scoreLabel, startPly } from '../../lib/format';
+import { whyItWorks } from '../../lib/whyItWorks';
 import type { AnalyzedMove, Color, EngineLine, Move } from '../../types';
 
 const ROWS = 4; // the engine's top three and the move played: the verdict keeps this height on every move
@@ -82,6 +83,11 @@ export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engine
   const after = reviewedResult(initialFen, moves, cursor, engineId)?.lines[0];
   const rank = picks.findIndex(line => line.uci[0] === played?.uci);
   const better = rank >= 0 ? rank : after ? picks.filter(line => forMover(line, moverWhite) > forMover(after, moverWhite)).length : picks.length;
+  const why = whyItWorks(t, {
+    grade, picks, moverWhite, played,
+    before: cachedBoard(initialFen, moves, cursor - 1), after: cachedBoard(initialFen, moves, cursor),
+    previous: cursor > 1 ? moves[cursor - 2] : undefined, earlier: cursor > 1 ? cachedBoard(initialFen, moves, cursor - 2) : undefined,
+  });
 
   // Without review lines, name the better move from the saved best move instead.
   useEffect(() => {
@@ -100,7 +106,7 @@ export function MoveVerdict({ initialFen, moves, cursor, judged, bestUci, engine
         <img key={`${grade}-${cursor}`} src={gradeIcon(grade)} alt="" width="36" height="36" />
         <div>
           <strong>{t('verdict.is', { number, san: judged.san, grade: info.label })}</strong>
-          <p>{info.message}</p>
+          <p>{why ?? info.message}</p>
           {(picks.length > 0 || slipped) && (
             <p className="verdict-better">
               {picks.length > 0

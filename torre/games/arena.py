@@ -275,7 +275,7 @@ class Player:
 AI_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 AI_LEVELS = range(6)            # Prompture's harness levels, 0 (every legal move, no help) to 5
 AI_MAX_TOKENS = 32000           # the reply, reasoning included; Fable at max effort can think past 16k
-AI_TIMEOUT_S = 900              # one model call; a reasoning model can think for minutes, a dead socket forever
+AI_TIMEOUT_S = 900              # stream read timeout: active long thinks keep the connection alive
 AI_ENGINE_LIMIT = chess.engine.Limit(depth=14, time=0.3)  # the harness's engine at levels 2+
 
 
@@ -289,10 +289,10 @@ class AiPlayer:
         model = str(spec.get('model') or '')
         if '/' not in model:
             raise ValueError('An AI player needs a model such as "claude/claude-fable-5-1".')
-        level = spec.get('level', 0)
+        level = spec.get('level', 1)
         if level not in AI_LEVELS or isinstance(level, bool):
             raise ValueError('"level" must be a whole number from 0 to 5.')
-        effort = spec.get('effort')
+        effort = spec.get('effort', 'high')  # explicit None keeps the provider's default
         if effort is not None and effort not in AI_EFFORTS:
             raise ValueError(f'"effort" must be one of {", ".join(AI_EFFORTS)}.')
         try:
@@ -301,9 +301,9 @@ class AiPlayer:
             raise ValueError('AI players need a Prompture with the chess harness (prompture.games).') from error
         if level >= 2 and not engines.installed('stockfish'):
             raise ValueError(f'Level {level} needs Stockfish, and it is not installed.')
-        from torre.coaching import coach_ai
+        from torre.ai import keys
         self.model, self.level, self.effort = model, level, effort
-        self.key = coach_ai.key_for(data_dir, model) if data_dir else None
+        self.key = keys.key_for(data_dir, model) if data_dir else None
         self.label = str(spec.get('name') or model.split('/', 1)[1])
 
     @property
@@ -335,7 +335,8 @@ class AiPlayer:
                       if self.level >= 2 else None)
             driver = get_driver_for_model(self.model, api_key=self.key) if self.key else None
             yield ChessHarness(self.model, driver=driver, level=self.level, engine=engine,
-                               engine_limit=AI_ENGINE_LIMIT if engine else None, options=self.options())
+                               engine_limit=AI_ENGINE_LIMIT if engine else None, options=self.options(),
+                               concepts='all' if self.level >= 1 else (), stream=True)
 
     def choose(self, harness, board, movetime, rng):
         """(move, note): the note keeps the model's reason, its rejected tries, and what the turn cost."""
@@ -348,7 +349,8 @@ class AiPlayer:
         # answered with moves it was not offered is still rescued; that is its own mistake.
         if decision.rescued and errors and all(getattr(a, 'reply', None) is None for a in decision.attempts):
             raise RuntimeError(f'{self.name}: {errors[-1]}')
-        note = {'ai': {'reason': decision.reason, 'tries': len(decision.attempts), 'rescued': decision.rescued,
+        note = {'ai': {'reason': decision.reason, 'plan': decision.plan,
+                       'tries': len(decision.attempts), 'rescued': decision.rescued,
                        'cost': round(decision.usage.get('cost') or 0.0, 6),
                        'tokens': int(decision.usage.get('total_tokens') or 0),
                        'seconds': round(time.monotonic() - started, 1)}}
@@ -379,15 +381,16 @@ def judge(engine, board):
 GRADES = scoring.GRADES
 
 
-def grade_move(board, move, before, after):
-    """Shared move flags from the judge, including exact terminal outcomes."""
+def grade_move(board, move, before, after, earlier=None):
+    """Shared move flags from the judge, including exact terminal outcomes. `earlier` is the
+    judge's verdict before the opponent's last move (for a miss)."""
     if before is None:
         return None
     if after is None:
         following = board.copy()
         following.push(move)
         after = scoring.verdict(following, None)
-    return scoring.classify(board, move, before, after)
+    return scoring.classify(board, move, before, after, earlier)
 
 
 def grade_name(grade):
@@ -549,6 +552,9 @@ class ArenaJob(jobs.BackgroundJob):
         order = [white, 1 - white]  # order[0] plays White
         opening_id, line, extra = line
         board = chess.Board()
+        for side, process in zip(sides, processes):
+            if isinstance(side, AiPlayer):
+                process.reset()
         moves, notes = [], []
         for uci in line:
             move = chess.Move.from_uci(uci)
@@ -560,7 +566,7 @@ class ArenaJob(jobs.BackgroundJob):
                    'judge': judge(judge_engine, board)}
         self._update(current=current)
         # The judge's verdict on the position to move, carried from one move to the next to grade each one.
-        verdict = current['judge']
+        verdict, before = current['judge'], None
         grades = [dict.fromkeys(GRADES, 0), dict.fromkeys(GRADES, 0)]
         result, termination = None, None
         while True:
@@ -587,8 +593,8 @@ class ArenaJob(jobs.BackgroundJob):
             moves.append({'uci': move.uci(), 'san': board.san(move)})
             played_from = board.copy()
             board.push(move)
-            before, verdict = verdict, judge(judge_engine, board)
-            grade = grade_move(played_from, move, before, verdict)
+            earlier, before, verdict = before, verdict, judge(judge_engine, board)
+            grade = grade_move(played_from, move, before, verdict, earlier)
             if grade:
                 note['grade'] = grade
                 if grade_name(grade):

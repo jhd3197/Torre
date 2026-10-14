@@ -40,7 +40,7 @@ def build_deck(analysis_records):
         if rec.get("scoring_version") != analyze.SCORING_VERSION:
             continue
         for m in rec.get("worst_moves", []):
-            if m.get("class") not in ("mistake", "blunder"):
+            if not scoring.counts_as_error(m):
                 continue
             ply = m["ply"]
             best = rec["best_moves"][ply - 1] if ply - 1 < len(rec["best_moves"]) else None

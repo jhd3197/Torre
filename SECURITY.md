@@ -27,5 +27,6 @@ denial-of-service tests against it.
 - Hosted, each player gets a separate Torre with its own data folder; installing engines or
   Python packages is limited to admins.
 - Outgoing requests go through `torre/net.py`, which opens http and https addresses only.
-- API keys you save for the AI coach stay in your data folder and are shown back only as their
-  last characters.
+- API keys you save in Settings > AI go to Prompture's key file in your home folder (readable by
+  you only), never to the browser, and are shown back only as their last characters. Hosted,
+  each player's keys stay in their own data folder instead.

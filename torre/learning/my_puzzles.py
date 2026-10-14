@@ -9,8 +9,8 @@ Reads data/games.jsonl and the engine analysis in data/analysis.jsonl
 bundled packs' format, so puzzles.load_packs() serves it as the MINE theme.
 
 Two kinds of moment become puzzles. "missed": you were to move, the engine's
-move was clearly winning and yours threw it away, or you had a forced mate
-(scoring.missed_mate) and let it go; you solve it from the position after your
+move was clearly winning and yours threw it away, or you let a forced mate or
+your opponent's slip go (scoring.is_miss); you solve it from the position after your
 opponent's previous move. "punish": your move was a
 blunder that left the opponent clearly winning; that blunder is the setup
 move and you find the refutation, as the puzzle generator on Lichess does.
@@ -82,8 +82,9 @@ def candidates(rec, analysis):
         if (first if i % 2 == 0 else not first) != user:
             continue
         before, after = pov_win(evals[i], user), pov_win(evals[i + 1], user)
-        if i > 0 and scoring.missed_mate(evals[i], evals[i + 1], user == chess.WHITE):
-            # A forced mate let go: barely a drop in win%, but exactly the puzzle to find again.
+        if i > 0 and scoring.is_miss(evals[i - 1], evals[i], evals[i + 1], user == chess.WHITE):
+            # A forced mate let go, or a slip of the opponent's left unpunished: barely a drop in
+            # win%, but exactly the puzzle to find again.
             found.append(('missed', i - 1))
             continue
         if before - after < DROP:

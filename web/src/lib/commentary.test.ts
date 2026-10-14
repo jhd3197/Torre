@@ -2,7 +2,7 @@ import english from '../i18n/locales/en/commentary.json';
 import spanish from '../i18n/locales/es/commentary.json';
 import { language } from '../i18n';
 import {
-  DOMAINS, captureLine, longThink, captureOf, clockEventOf, durationWords, evalEventOf, hangsOf, moveWords, sacrificeOf, openingFamily, recapLines, resetVariety, reviewLines, swingOf, themeOf,
+  DOMAINS, captureLine, longThink, captureOf, clockEventOf, durationWords, evalEventOf, hangsOf, moveWords, sacrificeOf, openingFamily, recapLines, resetVariety, reviewLines, storyLine, storyOf, swingOf, themeOf,
   thinkTimes, type EvalEvent, type Theme,
 } from './commentary';
 import type { BoardState } from '../types';
@@ -103,6 +103,14 @@ describe('reviewLines', () => {
       .toEqual([english.grade.mistake[0], 'There was mate in 2 here.', 'The best move was', 'queen takes on f7', 'checkmate']);
     expect(reviewLines({ san: 'c5', grade: 'book', opening: 'Sicilian Defense' })).toEqual(['This is the Sicilian Defense.']);
     expect(reviewLines({ san: 'h3', grade: 'good', outOfBook: true })).toEqual([english.outOfBook[0]]);
+  });
+
+  test('a miss is named with the better move, even in the highlights; a forced move only in full', () => {
+    expect(reviewLines({ san: 'Qd2', grade: 'miss', bestSan: 'Nf3' }, true))
+      .toEqual([english.grade.miss[0], 'The best move was', 'knight to f3']);
+    expect(reviewLines({ san: 'Kh1', grade: 'forced' })).toEqual([english.grade.forced[0]]);
+    expect(reviewLines({ san: 'Kh1', grade: 'forced' }, true)).toEqual([]);
+    expect(reviewLines({ san: 'a3', grade: 'excellent' })).toEqual([]);
   });
 
   test('a pool is used up before any line comes back, and never twice in a row', () => {
@@ -318,6 +326,34 @@ describe('the game recap', () => {
       'You won!', 'You were losing badly on move 23, and still turned it around.', '82 percent accuracy.', 'One brilliant move.', '2 mistakes.',
       'And not a single blunder.', 'Your longest think was', '3 minutes', 'on move 31', 'and it paid off.',
     ]);
+  });
+
+  test('tells the story of the game from its evaluations', () => {
+    const steady = (cp: number, n = 30) => Array.from({ length: n }, () => [cp, null] as [number, null]);
+    // One swing of 30 win% or more decides it; several make it back and forth.
+    expect(storyOf([...steady(20, 15), ...steady(-600, 15)], 'black')).toBe('oneBlunder');
+    expect(storyOf([...steady(20, 10), ...steady(-600, 10), ...steady(600, 10)], 'white')).toBe('backAndForth');
+    // Ahead most of the game: the winner's control, but not the loser's.
+    expect(storyOf([...steady(0, 5), ...Array.from({ length: 25 }, (_, i) => [150 + i * 5, null] as [number, null])], 'white')).toBe('control');
+    expect(storyOf([...steady(0, 5), ...Array.from({ length: 25 }, (_, i) => [150 + i * 5, null] as [number, null])], 'black')).toBe('balanced');
+    expect(storyOf(steady(10), 'draw')).toBe('closeFinish');
+    expect(storyOf(steady(10, 5), 'draw')).toBeNull();
+    // The same game always gets the same line; another game can get another.
+    const lines = english.story.oneBlunder.won;
+    expect(lines).toContain(storyLine('oneBlunder', 'won', '42'));
+    expect(storyLine('oneBlunder', 'won', '42')).toBe(storyLine('oneBlunder', 'won', '42'));
+    expect(new Set(['1', '2', '3', '4', '5', '6'].map(id => storyLine('oneBlunder', 'won', id))).size).toBe(lines.length);
+    expect(english.story.control.none).toContain(storyLine('control', null, '7'));
+    // The recap says it when no swing is said.
+    expect(recapLines({ outcome: null, story: 'A steady game.' })).toEqual(['A steady game.']);
+    expect(recapLines({ outcome: null, swing: { kind: 'control' }, story: 'A steady game.' })).not.toContain('A steady game.');
+  });
+
+  test('says the estimated ratings when they were recorded', () => {
+    expect(recapLines({ outcome: null, rating: { you: 1650, opp: 1400 } })).toEqual(['You played like 1650.', 'Your opponent played like 1400.']);
+    // A refused estimate, or one off the recorded steps of 50, is left out.
+    expect(recapLines({ outcome: null, rating: { you: null, opp: 1425 } })).toEqual([]);
+    expect(DOMAINS.rating).toEqual([400, 3000, 50]);
   });
 
   test('clock times come from the clocks left and the increment', () => {

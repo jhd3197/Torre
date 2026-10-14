@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from torre.ai import config, runtime
 from torre.coaching import coach
 from torre.coaching import coach_plan
 from tests.test_coach import ADVICE, FakeJob, stats
@@ -55,7 +56,7 @@ class CoachPlanTests(unittest.TestCase):
 class CoachCacheTests(unittest.TestCase):
     def test_language_switch_and_old_brief_reuse_saved_results(self):
         with tempfile.TemporaryDirectory() as folder, \
-                patch.object(coach, 'prompture_installed', return_value=True), \
+                patch.object(runtime, 'prompture_installed', return_value=True), \
                 patch.object(coach, '_extract', return_value=ADVICE) as ask:
             for lang, data in [('en', {'a': 1}), ('es', {'a': 1}), ('en', {'a': 2}), ('en', {'a': 1})]:
                 coach.generate(folder, lang, model='test/model', data=data)
@@ -64,7 +65,7 @@ class CoachCacheTests(unittest.TestCase):
 
     def test_get_never_starts_a_model_request_and_post_deduplicates_a_fresh_result(self):
         with tempfile.TemporaryDirectory() as folder, \
-                patch.object(coach, 'availability', return_value={'available': True, 'model': 'test/model', 'reason': None}), \
+                patch.object(config, 'availability', return_value={'available': True, 'model': 'test/model', 'reason': None}), \
                 patch.object(coach, 'brief', return_value={'a': 1}), \
                 patch.object(coach_plan, 'view', return_value=[]):
             job = FakeJob()

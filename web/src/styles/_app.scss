@@ -40,7 +40,7 @@ a.button {
   margin: 0 0 16px;
 }
 
-/* Analysis judgments in the move list: ?! inaccuracy, ? mistake, ?? blunder, !! brilliant. */
+/* Analysis judgments in the move list: ?! inaccuracy, × miss, ? mistake, ?? blunder, !! brilliant, □ forced. */
 .move-symbol {
   margin-left: 2px;
   font-weight: 700;
@@ -48,6 +48,14 @@ a.button {
 .move-list .move-inaccuracy .move-symbol,
 .grade-table .move-inaccuracy th {
   color: $gold-500;
+}
+.move-list .move-miss .move-symbol,
+.grade-table .move-miss th {
+  color: $plum-600;
+}
+.move-list .move-forced .move-symbol,
+.grade-table .move-forced th {
+  color: $sage-600;
 }
 .move-list .move-mistake .move-symbol,
 .grade-table .move-mistake th {

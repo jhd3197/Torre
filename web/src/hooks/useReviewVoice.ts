@@ -10,7 +10,7 @@ import { startPly } from '../lib/format';
 import { gradeOf } from '../lib/grades';
 import type { AnalyzedMove, BoardState, Grade, Move } from '../types';
 
-const COSTLY: Grade[] = ['mistake', 'blunder'];
+const COSTLY: Grade[] = ['miss', 'mistake', 'blunder'];
 const FIRST_CAPTURE_PLY = 16;
 /** The commentary plays a little faster than recorded, so stepping through a game keeps its pace. */
 export const REVIEW_RATE = 1.25;

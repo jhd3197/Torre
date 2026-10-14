@@ -9,8 +9,8 @@ numbers that are not in them.
 
 Answers are cached in data/explanations.json under a hash of what is asked
 about (a position and move, or a game), the language and the model, so the
-same mistake is explained once and the engine is only asked on a miss. The model is
-the coach's (coach.choose_model) and the call goes through coach.ask_model.
+same mistake is explained once and the engine is only asked on a miss. The model is the one
+Settings > AI picks for explanations (torre.ai.config) and the call goes through torre.ai.calls.
 """
 import hashlib
 import io
@@ -22,6 +22,7 @@ from pathlib import Path
 import chess
 import chess.pgn
 
+from torre.ai import calls, config, runtime
 from torre.coaching import coach
 from torre.analysis import motifs
 from torre.analysis import opening_book
@@ -151,7 +152,7 @@ def _ask(kind, model, text):
         summary: str
         lesson: str
 
-    return coach.ask_model(Explanation if kind == 'mistake' else GameReview, model, text, max_tokens=700)
+    return calls.ask(Explanation if kind == 'mistake' else GameReview, model, text, max_tokens=700)
 
 
 def _key(kind, ident, lang, model):
@@ -185,7 +186,7 @@ def answer(data_dir, kind, ident, facts, lang='en', model=None, cached_only=Fals
     """{'answer', 'model', 'cached'}: the cached answer about `ident` (what is explained, e.g. a fen and a
     move), or a new one from the model given `facts()` (None with cached_only when nothing is cached).
     Raises RuntimeError when the coach is unavailable."""
-    model = model or coach.choose_model(data_dir)[0]
+    model = model or config.choose_model(data_dir, 'explain')[0]
     key = _key(kind, ident, lang, model)
     with LOCK:
         hit = _load(data_dir).get(key)
@@ -193,10 +194,10 @@ def answer(data_dir, kind, ident, facts, lang='en', model=None, cached_only=Fals
         return {'answer': hit['answer'], 'model': model, 'cached': True}
     if cached_only:
         return {'answer': None, 'model': model, 'cached': False}
-    if not coach.prompture_installed():
-        raise RuntimeError(coach.MISSING_PROMPTURE)
+    if not runtime.prompture_installed():
+        raise calls.AiError(runtime.MISSING_PROMPTURE)
     if not model:
-        raise RuntimeError(coach.NO_MODEL)
+        raise calls.AiError(runtime.NO_MODEL)
     facts = facts()
     prompt = mistake_prompt(facts, lang) if kind == 'mistake' else game_prompt(facts, lang)
     out = _clean(kind, _ask(kind, model, prompt))

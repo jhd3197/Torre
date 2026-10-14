@@ -245,6 +245,11 @@ def reviewed(payload):
     eval_key = engine_service.eval_key
     with engine_service.EVALS_LOCK:
         known = engine_service.saved_evals()
+
+        def saved(position):
+            found = known.get(f'{engine_id}:{eval_key(position)}')
+            return known.get(eval_key(position)) if found is None and engine_id == 'stockfish' else found
+
         for ply in range(start, stop + 1):
             if ply > start:
                 board.push(chess.Move.from_uci(moves[ply - 1]))
@@ -266,11 +271,13 @@ def reviewed(payload):
             if ply > 0:
                 previous = board.copy()
                 last = previous.pop()
-                previous_key = eval_key(previous)
-                prior = known.get(f'{engine_id}:{previous_key}')
-                if prior is None and engine_id == 'stockfish':
-                    prior = known.get(previous_key)
-                graded = scoring.classify(previous, last, scoring.verdict(previous, prior), scoring.verdict(board, result))
+                earlier = None
+                if previous.move_stack:
+                    two_back = previous.copy()
+                    two_back.pop()
+                    earlier = scoring.verdict(two_back, saved(two_back))
+                graded = scoring.classify(previous, last, scoring.verdict(previous, saved(previous)),
+                                          scoring.verdict(board, result), earlier)
             plies.append({'ply': ply, 'state': board_view.state(board), **result, 'grade': graded})
         engine_service.save_evals(new)
     return plies
@@ -355,7 +362,8 @@ def played_report(req):
             evals.append([-10000 if ply['state']['turn'] == 'white' else 10000, None])
         else:
             evals.append([0, None])
-    return bot_report.report(payload.get('initialFen') or chess.STARTING_FEN, moves, payload['playerColor'], evals, notes)
+    return bot_report.report(payload.get('initialFen') or chess.STARTING_FEN, moves, payload['playerColor'], evals, notes,
+                             grades=[ply['grade'] for ply in plies[1:]])
 
 
 @ROUTES.post('/api/played')

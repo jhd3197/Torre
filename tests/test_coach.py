@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+from torre.ai import catalogue, config, runtime
 from torre.coaching import coach
 from torre.analysis import game_stats
 from torre.learning import puzzles
@@ -29,13 +30,12 @@ def stats():
     ], {})
 
 
-def no_ollama(test, tags=()):
-    """No local Ollama (or one serving `tags`) for the length of a test."""
-    patch = mock.patch.object(coach, '_ollama_tags', return_value=list(tags))
-    patch.start()
-    test.addCleanup(patch.stop)
-    coach._models_cache.update(at=None, models=[])
-    test.addCleanup(coach._models_cache.update, at=None, models=[])
+def no_ollama(test):
+    """No model server on this computer, and no model from the environment, for a test."""
+    for patch in (mock.patch.object(catalogue, 'local_servers', return_value=[]),
+                  mock.patch.dict(os.environ, {config.ENV_MODEL: '', config.LEGACY_ENV_MODEL: ''})):
+        patch.start()
+        test.addCleanup(patch.stop)
 
 
 class FakeJob:
@@ -54,9 +54,6 @@ class CoachTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.data = Path(self.tmp.name)
-        env = mock.patch.dict(os.environ, {coach.ENV_MODEL: ''})
-        env.start()
-        self.addCleanup(env.stop)
         no_ollama(self)
         self.addCleanup(self.tmp.cleanup)
 
@@ -89,22 +86,14 @@ class CoachTests(unittest.TestCase):
         self.assertNotIn('castling', data['lessons']['not_done_by_category']['basics'])
         json.dumps(data)  # JSON-ready
 
-    def test_model_comes_from_settings_then_env(self):
-        self.assertIsNone(coach.configured_model(self.data))
-        with mock.patch.dict(os.environ, {coach.ENV_MODEL: 'openai/gpt-4o-mini'}):
-            self.assertEqual(coach.configured_model(self.data), 'openai/gpt-4o-mini')
-            self.settings(coach_model='ollama/qwen3:8b')
-            self.assertEqual(coach.configured_model(self.data), 'ollama/qwen3:8b')
-
     def test_unavailable_without_prompture_or_model(self):
-        with mock.patch.object(coach, 'prompture_installed', return_value=False):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=False):
             self.settings(coach_model='ollama/qwen3:8b')
-            self.assertEqual(coach.availability(self.data), {'available': False, 'model': 'ollama/qwen3:8b', 'auto': False,
-                                                             'models': [], 'reason': 'prompture_missing',
-                                                             'setup_seen': False, 'hosted': False})
+            self.assertEqual(config.availability(self.data, 'coach'), {'available': False, 'model': 'ollama/qwen3:8b', 'source': 'default',
+                                                                       'reason': 'prompture_missing', 'setup_seen': False, 'hosted': False})
             with self.assertRaises(RuntimeError):
                 coach.generate(self.data, data={})
-        with mock.patch.object(coach, 'prompture_installed', return_value=True):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True):
             self.settings()
             out = coach.view(self.data, stats=stats(), job=FakeJob())
             self.assertFalse(out['available'])
@@ -112,53 +101,6 @@ class CoachTests(unittest.TestCase):
             self.assertIn('Settings', out['error'])
             self.assertIsNone(out['advice'])
             self.assertIsNotNone(out['brief']['games'])
-
-    def test_local_ollama_model_is_picked_automatically(self):
-        tags = [{'name': 'qwen3-coder:30b'}, {'name': 'nomic-embed-text', 'capabilities': ['embedding']},
-                {'name': 'mistral:latest'}, {'name': 'qwen3:8b', 'capabilities': ['completion', 'tools']},
-                {'name': 'weird'}]
-        coach._models_cache.update(at=None)
-        with mock.patch.object(coach, '_ollama_tags', return_value=tags) as tags_call:
-            self.assertEqual(coach.local_models(), ['ollama/qwen3:8b', 'ollama/mistral:latest', 'ollama/weird', 'ollama/qwen3-coder:30b'])
-            coach.local_models()
-            self.assertEqual(tags_call.call_count, 1)  # cached for a while
-            self.assertEqual(coach.choose_model(self.data), ('ollama/qwen3:8b', True))
-            self.settings(coach_model='openai/gpt-4o-mini')
-            self.assertEqual(coach.choose_model(self.data), ('openai/gpt-4o-mini', False))
-
-    def test_valid_model(self):
-        for good in ('ollama/qwen3:8b', 'openai/gpt-4o-mini', 'ollama/hhao/qwen2.5:14b'):
-            self.assertTrue(coach.valid_model(good), good)
-        for bad in ('', 'qwen3', '/x', 'ollama/ qwen', None, 'a/' + 'b' * 300):
-            self.assertFalse(coach.valid_model(bad), bad)
-
-    def test_install_job(self):
-        job = coach.InstallJob()
-        with mock.patch.object(coach, 'in_virtualenv', return_value=False):
-            self.assertEqual(job.command(self.data)[-2:], ['--target', str(self.data / coach.PYLIB)])
-        with mock.patch.object(coach, 'in_virtualenv', return_value=True):
-            self.assertEqual(job.command(self.data)[-1], coach.PACKAGE)
-        with mock.patch.object(job, '_run', return_value=(1, 'No matching distribution')), \
-                self.assertLogs('torre.coaching.coach', 'ERROR'):
-            job.start(self.data)
-            job.thread.join(5)
-        self.assertEqual(job.status()['error'], 'No matching distribution')
-        with mock.patch.object(job, '_run', return_value=(0, '')) as run, \
-                mock.patch.object(coach, 'prompture_installed', return_value=True):
-            job.start(self.data)
-            job.thread.join(5)
-        self.assertEqual(job.status(), {'running': False, 'error': None, 'done': True})
-        self.assertIn(coach.PACKAGE, run.call_args[0][0])
-
-    def test_pylib_joins_the_import_path(self):
-        import sys
-        pylib = self.data / coach.PYLIB
-        coach.use_data_dir(self.data)
-        self.assertNotIn(str(pylib), sys.path)
-        pylib.mkdir()
-        self.addCleanup(lambda: str(pylib) in sys.path and sys.path.remove(str(pylib)))
-        coach.use_data_dir(self.data)
-        self.assertEqual(sys.path[0], str(pylib))
 
     def test_clean_advice_checks_drills(self):
         out = coach.clean_advice(ADVICE)
@@ -176,7 +118,7 @@ class CoachTests(unittest.TestCase):
 
     def test_generate_caches_by_brief(self):
         self.settings(coach_model='ollama/qwen3:8b')
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True), \
                 mock.patch.object(coach, '_extract', return_value=ADVICE) as ask:
             first = coach.generate(self.data, 'en', data={'a': 1})
             self.assertEqual(first['advice']['headline'], 'Your openings leak points.')
@@ -193,7 +135,7 @@ class CoachTests(unittest.TestCase):
     def test_view_asks_in_the_background_when_stale(self):
         self.settings(coach_model='ollama/qwen3:8b')
         job = FakeJob()
-        with mock.patch.object(coach, 'prompture_installed', return_value=True):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True):
             out = coach.view(self.data, 'en', stats=stats(), job=job, auto=True)
             self.assertTrue(out['available'])
             self.assertFalse(out['fresh'])
@@ -214,14 +156,14 @@ class CoachTests(unittest.TestCase):
     def test_job_reports_failures(self):
         self.settings(coach_model='openai/gpt-4o-mini')
         job = coach.CoachJob()
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True), \
                 mock.patch.object(coach, '_extract', side_effect=ValueError('model said no')), \
                 self.assertLogs('torre.coaching.coach', 'ERROR'):
             job.start(self.data, 'en', 'openai/gpt-4o-mini', {'a': 1})
             job.thread.join(5)
         self.assertEqual(job.status()['error'], 'model said no')
         self.assertFalse(job.status()['running'])
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True), \
                 mock.patch.object(coach, '_extract', return_value=ADVICE):
             job.start(self.data, 'en', 'openai/gpt-4o-mini', {'a': 1})
             job.thread.join(5)
@@ -239,9 +181,6 @@ class ServerTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.data = Path(self.tmp.name)
         studio.use_data_dir(self.data)
-        env = mock.patch.dict(os.environ, {coach.ENV_MODEL: ''})
-        env.start()
-        self.addCleanup(env.stop)
         no_ollama(self)
         self.server = ThreadingHTTPServer(('127.0.0.1', 0), studio.Handler)
         self.base = f'http://127.0.0.1:{self.server.server_address[1]}'
@@ -262,24 +201,8 @@ class ServerTests(unittest.TestCase):
         except HTTPError as exc:
             return {'status': exc.code, **json.loads(exc.read())}
 
-    def test_choose_a_model_and_install(self):
-        with mock.patch.object(coach, 'prompture_installed', return_value=True), \
-                mock.patch.object(coach.JOB, 'start'):
-            out = self.call({'model': 'openai/gpt-4o-mini'}, path='/api/coach/model')
-            self.assertEqual((out['model'], out['auto']), ('openai/gpt-4o-mini', False))
-            settings = lambda: json.loads((self.data / 'settings.json').read_text(encoding='utf-8'))
-            self.assertEqual(settings()['coach_model'], 'openai/gpt-4o-mini')
-            self.assertEqual(self.call({'model': 'not a model'}, path='/api/coach/model')['status'], 400)
-            out = self.call({'model': ''}, path='/api/coach/model')
-            self.assertIsNone(out['model'])
-            self.assertNotIn('coach_model', settings())
-        with mock.patch.object(coach.INSTALL, 'start') as install:
-            out = self.call({}, path='/api/coach/install')
-        install.assert_called_once()
-        self.assertIn('install', out)
-
     def test_coach_endpoints(self):
-        with mock.patch.object(coach, 'prompture_installed', return_value=True):
+        with mock.patch.object(runtime, 'prompture_installed', return_value=True):
             out = self.call()
             self.assertFalse(out['available'])
             self.assertEqual(out['reason'], 'no_model')

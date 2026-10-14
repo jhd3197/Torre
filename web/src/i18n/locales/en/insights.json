@@ -105,6 +105,9 @@
     "blunder": "Blunders",
     "great": "Great",
     "book": "Book",
+    "excellent": "Excellent",
+    "miss": "Misses",
+    "forced": "Forced",
     "updating": "Updated ratings: {{current}} of {{total}} moves. Great and Book counts are incomplete until older games are reanalysed."
   }
 }

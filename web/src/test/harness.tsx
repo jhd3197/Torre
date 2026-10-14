@@ -5,6 +5,7 @@ import { preloadPages, routes } from '../App';
 import { AppDataProvider } from '../state/AppData';
 import { PromotionProvider } from '../state/Promotion';
 import { resetMasters } from '../hooks/useMasters';
+import type { AiView } from '../lib/ai';
 import type { BoardState } from '../types';
 
 // Pages are lazy chunks in the app; fetch them all before the file's tests so routes render at once.
@@ -55,6 +56,30 @@ export const engineEntry = (id: string, name: string, extra: Record<string, unkn
   ...extra,
 });
 
+/** Settings > AI's view (/api/ai): Prompture installed, Claude Code signed in, Ollama off, and two
+ *  cloud services, one with a key. Tests change what they need. */
+export const aiView = (extra: Partial<AiView> = {}): AiView => ({
+  hosted: false,
+  prompture: { installed: true, version: '1.13.11', install: { running: false, error: null, done: false } },
+  desk: { running: false, version: null },
+  providers: [
+    { id: 'claude-code', name: 'Claude Code', kind: 'login', ready: true, detail: 'signed_in', url: 'https://claude.com/claude-code', key: null,
+      models: [{ id: 'claude-code/default', name: 'Claude Code (its default)', provider: 'claude-code', released: '', efforts: [], cost: null },
+        { id: 'claude-code/opus', name: 'Claude Code · Opus', provider: 'claude-code', released: '', efforts: [], cost: null }] },
+    { id: 'ollama', name: 'Ollama', kind: 'local', ready: false, detail: 'not_running', url: 'https://ollama.com/download', key: null, models: [] },
+    { id: 'claude', name: 'Anthropic Claude', kind: 'cloud', ready: true, detail: 'key_saved', url: 'https://console.anthropic.com/settings/keys',
+      key: { hint: '…1234', source: 'saved' },
+      models: [{ id: 'claude/claude-fable-5-1', name: 'Claude Fable 5.1', provider: 'claude', released: '2026-09-01', efforts: ['low', 'high', 'max'], cost: { input: 10, output: 50 } }] },
+    { id: 'openai', name: 'OpenAI', kind: 'cloud', ready: false, detail: 'needs_key', url: 'https://platform.openai.com/api-keys', key: null,
+      models: [{ id: 'openai/gpt-6-luna', name: 'GPT-6 Luna', provider: 'openai', released: '2026-09-22', efforts: ['low', 'high'], cost: { input: 0.1, output: 0.5 } }] },
+  ],
+  settings: { model: null, features: {}, setup_seen: true },
+  model: null, source: null,
+  features: { coach: { model: null, source: null }, explain: { model: null, source: null } },
+  models: {},
+  ...extra,
+});
+
 export interface FakeServer { calls: { path: string; body?: Record<string, unknown> }[]; on: (path: string | RegExp, handler: Handler) => void }
 
 export function fakeServer(): FakeServer {
@@ -70,8 +95,9 @@ export function fakeServer(): FakeServer {
   server.on('api/engines', () => ({ engines: [STOCKFISH] }));
   server.on('api/masters', () => ({ masters: [], missing: [] }));
   server.on('api/arena', () => ({ running: false, match: null, recent: [] }));
-  server.on('api/coach/ai', () => ({ providers: [{ id: 'openai', name: 'OpenAI', local: false, key_url: 'https://platform.openai.com/api-keys',
-    has_key: false, key_hint: null, suggested: ['gpt-4o-mini'] }], model: null, auto: false, setup_seen: true, hosted: false }));
+  server.on('api/ai', () => aiView());
+  server.on('api/ai/usage', () => ({ usage: [] }));
+  server.on(/^api\/ai\/status/, () => ({ available: false, model: null, source: null, reason: 'no_model', setup_seen: true, hosted: false }));
   server.on('api/review', body => {
     if (body?.cachedOnly) return { plies: [] }; // nothing reviewed before, unless a test says so
     const moves = body?.moves as string[], from = Number(body?.from), to = Number(body?.to);

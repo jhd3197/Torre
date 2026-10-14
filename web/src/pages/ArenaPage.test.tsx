@@ -106,7 +106,8 @@ test('AI models take a seat with a help level and an effort, under a spending ca
   fireEvent.click(seat(setup, 'Player 1').getByRole('button', { name: 'Change player' }));
   fireEvent.click(await screen.findByRole('button', { name: /claude-fable-5-1/ }));
   expect(seat(setup, 'Player 1').getByText('AI model')).toBeInTheDocument();
-  fireEvent.change(seat(setup, 'Player 1').getByLabelText('Help'), { target: { value: '1' } });
+  expect(seat(setup, 'Player 1').getByLabelText('Help')).toHaveValue('1');
+  expect(seat(setup, 'Player 1').getByLabelText('Thinking')).toHaveValue('high');
   // An AI at the board brings the spending cap; $20 unless changed.
   fireEvent.click(within(setup).getByRole('button', { name: '$5' }));
   fireEvent.click(within(setup).getByRole('button', { name: 'Start match' }));
@@ -149,7 +150,22 @@ test('the picker offers the newest models of each provider, with prices and only
   expect(seat(setup, 'Player 2').queryByLabelText('Thinking')).not.toBeInTheDocument();
   fireEvent.click(within(setup).getByRole('button', { name: 'Start match' }));
   await waitFor(() => expect(server.calls.find(c => c.path === 'api/arena/start')?.body).toMatchObject({
-    players: [{ ai: { model: 'claude/claude-haiku-5-5', level: 0, effort: 'high' } }, { ai: { model: 'ollama/qwen3:8b', level: 0 } }],
+    players: [{ ai: { model: 'claude/claude-haiku-5-5', level: 1, effort: 'high' } }, { ai: { model: 'ollama/qwen3:8b', level: 1, effort: null } }],
+  }));
+});
+
+test('explicit no-help and model-default effort choices survive submission', async () => {
+  const server = serveArena();
+  renderAt('/arena');
+  const setup = await screen.findByRole('region', { name: 'Match setup' });
+  await waitFor(() => expect(seat(setup, 'Player 1').getByText('Magnus Carlsen')).toBeInTheDocument());
+  fireEvent.click(seat(setup, 'Player 1').getByRole('button', { name: 'Change player' }));
+  fireEvent.click(await screen.findByRole('button', { name: /claude-fable-5-1/ }));
+  fireEvent.change(seat(setup, 'Player 1').getByLabelText('Help'), { target: { value: '0' } });
+  fireEvent.change(seat(setup, 'Player 1').getByLabelText('Thinking'), { target: { value: '' } });
+  fireEvent.click(within(setup).getByRole('button', { name: 'Start match' }));
+  await waitFor(() => expect(server.calls.find(c => c.path === 'api/arena/start')?.body).toMatchObject({
+    players: [{ ai: { model: 'claude/claude-fable-5-1', level: 0, effort: null } }, { engineId: 'stockfish' }],
   }));
 });
 

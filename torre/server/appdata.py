@@ -5,9 +5,9 @@ import threading
 from functools import lru_cache
 from pathlib import Path
 
+from torre.ai import runtime
 from torre.learning import achievements
 from torre.games import arena
-from torre.coaching import coach
 from torre.coaching import coach_home
 from torre.analysis import engines
 from torre.analysis import game_stats
@@ -31,7 +31,7 @@ def use_data_dir(path):
     masters.use_data_dir(DATA_DIR)
     arena.JOB.data_dir = DATA_DIR
     puzzles.MINE_FILE = DATA_DIR / 'my-puzzles.json'
-    coach.use_data_dir(DATA_DIR)
+    runtime.use_data_dir(DATA_DIR)
 
 
 def records(name):

@@ -9,6 +9,8 @@ import chess
 import chess.pgn
 
 from torre.analysis import analyze
+from torre.analysis import game_rating
+from torre.analysis import phases
 from torre.analysis import pgn_export
 from torre.analysis import scoring
 def milliseconds(seconds):
@@ -48,10 +50,11 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
         measured[item['ply']] = item
 
     moves, times, decisions = [], [], []
+    phase = None
     for ply, node in enumerate(nodes, 1):
         move = node.move
         color = 'white' if board.turn else 'black'
-        phase = analyze.phase_of(board.fullmove_number)
+        phase = phases.position_phase(board, phase)
         moves.append({
             'ply': ply, 'move_number': board.fullmove_number, 'color': color,
             'uci': move.uci(), 'san': board.san(move), 'fen_before': board.fen(),
@@ -77,7 +80,7 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
         decision = {'ply': ply, 'analyzed': analyzed, 'eval_before': None, 'eval_after': None,
                     'centipawn_loss': None, 'win_chance_loss': None, 'accuracy': None,
                     'judgment': None, 'brilliant': None, 'best_uci': None, 'played_best': None,
-                    'grade': None, 'great': None, 'book': None}
+                    'grade': None, 'great': None, 'book': None, 'excellent': None, 'miss': None, 'forced': None}
         if analyzed:
             before, after = evals[ply - 1], evals[ply]
             win_before, win_after, judgment, brilliant = analyze.judge_ply(board, move, before, after)
@@ -85,7 +88,8 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             graded = scoring.classify(board, move,
                 {'cp': before[0], 'mate': before[1], 'best': best,
                  'alternative': alternatives[ply - 1] if ply <= len(alternatives) else None},
-                {'cp': after[0], 'mate': after[1]})
+                {'cp': after[0], 'mate': after[1]},
+                {'cp': evals[ply - 2][0], 'mate': evals[ply - 2][1]} if ply > 1 else None)
             decision.update({
                 'eval_before': {'cp': before[0], 'mate': before[1]},
                 'eval_after': {'cp': after[0], 'mate': after[1]},
@@ -95,6 +99,7 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
                 'judgment': judgment, 'brilliant': brilliant, 'best_uci': best,
                 'played_best': move.uci() == best if best else None,
                 'grade': scoring.grade(graded), 'great': graded['great'], 'book': graded['book'],
+                'excellent': graded['excellent'], 'miss': graded['miss'], 'forced': graded['forced'],
             })
         decisions.append(decision)
         board.push(move)
@@ -134,7 +139,8 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             'id': (record or {}).get('id'), 'user_color': (record or {}).get('user_color'),
             'headers': dict(game.headers), 'pgn': pgn, 'initial_fen': initial_fen,
             'final_fen': board.fen(), 'moves': moves,
-            'phase_method': 'fullmove_number: opening <= 10, middlegame <= 30, endgame > 30',
+            'phase_method': 'material: endgame at <= 6 pieces or queens off with <= 20 points, '
+                            'middlegame past move 12 or at <= 10 pieces, never going back',
         },
         'timing': {
             'unit': 'milliseconds', 'moves': times, 'summary': timing_summary,
@@ -149,6 +155,10 @@ def game_report(pgn, analysis=None, *, record=None, timings=None):
             'scoring_version': analyze.SCORING_VERSION if analyzed else None,
             'evaluation_pov': 'white', 'loss_pov': 'mover',
             'moves': decisions, 'summary': quality_summary,
+            # How strongly each side played, in rating points (game_rating.py): an estimate, None when too short.
+            'estimated_rating': game_rating.game_ratings(
+                evals, game.board(), [node.move for node in nodes], game.headers.get('TimeControl'),
+                {'white': game.headers.get('WhiteElo'), 'black': game.headers.get('BlackElo')}) if analyzed else None,
         },
     }
 

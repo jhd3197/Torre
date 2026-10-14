@@ -36,7 +36,7 @@ TREND_MIN_WEIGHT = 3.0
 TREND_DELTA = 0.15
 EVIDENCE_KEPT = 5
 SCAN_FILE = 'coach-scan.json'
-SCAN_VERSION = 2  # 2: forced mates let go count as missed (scoring.missed_mate)
+SCAN_VERSION = 3  # 2: forced mates let go count as missed (scoring.missed_mate); 3: every miss (scoring.is_miss)
 LESSONS_FILE = 'coach-lessons.json'  # coach_lessons.py: the generated lessons and the skill of each step
 LOCK = threading.Lock()
 

@@ -57,5 +57,9 @@
  "The request body is not valid JSON.": "El cuerpo de la solicitud no es JSON válido.",
  "The request body must be a JSON object.": "El cuerpo de la solicitud debe ser un objeto JSON.",
  "The request body could not be read.": "No se pudo leer el cuerpo de la solicitud.",
- "\"moves\" must be a list of moves.": "\"moves\" debe ser una lista de jugadas."
+ "\"moves\" must be a list of moves.": "\"moves\" debe ser una lista de jugadas.",
+ "Paste the link of one chess.com or Lichess game.": "Pega el enlace de una partida de chess.com o Lichess.",
+ "That game was not found. It may be private, or the link may be wrong.": "No se encontró esa partida. Puede ser privada, o el enlace puede estar mal.",
+ "Only standard chess games can be reviewed.": "Solo se pueden revisar partidas de ajedrez estándar.",
+ "Chess.com did not say who played that game. Import your chess.com account first, or paste the game's PGN.": "Chess.com no dijo quién jugó esa partida. Importa primero tu cuenta de chess.com, o pega el PGN de la partida."
 }

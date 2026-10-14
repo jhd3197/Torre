@@ -10,6 +10,13 @@
  },
  "game": {
   "openingPlayed": "Apertura jugada:",
+  "bookExit": "Salió del libro en la jugada {{move}} ({{who}})",
+  "bookExitBy": {
+   "you": "tú",
+   "opponent": "tu rival",
+   "white": "blancas",
+   "black": "negras"
+  },
   "openingTransposed": "Esta partida llegó a la apertura mediante un orden de jugadas distinto.",
   "openingMoves": "Cómo se llegó a esta apertura",
   "openingPosition": "Ir a la posición de la apertura",
@@ -56,6 +63,9 @@
    "best": "Mejor",
    "good": "Buena",
    "book": "Libro",
+   "excellent": "Excelente",
+   "miss": "Ocasión perdida",
+   "forced": "Forzada",
    "inaccuracy": "Imprecisión",
    "mistake": "Error",
    "blunder": "Error grave"
@@ -111,6 +121,10 @@
   "winner": "Ganó {{name}}",
   "unfinished": "Sin terminar",
   "accuracy": "precisión",
+  "playedLike": "Jugó como ~{{rating}}",
+  "playedLikeNone": "Rating: –",
+  "ratingNote": "Una estimación con solo esta partida, redondeada a 50.",
+  "ratingShort": "Muy corta para estimar un rating.",
   "you": "Tú",
   "chip": "{{count}} {{grade}}",
   "yourMoves": "Tus jugadas",
@@ -122,9 +136,20 @@
  },
  "graph": {
   "title": "Evaluación",
+  "bookExit": "Fuera del libro",
   "expand": "Ampliar",
   "open": "Mostrar el gráfico de evaluación",
   "close": "Cerrar",
   "start": "Inicio"
+ },
+ "clock": {
+  "title": "Tiempo por jugada",
+  "seconds": "{{n}} s",
+  "minutes": "{{m}} min {{s}} s",
+  "rushed": "Error con prisa",
+  "longWrong": "Pensó mucho y aun así falló",
+  "average": "tardó {{time}} por jugada",
+  "troubleFrom": "apurado de tiempo desde la jugada {{move}}",
+  "noTrouble": "nunca apurado de tiempo"
  }
 }

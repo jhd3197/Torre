@@ -230,17 +230,18 @@ test('with the coach, you can take back your move and the reply; the game earns 
 
 test('the result shows how the game was played, phase by phase, and the bot keeps its rating', async () => {
   const server = serveMoves();
-  const row = (accuracy: number) => ({ moves: 4, accuracy, inaccuracy: 0, mistake: 0, blunder: 0 });
+  const row = (accuracy: number, grade: string) => ({ moves: 4, accuracy, inaccuracy: 0, mistake: 0, blunder: 0, grade });
   server.on('api/played/report', () => ({
-    phases: { opening: { you: row(91), bot: row(64) }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
-    overall: { you: row(91), bot: row(64) }, slips: [{ ply: 4, san: 'Nc6', phase: 'opening', class: null }], luckySlips: 1,
-    ratings: { opening: [1180] },
+    phases: { opening: { you: row(91, 'best'), bot: row(64, 'inaccuracy') }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
+    overall: { you: row(91, 'best'), bot: row(64, 'inaccuracy') }, slips: [{ ply: 4, san: 'Nc6', phase: 'opening', class: null }], luckySlips: 1,
+    ratings: { opening: [1180] }, rating: { you: 1700, bot: 1150 },
   }));
   savePlay({ initialFen: START, moves: [{ uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }], playerColor: 'white', level: 4,
     result: '1-0', resigned: true, botId: 'marcus-moss', elo: 1180, botNotes: [{ ply: 2, slip: true, elo: 1180, phase: 'opening' }] });
   renderAt('/play');
   expect(await screen.findByRole('heading', { name: 'How the game was played' })).toBeInTheDocument();
-  expect(screen.getByText('91%')).toBeInTheDocument();
+  expect(screen.getByTitle('91% accuracy')).toHaveTextContent('Best');
+  expect(screen.getByText('You played like ~1700, Marcus Moss like ~1150.')).toBeInTheDocument();
   expect(screen.getByText(/played every move at 1180/)).toBeInTheDocument();
   expect(screen.getByText(/happened to be a good move: luck, not a stronger bot/)).toBeInTheDocument();
   expect(server.calls.find(c => c.path === 'api/played/report')?.body).toMatchObject({

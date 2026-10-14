@@ -781,8 +781,8 @@
 }
 
 /* Your moves: every analyzed move by grade, one bar for the mix, then a tile per grade. */
-$quality: (brilliant: $mist-600, great: $blue-600, best: $green-600, good: $sage-300, book: $wheat-700,
-  inaccuracy: $gold-400, mistake: $orange-500, blunder: $red-600);
+$quality: (brilliant: $mist-600, great: $blue-600, best: $green-600, excellent: $green-400, good: $sage-300,
+  book: $wheat-700, forced: $sage-400, inaccuracy: $gold-400, miss: $plum-600, mistake: $orange-500, blunder: $red-600);
 .quality-bar {
   display: flex;
   height: 12px;

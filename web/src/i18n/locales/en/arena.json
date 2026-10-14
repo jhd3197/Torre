@@ -67,7 +67,7 @@
     "aiLevel": "Help",
     "aiLevels": {
       "0": "None: every legal move",
-      "1": "Move facts (captures, checks)",
+      "1": "Move facts and tactical warnings (no engine)",
       "2": "No blunders on the menu",
       "3": "Stockfish's top 5, unranked",
       "4": "Stockfish's top 3, with scores",
@@ -214,7 +214,10 @@
     "blunder": "Blunders",
     "great": "Great",
     "good": "Good",
-    "book": "Book"
+    "book": "Book",
+    "excellent": "Excellent",
+    "miss": "Misses",
+    "forced": "Forced"
   },
   "moves": "Moves",
   "ai": {

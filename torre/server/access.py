@@ -16,7 +16,7 @@ routes, so marking or unmarking one is a decision the test makes you write down.
 """
 import os
 
-from torre.coaching import coach_ai
+from torre.ai import keys
 from torre.server.routes import ApiError
 
 ADMIN_ENV = 'TORRE_ADMIN'
@@ -38,7 +38,7 @@ def of(handler):
 
 
 def is_admin():
-    return not coach_ai.hosted() or os.environ.get(ADMIN_ENV) == '1'
+    return not keys.hosted() or os.environ.get(ADMIN_ENV) == '1'
 
 
 def check(handler):

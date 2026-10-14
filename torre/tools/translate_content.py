@@ -290,7 +290,7 @@ def _prompt(glossary, lang, context, texts):
 
 def translate_batch(model, glossary, lang, context, texts):
     from pydantic import BaseModel
-    from prompture import extract_with_model
+    from torre.ai import calls
 
     class Batch(BaseModel):
         translations: list[str]
@@ -300,10 +300,8 @@ def translate_batch(model, glossary, lang, context, texts):
     # looping model. The timeout is long on purpose: a request the client gives up on keeps running in
     # Ollama, and retries queued behind abandoned requests once blocked it for an hour.
     budget = 200 + sum(len(text) for text in texts) // 2
-    result = extract_with_model(Batch, _prompt(glossary, lang, context, texts), model,
-                                options={'think': False, 'max_tokens': budget, 'timeout': 600})
-    out = result['model'] if isinstance(result, dict) else result
-    return list(out.translations)
+    out = calls.ask(Batch, model, _prompt(glossary, lang, context, texts), max_tokens=budget, timeout=600, think=False)
+    return list(out['translations'])
 
 
 PROOFREAD_WORDS = re.compile(r'\b(torres?|damas?|reinas?)\b', re.IGNORECASE)
@@ -312,7 +310,7 @@ PROOFREAD_WORDS = re.compile(r'\b(torres?|damas?|reinas?)\b', re.IGNORECASE)
 def proofread_batch(model, texts):
     """The same texts with only grammatical agreement fixed (local models slip on feminine pieces)."""
     from pydantic import BaseModel
-    from prompture import extract_with_model
+    from torre.ai import calls
 
     class Batch(BaseModel):
         texts: list[str]
@@ -324,9 +322,8 @@ def proofread_batch(model, texts):
               '"alfil", "caballo" and "peón" are masculine. Change nothing else: keep every other word, square names, '
               f'move notation, [move], {{{{placeholders}}}} and <tags> exactly. Return exactly {len(texts)} texts in order.\n\n{numbered}')
     budget = 300 + sum(len(text) for text in texts)  # the answer repeats every text, so allow the full length
-    result = extract_with_model(Batch, prompt, model, options={'think': False, 'max_tokens': budget, 'timeout': 600})
-    out = result['model'] if isinstance(result, dict) else result
-    return list(out.texts)
+    out = calls.ask(Batch, model, prompt, max_tokens=budget, timeout=600, think=False)
+    return list(out['texts'])
 
 
 def proofread(model, cache, cache_path):

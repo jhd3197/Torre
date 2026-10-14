@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../lib/api';
 import { IMPORT_ART } from '../lib/art';
 import { useAnalysis, useGameData, useToast } from '../state/AppData';
+import { GameLinkForm } from '../components/GameLinkForm';
 import type { Color } from '../types';
 
 type Source = 'chesscom' | 'lichess' | 'file';
@@ -91,6 +92,7 @@ export function ImportPage() {
           : phase === 'done' && status ? <Summary status={status} onMore={startOver} />
             : (
               <>
+                <div className="import-panel"><GameLinkForm /></div>
                 <div className="import-sources" role="radiogroup" aria-label={t('sourceLabel')}>
                   {SOURCES.map(({ key, art }) => (
                     <button key={key} type="button" role="radio" aria-checked={source === key} className="import-source"

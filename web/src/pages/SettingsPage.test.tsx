@@ -22,7 +22,7 @@ test('each section is its own page, Engines included', async () => {
   const { location } = renderAt('/settings');
   const index = await screen.findByRole('navigation', { name: 'Settings sections' });
   expect(within(index).getAllByRole('link').map(link => link.textContent)).toEqual(
-    ['General', 'Sidebar', 'Board & pieces', 'Sound', 'Coach & voice', 'Learning & puzzles', 'Analysis', 'AI coach', 'Engines', 'Accessibility', 'Data', 'About']);
+    ['General', 'Sidebar', 'Board & pieces', 'Sound', 'Coach & voice', 'Learning & puzzles', 'Analysis', 'AI', 'Engines', 'Accessibility', 'Data', 'About']);
   fireEvent.click(within(index).getByRole('link', { name: 'Engines' }));
   expect(location().pathname).toBe('/settings/engines');
   expect(within(index).getByRole('link', { name: 'Engines' })).toHaveAttribute('aria-current', 'page');

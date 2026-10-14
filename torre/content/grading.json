@@ -1,13 +1,47 @@
 {
-  "about": "Move grading shared by scoring.py / engines.py and web/src/lib (grades.ts, commentary.ts, nodeStrength.ts). Lichess's win% and accuracy constants, the judgment thresholds, and the node-budget ratings.",
+  "about": "Move grading shared by scoring.py / engines.py and web/src/lib (grades.ts, commentary.ts, nodeStrength.ts). Lichess's win% and accuracy constants, the judgment thresholds, the still-decided cap, excellent and miss, and the node-budget ratings.",
   "winCeilingCp": 1000,
   "winChancesK": 0.00368208,
   "accuracy": { "scale": 103.1668100711649, "decay": 0.04354415386753951, "offset": 3.166924740191411, "bonus": 1 },
   "judgments": [[0.3, "blunder"], [0.2, "mistake"], [0.1, "inaccuracy"]],
   "mateLossCp": { "inaccuracy": 999, "mistake": 700 },
+  "stillDecided": { "winning": 90, "lost": 10 },
+  "excellentMaxDrop": 0.02,
+  "miss": { "minBefore": 70, "minAfter": 45, "replaces": ["inaccuracy", "mistake"] },
   "nodeElo": [
     [50, 1200], [100, 1350], [200, 1500], [400, 1650], [800, 1800], [1600, 1950],
     [3200, 2100], [6400, 2250], [12800, 2400], [25600, 2550], [51200, 2700],
     [102400, 2850], [204800, 3000], [409600, 3150]
-  ]
+  ],
+  "clock": {
+    "about": "Time trouble (game_stats.py, the review's clock chart): under this share of the starting clock or these seconds before a move. Rushed: an error played this fast.",
+    "trouble": { "fraction": 0.1, "seconds": 30 },
+    "rushed": { "fraction": 0.03, "seconds": 5 }
+  },
+  "phaseGrades": {
+    "about": "bot_report.phase_grade: a grade for one player's phase from its accuracy; brilliant and great need such a move in the phase.",
+    "minMoves": 3,
+    "ratingMinMoves": 8,
+    "brilliant": 85,
+    "great": 85,
+    "ladder": [[90, "best"], [80, "excellent"], [70, "good"], [60, "inaccuracy"], [50, "mistake"]],
+    "below": "blunder"
+  },
+  "gameRating": {
+    "about": "game_rating.py: per speed, the score b*logit(accuracy) + c*ln(1+ACPL) that players rated R reach on average, p + q*R, inverted. Fitted by torre.tools.fit_rating on 59,441 rated sides of Lichess games with evals (June 2014).",
+    "speeds": [[180, "bullet"], [480, "blitz"], [1500, "rapid"]],
+    "unknown": "rapid",
+    "anchor": { "weight": 0.5, "clamp": 400 },
+    "range": [400, 3000],
+    "round": 50,
+    "minMoves": 10,
+    "minFullMoves": 15,
+    "curves": {
+      "bullet": {"b": 0.0, "c": -64.794, "p": -301.9177, "q": 0.0259418},
+      "blitz": {"b": 4.764, "c": -79.3, "p": -401.1, "q": 0.0661748},
+      "rapid": {"b": 12.092, "c": -84.312, "p": -449.8849, "q": 0.0896765},
+      "classical": {"b": 0.0, "c": -132.627, "p": -714.825, "q": 0.1298949},
+      "unknown": {"b": 12.092, "c": -84.312, "p": -449.8849, "q": 0.0896765}
+    }
+  }
 }

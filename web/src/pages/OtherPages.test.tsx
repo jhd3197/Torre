@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react';
 import { useEngine } from '../hooks/useChess';
 import { savePlay } from '../lib/storage';
 import { appBasename } from '../lib/base';
-import { resetCoachReady } from '../components/CoachExplain';
+import { resetAiStatus } from '../lib/ai';
 import { fakeServer, renderAt, START } from '../test/harness';
 import { continueNode } from './HomePage';
 import { STORY_CHAPTERS } from '../data/story';
@@ -110,18 +110,18 @@ describe('Analyze all', () => {
 });
 
 describe('Insights', () => {
-  test('Your moves shows all eight grades and identifies incomplete reanalysis', async () => {
+  test('Your moves shows every grade and identifies incomplete reanalysis', async () => {
     fakeServer().on('api/insights', () => insights({
-      grades: { brilliant: 1, great: 2, best: 3, good: 4, book: 5, inaccuracy: 6, mistake: 7, blunder: 8 },
-      gradeCoverage: { current: 20, total: 36 },
+      grades: { brilliant: 1, great: 2, best: 3, excellent: 1, good: 4, book: 5, forced: 1, inaccuracy: 6, miss: 1, mistake: 7, blunder: 8 },
+      gradeCoverage: { current: 20, total: 39 },
     }));
     renderAt('/insights');
     expect(await screen.findByRole('heading', { name: 'Your moves' })).toBeInTheDocument();
-    expect(screen.getByText('36 analyzed moves')).toBeInTheDocument();
-    expect(screen.getByText(/Updated ratings: 20 of 36 moves/)).toBeInTheDocument();
+    expect(screen.getByText('39 analyzed moves')).toBeInTheDocument();
+    expect(screen.getByText(/Updated ratings: 20 of 39 moves/)).toBeInTheDocument();
     const tiles = document.querySelectorAll('.quality-tile');
-    expect(tiles).toHaveLength(8);
-    expect([...tiles].reduce((sum, tile) => sum + Number(tile.querySelector('strong')!.textContent), 0)).toBe(36);
+    expect(tiles).toHaveLength(11);
+    expect([...tiles].reduce((sum, tile) => sum + Number(tile.querySelector('strong')!.textContent), 0)).toBe(39);
     expect(document.querySelector('.q-great img')).toHaveAttribute('src', 'art/grades/icon/great.webp');
     expect(document.querySelector('.q-book img')).toHaveAttribute('src', 'art/grades/icon/book.webp');
   });
@@ -181,10 +181,10 @@ describe('Train', () => {
   });
 
   test('the coach explains the game move once the drill is answered', async () => {
-    resetCoachReady();
+    resetAiStatus();
     const server = fakeServer();
     server.on('api/drills', () => deck());
-    server.on('api/coach/status', () => ({ available: true }));
+    server.on('api/ai/status?feature=explain', () => ({ available: true }));
     server.on('api/explain', body => (body as { cachedOnly?: boolean }).cachedOnly ? { answer: null } : { answer: { text: 'Qh5 hangs the queen.' } });
     server.on('api/drills/answer', () => ({
       correct: false, verdict: 'blunder', san: 'd4', best_san: 'e4', best: 'e2e4', played: 'Qh5', game_id: 7, ply: 12,
@@ -198,7 +198,7 @@ describe('Train', () => {
     expect(await screen.findByText('Qh5 hangs the queen.', {}, { timeout: 4000 })).toBeInTheDocument();
     expect(server.calls.filter(c => c.path === 'api/explain').map(c => c.body)).toEqual([
       { fen: START, move: 'Qh5', cachedOnly: true }, { fen: START, move: 'Qh5' }]);
-    resetCoachReady();
+    resetAiStatus();
   });
 
   test('an empty deck explains how to build one', async () => {

@@ -17,6 +17,7 @@ from torre.coaching import coach_home
 from torre.analysis import engine_service
 from torre.analysis import limits
 from torre.analysis import game_export
+from torre.analysis import game_rating
 from torre.games import importer
 from torre.server import jobs
 from torre import jsonio
@@ -78,18 +79,20 @@ def game_detail(req):
     game = _game(game_id)
     analysis = appdata.analysis_record(game_id)
     detail = board_view.with_clocks(board_view.parse_pgn(game['pgn']), game)
-    return {**detail, 'record': game, 'analysis': analysis, 'phases': _phases(detail, game, analysis)}
+    card = _phase_card(detail, game, analysis)
+    return {**detail, 'record': game, 'analysis': analysis, 'phases': card and card['phases'],
+            'phase_starts': card and card['starts'], 'rating': game_rating.for_game(game, analysis) if analysis else None}
 
 
-def _phases(detail, game, analysis):
-    """Accuracy and errors by phase for you ('you') and your opponent ('bot'), from the stored
-    evals (bot_report.report); None until the game is analyzed."""
+def _phase_card(detail, game, analysis):
+    """Accuracy, errors and a grade by phase for you ('you') and your opponent ('bot'), and the
+    ply each phase starts at, from the stored evals (bot_report.report); None until analysed."""
     evals = (analysis or {}).get('evals') or []
     ucis = [m['uci'] for m in detail['moves']]
     if game.get('user_color') not in ('white', 'black') or len(evals) != len(ucis) + 1:
         return None
     try:
-        return bot_report.report(detail['initialFen'], ucis, game['user_color'], evals)['phases']
+        return bot_report.report(detail['initialFen'], ucis, game['user_color'], evals, grades=analysis.get('move_grades'))
     except (ValueError, TypeError):
         return None
 
@@ -258,6 +261,25 @@ def import_files(req):
         raise importer.ImportProblem('No games were found in this file.')
     IMPORT_JOB.load(records, failed, _archive()[0], source='file')
     return import_view(IMPORT_JOB.status(), req.lang)
+
+
+@ROUTES.post('/api/import/link')
+def import_link(req):
+    """One game from its chess.com or Lichess link, saved to the library: its id, to open its
+    review, or the two players when the page must ask which one you were."""
+    payload = req.payload
+    me = payload.get('me')
+    accounts = appdata.setup_state()['accounts']
+    try:
+        record = importer.link_game(payload.get('url'), appdata.my_names(), me, accounts.get('chesscom'))
+    except importer.ChooseSide as choose:
+        return {'choose': choose.players}
+    if isinstance(me, str) and me.strip():
+        appdata.remember_alias(me.strip())
+    added, _ = importer.append([record], _archive()[0])
+    if added:
+        auto_analyze()
+    return {'id': record['id'], 'added': bool(added)}
 
 
 @ROUTES.post('/api/import/commit')

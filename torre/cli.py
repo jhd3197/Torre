@@ -206,8 +206,9 @@ def run_narrate(args):
 def run_coach(args):
     if (args.model or args.force) and not args.ask:
         raise ValueError('--model and --force require --ask.')
+    from torre.ai import runtime
     from torre.coaching import coach
-    coach.use_data_dir(args.data_dir)
+    runtime.use_data_dir(args.data_dir)
     result = (coach.generate(args.data_dir, args.lang, args.model, force=args.force)
               if args.ask else coach.brief(args.data_dir))
     print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -221,11 +222,18 @@ def run_doctor(args):
         checks.append({'name': name, 'status': status, 'detail': str(detail)})
 
     add('Python', 'ok' if sys.version_info >= (3, 11) else 'fail', f'{sys.version.split()[0]} ({sys.executable})')
-    for module in ('chess', 'fsrs', 'prompture'):
+    for module in ('chess', 'fsrs'):
         found = importlib.util.find_spec(module) is not None
-        missing = ('optional, for the AI coach: pip install "torre[coach]"' if module == 'prompture'
-                   else 'missing; pip install torre (or requirements.txt in a source checkout)')
-        add(module, 'ok' if found else 'warn' if module == 'prompture' else 'fail', 'installed' if found else missing)
+        add(module, 'ok' if found else 'fail', 'installed' if found else 'missing; pip install torre (or requirements.txt in a source checkout)')
+    from torre.ai import runtime
+    version = runtime.prompture_version()
+    add('prompture', 'ok' if version else 'warn', version or 'optional, for the AI features: pip install "torre[coach]"')
+    if version and args.data_dir.is_dir():
+        from torre.ai import catalogue, config
+        ready = [p['name'] for p in catalogue.providers(args.data_dir) if p['ready']]
+        model, source = config.choose_model(args.data_dir)
+        add('AI', 'ok' if model else 'warn', f"{model} ({source}); ready: {', '.join(ready) or 'none'}" if model
+            else f"no model chosen; ready: {', '.join(ready) or 'none'} (Settings > AI)")
     if importlib.util.find_spec('chess') is not None:
         from torre.analysis import engines
         engine = engines.resolve_engine('stockfish')

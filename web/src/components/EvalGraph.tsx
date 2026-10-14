@@ -10,7 +10,7 @@ import type { Grade } from '../lib/grades';
 export type EvalPoint = { cp: number | null; mate: number | null } | null;
 export interface EvalMark { ply: number; grade: Grade; white: boolean; yours: boolean }
 
-const SLIPS: Grade[] = ['inaccuracy', 'mistake', 'blunder'];
+const SLIPS: Grade[] = ['inaccuracy', 'miss', 'mistake', 'blunder'];
 const CAP = 5; // pawns: the graph's top and bottom
 
 /** Pawns for White, mates at the cap, a missing score carrying the last one forward. */
@@ -30,7 +30,7 @@ const area = (values: number[]) => {
 };
 const top = (v: number) => `${50 - v * (48 / CAP)}%`;
 
-export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo }: {
+export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo, bookExit }: {
   points: EvalPoint[];
   marks: EvalMark[];
   cursor: number;
@@ -38,6 +38,8 @@ export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo }: {
   /** Each move's SAN, for the readout. */
   sans: string[];
   onGo: (ply: number) => void;
+  /** The ply of the first move out of the opening book, marked on the graph. */
+  bookExit?: number | null;
 }) {
   const { t } = useTranslation('games');
   const [open, setOpen] = useState(false);
@@ -87,6 +89,7 @@ export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo }: {
         {slips.filter(mark => mark.yours).map(mark => (
           <i key={mark.ply} className={`eval-dot dot-${mark.grade}`} style={{ left: x(mark.ply), top: top(values[mark.ply]) }} />
         ))}
+        {bookExit != null && bookExit <= total && <b className="eval-book" style={{ left: x(bookExit) }} />}
         <b className="eval-cursor" style={{ left: x(cursor) }} />
       </button>
       {open && (
@@ -96,6 +99,7 @@ export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo }: {
             <span className="eval-readout">{readout}</span>
             <ul className="eval-legend">
               {SLIPS.map(slip => <li key={slip}><i className={`dot-${slip}`} />{t(`game.gradeTable.${slip}`)}</li>)}
+              {bookExit != null && <li><i className="legend-book" />{t('graph.bookExit')}</li>}
             </ul>
             <button type="button" className="button" onClick={() => { setOpen(false); setHover(null); }}>{t('graph.close')}</button>
           </div>
@@ -107,6 +111,9 @@ export function EvalGraph({ points, marks, cursor, initialFen, sans, onGo }: {
                   <path d={area(values)} />
                   <line x1="0" x2={total} y1="50" y2="50" vectorEffect="non-scaling-stroke" />
                 </svg>
+                {bookExit != null && bookExit <= total && (
+                  <b className="eval-book" style={{ left: x(bookExit) }} title={`${moveName(bookExit)} · ${t('graph.bookExit')}`} />
+                )}
                 <b className="eval-cursor" style={{ left: x(cursor) }} />
                 {hover != null && <b className="eval-hover" style={{ left: x(hover) }} />}
                 {slips.map(mark => (

@@ -1,6 +1,7 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { boardAfter, fakeServer, renderAt, START } from '../test/harness';
-import type { GameDetail } from '../types';
+import { SCORING_VERSION } from '../lib/grades';
+import type { GameDetail, Grade } from '../types';
 
 const MOVES = [
   { uci: 'e2e4', san: 'e4' }, { uci: 'e7e5', san: 'e5' }, { uci: 'g1f3', san: 'Nf3' }, { uci: 'b8c6', san: 'Nc6' },
@@ -11,7 +12,7 @@ function game(id: number, extra: Partial<GameDetail> = {}): GameDetail {
     initialFen: START, moves: MOVES, headers: { White: 'jhd3197', Black: 'Duke-BOT', Result: '1-0', Date: '2026.09.05' },
     record: { id, user_color: 'white', opponent: 'Duke-BOT' },
     analysis: {
-      id, scoring_version: 3, accuracy: 91.4,
+      id, scoring_version: SCORING_VERSION, accuracy: 91.4,
       moves: [
         { ply: 1, san: 'e4', class: null, best: true, brilliant: false, accuracy: 100 },
         { ply: 3, san: 'Nf3', class: 'blunder', best: false, brilliant: false, accuracy: 20 },
@@ -77,6 +78,40 @@ test('shows the recognized opening and actual move order without an AI coach', a
   await waitFor(() => expect(location().pathname).toBe('/games/191/3'));
 });
 
+test('a game with clocks shows the time per move and each side’s average', async () => {
+  const clocks = [25, 170, 20, 160];  // White spends 2 min 35 s on move 1, then plays short of time
+  serve(149, game(149, {
+    headers: { White: 'jhd3197', Black: 'Duke-BOT', Result: '1-0', TimeControl: '180+0' },
+    moves: MOVES.map((move, i) => ({ ...move, clock: clocks[i] })),
+  }));
+  const { location } = renderAt('/games/149/0');
+  const bar = await screen.findByRole('button', { name: '2… Nc6 · 10 s' });
+  fireEvent.click(bar);
+  await waitFor(() => expect(location().pathname).toBe('/games/149/4'));
+  fireEvent.click(screen.getByRole('button', { name: 'Summary' }));
+  expect(screen.getByText(/took 1 min 20 s a move · short of time from move 2/)).toBeInTheDocument();
+  expect(screen.getByText(/took 10 s a move · never short of time/)).toBeInTheDocument();
+});
+
+test('a game without clocks has no clock chart', async () => {
+  serve(150);
+  renderAt('/games/150/0');
+  await screen.findByRole('button', { name: /Go to move 1, e4/ });
+  expect(document.querySelector('.clock-graph')).toBeNull();
+});
+
+test('the summary says where the game left the book, and who left it', async () => {
+  serve(148, game(148, { opening: {
+    name: "King's Knight Opening", eco: 'C40', ply: 3, move_number: 2, move: 'Nf3',
+    played_by: 'white', line: '1. e4 1... e5 2. Nf3', moves: ['e4', 'e5', 'Nf3'],
+    transposed: false, family_idea: null, continuation: [], exit: { ply: 4, move_number: 2, move: 'Nc6', played_by: 'black' },
+  } }));
+  const { location } = renderAt('/games/148');
+  await reviewed();
+  fireEvent.click(await screen.findByRole('button', { name: 'Left the book on move 2 (your opponent)' }));
+  await waitFor(() => expect(location().pathname).toBe('/games/148/4'));
+});
+
 test('the move is part of the URL, and stepping replaces it without piling up history', async () => {
   serve(101);
   const { location, router } = renderAt('/games/101/2');
@@ -126,6 +161,13 @@ test('analysis judgments are marked in the move list', async () => {
   const blunder = await screen.findByRole('button', { name: /Go to move 2, Nf3, blunder/ });
   expect(within(blunder).getByAltText('??')).toBeInTheDocument();
   expect(document.querySelector('.accuracy-card.yours b')).toHaveTextContent('91.4%');
+});
+
+test('the accuracy cards say how each side played in rating points, or why not', async () => {
+  serve(147, game(147, { rating: { user: 1650, opp: null, speed: 'blitz' } }));
+  renderAt('/games/147/0');
+  expect(await screen.findByText('Played like ~1650')).toHaveAttribute('title', 'An estimate from this game alone, rounded to 50.');
+  expect(screen.getByText('Rating: –')).toHaveAttribute('title', 'Too short to estimate a rating.');
 });
 
 test('moving a piece in a replay opens Explore with the move, and Back returns to the same move', async () => {
@@ -300,11 +342,12 @@ test('Rooky says the recap on its own once the review is in, then offers the les
   expect(JSON.parse(localStorage.getItem('chess-jd-rooky-heard') ?? '[]')).toContain('recap:193');
 });
 
-test('the summary lists your key moments, each jumping to the position before it, and accuracy by phase', async () => {
-  const row = (accuracy: number) => ({ moves: 2, accuracy, inaccuracy: 0, mistake: 0, blunder: 0 });
+test('the summary lists your key moments, each jumping to the position before it, and a grade by phase', async () => {
+  const row = (accuracy: number, grade: Grade | null, mistake = 0) => ({ moves: 2, accuracy, inaccuracy: 0, mistake, blunder: 0, grade });
   serve(135, game(135, {
     analysis: { ...game(135).analysis!, key_moments: [{ ply: 3, move_number: 2, san: 'Nf3', class: 'blunder', win_before: 55, win_after: 12 }] },
-    phases: { opening: { you: row(88), bot: row(71) }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
+    phases: { opening: { you: row(88, 'excellent'), bot: row(71, null, 1) }, middlegame: { you: null, bot: null }, endgame: { you: null, bot: null } },
+    phase_starts: { opening: 1, middlegame: null, endgame: null },
   }));
   const { location } = renderAt('/games/135');
   await reviewed();
@@ -313,8 +356,11 @@ test('the summary lists your key moments, each jumping to the position before it
   // Stepping brings the moves forward; the summary is a tab away.
   expect(screen.getByRole('button', { name: 'Moves' })).toHaveAttribute('aria-pressed', 'true');
   fireEvent.click(screen.getByRole('button', { name: 'Summary' }));
-  expect(screen.getByText('88%')).toBeInTheDocument();
-  expect(screen.getByText('71%')).toBeInTheDocument();
+  const card = document.querySelector('.game-phases')!;
+  expect(within(card as HTMLElement).getByText('Excellent').closest('td')).toHaveAttribute('title', '88% accuracy');
+  expect(within(card as HTMLElement).getByTitle('71% accuracy · 1 mistake · Too few moves to grade')).toHaveTextContent('–');
+  fireEvent.click(within(card as HTMLElement).getByRole('button', { name: 'Opening' }));
+  await waitFor(() => expect(location().pathname).toBe('/games/135/1'));
 });
 
 test('the evaluation strip opens a graph of the whole game, and Escape puts it away', async () => {

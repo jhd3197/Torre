@@ -148,3 +148,110 @@ class ImportJobTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class LinkImportTests(unittest.TestCase):
+    """One game from its link (importer.link_game), with the network replaced by a dict of URLs."""
+
+    def serve(self, pages):
+        calls = []
+
+        def get(url):
+            calls.append(url)
+            if url not in pages:
+                raise LookupError(url)
+            return pages[url]
+        return get, calls
+
+    def lichess_game(self, white='jhd3197', black='Rival'):
+        return {'id': 'abcdEFGH', 'variant': 'standard', 'speed': 'blitz', 'lastMoveAt': 1790000000000,
+                'players': {'white': {'user': {'name': white}, 'analysis': {'accuracy': 40}}, 'black': {'user': {'name': black}}},
+                'pgn': PGN.replace('jhd3197', white).replace('"Rival"', f'"{black}"')}
+
+    def lichess(self, *games):
+        asked = []
+
+        def export(ids):
+            asked.append(ids)
+            return [g for g in games if g['id'] in ids]
+        return export, asked
+
+    def test_a_lichess_link_fetches_that_game(self):
+        export, asked = self.lichess(self.lichess_game())
+        record = importer.link_game('https://lichess.org/abcdEFGH/black', {'jhd3197'}, export=export)
+        self.assertEqual((record['id'], record['user_color'], record['user_accuracy']), ('li-abcdEFGH', 'white', 40))
+        self.assertEqual(asked, [['abcdEFGH']])
+
+    def test_neither_player_known_asks_which_side_and_the_answer_is_used(self):
+        export, _ = self.lichess(self.lichess_game('Ana', 'Bea'))
+        with self.assertRaises(importer.ChooseSide) as asked:
+            importer.link_game('https://lichess.org/abcdEFGH', {'jhd3197'}, export=export)
+        self.assertEqual(asked.exception.players, ['Ana', 'Bea'])
+        record = importer.link_game('https://lichess.org/abcdEFGH', {'jhd3197'}, me='Bea', export=export)
+        self.assertEqual(record['user_color'], 'black')
+
+    def test_a_chesscom_link_finds_the_game_in_the_players_month(self):
+        callback = importer.CHESSCOM_CALLBACK.format(kind='daily', id='777')
+        month = importer.CHESSCOM_MONTH.format(name='jhd3197', year='2026', month='08')
+        get, calls = self.serve({callback: {'game': {'pgnHeaders': {'Date': '2026.08.02', 'White': 'JHD3197', 'Black': 'Rival'}}},
+                                 month: MONTH})
+        record = importer.link_game('https://www.chess.com/game/daily/777', {'jhd3197'}, get=get)
+        self.assertEqual((record['id'], record['type'], record['user_color']), ('777', 'daily', 'white'))
+        self.assertEqual(calls, [callback, month])
+
+    def test_without_chesscom_page_data_your_own_archive_is_searched(self):
+        archives = importer.CHESSCOM_ARCHIVES.format(name='jhd3197')
+        months = ['https://api.chess.com/pub/player/jhd3197/games/2026/07', 'https://api.chess.com/pub/player/jhd3197/games/2026/08']
+        get, calls = self.serve({archives: {'archives': months}, months[0]: {'games': []}, months[1]: MONTH})
+        record = importer.link_game('https://www.chess.com/game/daily/777', {'jhd3197'}, account='jhd3197', get=get)
+        self.assertEqual(record['id'], '777')
+        self.assertEqual(calls[-2:], [archives, months[1]])  # newest month first, found there
+        with self.assertRaises(importer.ImportProblem):  # no account to search
+            importer.link_game('https://www.chess.com/game/daily/777', {'jhd3197'}, get=get)
+
+    def test_unknown_games_and_other_links_say_what_is_wrong(self):
+        get, _ = self.serve({})
+        with self.assertRaisesRegex(importer.ImportProblem, 'not found'):
+            importer.link_game('https://lichess.org/zzzzZZZZ', {'jhd3197'}, export=self.lichess()[0])
+        with self.assertRaisesRegex(importer.ImportProblem, 'Paste the link'):
+            importer.link_game('https://example.com/game/1', {'jhd3197'}, get=get)
+        with self.assertRaisesRegex(importer.ImportProblem, 'Paste the link'):
+            importer.link_game(None, {'jhd3197'}, get=get)
+
+
+class LinkRouteTests(unittest.TestCase):
+    def post(self, path, payload):
+        import io
+        from torre.server import studio
+        handler = object.__new__(studio.Handler)
+        handler.path = path
+        body = json.dumps(payload).encode()
+        handler.headers = {'Host': '127.0.0.1:1886', 'Content-Type': 'application/json', 'X-Chess-Studio': '1',
+                           'Content-Length': str(len(body))}
+        handler.rfile, handler.wfile = io.BytesIO(body), io.BytesIO()
+        status = []
+        handler.send_response = status.append
+        handler.send_header = lambda key, value: None
+        handler.end_headers = lambda: None
+        handler.do_POST()
+        return status[0], json.loads(handler.wfile.getvalue())
+
+    def test_the_route_saves_the_game_once_and_asks_for_a_side_when_needed(self):
+        from unittest.mock import patch
+        from torre.server import api_games
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        games_file = Path(folder.name) / 'games.jsonl'
+        record = importer.to_record(PGN, {'jhd3197'}, id='123456', type='live')
+        with patch.object(api_games, '_archive', return_value=(games_file, None)), \
+                patch.object(api_games, 'auto_analyze') as analyse, \
+                patch.object(importer, 'link_game', return_value=record) as link:
+            self.assertEqual(self.post('/api/import/link', {'url': 'https://www.chess.com/game/live/123456'}),
+                             (200, {'id': '123456', 'added': True}))
+            self.assertEqual(self.post('/api/import/link', {'url': 'https://www.chess.com/game/live/123456'})[1]['added'], False)
+            self.assertEqual(analyse.call_count, 1)
+            self.assertEqual(link.call_args.args[0], 'https://www.chess.com/game/live/123456')
+        with patch.object(importer, 'link_game', side_effect=importer.ChooseSide(['Ana', 'Bea'])):
+            self.assertEqual(self.post('/api/import/link', {'url': 'https://lichess.org/abcdEFGH'}), (200, {'choose': ['Ana', 'Bea']}))
+        status, body = self.post('/api/import/link', {'url': 'https://example.com'})
+        self.assertEqual(status, 400)

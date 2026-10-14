@@ -1,4 +1,4 @@
-import { fireEvent, screen, within } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { fakeServer, renderAt } from '../test/harness';
 import { rangeStart, type ImportStatus } from './ImportPage';
 
@@ -90,4 +90,31 @@ test('an unknown account shows the server message', async () => {
   fireEvent.change(await screen.findByLabelText('Your Chess.com username'), { target: { value: 'nobody' } });
   fireEvent.click(screen.getByRole('button', { name: 'Find games' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('There is no chess.com player with that username.');
+});
+
+test('a pasted game link opens that game’s review, asking which player you were when it must', async () => {
+  const server = fakeServer();
+  server.on('api/import/status', () => idle);
+  server.on('api/setup', () => ({ onboarded: true, accounts: { chesscom: null, lichess: null } }));
+  server.on('api/import/link', body => (body?.me ? { id: 'li-abcdEFGH', added: true } : { choose: ['Ana', 'Bea'] }));
+  server.on('api/games/li-abcdEFGH', () => new Promise(() => {}));
+  const { location } = renderAt('/import');
+  fireEvent.change(await screen.findByLabelText('Review one game from its link'), { target: { value: 'https://lichess.org/abcdEFGH' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Open the review' }));
+  const sides = await screen.findByRole('group', { name: 'Which player were you?' });
+  fireEvent.click(within(sides).getByRole('button', { name: 'Bea' }));
+  await waitFor(() => expect(location().pathname).toBe('/games/li-abcdEFGH'));
+  expect(server.calls.filter(c => c.path === 'api/import/link').map(c => c.body)).toEqual([
+    { url: 'https://lichess.org/abcdEFGH' }, { url: 'https://lichess.org/abcdEFGH', me: 'Bea' }]);
+});
+
+test('a link the server cannot use says why', async () => {
+  const server = fakeServer();
+  server.on('api/import/status', () => idle);
+  server.on('api/setup', () => ({ onboarded: true, accounts: {} }));
+  server.on('api/import/link', () => { throw new Error('That game was not found. It may be private, or the link may be wrong.'); });
+  renderAt('/import');
+  fireEvent.change(await screen.findByLabelText('Review one game from its link'), { target: { value: 'https://lichess.org/zzzzZZZZ' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Open the review' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent('That game was not found.');
 });

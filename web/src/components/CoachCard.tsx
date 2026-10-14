@@ -1,13 +1,15 @@
 // The AI coach from /api/coach (coach.py): an LLM reads a brief of your numbers and answers with a
 // headline, strengths, a week's plan and focus areas tied to saved, measurable activities. Without
-// Prompture it offers to install it; without a model it offers the AI setup (AiSetup: a provider, the
-// player's own key, a model), once on its own. `useCoach` loads it once for the page: the header's model menu, Rooky's
-// talking points and the "Rooky noticed" card all read the same state.
+// Prompture it offers to install it; without a model it offers the AI setup (AiSetupDialog), once on
+// its own. Which model writes is Settings > AI's (lib/ai.ts). `useCoach` loads it once for the page:
+// the header's model menu, Rooky's talking points and the "Rooky noticed" card all read the same state.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api';
-import { AiSetupDialog } from './AiSetup';
+import { AiSetupDialog } from './ai/AiSetupDialog';
+import { ModelPicker } from './ai/ModelPicker';
+import { loadAi, modelName, resetAiStatus, saveAiSettings, type AiSource, type AiView } from '../lib/ai';
 import { usePoll } from '../hooks/usePoll';
 import { lessonPath, puzzlePath } from '../lib/routes';
 
@@ -29,10 +31,8 @@ export interface CoachData {
   tasks?: CoachTask[];
   available: boolean;
   model: string | null;
-  /** The model was picked from the local Ollama, not chosen. */
-  auto?: boolean;
-  /** Prompture strings for the models a local Ollama serves. */
-  models?: string[];
+  /** Where the coach's model came from: its own choice, the default, or picked automatically. */
+  source?: AiSource;
   reason: 'prompture_missing' | 'no_model' | null;
   /** The one-time AI setup dialog was shown already. */
   setup_seen?: boolean;
@@ -53,8 +53,6 @@ export const drillPath = ({ kind, target }: { kind: CoachDrillKind; target: stri
       : kind === 'openings' ? '/openings'
         : '/play/bots';
 
-/** A local Ollama model runs on this computer; its name reads better without the provider. */
-const localName = (model: string) => (model.startsWith('ollama/') ? model.slice('ollama/'.length) : null);
 
 export interface CoachState {
   coach: CoachData | null;
@@ -63,6 +61,8 @@ export interface CoachState {
   load: () => Promise<CoachData | null>;
   post: (path: string, body: object) => Promise<void>;
   chooseModel: (model: string) => Promise<void>;
+  /** Install Prompture (Settings > AI's install), then follow it from the coach view. */
+  install: () => Promise<void>;
 }
 
 export function useCoach(): CoachState {
@@ -101,14 +101,29 @@ export function useCoach(): CoachState {
     setFailed(null);
     return api<CoachData>(path, body).then(setCoach).catch((error: Error) => setFailed(error.message));
   }, []);
-  const chooseModel = useCallback((model: string) => post('api/coach/model', { model }), [post]);
-  return { coach, failed, running, load, post, chooseModel };
+  // The coach's own model (Settings > AI's "Coach's advice"), then the coach view again.
+  const chooseModel = useCallback(async (model: string) => {
+    setFailed(null);
+    try {
+      await saveAiSettings({ features: { coach: model } });
+      resetAiStatus();
+      await load();
+    } catch (error) { setFailed((error as Error).message); }
+  }, [load]);
+  const install = useCallback(async () => {
+    setFailed(null);
+    try {
+      await api('api/ai/install', {});
+      await load();
+    } catch (error) { setFailed((error as Error).message); }
+  }, [load]);
+  return { coach, failed, running, load, post, chooseModel, install };
 }
 
 /** "Rooky noticed": the coach's headline, what works, what to work on, and the saved plan's status. */
 export function CoachCard({ state }: { state: CoachState }) {
   const { t } = useTranslation('coach');
-  const { coach, failed, running, load, post } = state;
+  const { coach, failed, running, load, post, install } = state;
 
   if (!coach) return <section className="coach-notes coach-notes-loading" role={failed ? 'alert' : 'status'}>
     {failed ? <>{t('loadFailed')} <button type="button" className="text-button" onClick={() => load()}>{t('retry')}</button></> : t('loading')}
@@ -118,17 +133,17 @@ export function CoachCard({ state }: { state: CoachState }) {
   const tasks = coach.tasks ?? [];
 
   if (coach.reason === 'prompture_missing') {
-    const install = coach.install;
+    const progress = coach.install;
     return (
-      <section className="coach-notes" aria-labelledby="coach-notes-title" aria-busy={!!install?.running}>
+      <section className="coach-notes" aria-labelledby="coach-notes-title" aria-busy={!!progress?.running}>
         {heading}
         <Tasks tasks={tasks} />
         <p className="coach-notes-text">{t('setup.prompture_missing')}</p>
-        {install?.running
+        {progress?.running
           ? <p className="coach-notes-text" role="status">{t('setup.installing')}</p>
-          : <button type="button" className="button primary" onClick={() => post('api/coach/install', {})}>{t('setup.install')}</button>}
-        {(failed ?? install?.error) && !install?.running &&
-          <p className="coach-notes-text" role="alert">{t('setup.installFailed', { error: failed ?? install?.error })}</p>}
+          : <button type="button" className="button primary" onClick={() => void install()}>{t('setup.install')}</button>}
+        {(failed ?? progress?.error) && !progress?.running &&
+          <p className="coach-notes-text" role="alert">{t('setup.installFailed', { error: failed ?? progress?.error })}</p>}
       </section>
     );
   }
@@ -171,7 +186,7 @@ function NoModel({ coach, tasks, heading, failed, load }: {
   const { t } = useTranslation('coach');
   const [open, setOpen] = useState(!coach.setup_seen);
   useEffect(() => {
-    if (!coach.setup_seen) api('api/coach/ai/seen', {}).catch(() => {});
+    if (!coach.setup_seen) api('api/ai/seen', {}).catch(() => {});
   }, [coach.setup_seen]);
   const close = (saved: boolean) => {
     setOpen(false);
@@ -213,10 +228,11 @@ function Tasks({ tasks }: { tasks: CoachTask[] }) {
   </div>;
 }
 
-/** The header chip naming the coach's model, opening a menu of the local models and a way to the AI settings. */
+/** The header chip naming the coach's model, opening the model picker and a way to the AI settings. */
 export function ModelMenu({ state }: { state: CoachState }) {
   const { t } = useTranslation('coach');
   const [open, setOpen] = useState(false);
+  const [view, setView] = useState<AiView | null>(null);
   const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
@@ -226,24 +242,27 @@ export function ModelMenu({ state }: { state: CoachState }) {
     document.addEventListener('keydown', escape);
     return () => { document.removeEventListener('pointerdown', away); document.removeEventListener('keydown', escape); };
   }, [open]);
+  // What can be picked is asked for when the menu first opens.
+  useEffect(() => {
+    if (open && !view) loadAi().then(setView, () => { /* the settings link still works */ });
+  }, [open, view]);
 
   const { coach, chooseModel } = state;
   if (!coach?.available || !coach.model) return null;
-  const local = localName(coach.model);
-  const models = coach.models ?? [];
-  const choose = (model: string) => chooseModel(model).then(() => setOpen(false));
+  const name = modelName(coach.model, view?.models);
+  // A model on this computer reads better without its provider, and says where it runs.
+  const local = /^(ollama|lmstudio)\//.test(coach.model);
   return (
     <div className="coach-model-menu" ref={box}>
       <button type="button" className="coach-chip" aria-expanded={open} aria-haspopup="true" onClick={() => setOpen(on => !on)}
         title={t('menu.change')}>
         <span className="coach-chip-dot" aria-hidden="true" />
-        {local ? t('menu.local', { model: local }) : coach.model}
+        {local ? t('menu.local', { model: name }) : name}
       </button>
       {open && <div className="coach-model-panel" role="group" aria-label={t('menu.change')}>
-        <p>{coach.auto ? t('modelAuto', { model: coach.model }) : t('model', { model: coach.model })}</p>
-        {models.length > 0 && <div className="coach-model-list">{models.map(model => (
-          <button key={model} type="button" aria-pressed={model === coach.model} onClick={() => choose(model)}>{localName(model) ?? model}</button>
-        ))}</div>}
+        <p>{coach.source === 'auto' ? t('modelAuto', { model: name }) : t('model', { model: name })}</p>
+        {view && <ModelPicker providers={view.providers} value={coach.model} label={t('menu.change')}
+          onPick={model => void chooseModel(model).then(() => setOpen(false))} />}
         <Link className="coach-notes-act" to="/settings/ai" onClick={() => setOpen(false)}>{t('menu.settings')} →</Link>
       </div>}
     </div>

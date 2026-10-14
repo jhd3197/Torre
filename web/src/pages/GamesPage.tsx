@@ -12,11 +12,13 @@ import { GameRecap, recapKey, recapWillPlay } from '../components/GameRecap';
 import { GradeTable } from '../components/GradeTable';
 import { EvalGraph, type EvalMark, type EvalPoint } from '../components/EvalGraph';
 import { AccuracyCards, GradeChips, ResultBanner, WorthALook, type Moment } from '../components/ReviewSummary';
+import { ClockGraph, ClockNumbers } from '../components/ClockGraph';
+import { GameLinkForm } from '../components/GameLinkForm';
 import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
-import { longThink, recapLines, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
-import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, type Grade } from '../lib/grades';
+import { longThink, recapLines, storyLine, storyOf, swingOf, thinkTimes as clockTimes, type Outcome } from '../lib/commentary';
+import { emptyGrades, GRADE_INFO, gradeLine, gradeOf, SCORING_VERSION, type Grade } from '../lib/grades';
 import { analysisEngine, autoAnalysis as autoAnalysisSetting } from '../lib/settings';
 import { api } from '../lib/api';
 import { explorePath, gamePath, mistakesPath } from '../lib/routes';
@@ -28,7 +30,6 @@ import { ShareButton, ShareIcon } from '../components/ShareButton';
 import { celebrated, MoveCelebration } from '../components/workspace/MoveCelebration';
 import type { AnalyzedMove, Color, GameDetail } from '../types';
 
-const SCORING_VERSION = 3;
 const gameCache = new Map<string, GameDetail>();
 
 function useGame(id: string) {
@@ -105,6 +106,7 @@ export function GamesIndex() {
       <h2>{t('index.emptyTitle')}</h2>
       <p>{t('index.emptyBody')}</p>
       <Link className="button primary" to="/play/bots">{t('index.play')}</Link>
+      <GameLinkForm />
     </div>
   );
 }
@@ -206,12 +208,17 @@ export function GamePage() {
     if (seconds == null || !yours(i + 1) || (longestThink && longestThink.seconds >= seconds)) return;
     const grade = judgments.get(i + 1);
     longestThink = { seconds, move: Math.floor((startPly(game.initialFen) + i) / 2) + 1,
-      good: !grade || !['mistake', 'blunder'].includes(gradeOf(grade)) };
+      good: !grade || !['miss', 'mistake', 'blunder'].includes(gradeOf(grade)) };
   });
+  // The game's story in one line, offline: one blunder, back and forth, in control, a close finish.
+  const winnerSide = game.headers.Result === '1-0' ? 'white' : game.headers.Result === '0-1' ? 'black' : game.headers.Result === '1/2-1/2' ? 'draw' : null;
+  const story = storyOf(analysis?.evals ?? evals, winnerSide);
+  const storyText = story ? storyLine(story, record?.user_color ? outcome : null, String(record?.id ?? game.headers.Date ?? '')) : null;
   const recap = reviewing || !counts ? [] : recapLines({
-    outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl),
+    outcome, counts, longestThink, longThink: longThink(game.headers.TimeControl), story: storyText,
     swing: outcome && record?.user_color ? swingOf(analysis?.evals ?? evals, userColor, outcome, game.initialFen) : null,
     accuracy: analysis?.accuracy ?? record?.user_accuracy ?? null,
+    rating: game.rating ? { you: game.rating.user, opp: game.rating.opp } : null,
   });
 
   // The evaluation graph: the saved analysis's scores, or the in-page review's as it fills in.
@@ -219,6 +226,9 @@ export function GamePage() {
     ? analysis.evals.map(([cp, mate]) => (cp == null && mate == null ? null : { cp, mate }))
     : evals.map(e => (e ? { cp: e.cp, mate: e.mate } : null));
   const marks: EvalMark[] = [...judgments.values()].map(m => ({ ply: m.ply, grade: gradeOf(m), white: byWhite(m.ply), yours: yours(m.ply) }));
+  // The clock chart: each move's grade, and the starting clock from the time control.
+  const gradeByPly = new Map(marks.map(mark => [mark.ply, mark.grade]));
+  const startClock = Number(game.headers.TimeControl?.split('+')[0]) || null;
 
   // Worth another look: the saved key moments, or your slips from the review, each opening the position before.
   const moveNumber = (ply: number) => Math.floor((startPly(game.initialFen) + ply - 1) / 2) + 1;
@@ -228,13 +238,13 @@ export function GamePage() {
   };
   const moments: Moment[] = analysis?.key_moments?.length
     ? analysis.key_moments.map(moment => {
-      const grade = (moment.brilliant ? 'brilliant' : moment.class ?? 'good') as Grade;
+      const grade = (moment.brilliant ? 'brilliant' : moment.miss ? 'miss' : moment.class ?? 'good') as Grade;
       const swing = moment.win_before != null && moment.win_after != null
         ? t('game.keyMomentSwing', { before: Math.round(moment.win_before), after: Math.round(moment.win_after) }) : '';
       return { ply: moment.ply, target: moment.ply - 1, grade, title: t('game.keyMomentMove', { move: moment.move_number, san: moment.san }),
         detail: [t(`game.gradeTable.${grade}`), swing].filter(Boolean).join(' · ') };
     })
-    : [...judgments.values()].filter(m => yours(m.ply) && ['inaccuracy', 'mistake', 'blunder'].includes(gradeOf(m))).slice(0, 6).map(m => {
+    : [...judgments.values()].filter(m => yours(m.ply) && ['inaccuracy', 'miss', 'mistake', 'blunder'].includes(gradeOf(m))).slice(0, 6).map(m => {
       const grade = gradeOf(m), better = betterSan(m.ply);
       return { ply: m.ply, target: m.ply - 1, grade, title: t('game.keyMomentMove', { move: moveNumber(m.ply), san: m.san }),
         detail: [t(`game.gradeTable.${grade}`), better && t('summary.betterWas', { san: better })].filter(Boolean).join(' · ') };
@@ -323,21 +333,29 @@ export function GamePage() {
             title={t('common:share.moveTitle')} label={t('common:share.move')}><ShareIcon /></ShareButton>
         ) : undefined}
         resultText={game.headers.Result} judgments={judgments} bestMoves={bestMoves} autoplay opening={opening} thinkTimes={thinkTimes} you={record?.user_color ? userColor : undefined}
-        longThink={longThink(game.headers.TimeControl)} startClock={Number(game.headers.TimeControl?.split('+')[0]) || null}
+        longThink={longThink(game.headers.TimeControl)} startClock={startClock}
         onTryBest={uci => navigate(explore([uci]))} tryLabel={t('game.exploreBest')}
         heading={false} startTab={opened.current.whole ? 'summary' : 'moves'}
         showSummary={opened.current.whole && record && recap.length && recapWillPlay(record.id) ? recapKey(record.id) : null}
-        movesTop={!reviewing && <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go} />}
+        movesTop={!reviewing && <>
+          <EvalGraph points={points} marks={marks} cursor={cursor} initialFen={game.initialFen} sans={game.moves.map(m => m.san)} onGo={go}
+            bookExit={game.opening?.exit?.ply} />
+          {thinkTimes && <ClockGraph moves={game.moves} thinkTimes={thinkTimes} startClock={startClock} grades={gradeByPly}
+            longThink={longThink(game.headers.TimeControl)} initialFen={game.initialFen} cursor={cursor} onGo={go} />}
+        </>}
         summary={<>
           {game.headers.Result && <ResultBanner outcome={record?.user_color ? outcome : null} result={game.headers.Result} winner={winner} ending={ending} />}
+          {!reviewing && storyText && <p className="game-story">{storyText}</p>}
           {!reviewing && (
             <AccuracyCards cards={record?.user_color ? [
-              { name: t('summary.you'), accuracy: analysis?.accuracy ?? record.user_accuracy ?? null, you: true },
-              { name: oppName, accuracy: analysis?.opp_accuracy ?? null, you: false },
+              { name: t('summary.you'), accuracy: analysis?.accuracy ?? record.user_accuracy ?? null, you: true, rating: game.rating?.user },
+              { name: oppName, accuracy: analysis?.opp_accuracy ?? null, you: false, rating: game.rating?.opp },
             ] : []} />
           )}
           {counts && !reviewing && <GradeChips counts={counts} title={record?.user_color ? t('summary.yourMoves') : t('summary.allMoves')} />}
           {!reviewing && <WorthALook moments={moments} cursor={cursor} onGo={go} note={t('game.keyMomentsNote')} />}
+          {!reviewing && thinkTimes && <ClockNumbers moves={game.moves} thinkTimes={thinkTimes} startClock={startClock} initialFen={game.initialFen}
+            names={{ white: whiteName, black: blackName }} />}
           <GameRecap gameId={record?.id ?? null} recap={recap} analyzed={!!(record && analysis)} autoplay={opened.current.whole}
             pose={outcome === 'won' ? 'trophy' : outcome === 'lost' ? 'hug' : outcome === 'drew' ? 'nod' : 'notes'} />
           {record && analysis && <GameReview id={record.id} />}
@@ -346,6 +364,14 @@ export function GamePage() {
               <h3>{t('game.openingPlayed')}</h3>
               <p>{game.opening.name} · {game.opening.eco}</p>
               {game.opening.transposed && <p>{t('game.openingTransposed')}</p>}
+              {game.opening.exit && (
+                <p>
+                  <button type="button" className="text-button" onClick={() => go(game.opening!.exit!.ply)}>
+                    {t('game.bookExit', { move: game.opening.exit.move_number, who: t(`game.bookExitBy.${record?.user_color
+                      ? (game.opening.exit.played_by === record.user_color ? 'you' : 'opponent') : game.opening.exit.played_by}`) })}
+                  </button>
+                </p>
+              )}
               <details>
                 <summary>{t('game.openingMoves')}</summary>
                 <p>{game.opening.line}</p>
@@ -356,7 +382,7 @@ export function GamePage() {
             </div>
           )}
           {!reviewing && game.phases && record?.user_color && (
-            <div className="game-phases summary-block"><h3>{t('game.byPhase')}</h3><PhaseTable phases={game.phases} other={oppName} /></div>
+            <div className="game-phases summary-block"><h3>{t('game.byPhase')}</h3><PhaseTable phases={game.phases} other={oppName} starts={game.phase_starts} onGo={go} /></div>
           )}
           {counts && !reviewing && record?.user_color && (
             <details className="summary-block grade-compare">

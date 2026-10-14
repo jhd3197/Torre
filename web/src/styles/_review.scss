@@ -938,6 +938,11 @@ $replay: 'body[data-mode="replay"]';
   font: 700 #{$fs-md} $font-sans;
   color: $sage-50;
 }
+.game-story {
+  margin: 0;
+  font: 700 #{$fs-md}/ 1.4 $font-sans;
+  color: $sage-700;
+}
 .accuracy-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -976,6 +981,11 @@ $replay: 'body[data-mode="replay"]';
 .accuracy-card small {
   font-size: $fs-lg;
   color: $lobby-muted;
+}
+.accuracy-card > .game-rating {
+  margin-top: 2px;
+  font: 800 #{$fs-sm} $font-sans;
+  color: $lobby-ink;
 }
 #{$replay} .summary-block {
   display: flex;
@@ -1072,14 +1082,14 @@ $replay: 'body[data-mode="replay"]';
   border-radius: 18px;
   background: $lobby-tile;
 }
-#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-mistake, .grade-blunder) {
+#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-miss, .grade-mistake, .grade-blunder) {
   background: rgba($wheat-100, 0.5);
 }
 #{$replay} .move-verdict .verdict-head strong {
   font: 900 #{$fs-lg}/ 1.3 $font-sans;
   color: $lobby-ink;
 }
-#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-mistake, .grade-blunder) .verdict-head strong {
+#{$replay} .move-verdict:is(.grade-inaccuracy, .grade-miss, .grade-mistake, .grade-blunder) .verdict-head strong {
   color: $orange-700;
 }
 #{$replay} .move-verdict .verdict-head p {
@@ -1165,6 +1175,88 @@ $replay: 'body[data-mode="replay"]';
 }
 .dot-inaccuracy {
   background: $lobby-star;
+}
+.clock-graph {
+  position: relative;
+  height: 56px;
+  margin-top: 6px;
+  border-radius: 10px;
+  background: $lobby-tile;
+  overflow: hidden;
+}
+.clock-graph svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.clock-left {
+  fill: none;
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+.clock-left.white {
+  stroke: $sage-400;
+}
+.clock-left.black {
+  stroke: $sage-700;
+}
+.clock-mid {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: $lobby-line-strong;
+}
+.clock-bar {
+  position: absolute;
+  min-width: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.clock-bar.by-white {
+  bottom: 50%;
+  background: $sage-400;
+}
+.clock-bar.by-black {
+  top: 50%;
+  background: $sage-700;
+}
+.clock-bar.rushed {
+  background: $red-500;
+}
+.clock-bar.longWrong {
+  background: $plum-600;
+}
+.clock-bar.current {
+  outline: 2px solid $lobby-green;
+}
+.clock-numbers ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: $fs-sm;
+  color: $sage-700;
+}
+.eval-book {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  margin-left: -1px;
+  border-left: 2px dashed $wheat-700;
+}
+.legend-book {
+  border-radius: 0 !important;
+  border-left: 2px dashed $wheat-700;
+  background: none !important;
+}
+.dot-miss {
+  background: $plum-600;
 }
 .dot-mistake {
   background: $orange-400;

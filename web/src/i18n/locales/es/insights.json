@@ -105,6 +105,9 @@
   "blunder": "Errores graves",
   "great": "Grandes jugadas",
   "book": "De libro",
+  "excellent": "Excelentes",
+  "miss": "Ocasiones perdidas",
+  "forced": "Forzadas",
   "updating": "Calificaciones actualizadas: {{current}} de {{total}} jugadas. Los conteos de grandes jugadas y de libro están incompletos hasta volver a analizar las partidas anteriores."
  }
 }

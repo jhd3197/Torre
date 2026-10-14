@@ -2,8 +2,8 @@
 
 Every move gets the engine evaluation of the position after it as a
 standard [%eval] comment (pawns, or #N for mate). Judged moves get the
-standard NAGs (?! $6, ? $2, ?? $4, !! $3), a short comment in Lichess's
-wording, and the engine's move as a variation. Existing comments such as
+standard NAGs (?! $6, ? $2, ?? $4, !! $3, the only move $7), a short comment in
+Lichess's wording, and the engine's move as a variation. Existing comments such as
 [%clk] are kept.
 """
 
@@ -18,7 +18,7 @@ from torre.analysis import analyze
 from torre.analysis import scoring
 NAGS = {"inaccuracy": chess.pgn.NAG_DUBIOUS_MOVE, "mistake": chess.pgn.NAG_MISTAKE,
         "blunder": chess.pgn.NAG_BLUNDER}
-LABELS = {"inaccuracy": "Inaccuracy", "mistake": "Mistake", "blunder": "Blunder"}
+LABELS = {"inaccuracy": "Inaccuracy", "mistake": "Mistake", "blunder": "Blunder", "miss": "Missed chance"}
 
 
 def pov_score(ev):
@@ -52,7 +52,8 @@ def annotated_pgn(pgn_text, analysis):
             graded = scoring.classify(board, move,
                 {'cp': evals[i][0], 'mate': evals[i][1], 'best': best_moves[i] if i < len(best_moves) else None,
                  'alternative': alternatives[i] if i < len(alternatives) else None},
-                {'cp': evals[i + 1][0], 'mate': evals[i + 1][1]})
+                {'cp': evals[i + 1][0], 'mate': evals[i + 1][1]},
+                {'cp': evals[i - 1][0], 'mate': evals[i - 1][1]} if i > 0 else None)
             cls, name = graded['class'], scoring.grade(graded)
             if name == 'brilliant':
                 node.nags.add(chess.pgn.NAG_BRILLIANT_MOVE)
@@ -60,18 +61,22 @@ def annotated_pgn(pgn_text, analysis):
             elif name == 'great':
                 node.nags.add(chess.pgn.NAG_GOOD_MOVE)
                 node.comment = (node.comment + " Great move.").strip()
+            elif name == 'forced':
+                node.nags.add(chess.pgn.NAG_FORCED_MOVE)
+                node.comment = (node.comment + " Only move.").strip()
             elif not cls:
                 node.comment = (node.comment + f" {name.capitalize()} move.").strip()
             if not cls:
                 continue
             node.nags.add(NAGS[cls])
+            label = LABELS['miss' if name == 'miss' else cls]
             best = best_moves[i] if i < len(best_moves) else None
             best_move = chess.Move.from_uci(best) if best else None
             if best_move and best_move != move and best_move in board.legal_moves:
-                node.comment = (node.comment + f" {LABELS[cls]}. {board.san(best_move)} was best.").strip()
+                node.comment = (node.comment + f" {label}. {board.san(best_move)} was best.").strip()
                 node.parent.add_variation(best_move)
             else:
-                node.comment = (node.comment + f" {LABELS[cls]}.").strip()
+                node.comment = (node.comment + f" {label}.").strip()
     return str(game) + "\n"
 
 

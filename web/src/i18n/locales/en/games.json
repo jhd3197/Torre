@@ -10,6 +10,13 @@
   },
   "game": {
     "openingPlayed": "Opening played:",
+    "bookExit": "Left the book on move {{move}} ({{who}})",
+    "bookExitBy": {
+      "you": "you",
+      "opponent": "your opponent",
+      "white": "White",
+      "black": "Black"
+    },
     "openingTransposed": "This game reached the opening through a different move order.",
     "openingMoves": "How this game reached the opening",
     "openingPosition": "Go to the opening position",
@@ -56,6 +63,9 @@
       "best": "Best",
       "good": "Good",
       "book": "Book",
+      "excellent": "Excellent",
+      "miss": "Miss",
+      "forced": "Forced",
       "inaccuracy": "Inaccuracy",
       "mistake": "Mistake",
       "blunder": "Blunder"
@@ -111,6 +121,10 @@
     "winner": "{{name}} won",
     "unfinished": "Unfinished",
     "accuracy": "accuracy",
+    "playedLike": "Played like ~{{rating}}",
+    "playedLikeNone": "Rating: –",
+    "ratingNote": "An estimate from this game alone, rounded to 50.",
+    "ratingShort": "Too short to estimate a rating.",
     "you": "You",
     "chip": "{{count}} {{grade}}",
     "yourMoves": "Your moves",
@@ -122,9 +136,20 @@
   },
   "graph": {
     "title": "Evaluation",
+    "bookExit": "Left the book",
     "expand": "Expand",
     "open": "Show the evaluation graph",
     "close": "Close",
     "start": "Start"
+  },
+  "clock": {
+    "title": "Time per move",
+    "seconds": "{{n}} s",
+    "minutes": "{{m}} min {{s}} s",
+    "rushed": "Rushed error",
+    "longWrong": "Long think, still wrong",
+    "average": "took {{time}} a move",
+    "troubleFrom": "short of time from move {{move}}",
+    "noTrouble": "never short of time"
   }
 }

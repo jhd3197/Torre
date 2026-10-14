@@ -91,6 +91,17 @@
   color: $sage-600;
   font-weight: 650;
 }
+.phase-table .phase-grade {
+  white-space: nowrap;
+}
+.phase-table .phase-grade img {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.phase-table .phase-grade small {
+  margin-left: 4px;
+  color: $sage-500;
+}
 .bot-report p {
   margin: 8px 0 0 !important;
   font-size: $fs-sm !important;

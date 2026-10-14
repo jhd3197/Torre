@@ -39,6 +39,21 @@
       "label": "a book move",
       "message": "This move follows a line in the opening book.",
       "short": "book"
+    },
+    "excellent": {
+      "label": "an excellent move",
+      "message": "Almost as good as the engine’s move.",
+      "short": "excellent"
+    },
+    "miss": {
+      "label": "a miss",
+      "message": "There was a chance here, and it got away.",
+      "short": "miss"
+    },
+    "forced": {
+      "label": "a forced move",
+      "message": "The only legal move.",
+      "short": "forced"
     }
   },
   "plan": {
@@ -163,7 +178,16 @@
     "seeBefore": "See before",
     "accuracy": "Move accuracy {{value}}%",
     "voiceOn": "Say each move out loud",
-    "voiceOff": "Stop saying moves out loud"
+    "voiceOff": "Stop saying moves out loud",
+    "why": {
+      "great": "Only good move: the next best loses {{n}}%.",
+      "brilliant": "Gives up the {{piece}} on {{square}}, and it works.",
+      "missMate": "You had mate in {{n}}.",
+      "missHanging": "Your opponent’s last move left the {{piece}} on {{square}} hanging.",
+      "missChance": "Your opponent’s last move gave you a chance here.",
+      "forced": "The only legal move.",
+      "excellent": "Almost as good as {{san}}."
+    }
   },
   "players": {
     "white": "WHITE",
