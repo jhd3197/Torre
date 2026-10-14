@@ -1,5 +1,12 @@
 {
   "label": "Import games",
+  "link": {
+    "title": "Review one game from its link",
+    "placeholder": "https://lichess.org/… or https://www.chess.com/game/…",
+    "open": "Open the review",
+    "busy": "Fetching the game…",
+    "choose": "Which player were you?"
+  },
   "sourceLabel": "Where your games are",
   "sources": {
     "chesscom": {

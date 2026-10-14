@@ -43,6 +43,10 @@ the GitHub release's notes.
   move's think under the evaluation graph, with each side's clock running down. Errors played
   in a rush and long thinks that still went wrong stand out, and the summary gives each side's
   average time per move and the move where time trouble began.
+- **Paste a Chess.com or Lichess game link to review that one game.** The Import page, and the
+  Games page while it is empty, take a single game's link: Torre fetches the game, saves it to
+  your library and opens its review. If neither player is a name you use, it asks which one
+  you were. Private or unknown games say so.
 
 ### Changed
 

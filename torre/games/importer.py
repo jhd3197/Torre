@@ -48,11 +48,11 @@ class ImportProblem(ValueError):
 
 # --- fetching -------------------------------------------------------------------
 
-def open_url(url, accept='application/json', retries=4):
-    """GET `url`, waiting out 429s (Retry-After) and retrying server errors."""
+def open_url(url, accept='application/json', retries=4, data=None):
+    """GET `url` (POST `data` when given), waiting out 429s (Retry-After) and retrying server errors."""
     for attempt in range(retries):
         try:
-            request = urllib.request.Request(url, headers={**UA, 'Accept': accept})
+            request = urllib.request.Request(url, headers={**UA, 'Accept': accept}, data=data)
             return net.urlopen(request, timeout=60)
         except urllib.error.HTTPError as exc:
             if exc.code == 404:
@@ -197,6 +197,109 @@ def lichess_record(game, username):
                        end_time=end // 1000 if end else None, clocks=True)
     record['user_accuracy'] = ((players.get(record['user_color']) or {}).get('analysis') or {}).get('accuracy')
     return record
+
+
+# --- one game from its link -------------------------------------------------------
+
+# Lichess's single-game export wants a login; exporting by ids does not.
+LICHESS_EXPORT = 'https://lichess.org/api/games/export/_ids?pgnInJson=true&clocks=true&accuracy=true'
+CHESSCOM_CALLBACK = 'https://www.chess.com/callback/{kind}/game/{id}'
+CHESSCOM_ARCHIVES = 'https://api.chess.com/pub/player/{name}/games/archives'
+CHESSCOM_MONTH = 'https://api.chess.com/pub/player/{name}/games/{year}/{month}'
+ARCHIVE_MONTHS = 36  # months of your own archive searched when chess.com does not say when a game was played
+NOT_FOUND = 'That game was not found. It may be private, or the link may be wrong.'
+
+
+class ChooseSide(Exception):
+    """Neither player of a linked game is a name you play under: the page asks which one you were."""
+
+    def __init__(self, players):
+        super().__init__('Which player were you?')
+        self.players = players
+
+
+def game_link(url):
+    """('lichess', id) or ('chesscom', kind, id) for a Lichess or chess.com game link."""
+    text = (url or '').strip() if isinstance(url, str) else ''
+    if (found := LICHESS_GAME.search(text)) and 'lichess.org' in text:
+        return 'lichess', found.group(1)
+    if found := CHESSCOM_GAME.search(text):
+        return 'chesscom', found.group(1), found.group(2)
+    raise ImportProblem('Paste the link of one chess.com or Lichess game.')
+
+
+def _side(white, black, names, me=None):
+    """The lowercase name you played under in a game between `white` and `black`."""
+    names = {*names, *([me.strip().lower()] if isinstance(me, str) and me.strip() else [])}
+    for name in (white, black):
+        if name and name.lower() in names:
+            return name.lower()
+    raise ChooseSide([white, black])
+
+
+def lichess_by_ids(ids):
+    """The Lichess games with these ids (NDJSON from the export by ids); unknown ids are left out."""
+    with open_url(LICHESS_EXPORT, accept='application/x-ndjson', data=','.join(ids).encode()) as response:
+        return [json.loads(line) for line in response.read().decode('utf-8').splitlines() if line.strip()]
+
+
+def lichess_link_game(gid, names, me=None, export=lichess_by_ids):
+    try:
+        game = next((g for g in export([gid]) if g.get('id') == gid), None)
+    except LookupError:
+        game = None
+    if game is None:
+        raise ImportProblem(NOT_FOUND)
+    if game.get('variant', 'standard') not in LICHESS_VARIANTS:
+        raise ImportProblem('Only standard chess games can be reviewed.')
+    players = game.get('players', {})
+    return lichess_record(game, _side(player_name(players.get('white')), player_name(players.get('black')), names, me))
+
+
+def chesscom_link_game(kind, gid, names, me=None, account=None, get=fetch_json):
+    """The game from a monthly archive: chess.com's game page data says who played it and when;
+    without it, your own archive is searched, newest month first."""
+    searches = []
+    try:
+        headers = get(CHESSCOM_CALLBACK.format(kind=kind, id=gid))['game']['pgnHeaders']
+        year, month = headers['Date'].split('.')[:2]
+        white, black = headers['White'], headers['Black']
+        _side(white, black, names, me)  # ask which side you were before searching
+        searches = [CHESSCOM_MONTH.format(name=urllib.parse.quote(n.lower()), year=year, month=month) for n in (white, black)]
+    except ChooseSide:
+        raise
+    except (LookupError, ImportProblem, KeyError, TypeError, ValueError, AttributeError):
+        if not account:
+            raise ImportProblem('Chess.com did not say who played that game. Import your chess.com account first, '
+                                "or paste the game's PGN.") from None
+        try:
+            archives = get(CHESSCOM_ARCHIVES.format(name=urllib.parse.quote(account.lower())))['archives']
+        except LookupError:
+            raise ImportProblem(NOT_FOUND) from None
+        searches = list(reversed(archives))[:ARCHIVE_MONTHS]
+    for url in searches:
+        try:
+            games = get(url).get('games', [])
+        except LookupError:
+            continue
+        for game in games:
+            found = CHESSCOM_GAME.search(game.get('url', ''))
+            if found and found.group(2) == gid:
+                if game.get('rules', 'chess') != 'chess':
+                    raise ImportProblem('Only standard chess games can be reviewed.')
+                white, black = game['white']['username'], game['black']['username']
+                return chesscom_record(game, _side(white, black, names, me))
+    raise ImportProblem(NOT_FOUND)
+
+
+def link_game(url, names, me=None, account=None, get=fetch_json, export=lichess_by_ids):
+    """The game record for one game link. Raises ImportProblem for a bad or unknown link, and
+    ChooseSide when neither player is in `names` (lowercase) or `me`. `get` reads chess.com's
+    JSON, `export` Lichess's games by id."""
+    found = game_link(url)
+    if found[0] == 'lichess':
+        return lichess_link_game(found[1], names, me, export)
+    return chesscom_link_game(found[1], found[2], names, me, account, get)
 
 
 # --- files ------------------------------------------------------------------------

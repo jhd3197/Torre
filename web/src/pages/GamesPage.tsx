@@ -13,6 +13,7 @@ import { GradeTable } from '../components/GradeTable';
 import { EvalGraph, type EvalMark, type EvalPoint } from '../components/EvalGraph';
 import { AccuracyCards, GradeChips, ResultBanner, WorthALook, type Moment } from '../components/ReviewSummary';
 import { ClockGraph, ClockNumbers } from '../components/ClockGraph';
+import { GameLinkForm } from '../components/GameLinkForm';
 import { Mascot } from '../components/Reward';
 import { cachedBoard, isReviewed, reviewedEvals, reviewedResult, reviewPlies } from '../hooks/useChess';
 import { sideToMove, startPly } from '../lib/format';
@@ -105,6 +106,7 @@ export function GamesIndex() {
       <h2>{t('index.emptyTitle')}</h2>
       <p>{t('index.emptyBody')}</p>
       <Link className="button primary" to="/play/bots">{t('index.play')}</Link>
+      <GameLinkForm />
     </div>
   );
 }

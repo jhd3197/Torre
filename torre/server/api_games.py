@@ -263,6 +263,25 @@ def import_files(req):
     return import_view(IMPORT_JOB.status(), req.lang)
 
 
+@ROUTES.post('/api/import/link')
+def import_link(req):
+    """One game from its chess.com or Lichess link, saved to the library: its id, to open its
+    review, or the two players when the page must ask which one you were."""
+    payload = req.payload
+    me = payload.get('me')
+    accounts = appdata.setup_state()['accounts']
+    try:
+        record = importer.link_game(payload.get('url'), appdata.my_names(), me, accounts.get('chesscom'))
+    except importer.ChooseSide as choose:
+        return {'choose': choose.players}
+    if isinstance(me, str) and me.strip():
+        appdata.remember_alias(me.strip())
+    added, _ = importer.append([record], _archive()[0])
+    if added:
+        auto_analyze()
+    return {'id': record['id'], 'added': bool(added)}
+
+
 @ROUTES.post('/api/import/commit')
 def import_commit(req):
     ids = req.payload.get('ids')
