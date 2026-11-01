@@ -9,6 +9,6 @@
     "icons": "tauri icon ../web/public/pwa/icon-512.png"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "2.12.1"
+    "@tauri-apps/cli": "2.12.4"
   }
 }
